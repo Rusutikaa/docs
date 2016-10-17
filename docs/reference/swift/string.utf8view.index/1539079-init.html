@@ -102,17 +102,32 @@ Swif標準ライブラリ
 </div></code></pre></div></figure></section><section id="parameters" class="section"><h2>Parameters<br><span class="jpstr">
 パラメータ
 </span><!--end_jpstr-->
-</h2><dl class="params"><dt><code class="param-name">utf16Index</code></dt><dd><div class="param-discussion formatted-content"><div><p>A position in a <code class="code-voice">UTF16View</code> instance. <code class="code-voice">utf16Index</code> must be an element in <code class="code-voice">String(utf8).utf16.indices</code>.</p></div></div></dd><dt><code class="param-name">utf8</code></dt><dd><div class="param-discussion formatted-content"><div><p>The <code class="code-voice">UTF8View</code> in which to find the new position.</p></div></div></dd></dl></section><section id="discussion" class="section"><h2>Discussion<br><span class="jpstr">
+</h2><dl class="params"><dt><code class="param-name">utf16Index</code></dt><dd><div class="param-discussion formatted-content"><div><p>A position in a <code class="code-voice">UTF16View</code> instance. <code class="code-voice">utf16Index</code> must be an element in <code class="code-voice">String(utf8).utf16.indices</code>.<br><span class="jpstr">
+<code class="code-voice">UTF16Viewiew</code>インスタンスの中のある位置。<code class="code-voice">utf16Index</code>は、<code class="code-voice">String(utf8).utf16.indices</code>の中の一要素でなければなりません。
+</span><!--end_jpstr-->
+</p></div></div></dd><dt><code class="param-name">utf8</code></dt><dd><div class="param-discussion formatted-content"><div><p>The <code class="code-voice">UTF8View</code> in which to find the new position.<br><span class="jpstr">
+それにおいて新しい位置を見つける<code class="code-voice">UTF8View</code>。
+</span><!--end_jpstr-->
+</p></div></div></dd></dl></section><section id="discussion" class="section"><h2>Discussion<br><span class="jpstr">
 解説
 </span><!--end_jpstr-->
-</h2><div class="formatted-content"><div><p>The following example finds the position of a space in a string’s <code class="code-voice">utf16</code> view and then converts that position to an index in the string’s <code class="code-voice">utf8</code> view.</p><figure id="2623772"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>let cafe = &quot;Café 🍵&quot;
+</h2><div class="formatted-content"><div><p>The following example finds the position of a space in a string’s <code class="code-voice">utf16</code> view and then converts that position to an index in the string’s <code class="code-voice">utf8</code> view.<br><span class="jpstr">
+以下の例は、ある空白の位置を文字列のもつ<code class="code-voice">utf16</code>ビューの中で見つけて、それからその位置を文字列のもつ<code class="code-voice">utf8</code>ビューの中のインデックスに変換します。
+</span><!--end_jpstr-->
+</p><figure id="2623772"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>let cafe = &quot;Café 🍵&quot;
 
 let utf16Index = cafe.utf16.index(of: 32)!
 let utf8Index = String.UTF8View.Index(utf16Index, within: cafe.utf8)!
 
 print(Array(cafe.utf8.prefix(upTo: utf8Index)))
 // Prints &quot;[67, 97, 102, 195, 169]&quot;
-</code></pre></div></div></figure><p>If the position passed in <code class="code-voice">utf16Index</code> doesn’t have an exact corresponding position in <code class="code-voice">utf8</code>, the result of the initializer is <code class="code-voice">nil</code>. For example, because UTF-8 and UTF-16 represent high Unicode code points differently, an attempt to convert the position of the trailing surrogate of a UTF-16 surrogate pair fails.</p><p>The next example attempts to convert the indices of the two UTF-16 code points that represent the teacup emoji (<code class="code-voice">&quot;🍵&quot;</code>). The index of the lead surrogate is successfully converted to a position in <code class="code-voice">utf8</code>, but the index of the trailing surrogate is not.</p><figure id="2623773"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>let emojiHigh = cafe.utf16.index(after: utf16Index)
+</code></pre></div></div></figure><p>If the position passed in <code class="code-voice">utf16Index</code> doesn’t have an exact corresponding position in <code class="code-voice">utf8</code>, the result of the initializer is <code class="code-voice">nil</code>. For example, because UTF-8 and UTF-16 represent high Unicode code points differently, an attempt to convert the position of the trailing surrogate of a UTF-16 surrogate pair fails.<br><span class="jpstr">
+<code class="code-voice">utf16Index</code>に渡された位置がまさにその対応する位置を<code class="code-voice">utf8</code>において持たないならば、イニシャライザの結果は<code class="code-voice">nil</code>です。例えば、UTF-8とUTF-16は高位ユニコードコード点を異なって表すので、UTF-16のサロゲートペアの後続サロゲートの位置を変換する試みは失敗します。
+</span><!--end_jpstr-->
+</p><p>The next example attempts to convert the indices of the two UTF-16 code points that represent the teacup emoji (<code class="code-voice">&quot;🍵&quot;</code>). The index of the lead surrogate is successfully converted to a position in <code class="code-voice">utf8</code>, but the index of the trailing surrogate is not.<br><span class="jpstr">
+次の例は、ティーカップ絵文字（<code class="code-voice">"🍵"</code>）を表す２つのUTF-16コード点のインデックスの変換を試みます。先頭サロゲートはうまく<code class="code-voice">utf8</code>での位置に変換されます、しかし後続サロゲートのインデックスは違います。
+</span><!--end_jpstr-->
+</p><figure id="2623773"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>let emojiHigh = cafe.utf16.index(after: utf16Index)
 print(String.UTF8View.Index(emojiHigh, within: cafe.utf8))
 // Prints &quot;Optional(String.Index(...))&quot;
 
