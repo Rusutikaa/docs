@@ -102,14 +102,23 @@ Swif標準ライブラリ
 </div></code></pre></div></figure></section><section id="parameters" class="section"><h2>Parameters<br><span class="jpstr">
 パラメータ
 </span><!--end_jpstr-->
-</h2><dl class="params"><dt><code class="param-name">v</code></dt><dd><div class="param-discussion formatted-content"><div><p>The Unicode code point to use for the scalar. <code class="code-voice">v</code> must be a valid Unicode scalar value, in the range <code class="code-voice">0...0xD7FF</code> or <code class="code-voice">0xE000...0xFFFF</code>. In case of an invalid unicode scalar value, nil is returned.</p></div></div></dd></dl></section><section id="discussion" class="section"><h2>Discussion<br><span class="jpstr">
+</h2><dl class="params"><dt><code class="param-name">v</code></dt><dd><div class="param-discussion formatted-content"><div><p>The Unicode code point to use for the scalar. <code class="code-voice">v</code> must be a valid Unicode scalar value, in the range <code class="code-voice">0...0xD7FF</code> or <code class="code-voice">0xE000...0xFFFF</code>. In case of an invalid unicode scalar value, nil is returned.<br><span class="jpstr">
+このスカラーのために使うユニコードコード点。<code class="code-voice">v</code>は、有効なユニコードスカラー値、範囲<code class="code-voice">0...0xD7FF</code>または<code class="code-voice">0xE000...0xFFFF</code>でなければなりません。無効なユニコードスカラー値の場合には、nilが返されます。
+</span><!--end_jpstr-->
+</p></div></div></dd></dl></section><section id="discussion" class="section"><h2>Discussion<br><span class="jpstr">
 解説
 </span><!--end_jpstr-->
-</h2><div class="formatted-content"><div><p>For example, the following code sample creates a <code class="code-voice">UnicodeScalar</code> instance with a value of <code class="code-voice">밥</code>, the Korean word for rice:</p><figure id="2620230"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>let codepoint: UInt16 = 48165
+</h2><div class="formatted-content"><div><p>For example, the following code sample creates a <code class="code-voice">UnicodeScalar</code> instance with a value of <code class="code-voice">밥</code>, the Korean word for rice:<br><span class="jpstr">
+例えば、以下のコード見本は<code class="code-voice">UnicodeScalar</code>インスタンスをコリアン語での米、<code class="code-voice">밥</code>の値で作成します：
+</span><!--end_jpstr-->
+</p><figure id="2620230"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>let codepoint: UInt16 = 48165
 let bap = UnicodeScalar(codepoint)
 print(bap!)
 // Prints &quot;밥&quot;
-</code></pre></div></div></figure><p>In case an invalid input value, nil is returned.</p><figure id="2620231"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>let codepoint: UInt32 = extValue // This might be an invalid value. 
+</code></pre></div></div></figure><p>In case an invalid input value, nil is returned.<br><span class="jpstr">
+無効な入力値の場合、nilが返されます。
+</span><!--end_jpstr-->
+</p><figure id="2620231"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>let codepoint: UInt32 = extValue // This might be an invalid value. 
 if let bap = UnicodeScalar(codepoint) {
   print(bap)
 } else {
