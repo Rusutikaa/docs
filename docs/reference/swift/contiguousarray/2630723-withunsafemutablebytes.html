@@ -74,7 +74,7 @@
             </span>
           </button>
         </aside>
-      </div></nav><div id="ac-gn-curtain" class="ac-gn-curtain"></div><div id="ac-gn-placeholder" class="ac-nav-placeholder"></div><input type="checkbox" id="localnav-menustate" class="localnav-menustate" aria-hidden="true"/><nav id="localnav" class="localnav localnav-dark theme-dark localnav-scrim localnav-noborder" role="navigation" aria-label="API Reference" data-sticky="true"><div class="localnav-wrapper"><div class="localnav-background"></div><div class="localnav-content"><a href="/reference" class="localnav-title">API Reference</a><div class="breadcrumb localnav-menu"><a href="#localnav-menustate" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span class="localnav-menucta-anchor-label" aria-hidden="true">Open Menu</span></a><a href="#" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span class="localnav-menucta-anchor-label" aria-hidden="true">Close Menu</span></a><div class="localnav-menu-tray"><ul class="localnav-menu-items" aria-label="Breadcrumb"><li class="localnav-menu-item more"><a href="../../../reference/swift.html" class="localnav-menu-link">Swift Standard Library<br><span class="jpstr">
+      </div></nav><div id="ac-gn-curtain" class="ac-gn-curtain"></div><div id="ac-gn-placeholder" class="ac-nav-placeholder"></div><input type="checkbox" id="localnav-menustate" class="localnav-menustate" aria-hidden="true"/><nav id="localnav" class="localnav localnav-dark theme-dark localnav-scrim localnav-noborder" role="navigation" aria-label="API Reference" data-sticky="true"><div class="localnav-wrapper"><div class="localnav-background"></div><div class="localnav-content"><a href="../../../index.html" class="localnav-title">API Reference</a><div class="breadcrumb localnav-menu"><a href="#localnav-menustate" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span class="localnav-menucta-anchor-label" aria-hidden="true">Open Menu</span></a><a href="#" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span class="localnav-menucta-anchor-label" aria-hidden="true">Close Menu</span></a><div class="localnav-menu-tray"><ul class="localnav-menu-items" aria-label="Breadcrumb"><li class="localnav-menu-item more"><a href="../../../reference/swift.html" class="localnav-menu-link">Swift Standard Library<br><span class="jpstr">
 Swif標準ライブラリ
 </span><!--end_jpstr-->
 </a></li><li class="localnav-menu-item more"><a href="../../../reference/swift/contiguousarray.html" class="localnav-menu-link">ContiguousArray</a></li><li class="localnav-menu-item"><span class="localnav-menu-link current" aria-current="page">withUnsafeMutableBytes(_:)</span></li></ul></div><div class="localnav-actions"><div class="localnav-action localnav-action-menucta" aria-hidden="true"><label for="localnav-menustate" class="localnav-menucta"><span class="localnav-menucta-chevron"></span></label></div></div></div></div></div></nav><label for="localnav-menustate" id="localnav-curtain" aria-hidden="true"></label><main role="main" id="main" class="main" tabindex="0"><div class="topic-title"><span class="eyebrow">Generic Instance Method<br><span class="jpstr">
@@ -111,7 +111,13 @@ Swif標準ライブラリ
 </div></code></pre></div></figure></section><section id="parameters" class="section"><h2>Parameters<br><span class="jpstr">
 パラメータ
 </span><!--end_jpstr-->
-</h2><dl class="params"><dt><code class="param-name">body</code></dt><dd><div class="param-discussion formatted-content"><div><p>A closure with an <code class="code-voice">UnsafeRawBufferPointer</code> parameter that points to the contiguous storage for the array. If <code class="code-voice">body</code> has a return value, it is used as the return value for the <code class="code-voice">withUnsafeMutableBytes(_:)</code> method. The argument is valid only for the duration of the closure’s execution.</p></div></div></dd></dl></section><section id="return-value" class="section"><h2>Return Value<br><span class="jpstr">
+</h2><dl class="params"><dt><code class="param-name">body</code></dt><dd><div class="param-discussion formatted-content"><div><p>A closure with an <code class="code-voice">UnsafeRawBufferPointer</code> parameter that points to the contiguous storage for the array. <br><span class="jpstr">
+あるクロージャで<code class="code-voice">UnsafeRawBufferPointer</code>パラメータを持ち、それはその配列のための隣接ストレージを指し示します。
+</span><!--end_jpstr-->
+If <code class="code-voice">body</code> has a return value, it is used as the return value for the <code class="code-voice">withUnsafeMutableBytes(_:)</code> method. The argument is valid only for the duration of the closure’s execution.<br><span class="jpstr">
+引数は、ただクロージャの実行の間に対してのみ有効とされます。
+</span><!--end_jpstr-->
+</p></div></div></dd></dl></section><section id="return-value" class="section"><h2>Return Value<br><span class="jpstr">
 戻り値
 </span><!--end_jpstr-->
 </h2><div class="formatted-content"><div><p>The return value of the <code class="code-voice">body</code> closure parameter, if any.<br><span class="jpstr">
@@ -123,7 +129,10 @@ Swif標準ライブラリ
 </h2><div class="formatted-content"><div><p>If no such storage exists, it is first created.<br><span class="jpstr">
 そのようなストレージが存在しないならば、それが最初に作成されます。
 </span><!--end_jpstr-->
-</p><p>Precondition: <code class="code-voice">Pointee</code> is a trivial type.</p><p>The following example shows how you copy bytes into an array:</p><p>var numbers = [Int32](repeating: 0, count: 2) var byteValues: [UInt8] = [0x01, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00] numbers.withUnsafeMutableBytes { destBytes in byteValues.withUnsafeBytes { srcBytes in destBytes.copyBytes(from: srcBytes) } }</p></div></div></section></div></div><section id="see-also" class="contenttable section alt-light row"><div class="section-content"><h2 class="contenttable-title">See Also<br><span class="jpstr">
+</p><p>Precondition: <code class="code-voice">Pointee</code> is a trivial type.<br><span class="jpstr">
+前提条件：<code class="code-voice">Pointee</code>が自明な型であること。
+</span><!--end_jpstr-->
+</p><p>The following example shows how you copy bytes into an array:</p><p>var numbers = [Int32](repeating: 0, count: 2) var byteValues: [UInt8] = [0x01, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00] numbers.withUnsafeMutableBytes { destBytes in byteValues.withUnsafeBytes { srcBytes in destBytes.copyBytes(from: srcBytes) } }</p></div></div></section></div></div><section id="see-also" class="contenttable section alt-light row"><div class="section-content"><h2 class="contenttable-title">See Also<br><span class="jpstr">
 参照
 </span><!--end_jpstr-->
 </h2><section class="contenttable-section"><div class="contenttable-container row"><div class="column large-3 medium-3 small-12"><h3 class="contenttable-section-title">Related Symbols<br><span class="jpstr">
@@ -169,7 +178,7 @@ Swif標準ライブラリ
                   <li><a href="/xcode/">Xcode</a></li>
                   <li><a href="/swift/">Swift</a></li>
                   <li><a href="/download/">Downloads</a></li>
-                  <li><a href="/reference/">API Reference</a></li>
+                  <li><a href="https://developer.apple.com/reference/">API Reference</a></li>
                   <li><a href="/library/prerelease/content/navigation/">Guides</a></li>
                   <li><a href="/library/prerelease/content/navigation/#section=Resource%20Types&topic=Sample%20Code">Sample Code</a></li>
                   <li><a href="/videos/">Videos</a></li>
