@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>  
+  <title>The Swift Programming Language (Swift 3.0.1): Error Handling</title>
+  <link rel="stylesheet" type="text/css" href="../../../../Resources/1254/CSS/style-1.6.3.css" />
+  <link rel="stylesheet" type="text/css" href="../../../../Resources/1254/CSS/feedback-1.6.3.css" />
+  <meta charset='utf-8'> 
+<meta id="j-version" name="j-version" content="" />
+<meta id="build" name="build" content="0cd917ac01ec7578a7bd8964f41dd08b" />
+<meta id="document-version" name="document-version" content="8.0.3" />
+<meta id="book-assignments" name="book-assignments" content="{Type/Guide}, {Topic/Swift}" />
+<meta scheme="apple_ref" id="identifier" name="identifier" content="//apple_ref/doc/uid/TP40014097" />
+<meta id="chapterId" name="chapterId" content="TP40014097-CH42">
+<meta id="book-title" name="book-title" content="The Swift Programming Language (Swift 3.0.1)" />
+<meta id="book-resource-type" name="book-resource-type" content="Guide" />
+<meta id="book-root" name="book-root" content="./" />
+<meta id="book-json" name="book-json" content="book.json">
+<meta id="date" name="date" content="2016-10-27" />
+<meta id="description" name="description" content="The definitive guide to Swift, Apple’s new programming language for building iOS, OS X, watchOS, and tvOS apps." />
+<meta id="IndexTitle" name="IndexTitle" content="" />
+<meta id="resources-uri" name="resources-uri" content="../../../../Resources/1254">
+<link id="book-index-page" rel="Start" title="" type="text/html" href="./index.html">
+<!-- , next_chapter: next_chapter, previous_chapter: previous_chapter -->
+<link id="next-page" rel="Next" type="text/html" href="">
+<link id="previous-page" rel="Prev" type="text/html" href="">
+<meta id="devcenter" name="devcenter" content="<!-- DEVCENTER_NAME -->" />
+<meta id="devcenter-url" name="devcenter-url" content="<!-- DEVCENTER_URL -->" />
+<meta id="reflib" name="reflib" content="<!-- REFLIB_NAME -->" />
+
+<meta id="xcode-display" name="xcode-display" content="render" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta id="platforms" name="platforms" content="Xcode Developer Tools">
+</head>
+
+  <body id="conceptual_flow_with_tasks" class="jazz">
+    
+    <header id="ios_header" class="hideOnPrint hideInXcode">
+  <div class="content-wrapper">
+    <p class="header-text">
+    	<a href="../../../../navigation/index.html">Guides and Sample Code
+ 		</a>
+ </p>
+    <p id="wwdr"><img id="apple_logo" src="../../../../Resources/1254/Images/apple2.png" height="14px" width="12px" aria-hidden="true" /><a href="https://developer.apple.com">Developer</a></p>
+  </div>
+</header>
+
+    <section id="valence">
+  <div class="content-wrapper">
+    <p id="hierarchial_navigation">
+      <span id="book_title">The Swift Programming Language (Swift 3.0.1)</span>
+    </p>
+    <form id="search" class="hideInXcode" method="get" action="/search/index.php" accept-charset="utf-8" autocomplete="off">
+  <input type="search" id="ssi_SearchField" placeholder="Search Guides and Sample Code" name="q" autocomplete="off" tabindex="2" />
+</form>
+
+      
+   
+   
+
+
+
+
+    <span class="download-text hideInXcode">
+      <a href="https://itunes.apple.com/us/book/the-swift-programming-language/id881256329?mt=11">iBooks</a>
+    </span>
+
+    
+
+    <img id="shortstack" src="../../../../Resources/1254/Images/shortstack_2x.png"/>
+  </div>
+</section>
+    <div class="content-wrapper">
+      <nav id="navigator" class="book-parts hideInXcode" role="navigation">
+    <ul class="nav-parts">
+        <li data-id="//apple_ref/doc/uid/TP40014097-CH1-ID2"
+            class="part-name">
+            <a href="index.html#//apple_ref/doc/uid/TP40014097-CH3-ID0" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH3-ID0">Welcome to Swift<br><span class="jpstr">
+スウィフトにようこそ
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="index.html#//apple_ref/doc/uid/TP40014097-CH3-ID0" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH3-ID0">About Swift<br><span class="jpstr">
+スウィフトについて
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="GuidedTour.html#//apple_ref/doc/uid/TP40014097-CH2-ID1" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH2-ID1">A Swift Tour<br><span class="jpstr">
+スウィフトツアー
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+        <li data-id="//apple_ref/doc/uid/TP40014097-CH4-ID233"
+            class="part-name nav-part-active open-part">
+            <a href="TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH5-ID309">Language Guide<br><span class="jpstr">
+言語ガイド
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH5-ID309">The Basics<br><span class="jpstr">
+基本
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="BasicOperators.html#//apple_ref/doc/uid/TP40014097-CH6-ID60" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH6-ID60">Basic Operators<br><span class="jpstr">
+基本の演算子
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="StringsAndCharacters.html#//apple_ref/doc/uid/TP40014097-CH7-ID285" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH7-ID285">Strings and Characters<br><span class="jpstr">
+文字列と文字
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="CollectionTypes.html#//apple_ref/doc/uid/TP40014097-CH8-ID105" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH8-ID105">Collection Types<br><span class="jpstr">
+コレクション型
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="ControlFlow.html#//apple_ref/doc/uid/TP40014097-CH9-ID120" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH9-ID120">Control Flow<br><span class="jpstr">
+制御の流れ
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Functions.html#//apple_ref/doc/uid/TP40014097-CH10-ID158" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH10-ID158">Functions<br><span class="jpstr">
+関数
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Closures.html#//apple_ref/doc/uid/TP40014097-CH11-ID94" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH11-ID94">Closures<br><span class="jpstr">
+クロージャ
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Enumerations.html#//apple_ref/doc/uid/TP40014097-CH12-ID145" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH12-ID145">Enumerations<br><span class="jpstr">
+列挙
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="ClassesAndStructures.html#//apple_ref/doc/uid/TP40014097-CH13-ID82" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH13-ID82">Classes and Structures<br><span class="jpstr">
+クラスと構造体
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Properties.html#//apple_ref/doc/uid/TP40014097-CH14-ID254" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH14-ID254">Properties<br><span class="jpstr">
+プロパティ
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Methods.html#//apple_ref/doc/uid/TP40014097-CH15-ID234" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH15-ID234">Methods<br><span class="jpstr">
+メソッド
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Subscripts.html#//apple_ref/doc/uid/TP40014097-CH16-ID305" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH16-ID305">Subscripts<br><span class="jpstr">
+添え字
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Inheritance.html#//apple_ref/doc/uid/TP40014097-CH17-ID193" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH17-ID193">Inheritance<br><span class="jpstr">
+継承
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Initialization.html#//apple_ref/doc/uid/TP40014097-CH18-ID203" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH18-ID203">Initialization<br><span class="jpstr">
+初期化
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Deinitialization.html#//apple_ref/doc/uid/TP40014097-CH19-ID142" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH19-ID142">Deinitialization<br><span class="jpstr">
+デイニシャライズ
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="AutomaticReferenceCounting.html#//apple_ref/doc/uid/TP40014097-CH20-ID48" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH20-ID48">Automatic Reference Counting<br><span class="jpstr">
+自動参照カウント
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="OptionalChaining.html#//apple_ref/doc/uid/TP40014097-CH21-ID245" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH21-ID245">Optional Chaining<br><span class="jpstr">
+オプショナル連鎖
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter nav-current-chapter">
+              	<a href="#//apple_ref/doc/uid/TP40014097-CH42-ID508" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH42-ID508">Error Handling<br><span class="jpstr">
+エラーの処理
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="TypeCasting.html#//apple_ref/doc/uid/TP40014097-CH22-ID338" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH22-ID338">Type Casting<br><span class="jpstr">
+型キャスト
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="NestedTypes.html#//apple_ref/doc/uid/TP40014097-CH23-ID242" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH23-ID242">Nested Types<br><span class="jpstr">
+入れ子にされた型
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Extensions.html#//apple_ref/doc/uid/TP40014097-CH24-ID151" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH24-ID151">Extensions<br><span class="jpstr">
+拡張
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Protocols.html#//apple_ref/doc/uid/TP40014097-CH25-ID267" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH25-ID267">Protocols<br><span class="jpstr">
+プロトコル
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Generics.html#//apple_ref/doc/uid/TP40014097-CH26-ID179" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH26-ID179">Generics<br><span class="jpstr">
+総称体
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="AccessControl.html#//apple_ref/doc/uid/TP40014097-CH41-ID3" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH41-ID3">Access Control<br><span class="jpstr">
+アクセス制御
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="AdvancedOperators.html#//apple_ref/doc/uid/TP40014097-CH27-ID28" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH27-ID28">Advanced Operators<br><span class="jpstr">
+先進の演算子
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+        <li data-id="//apple_ref/doc/uid/TP40014097-CH28-ID427"
+            class="part-name">
+            <a href="AboutTheLanguageReference.html#//apple_ref/doc/uid/TP40014097-CH29-ID345" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH29-ID345">Language Reference<br><span class="jpstr">
+言語リファレンス
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="AboutTheLanguageReference.html#//apple_ref/doc/uid/TP40014097-CH29-ID345" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH29-ID345">About the Language Reference<br><span class="jpstr">
+言語リファレンスについて
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="LexicalStructure.html#//apple_ref/doc/uid/TP40014097-CH30-ID410" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH30-ID410">Lexical Structure<br><span class="jpstr">
+語彙の構造
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Types.html#//apple_ref/doc/uid/TP40014097-CH31-ID445" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH31-ID445">Types<br><span class="jpstr">
+型
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Expressions.html#//apple_ref/doc/uid/TP40014097-CH32-ID383" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH32-ID383">Expressions<br><span class="jpstr">
+式
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Statements.html#//apple_ref/doc/uid/TP40014097-CH33-ID428" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH33-ID428">Statements<br><span class="jpstr">
+文
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Declarations.html#//apple_ref/doc/uid/TP40014097-CH34-ID351" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH34-ID351">Declarations<br><span class="jpstr">
+宣言
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Attributes.html#//apple_ref/doc/uid/TP40014097-CH35-ID347" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH35-ID347">Attributes<br><span class="jpstr">
+属性
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Patterns.html#//apple_ref/doc/uid/TP40014097-CH36-ID419" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH36-ID419">Patterns<br><span class="jpstr">
+パターン
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="GenericParametersAndArguments.html#//apple_ref/doc/uid/TP40014097-CH37-ID406" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH37-ID406">Generic Parameters and Arguments<br><span class="jpstr">
+総称体パラメータと引数
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="zzSummaryOfTheGrammar.html#//apple_ref/doc/uid/TP40014097-CH38-ID458" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH38-ID458">Summary of the Grammar<br><span class="jpstr">
+文法の概要
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+        <li data-id="//apple_ref/doc/uid/TP40014097-CH39-ID460"
+            class="part-name">
+            <a href="RevisionHistory.html#//apple_ref/doc/uid/TP40014097-CH40-ID459" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH40-ID459">Revision History<br><span class="jpstr">
+改訂履歴
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="RevisionHistory.html#//apple_ref/doc/uid/TP40014097-CH40-ID459" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH40-ID459">Document Revision History<br><span class="jpstr">
+文書改訂履歴
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+    </ul>
+</nav>
+
+      <menu id="bashful" type="toolbar">
+  <div class="shield"></div>
+  <menuitem id="jump_to" class="menu-bar-item closed">
+  <span>On This Page</span>
+  <div class="chevron">
+    <div class="chevy chevron-left"></div>
+    <div class="chevy chevron-right"></div>
+  </div>
+  <menu type="list" class="details">
+      <ul class="list-bullet">
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH42-ID509">Representing and Throwing Errors</a>
+<br><span class="jpstr">
+エラーの表現とスロー
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH42-ID512">Handling Errors</a>
+<br><span class="jpstr">
+エラーを処理する
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH42-ID514">Specifying Cleanup Actions</a>
+<br><span class="jpstr">
+クリーンアップ動作の指定
+</span><!--end_jpstr-->
+          </li>
+      </ul>
+  </menu>
+</menuitem>
+
+</menu>
+<div class="pixel-line"></div>
+<div class="rubber-band-gap"></div>
+<article class="chapter">
+  <a name="//apple_ref/doc/uid/TP40014097-CH42"></a><a name="//apple_ref/doc/uid/TP40014097-CH42-ID508"></a>
+
+  <h2 class='chapter-name'>Error Handling<br><span class="jpstr">
+エラーの処理
+</span><!--end_jpstr-->
+</h2>
+
+
+  
+  	<section class="section">
+  		<p class="para">
+  <em>Error handling</em> is the process of responding to and recovering from error conditions in your program. Swift provides first-class support for throwing, catching, propagating, and manipulating recoverable errors at runtime.
+<br><span class="jpstr">
+<em>エラー処理</em>は、あなたのプログラムにおいてエラー状態へ応答してそこから復旧する過程です。スウィフトは、回復可能なエラーのスロー、キャッチ、伝達、そして取り扱いに対してファーストクラスのサポートを提供します。
+</span><!--end_jpstr-->
+</p>
+<p class="para">
+  Some operations aren’t guaranteed to always complete execution or produce a useful output. Optionals are used to represent the absence of a value, but when an operation fails, it’s often useful to understand what caused the failure, so that your code can respond accordingly.
+<br><span class="jpstr">
+いくつかの操作は、常に実行を完了することや役に立つ出力を生成することを保証されません。オプショナルは、ある値の欠如を表すために使われます、しかしある操作が失敗する時、何がその失敗をもたらしたのか理解するのはしばしば役に立ちます、それであなたのコードはそれに適切に応答することができます。
+</span><!--end_jpstr-->
+</p>
+<p class="para">
+  As an example, consider the task of reading and processing data from a file on disk. There are a number of ways this task can fail, including the file not existing at the specified path, the file not having read permissions, or the file not being encoded in a compatible format. Distinguishing among these different situations allows a program to resolve some errors and to communicate to the user any errors it can’t resolve.
+<br><span class="jpstr">
+ひとつの例として、ディスク上のファイルからデータを読み込んで処理する作業を考えてみてください。この作業が失敗するたくさんの道筋があります、そのファイルが指定したパスで存在しない、ファイルが読み出し権限を持っていない、またはファイルが互換性のある形式で符号化されていないことを含めて。これらの異なった状況を区別することは、プログラムにいくらかのエラーを解消すること、そしてなんらかのそれが解消できないエラーを利用者に伝えることを可能にします。
+</span><!--end_jpstr-->
+</p>
+<div class="note">
+  <a name="//apple_ref/doc/uid/TP40014097-CH42-NoLink_166"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">Error handling in Swift interoperates with error handling patterns that use the <code class="code-voice">NSError</code> class in Cocoa and Objective-C. For more information about this class, see <a href="../BuildingCocoaApps/AdoptingCocoaDesignPatterns.html#//apple_ref/doc/uid/TP40014216-CH7-ID10" data-renderer-version="2" target="_self">Error Handling</a> in <em class="u-book"><a href="../BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216" data-renderer-version="2" target="_self">Using Swift with Cocoa and Objective-C (Swift 3.0.1)</a></em>.
+    	<br><span class="jpstr">
+スウィフトでのエラー処理は、CocoaとObjective-Cでの<code class="code-voice">NSError</code>クラスを使うエラー処理パターンと相互運用性があります。このクラスについての更なる情報として、<a href="../BuildingCocoaApps/AdoptingCocoaDesignPatterns.html#//apple_ref/doc/uid/TP40014216-CH7-ID10" data-renderer-version="2" target="_self">エラーの処理</a>を<em class="u-book"><a href="../BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216" data-renderer-version="2" target="_self">SwiftをCocoaとObjective-Cとともに使う（Swift 3.0.1）</a></em>で見てください。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div>
+
+		</section> 
+
+
+  <section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH42-ID509"></a>
+  <h3 class="section-name" tabindex="0">Representing and Throwing Errors<br><span class="jpstr">
+エラーの表現とスロー
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  In Swift, errors are represented by values of types that conform to the <code class="code-voice">Error</code> protocol. This empty protocol indicates that a type can be used for error handling.
+<br><span class="jpstr">
+スウィフトでは、エラーは<code class="code-voice">Error</code>プロトコルに準拠する型の値によって表されます。この空のプロトコルは、ある型がエラー処理のために使われることができるのを示します。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Swift enumerations are particularly well suited to modeling a group of related error conditions, with associated values allowing for additional information about the nature of an error to be communicated. For example, here’s how you might represent the error conditions of operating a vending machine inside a game:
+<br><span class="jpstr">
+スウィフト列挙は、関連値がエラーの性質についての追加の情報と通信可能にすることを含め、関係のあるエラー状況のグループを作るのにとりわけ適します。例えば、ここにあなたが表すかもしれないあるゲーム内の自動販売機操作のエラー状況がどのようなものかがあります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">enum</span> <span class="vc">VendingMachineError</span>: <span class="n"><!-- a href="" -->Error<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">case</span> <span class="vc">invalidSelection</span></code></li>
+            <li><code class="code-voice">    <span class="kt">case</span> <span class="vc">insufficientFunds</span>(<span class="vc">coinsNeeded</span>: <span class="vc">Int</span>)</code></li>
+            <li><code class="code-voice">    <span class="kt">case</span> <span class="vc">outOfStock</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Throwing an error lets you indicate that something unexpected happened and the normal flow of execution can’t continue. You use a <code class="code-voice">throw</code> statement to throw an error. For example, the following code throws an error to indicate that five additional coins are needed by the vending machine:
+<br><span class="jpstr">
+エラーのスローがあなたに示すのは、何か予期せぬことが起こった、そして通常の実行の流れは続けることができないということです。あなたは<code class="code-voice">throw</code>文を使ってエラーをスローします。例えば、以下のコードはあるエラーをスローして、５つの追加のコインが自動販売機に必要とされることを示します。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">throw</span> <span class="vc">VendingMachineError</span>.<span class="vc">insufficientFunds</span>(<span class="vc">coinsNeeded</span>: <span class="m">5</span>)</code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH42-ID512"></a>
+  <h3 class="section-name" tabindex="0">Handling Errors<br><span class="jpstr">
+エラーを処理する
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  When an error is thrown, some surrounding piece of code must be responsible for handling the error—for example, by correcting the problem, trying an alternative approach, or informing the user of the failure.
+<br><span class="jpstr">
+あるエラーがスローされるとき、なかには周囲のコード部分がエラーを処理することに対して責任を持たなければならないこともあります ― 例えば、問題を訂正すること、代わりの取り組みを試みること、または失敗をユーザに知らせることによって。
+</span><!--end_jpstr-->
+</p><p class="para">
+  There are four ways to handle errors in Swift. You can propagate the error from a function to the code that calls that function, handle the error using a <code class="code-voice">do</code>-<code class="code-voice">catch</code> statement, handle the error as an optional value, or assert that the error will not occur. Each approach is described in a section below.
+<br><span class="jpstr">
+４つの方法がエラーを取り扱うためにスウィフトにはあります。あなたは、エラーを関数からその関数を呼び出しているコードに伝えて、そのエラーを<code class="code-voice">do</code>-<code class="code-voice">catch</code>文を使って取り扱う、エラーをオプショナルとして取り扱う、またはそのエラーは起こらないことを表明することができます。各取り組みは、以下の節で記述されます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  When a function throws an error, it changes the flow of your program, so it’s important that you can quickly identify places in your code that can throw errors. To identify these places in your code, write the <code class="code-voice">try</code> keyword—or the <code class="code-voice">try?</code> or <code class="code-voice">try!</code> variation—before a piece of code that calls a function, method, or initializer that can throw an error. These keywords are described in the sections below.
+<br><span class="jpstr">
+ある関数がエラーをスローするとき、それはあなたのプログラムの流れを変えます、そのため重要なのは、あなたがすばやくあなたのコードの中のエラーをスローできる場所を識別することです。これらの場所をあなたのコードの中で識別するには、<code class="code-voice">try</code>キーワードを ― またはその変種<code class="code-voice">try?</code>または<code class="code-voice">try!</code>を ― エラーをスローできる関数、メソッド、またはイニシャライザを呼び出すコードの前の場所に書いてください。これらのキーワードは、以下の節で解説されます。
+</span><!--end_jpstr-->
+</p><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014097-CH42-NoLink_167"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">Error handling in Swift resembles exception handling in other languages, with the use of the <code class="code-voice">try</code>, <code class="code-voice">catch</code> and <code class="code-voice">throw</code> keywords. Unlike exception handling in many languages—including Objective-C—error handling in Swift does not involve unwinding the call stack, a process that can be computationally expensive. As such, the performance characteristics of a <code class="code-voice">throw</code> statement are comparable to those of a <code class="code-voice">return</code> statement.
+    	<br><span class="jpstr">
+スウィフトにおけるエラー処理は、<code class="code-voice">try</code>、<code class="code-voice">catch</code>、そして<code class="code-voice">throw</code>キーワードの使用とともに、他の言語での例外処理に似ています。多くの言語 ― Objective-Cを含めて ― での例外処理と違い、スウィフトにおけるエラー処理はコールスタック、計算的に高くつく可能性がある処理、の巻き戻し（アンワインド）を必要としません。<code class="code-voice">throw</code>文のいろいろな性能特徴は、それ自体としては、<code class="code-voice">return</code>文のそれと同程度です。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div>
+  <section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH42-ID510"></a>
+  <h3 class="section-name" tabindex="0">Propagating Errors Using Throwing Functions<br><span class="jpstr">
+スロー関数を使ってエラーを伝える
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  To indicate that a function, method, or initializer can throw an error, you write the <code class="code-voice">throws</code> keyword in the function’s declaration after its parameters. A function marked with <code class="code-voice">throws</code> is called a <em>throwing function</em>. If the function specifies a return type, you write the <code class="code-voice">throws</code> keyword before the return arrow (<code class="code-voice">-&gt;</code>).
+<br><span class="jpstr">
+エラーをスローすることのできる関数、メソッド、またはイニシャライザを指し示すために、あなたは<code class="code-voice">throws</code>キーワードを関数の定義においてそれのパラメータの後に書きます。<code class="code-voice">throws</code>で印された関数は、<em>スロー関数</em>と呼ばれます。その関数が戻り型を指定するならば、あなたは<code class="code-voice">throws</code>キーワードを戻り矢印（<code class="code-voice">-&gt;</code>）の前に書きます。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">canThrowErrors</span>() <span class="kt">throws</span> -&gt; <span class="n"><!-- a href="" -->String<!-- /a --></span></code></li>
+            <li><code class="code-voice"> </code></li>
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">cannotThrowErrors</span>() -&gt; <span class="n"><!-- a href="" -->String<!-- /a --></span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  A throwing function propagates errors that are thrown inside of it to the scope from which it’s called.
+<br><span class="jpstr">
+スロー関数は、それの内部でスローされるエラーを、そこからそれが呼び出されるスコープへと伝えます。
+</span><!--end_jpstr-->
+</p><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014097-CH42-NoLink_168"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">Only throwing functions can propagate errors. Any errors thrown inside a nonthrowing function must be handled inside the function.
+    	<br><span class="jpstr">
+スロー関数だけがエラーを伝えることができます。スローしない関数の内部でスローされるどんなエラーも、その関数の内部で取り扱われなければなりません。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div><p class="para">
+  In the example below, the <code class="code-voice">VendingMachine</code> class has a <code class="code-voice">vend(itemNamed:)</code> method that throws an appropriate <code class="code-voice">VendingMachineError</code> if the requested item is not available, is out of stock, or has a cost that exceeds the current deposited amount:
+<br><span class="jpstr">
+下の例において、<code class="code-voice">VendingMachine</code>クラスは<code class="code-voice">vend(itemNamed:)</code>メソッドを持ちます、それは、要求された項目が利用可能でない、在庫切れ、または現在預け入れされた総額を超える価格を持つならば対応する<code class="code-voice">VendingMachineError</code>をスローします：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">struct</span> <span class="vc">Item</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">price</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span></code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">count</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span></code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"> </code></li>
+            <li><code class="code-voice"><span class="kt">class</span> <span class="vc">VendingMachine</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">inventory</span> = [</code></li>
+            <li><code class="code-voice">        <span class="s">&quot;Candy Bar&quot;</span>: <span class="vc">Item</span>(<span class="vc">price</span>: <span class="m">12</span>, <span class="vc">count</span>: <span class="m">7</span>),</code></li>
+            <li><code class="code-voice">        <span class="s">&quot;Chips&quot;</span>: <span class="vc">Item</span>(<span class="vc">price</span>: <span class="m">10</span>, <span class="vc">count</span>: <span class="m">4</span>),</code></li>
+            <li><code class="code-voice">        <span class="s">&quot;Pretzels&quot;</span>: <span class="vc">Item</span>(<span class="vc">price</span>: <span class="m">7</span>, <span class="vc">count</span>: <span class="m">11</span>)</code></li>
+            <li><code class="code-voice">    ]</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">coinsDeposited</span> = <span class="m">0</span></code></li>
+            <li><code class="code-voice">    </code></li>
+            <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">vend</span>(<span class="vc">itemNamed</span> <span class="vc">name</span>: <span class="n"><!-- a href="" -->String<!-- /a --></span>) <span class="kt">throws</span> {</code></li>
+            <li><code class="code-voice">        <span class="kt">guard</span> <span class="kt">let</span> <span class="vc">item</span> = <span class="vc">inventory</span>[<span class="vc">name</span>] <span class="kt">else</span> {</code></li>
+            <li><code class="code-voice">            <span class="kt">throw</span> <span class="vc">VendingMachineError</span>.<span class="vc">invalidSelection</span></code></li>
+            <li><code class="code-voice">        }</code></li>
+            <li><code class="code-voice">        </code></li>
+            <li><code class="code-voice">        <span class="kt">guard</span> <span class="vc">item</span>.<span class="vc">count</span> &gt; <span class="m">0</span> <span class="kt">else</span> {</code></li>
+            <li><code class="code-voice">            <span class="kt">throw</span> <span class="vc">VendingMachineError</span>.<span class="vc">outOfStock</span></code></li>
+            <li><code class="code-voice">        }</code></li>
+            <li><code class="code-voice">        </code></li>
+            <li><code class="code-voice">        <span class="kt">guard</span> <span class="vc">item</span>.<span class="vc">price</span> &lt;= <span class="vc">coinsDeposited</span> <span class="kt">else</span> {</code></li>
+            <li><code class="code-voice">            <span class="kt">throw</span> <span class="vc">VendingMachineError</span>.<span class="vc">insufficientFunds</span>(<span class="vc">coinsNeeded</span>: <span class="vc">item</span>.<span class="vc">price</span> - <span class="vc">coinsDeposited</span>)</code></li>
+            <li><code class="code-voice">        }</code></li>
+            <li><code class="code-voice">        </code></li>
+            <li><code class="code-voice">        <span class="vc">coinsDeposited</span> -= <span class="vc">item</span>.<span class="vc">price</span></code></li>
+            <li><code class="code-voice">        </code></li>
+            <li><code class="code-voice">        <span class="kt">var</span> <span class="vc">newItem</span> = <span class="vc">item</span></code></li>
+            <li><code class="code-voice">        <span class="vc">newItem</span>.<span class="vc">count</span> -= <span class="m">1</span></code></li>
+            <li><code class="code-voice">        <span class="vc">inventory</span>[<span class="vc">name</span>] = <span class="vc">newItem</span></code></li>
+            <li><code class="code-voice">        </code></li>
+            <li><code class="code-voice">        <span class="vc">print</span>(<span class="s">&quot;Dispensing </span>\(<span class="vc">name</span>)<span class="s">&quot;</span>)</code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The implementation of the <code class="code-voice">vend(itemNamed:)</code> method uses <code class="code-voice">guard</code> statements to exit the method early and throw appropriate errors if any of the requirements for purchasing a snack aren’t met. Because a <code class="code-voice">throw</code> statement immediately transfers program control, an item will be vended only if all of these requirements are met.
+<br><span class="jpstr">
+<code class="code-voice">vend(itemNamed:)</code>メソッドの実装は<code class="code-voice">guard</code>文を使って、購入スナックに必要な何かが満たされないならば早めにそのメソッドを終了して対応するエラーをスローします。<code class="code-voice">throw</code>文が直ちにプログラム制御を移すので、これらの必要なものすべてが満たされる場合にのみ項目は販売されることになります。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Because the <code class="code-voice">vend(itemNamed:)</code> method propagates any errors it throws, any code that calls this method must either handle the errors—using a <code class="code-voice">do</code>-<code class="code-voice">catch</code> statement, <code class="code-voice">try?</code>, or <code class="code-voice">try!</code>—or continue to propagate them. For example, the <code class="code-voice">buyFavoriteSnack(person:vendingMachine:)</code> in the example below is also a throwing function, and any errors that the <code class="code-voice">vend(itemNamed:)</code> method throws will propagate up to the point where the <code class="code-voice">buyFavoriteSnack(person:vendingMachine:)</code> function is called.
+<br><span class="jpstr">
+この<code class="code-voice">vend(itemNamed:)</code>メソッドはそれがスローするどんなエラーも伝達するので、このメソッドを呼び出す何らかのコードは、それらのエラーを取り扱うか ― <code class="code-voice">do</code>-<code class="code-voice">catch</code>文、<code class="code-voice">try?</code>、または<code class="code-voice">try!</code>を使って ― またはそれらの伝達を続けるか、どちらかをしなければなりません。たとえば、下の例の<code class="code-voice">buyFavoriteSnack(person:vendingMachine:)</code>もまたスロー関数です、そして<code class="code-voice">vend(itemNamed:)</code>メソッドがスローするあらゆるエラーは、<code class="code-voice">buyFavoriteSnack(person:vendingMachine:)</code>関数が呼び出される地点へとさかのぼり伝えられます。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">favoriteSnacks</span> = [</code></li>
+            <li><code class="code-voice">    <span class="s">&quot;Alice&quot;</span>: <span class="s">&quot;Chips&quot;</span>,</code></li>
+            <li><code class="code-voice">    <span class="s">&quot;Bob&quot;</span>: <span class="s">&quot;Licorice&quot;</span>,</code></li>
+            <li><code class="code-voice">    <span class="s">&quot;Eve&quot;</span>: <span class="s">&quot;Pretzels&quot;</span>,</code></li>
+            <li><code class="code-voice">]</code></li>
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">buyFavoriteSnack</span>(<span class="vc">person</span>: <span class="n"><!-- a href="" -->String<!-- /a --></span>, <span class="vc">vendingMachine</span>: <span class="n"><!-- a href="" -->VendingMachine<!-- /a --></span>) <span class="kt">throws</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">let</span> <span class="vc">snackName</span> = <span class="vc">favoriteSnacks</span>[<span class="vc">person</span>] ?? <span class="s">&quot;Candy Bar&quot;</span></code></li>
+            <li><code class="code-voice">    <span class="kt">try</span> <span class="vc">vendingMachine</span>.<span class="vc">vend</span>(<span class="vc">itemNamed</span>: <span class="vc">snackName</span>)</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  In this example, the <code class="code-voice">buyFavoriteSnack(person: vendingMachine:)</code> function looks up a given person’s favorite snack and tries to buy it for them by calling the <code class="code-voice">vend(itemNamed:)</code> method. Because the <code class="code-voice">vend(itemNamed:)</code> method can throw an error, it’s called with the <code class="code-voice">try</code> keyword in front of it.
+<br><span class="jpstr">
+この例において、<code class="code-voice">buyFavoriteSnack(person: vendingMachine:)</code>関数は指定された個人のお気に入りのスナックを探してそれを彼らのために仕入れることを<code class="code-voice">vend(itemNamed:)</code>メソッドを呼ぶことによって試みます。<code class="code-voice">vend(itemNamed:)</code>メソッドはエラーをスローできることから、それはそれの前の<code class="code-voice">try</code>キーワードとともに呼び出されます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Throwing initializers can propagate errors in the same way as throwing functions. For example, the initializer for the <code class="code-voice">PurchasedSnack</code> structure in the listing below calls a throwing function as part of the initialization process, and it handles any errors that it encounters by propagating them to its caller.
+<br><span class="jpstr">
+スローするイニシャライザは、スローする関数と同じ方法でエラーを伝達できます。例えば、以下のコード出力の<code class="code-voice">PurchasedSnack</code>構造体のためのイニシャライザは、スロー関数を初期化処理の一部として呼び出します、そしてそれは、それが遭遇するどんなエラーもそれの呼び出し側にそれらを伝達することによって取り扱います。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">struct</span> <span class="vc">PurchasedSnack</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">let</span> <span class="vc">name</span>: <span class="n"><!-- a href="" -->String<!-- /a --></span></code></li>
+            <li><code class="code-voice">    <span class="kt">init</span>(<span class="vc">name</span>: <span class="n"><!-- a href="" -->String<!-- /a --></span>, <span class="vc">vendingMachine</span>: <span class="n"><!-- a href="" -->VendingMachine<!-- /a --></span>) <span class="kt">throws</span> {</code></li>
+            <li><code class="code-voice">        <span class="kt">try</span> <span class="vc">vendingMachine</span>.<span class="vc">vend</span>(<span class="vc">itemNamed</span>: <span class="vc">name</span>)</code></li>
+            <li><code class="code-voice">        <span class="kt">self</span>.<span class="vc">name</span> = <span class="vc">name</span></code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH42-ID541"></a>
+  <h3 class="section-name" tabindex="0">Handling Errors Using Do-Catch<br><span class="jpstr">
+do-catchを使ってエラーを処理する
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  You use a <code class="code-voice">do</code>-<code class="code-voice">catch</code> statement to handle errors by running a block of code. If an error is thrown by the code in the <code class="code-voice">do</code> clause, it is matched against the <code class="code-voice">catch</code> clauses to determine which one of them can handle the error.
+<br><span class="jpstr">
+あなたは、あるコードの塊を実行することによってエラーを処理するために、<code class="code-voice">do</code>-<code class="code-voice">catch</code>文を使います。あるエラーが<code class="code-voice">do</code>節の中にあるコードによってスローされるならば、それは<code class="code-voice">catch</code>節と照合されて、それらの１つがそのエラーを処理できると決定されます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Here is the general form of a <code class="code-voice">do</code>-<code class="code-voice">catch</code> statement:
+<br><span class="jpstr">
+ここに<code class="code-voice">do</code>-<code class="code-voice">catch</code>文の一般的な形式があります：
+</span><!--end_jpstr-->
+</p><span class="caption"></span>
+<div class="code-outline">
+  <ul class="code-outline-lines">
+    <li><pre class="code-voice"><span class="kt">do</span> {</pre></li><li><pre class="code-voice">    <span class="kt">try</span> <em class="variable-text">expression</em></pre></li><li><pre class="code-voice">    <em class="variable-text">statements</em></pre></li><li><pre class="code-voice">} <span class="kt">catch</span> <em class="variable-text">pattern 1</em> {</pre></li><li><pre class="code-voice">    <em class="variable-text">statements</em></pre></li><li><pre class="code-voice">} <span class="kt">catch</span> <em class="variable-text">pattern 2</em> <span class="kt">where</span> <em class="variable-text">condition</em> {</pre></li><li><pre class="code-voice">    <em class="variable-text">statements</em></pre></li><li><pre class="code-voice">}</pre></li>
+  </ul>
+</div><p class="para">
+  You write a pattern after <code class="code-voice">catch</code> to indicate what errors that clause can handle. If a <code class="code-voice">catch</code> clause doesn’t have a pattern, the clause matches any error and binds the error to a local constant named <code class="code-voice">error</code>. For more information about pattern matching, see <span class="x-name"><a href="Patterns.html#//apple_ref/doc/uid/TP40014097-CH36-ID419" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH36-ID419">Patterns</a></span>.
+<br><span class="jpstr">
+あなたは、<code class="code-voice">catch</code>の後にあるパターンを書いてどんなエラーをその節が取り扱えるかを指し示します。<code class="code-voice">catch</code>節がパターンを持たないならば、その節はあらゆるエラーにマッチします、そしてそのエラーを<code class="code-voice">error</code>と名前を付けられるローカル定数に束縛します。パターンマッチングについての更なる情報として、<span class="x-name"><a href="Patterns.html#//apple_ref/doc/uid/TP40014097-CH36-ID419" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH36-ID419">パターン</a></span>を見てください。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The <code class="code-voice">catch</code> clauses don’t have to handle every possible error that the code in its <code class="code-voice">do</code> clause can throw. If none of the <code class="code-voice">catch</code> clauses handle the error, the error propagates to the surrounding scope. However, the error must be handled by <em>some</em> surrounding scope—either by an enclosing <code class="code-voice">do</code>-<code class="code-voice">catch</code> clause that handles the error or by being inside a throwing function. For example, the following code handles all three cases of the <code class="code-voice">VendingMachineError</code> enumeration, but all other errors have to be handled by its surrounding scope:
+<br><span class="jpstr">
+<code class="code-voice">catch</code>節は、それの<code class="code-voice">do</code>節の中のコードがスロー可能な、すべての起こりうるエラーを処理する必要はありません。どの<code class="code-voice">catch</code>節もエラーを処理しないならば、エラーは取り囲んでいるスコープへと伝えられます。しかしながら、エラーは取り囲んでいるスコープの<em>何れか</em>によって処理される必要があります ― そのエラーを処理する 囲んでいる<code class="code-voice">do</code>-<code class="code-voice">catch</code>節によって、またはスロー関数内部によって、このどちらかで。例えば、以下のコードは<code class="code-voice">VendingMachineError</code>列挙のケース節の３つすべてを取り扱います、しかし他のエラーすべてはそれの取り囲んでいるスコープで処理されなければなりません。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">vendingMachine</span> = <span class="vc">VendingMachine</span>()</code></li>
+            <li><code class="code-voice"><span class="vc">vendingMachine</span>.<span class="vc">coinsDeposited</span> = <span class="m">8</span></code></li>
+            <li><code class="code-voice"><span class="kt">do</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">try</span> <span class="vc">buyFavoriteSnack</span>(<span class="vc">person</span>: <span class="s">&quot;Alice&quot;</span>, <span class="vc">vendingMachine</span>: <span class="vc">vendingMachine</span>)</code></li>
+            <li><code class="code-voice">} <span class="kt">catch</span> <span class="vc">VendingMachineError</span>.<span class="vc">invalidSelection</span> {</code></li>
+            <li><code class="code-voice">    <span class="vc">print</span>(<span class="s">&quot;Invalid Selection.&quot;</span>)</code></li>
+            <li><code class="code-voice">} <span class="kt">catch</span> <span class="vc">VendingMachineError</span>.<span class="vc">outOfStock</span> {</code></li>
+            <li><code class="code-voice">    <span class="vc">print</span>(<span class="s">&quot;Out of Stock.&quot;</span>)</code></li>
+            <li><code class="code-voice">} <span class="kt">catch</span> <span class="vc">VendingMachineError</span>.<span class="vc">insufficientFunds</span>(<span class="vc">let</span> <span class="vc">coinsNeeded</span>) {</code></li>
+            <li><code class="code-voice">    <span class="vc">print</span>(<span class="s">&quot;Insufficient funds. Please insert an additional </span>\(<span class="vc">coinsNeeded</span>)<span class="s"> coins.&quot;</span>)</code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;Insufficient funds. Please insert an additional 2 coins.&quot;&nbsp;<span class="jpstr">（「金額が不足しています。さらに２コイン入れてください。」を出力します）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  In the above example, the <code class="code-voice">buyFavoriteSnack(person:vendingMachine:)</code> function is called in a <code class="code-voice">try</code> expression, because it can throw an error. If an error is thrown, execution immediately transfers to the <code class="code-voice">catch</code> clauses, which decide whether to allow propagation to continue. If no error is thrown, the remaining statements in the <code class="code-voice">do</code> statement are executed.
+<br><span class="jpstr">
+上の例において、<code class="code-voice">buyFavoriteSnack(person:vendingMachine:)</code>関数は<code class="code-voice">try</code>式の中で呼び出されます、それがエラーをスローできるからです。エラーがスローされるならば、実行は直ちに<code class="code-voice">catch</code>節に移ります、それは伝達を継続させるかどうか結論を下します。エラーかスローされないならば、<code class="code-voice">do</code>の中の残っている文が実行されます。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH42-ID542"></a>
+  <h3 class="section-name" tabindex="0">Converting Errors to Optional Values<br><span class="jpstr">
+エラーをオプショナルの値に変換する
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  You use <code class="code-voice">try?</code> to handle an error by converting it to an optional value. If an error is thrown while evaluating the <code class="code-voice">try?</code> expression, the value of the expression is <code class="code-voice">nil</code>. For example, in the following code <code class="code-voice">x</code> and <code class="code-voice">y</code> have the same value and behavior:
+<br><span class="jpstr">
+あなたは、<code class="code-voice">try?</code>を使って、あるエラーをオプショナルの値に変換することによって取り扱うことができます。<code class="code-voice">try?</code>式を評価している間にエラーがスローされたならば、式の値は<code class="code-voice">nil</code>になります。例えば、以下のコードにおいて<code class="code-voice">x</code>と<code class="code-voice">y</code>は、同じ値と挙動を持ちます。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">someThrowingFunction</span>() <span class="kt">throws</span> -&gt; <span class="n"><!-- a href="" -->Int<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="c">// ...</span></code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"> </code></li>
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">x</span> = <span class="kt">try</span>? <span class="vc">someThrowingFunction</span>()</code></li>
+            <li><code class="code-voice"> </code></li>
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">y</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span>?</code></li>
+            <li><code class="code-voice"><span class="kt">do</span> {</code></li>
+            <li><code class="code-voice">    <span class="vc">y</span> = <span class="kt">try</span> <span class="vc">someThrowingFunction</span>()</code></li>
+            <li><code class="code-voice">} <span class="kt">catch</span> {</code></li>
+            <li><code class="code-voice">    <span class="vc">y</span> = <span class="kt">nil</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  If <code class="code-voice">someThrowingFunction()</code> throws an error, the value of <code class="code-voice">x</code> and <code class="code-voice">y</code> is <code class="code-voice">nil</code>. Otherwise, the value of <code class="code-voice">x</code> and <code class="code-voice">y</code> is the value that the function returned. Note that <code class="code-voice">x</code> and <code class="code-voice">y</code> are an optional of whatever type <code class="code-voice">someThrowingFunction()</code> returns. Here the function returns an integer, so <code class="code-voice">x</code> and <code class="code-voice">y</code> are optional integers.
+<br><span class="jpstr">
+<code class="code-voice">someThrowingFunction()</code>がエラーをスローするならば、<code class="code-voice">x</code>と<code class="code-voice">y</code>の値は<code class="code-voice">nil</code>です。そうでなければ、<code class="code-voice">x</code>と<code class="code-voice">y</code>の値はこの関数が返す値です。<code class="code-voice">x</code>と<code class="code-voice">y</code>は、たとえどんなものでも<code class="code-voice">someThrowingFunction()</code>が返す型のオプショナルです。ここに整数を返す関数があります、それで<code class="code-voice">x</code>と<code class="code-voice">y</code>はオプショナル整数です。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Using <code class="code-voice">try?</code> lets you write concise error handling code when you want to handle all errors in the same way. For example, the following code uses several approaches to fetch data, or returns <code class="code-voice">nil</code> if all of the approaches fail.
+<br><span class="jpstr">
+<code class="code-voice">try?</code>を使うことで、あなたに簡潔なエラー処理コードを書くことを可能にするのは、あなたがすべてのエラーを同じやり方で取り扱いたい時です。例えば、以下のコードはいくつかの取り組みを使ってデータを取ってきます、またはすべての取り組みが失敗するならば<code class="code-voice">nil</code>を返します。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">fetchData</span>() -&gt; <span class="n"><!-- a href="" -->Data<!-- /a --></span>? {</code></li>
+            <li><code class="code-voice">    <span class="kt">if</span> <span class="kt">let</span> <span class="vc">data</span> = <span class="kt">try</span>? <span class="vc">fetchDataFromDisk</span>() { <span class="kt">return</span> <span class="vc">data</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">if</span> <span class="kt">let</span> <span class="vc">data</span> = <span class="kt">try</span>? <span class="vc">fetchDataFromServer</span>() { <span class="kt">return</span> <span class="vc">data</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">return</span> <span class="kt">nil</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH42-ID513"></a>
+  <h3 class="section-name" tabindex="0">Disabling Error Propagation<br><span class="jpstr">
+エラー伝達を抑制する
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Sometimes you know a throwing function or method won’t, in fact, throw an error at runtime. On those occasions, you can write <code class="code-voice">try!</code> before the expression to disable error propagation and wrap the call in a runtime assertion that no error will be thrown. If an error actually is thrown, you’ll get a runtime error.
+<br><span class="jpstr">
+時にはあなたはあるスロー関数またはメソッドが、実際のところ、実行時にエラーをスローすることがないのを知っています。これらの場合には、あなたは<code class="code-voice">try!</code>をその式の前に書くことによって、エラー伝達を抑制して、エラーはスローされないという実行時表明の中にその呼び出しを包み込みます。エラーが実際はスローされたならば、あなたは実行時エラーを受け取るでしょう。
+</span><!--end_jpstr-->
+</p><p class="para">
+  For example, the following code uses a <code class="code-voice">loadImage(atPath:)</code> function, which loads the image resource at a given path or throws an error if the image can’t be loaded. In this case, because the image is shipped with the application, no error will be thrown at runtime, so it is appropriate to disable error propagation.
+<br><span class="jpstr">
+例えば、以下のコードは<code class="code-voice">loadImage(atPath:)</code>関数を使います、それは画像リソースを与えられたパスでロードします、または画像がロードできないならばエラーをスローします。この場合、画像はアプリケーションとともに出荷されるので、エラーが実行時にスローされることはありません、それでふさわしいのはエラー伝達を抑制することです。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">photo</span> = <span class="kt">try</span>! <span class="vc">loadImage</span>(<span class="vc">atPath</span>: <span class="s">&quot;./Resources/John Appleseed.jpg&quot;</span>)</code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH42-ID514"></a>
+  <h3 class="section-name" tabindex="0">Specifying Cleanup Actions<br><span class="jpstr">
+クリーンアップ動作の指定
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  You use a <code class="code-voice">defer</code> statement to execute a set of statements just before code execution leaves the current block of code. This statement lets you do any necessary cleanup that should be performed regardless of <em>how</em> execution leaves the current block of code—whether it leaves because an error was thrown or because of a statement such as <code class="code-voice">return</code> or <code class="code-voice">break</code>. For example, you can use a <code class="code-voice">defer</code> statement to ensure that file descriptors are closed and manually allocated memory is freed.
+<br><span class="jpstr">
+あなたは<code class="code-voice">defer</code>文を使うことで、コード実行が現在のコードブロックから離れる直前に一揃いの文を実行するようにします。この文は、あなたに何らかの不可欠なクリーンアップを行わせます、それは<em>どうやって</em>実行が現在のコードプロックから離れるか ― それがエラーがスローされたためにまたは<code class="code-voice">return</code>または<code class="code-voice">break</code>のような文を理由に離れるかどうかに関係なく実行されるべきものです。例えば、あなたは<code class="code-voice">defer</code>文を使ってファイル記述子が閉じられて手動割り当てメモリが解放されることを確実にします。
+</span><!--end_jpstr-->
+</p><p class="para">
+  A <code class="code-voice">defer</code> statement defers execution until the current scope is exited. This statement consists of the <code class="code-voice">defer</code> keyword and the statements to be executed later. The deferred statements may not contain any code that would transfer control out of the statements, such as a <code class="code-voice">break</code> or a <code class="code-voice">return</code> statement, or by throwing an error. Deferred actions are executed in reverse order of how they are specified—that is, the code in the first <code class="code-voice">defer</code> statement executes after code in the second, and so on.
+<br><span class="jpstr">
+<code class="code-voice">defer</code>文は、現在のスコープが終了されるまで実行を延期します。この文は、<code class="code-voice">defer</code>キーワードと後で実行される文から成ります。延期される文は、制御をその文の外に、例えば<code class="code-voice">break</code>や<code class="code-voice">return</code>文、またはエラーをスローすることによって移すいかなるコードも含んではいけません。延期された動作は、それらが指定されるのと逆の順序で実行されます—すなわち、最初の<code class="code-voice">defer</code>文の中のコードは２番目の中のコードの後に実行される、等々。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">processFile</span>(<span class="vc">filename</span>: <span class="n"><!-- a href="" -->String<!-- /a --></span>) <span class="kt">throws</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">if</span> <span class="vc">exists</span>(<span class="vc">filename</span>) {</code></li>
+            <li><code class="code-voice">        <span class="kt">let</span> <span class="vc">file</span> = <span class="vc">open</span>(<span class="vc">filename</span>)</code></li>
+            <li><code class="code-voice">        <span class="kt">defer</span> {</code></li>
+            <li><code class="code-voice">            <span class="vc">close</span>(<span class="vc">file</span>)</code></li>
+            <li><code class="code-voice">        }</code></li>
+            <li><code class="code-voice">        <span class="kt">while</span> <span class="kt">let</span> <span class="vc">line</span> = <span class="kt">try</span> <span class="vc">file</span>.<span class="vc">readline</span>() {</code></li>
+            <li><code class="code-voice">            <span class="c">// Work with the file.&nbsp;<span class="jpstr">（ファイル処理。）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice">        }</code></li>
+            <li><code class="code-voice">        <span class="c">// close(file) is called here, at the end of the scope.&nbsp;<span class="jpstr">（close(file)がここで呼ばれます、このスコープの終わりで。）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The above example uses a <code class="code-voice">defer</code> statement to ensure that the <code class="code-voice">open(_:)</code> function has a corresponding call to <code class="code-voice">close(_:)</code>.
+<br><span class="jpstr">
+上の例は、<code class="code-voice">defer</code>文を使って、<code class="code-voice">open(_:)</code>関数がそれと対応する<code class="code-voice">close(_:)</code>への呼び出しを持つことを確実にします。
+</span><!--end_jpstr-->
+</p><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014097-CH42-NoLink_169"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">You can use a <code class="code-voice">defer</code> statement even when no error handling code is involved.
+    	<br><span class="jpstr">
+あなたは、<code class="code-voice">defer</code>文を使うことが、エラー処理コードを伴わない時でさえも可能です。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div>
+  
+</section>
+
+  	
+ 	<section id="next_previous" class="">
+    		<p class="previous-link"><a href="OptionalChaining.html#//apple_ref/doc/uid/TP40014097-CH21-ID245" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH21-ID245">Optional Chaining<br><span class="jpstr">
+オプショナル連鎖
+</span><!--end_jpstr-->
+</a></p>
+  			<p class="next-link"><a href="TypeCasting.html#//apple_ref/doc/uid/TP40014097-CH22-ID338" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH22-ID338">Type Casting<br><span class="jpstr">
+型キャスト
+</span><!--end_jpstr-->
+</a></p>
+
+    <p class="copyright">Copyright &#x00a9; 2016 Apple Inc. All rights reserved. 
+  <a class="link" href="http://www.apple.com/legal/terms/site.html" target="_blank" rel="external">Terms of Use</a> | 
+  <a class="link" href="http://www.apple.com/privacy/" target="_blank" rel="external">Privacy Policy</a> | 
+  Updated: 2016-10-27
+</p>
+  </section>
+</article>
+
+    </div>
+    <div id='big_button'></div>
+    <footer id="footer">
+  <div class="content-wrapper">
+  	<div id="leave_feedback" class="button" role="button" tabindex="0">Feedback</div>
+  </div>
+  <script src="../../../../Resources/1254/JavaScript/devpubs-1.6.3.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../../../Resources/1254/JavaScript/feedback-1.6.3.js" type="text/javascript" charset="utf-8"></script>
+  <div id="_omniture_top">
+<!-- SiteCatalyst code version: H.8. Copyright 1997-2006 Omniture, Inc. -->
+<script type="text/javascript">
+/* RSID: */
+var s_account="appleglobal,appleusdeveloper,dappdeveloperlib"
+</script>
+
+<!-- <script type="text/javascript" src="https://www.apple.com/metrics/scripts/s_code_h.js"></script> -->
+<script type="text/javascript">
+s.pageName=AC.Tracking.pageName();
+s.channel="www.us.developer"
+
+/************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+var s_code=s.t();if(s_code)document.write(s_code)</script>
+<!-- End SiteCatalyst code version: H.8. -->
+</div>
+
+</footer>
+
+    
+  </body>
+    <div id="blackout">
+    <div id="preload"></div>
+</div>
+<div id="modal" aria-hidden="true">
+    <div id="closebox" tabindex="0" aria-label="Close feedback form" role="button"></div>
+    <div id="sending" class="hidden">
+        <h2 tabindex="0">Sending feedback&hellip;</h2>
+        <div id="sending_img"></div>
+    </div>
+    <div id="error" class="hidden">
+        <h2 tabindex="0">We&rsquo;re sorry, an error has occurred.</h2>
+        <p>Please try submitting your feedback later.</p>
+        <div id="error_icon"></div>
+    </div>
+    <div id="success" class="hidden">
+        <h2 tabindex="0">Thank you for providing feedback!</h2>
+        <p>Your input helps improve our developer documentation.</p>
+        <div id="thank_you_icon"></div>
+    </div>
+    
+    <form id="feedback" action="#" method="post">
+        <div class="left-leaf">
+            <h2 id="helpful_title" data-asterisk="a1" tabindex="0">How helpful is this document?</h2>     
+            <sup id="a1" class="asterisk" aria-hidden="true">*</sup>
+
+            <div id="star_group" role="radiogroup" aria-required="true">
+                <label> 
+                    <input class="radio" type="radio" name="helped" value="1" /> 
+                    Very helpful
+                </label>
+                <label> 
+                    <input class="radio" type="radio" name="helped" value="2" /> 
+                    Somewhat helpful
+                </label>
+                <label>
+                    <input class="radio" type="radio" name="helped" value="3" /> 
+                    Not helpful
+                </label>
+            </div>
+        </div>
+        <div class="right-leaf">
+            <h2>How can we improve this document?</h2>
+            <div id="improve" class="checkboxes">
+                <label>
+                    <input type="checkbox" name="typo" /> 
+                    Fix typos or links
+                </label>
+                <label>
+                    <input type="checkbox" name="infoIncorrect" /> 
+                    Fix incorrect information
+                </label>
+                <label>
+                    <input type="checkbox" name="needs_examples" /> 
+                    Add or update code samples
+                </label>
+                <label>
+                    <input type="checkbox" name="needs_art" /> 
+                    Add or update illustrations
+                </label>
+                <label>
+                    <input type="checkbox" name="missingInfo" /> 
+                    Add information about...
+                </label>
+            </div>
+        </div>
+
+        <textarea id="comment" name="problem" cols="70" rows="8" placeholder="Please tell us more about your experience with this document" data-asterisk="a2" required></textarea>
+        <sup id="a2" class="asterisk" aria-hidden="true">*</sup>
+
+        <p class="fineprint">
+            <em aria-hidden="true"><span>*</span> Required information</em>
+        </p> 
+
+        <input id="submit" type="button" value="Send" />
+
+        <section id="legal">
+            <p>
+                To submit a product bug or enhancement request, please visit the 
+                <a href="https://developer.apple.com/bugreporter/" target="_blank">Bug Reporter</a> 
+                page.
+            </p>
+            <p>
+                Please read <a href="http://www.apple.com/legal/policies/ideas.html" target="_blank">Apple's Unsolicited Idea Submission Policy</a> 
+                before you send us your feedback.
+            </p> 
+        </section>
+    </form>
+</div>
+
+</div>
+</html>

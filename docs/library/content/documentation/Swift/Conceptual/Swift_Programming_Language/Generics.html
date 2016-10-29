@@ -1,0 +1,1696 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>  
+  <title>The Swift Programming Language (Swift 3.0.1): Generics</title>
+  <link rel="stylesheet" type="text/css" href="../../../../Resources/1254/CSS/style-1.6.3.css" />
+  <link rel="stylesheet" type="text/css" href="../../../../Resources/1254/CSS/feedback-1.6.3.css" />
+  <meta charset='utf-8'> 
+<meta id="j-version" name="j-version" content="" />
+<meta id="build" name="build" content="0cd917ac01ec7578a7bd8964f41dd08b" />
+<meta id="document-version" name="document-version" content="8.0.3" />
+<meta id="book-assignments" name="book-assignments" content="{Type/Guide}, {Topic/Swift}" />
+<meta scheme="apple_ref" id="identifier" name="identifier" content="//apple_ref/doc/uid/TP40014097" />
+<meta id="chapterId" name="chapterId" content="TP40014097-CH26">
+<meta id="book-title" name="book-title" content="The Swift Programming Language (Swift 3.0.1)" />
+<meta id="book-resource-type" name="book-resource-type" content="Guide" />
+<meta id="book-root" name="book-root" content="./" />
+<meta id="book-json" name="book-json" content="book.json">
+<meta id="date" name="date" content="2016-10-27" />
+<meta id="description" name="description" content="The definitive guide to Swift, Apple’s new programming language for building iOS, OS X, watchOS, and tvOS apps." />
+<meta id="IndexTitle" name="IndexTitle" content="" />
+<meta id="resources-uri" name="resources-uri" content="../../../../Resources/1254">
+<link id="book-index-page" rel="Start" title="" type="text/html" href="./index.html">
+<!-- , next_chapter: next_chapter, previous_chapter: previous_chapter -->
+<link id="next-page" rel="Next" type="text/html" href="">
+<link id="previous-page" rel="Prev" type="text/html" href="">
+<meta id="devcenter" name="devcenter" content="<!-- DEVCENTER_NAME -->" />
+<meta id="devcenter-url" name="devcenter-url" content="<!-- DEVCENTER_URL -->" />
+<meta id="reflib" name="reflib" content="<!-- REFLIB_NAME -->" />
+
+<meta id="xcode-display" name="xcode-display" content="render" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta id="platforms" name="platforms" content="Xcode Developer Tools">
+</head>
+
+  <body id="conceptual_flow_with_tasks" class="jazz">
+    
+    <header id="ios_header" class="hideOnPrint hideInXcode">
+  <div class="content-wrapper">
+    <p class="header-text">
+    	<a href="../../../../navigation/index.html">Guides and Sample Code
+ 		</a>
+ </p>
+    <p id="wwdr"><img id="apple_logo" src="../../../../Resources/1254/Images/apple2.png" height="14px" width="12px" aria-hidden="true" /><a href="https://developer.apple.com">Developer</a></p>
+  </div>
+</header>
+
+    <section id="valence">
+  <div class="content-wrapper">
+    <p id="hierarchial_navigation">
+      <span id="book_title">The Swift Programming Language (Swift 3.0.1)</span>
+    </p>
+    <form id="search" class="hideInXcode" method="get" action="/search/index.php" accept-charset="utf-8" autocomplete="off">
+  <input type="search" id="ssi_SearchField" placeholder="Search Guides and Sample Code" name="q" autocomplete="off" tabindex="2" />
+</form>
+
+      
+   
+   
+
+
+
+
+    <span class="download-text hideInXcode">
+      <a href="https://itunes.apple.com/us/book/the-swift-programming-language/id881256329?mt=11">iBooks</a>
+    </span>
+
+    
+
+    <img id="shortstack" src="../../../../Resources/1254/Images/shortstack_2x.png"/>
+  </div>
+</section>
+    <div class="content-wrapper">
+      <nav id="navigator" class="book-parts hideInXcode" role="navigation">
+    <ul class="nav-parts">
+        <li data-id="//apple_ref/doc/uid/TP40014097-CH1-ID2"
+            class="part-name">
+            <a href="index.html#//apple_ref/doc/uid/TP40014097-CH3-ID0" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH3-ID0">Welcome to Swift<br><span class="jpstr">
+スウィフトにようこそ
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="index.html#//apple_ref/doc/uid/TP40014097-CH3-ID0" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH3-ID0">About Swift<br><span class="jpstr">
+スウィフトについて
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="GuidedTour.html#//apple_ref/doc/uid/TP40014097-CH2-ID1" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH2-ID1">A Swift Tour<br><span class="jpstr">
+スウィフトツアー
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+        <li data-id="//apple_ref/doc/uid/TP40014097-CH4-ID233"
+            class="part-name nav-part-active open-part">
+            <a href="TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH5-ID309">Language Guide<br><span class="jpstr">
+言語ガイド
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH5-ID309">The Basics<br><span class="jpstr">
+基本
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="BasicOperators.html#//apple_ref/doc/uid/TP40014097-CH6-ID60" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH6-ID60">Basic Operators<br><span class="jpstr">
+基本の演算子
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="StringsAndCharacters.html#//apple_ref/doc/uid/TP40014097-CH7-ID285" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH7-ID285">Strings and Characters<br><span class="jpstr">
+文字列と文字
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="CollectionTypes.html#//apple_ref/doc/uid/TP40014097-CH8-ID105" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH8-ID105">Collection Types<br><span class="jpstr">
+コレクション型
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="ControlFlow.html#//apple_ref/doc/uid/TP40014097-CH9-ID120" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH9-ID120">Control Flow<br><span class="jpstr">
+制御の流れ
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Functions.html#//apple_ref/doc/uid/TP40014097-CH10-ID158" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH10-ID158">Functions<br><span class="jpstr">
+関数
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Closures.html#//apple_ref/doc/uid/TP40014097-CH11-ID94" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH11-ID94">Closures<br><span class="jpstr">
+クロージャ
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Enumerations.html#//apple_ref/doc/uid/TP40014097-CH12-ID145" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH12-ID145">Enumerations<br><span class="jpstr">
+列挙
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="ClassesAndStructures.html#//apple_ref/doc/uid/TP40014097-CH13-ID82" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH13-ID82">Classes and Structures<br><span class="jpstr">
+クラスと構造体
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Properties.html#//apple_ref/doc/uid/TP40014097-CH14-ID254" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH14-ID254">Properties<br><span class="jpstr">
+プロパティ
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Methods.html#//apple_ref/doc/uid/TP40014097-CH15-ID234" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH15-ID234">Methods<br><span class="jpstr">
+メソッド
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Subscripts.html#//apple_ref/doc/uid/TP40014097-CH16-ID305" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH16-ID305">Subscripts<br><span class="jpstr">
+添え字
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Inheritance.html#//apple_ref/doc/uid/TP40014097-CH17-ID193" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH17-ID193">Inheritance<br><span class="jpstr">
+継承
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Initialization.html#//apple_ref/doc/uid/TP40014097-CH18-ID203" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH18-ID203">Initialization<br><span class="jpstr">
+初期化
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Deinitialization.html#//apple_ref/doc/uid/TP40014097-CH19-ID142" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH19-ID142">Deinitialization<br><span class="jpstr">
+デイニシャライズ
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="AutomaticReferenceCounting.html#//apple_ref/doc/uid/TP40014097-CH20-ID48" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH20-ID48">Automatic Reference Counting<br><span class="jpstr">
+自動参照カウント
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="OptionalChaining.html#//apple_ref/doc/uid/TP40014097-CH21-ID245" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH21-ID245">Optional Chaining<br><span class="jpstr">
+オプショナル連鎖
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="ErrorHandling.html#//apple_ref/doc/uid/TP40014097-CH42-ID508" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH42-ID508">Error Handling<br><span class="jpstr">
+エラーの処理
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="TypeCasting.html#//apple_ref/doc/uid/TP40014097-CH22-ID338" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH22-ID338">Type Casting<br><span class="jpstr">
+型キャスト
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="NestedTypes.html#//apple_ref/doc/uid/TP40014097-CH23-ID242" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH23-ID242">Nested Types<br><span class="jpstr">
+入れ子にされた型
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Extensions.html#//apple_ref/doc/uid/TP40014097-CH24-ID151" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH24-ID151">Extensions<br><span class="jpstr">
+拡張
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Protocols.html#//apple_ref/doc/uid/TP40014097-CH25-ID267" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH25-ID267">Protocols<br><span class="jpstr">
+プロトコル
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter nav-current-chapter">
+              	<a href="#//apple_ref/doc/uid/TP40014097-CH26-ID179" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH26-ID179">Generics<br><span class="jpstr">
+総称体
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="AccessControl.html#//apple_ref/doc/uid/TP40014097-CH41-ID3" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH41-ID3">Access Control<br><span class="jpstr">
+アクセス制御
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="AdvancedOperators.html#//apple_ref/doc/uid/TP40014097-CH27-ID28" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH27-ID28">Advanced Operators<br><span class="jpstr">
+先進の演算子
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+        <li data-id="//apple_ref/doc/uid/TP40014097-CH28-ID427"
+            class="part-name">
+            <a href="AboutTheLanguageReference.html#//apple_ref/doc/uid/TP40014097-CH29-ID345" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH29-ID345">Language Reference<br><span class="jpstr">
+言語リファレンス
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="AboutTheLanguageReference.html#//apple_ref/doc/uid/TP40014097-CH29-ID345" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH29-ID345">About the Language Reference<br><span class="jpstr">
+言語リファレンスについて
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="LexicalStructure.html#//apple_ref/doc/uid/TP40014097-CH30-ID410" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH30-ID410">Lexical Structure<br><span class="jpstr">
+語彙の構造
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Types.html#//apple_ref/doc/uid/TP40014097-CH31-ID445" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH31-ID445">Types<br><span class="jpstr">
+型
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Expressions.html#//apple_ref/doc/uid/TP40014097-CH32-ID383" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH32-ID383">Expressions<br><span class="jpstr">
+式
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Statements.html#//apple_ref/doc/uid/TP40014097-CH33-ID428" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH33-ID428">Statements<br><span class="jpstr">
+文
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Declarations.html#//apple_ref/doc/uid/TP40014097-CH34-ID351" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH34-ID351">Declarations<br><span class="jpstr">
+宣言
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Attributes.html#//apple_ref/doc/uid/TP40014097-CH35-ID347" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH35-ID347">Attributes<br><span class="jpstr">
+属性
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Patterns.html#//apple_ref/doc/uid/TP40014097-CH36-ID419" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH36-ID419">Patterns<br><span class="jpstr">
+パターン
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="GenericParametersAndArguments.html#//apple_ref/doc/uid/TP40014097-CH37-ID406" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH37-ID406">Generic Parameters and Arguments<br><span class="jpstr">
+総称体パラメータと引数
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="zzSummaryOfTheGrammar.html#//apple_ref/doc/uid/TP40014097-CH38-ID458" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH38-ID458">Summary of the Grammar<br><span class="jpstr">
+文法の概要
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+        <li data-id="//apple_ref/doc/uid/TP40014097-CH39-ID460"
+            class="part-name">
+            <a href="RevisionHistory.html#//apple_ref/doc/uid/TP40014097-CH40-ID459" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH40-ID459">Revision History<br><span class="jpstr">
+改訂履歴
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="RevisionHistory.html#//apple_ref/doc/uid/TP40014097-CH40-ID459" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH40-ID459">Document Revision History<br><span class="jpstr">
+文書改訂履歴
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+    </ul>
+</nav>
+
+      <menu id="bashful" type="toolbar">
+  <div class="shield"></div>
+  <menuitem id="jump_to" class="menu-bar-item closed">
+  <span>On This Page</span>
+  <div class="chevron">
+    <div class="chevy chevron-left"></div>
+    <div class="chevy chevron-right"></div>
+  </div>
+  <menu type="list" class="details">
+      <ul class="list-bullet">
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH26-ID180">The Problem That Generics Solve</a>
+<br><span class="jpstr">
+総称体が解決する問題
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH26-ID181">Generic Functions</a>
+<br><span class="jpstr">
+総称体関数
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH26-ID182">Type Parameters</a>
+<br><span class="jpstr">
+型パラメータ
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH26-ID183">Naming Type Parameters</a>
+<br><span class="jpstr">
+型パラメータに名をつける
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH26-ID184">Generic Types</a>
+<br><span class="jpstr">
+総称体型
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH26-ID185">Extending a Generic Type</a>
+<br><span class="jpstr">
+総称体型を拡張する
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH26-ID186">Type Constraints</a>
+<br><span class="jpstr">
+型制約
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH26-ID189">Associated Types</a>
+<br><span class="jpstr">
+関連型
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH26-ID192">Generic Where Clauses</a>
+<br><span class="jpstr">
+総称体where節
+</span><!--end_jpstr-->
+          </li>
+      </ul>
+  </menu>
+</menuitem>
+
+</menu>
+<div class="pixel-line"></div>
+<div class="rubber-band-gap"></div>
+<article class="chapter">
+  <a name="//apple_ref/doc/uid/TP40014097-CH26"></a><a name="//apple_ref/doc/uid/TP40014097-CH26-ID179"></a>
+
+  <h2 class='chapter-name'>Generics<br><span class="jpstr">
+総称体
+</span><!--end_jpstr-->
+</h2>
+
+
+  
+  	<section class="section">
+  		<p class="para">
+  <em>Generic code</em> enables you to write flexible, reusable functions and types that can work with any type, subject to requirements that you define. You can write code that avoids duplication and expresses its intent in a clear, abstracted manner.
+<br><span class="jpstr">
+<em>総称体コード</em>は、あなたに柔軟な、再使用できる関数と型を書くことを可能にします、それは、あなたが定義する要件を満たした場合に限り、あらゆる型を扱うことができます。あなたは、重複を避けて、明快な、抽象化された手法で、その意図を表すコードを書くことができます。
+</span><!--end_jpstr-->
+</p>
+<p class="para">
+  Generics are one of the most powerful features of Swift, and much of the Swift standard library is built with generic code. In fact, you’ve been using generics throughout the <em>Language Guide</em>, even if you didn’t realize it. For example, Swift’s <code class="code-voice">Array</code> and <code class="code-voice">Dictionary</code> types are both generic collections. You can create an array that holds <code class="code-voice">Int</code> values, or an array that holds <code class="code-voice">String</code> values, or indeed an array for any other type that can be created in Swift. Similarly, you can create a dictionary to store values of any specified type, and there are no limitations on what that type can be.
+<br><span class="jpstr">
+総称体は、スウィフトの最も強力な特徴のうちの１つです、そして、多くのスウィフト標準ライブラリは総称体コードで組み立てられます。実際、たとえあなたがそれを実感しなかったとしても、あなたはこの<em>言語ガイド</em>を通して総称体を使用していました。例えば、スウィフトの<code class="code-voice">Array</code>と<code class="code-voice">Dictionary</code>型は、両方とも総称体コレクションです。あなたは、<code class="code-voice">Int</code>値を保持する配列、または<code class="code-voice">String</code>値を保持する配列、またはそれどころかスウィフトで作成可能なあらゆる他の型のためにも配列をつくることができます。同じように、あなたはどんな指定された型の値たちでも保管する辞書を作成することができます、そしてその型が何であることができるか制限がありません。
+</span><!--end_jpstr-->
+</p>
+
+		</section> 
+
+
+  <section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH26-ID180"></a>
+  <h3 class="section-name" tabindex="0">The Problem That Generics Solve<br><span class="jpstr">
+総称体が解決する問題
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Here’s a standard, non-generic function called <code class="code-voice">swapTwoInts(_:_:)</code>, which swaps two <code class="code-voice">Int</code> values:
+<br><span class="jpstr">
+ここに、通常の、非総称体の<code class="code-voice">swapTwoInts(_:_:)</code>と呼ばれる関数があります、それは、２つの<code class="code-voice">Int</code>値を交換します：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">swapTwoInts</span>(<span class="kt">_</span> <span class="vc">a</span>: <span class="kt">inout</span> <span class="n"><!-- a href="" -->Int<!-- /a --></span>, <span class="kt">_</span> <span class="vc">b</span>: <span class="kt">inout</span> <span class="n"><!-- a href="" -->Int<!-- /a --></span>) {</code></li>
+            <li><code class="code-voice">    <span class="kt">let</span> <span class="vc">temporaryA</span> = <span class="vc">a</span></code></li>
+            <li><code class="code-voice">    <span class="vc">a</span> = <span class="vc">b</span></code></li>
+            <li><code class="code-voice">    <span class="vc">b</span> = <span class="vc">temporaryA</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  This function makes use of in-out parameters to swap the values of <code class="code-voice">a</code> and <code class="code-voice">b</code>, as described in <span class="x-name"><a href="Functions.html#//apple_ref/doc/uid/TP40014097-CH10-ID173" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH10-ID173">In-Out Parameters</a></span>.
+<br><span class="jpstr">
+この関数は、値<code class="code-voice">a</code>と<code class="code-voice">b</code>を交換するためにin-outパラメータの利用を行います、<span class="x-name"><a href="Functions.html#//apple_ref/doc/uid/TP40014097-CH10-ID173" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH10-ID173">In-Outパラメータ</a></span>で記述されるように。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The <code class="code-voice">swapTwoInts(_:_:)</code> function swaps the original value of <code class="code-voice">b</code> into <code class="code-voice">a</code>, and the original value of <code class="code-voice">a</code> into <code class="code-voice">b</code>. You can call this function to swap the values in two <code class="code-voice">Int</code> variables:
+<br><span class="jpstr">
+<code class="code-voice">swapTwoInts(_:_:)</code>関数は、<code class="code-voice">b</code>の元々の値を<code class="code-voice">a</code>の中へ、そして<code class="code-voice">a</code>の元々の値を<code class="code-voice">b</code>の中へと交換します、そして、最初の値のにb。あなたは、２つの<code class="code-voice">Int</code>変数の値を交換するためにこの関数を呼ぶことができます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">someInt</span> = <span class="m">3</span></code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">anotherInt</span> = <span class="m">107</span></code></li>
+            <li><code class="code-voice"><span class="vc">swapTwoInts</span>(&amp;<span class="vc">someInt</span>, &amp;<span class="vc">anotherInt</span>)</code></li>
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="s">&quot;someInt is now </span>\(<span class="vc">someInt</span>)<span class="s">, and anotherInt is now </span>\(<span class="vc">anotherInt</span>)<span class="s">&quot;</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;someInt is now 107, and anotherInt is now 3&quot;&nbsp;<span class="jpstr">（「someIntは今は107、anotherIntは今は３です」を出力します）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The <code class="code-voice">swapTwoInts(_:_:)</code> function is useful, but it can only be used with <code class="code-voice">Int</code> values. If you want to swap two <code class="code-voice">String</code> values, or two <code class="code-voice">Double</code> values, you have to write more functions, such as the <code class="code-voice">swapTwoStrings(_:_:)</code> and <code class="code-voice">swapTwoDoubles(_:_:)</code> functions shown below:
+<br><span class="jpstr">
+<code class="code-voice">swapTwoInts(_:_:)</code>関数は役に立ちます、しかし、それは<code class="code-voice">Int</code>値で使われることができるだけです。あなたが２つの<code class="code-voice">String</code>値、または２つの<code class="code-voice">Double</code>の値を交換したいならば、あなたはより多くの関数を書かなければなりません、例えば以下で示される<code class="code-voice">swapTwoStrings(_:_:)</code>と<code class="code-voice">swapTwoDoubles(_:_:)</code>関数のように：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">swapTwoStrings</span>(<span class="kt">_</span> <span class="vc">a</span>: <span class="kt">inout</span> <span class="n"><!-- a href="" -->String<!-- /a --></span>, <span class="kt">_</span> <span class="vc">b</span>: <span class="kt">inout</span> <span class="n"><!-- a href="" -->String<!-- /a --></span>) {</code></li>
+            <li><code class="code-voice">    <span class="kt">let</span> <span class="vc">temporaryA</span> = <span class="vc">a</span></code></li>
+            <li><code class="code-voice">    <span class="vc">a</span> = <span class="vc">b</span></code></li>
+            <li><code class="code-voice">    <span class="vc">b</span> = <span class="vc">temporaryA</span></code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"> </code></li>
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">swapTwoDoubles</span>(<span class="kt">_</span> <span class="vc">a</span>: <span class="kt">inout</span> <span class="n"><!-- a href="" -->Double<!-- /a --></span>, <span class="kt">_</span> <span class="vc">b</span>: <span class="kt">inout</span> <span class="n"><!-- a href="" -->Double<!-- /a --></span>) {</code></li>
+            <li><code class="code-voice">    <span class="kt">let</span> <span class="vc">temporaryA</span> = <span class="vc">a</span></code></li>
+            <li><code class="code-voice">    <span class="vc">a</span> = <span class="vc">b</span></code></li>
+            <li><code class="code-voice">    <span class="vc">b</span> = <span class="vc">temporaryA</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  You may have noticed that the bodies of the <code class="code-voice">swapTwoInts(_:_:)</code>, <code class="code-voice">swapTwoStrings(_:_:)</code>, and <code class="code-voice">swapTwoDoubles(_:_:)</code> functions are identical. The only difference is the type of the values that they accept (<code class="code-voice">Int</code>, <code class="code-voice">String</code>, and <code class="code-voice">Double</code>).
+<br><span class="jpstr">
+あなたは、<code class="code-voice">swapTwoInts(_:_:)</code>、<code class="code-voice">swapTwoStrings(_:_:)</code>、そして<code class="code-voice">swapTwoDoubles(_:_:)</code>関数の本文が同一であると気がついたかもしれません。唯一の違いは、それらが受け入れる値の型（<code class="code-voice">Int</code>、<code class="code-voice">String</code>、そして<code class="code-voice">Double</code>）です。
+</span><!--end_jpstr-->
+</p><p class="para">
+  It would be much more useful, and considerably more flexible, to write a single function that could swap two values of <em>any</em> type. Generic code enables you to write such a function. (A generic version of these functions is defined below.)
+<br><span class="jpstr">
+それが、ずっと役に立ち、さらにもっと柔軟であるようにするには、<em>あらゆる</em>型の２つの値を交換できるただ１つの関数を書くことです。総称体コードは、あなたにこのような関数を書くことを可能にします。（これらの関数の総称体版は、下で定義されます）。
+</span><!--end_jpstr-->
+</p><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014097-CH26-NoLink_193"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">In all three functions, it is important that the types of <code class="code-voice">a</code> and <code class="code-voice">b</code> are defined to be the same as each other. If <code class="code-voice">a</code> and <code class="code-voice">b</code> were not of the same type, it would not be possible to swap their values. Swift is a type-safe language, and does not allow (for example) a variable of type <code class="code-voice">String</code> and a variable of type <code class="code-voice">Double</code> to swap values with each other. Attempting to do so would be reported as a compile-time error.
+    	<br><span class="jpstr">
+の３つの関数の全てにおいて、重要であることは、<code class="code-voice">a</code>と<code class="code-voice">b</code>の型がお互いと同じものであると定義されることです。<code class="code-voice">a</code>と<code class="code-voice">b</code>が同じ型でないならば、それらの値を交換することは可能ではありません。スウィフトは型安全な言語です、それで（例えば）型<code class="code-voice">String</code>の変数と型<code class="code-voice">Double</code>の変数にお互いに値を交換させることをしません。そうしようとすることは、コンパイル時エラーとして報告されます。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH26-ID181"></a>
+  <h3 class="section-name" tabindex="0">Generic Functions<br><span class="jpstr">
+総称体関数
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  <em>Generic functions</em> can work with any type. Here’s a generic version of the <code class="code-voice">swapTwoInts(_:_:)</code> function from above, called <code class="code-voice">swapTwoValues(_:_:)</code>:
+<br><span class="jpstr">
+<em>総称体関数</em>は、どんな型でも扱うことができます。ここに、上記の<code class="code-voice">swapTwoInts(_:_:)</code>関数の総称体版があります、それは<code class="code-voice">swapTwoValues(_:_:)</code>と呼ばれます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">swapTwoValues</span>&lt;<span class="vc">T</span>&gt;(<span class="kt">_</span> <span class="vc">a</span>: <span class="kt">inout</span> <span class="n"><!-- a href="" -->T<!-- /a --></span>, <span class="kt">_</span> <span class="vc">b</span>: <span class="kt">inout</span> <span class="n"><!-- a href="" -->T<!-- /a --></span>) {</code></li>
+            <li><code class="code-voice">    <span class="kt">let</span> <span class="vc">temporaryA</span> = <span class="vc">a</span></code></li>
+            <li><code class="code-voice">    <span class="vc">a</span> = <span class="vc">b</span></code></li>
+            <li><code class="code-voice">    <span class="vc">b</span> = <span class="vc">temporaryA</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The body of the <code class="code-voice">swapTwoValues(_:_:)</code> function is identical to the body of the <code class="code-voice">swapTwoInts(_:_:)</code> function. However, the first line of <code class="code-voice">swapTwoValues(_:_:)</code> is slightly different from <code class="code-voice">swapTwoInts(_:_:)</code>. Here’s how the first lines compare:
+<br><span class="jpstr">
+<code class="code-voice">swapTwoValues(_:_:)</code>関数の本文は、<code class="code-voice">swapTwoInts(_:_:)</code>関数の本文と同一です。しかし、<code class="code-voice">swapTwoValues(_:_:)</code>の最初の行は、わずかに<code class="code-voice">swapTwoInts(_:_:)</code>と異なります。最初の行がどのくらい似ているかが、ここにあります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">swapTwoInts</span>(<span class="kt">_</span> <span class="vc">a</span>: <span class="kt">inout</span> <span class="n"><!-- a href="" -->Int<!-- /a --></span>, <span class="kt">_</span> <span class="vc">b</span>: <span class="kt">inout</span> <span class="n"><!-- a href="" -->Int<!-- /a --></span>)</code></li>
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">swapTwoValues</span>&lt;<span class="vc">T</span>&gt;(<span class="kt">_</span> <span class="vc">a</span>: <span class="kt">inout</span> <span class="n"><!-- a href="" -->T<!-- /a --></span>, <span class="kt">_</span> <span class="vc">b</span>: <span class="kt">inout</span> <span class="n"><!-- a href="" -->T<!-- /a --></span>)</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The generic version of the function uses a <em>placeholder</em> type name (called <code class="code-voice">T</code>, in this case) instead of an <em>actual</em> type name (such as <code class="code-voice">Int</code>, <code class="code-voice">String</code>, or <code class="code-voice">Double</code>). The placeholder type name doesn’t say anything about what <code class="code-voice">T</code> must be, but it <em>does</em> say that both <code class="code-voice">a</code> and <code class="code-voice">b</code> must be of the same type <code class="code-voice">T</code>, whatever <code class="code-voice">T</code> represents. The actual type to use in place of <code class="code-voice">T</code> will be determined each time the <code class="code-voice">swapTwoValues(_:_:)</code> function is called.
+<br><span class="jpstr">
+この関数の総称体版は、<em>プレースホルダ</em>型名（この場合、<code class="code-voice">T</code>と呼ばれるもの）を<em>実際の</em>型名（例えば<code class="code-voice">Int</code>、<code class="code-voice">String</code>、または<code class="code-voice">Double</code>）の代わりに使用します。プレースホルダ型名は<code class="code-voice">T</code>が何でなければならないかについて何も言いません、しかし、<code class="code-voice">a</code>と<code class="code-voice">b</code>の両方ともが同じ型<code class="code-voice">T</code>でなければならないと<em>述べます</em>、<code class="code-voice">T</code>が表わすものが何であれ。<code class="code-voice">T</code>の代わりに実際に使われる型は、<code class="code-voice">swapTwoValues(_:_:)</code>関数が呼ばれるたびに決定されることになります。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The other difference is that the generic function’s name (<code class="code-voice">swapTwoValues(_:_:)</code>) is followed by the placeholder type name (<code class="code-voice">T</code>) inside angle brackets (<code class="code-voice">&lt;T&gt;</code>). The brackets tell Swift that <code class="code-voice">T</code> is a placeholder type name within the <code class="code-voice">swapTwoValues(_:_:)</code> function definition. Because <code class="code-voice">T</code> is a placeholder, Swift does not look for an actual type called <code class="code-voice">T</code>.
+<br><span class="jpstr">
+他の違いは、総称体関数の名前（<code class="code-voice">swapTwoValues(_:_:)</code>）は、後ろにプレースホルダ型名（<code class="code-voice">T</code>）が山形括弧内部（<code class="code-voice">&lt;T&gt;</code>）で続くということです。この括弧は、<code class="code-voice">T</code>が<code class="code-voice">swapTwoValues(_:_:)</code>関数定義内のプレースホルダ型名であるとスウィフトに教えます。<code class="code-voice">T</code>がプレースホルダであるので、スウィフトは<code class="code-voice">T</code>と呼ばれる実際の型を捜しません。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The <code class="code-voice">swapTwoValues(_:_:)</code> function can now be called in the same way as <code class="code-voice">swapTwoInts</code>, except that it can be passed two values of <em>any</em> type, as long as both of those values are of the same type as each other. Each time <code class="code-voice">swapTwoValues(_:_:)</code> is called, the type to use for <code class="code-voice">T</code> is inferred from the types of values passed to the function.
+<br><span class="jpstr">
+<code class="code-voice">swapTwoValues(_:_:)</code>関数は現在<code class="code-voice">swapTwoInts</code>と同じやり方で呼ばれることができます、しかしそれが<em>あらゆる</em>型の２つの値を渡されることが、それらの値の両方が互いに同じ型である限り可能であるのを除きます。<code class="code-voice">swapTwoValues(_:_:)</code>が呼ばれるたびに、<code class="code-voice">T</code>のために使われる型は関数に渡される値の型から推論されます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  In the two examples below, <code class="code-voice">T</code> is inferred to be <code class="code-voice">Int</code> and <code class="code-voice">String</code> respectively:
+<br><span class="jpstr">
+下の２つの例で、<code class="code-voice">T</code>はそれぞれ<code class="code-voice">Int</code>と<code class="code-voice">Stringで</code>あると推測されます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">someInt</span> = <span class="m">3</span></code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">anotherInt</span> = <span class="m">107</span></code></li>
+            <li><code class="code-voice"><span class="vc">swapTwoValues</span>(&amp;<span class="vc">someInt</span>, &amp;<span class="vc">anotherInt</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// someInt is now 107, and anotherInt is now 3&nbsp;<span class="jpstr">（someIntは今は107、anotherIntは今は３です）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"> </code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">someString</span> = <span class="s">&quot;hello&quot;</span></code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">anotherString</span> = <span class="s">&quot;world&quot;</span></code></li>
+            <li><code class="code-voice"><span class="vc">swapTwoValues</span>(&amp;<span class="vc">someString</span>, &amp;<span class="vc">anotherString</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// someString is now &quot;world&quot;, and anotherString is now &quot;hello&quot;&nbsp;<span class="jpstr">（someStringは今は「world」、anotherStringは今は「hello」です）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014097-CH26-NoLink_194"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">The <code class="code-voice">swapTwoValues(_:_:)</code> function defined above is inspired by a generic function called <code class="code-voice">swap</code>, which is part of the Swift standard library, and is automatically made available for you to use in your apps. If you need the behavior of the <code class="code-voice">swapTwoValues(_:_:)</code> function in your own code, you can use Swift’s existing <code class="code-voice">swap(_:_:)</code> function rather than providing your own implementation.
+    	<br><span class="jpstr">
+上で定義される<code class="code-voice">swapTwoValues(_:_:)</code>関数は<code class="code-voice">swap</code>と呼ばれる総称体関数に着想を得たものです、それは、スウィフト標準ライブラリの一部であって、あなたのアプリにおいて自動的にあなたが使うことが可能にされます。あなたがあなた自身のコードにおいて<code class="code-voice">swapTwoValues(_:_:)</code>関数の挙動を必要とするならば、あなたはあなた自身の実施を提供するのではなくスウィフトの既存の<code class="code-voice">swap(_:_:)</code>関数を使用することができます。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH26-ID182"></a>
+  <h3 class="section-name" tabindex="0">Type Parameters<br><span class="jpstr">
+型パラメータ
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  In the <code class="code-voice">swapTwoValues(_:_:)</code> example above, the placeholder type <code class="code-voice">T</code> is an example of a <em>type parameter</em>. Type parameters specify and name a placeholder type, and are written immediately after the function’s name, between a pair of matching angle brackets (such as <code class="code-voice">&lt;T&gt;</code>).
+<br><span class="jpstr">
+上の<code class="code-voice">swapTwoValues(_:_:)</code>例で、プレースホルダ型<code class="code-voice">T</code>は<em>型パラメータ</em>の一例です。型パラメータは、プレースホルダ型を指定して命名します、そして関数の名前の直後に一対の山形括弧の間で書かれます（例えば<code class="code-voice">&lt;T&gt;</code>）。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Once you specify a type parameter, you can use it to define the type of a function’s parameters (such as the <code class="code-voice">a</code> and <code class="code-voice">b</code> parameters of the <code class="code-voice">swapTwoValues(_:_:)</code> function), or as the function’s return type, or as a type annotation within the body of the function. In each case, the type parameter is replaced with an <em>actual</em> type whenever the function is called. (In the <code class="code-voice">swapTwoValues(_:_:)</code> example above, <code class="code-voice">T</code> was replaced with <code class="code-voice">Int</code> the first time the function was called, and was replaced with <code class="code-voice">String</code> the second time it was called.)
+<br><span class="jpstr">
+一旦あなたが型パラメータを指定するならば、あなたはそれを、関数のパラメータの型を定義するために（例えば、 <code class="code-voice">swapTwoValues(_:_:)</code>関数の<code class="code-voice">a</code>と<code class="code-voice">b</code>パラメータのように）、または関数の戻り型として、あるいは関数の本文内の型注釈として使用することができます。それぞれの場合において、型パラメータは、その関数が呼ばれるときはいつでも<em>実際の</em>型と取り替えられます。（上の<code class="code-voice">swapTwoValues(_:_:)</code>の例では、<code class="code-voice">T</code>は関数が呼ばれた最初の時に<code class="code-voice">Int</code>と取り替えられて、それが呼ばれた２番目の時に<code class="code-voice">String</code>と取り替えられました）。
+</span><!--end_jpstr-->
+</p><p class="para">
+  You can provide more than one type parameter by writing multiple type parameter names within the angle brackets, separated by commas.
+<br><span class="jpstr">
+あなたは、山形括弧内に複数の型パラメータ名をコンマで区切って書くことによって、複数の型パラメータを提供することができます。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH26-ID183"></a>
+  <h3 class="section-name" tabindex="0">Naming Type Parameters<br><span class="jpstr">
+型パラメータに名をつける
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  In most cases, type parameters have descriptive names, such as <code class="code-voice">Key</code> and <code class="code-voice">Value</code> in <code class="code-voice">Dictionary&lt;Key, Value&gt;</code> and <code class="code-voice">Element</code> in <code class="code-voice">Array&lt;Element&gt;</code>, which tells the reader about the relationship between the type parameter and the generic type or function it’s used in. However, when there isn’t a meaningful relationship between them, it’s traditional to name them using single letters such as <code class="code-voice">T</code>, <code class="code-voice">U</code>, and <code class="code-voice">V</code>, such as <code class="code-voice">T</code> in the <code class="code-voice">swapTwoValues(_:_:)</code> function above.
+<br><span class="jpstr">
+ほとんどの場合には、型パラメータは描写的な名前を持ちます、たとえば<code class="code-voice">Dictionary&lt;Key, Value&gt;</code>における<code class="code-voice">Key</code>と<code class="code-voice">Value</code>および<code class="code-voice">Array&lt;Element&gt;</code>における<code class="code-voice">Element</code>など、それは読み手に型パラメータとそれがその中で使われる総称体型や関数との関係について語ります。しかしながら、意味がある関係がそれらの間に無かった時、例えば<code class="code-voice">swapTwoValues(_:_:)</code>における<code class="code-voice">T</code>のように、<code class="code-voice">T</code>、<code class="code-voice">U</code>、そして<code class="code-voice">V</code>などの一文字を使ってそれらに名前をつけるのが伝統的です。
+</span><!--end_jpstr-->
+</p><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014097-CH26-NoLink_195"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">Always give type parameters upper camel case names (such as <code class="code-voice">T</code> and <code class="code-voice">MyTypeParameter</code>) to indicate that they are a placeholder for a <em>type</em>, not a value.
+    	<br><span class="jpstr">
+それらが、値ではなく、<em>型</em>のためのプレースホルダであることを示すために、型パラメータに常にアッパーキャメルケース名（例えば<code class="code-voice">T</code>や<code class="code-voice">MyTypeParameter</code>など）を与えてください。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH26-ID184"></a>
+  <h3 class="section-name" tabindex="0">Generic Types<br><span class="jpstr">
+総称体型
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  In addition to generic functions, Swift enables you to define your own <em>generic types</em>. These are custom classes, structures, and enumerations that can work with <em>any</em> type, in a similar way to <code class="code-voice">Array</code> and <code class="code-voice">Dictionary</code>.
+<br><span class="jpstr">
+総称体関数に加えて、スウィフトはあなたに独自の<em>総称体型</em>を定義することを可能にします。これらは、<em>Array</em>と<code class="code-voice">Dictionary</code>に類似した方法で、<code class="code-voice">あらゆる</code>型で扱うことができる特注のクラス、構造体、そして列挙があります。
+</span><!--end_jpstr-->
+</p><p class="para">
+  This section shows you how to write a generic collection type called <code class="code-voice">Stack</code>. A stack is an ordered set of values, similar to an array, but with a more restricted set of operations than Swift’s <code class="code-voice">Array</code> type. An array allows new items to be inserted and removed at any location in the array. A stack, however, allows new items to be appended only to the end of the collection (known as <em>pushing</em> a new value on to the stack). Similarly, a stack allows items to be removed only from the end of the collection (known as <em>popping</em> a value off the stack).
+<br><span class="jpstr">
+この節は、あなたに<code class="code-voice">Stack</code>と呼ばれる総称体コレクション型を書く方法を示します。スタックは、順序付けられたいくつかの値の集合であり、配列に似ています、しかしスウィフトの<code class="code-voice">Array</code>型より制限された操作具合を持つものです。配列は、新しい項目を差し込まれたり取り外除かれることがその配列のどんな場所においても許されます。スタックは、しかし、新しい項目をコレクション終わりにのみ追加されることが許されます（新しい値をスタックに<em>プッシュ</em>するとして知られます）。同じように、スタックは項目をコレクションの終わりからだけ取り除かれることが許されます（値をスタックから<em>ポップ</em>するとして知られます）。
+</span><!--end_jpstr-->
+</p><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014097-CH26-NoLink_196"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">The concept of a stack is used by the <code class="code-voice">UINavigationController</code> class to model the view controllers in its navigation hierarchy. You call the <code class="code-voice">UINavigationController</code> class <code class="code-voice">pushViewController(_:animated:)</code> method to add (or push) a view controller on to the navigation stack, and its <code class="code-voice">popViewControllerAnimated(_:)</code> method to remove (or pop) a view controller from the navigation stack. A stack is a useful collection model whenever you need a strict “last in, first out” approach to managing a collection.
+    	<br><span class="jpstr">
+スタックの概念は、<code class="code-voice">UINavigationController</code>クラスで使用されて、そのナビゲーション階層においてビュー・コントローラをモデル化します。あなたは<code class="code-voice">UINavigationController</code>クラスの<code class="code-voice">pushViewController(_:animated:)</code>メソッドをナビゲーション・スタックにビュー・コントローラを加える（またはプッシュする）ために、そしてそれの<code class="code-voice">popViewControllerAnimated(_:)</code>メソッドをナビゲーション・スタックからビュー・コントローラを取り除くために呼びます。スタックは、厳格に「最後に入れたものが、最初に取り出される」取り組みをコレクションを管理するために必要とするときはいつでも、役に立つコレクション・モデルです。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div><p class="para">
+  The illustration below shows the push / pop behavior for a stack:
+<br><span class="jpstr">
+下のイラストは、あるスタックのプッシュ／ポップ挙動を示します：
+</span><!--end_jpstr-->
+</p><figure class="figure">
+  
+  <span class="caption"></span>
+  <img src="Art/stackPushPop_2x.png" alt="image: ../Art/stackPushPop_2x.png" width="664" height="273" />
+</figure><ol class="list-number">
+  <li class="item"><p class="para">
+  There are currently three values on the stack.
+<br><span class="jpstr">
+現在は３つの値がこのスタックにはあります。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  A fourth value is “pushed” on to the top of the stack.
+<br><span class="jpstr">
+第４の値がスタックのてっぺんに「押し込まれ」ます。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  The stack now holds four values, with the most recent one at the top.
+<br><span class="jpstr">
+スタックは現在は４つの値を持ちます、最も最近のものは一番上にあります。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  The top item in the stack is removed, or “popped”.
+<br><span class="jpstr">
+スタックでの一番上の項目が、取り外除かれます、あるいは「ポンと飛び出されます」。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  After popping a value, the stack once again holds three values.
+<br><span class="jpstr">
+値をポップした後では、スタックは再び３つの値を持ちます。
+</span><!--end_jpstr-->
+</p>
+</li>
+</ol><p class="para">
+  Here’s how to write a non-generic version of a stack, in this case for a stack of <code class="code-voice">Int</code> values:
+<br><span class="jpstr">
+スタックの非総称体版を書く方法がここにあります、これは<code class="code-voice">Int</code>値のスタックの場合です：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">struct</span> <span class="vc">IntStack</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">items</span> = [<span class="vc">Int</span>]()</code></li>
+            <li><code class="code-voice">    <span class="kt">mutating</span> <span class="kt">func</span> <span class="vc">push</span>(<span class="kt">_</span> <span class="vc">item</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span>) {</code></li>
+            <li><code class="code-voice">        <span class="vc">items</span>.<span class="vc">append</span>(<span class="vc">item</span>)</code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">    <span class="kt">mutating</span> <span class="kt">func</span> <span class="vc">pop</span>() -&gt; <span class="n"><!-- a href="" -->Int<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">        <span class="kt">return</span> <span class="vc">items</span>.<span class="vc">removeLast</span>()</code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  This structure uses an <code class="code-voice">Array</code> property called <code class="code-voice">items</code> to store the values in the stack. <code class="code-voice">Stack</code> provides two methods, <code class="code-voice">push</code> and <code class="code-voice">pop</code>, to push and pop values on and off the stack. These methods are marked as <code class="code-voice">mutating</code>, because they need to modify (or <em>mutate</em>) the structure’s <code class="code-voice">items</code> array.
+<br><span class="jpstr">
+この構造体は、<code class="code-voice">items</code>と呼ばれる<code class="code-voice">Array</code>プロパティを使って値をスタックに保存します。<code class="code-voice">Stack</code>は２つのメソッド、<code class="code-voice">push</code>と<code class="code-voice">pop</code>を提供します、それでスタック上に値を押し込んだり飛び出させたりします。これらのメソッドは<code class="code-voice">mutating</code>として印されます、なぜなら、それらが構造体の<code class="code-voice">items</code>配列を修正する（または<em>変化させる</em>）必要があるためです。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The <code class="code-voice">IntStack</code> type shown above can only be used with <code class="code-voice">Int</code> values, however. It would be much more useful to define a <em>generic</em> <code class="code-voice">Stack</code> class, that can manage a stack of <em>any</em> type of value.
+<br><span class="jpstr">
+しかし、上で示される<code class="code-voice">IntStack</code>型は、<code class="code-voice">Int</code>値で使われることができるだけです。それをもっと役に立つようにするには、<em>総称体</em><code class="code-voice">Stack</code>クラスを定義することです、それは<em>あらゆる</em>型の値のスタックを管理することができるものです。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Here’s a generic version of the same code:
+<br><span class="jpstr">
+同じコードの総称体版は、ここにあります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">struct</span> <span class="vc">Stack</span>&lt;<span class="vc">Element</span>&gt; {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">items</span> = [<span class="vc">Element</span>]()</code></li>
+            <li><code class="code-voice">    <span class="kt">mutating</span> <span class="kt">func</span> <span class="vc">push</span>(<span class="kt">_</span> <span class="vc">item</span>: <span class="n"><!-- a href="" -->Element<!-- /a --></span>) {</code></li>
+            <li><code class="code-voice">        <span class="vc">items</span>.<span class="vc">append</span>(<span class="vc">item</span>)</code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">    <span class="kt">mutating</span> <span class="kt">func</span> <span class="vc">pop</span>() -&gt; <span class="n"><!-- a href="" -->Element<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">        <span class="kt">return</span> <span class="vc">items</span>.<span class="vc">removeLast</span>()</code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Note how the generic version of <code class="code-voice">Stack</code> is essentially the same as the non-generic version, but with a type parameter called <code class="code-voice">Element</code> instead of an actual type of <code class="code-voice">Int</code>. This type parameter is written within a pair of angle brackets (<code class="code-voice">&lt;Element&gt;</code>) immediately after the structure’s name.
+<br><span class="jpstr">
+<code class="code-voice">Stack</code>の総称体版が、本質的にどれほど非総称体版と同じものであるかに注意してください、しかし<code class="code-voice">Element</code>と呼ばれる型パラメータを実際の型<code class="code-voice">Int</code>の代わりに持つことは除きます。この型パラメータは、構造体の名前の直後に一対の山形括弧の内部で（<code class="code-voice">&lt;Element&gt;</code>）書かれます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  <code class="code-voice">Element</code> defines a placeholder name for “some type <code class="code-voice">Element</code>” to be provided later on. This future type can be referred to as “<code class="code-voice">Element</code>” anywhere within the structure’s definition. In this case, <code class="code-voice">Element</code> is used as a placeholder in three places:
+<br><span class="jpstr">
+<code class="code-voice">Element</code>は、プレースホルダ名を、後で提供されることになる「ある何らかの型<code class="code-voice">Element</code>」に対して定義します。この将来の型は、構造体の定義の範囲内のどこででも「<code class="code-voice">Element</code>」として参照されることができます。この場合、<code class="code-voice">Element</code>はプレースホルダとして３つの場所で使われます：
+</span><!--end_jpstr-->
+</p><ul class="list-bullet">
+  <li class="item"><p class="para">
+  To create a property called <code class="code-voice">items</code>, which is initialized with an empty array of values of type <code class="code-voice">Element</code>
+<br><span class="jpstr">
+<code class="code-voice">items</code>と呼ばれるプロパティをつくる所で、それは、型<code class="code-voice">Element</code>の値が入る空の配列で初期化されます
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  To specify that the <code class="code-voice">push(_:)</code> method has a single parameter called <code class="code-voice">item</code>, which must be of type <code class="code-voice">Element</code>
+<br><span class="jpstr">
+<code class="code-voice">push(_:)</code>メソッドが一つのパラメータ、<code class="code-voice">item</code>と呼ばれるものを持つことを指定する所で、それは、型<code class="code-voice">Element</code>でなければなりません
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  To specify that the value returned by the <code class="code-voice">pop()</code> method will be a value of type <code class="code-voice">Element</code>
+<br><span class="jpstr">
+<code class="code-voice">pop()</code>メソッドによって返される値が型<code class="code-voice">Element</code>の値であることを示す所で
+</span><!--end_jpstr-->
+</p>
+</li>
+</ul><p class="para">
+  Because it is a generic type, <code class="code-voice">Stack</code> can be used to create a stack of <em>any</em> valid type in Swift, in a similar manner to <code class="code-voice">Array</code> and <code class="code-voice">Dictionary</code>.
+<br><span class="jpstr">
+それが総称体型であるので、<code class="code-voice">Stack</code>は、<code class="code-voice">Array</code>と<code class="code-voice">Dictionary</code>に類似したやり方で、スウィフトにおける<em>あらゆる</em>有効な型のスタックを作るために使われることができます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  You create a new <code class="code-voice">Stack</code> instance by writing the type to be stored in the stack within angle brackets. For example, to create a new stack of strings, you write <code class="code-voice">Stack&lt;String&gt;()</code>:
+<br><span class="jpstr">
+あなたは、新しい<code class="code-voice">Stack</code>インスタンスを、角括弧の内側にそのスタックの中に格納される型を書くことによって作成します。例えば、新しく文字列のスタックを作成するために、あなたは<code class="code-voice">Stack&lt;String&gt;()</code>を書きます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">stackOfStrings</span> = <span class="vc">Stack</span>&lt;<span class="n"><!-- a href="" -->String<!-- /a --></span>&gt;()</code></li>
+            <li><code class="code-voice"><span class="vc">stackOfStrings</span>.<span class="vc">push</span>(<span class="s">&quot;uno&quot;</span>)</code></li>
+            <li><code class="code-voice"><span class="vc">stackOfStrings</span>.<span class="vc">push</span>(<span class="s">&quot;dos&quot;</span>)</code></li>
+            <li><code class="code-voice"><span class="vc">stackOfStrings</span>.<span class="vc">push</span>(<span class="s">&quot;tres&quot;</span>)</code></li>
+            <li><code class="code-voice"><span class="vc">stackOfStrings</span>.<span class="vc">push</span>(<span class="s">&quot;cuatro&quot;</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// the stack now contains 4 strings&nbsp;<span class="jpstr">（スタックは、現在４つの文字列を含みます）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Here’s how <code class="code-voice">stackOfStrings</code> looks after pushing these four values on to the stack:
+<br><span class="jpstr">
+これらの４つの値をそのスタックにプッシュした後で<code class="code-voice">stackOfStrings</code>がどのように見えるかは、ここにあります：
+</span><!--end_jpstr-->
+</p><figure class="figure">
+  
+  <span class="caption"></span>
+  <img src="Art/stackPushedFourStrings_2x.png" alt="image: ../Art/stackPushedFourStrings_2x.png" width="664" height="218" />
+</figure><p class="para">
+  Popping a value from the stack removes and returns the top value, <code class="code-voice">&quot;cuatro&quot;</code>:
+<br><span class="jpstr">
+このスタックから値をボップすることは、一番上の値、<code class="code-voice">"cuatro"</code>を削除して、返します：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">fromTheTop</span> = <span class="vc">stackOfStrings</span>.<span class="vc">pop</span>()</code></li>
+            <li><code class="code-voice"><span class="c">// fromTheTop is equal to &quot;cuatro&quot;, and the stack now contains 3 strings&nbsp;<span class="jpstr">（fromTheTopは「cuatro」と等しいです、そしてスタックは現在は３つの文字列を含みます）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Here’s how the stack looks after popping its top value:
+<br><span class="jpstr">
+スタックがその一番上の値をポップした後にどう見えるかは、ここにあります：
+</span><!--end_jpstr-->
+</p><figure class="figure">
+  
+  <span class="caption"></span>
+  <img src="Art/stackPoppedOneString_2x.png" alt="image: ../Art/stackPoppedOneString_2x.png" width="405" height="207" />
+</figure>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH26-ID185"></a>
+  <h3 class="section-name" tabindex="0">Extending a Generic Type<br><span class="jpstr">
+総称体型を拡張する
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  When you extend a generic type, you do not provide a type parameter list as part of the extension’s definition. Instead, the type parameter list from the <em>original</em> type definition is available within the body of the extension, and the original type parameter names are used to refer to the type parameters from the original definition.
+<br><span class="jpstr">
+あなたがある総称体型を拡張する時、あなたは型パラメーターリストを拡張の定義の一部として提供しません。そうしなくても、<em>元々の</em>型定義からの型パラメーターリストは、その拡張の本文内で利用可能です、そして元々の型パラメーター名は、元々の定義からの型パラメーターを参照するために使われます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The following example extends the generic <code class="code-voice">Stack</code> type to add a read-only computed property called <code class="code-voice">topItem</code>, which returns the top item on the stack without popping it from the stack:
+<br><span class="jpstr">
+以下の例は総称体<code class="code-voice">Stack</code>型を拡張して、<code class="code-voice">topItem</code>と呼ばれる読み出し専用の計算プロパティを加えます、それは、スタックの一番上の項目をスタックからそれをポップすることなく返します：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">extension</span> <span class="n"><!-- a href="" -->Stack<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">topItem</span>: <span class="n"><!-- a href="" -->Element<!-- /a --></span>? {</code></li>
+            <li><code class="code-voice">        <span class="kt">return</span> <span class="vc">items</span>.<span class="vc">isEmpty</span> ? <span class="kt">nil</span> : <span class="vc">items</span>[<span class="vc">items</span>.<span class="vc">count</span> - <span class="m">1</span>]</code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The <code class="code-voice">topItem</code> property returns an optional value of type <code class="code-voice">Element</code>. If the stack is empty, <code class="code-voice">topItem</code> returns <code class="code-voice">nil</code>; if the stack is not empty, <code class="code-voice">topItem</code> returns the final item in the <code class="code-voice">items</code> array.
+<br><span class="jpstr">
+<code class="code-voice">topItem</code>プロパティは型<code class="code-voice">Element</code>のオプショナルの値を返します。スタックが空ならば、<code class="code-voice">topItem</code>は<code class="code-voice">nil</code>を返します；スタックが空でないならば、<code class="code-voice">topItem</code>は<code class="code-voice">items</code>配列の最後の項目を返します。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Note that this extension does not define a type parameter list. Instead, the <code class="code-voice">Stack</code> type’s existing type parameter name, <code class="code-voice">Element</code>, is used within the extension to indicate the optional type of the <code class="code-voice">topItem</code> computed property.
+<br><span class="jpstr">
+この拡張は型パラメーターリストを定義しません。そうしなくても、<code class="code-voice">Stack</code>型の既存の型パラメーター名、<code class="code-voice">Element</code>は、拡張の内部で<code class="code-voice">topItem</code>計算プロパティの元々の型を指し示すために使われることができます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The <code class="code-voice">topItem</code> computed property can now be used with any <code class="code-voice">Stack</code> instance to access and query its top item without removing it:
+<br><span class="jpstr">
+<code class="code-voice">topItem</code>計算プロパティは、今やあらゆる<code class="code-voice">Stack</code>インスタンスで、それの一番上の項目にそれを取り除くことなくアクセスおよび問い合わせるために使われることができます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">if</span> <span class="kt">let</span> <span class="vc">topItem</span> = <span class="vc">stackOfStrings</span>.<span class="vc">topItem</span> {</code></li>
+            <li><code class="code-voice">    <span class="vc">print</span>(<span class="s">&quot;The top item on the stack is </span>\(<span class="vc">topItem</span>)<span class="s">.&quot;</span>)</code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;The top item on the stack is tres.&quot;&nbsp;<span class="jpstr">（「このスタックの一番上の項目はtresです」を出力します）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH26-ID186"></a>
+  <h3 class="section-name" tabindex="0">Type Constraints<br><span class="jpstr">
+型制約
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  The <code class="code-voice">swapTwoValues(_:_:)</code> function and the <code class="code-voice">Stack</code> type can work with any type. However, it is sometimes useful to enforce certain <em>type constraints</em> on the types that can be used with generic functions and generic types. Type constraints specify that a type parameter must inherit from a specific class, or conform to a particular protocol or protocol composition.
+<br><span class="jpstr">
+<code class="code-voice">swapTwoValues(_:_:)</code>関数と<code class="code-voice">Stack</code>型は、どんな型でも扱うことができます。しかし、総称体関数と総称体型で使われることができる型に、特定の<em>型制約</em>を強制することは、時々役に立ちます。型制約は、型パラメータが特定のクラスから継承しなければならない、もしくはある特定のプロトコルまたはプロトコル合成に準拠しなければならないことを指定します。
+</span><!--end_jpstr-->
+</p><p class="para">
+  For example, Swift’s <code class="code-voice">Dictionary</code> type places a limitation on the types that can be used as keys for a dictionary. As described in <span class="x-name"><a href="CollectionTypes.html#//apple_ref/doc/uid/TP40014097-CH8-ID113" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH8-ID113">Dictionaries</a></span>, the type of a dictionary’s keys must be <em>hashable</em>. That is, it must provide a way to make itself uniquely representable. <code class="code-voice">Dictionary</code> needs its keys to be hashable so that it can check whether it already contains a value for a particular key. Without this requirement, <code class="code-voice">Dictionary</code> could not tell whether it should insert or replace a value for a particular key, nor would it be able to find a value for a given key that is already in the dictionary.
+<br><span class="jpstr">
+例えば、スウィフトの<code class="code-voice">Dictionary</code>型は、辞書のキーとして使われることができる型に制限を置きます。<span class="x-name"><a href="CollectionTypes.html#//apple_ref/doc/uid/TP40014097-CH8-ID113" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH8-ID113">辞書</a></span>で記述されるように、辞書のキーの型は、<em>ハッシュ化</em>できなければなりません。すなわち、それはそれ自身を特有に表わすことを可能にする方法を提供しなければなりません。<code class="code-voice">Dictionary</code>は、それが特定のキーのためにすでに値を含むかどうか確認できるように、そのキーにハッシュ化できることを必要とします。この要件なしでは、<code class="code-voice">Dictionary</code>はそれが特定のキーのために値を差し込んだり取り替えたりするべきかどうか伝えることができませんし、それはすでに辞書の中にある指定されたキーに対する値を見つけることもできません。
+</span><!--end_jpstr-->
+</p><p class="para">
+  This requirement is enforced by a type constraint on the key type for <code class="code-voice">Dictionary</code>, which specifies that the key type must conform to the <code class="code-voice">Hashable</code> protocol, a special protocol defined in the Swift standard library. All of Swift’s basic types (such as <code class="code-voice">String</code>, <code class="code-voice">Int</code>, <code class="code-voice">Double</code>, and <code class="code-voice">Bool</code>) are hashable by default.
+<br><span class="jpstr">
+この要件は、<code class="code-voice">Dictionary</code>のためのキー型に関する型制約によって強制されます、それは、キー型がスウィフト標準ライブラリで定義される特別なプロトコル、<code class="code-voice">Hashable</code>プロトコルに準拠しなければならないことを示します。スウィフトの基本の型（例えば<code class="code-voice">String</code>、<code class="code-voice">Int</code>、<code class="code-voice">Double</code>、そして<code class="code-voice">Bool</code>）の全ては、初期状態でハッシュ化されます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  You can define your own type constraints when creating custom generic types, and these constraints provide much of the power of generic programming. Abstract concepts like <code class="code-voice">Hashable</code> characterize types in terms of their conceptual characteristics, rather than their explicit type.
+<br><span class="jpstr">
+あなたは、独自の型制約をあつらえの総称体型を作成する時に定義することができます、そして、それらの制約は総称体プログラミングの力の多くを提供します。<code class="code-voice">Hashable</code>のような抽象的な概念たちは、それらの概念上の特徴の観点から型を特徴づけます、そのはっきりとした型そのものではなく。
+</span><!--end_jpstr-->
+</p>
+  <section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH26-ID187"></a>
+  <h3 class="section-name" tabindex="0">Type Constraint Syntax<br><span class="jpstr">
+型制約構文
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  You write type constraints by placing a single class or protocol constraint after a type parameter’s name, separated by a colon, as part of the type parameter list. The basic syntax for type constraints on a generic function is shown below (although the syntax is the same for generic types):
+<br><span class="jpstr">
+あなたは、型パラメーターリストの一部として、型パラメータの名前の後にコロンで区切って一つのクラスまたはプロトコル制約を置くことによって、型制約を書きます。総称体関数に関する型制約のための基本の構文は、下で示されます（とはいえ構文は総称体型と同じものです）：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">someFunction</span>&lt;<span class="vc">T</span>: <span class="n"><!-- a href="" -->SomeClass<!-- /a --></span>, <span class="vc">U</span>: <span class="n"><!-- a href="" -->SomeProtocol<!-- /a --></span>&gt;(<span class="vc">someT</span>: <span class="n"><!-- a href="" -->T<!-- /a --></span>, <span class="vc">someU</span>: <span class="n"><!-- a href="" -->U<!-- /a --></span>) {</code></li>
+            <li><code class="code-voice">    <span class="c">// function body goes here&nbsp;<span class="jpstr">（関数本文が、ここにきます）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The hypothetical function above has two type parameters. The first type parameter, <code class="code-voice">T</code>, has a type constraint that requires <code class="code-voice">T</code> to be a subclass of <code class="code-voice">SomeClass</code>. The second type parameter, <code class="code-voice">U</code>, has a type constraint that requires <code class="code-voice">U</code> to conform to the protocol <code class="code-voice">SomeProtocol</code>.
+<br><span class="jpstr">
+上の仮定の関数は、２つの型パラメータを持ちます。最初の型パラメータ<code class="code-voice">T</code>は、<code class="code-voice">T</code>に<code class="code-voice">SomeClass</code>のサブクラスであることを要求する型制約を持ちます。２番目の型パラメータ<code class="code-voice">U</code>は、<code class="code-voice">U</code>にプロトコル<code class="code-voice">SomeProtocol</code>に準拠することを要求する型制約を持ちます。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH26-ID188"></a>
+  <h3 class="section-name" tabindex="0">Type Constraints in Action<br><span class="jpstr">
+型制約の動作
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Here’s a non-generic function called <code class="code-voice">findIndex(ofString:in:)</code>, which is given a <code class="code-voice">String</code> value to find and an array of <code class="code-voice">String</code> values within which to find it. The <code class="code-voice">findIndex(ofString:in:)</code> function returns an optional <code class="code-voice">Int</code> value, which will be the index of the first matching string in the array if it is found, or <code class="code-voice">nil</code> if the string cannot be found:
+<br><span class="jpstr">
+ここに<code class="code-voice">findIndex(ofString:in:)</code>と呼ばれる非総称体関数があります、それは、見つける<code class="code-voice">String</code>値と、そこにおいてそれを捜す<code class="code-voice">String</code>値からなる配列を与えられます。<code class="code-voice">findIndex(ofString:in:)</code>関数は、オプショナルの<code class="code-voice">Int</code>値を返します、それは、それが見つけられるならば配列での最初の合致している文字列のインデックスです、または文字列が見つけられることができないならば<code class="code-voice">nil</code>です：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">findIndex</span>(<span class="vc">ofString</span> <span class="vc">valueToFind</span>: <span class="n"><!-- a href="" -->String<!-- /a --></span>, <span class="vc">in</span> <span class="vc">array</span>: [<span class="n"><!-- a href="" -->String<!-- /a --></span>]) -&gt; <span class="n"><!-- a href="" -->Int<!-- /a --></span>? {</code></li>
+            <li><code class="code-voice">    <span class="kt">for</span> (<span class="vc">index</span>, <span class="vc">value</span>) <span class="kt">in</span> <span class="vc">array</span>.<span class="vc">enumerated</span>() {</code></li>
+            <li><code class="code-voice">        <span class="kt">if</span> <span class="vc">value</span> == <span class="vc">valueToFind</span> {</code></li>
+            <li><code class="code-voice">            <span class="kt">return</span> <span class="vc">index</span></code></li>
+            <li><code class="code-voice">        }</code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">    <span class="kt">return</span> <span class="kt">nil</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The <code class="code-voice">findIndex(ofString:in:)</code> function can be used to find a string value in an array of strings:
+<br><span class="jpstr">
+<code class="code-voice">findIndex(ofString:in:)</code>関数は、文字列の配列の中をある文字列値がないか捜すために使われることができます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">strings</span> = [<span class="s">&quot;cat&quot;</span>, <span class="s">&quot;dog&quot;</span>, <span class="s">&quot;llama&quot;</span>, <span class="s">&quot;parakeet&quot;</span>, <span class="s">&quot;terrapin&quot;</span>]</code></li>
+            <li><code class="code-voice"><span class="kt">if</span> <span class="kt">let</span> <span class="vc">foundIndex</span> = <span class="vc">findIndex</span>(<span class="vc">ofString</span>: <span class="s">&quot;llama&quot;</span>, <span class="vc">in</span>: <span class="vc">strings</span>) {</code></li>
+            <li><code class="code-voice">    <span class="vc">print</span>(<span class="s">&quot;The index of llama is </span>\(<span class="vc">foundIndex</span>)<span class="s">&quot;</span>)</code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;The index of llama is 2&quot;&nbsp;<span class="jpstr">（「ラマのインデックスは、２です」を出力します）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The principle of finding the index of a value in an array isn’t useful only for strings, however. You can write the same functionality as a generic function by replacing any mention of strings with values of some type <code class="code-voice">T</code> instead.
+<br><span class="jpstr">
+しかし、配列の中の値のインデックスを見つける原理は、文字列のためにだけ役立つわけではありません。あなたは同じ機能性を総称体関数として書くことが、何であれ文字列への言及部分をその代わりにある何らかの型<code class="code-voice">T</code>の値で置き換えることで行えます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Here’s how you might expect a generic version of <code class="code-voice">findIndex(ofString:in:)</code>, called <code class="code-voice">findIndex(of:in:)</code>, to be written. Note that the return type of this function is still <code class="code-voice">Int?</code>, because the function returns an optional index number, not an optional value from the array. Be warned, though—this function does not compile, for reasons explained after the example:
+<br><span class="jpstr">
+あなたが予想する<code class="code-voice">findIndex(ofString:in:)</code>の総称体版、<code class="code-voice">findIndex(of:in:)</code>と呼ばれるものが書かれる方法はここにあります。この関数の戻り型が以前として<code class="code-voice">Int?</code>であるという点に注意してください、なぜなら、この関数がオプショナルのインデックス番号（配列からのオプショナルの値でない）を返すからです。注意するように、とは言うものの ― この関数はコンパイルしません、この例の後に説明される理由のために：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">findIndex</span>&lt;<span class="vc">T</span>&gt;(<span class="vc">of</span> <span class="vc">valueToFind</span>: <span class="n"><!-- a href="" -->T<!-- /a --></span>, <span class="vc">in</span> <span class="vc">array</span>:[<span class="n"><!-- a href="" -->T<!-- /a --></span>]) -&gt; <span class="n"><!-- a href="" -->Int<!-- /a --></span>? {</code></li>
+            <li><code class="code-voice">    <span class="kt">for</span> (<span class="vc">index</span>, <span class="vc">value</span>) <span class="kt">in</span> <span class="vc">array</span>.<span class="vc">enumerated</span>() {</code></li>
+            <li><code class="code-voice">        <span class="kt">if</span> <span class="vc">value</span> == <span class="vc">valueToFind</span> {</code></li>
+            <li><code class="code-voice">            <span class="kt">return</span> <span class="vc">index</span></code></li>
+            <li><code class="code-voice">        }</code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">    <span class="kt">return</span> <span class="kt">nil</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  This function does not compile as written above. The problem lies with the equality check, “<code class="code-voice">if value == valueToFind</code>”. Not every type in Swift can be compared with the equal to operator (<code class="code-voice">==</code>). If you create your own class or structure to represent a complex data model, for example, then the meaning of “equal to” for that class or structure is not something that Swift can guess for you. Because of this, it is not possible to guarantee that this code will work for <em>every</em> possible type <code class="code-voice">T</code>, and an appropriate error is reported when you try to compile the code.
+<br><span class="jpstr">
+この関数は、上記のように書かれるとしてもコンパイルしません。問題は、同等性検査<code class="code-voice">if value == valueToFind</code>に横たわります。スウィフトの中のすべての型が、同等演算子（<code class="code-voice">==</code>）で比較されることができるというわけでありません。あなたが例えば独自のクラスまたは構造体を作成してある複合データモデルを表すならば、そのときそのクラスまたは構造体のための「同等」の意味することはスウィフトがあなたのために推測することができる何かではありません。このため、このコードが<em>すべての</em>可能な型<code class="code-voice">T</code>のために機能することを保証することは可能ではありません、それであなたがこのコードをコンパイルしようとする場合は該当するエラーが報告されます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  All is not lost, however. The Swift standard library defines a protocol called <code class="code-voice">Equatable</code>, which requires any conforming type to implement the equal to operator (<code class="code-voice">==</code>) and the not equal to operator (<code class="code-voice">!=</code>) to compare any two values of that type. All of Swift’s standard types automatically support the <code class="code-voice">Equatable</code> protocol.
+<br><span class="jpstr">
+しかし、道がないわけではありません。スウィフト標準ライブラリは、<code class="code-voice">Equatable</code>と呼ばれるプロトコルを定義します、それは、それに準拠している全ての型に対してその型のあらゆる２つの値を比較するために同等演算子（<code class="code-voice">==</code>）と不等演算子（<code class="code-voice">!=</code>）を実装することを要求します。スウィフトの標準の型の全ては、自動的に<code class="code-voice">Equatable</code>プロトコルをサポートします。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Any type that is <code class="code-voice">Equatable</code> can be used safely with the <code class="code-voice">findIndex(of:in:)</code> function, because it is guaranteed to support the equal to operator. To express this fact, you write a type constraint of <code class="code-voice">Equatable</code> as part of the type parameter’s definition when you define the function:
+<br><span class="jpstr">
+<code class="code-voice">Equatable</code>であるどんな型でも<code class="code-voice">findIndex(of:in:)</code>関数で問題なく使われることができます、なぜなら、それが同等演算子をサポートすると保証されるからです。この事実を表すために、あなたは<code class="code-voice">Equatable</code>の型制約を型パラメータの定義の一部として、あなたが関数を定義する時に書きます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">findIndex</span>&lt;<span class="vc">T</span>: <span class="n"><!-- a href="" -->Equatable<!-- /a --></span>&gt;(<span class="vc">of</span> <span class="vc">valueToFind</span>: <span class="n"><!-- a href="" -->T<!-- /a --></span>, <span class="vc">in</span> <span class="vc">array</span>:[<span class="n"><!-- a href="" -->T<!-- /a --></span>]) -&gt; <span class="n"><!-- a href="" -->Int<!-- /a --></span>? {</code></li>
+            <li><code class="code-voice">    <span class="kt">for</span> (<span class="vc">index</span>, <span class="vc">value</span>) <span class="kt">in</span> <span class="vc">array</span>.<span class="vc">enumerated</span>() {</code></li>
+            <li><code class="code-voice">        <span class="kt">if</span> <span class="vc">value</span> == <span class="vc">valueToFind</span> {</code></li>
+            <li><code class="code-voice">            <span class="kt">return</span> <span class="vc">index</span></code></li>
+            <li><code class="code-voice">        }</code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">    <span class="kt">return</span> <span class="kt">nil</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The single type parameter for <code class="code-voice">findIndex(of:in:)</code> is written as <code class="code-voice">T: Equatable</code>, which means “any type <code class="code-voice">T</code> that conforms to the <code class="code-voice">Equatable</code> protocol.”
+<br><span class="jpstr">
+<code class="code-voice">findIndex(of:in:)</code>のただ一つの型パラメータは、<code class="code-voice">T: Equatable</code>として書かれます、それは、「<code class="code-voice">Equatable</code>プロトコルに準拠するあらゆる型<code class="code-voice">T</code>」を意味します。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The <code class="code-voice">findIndex(of:in:)</code> function now compiles successfully and can be used with any type that is <code class="code-voice">Equatable</code>, such as <code class="code-voice">Double</code> or <code class="code-voice">String</code>:
+<br><span class="jpstr">
+<code class="code-voice">findIndex(of:in:)</code>関数は、今やうまくコンパイルして、<code class="code-voice">Equatable</code>であるどんな型とでも使われることができます、例えば<code class="code-voice">Double</code>や<code class="code-voice">String</code>など：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">doubleIndex</span> = <span class="vc">findIndex</span>(<span class="vc">of</span>: <span class="m">9.3</span>, <span class="vc">in</span>: [<span class="m">3.14159</span>, <span class="m">0.1</span>, <span class="m">0.25</span>])</code></li>
+            <li><code class="code-voice"><span class="c">// doubleIndex is an optional Int with no value, because 9.3 is not in the array&nbsp;<span class="jpstr">（9.3がこの配列の中にははないので、doubleIndexは値のないオプショナルのIntです）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">stringIndex</span> = <span class="vc">findIndex</span>(<span class="vc">of</span>: <span class="s">&quot;Andrea&quot;</span>, <span class="vc">in</span>: [<span class="s">&quot;Mike&quot;</span>, <span class="s">&quot;Malcolm&quot;</span>, <span class="s">&quot;Andrea&quot;</span>])</code></li>
+            <li><code class="code-voice"><span class="c">// stringIndex is an optional Int containing a value of 2&nbsp;<span class="jpstr">（stringIndexは、オプショナルのIntで値２を含んでいます）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH26-ID189"></a>
+  <h3 class="section-name" tabindex="0">Associated Types<br><span class="jpstr">
+関連型
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  When defining a protocol, it is sometimes useful to declare one or more associated types as part of the protocol’s definition. An <em>associated type</em> gives a placeholder name to a type that is used as part of the protocol. The actual type to use for that associated type is not specified until the protocol is adopted. Associated types are specified with the <code class="code-voice">associatedtype</code> keyword.
+<br><span class="jpstr">
+プロトコルを定義するとき、時々役に立つのは、プロトコルの定義の一部として一つ以上の関連型を宣言することです。<em>関連型</em>は、プロトコルの一部として使われる型にプレースホルダ名を与えます。その関連型のために使われる実際の型は、プロトコルが採用されるまでは指定されません。関連型は、<code class="code-voice">associatedtype</code>キーワードで指定されます。
+</span><!--end_jpstr-->
+</p>
+  <section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH26-ID190"></a>
+  <h3 class="section-name" tabindex="0">Associated Types in Action<br><span class="jpstr">
+関連型の動作
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Here’s an example of a protocol called <code class="code-voice">Container</code>, which declares an associated type called <code class="code-voice">ItemType</code>:
+<br><span class="jpstr">
+<code class="code-voice">Container</code>と呼ばれるプロトコルの例がここにあります、それは<code class="code-voice">ItemType</code>と呼ばれる関連型を宣言します：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">protocol</span> <span class="vc">Container</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">associatedtype</span> <span class="vc">ItemType</span></code></li>
+            <li><code class="code-voice">    <span class="kt">mutating</span> <span class="kt">func</span> <span class="vc">append</span>(<span class="kt">_</span> <span class="vc">item</span>: <span class="n"><!-- a href="" -->ItemType<!-- /a --></span>)</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">count</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span> { <span class="kt">get</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">subscript</span>(<span class="vc">i</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span>) -&gt; <span class="n"><!-- a href="" -->ItemType<!-- /a --></span> { <span class="kt">get</span> }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The <code class="code-voice">Container</code> protocol defines three required capabilities that any container must provide:
+<br><span class="jpstr">
+<code class="code-voice">Container</code>プロトコルは、あらゆるコンテナ（容れ物）が提供しなければならない３つの必須の能力を定義します：
+</span><!--end_jpstr-->
+</p><ul class="list-bullet">
+  <li class="item"><p class="para">
+  It must be possible to add a new item to the container with an <code class="code-voice">append(_:)</code> method.
+<br><span class="jpstr">
+新しい項目をコンテナに加えることが<code class="code-voice">append(_:)</code>メソッドで可能でなければなりません。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  It must be possible to access a count of the items in the container through a <code class="code-voice">count</code> property that returns an <code class="code-voice">Int</code> value.
+<br><span class="jpstr">
+コンテナの中の項目の総数にアクセスすることが<code class="code-voice">Int</code>値を返す<code class="code-voice">count</code>プロパティを通して可能でなければなりません。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  It must be possible to retrieve each item in the container with a subscript that takes an <code class="code-voice">Int</code> index value.
+<br><span class="jpstr">
+コンテナの中の各項目を取り出すことが<code class="code-voice">Int</code>インデックス値をとる添え字で可能でなければなりません。
+</span><!--end_jpstr-->
+</p>
+</li>
+</ul><p class="para">
+  This protocol doesn’t specify how the items in the container should be stored or what type they are allowed to be. The protocol only specifies the three bits of functionality that any type must provide in order to be considered a <code class="code-voice">Container</code>. A conforming type can provide additional functionality, as long as it satisfies these three requirements.
+<br><span class="jpstr">
+このプロトコルは、コンテナの中の項目が格納されなければならない方法やそれらが許される型が何であるかを指定しません。プロトコルは、どんな型でも<code class="code-voice">Container</code>とみなされるためには提供しなければならない小さな３つの機能性を指定するだけです。それに準拠している型は、それがこれらの３つの要件を満たす限り、追加の機能性を提供することができます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Any type that conforms to the <code class="code-voice">Container</code> protocol must be able to specify the type of values it stores. Specifically, it must ensure that only items of the right type are added to the container, and it must be clear about the type of the items returned by its subscript.
+<br><span class="jpstr">
+<code class="code-voice">Container</code>プロトコルに準拠するあらゆる型は、それが格納する値の型を指定することができなければなりません。具体的には、それは正しい型の項目だけがコンテナに加えられることを確実にしなければなりません、そして、それはそれの添え字によって返される項目の型についてはっきりわかっていなければなりません。
+</span><!--end_jpstr-->
+</p><p class="para">
+  To define these requirements, the <code class="code-voice">Container</code> protocol needs a way to refer to the type of the elements that a container will hold, without knowing what that type is for a specific container. The <code class="code-voice">Container</code> protocol needs to specify that any value passed to the <code class="code-voice">append(_:)</code> method must have the same type as the container’s element type, and that the value returned by the container’s subscript will be of the same type as the container’s element type.
+<br><span class="jpstr">
+これらの要件を定義するために、<code class="code-voice">Container</code>プロトコルは、あるコンテナが保持することになる要素の型を参照する方法を必要とします、その型がどんなコンテナのためのものか知ることなしにです。<code class="code-voice">Container</code>プロトコルは、<code class="code-voice">append(_:)</code>メソッドに渡されるあらゆる値がそのコンテナの要素の型と同じ型を持たなければならないこと、そしてコンテナの添え字によって返される値がコンテナの要素型と同じ型のものになることを指定する必要があります。
+</span><!--end_jpstr-->
+</p><p class="para">
+  To achieve this, the <code class="code-voice">Container</code> protocol declares an associated type called <code class="code-voice">ItemType</code>, written as <code class="code-voice">associatedtype ItemType</code>. The protocol does not define what <code class="code-voice">ItemType</code> is—that information is left for any conforming type to provide. Nonetheless, the <code class="code-voice">ItemType</code> alias provides a way to refer to the type of the items in a <code class="code-voice">Container</code>, and to define a type for use with the <code class="code-voice">append(_:)</code> method and subscript, to ensure that the expected behavior of any <code class="code-voice">Container</code> is enforced.
+<br><span class="jpstr">
+これを達成するために、<code class="code-voice">Container</code>プロトコルは<code class="code-voice">ItemType</code>と呼ばれる関連型を宣言します、それは<code class="code-voice">associatedtype ItemType</code>のように書かれます。このプロトコルは、<code class="code-voice">ItemType</code>が何であるかを定義しません ― その情報は、何であれそれに準拠する型が提供するようにそのままにされます。それでもなお、<code class="code-voice">ItemType</code>エイリアスは、<code class="code-voice">Container</code>の中の項目の型に言及するための、そして<code class="code-voice">append(_:)</code>メソッドと添え字で使うための型を定義するための、ひとつの方法を提供します、それによってあらゆる<code class="code-voice">Container</code>が期待される挙動を強制されることを確実にします。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Here’s a version of the non-generic <code class="code-voice">IntStack</code> type from earlier, adapted to conform to the <code class="code-voice">Container</code> protocol:
+<br><span class="jpstr">
+以前の非総称体の<code class="code-voice">IntStack</code>型の改作、<code class="code-voice">Container</code>プロトコルに準拠するために適応させたものが、ここにあります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">struct</span> <span class="vc">IntStack</span>: <span class="n"><!-- a href="" -->Container<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="c">// original IntStack implementation&nbsp;<span class="jpstr">（元々のIntStack実施）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">items</span> = [<span class="vc">Int</span>]()</code></li>
+            <li><code class="code-voice">    <span class="kt">mutating</span> <span class="kt">func</span> <span class="vc">push</span>(<span class="kt">_</span> <span class="vc">item</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span>) {</code></li>
+            <li><code class="code-voice">        <span class="vc">items</span>.<span class="vc">append</span>(<span class="vc">item</span>)</code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">    <span class="kt">mutating</span> <span class="kt">func</span> <span class="vc">pop</span>() -&gt; <span class="n"><!-- a href="" -->Int<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">        <span class="kt">return</span> <span class="vc">items</span>.<span class="vc">removeLast</span>()</code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">    <span class="c">// conformance to the Container protocol&nbsp;<span class="jpstr">（Containerプロトコルに準拠）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice">    <span class="kt">typealias</span> <span class="vc">ItemType</span> = <span class="n"><!-- a href="" -->Int<!-- /a --></span></code></li>
+            <li><code class="code-voice">    <span class="kt">mutating</span> <span class="kt">func</span> <span class="vc">append</span>(<span class="kt">_</span> <span class="vc">item</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span>) {</code></li>
+            <li><code class="code-voice">        <span class="kt">self</span>.<span class="vc">push</span>(<span class="vc">item</span>)</code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">count</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">        <span class="kt">return</span> <span class="vc">items</span>.<span class="vc">count</span></code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">    <span class="kt">subscript</span>(<span class="vc">i</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span>) -&gt; <span class="n"><!-- a href="" -->Int<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">        <span class="kt">return</span> <span class="vc">items</span>[<span class="vc">i</span>]</code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The <code class="code-voice">IntStack</code> type implements all three of the <code class="code-voice">Container</code> protocol’s requirements, and in each case wraps part of the <code class="code-voice">IntStack</code> type’s existing functionality to satisfy these requirements.
+<br><span class="jpstr">
+<code class="code-voice">IntStack</code>型は、<code class="code-voice">Container</code>プロトコルの要件の３つすべてを実装します、そしてそれぞれの場合において、これらの要件を満たすために<code class="code-voice">IntStack</code>型がもつ既存の機能性の一部をラップしています（内部で利用して外側を包む）。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Moreover, <code class="code-voice">IntStack</code> specifies that for this implementation of <code class="code-voice">Container</code>, the appropriate <code class="code-voice">ItemType</code> to use is a type of <code class="code-voice">Int</code>. The definition of <code class="code-voice">typealias ItemType = Int</code> turns the abstract type of <code class="code-voice">ItemType</code> into a concrete type of <code class="code-voice">Int</code> for this implementation of the <code class="code-voice">Container</code> protocol.
+<br><span class="jpstr">
+さらに、<code class="code-voice">IntStack</code>は、<code class="code-voice">Container</code>のこの実施のために、適切な<code class="code-voice">ItemType</code>として使用するのは<code class="code-voice">Int</code>型であることを示します。定義<code class="code-voice">typealias ItemType = Int</code>は、<code class="code-voice">Container</code>プロトコルのこの実装のために、抽象的な型<code class="code-voice">ItemType</code>を具体的な型<code class="code-voice">Int</code>に変えます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Thanks to Swift’s type inference, you don’t actually need to declare a concrete <code class="code-voice">ItemType</code> of <code class="code-voice">Int</code> as part of the definition of <code class="code-voice">IntStack</code>. Because <code class="code-voice">IntStack</code> conforms to all of the requirements of the <code class="code-voice">Container</code> protocol, Swift can infer the appropriate <code class="code-voice">ItemType</code> to use, simply by looking at the type of the <code class="code-voice">append(_:)</code> method’s <code class="code-voice">item</code> parameter and the return type of the subscript. Indeed, if you delete the <code class="code-voice">typealias ItemType = Int</code> line from the code above, everything still works, because it is clear what type should be used for <code class="code-voice">ItemType</code>.
+<br><span class="jpstr">
+スウィフトの型推論のおかげで、あなたは実際には<code class="code-voice">IntStack</code>の定義の一部として具体的な<code class="code-voice">ItemType</code>の<code class="code-voice">Int</code>を宣言する必要がありません。<code class="code-voice">IntStack</code>が<code class="code-voice">Container</code>プロトコルの要件の全てに準拠するので、スウィフトは、単に<code class="code-voice">append(_:)</code>メソッドの<code class="code-voice">item</code>パラメータの型、そして、添え字の戻り型を見ることによって、使用するのに適切な<code class="code-voice">ItemType</code>を推論することができます。本当に、あなたが上のコードから行<code class="code-voice">typealias ItemType = Int</code>を削除するならば、すべては依然として働きます、なぜなら、どんな型が<code class="code-voice">ItemType</code>のために使われなければならないかは明白であるからです。
+</span><!--end_jpstr-->
+</p><p class="para">
+  You can also make the generic <code class="code-voice">Stack</code> type conform to the <code class="code-voice">Container</code> protocol:
+<br><span class="jpstr">
+あなたは、また、総称体<code class="code-voice">Stack</code>型を<code class="code-voice">Container</code>プロトコルに準拠させることができます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">struct</span> <span class="vc">Stack</span>&lt;<span class="vc">Element</span>&gt;: <span class="n"><!-- a href="" -->Container<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="c">// original Stack&lt;Element&gt; implementation&nbsp;<span class="jpstr">（元々のStack&lt;Element&gt;実装）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">items</span> = [<span class="vc">Element</span>]()</code></li>
+            <li><code class="code-voice">    <span class="kt">mutating</span> <span class="kt">func</span> <span class="vc">push</span>(<span class="kt">_</span> <span class="vc">item</span>: <span class="n"><!-- a href="" -->Element<!-- /a --></span>) {</code></li>
+            <li><code class="code-voice">        <span class="vc">items</span>.<span class="vc">append</span>(<span class="vc">item</span>)</code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">    <span class="kt">mutating</span> <span class="kt">func</span> <span class="vc">pop</span>() -&gt; <span class="n"><!-- a href="" -->Element<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">        <span class="kt">return</span> <span class="vc">items</span>.<span class="vc">removeLast</span>()</code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">    <span class="c">// conformance to the Container protocol&nbsp;<span class="jpstr">（Containerプロトコルに準拠）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice">    <span class="kt">mutating</span> <span class="kt">func</span> <span class="vc">append</span>(<span class="kt">_</span> <span class="vc">item</span>: <span class="n"><!-- a href="" -->Element<!-- /a --></span>) {</code></li>
+            <li><code class="code-voice">        <span class="kt">self</span>.<span class="vc">push</span>(<span class="vc">item</span>)</code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">count</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">        <span class="kt">return</span> <span class="vc">items</span>.<span class="vc">count</span></code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">    <span class="kt">subscript</span>(<span class="vc">i</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span>) -&gt; <span class="n"><!-- a href="" -->Element<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">        <span class="kt">return</span> <span class="vc">items</span>[<span class="vc">i</span>]</code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  This time, the type parameter <code class="code-voice">Element</code> is used as the type of the <code class="code-voice">append(_:)</code> method’s <code class="code-voice">item</code> parameter and the return type of the subscript. Swift can therefore infer that <code class="code-voice">Element</code> is the appropriate type to use as the <code class="code-voice">ItemType</code> for this particular container.
+<br><span class="jpstr">
+今度は、型パラメータ<code class="code-voice">Element</code>が、<code class="code-voice">append(_:)</code>メソッドの<code class="code-voice">item</code>パラメータの型および添え字の戻り型として使われます。スウィフトは、したがって<code class="code-voice">Element</code>が、この特定のコンテナのための<code class="code-voice">ItemType</code>として使うのに適当な型であると推測することができます。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH26-ID191"></a>
+  <h3 class="section-name" tabindex="0">Extending an Existing Type to Specify an Associated Type<br><span class="jpstr">
+既存の型を拡張して関連型を指定する
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  You can extend an existing type to add conformance to a protocol, as described in <span class="x-name"><a href="Protocols.html#//apple_ref/doc/uid/TP40014097-CH25-ID277" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH25-ID277">Adding Protocol Conformance with an Extension</a></span>. This includes a protocol with an associated type.
+<br><span class="jpstr">
+あなたは、<span class="x-name"><a href="Protocols.html#//apple_ref/doc/uid/TP40014097-CH25-ID277" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH25-ID277">拡張を使ってプロトコル準拠を加える</a></span>で記述されるように、既存の型を拡張することでプロトコルへの準拠を加えることができます。これは、関連型を使うプロトコルを含みます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Swift’s <code class="code-voice">Array</code> type already provides an <code class="code-voice">append(_:)</code> method, a <code class="code-voice">count</code> property, and a subscript with an <code class="code-voice">Int</code> index to retrieve its elements. These three capabilities match the requirements of the <code class="code-voice">Container</code> protocol. This means that you can extend <code class="code-voice">Array</code> to conform to the <code class="code-voice">Container</code> protocol simply by declaring that <code class="code-voice">Array</code> adopts the protocol. You do this with an empty extension, as described in <span class="x-name"><a href="Protocols.html#//apple_ref/doc/uid/TP40014097-CH25-ID278" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH25-ID278">Declaring Protocol Adoption with an Extension</a></span>:
+<br><span class="jpstr">
+スウィフトの<code class="code-voice">Array</code>型は、すでに<code class="code-voice">append(_:)</code>メソッド、<code class="code-voice">count</code>プロパティ、そしてその要素を取り出すために<code class="code-voice">Int</code>インデックスを使う添え字を提供します。これらの３つの能力は、<code class="code-voice">Container</code>プロトコルの要件に合致します。これは、あなたが<code class="code-voice">Array</code>を拡張して<code class="code-voice">Container</code>プロトコルに準拠することが、<code class="code-voice">Array</code>がそのプロトコルを採用すると宣言することによって可能であることを意味します。<span class="x-name"><a href="Protocols.html#//apple_ref/doc/uid/TP40014097-CH25-ID278" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH25-ID278">拡張を使ってプロトコル採用を宣言する</a></span>で記述されるように、あなたは空の拡張でこれを行います
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">extension</span> <span class="n"><!-- a href="" -->Array<!-- /a --></span>: <span class="n"><!-- a href="" -->Container<!-- /a --></span> {}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Array’s existing <code class="code-voice">append(_:)</code> method and subscript enable Swift to infer the appropriate type to use for <code class="code-voice">ItemType</code>, just as for the generic <code class="code-voice">Stack</code> type above. After defining this extension, you can use any <code class="code-voice">Array</code> as a <code class="code-voice">Container</code>.
+<br><span class="jpstr">
+配列の既存の<code class="code-voice">append(_:)</code>メソッドと添え字は、スウィフトに、ちょうど上の総称体<code class="code-voice">Stack</code>型と同じように、<code class="code-voice">ItemType</code>に使うのに適当な型を推論するのを可能にします。この拡張を定義した後に、あなたはどんな<code class="code-voice">Array</code>でも<code class="code-voice">Container</code>として使うことができます。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH26-ID192"></a>
+  <h3 class="section-name" tabindex="0">Generic Where Clauses<br><span class="jpstr">
+総称体where節
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Type constraints, as described in <span class="x-name"><a href="#//apple_ref/doc/uid/TP40014097-CH26-ID186" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH26-ID186">Type Constraints</a></span>, enable you to define requirements on the type parameters associated with a generic function or type.
+<br><span class="jpstr">
+<span class="x-name"><a href="#//apple_ref/doc/uid/TP40014097-CH26-ID186" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH26-ID186">型制約</a></span>で記述されるように、型制約によって、あなたは総称体関数または総称体型と結び付けられた型パラメータ上で要件を定義することが可能になります。
+</span><!--end_jpstr-->
+</p><p class="para">
+  It can also be useful to define requirements for associated types. You do this by defining a <em>generic where clause</em>. A generic <code class="code-voice">where</code> clause enables you to require that an associated type must conform to a certain protocol, or that certain type parameters and associated types must be the same. A generic <code class="code-voice">where</code> clause starts with the <code class="code-voice">where</code> keyword, followed by constraints for associated types or equality relationships between types and associated types. You write a generic <code class="code-voice">where</code> clause right before the opening curly brace of a type or function’s body.
+<br><span class="jpstr">
+関連型のために要件を定義することは、また同様に役に立ちます。あなたはこれを<em>総称体where節</em>を定義する事によって行います。総称体<code class="code-voice">where</code>節は、ある関連型が特定のプロトコルに準拠しなければならないこと、または特定の型パラメータおよび関連型が同じでなければならないことをあなたが要求できるようにします。総称体<code class="code-voice">where</code>節は、<code class="code-voice">where</code>キーワードで始まり、関連型に対する制約がいくつか、または型と関連型の間の同等関係性がいくつか続きます。あなたは、総称体<code class="code-voice">where</code>節を、型や関数のもつ本文の開き波括弧のまさに前に記述します。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The example below defines a generic function called <code class="code-voice">allItemsMatch</code>, which checks to see if two <code class="code-voice">Container</code> instances contain the same items in the same order. The function returns a Boolean value of <code class="code-voice">true</code> if all items match and a value of <code class="code-voice">false</code> if they do not.
+<br><span class="jpstr">
+下の例は<code class="code-voice">allItemsMatch</code>と呼ばれる総称体関数を定義します、それは、２つの<code class="code-voice">Container</code>インスタンスが同じ順序で同じ項目を含むかどうか見るために調べます。この関数は全ての項目が合致するならばブール値の<code class="code-voice">true</code>を、それらがそうしないならば<code class="code-voice">false</code>の値を返します。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The two containers to be checked do not have to be the same type of container (although they can be), but they do have to hold the same type of items. This requirement is expressed through a combination of type constraints and a generic <code class="code-voice">where</code> clause:
+<br><span class="jpstr">
+調べられる２つのコンテナは、同じ型のコンテナである必要はありません（とは言えそうでもよい）、しかしそれらは同じ型の項目を持たなければなりません。この要件は、型制約と総称体<code class="code-voice">where</code>節の組合せによって表されます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">allItemsMatch</span>&lt;<span class="vc">C1</span>: <span class="n"><!-- a href="" -->Container<!-- /a --></span>, <span class="vc">C2</span>: <span class="n"><!-- a href="" -->Container<!-- /a --></span>&gt;</code></li>
+            <li><code class="code-voice">    (<span class="kt">_</span> <span class="vc">someContainer</span>: <span class="vc">C1</span>, <span class="kt">_</span> <span class="vc">anotherContainer</span>: <span class="vc">C2</span>) -&gt; <span class="vc">Bool</span></code></li>
+            <li><code class="code-voice">    <span class="kt">where</span> <span class="n"><!-- a href="" -->C1<!-- /a --></span>.<span class="n"><!-- a href="" -->ItemType<!-- /a --></span> == <span class="n"><!-- a href="" -->C2<!-- /a --></span>.<span class="n"><!-- a href="" -->ItemType<!-- /a --></span>, <span class="n"><!-- a href="" -->C1<!-- /a --></span>.<span class="n"><!-- a href="" -->ItemType<!-- /a --></span>: <span class="n"><!-- a href="" -->Equatable<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">        </code></li>
+            <li><code class="code-voice">        <span class="c">// Check that both containers contain the same number of items.&nbsp;<span class="jpstr">（両方のコンテナが同じ数の項目を含むことを確認する）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice">        <span class="kt">if</span> <span class="vc">someContainer</span>.<span class="vc">count</span> != <span class="vc">anotherContainer</span>.<span class="vc">count</span> {</code></li>
+            <li><code class="code-voice">            <span class="kt">return</span> <span class="kt">false</span></code></li>
+            <li><code class="code-voice">        }</code></li>
+            <li><code class="code-voice">        </code></li>
+            <li><code class="code-voice">        <span class="c">// Check each pair of items to see if they are equivalent.&nbsp;<span class="jpstr">（各項目の対をそれらが等しいかどうか見るため調べる）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice">        <span class="kt">for</span> <span class="vc">i</span> <span class="kt">in</span> <span class="m">0</span>..&lt;<span class="vc">someContainer</span>.<span class="vc">count</span> {</code></li>
+            <li><code class="code-voice">            <span class="kt">if</span> <span class="vc">someContainer</span>[<span class="vc">i</span>] != <span class="vc">anotherContainer</span>[<span class="vc">i</span>] {</code></li>
+            <li><code class="code-voice">                <span class="kt">return</span> <span class="kt">false</span></code></li>
+            <li><code class="code-voice">            }</code></li>
+            <li><code class="code-voice">        }</code></li>
+            <li><code class="code-voice">        </code></li>
+            <li><code class="code-voice">        <span class="c">// All items match, so return true.&nbsp;<span class="jpstr">（全ての項目が合致、なのでtrueを返す）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice">        <span class="kt">return</span> <span class="kt">true</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  This function takes two arguments called <code class="code-voice">someContainer</code> and <code class="code-voice">anotherContainer</code>. The <code class="code-voice">someContainer</code> argument is of type <code class="code-voice">C1</code>, and the <code class="code-voice">anotherContainer</code> argument is of type <code class="code-voice">C2</code>. Both <code class="code-voice">C1</code> and <code class="code-voice">C2</code> are type parameters for two container types to be determined when the function is called.
+<br><span class="jpstr">
+この関数は、<code class="code-voice">someContainer</code>と<code class="code-voice">anotherContainer</code>と呼ばれる２つの引数をとります。<code class="code-voice">someContainer</code>引数は型<code class="code-voice">C1</code>です、そして<code class="code-voice">anotherContainer</code>引数は型<code class="code-voice">C2</code>です。<code class="code-voice">C1</code>と<code class="code-voice">C2</code>の両方は、２つのコンテナ型のための型パラメータで、関数が呼ばれるときに決定されます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The following requirements are placed on the function’s two type parameters:
+<br><span class="jpstr">
+以下の要件は、この関数の持つ２つの型パラメータ上に置かれます：
+</span><!--end_jpstr-->
+</p><ul class="list-bullet">
+  <li class="item"><p class="para">
+  <code class="code-voice">C1</code> must conform to the <code class="code-voice">Container</code> protocol (written as <code class="code-voice">C1: Container</code>).
+<br><span class="jpstr">
+<code class="code-voice">C1</code>は、<code class="code-voice">Container</code>プロトコルに準拠しなければなりません（<code class="code-voice">C1: Container</code>のように書かれます）。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  <code class="code-voice">C2</code> must also conform to the <code class="code-voice">Container</code> protocol (written as <code class="code-voice">C2: Container</code>).
+<br><span class="jpstr">
+<code class="code-voice">C2</code>もまた、<code class="code-voice">Container</code>プロトコルに準拠しなければなりません（<code class="code-voice">C2: Container</code>のように書かれます）。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  The <code class="code-voice">ItemType</code> for <code class="code-voice">C1</code> must be the same as the <code class="code-voice">ItemType</code> for <code class="code-voice">C2</code> (written as <code class="code-voice">C1.ItemType == C2.ItemType</code>).
+<br><span class="jpstr">
+<code class="code-voice">C1</code>のための<code class="code-voice">ItemType</code>は、<code class="code-voice">C2</code>のための<code class="code-voice">ItemType</code>と同じものでなければなりません（<code class="code-voice">C1.ItemType == C2.ItemType</code>のように書かれます）。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  The <code class="code-voice">ItemType</code> for <code class="code-voice">C1</code> must conform to the <code class="code-voice">Equatable</code> protocol (written as <code class="code-voice">C1.ItemType: Equatable</code>).
+<br><span class="jpstr">
+<code class="code-voice">C1</code>のための<code class="code-voice">ItemType</code>は、<code class="code-voice">Equatable</code>プロトコルに準拠しなければなりません（<code class="code-voice">C1.ItemType: Equatable</code>のように書かれます）。
+</span><!--end_jpstr-->
+</p>
+</li>
+</ul><p class="para">
+  The first and second requirements are defined in the function’s type parameter list, and the third and fourth requirements are defined in the function’s generic <code class="code-voice">where</code> clause.
+<br><span class="jpstr">
+最初と２番目の要件は関数のもつ型パラメータリストにおいて定義されます、そして３番目と４番目の要件は関数のもつ総称体<code class="code-voice">where</code>節において定義されます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  These requirements mean:
+<br><span class="jpstr">
+これらの要件が意味するのは：
+</span><!--end_jpstr-->
+</p><ul class="list-bullet">
+  <li class="item"><p class="para">
+  <code class="code-voice">someContainer</code> is a container of type <code class="code-voice">C1</code>.
+<br><span class="jpstr">
+<code class="code-voice">someContainer</code>は、型<code class="code-voice">C1</code>のコンテナです。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  <code class="code-voice">anotherContainer</code> is a container of type <code class="code-voice">C2</code>.
+<br><span class="jpstr">
+<code class="code-voice">anotherContainer</code>は、型<code class="code-voice">C2</code>のコンテナです。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  <code class="code-voice">someContainer</code> and <code class="code-voice">anotherContainer</code> contain the same type of items.
+<br><span class="jpstr">
+<code class="code-voice">someContainer</code>と<code class="code-voice">anotherContainer</code>は、同じ型の項目を含みます。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  The items in <code class="code-voice">someContainer</code> can be checked with the not equal operator (<code class="code-voice">!=</code>) to see if they are different from each other.
+<br><span class="jpstr">
+<code class="code-voice">someContainer</code>の中の項目は、それらがお互いと異なるかどうか見るために不等演算子（<code class="code-voice">!=</code>）を使って確認されることができます。
+</span><!--end_jpstr-->
+</p>
+</li>
+</ul><p class="para">
+  The third and fourth requirements combine to mean that the items in <code class="code-voice">anotherContainer</code> can <em>also</em> be checked with the <code class="code-voice">!=</code> operator, because they are exactly the same type as the items in <code class="code-voice">someContainer</code>.
+<br><span class="jpstr">
+３番目と４番目の要件は組み合わされて、<code class="code-voice">anotherContainer</code>の中の項目が<code class="code-voice">!=</code>演算子を使って確認されることが<em>同様に</em>可能なことを意味します、なぜなら、それらは<code class="code-voice">someContainer</code>の中の項目と同じ正確に型であるからです。
+</span><!--end_jpstr-->
+</p><p class="para">
+  These requirements enable the <code class="code-voice">allItemsMatch(_:_:)</code> function to compare the two containers, even if they are of a different container type.
+<br><span class="jpstr">
+これらの要件は、<code class="code-voice">allItemsMatch(_:_:)</code>関数に２つのコンテナを比較するのを可能にします、たとえそれらが異なるコンテナ型であるとしてもです。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The <code class="code-voice">allItemsMatch(_:_:)</code> function starts by checking that both containers contain the same number of items. If they contain a different number of items, there is no way that they can match, and the function returns <code class="code-voice">false</code>.
+<br><span class="jpstr">
+<code class="code-voice">allItemsMatch(_:_:)</code>関数は、両方のコンテナが同じ数の項目を含むことを確認することによって始まります。それらが異なる数の項目を含むならば、それらが合致することができる術はありません、そして関数は<code class="code-voice">false</code>を返します。
+</span><!--end_jpstr-->
+</p><p class="para">
+  After making this check, the function iterates over all of the items in <code class="code-voice">someContainer</code> with a <code class="code-voice">for</code>-<code class="code-voice">in</code> loop and the half-open range operator (<code class="code-voice">..&lt;</code>). For each item, the function checks whether the item from <code class="code-voice">someContainer</code> is not equal to the corresponding item in <code class="code-voice">anotherContainer</code>. If the two items are not equal, then the two containers do not match, and the function returns <code class="code-voice">false</code>.
+<br><span class="jpstr">
+この確認の後、関数は<code class="code-voice">someContainer</code>の項目の全てに渡って<code class="code-voice">for</code>-<code class="code-voice">in</code>ループと半開範囲演算子（<code class="code-voice">..&lt;</code>）を使って繰り返します。各項目のために、関数は<code class="code-voice">someContainer</code>からの項目が<code class="code-voice">anotherContainer</code>での対応する項目と同等でないかどうか確認します。２つの項目が等しくないならば、２つのコンテナは合致しません、そして関数は<code class="code-voice">false</code>を返します。
+</span><!--end_jpstr-->
+</p><p class="para">
+  If the loop finishes without finding a mismatch, the two containers match, and the function returns <code class="code-voice">true</code>.
+<br><span class="jpstr">
+ループが一致しない組合せを見つけることなく終わるならば、２つのコンテナは合致します、そして関数は<code class="code-voice">true</code>を返します。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Here’s how the <code class="code-voice">allItemsMatch(_:_:)</code> function looks in action:
+<br><span class="jpstr">
+動作中の<code class="code-voice">allItemsMatch(_:_:)</code>関数がどのように見えるかが、ここにあります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">stackOfStrings</span> = <span class="vc">Stack</span>&lt;<span class="n"><!-- a href="" -->String<!-- /a --></span>&gt;()</code></li>
+            <li><code class="code-voice"><span class="vc">stackOfStrings</span>.<span class="vc">push</span>(<span class="s">&quot;uno&quot;</span>)</code></li>
+            <li><code class="code-voice"><span class="vc">stackOfStrings</span>.<span class="vc">push</span>(<span class="s">&quot;dos&quot;</span>)</code></li>
+            <li><code class="code-voice"><span class="vc">stackOfStrings</span>.<span class="vc">push</span>(<span class="s">&quot;tres&quot;</span>)</code></li>
+            <li><code class="code-voice"> </code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">arrayOfStrings</span> = [<span class="s">&quot;uno&quot;</span>, <span class="s">&quot;dos&quot;</span>, <span class="s">&quot;tres&quot;</span>]</code></li>
+            <li><code class="code-voice"> </code></li>
+            <li><code class="code-voice"><span class="kt">if</span> <span class="vc">allItemsMatch</span>(<span class="vc">stackOfStrings</span>, <span class="vc">arrayOfStrings</span>) {</code></li>
+            <li><code class="code-voice">    <span class="vc">print</span>(<span class="s">&quot;All items match.&quot;</span>)</code></li>
+            <li><code class="code-voice">} <span class="kt">else</span> {</code></li>
+            <li><code class="code-voice">    <span class="vc">print</span>(<span class="s">&quot;Not all items match.&quot;</span>)</code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;All items match.&quot;&nbsp;<span class="jpstr">（「全ての項目が一致する」を出力します）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The example above creates a <code class="code-voice">Stack</code> instance to store <code class="code-voice">String</code> values, and pushes three strings onto the stack. The example also creates an <code class="code-voice">Array</code> instance initialized with an array literal containing the same three strings as the stack. Even though the stack and the array are of a different type, they both conform to the <code class="code-voice">Container</code> protocol, and both contain the same type of values. You can therefore call the <code class="code-voice">allItemsMatch(_:_:)</code> function with these two containers as its arguments. In the example above, the <code class="code-voice">allItemsMatch(_:_:)</code> function correctly reports that all of the items in the two containers match.
+<br><span class="jpstr">
+上の例は、<code class="code-voice">Stack</code>インスタンスをつくって<code class="code-voice">String</code>値を保存します、そしてスタック上へ３つの文字列をプッシュします。この例はまた、このスタックと同じ３つの文字列を含む配列リテラルで初期化される<code class="code-voice">Array</code>インスタンスをつくります。たとえスタックと配列が異なる型であるとしても、それらは両方とも<code class="code-voice">Container</code>プロトコルに準拠して、両方とも同じ型の値を含みます。あなたは、したがって、<code class="code-voice">allItemsMatch(_:_:)</code>関数をその引数としてこれらの２つのコンテナを使って呼ぶことができます。上の例で、<code class="code-voice">allItemsMatch(_:_:)</code>関数は、２つのコンテナの中の項目の全てが一致すると正しく報告します。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+
+  	
+ 	<section id="next_previous" class="">
+    		<p class="previous-link"><a href="Protocols.html#//apple_ref/doc/uid/TP40014097-CH25-ID267" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH25-ID267">Protocols<br><span class="jpstr">
+プロトコル
+</span><!--end_jpstr-->
+</a></p>
+  			<p class="next-link"><a href="AccessControl.html#//apple_ref/doc/uid/TP40014097-CH41-ID3" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH41-ID3">Access Control<br><span class="jpstr">
+アクセス制御
+</span><!--end_jpstr-->
+</a></p>
+
+    <p class="copyright">Copyright &#x00a9; 2016 Apple Inc. All rights reserved. 
+  <a class="link" href="http://www.apple.com/legal/terms/site.html" target="_blank" rel="external">Terms of Use</a> | 
+  <a class="link" href="http://www.apple.com/privacy/" target="_blank" rel="external">Privacy Policy</a> | 
+  Updated: 2016-10-27
+</p>
+  </section>
+</article>
+
+    </div>
+    <div id='big_button'></div>
+    <footer id="footer">
+  <div class="content-wrapper">
+  	<div id="leave_feedback" class="button" role="button" tabindex="0">Feedback</div>
+  </div>
+  <script src="../../../../Resources/1254/JavaScript/devpubs-1.6.3.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../../../Resources/1254/JavaScript/feedback-1.6.3.js" type="text/javascript" charset="utf-8"></script>
+  <div id="_omniture_top">
+<!-- SiteCatalyst code version: H.8. Copyright 1997-2006 Omniture, Inc. -->
+<script type="text/javascript">
+/* RSID: */
+var s_account="appleglobal,appleusdeveloper,dappdeveloperlib"
+</script>
+
+<!-- <script type="text/javascript" src="https://www.apple.com/metrics/scripts/s_code_h.js"></script> -->
+<script type="text/javascript">
+s.pageName=AC.Tracking.pageName();
+s.channel="www.us.developer"
+
+/************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+var s_code=s.t();if(s_code)document.write(s_code)</script>
+<!-- End SiteCatalyst code version: H.8. -->
+</div>
+
+</footer>
+
+    
+  </body>
+    <div id="blackout">
+    <div id="preload"></div>
+</div>
+<div id="modal" aria-hidden="true">
+    <div id="closebox" tabindex="0" aria-label="Close feedback form" role="button"></div>
+    <div id="sending" class="hidden">
+        <h2 tabindex="0">Sending feedback&hellip;</h2>
+        <div id="sending_img"></div>
+    </div>
+    <div id="error" class="hidden">
+        <h2 tabindex="0">We&rsquo;re sorry, an error has occurred.</h2>
+        <p>Please try submitting your feedback later.</p>
+        <div id="error_icon"></div>
+    </div>
+    <div id="success" class="hidden">
+        <h2 tabindex="0">Thank you for providing feedback!</h2>
+        <p>Your input helps improve our developer documentation.</p>
+        <div id="thank_you_icon"></div>
+    </div>
+    
+    <form id="feedback" action="#" method="post">
+        <div class="left-leaf">
+            <h2 id="helpful_title" data-asterisk="a1" tabindex="0">How helpful is this document?</h2>     
+            <sup id="a1" class="asterisk" aria-hidden="true">*</sup>
+
+            <div id="star_group" role="radiogroup" aria-required="true">
+                <label> 
+                    <input class="radio" type="radio" name="helped" value="1" /> 
+                    Very helpful
+                </label>
+                <label> 
+                    <input class="radio" type="radio" name="helped" value="2" /> 
+                    Somewhat helpful
+                </label>
+                <label>
+                    <input class="radio" type="radio" name="helped" value="3" /> 
+                    Not helpful
+                </label>
+            </div>
+        </div>
+        <div class="right-leaf">
+            <h2>How can we improve this document?</h2>
+            <div id="improve" class="checkboxes">
+                <label>
+                    <input type="checkbox" name="typo" /> 
+                    Fix typos or links
+                </label>
+                <label>
+                    <input type="checkbox" name="infoIncorrect" /> 
+                    Fix incorrect information
+                </label>
+                <label>
+                    <input type="checkbox" name="needs_examples" /> 
+                    Add or update code samples
+                </label>
+                <label>
+                    <input type="checkbox" name="needs_art" /> 
+                    Add or update illustrations
+                </label>
+                <label>
+                    <input type="checkbox" name="missingInfo" /> 
+                    Add information about...
+                </label>
+            </div>
+        </div>
+
+        <textarea id="comment" name="problem" cols="70" rows="8" placeholder="Please tell us more about your experience with this document" data-asterisk="a2" required></textarea>
+        <sup id="a2" class="asterisk" aria-hidden="true">*</sup>
+
+        <p class="fineprint">
+            <em aria-hidden="true"><span>*</span> Required information</em>
+        </p> 
+
+        <input id="submit" type="button" value="Send" />
+
+        <section id="legal">
+            <p>
+                To submit a product bug or enhancement request, please visit the 
+                <a href="https://developer.apple.com/bugreporter/" target="_blank">Bug Reporter</a> 
+                page.
+            </p>
+            <p>
+                Please read <a href="http://www.apple.com/legal/policies/ideas.html" target="_blank">Apple's Unsolicited Idea Submission Policy</a> 
+                before you send us your feedback.
+            </p> 
+        </section>
+    </form>
+</div>
+
+</div>
+</html>

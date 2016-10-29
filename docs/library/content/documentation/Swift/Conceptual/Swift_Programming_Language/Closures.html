@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>  
+  <title>The Swift Programming Language (Swift 3.0.1): Closures</title>
+  <link rel="stylesheet" type="text/css" href="../../../../Resources/1254/CSS/style-1.6.3.css" />
+  <link rel="stylesheet" type="text/css" href="../../../../Resources/1254/CSS/feedback-1.6.3.css" />
+  <meta charset='utf-8'> 
+<meta id="j-version" name="j-version" content="" />
+<meta id="build" name="build" content="0cd917ac01ec7578a7bd8964f41dd08b" />
+<meta id="document-version" name="document-version" content="8.0.3" />
+<meta id="book-assignments" name="book-assignments" content="{Type/Guide}, {Topic/Swift}" />
+<meta scheme="apple_ref" id="identifier" name="identifier" content="//apple_ref/doc/uid/TP40014097" />
+<meta id="chapterId" name="chapterId" content="TP40014097-CH11">
+<meta id="book-title" name="book-title" content="The Swift Programming Language (Swift 3.0.1)" />
+<meta id="book-resource-type" name="book-resource-type" content="Guide" />
+<meta id="book-root" name="book-root" content="./" />
+<meta id="book-json" name="book-json" content="book.json">
+<meta id="date" name="date" content="2016-10-27" />
+<meta id="description" name="description" content="The definitive guide to Swift, Apple’s new programming language for building iOS, OS X, watchOS, and tvOS apps." />
+<meta id="IndexTitle" name="IndexTitle" content="" />
+<meta id="resources-uri" name="resources-uri" content="../../../../Resources/1254">
+<link id="book-index-page" rel="Start" title="" type="text/html" href="./index.html">
+<!-- , next_chapter: next_chapter, previous_chapter: previous_chapter -->
+<link id="next-page" rel="Next" type="text/html" href="">
+<link id="previous-page" rel="Prev" type="text/html" href="">
+<meta id="devcenter" name="devcenter" content="<!-- DEVCENTER_NAME -->" />
+<meta id="devcenter-url" name="devcenter-url" content="<!-- DEVCENTER_URL -->" />
+<meta id="reflib" name="reflib" content="<!-- REFLIB_NAME -->" />
+
+<meta id="xcode-display" name="xcode-display" content="render" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta id="platforms" name="platforms" content="Xcode Developer Tools">
+</head>
+
+  <body id="conceptual_flow_with_tasks" class="jazz">
+    
+    <header id="ios_header" class="hideOnPrint hideInXcode">
+  <div class="content-wrapper">
+    <p class="header-text">
+    	<a href="../../../../navigation/index.html">Guides and Sample Code
+ 		</a>
+ </p>
+    <p id="wwdr"><img id="apple_logo" src="../../../../Resources/1254/Images/apple2.png" height="14px" width="12px" aria-hidden="true" /><a href="https://developer.apple.com">Developer</a></p>
+  </div>
+</header>
+
+    <section id="valence">
+  <div class="content-wrapper">
+    <p id="hierarchial_navigation">
+      <span id="book_title">The Swift Programming Language (Swift 3.0.1)</span>
+    </p>
+    <form id="search" class="hideInXcode" method="get" action="/search/index.php" accept-charset="utf-8" autocomplete="off">
+  <input type="search" id="ssi_SearchField" placeholder="Search Guides and Sample Code" name="q" autocomplete="off" tabindex="2" />
+</form>
+
+      
+   
+   
+
+
+
+
+    <span class="download-text hideInXcode">
+      <a href="https://itunes.apple.com/us/book/the-swift-programming-language/id881256329?mt=11">iBooks</a>
+    </span>
+
+    
+
+    <img id="shortstack" src="../../../../Resources/1254/Images/shortstack_2x.png"/>
+  </div>
+</section>
+    <div class="content-wrapper">
+      <nav id="navigator" class="book-parts hideInXcode" role="navigation">
+    <ul class="nav-parts">
+        <li data-id="//apple_ref/doc/uid/TP40014097-CH1-ID2"
+            class="part-name">
+            <a href="index.html#//apple_ref/doc/uid/TP40014097-CH3-ID0" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH3-ID0">Welcome to Swift<br><span class="jpstr">
+スウィフトにようこそ
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="index.html#//apple_ref/doc/uid/TP40014097-CH3-ID0" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH3-ID0">About Swift<br><span class="jpstr">
+スウィフトについて
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="GuidedTour.html#//apple_ref/doc/uid/TP40014097-CH2-ID1" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH2-ID1">A Swift Tour<br><span class="jpstr">
+スウィフトツアー
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+        <li data-id="//apple_ref/doc/uid/TP40014097-CH4-ID233"
+            class="part-name nav-part-active open-part">
+            <a href="TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH5-ID309">Language Guide<br><span class="jpstr">
+言語ガイド
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH5-ID309">The Basics<br><span class="jpstr">
+基本
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="BasicOperators.html#//apple_ref/doc/uid/TP40014097-CH6-ID60" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH6-ID60">Basic Operators<br><span class="jpstr">
+基本の演算子
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="StringsAndCharacters.html#//apple_ref/doc/uid/TP40014097-CH7-ID285" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH7-ID285">Strings and Characters<br><span class="jpstr">
+文字列と文字
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="CollectionTypes.html#//apple_ref/doc/uid/TP40014097-CH8-ID105" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH8-ID105">Collection Types<br><span class="jpstr">
+コレクション型
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="ControlFlow.html#//apple_ref/doc/uid/TP40014097-CH9-ID120" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH9-ID120">Control Flow<br><span class="jpstr">
+制御の流れ
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Functions.html#//apple_ref/doc/uid/TP40014097-CH10-ID158" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH10-ID158">Functions<br><span class="jpstr">
+関数
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter nav-current-chapter">
+              	<a href="#//apple_ref/doc/uid/TP40014097-CH11-ID94" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH11-ID94">Closures<br><span class="jpstr">
+クロージャ
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Enumerations.html#//apple_ref/doc/uid/TP40014097-CH12-ID145" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH12-ID145">Enumerations<br><span class="jpstr">
+列挙
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="ClassesAndStructures.html#//apple_ref/doc/uid/TP40014097-CH13-ID82" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH13-ID82">Classes and Structures<br><span class="jpstr">
+クラスと構造体
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Properties.html#//apple_ref/doc/uid/TP40014097-CH14-ID254" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH14-ID254">Properties<br><span class="jpstr">
+プロパティ
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Methods.html#//apple_ref/doc/uid/TP40014097-CH15-ID234" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH15-ID234">Methods<br><span class="jpstr">
+メソッド
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Subscripts.html#//apple_ref/doc/uid/TP40014097-CH16-ID305" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH16-ID305">Subscripts<br><span class="jpstr">
+添え字
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Inheritance.html#//apple_ref/doc/uid/TP40014097-CH17-ID193" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH17-ID193">Inheritance<br><span class="jpstr">
+継承
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Initialization.html#//apple_ref/doc/uid/TP40014097-CH18-ID203" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH18-ID203">Initialization<br><span class="jpstr">
+初期化
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Deinitialization.html#//apple_ref/doc/uid/TP40014097-CH19-ID142" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH19-ID142">Deinitialization<br><span class="jpstr">
+デイニシャライズ
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="AutomaticReferenceCounting.html#//apple_ref/doc/uid/TP40014097-CH20-ID48" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH20-ID48">Automatic Reference Counting<br><span class="jpstr">
+自動参照カウント
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="OptionalChaining.html#//apple_ref/doc/uid/TP40014097-CH21-ID245" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH21-ID245">Optional Chaining<br><span class="jpstr">
+オプショナル連鎖
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="ErrorHandling.html#//apple_ref/doc/uid/TP40014097-CH42-ID508" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH42-ID508">Error Handling<br><span class="jpstr">
+エラーの処理
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="TypeCasting.html#//apple_ref/doc/uid/TP40014097-CH22-ID338" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH22-ID338">Type Casting<br><span class="jpstr">
+型キャスト
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="NestedTypes.html#//apple_ref/doc/uid/TP40014097-CH23-ID242" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH23-ID242">Nested Types<br><span class="jpstr">
+入れ子にされた型
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Extensions.html#//apple_ref/doc/uid/TP40014097-CH24-ID151" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH24-ID151">Extensions<br><span class="jpstr">
+拡張
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Protocols.html#//apple_ref/doc/uid/TP40014097-CH25-ID267" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH25-ID267">Protocols<br><span class="jpstr">
+プロトコル
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Generics.html#//apple_ref/doc/uid/TP40014097-CH26-ID179" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH26-ID179">Generics<br><span class="jpstr">
+総称体
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="AccessControl.html#//apple_ref/doc/uid/TP40014097-CH41-ID3" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH41-ID3">Access Control<br><span class="jpstr">
+アクセス制御
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="AdvancedOperators.html#//apple_ref/doc/uid/TP40014097-CH27-ID28" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH27-ID28">Advanced Operators<br><span class="jpstr">
+先進の演算子
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+        <li data-id="//apple_ref/doc/uid/TP40014097-CH28-ID427"
+            class="part-name">
+            <a href="AboutTheLanguageReference.html#//apple_ref/doc/uid/TP40014097-CH29-ID345" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH29-ID345">Language Reference<br><span class="jpstr">
+言語リファレンス
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="AboutTheLanguageReference.html#//apple_ref/doc/uid/TP40014097-CH29-ID345" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH29-ID345">About the Language Reference<br><span class="jpstr">
+言語リファレンスについて
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="LexicalStructure.html#//apple_ref/doc/uid/TP40014097-CH30-ID410" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH30-ID410">Lexical Structure<br><span class="jpstr">
+語彙の構造
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Types.html#//apple_ref/doc/uid/TP40014097-CH31-ID445" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH31-ID445">Types<br><span class="jpstr">
+型
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Expressions.html#//apple_ref/doc/uid/TP40014097-CH32-ID383" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH32-ID383">Expressions<br><span class="jpstr">
+式
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Statements.html#//apple_ref/doc/uid/TP40014097-CH33-ID428" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH33-ID428">Statements<br><span class="jpstr">
+文
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Declarations.html#//apple_ref/doc/uid/TP40014097-CH34-ID351" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH34-ID351">Declarations<br><span class="jpstr">
+宣言
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Attributes.html#//apple_ref/doc/uid/TP40014097-CH35-ID347" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH35-ID347">Attributes<br><span class="jpstr">
+属性
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Patterns.html#//apple_ref/doc/uid/TP40014097-CH36-ID419" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH36-ID419">Patterns<br><span class="jpstr">
+パターン
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="GenericParametersAndArguments.html#//apple_ref/doc/uid/TP40014097-CH37-ID406" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH37-ID406">Generic Parameters and Arguments<br><span class="jpstr">
+総称体パラメータと引数
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="zzSummaryOfTheGrammar.html#//apple_ref/doc/uid/TP40014097-CH38-ID458" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH38-ID458">Summary of the Grammar<br><span class="jpstr">
+文法の概要
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+        <li data-id="//apple_ref/doc/uid/TP40014097-CH39-ID460"
+            class="part-name">
+            <a href="RevisionHistory.html#//apple_ref/doc/uid/TP40014097-CH40-ID459" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH40-ID459">Revision History<br><span class="jpstr">
+改訂履歴
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="RevisionHistory.html#//apple_ref/doc/uid/TP40014097-CH40-ID459" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH40-ID459">Document Revision History<br><span class="jpstr">
+文書改訂履歴
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+    </ul>
+</nav>
+
+      <menu id="bashful" type="toolbar">
+  <div class="shield"></div>
+  <menuitem id="jump_to" class="menu-bar-item closed">
+  <span>On This Page</span>
+  <div class="chevron">
+    <div class="chevy chevron-left"></div>
+    <div class="chevy chevron-right"></div>
+  </div>
+  <menu type="list" class="details">
+      <ul class="list-bullet">
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH11-ID95">Closure Expressions</a>
+<br><span class="jpstr">
+クロージャ式
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH11-ID102">Trailing Closures</a>
+<br><span class="jpstr">
+後付クロージャ
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH11-ID103">Capturing Values</a>
+<br><span class="jpstr">
+値を捕獲する
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH11-ID104">Closures Are Reference Types</a>
+<br><span class="jpstr">
+クロージャは参照型です
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH11-ID546">Escaping Closures</a>
+<br><span class="jpstr">
+脱出クロージャ
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH11-ID543">Autoclosures</a>
+<br><span class="jpstr">
+自動クロージャ
+</span><!--end_jpstr-->
+          </li>
+      </ul>
+  </menu>
+</menuitem>
+
+</menu>
+<div class="pixel-line"></div>
+<div class="rubber-band-gap"></div>
+<article class="chapter">
+  <a name="//apple_ref/doc/uid/TP40014097-CH11"></a><a name="//apple_ref/doc/uid/TP40014097-CH11-ID94"></a>
+
+  <h2 class='chapter-name'>Closures<br><span class="jpstr">
+クロージャ
+</span><!--end_jpstr-->
+</h2>
+
+
+  
+  	<section class="section">
+  		<p class="para">
+  <em>Closures</em> are self-contained blocks of functionality that can be passed around and used in your code. Closures in Swift are similar to blocks in C and Objective-C and to lambdas in other programming languages.
+<br><span class="jpstr">
+<em>クロージャ</em>は、機能性の完全独立のブロック、かたまりです、それは、あなたのコードにおいてあちこちに渡され使われることができます。スウィフトにおけるクロージャは、CとObjective-Cでのブロックに、そして他のプログラミング言語でのラムダ（lambda）に似ています。
+</span><!--end_jpstr-->
+</p>
+<p class="para">
+  Closures can capture and store references to any constants and variables from the context in which they are defined. This is known as <em>closing over</em> those constants and variables. Swift handles all of the memory management of capturing for you.
+<br><span class="jpstr">
+クロージャは、それが定義されている前後関係からのあらゆる定数や変数への参照を捕獲して、保存することができます。これは、そのような定数や変数を<em>すっかりクローズする（閉じ込める）</em>こととして知られています。スウィフトは、キャプチャ（その瞬間の保存）の記憶管理の全てを、あなたのために取り扱います。
+</span><!--end_jpstr-->
+</p>
+<div class="note">
+  <a name="//apple_ref/doc/uid/TP40014097-CH11-NoLink_95"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">Don’t worry if you are not familiar with the concept of capturing. It is explained in detail below in <span class="x-name"><a href="#//apple_ref/doc/uid/TP40014097-CH11-ID103" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH11-ID103">Capturing Values</a></span>.
+    	<br><span class="jpstr">
+あなたがキャプチャの概念に馴染みがなくても、心配いりません。それは、下で詳細に<span class="x-name"><a href="#//apple_ref/doc/uid/TP40014097-CH11-ID103" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH11-ID103">値を捕獲する（キャプチャする）</a></span>の中で説明されます。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div>
+<p class="para">
+  Global and nested functions, as introduced in <span class="x-name"><a href="Functions.html#//apple_ref/doc/uid/TP40014097-CH10-ID158" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH10-ID158">Functions</a></span>, are actually special cases of closures. Closures take one of three forms:
+<br><span class="jpstr">
+<span class="x-name"><a href="Functions.html#//apple_ref/doc/uid/TP40014097-CH10-ID158" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH10-ID158">関数</a></span>で紹介される、グローバルおよび入れ子にされた関数は、実際にはクロージャの特別な場合です。クロージャは、３つの書式のうちの１つをとります：
+</span><!--end_jpstr-->
+</p>
+<ul class="list-bullet">
+  <li class="item"><p class="para">
+  Global functions are closures that have a name and do not capture any values.
+<br><span class="jpstr">
+グローバルな関数は、名前を持ち、まったく値をキャプチャしない（捕獲しない）クロージャです。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  Nested functions are closures that have a name and can capture values from their enclosing function.
+<br><span class="jpstr">
+入れ子にされた関数は、名前を持ち、それを囲んでいる関数から値を捕獲することができるクロージャです。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  Closure expressions are unnamed closures written in a lightweight syntax that can capture values from their surrounding context.
+<br><span class="jpstr">
+クロージャ式は、それの周囲の前後関係から値を捕獲することができる軽快な構文で書かれる無名のクロージャです。
+</span><!--end_jpstr-->
+</p>
+</li>
+</ul>
+<p class="para">
+  Swift’s closure expressions have a clean, clear style, with optimizations that encourage brief, clutter-free syntax in common scenarios. These optimizations include:
+<br><span class="jpstr">
+スウィフトのクロージャ式は、最適化された、きれいな、明白なスタイルを持ちます、それは、通常さまざまに予想される状況において、簡潔な、混乱のない構文を助長します。これらの最適化は、以下を含みます：
+</span><!--end_jpstr-->
+</p>
+<ul class="list-bullet">
+  <li class="item"><p class="para">
+  Inferring parameter and return value types from context
+<br><span class="jpstr">
+前後関係からパラメータおよび戻り値の型を推論する
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  Implicit returns from single-expression closures
+<br><span class="jpstr">
+単一式のクロージャからの値を暗黙的に返す
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  Shorthand argument names
+<br><span class="jpstr">
+短縮形引数名
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  Trailing closure syntax
+<br><span class="jpstr">
+後付クロージャ構文
+</span><!--end_jpstr-->
+</p>
+</li>
+</ul>
+
+		</section> 
+
+
+  <section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH11-ID95"></a>
+  <h3 class="section-name" tabindex="0">Closure Expressions<br><span class="jpstr">
+クロージャ式
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Nested functions, as introduced in <span class="x-name"><a href="Functions.html#//apple_ref/doc/uid/TP40014097-CH10-ID178" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH10-ID178">Nested Functions</a></span>, are a convenient means of naming and defining self-contained blocks of code as part of a larger function. However, it is sometimes useful to write shorter versions of function-like constructs without a full declaration and name. This is particularly true when you work with functions or methods that take functions as one or more of their arguments.
+<br><span class="jpstr">
+<span class="x-name"><a href="Functions.html#//apple_ref/doc/uid/TP40014097-CH10-ID178" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH10-ID178">入れ子にされた関数</a></span>は、入れ子にされた関数の中で紹介されるように、より大きい関数の一部として、いろいろな完全独立のコードの塊を名前をつけて定義する便利な手段です。しかし、まるまる完全な宣言や名前なしに、関数のような構造物のより短いものをいろいろと書くことは、時々役に立ちます。１つ以上のそれの引数として関数をとる関数またはメソッドをあなたが扱うとき、これは特に当てはまります。
+</span><!--end_jpstr-->
+</p><p class="para">
+  <em>Closure expressions</em> are a way to write inline closures in a brief, focused syntax. Closure expressions provide several syntax optimizations for writing closures in a shortened form without loss of clarity or intent. The closure expression examples below illustrate these optimizations by refining a single example of the <code class="code-voice">sorted(by:)</code> method over several iterations, each of which expresses the same functionality in a more succinct way.
+<br><span class="jpstr">
+<em>クロージャ式</em>は、簡潔な、焦点のあった構文で、処理の流れに組み込まれた（行内の、インラインの）クロージャを書く方法です。クロージャ式は、いくつかの構文最適化を、ある省略形式で明快さや意図の損失なしでクロージャを書くために提供します。以下のクロージャ式の例は、これらの最適化を一つの例の<code class="code-voice">sorted(by:)</code>メソッドの改良をいくどか繰り返していくことで解説します、そして、そのそれぞれは同じ機能性をより簡潔な方法で表わします。
+</span><!--end_jpstr-->
+</p>
+  <section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH11-ID96"></a>
+  <h3 class="section-name" tabindex="0">The Sorted Method<br><span class="jpstr">
+分類メソッド
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Swift’s standard library provides a method called <code class="code-voice">sorted(by:)</code>, which sorts an array of values of a known type, based on the output of a sorting closure that you provide. Once it completes the sorting process, the <code class="code-voice">sorted(by:)</code> method returns a new array of the same type and size as the old one, with its elements in the correct sorted order. The original array is not modified by the <code class="code-voice">sorted(by:)</code> method.
+<br><span class="jpstr">
+スウィフトの標準ライブラリは<code class="code-voice">sorted(by:)</code>と呼ばれるメソッドを提供します、それは、ある既知の型の値からなる配列の分類を、あなたが提供するあるソート（分類）を行うクロージャの出力に基づき行います。一旦それがソート処理を完了するならば、<code class="code-voice">sorted(by:)</code>メソッドは、古いものと同じ型と大きさの新しい配列を返します、そしてその要素は正しく分類された順序を持ちます。元の配列は、<code class="code-voice">sorted(by:)</code>メソッドによって修正されません。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The closure expression examples below use the <code class="code-voice">sorted(by:)</code> method to sort an array of <code class="code-voice">String</code> values in reverse alphabetical order. Here’s the initial array to be sorted:
+<br><span class="jpstr">
+下のクロージャ式の例は、<code class="code-voice">sorted(by:)</code>メソッドを使用して<code class="code-voice">String</code>値からなる配列を逆アルファベット順に分類します。分類される最初の配列は、ここにあります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">names</span> = [<span class="s">&quot;Chris&quot;</span>, <span class="s">&quot;Alex&quot;</span>, <span class="s">&quot;Ewa&quot;</span>, <span class="s">&quot;Barry&quot;</span>, <span class="s">&quot;Daniella&quot;</span>]</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The <code class="code-voice">sorted(by:)</code> method accepts a closure that takes two arguments of the same type as the array’s contents, and returns a <code class="code-voice">Bool</code> value to say whether the first value should appear before or after the second value once the values are sorted. The sorting closure needs to return <code class="code-voice">true</code> if the first value should appear <em>before</em> the second value, and <code class="code-voice">false</code> otherwise.
+<br><span class="jpstr">
+<code class="code-voice">sorted(by:)</code>メソッドは、配列の内容物と同じ型の２つの引数をとり、そしてひとたび値が分類されるならば最初の値が第２の値の前か後のどちらに現れなければならないのかを伝える<code class="code-voice">Bool</code>値を返すクロージャを受け取ります。このソートを行うクロージャは、最初の値が第２の値の<em>前に</em>現れるべきならば<code class="code-voice">true</code>を、そうでないならば<code class="code-voice">false</code>を返す必要があります。
+</span><!--end_jpstr-->
+</p><p class="para">
+  This example is sorting an array of <code class="code-voice">String</code> values, and so the sorting closure needs to be a function of type <code class="code-voice">(String, String) -&gt; Bool</code>.
+<br><span class="jpstr">
+この例は<code class="code-voice">String</code>値の配列を分類しています、なのでソート・クロージャは型<code class="code-voice">(String, String) -&gt; Bool</code>の関数である必要があります。
+</span><!--end_jpstr-->
+</p><p class="para">
+  One way to provide the sorting closure is to write a normal function of the correct type, and to pass it in as an argument to the <code class="code-voice">sorted(by:)</code> method:
+<br><span class="jpstr">
+ソート・クロージャを提供する１つの方法は、通常の関数を正しい型で記述することです、そしてそれを１つの引数として<code class="code-voice">sorted(by:)</code>メソッドに渡すことになります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">backward</span>(<span class="kt">_</span> <span class="vc">s1</span>: <span class="n"><!-- a href="" -->String<!-- /a --></span>, <span class="kt">_</span> <span class="vc">s2</span>: <span class="n"><!-- a href="" -->String<!-- /a --></span>) -&gt; <span class="n"><!-- a href="" -->Bool<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">return</span> <span class="vc">s1</span> &gt; <span class="vc">s2</span></code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">reversedNames</span> = <span class="vc">names</span>.<span class="vc">sorted</span>(<span class="vc">by</span>: <span class="vc">backward</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// reversedNames is equal to [&quot;Ewa&quot;, &quot;Daniella&quot;, &quot;Chris&quot;, &quot;Barry&quot;, &quot;Alex&quot;]&nbsp;<span class="jpstr">（reversedNamesは["Ewa", "Daniella", "Chris", "Barry", "Alex"]に等しい）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  If the first string (<code class="code-voice">s1</code>) is greater than the second string (<code class="code-voice">s2</code>), the <code class="code-voice">backward(_:_:)</code> function will return <code class="code-voice">true</code>, indicating that <code class="code-voice">s1</code> should appear before <code class="code-voice">s2</code> in the sorted array. For characters in strings, “greater than” means “appears later in the alphabet than”. This means that the letter <code class="code-voice">&quot;B&quot;</code> is “greater than” the letter <code class="code-voice">&quot;A&quot;</code>, and the string <code class="code-voice">&quot;Tom&quot;</code> is greater than the string <code class="code-voice">&quot;Tim&quot;</code>. This gives a reverse alphabetical sort, with <code class="code-voice">&quot;Barry&quot;</code> being placed before <code class="code-voice">&quot;Alex&quot;</code>, and so on.
+<br><span class="jpstr">
+最初の文字列（<code class="code-voice">s1</code>）が第二の文字列（<code class="code-voice">s2</code>）より大きいならば、<code class="code-voice">backward(_:_:)</code>関数は、ソートされた配列において<code class="code-voice">s1</code>が<code class="code-voice">s2</code>の前に現れなければならないことを示す、<code class="code-voice">true</code>を返します。文字列の中の文字のために、「より大きい」は「アルファベットにおいてより後に現れる」ことを意味します。これは文字<code class="code-voice">"B"</code>は文字<code class="code-voice">"A"</code>「より大きい」こと、そして文字列<code class="code-voice">"Tom"</code>は文字列<code class="code-voice">"Tim"</code>よりも大きいことを意味します。これは、<code class="code-voice">"Barry"</code>が<code class="code-voice">"Alex"</code>の前に置かれるなどの、逆アルファベット順の分類を提供します。
+</span><!--end_jpstr-->
+</p><p class="para">
+  However, this is a rather long-winded way to write what is essentially a single-expression function (<code class="code-voice">a &gt; b</code>). In this example, it would be preferable to write the sorting closure inline, using closure expression syntax.
+<br><span class="jpstr">
+しかし、これは本質的に単一式の関数（<code class="code-voice">a &gt; b</code>）であるものを書くには、相当に長たらしい方法です。この例では、クロージャ式構文を使って、ソート・クロージャを行内に書くことがずっと好ましいです。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH11-ID97"></a>
+  <h3 class="section-name" tabindex="0">Closure Expression Syntax<br><span class="jpstr">
+クロージャ式構文
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Closure expression syntax has the following general form:
+<br><span class="jpstr">
+クロージャ式構文は、以下の一般的な形式を持ちます：
+</span><!--end_jpstr-->
+</p><span class="caption"></span>
+<div class="code-outline">
+  <ul class="code-outline-lines">
+    <li><pre class="code-voice">{ (<em class="variable-text">parameters</em>) -&gt; <em class="variable-text">return type</em> <span class="kt">in</span></pre></li><li><pre class="code-voice">    <em class="variable-text">statements</em></pre></li><li><pre class="code-voice">}</pre></li>
+  </ul>
+</div><p class="para">
+  The <em>parameters</em> in closure expression syntax can be in-out parameters, but they can’t have a default value. Variadic parameters can be used if you name the variadic parameter. Tuples can also be used as parameter types and return types.
+<br><span class="jpstr">
+クロージャ式構文中の<em>parameters</em>はin-outパラメータであることができます、しかしそれらは省略時の値を持つことはできません。あなたが可変長パラメータに名前をつけるならば、可変長パラメータが使われることができます。タプルもまた、パラメータ型および戻り型として使われることができます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The example below shows a closure expression version of the <code class="code-voice">backward(_:_:)</code> function from earlier:
+<br><span class="jpstr">
+下記の例は、以前の<code class="code-voice">backward(_:_:)</code>関数のクロージャ式版を示します：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="vc">reversedNames</span> = <span class="vc">names</span>.<span class="vc">sorted</span>(<span class="vc">by</span>: { (<span class="vc">s1</span>: <span class="n"><!-- a href="" -->String<!-- /a --></span>, <span class="vc">s2</span>: <span class="n"><!-- a href="" -->String<!-- /a --></span>) -&gt; <span class="n"><!-- a href="" -->Bool<!-- /a --></span> <span class="kt">in</span></code></li>
+            <li><code class="code-voice">    <span class="kt">return</span> <span class="vc">s1</span> &gt; <span class="vc">s2</span></code></li>
+            <li><code class="code-voice">})</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Note that the declaration of parameters and return type for this inline closure is identical to the declaration from the <code class="code-voice">backward(_:_:)</code> function. In both cases, it is written as <code class="code-voice">(s1: String, s2: String) -&gt; Bool</code>. However, for the inline closure expression, the parameters and return type are written <em>inside</em> the curly braces, not outside of them.
+<br><span class="jpstr">
+行内クロージャのためのパラメータと戻り型の宣言が、<code class="code-voice">backward(_:_:)</code>関数の宣言と同一であることに注意してください。両方の場合において、それは<code class="code-voice">(s1: String, s2: String) -&gt; Bool</code>のように書かれます。しかし、行内クロージャ式のために、パラメータと戻り型は、波括弧の<em>内側</em>に書かれます、その外側ではなく。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The start of the closure’s body is introduced by the <code class="code-voice">in</code> keyword. This keyword indicates that the definition of the closure’s parameters and return type has finished, and the body of the closure is about to begin.
+<br><span class="jpstr">
+クロージャのもつ本文の始まりは、<code class="code-voice">in</code>キーワードで紹介されます。このキーワードはクロージャのパラメータと戻り型の定義が終わったことを示します、そして、クロージャの本文はまさに開始しようとしています。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Because the body of the closure is so short, it can even be written on a single line:
+<br><span class="jpstr">
+クロージャの本文がたいへん短いので、それは一つの行に書かれさえすることができます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="vc">reversedNames</span> = <span class="vc">names</span>.<span class="vc">sorted</span>(<span class="vc">by</span>: { (<span class="vc">s1</span>: <span class="n"><!-- a href="" -->String<!-- /a --></span>, <span class="vc">s2</span>: <span class="n"><!-- a href="" -->String<!-- /a --></span>) -&gt; <span class="n"><!-- a href="" -->Bool<!-- /a --></span> <span class="kt">in</span> <span class="kt">return</span> <span class="vc">s1</span> &gt; <span class="vc">s2</span> } )</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  This illustrates that the overall call to the <code class="code-voice">sorted(by:)</code> method has remained the same. A pair of parentheses still wrap the entire argument for the method. However, that argument is now an inline closure.
+<br><span class="jpstr">
+これは、<code class="code-voice">sorted(by:)</code>メソッドへの呼び出し全体が、同じもののままだったことを図解します。一対の丸括弧は、依然としてこのメソッドに対する引数をすべて包みます。しかしながら、この引数は今では１つの行内クロージャです。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH11-ID98"></a>
+  <h3 class="section-name" tabindex="0">Inferring Type From Context<br><span class="jpstr">
+文脈から型を推論する
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Because the sorting closure is passed as an argument to a method, Swift can infer the types of its parameters and the type of the value it returns. The <code class="code-voice">sorted(by:)</code> method is being called on an array of strings, so its argument must be a function of type <code class="code-voice">(String, String) -&gt; Bool</code>. This means that the <code class="code-voice">(String, String)</code> and <code class="code-voice">Bool</code> types do not need to be written as part of the closure expression’s definition. Because all of the types can be inferred, the return arrow (<code class="code-voice">-&gt;</code>) and the parentheses around the names of the parameters can also be omitted:
+<br><span class="jpstr">
+ソート（分類）するクロージャが引数としてメソッドに渡されるので、スウィフトは、それのパラメータの型とそれが返す値の型を推論することができます。この<code class="code-voice">sorted(by:)</code>メソッドは文字列の配列上で呼ばれています、それでそれの引数は型<code class="code-voice">(String, String) -&gt; Bool</code>の関数でなければなりません。これは、<code class="code-voice">(String, String)</code>および<code class="code-voice">Bool</code>型が、クロージャ式の定義の一部として書かれる必要がないことを意味します。型の全てが推論されることができるので、戻り矢印（<code class="code-voice">-&gt;</code>）と、パラメータの名前のまわりの丸括弧もまた省略することができます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="vc">reversedNames</span> = <span class="vc">names</span>.<span class="vc">sorted</span>(<span class="vc">by</span>: { <span class="vc">s1</span>, <span class="vc">s2</span> <span class="kt">in</span> <span class="kt">return</span> <span class="vc">s1</span> &gt; <span class="vc">s2</span> } )</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  It is always possible to infer the parameter types and return type when passing a closure to a function or method as an inline closure expression. As a result, you never need to write an inline closure in its fullest form when the closure is used as a function or method argument.
+<br><span class="jpstr">
+クロージャを関数やメソッドに行内クロージャ式として渡すとき、パラメータ型と戻り型を推論することは常に可能です。その結果、あなたは、行内クロージャをその最も完全な形式で書くことは、そのクロージャが関数やメソッドの引数として使われる時にまったく必要ありません。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Nonetheless, you can still make the types explicit if you wish, and doing so is encouraged if it avoids ambiguity for readers of your code. In the case of the <code class="code-voice">sorted(by:)</code> method, the purpose of the closure is clear from the fact that sorting is taking place, and it is safe for a reader to assume that the closure is likely to be working with <code class="code-voice">String</code> values, because it is assisting with the sorting of an array of strings.
+<br><span class="jpstr">
+それでもなお、あなたが望むならば、依然としてあなたは型を明確にすることができます、そして、それがあなたのコードの読者のために曖昧さを避けるならば、そうすることは推奨されます。<code class="code-voice">sorted(by:)</code>メソッドの場合、クロージャの目的はソートが行われているという事実から明快です、そして、読者がクロージャは<code class="code-voice">String</code>値を扱っているようだと仮定しても差し支えありません、なぜならそれがいくつかの文字列からなる配列のソートを手伝っているからです。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH11-ID99"></a>
+  <h3 class="section-name" tabindex="0">Implicit Returns from Single-Expression Closures<br><span class="jpstr">
+単一式のクロージャからの値を暗黙的に返す
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Single-expression closures can implicitly return the result of their single expression by omitting the <code class="code-voice">return</code> keyword from their declaration, as in this version of the previous example:
+<br><span class="jpstr">
+単一の式のクロージャは、前の例のこの改作のように、<code class="code-voice">return</code>キーワードをそれらの宣言から省略することによって、暗黙的にそれのただ一つの式の結果を返すことができます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="vc">reversedNames</span> = <span class="vc">names</span>.<span class="vc">sorted</span>(<span class="vc">by</span>: { <span class="vc">s1</span>, <span class="vc">s2</span> <span class="kt">in</span> <span class="vc">s1</span> &gt; <span class="vc">s2</span> } )</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Here, the function type of the <code class="code-voice">sorted(by:)</code> method’s argument makes it clear that a <code class="code-voice">Bool</code> value must be returned by the closure. Because the closure’s body contains a single expression (<code class="code-voice">s1 &gt; s2</code>) that returns a <code class="code-voice">Bool</code> value, there is no ambiguity, and the <code class="code-voice">return</code> keyword can be omitted.
+<br><span class="jpstr">
+ここでは、<code class="code-voice">sorted(by:)</code>メソッドの引数である関数型は、<code class="code-voice">Bool</code>値がクロージャによって返されなければならないことを明白にします。クロージャの本文が<code class="code-voice">Bool</code>値を返すただ一つの式（<code class="code-voice">s1 &gt; s2</code>）を含むので、曖昧さはありません、それで<code class="code-voice">return</code>キーワードは省略されることができます。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH11-ID100"></a>
+  <h3 class="section-name" tabindex="0">Shorthand Argument Names<br><span class="jpstr">
+短縮形引数名
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Swift automatically provides shorthand argument names to inline closures, which can be used to refer to the values of the closure’s arguments by the names <code class="code-voice">$0</code>, <code class="code-voice">$1</code>, <code class="code-voice">$2</code>, and so on.
+<br><span class="jpstr">
+スウィフトは行内クロージャに自動的に短縮形引数名を提供します、そしてそれは、名前<code class="code-voice">$0</code>、<code class="code-voice">$1</code>、<code class="code-voice">$2</code>、などにでクロージャの引数の値に言及するために使われることができます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  If you use these shorthand argument names within your closure expression, you can omit the closure’s argument list from its definition, and the number and type of the shorthand argument names will be inferred from the expected function type. The <code class="code-voice">in</code> keyword can also be omitted, because the closure expression is made up entirely of its body:
+<br><span class="jpstr">
+あなたがこれらの短縮形引数名をあなたのクロージャ式の中で使用するならば、あなたはクロージャの引数リストをその定義から省略することができます、そして、短縮形引数名の数と型は期待される関数型から推論されます。<code class="code-voice">in</code>キーワードもまた、クロージャ式がもっぱらその本文から成り立つので、省略されることができます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="vc">reversedNames</span> = <span class="vc">names</span>.<span class="vc">sorted</span>(<span class="vc">by</span>: { <span class="vc">$0</span> &gt; <span class="vc">$1</span> } )</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Here, <code class="code-voice">$0</code> and <code class="code-voice">$1</code> refer to the closure’s first and second <code class="code-voice">String</code> arguments.
+<br><span class="jpstr">
+ここでは、<code class="code-voice">$0</code>と<code class="code-voice">$1</code>は、クロージャの１番目と２番目の<code class="code-voice">String</code>引数に言及します。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH11-ID101"></a>
+  <h3 class="section-name" tabindex="0">Operator Methods<br><span class="jpstr">
+演算子メソッド
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  There’s actually an even <em>shorter</em> way to write the closure expression above. Swift’s <code class="code-voice">String</code> type defines its string-specific implementation of the greater-than operator (<code class="code-voice">&gt;</code>) as a method that has two parameters of type <code class="code-voice">String</code>, and returns a value of type <code class="code-voice">Bool</code>. This exactly matches the method type needed by the <code class="code-voice">sorted(by:)</code> method. Therefore, you can simply pass in the greater-than operator, and Swift will infer that you want to use its string-specific implementation:
+<br><span class="jpstr">
+さらに<em>より短い</em>方法が上のクロージャ式を書くために実際にあります。スウィフトの<code class="code-voice">String</code>型は、それの文字列特有の実装の「大なり」演算子（<code class="code-voice">&gt;</code>）をメソッドとして定義します、それは型<code class="code-voice">String</code>の２つのパラメータを持ち、型<code class="code-voice">Bool</code>の値を返します。これは、<code class="code-voice">sorted(by:)</code>メソッドによって必要とされるメソッド型に正確に適合します。したがって、あなたはただ単に「大なり」演算子を渡すことができます、そしてスウィフトはあなたがその文字列特有の実装を使いたいのだと推測します：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="vc">reversedNames</span> = <span class="vc">names</span>.<span class="vc">sorted</span>(<span class="vc">by</span>: &gt;)</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  For more about operator method, see <span class="x-name"><a href="AdvancedOperators.html#//apple_ref/doc/uid/TP40014097-CH27-ID42" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH27-ID42">Operator Methods</a></span>.
+<br><span class="jpstr">
+演算子メソッドについてさらに、<span class="x-name"><a href="AdvancedOperators.html#//apple_ref/doc/uid/TP40014097-CH27-ID42" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH27-ID42">演算子メソッド</a></span>を見てください。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH11-ID102"></a>
+  <h3 class="section-name" tabindex="0">Trailing Closures<br><span class="jpstr">
+後付クロージャ
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  If you need to pass a closure expression to a function as the function’s final argument and the closure expression is long, it can be useful to write it as a <em>trailing closure</em> instead. A trailing closure is written after the function call’s parentheses, even though it is still an argument to the function. When you use the trailing closure syntax, you don’t write the argument label for the closure as part of the function call.
+<br><span class="jpstr">
+あなたが関数の最後の引数としてクロージャ式を関数に渡す必要がある、そして、クロージャ式が長いならば、代わりに<em>後付クロージャ</em>としてそれを書くことは役に立つことがありえます。後付クロージャは、関数呼び出しの丸括弧の後に書かれます、それでもそれはまだその関数に対する引数であるけれども。あなたが後付クロージャ構文を使うとき、あなたは引数ラベルをそのクロージャに対して関数呼び出しの一部として書きません。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">someFunctionThatTakesAClosure</span>(<span class="vc">closure</span>: () -&gt; <span class="n"><!-- a href="" -->Void<!-- /a --></span>) {</code></li>
+            <li><code class="code-voice">    <span class="c">// function body goes here&nbsp;<span class="jpstr">（関数本文が、ここにきます）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"> </code></li>
+            <li><code class="code-voice"><span class="c">// Here&#39;s how you call this function without using a trailing closure:&nbsp;<span class="jpstr">（あなたが後付クロージャを使うことなくどのようにこの関数を呼ぶのかがここにあります：）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"> </code></li>
+            <li><code class="code-voice"><span class="vc">someFunctionThatTakesAClosure</span>(<span class="vc">closure</span>: {</code></li>
+            <li><code class="code-voice">    <span class="c">// closure&#39;s body goes here&nbsp;<span class="jpstr">（クロージャの本文がここにきます）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice">})</code></li>
+            <li><code class="code-voice"> </code></li>
+            <li><code class="code-voice"><span class="c">// Here&#39;s how you call this function with a trailing closure instead:&nbsp;<span class="jpstr">（あなたが代わりに後付クロージャでどのようにこの関数を呼ぶのかがここにあります：）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"> </code></li>
+            <li><code class="code-voice"><span class="vc">someFunctionThatTakesAClosure</span>() {</code></li>
+            <li><code class="code-voice">    <span class="c">// trailing closure&#39;s body goes here&nbsp;<span class="jpstr">（後付クロージャの本文がここにきます）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The string-sorting closure from the <span class="x-name"><a href="#//apple_ref/doc/uid/TP40014097-CH11-ID97" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH11-ID97">Closure Expression Syntax</a></span> section above can be written outside of the <code class="code-voice">sorted(by:)</code> method’s parentheses as a trailing closure:
+<br><span class="jpstr">
+上の<span class="x-name"><a href="#//apple_ref/doc/uid/TP40014097-CH11-ID97" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH11-ID97">クロージャ式構文</a></span>の節の文字列を分類するクロージャは、後付クロージャとして<code class="code-voice">sorted(by:)</code>関数の括弧の外側に書かれることができます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="vc">reversedNames</span> = <span class="vc">names</span>.<span class="vc">sorted</span>() { <span class="vc">$0</span> &gt; <span class="vc">$1</span> }</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  If a closure expression is provided as the function or method’s only argument and you provide that expression as a trailing closure, you do not need to write a pair of parentheses <code class="code-voice">()</code> after the function or method’s name when you call the function:
+<br><span class="jpstr">
+あるクロージャ式がただ関数やメソッドの引数としてだけ提供され、そしてあなたが後付クロージャとしてその式を提供するならば、あなたがその関数を呼ぶときに、一対の丸括弧<code class="code-voice">()</code>を関数やメソッドの名前の後に書く必要はありません：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="vc">reversedNames</span> = <span class="vc">names</span>.<span class="vc">sorted</span> { <span class="vc">$0</span> &gt; <span class="vc">$1</span> }</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Trailing closures are most useful when the closure is sufficiently long that it is not possible to write it inline on a single line. As an example, Swift’s <code class="code-voice">Array</code> type has a <code class="code-voice">map(_:)</code> method which takes a closure expression as its single argument. The closure is called once for each item in the array, and returns an alternative mapped value (possibly of some other type) for that item. The nature of the mapping and the type of the returned value is left up to the closure to specify.
+<br><span class="jpstr">
+クロージャがそれをただ一つの行の行内に書くことが可能でないほど長いとき、後付クロージャは最も役に立ちます。例として、スウィフトの<code class="code-voice">Array</code>型は<code class="code-voice">map(_:)</code>メソッドを持ちます、そしてそれは、そのただ一つの引数としてクロージャ式をとります。クロージャは、配列の中の各項目に対して一度だけ呼ばれて、その項目のための代わりの対応付けされた（おそらく何か他の型の）値を返します。マッピング（対応付け）の性質と返される値の型は、指定するクロージャに委ねられます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  After applying the provided closure to each array element, the <code class="code-voice">map(_:)</code> method returns a new array containing all of the new mapped values, in the same order as their corresponding values in the original array.
+<br><span class="jpstr">
+提供されたクロージャを各配列要素に適用した後に、<code class="code-voice">map(_:)</code>メソッドは、新しい対応付けられる値の全てを、もとの配列のそれらの対応する値と同じ順序で含んでいる新しい配列を返します。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Here’s how you can use the <code class="code-voice">map(_:)</code> method with a trailing closure to convert an array of <code class="code-voice">Int</code> values into an array of <code class="code-voice">String</code> values. The array <code class="code-voice">[16, 58, 510]</code> is used to create the new array <code class="code-voice">[&quot;OneSix&quot;, &quot;FiveEight&quot;, &quot;FiveOneZero&quot;]</code>:
+<br><span class="jpstr">
+ここに、あなたが<code class="code-voice">Int</code>値の配列を<code class="code-voice">String</code>値の配列に変えるために後付クロージャとともに<code class="code-voice">map(_:)</code>メソッドをどのように使用できるかがあります。配列<code class="code-voice">[16, 58, 510]</code>は、新しい配列<code class="code-voice">["OneSix", "FiveEight", "FiveOneZero"]</code>をつくるために使われます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">digitNames</span> = [</code></li>
+            <li><code class="code-voice">    <span class="m">0</span>: <span class="s">&quot;Zero&quot;</span>, <span class="m">1</span>: <span class="s">&quot;One&quot;</span>, <span class="m">2</span>: <span class="s">&quot;Two&quot;</span>,   <span class="m">3</span>: <span class="s">&quot;Three&quot;</span>, <span class="m">4</span>: <span class="s">&quot;Four&quot;</span>,</code></li>
+            <li><code class="code-voice">    <span class="m">5</span>: <span class="s">&quot;Five&quot;</span>, <span class="m">6</span>: <span class="s">&quot;Six&quot;</span>, <span class="m">7</span>: <span class="s">&quot;Seven&quot;</span>, <span class="m">8</span>: <span class="s">&quot;Eight&quot;</span>, <span class="m">9</span>: <span class="s">&quot;Nine&quot;</span></code></li>
+            <li><code class="code-voice">]</code></li>
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">numbers</span> = [<span class="m">16</span>, <span class="m">58</span>, <span class="m">510</span>]</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The code above creates a dictionary of mappings between the integer digits and English-language versions of their names. It also defines an array of integers, ready to be converted into strings.
+<br><span class="jpstr">
+上のコードは、整数桁とそれらの名前の英語版の間で対応付けをする辞書を作成します。それはまた、文字列に変換される準備ができている整数の配列も定義します。
+</span><!--end_jpstr-->
+</p><p class="para">
+  You can now use the <code class="code-voice">numbers</code> array to create an array of <code class="code-voice">String</code> values, by passing a closure expression to the array’s <code class="code-voice">map(_:)</code> method as a trailing closure:
+<br><span class="jpstr">
+あなたは、現在、この<code class="code-voice">numbers</code>配列を<code class="code-voice">String</code>値の配列をつくるために使うことが、あるクロージャ式を配列の<code class="code-voice">map(_:)</code>メソッドに後付クロージャとして渡すことによって、可能です：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">strings</span> = <span class="vc">numbers</span>.<span class="vc">map</span> {</code></li>
+            <li><code class="code-voice">    (<span class="vc">number</span>) -&gt; <span class="n"><!-- a href="" -->String<!-- /a --></span> <span class="kt">in</span></code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">number</span> = <span class="vc">number</span></code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">output</span> = <span class="s">&quot;&quot;</span></code></li>
+            <li><code class="code-voice">    <span class="kt">repeat</span> {</code></li>
+            <li><code class="code-voice">        <span class="vc">output</span> = <span class="vc">digitNames</span>[<span class="vc">number</span> % <span class="m">10</span>]! + <span class="vc">output</span></code></li>
+            <li><code class="code-voice">        <span class="vc">number</span> /= <span class="m">10</span></code></li>
+            <li><code class="code-voice">    } <span class="kt">while</span> <span class="vc">number</span> &gt; <span class="m">0</span></code></li>
+            <li><code class="code-voice">    <span class="kt">return</span> <span class="vc">output</span></code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"><span class="c">// strings is inferred to be of type [String]&nbsp;<span class="jpstr">（stringsは型[String]と推論されます）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"><span class="c">// its value is [&quot;OneSix&quot;, &quot;FiveEight&quot;, &quot;FiveOneZero&quot;]&nbsp;<span class="jpstr">（その値は["OneSix", "FiveEight", "FiveOneZero"]です）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The <code class="code-voice">map(_:)</code> method calls the closure expression once for each item in the array. You do not need to specify the type of the closure’s input parameter, <code class="code-voice">number</code>, because the type can be inferred from the values in the array to be mapped.
+<br><span class="jpstr">
+<code class="code-voice">map(_:)</code>メソッドは、配列の中の各項目に対して一度だけクロージャ式を呼びます。あなたはクロージャの入力パラメータ、<code class="code-voice">number</code>の型を指定する必要がありません、なぜならその型が対応付けされる配列の値から推論されることができるからです。
+</span><!--end_jpstr-->
+</p><p class="para">
+  In this example, the variable <code class="code-voice">number</code> is initialized with the value of the closure’s <code class="code-voice">number</code> parameter, so that the value can be modified within the closure body. (The parameters to functions and closures are always constants.) The closure expression also specifies a return type of <code class="code-voice">String</code>, to indicate the type that will be stored in the mapped output array.
+<br><span class="jpstr">
+この例では、変数<code class="code-voice">number</code>はこのクロージャの持つ<code class="code-voice">number</code>パラメータの値を使って初期化されます、それでその値はクロージャ本体の内部で修正されることができます。（関数およびクロージャに対するパラメータは常に定数です。）クロージャ式はまた、<code class="code-voice">String</code>の戻り型を指定します、それによってマップされた出力配列の中に格納されることになる型を指し示します。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The closure expression builds a string called <code class="code-voice">output</code> each time it is called. It calculates the last digit of <code class="code-voice">number</code> by using the remainder operator (<code class="code-voice">number % 10</code>), and uses this digit to look up an appropriate string in the <code class="code-voice">digitNames</code> dictionary. The closure can be used to create a string representation of any integer greater than zero.
+<br><span class="jpstr">
+クロージャ式は、それが呼ばれるたびに、<code class="code-voice">output</code>と呼ばれる文字列をつくります。それは、<code class="code-voice">number</code>の最後の桁を剰余演算子を使用することによって計算して（<code class="code-voice">number % 10</code>）、この桁を<code class="code-voice">digitNames</code>辞書で適切な文字列を捜すために使います。このクロージャは、ゼロより大きいあらゆる整数の文字列表現を作るために使われることが出来ます。
+</span><!--end_jpstr-->
+</p><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014097-CH11-NoLink_96"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">The call to the <code class="code-voice">digitNames</code> dictionary’s subscript is followed by an exclamation mark (<code class="code-voice">!</code>), because dictionary subscripts return an optional value to indicate that the dictionary lookup can fail if the key does not exist. In the example above, it is guaranteed that <code class="code-voice">number % 10</code> will always be a valid subscript key for the <code class="code-voice">digitNames</code> dictionary, and so an exclamation mark is used to force-unwrap the <code class="code-voice">String</code> value stored in the subscript’s optional return value.
+    	<br><span class="jpstr">
+<code class="code-voice">digitNames</code>辞書への呼び出しの添え字の後に感嘆符（<code class="code-voice">!</code>）が続きます、なぜなら、キーが存在しない場合は辞書検索が失敗し得ることを意味するために、辞書添え字がオプショナルの値を返すからです。上の例で<code class="code-voice">number % 10</code>は常に<code class="code-voice">digitNames</code>辞書のための有効な添え字キーであることを求められます、なのでその添え字のオプショナルの戻り値に保管した<code class="code-voice">String</code>値を強制アンラップするために感嘆符が使われます。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div><p class="para">
+  The string retrieved from the <code class="code-voice">digitNames</code> dictionary is added to the <em>front</em> of <code class="code-voice">output</code>, effectively building a string version of the number in reverse. (The expression <code class="code-voice">number % 10</code> gives a value of <code class="code-voice">6</code> for <code class="code-voice">16</code>, <code class="code-voice">8</code> for <code class="code-voice">58</code>, and <code class="code-voice">0</code> for <code class="code-voice">510</code>.)
+<br><span class="jpstr">
+<code class="code-voice">digitNames</code>辞書から取り出される文字列は<code class="code-voice">output</code>の<em>前方</em>に加えられて、うまい具合に数の文字列版を逆の順序で造ります。（式数<code class="code-voice">number % 10</code>は、<code class="code-voice">16</code>のために<code class="code-voice">6</code>、<code class="code-voice">58</code>のために<code class="code-voice">8</code>、<code class="code-voice">510</code>のために<code class="code-voice">0</code>の値を与えます）。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The <code class="code-voice">number</code> variable is then divided by <code class="code-voice">10</code>. Because it is an integer, it is rounded down during the division, so <code class="code-voice">16</code> becomes <code class="code-voice">1</code>, <code class="code-voice">58</code> becomes <code class="code-voice">5</code>, and <code class="code-voice">510</code> becomes <code class="code-voice">51</code>.
+<br><span class="jpstr">
+<code class="code-voice">number</code>変数は、それから<code class="code-voice">10</code>で割られます。それが整数であるので、除算のときに端数を切り捨てられます、それで<code class="code-voice">16</code>が<code class="code-voice">1</code>に、<code class="code-voice">58</code>が<code class="code-voice">5</code>に、そして<code class="code-voice">510</code>は<code class="code-voice">51</code>になります。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The process is repeated until <code class="code-voice">number</code> is equal to <code class="code-voice">0</code>, at which point the <code class="code-voice">output</code> string is returned by the closure, and is added to the output array by the <code class="code-voice">map(_:)</code> method.
+<br><span class="jpstr">
+この処理は<code class="code-voice">number</code>が<code class="code-voice">0</code>に等しくなるまで繰り返されます、その時点で<code class="code-voice">output</code>文字列がクロージャによって返されて、そして<code class="code-voice">map(_:)</code>メソッドによって出力配列に加えられます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The use of trailing closure syntax in the example above neatly encapsulates the closure’s functionality immediately after the function that closure supports, without needing to wrap the entire closure within the <code class="code-voice">map(_:)</code> method’s outer parentheses.
+<br><span class="jpstr">
+上の例での後付クロージャ構文の使用は、クロージャの機能性をクロージャが手助けする関数の直後に手際よく要約していて、クロージャ全体を<code class="code-voice">map(_:)</code>メソッドの持つ外側の丸括弧の内部に包む必要はありません。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH11-ID103"></a>
+  <h3 class="section-name" tabindex="0">Capturing Values<br><span class="jpstr">
+値を捕獲する
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  A closure can <em>capture</em> constants and variables from the surrounding context in which it is defined. The closure can then refer to and modify the values of those constants and variables from within its body, even if the original scope that defined the constants and variables no longer exists.
+<br><span class="jpstr">
+クロージャは、それが定義される周囲の前後関係から、定数と変数を<em>捕獲（キャプチャ）</em>できます。クロージャはそれから、その本文内からそれらの定数と変数の値に言及することや修正することができます、たとえその定数と変数を定義した本来のスコープがもはや存在しないとしてもです。
+</span><!--end_jpstr-->
+</p><p class="para">
+  In Swift, the simplest form of a closure that can capture values is a nested function, written within the body of another function. A nested function can capture any of its outer function’s arguments and can also capture any constants and variables defined within the outer function.
+<br><span class="jpstr">
+スウィフトにおいて、値をキャプチャできるクロージャの最も単純な形式は、別の関数の本文内に書かれる、入れ子にされた関数です。入れ子にされた関数は、その外側の関数の持つ引数の何でも捕獲することができ、また外側の関数の範囲内で定義されるどんな定数や変数でも捕獲することができます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Here’s an example of a function called <code class="code-voice">makeIncrementer</code>, which contains a nested function called <code class="code-voice">incrementer</code>. The nested <code class="code-voice">incrementer()</code> function captures two values, <code class="code-voice">runningTotal</code> and <code class="code-voice">amount</code>, from its surrounding context. After capturing these values, <code class="code-voice">incrementer</code> is returned by <code class="code-voice">makeIncrementer</code> as a closure that increments <code class="code-voice">runningTotal</code> by <code class="code-voice">amount</code> each time it is called.
+<br><span class="jpstr">
+ここに、<code class="code-voice">makeIncrementer</code>と呼ばれる関数の例があります、それは<code class="code-voice">incrementer</code>と呼ばれる入れ子にされた関数を含みます。入れ子にされた<code class="code-voice">incrementer()</code>関数は、それを取り囲む前後関係から２つの値、<code class="code-voice">runningTotal</code>と<code class="code-voice">amount</code>を捕獲します。これらの値を捕獲した後に、<code class="code-voice">incrementer</code>は<code class="code-voice">makeIncrementer</code>によって、それが呼ばれるたびに<code class="code-voice">runningTotal</code>を<code class="code-voice">amount</code>によって増加させるクロージャとして返されます。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">makeIncrementer</span>(<span class="vc">forIncrement</span> <span class="vc">amount</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span>) -&gt; () -&gt; <span class="n"><!-- a href="" -->Int<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">runningTotal</span> = <span class="m">0</span></code></li>
+            <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">incrementer</span>() -&gt; <span class="n"><!-- a href="" -->Int<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">        <span class="vc">runningTotal</span> += <span class="vc">amount</span></code></li>
+            <li><code class="code-voice">        <span class="kt">return</span> <span class="vc">runningTotal</span></code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">    <span class="kt">return</span> <span class="vc">incrementer</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The return type of <code class="code-voice">makeIncrementer</code> is <code class="code-voice">() -&gt; Int</code>. This means that it returns a <em>function</em>, rather than a simple value. The function it returns has no parameters, and returns an <code class="code-voice">Int</code> value each time it is called. To learn how functions can return other functions, see <span class="x-name"><a href="Functions.html#//apple_ref/doc/uid/TP40014097-CH10-ID177" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH10-ID177">Function Types as Return Types</a></span>.
+<br><span class="jpstr">
+<code class="code-voice">makeIncrementer</code>の戻り型は、<code class="code-voice">() -&gt; Intで</code>す。これは、それが<em>関数</em>を返すことを意味します、単純なひとつの値ではなく。それが返す関数は、パラメータを持たず、それが呼ばれるたびに<code class="code-voice">Int</code>値を返します。関数が他の関数を返すことができる方法を学ぶために、<span class="x-name"><a href="Functions.html#//apple_ref/doc/uid/TP40014097-CH10-ID177" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH10-ID177">戻り型としての関数型</a></span>を見てください。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The <code class="code-voice">makeIncrementer(forIncrement:)</code> function defines an integer variable called <code class="code-voice">runningTotal</code>, to store the current running total of the incrementer that will be returned. This variable is initialized with a value of <code class="code-voice">0</code>.
+<br><span class="jpstr">
+<code class="code-voice">makeIncrementer(forIncrement:)</code>関数は、返されるincrementerの現在の状態での合計を保存するために、<code class="code-voice">runningTotal</code>と呼ばれる整数変数を定義します。この変数は、値<code class="code-voice">0</code>で初期化されます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The <code class="code-voice">makeIncrementer(forIncrement:)</code> function has a single <code class="code-voice">Int</code> parameter with an argument label of <code class="code-voice">forIncrement</code>, and a parameter name of <code class="code-voice">amount</code>. The argument value passed to this parameter specifies how much <code class="code-voice">runningTotal</code> should be incremented by each time the returned incrementer function is called. The <code class="code-voice">makeIncrementer</code> function defines a nested function called <code class="code-voice">incrementer</code>, which performs the actual incrementing. This function simply adds <code class="code-voice">amount</code> to <code class="code-voice">runningTotal</code>, and returns the result.
+<br><span class="jpstr">
+<code class="code-voice">makeIncrementer(forIncrement:)</code>関数は、<code class="code-voice">forIncrement</code>の引数ラベル、そして<code class="code-voice">amount</code>のパラメータ名を持つ、ただ１つの<code class="code-voice">Int</code>パラメータを持ちます。このパラメータに渡された引き数の値は、返されたインクリメンタ関数（漸増器関数）が呼ばれるたびに、どのくらい<code class="code-voice">runningTotal</code>が増やされなければならないかについて指定します。<code class="code-voice">makeIncrementer</code>関数は<code class="code-voice">incrementer</code>と呼ばれる入れ子にされた関数を定義します、それは、実際に増やすことを実行します。この関数は、単に<code class="code-voice">amount</code>を<code class="code-voice">runningTotal</code>に加えて、結果を返します。
+</span><!--end_jpstr-->
+</p><p class="para">
+  When considered in isolation, the nested <code class="code-voice">incrementer()</code> function might seem unusual:
+<br><span class="jpstr">
+切り離して考えたとき、入れ子にされた<code class="code-voice">incrementer()</code>関数は普通でないものに見えるかもしれません：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">incrementer</span>() -&gt; <span class="n"><!-- a href="" -->Int<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="vc">runningTotal</span> += <span class="vc">amount</span></code></li>
+            <li><code class="code-voice">    <span class="kt">return</span> <span class="vc">runningTotal</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The <code class="code-voice">incrementer()</code> function doesn’t have any parameters, and yet it refers to <code class="code-voice">runningTotal</code> and <code class="code-voice">amount</code> from within its function body. It does this by capturing a <em>reference</em> to <code class="code-voice">runningTotal</code> and <code class="code-voice">amount</code> from the surrounding function and using them within its own function body. Capturing by reference ensures that <code class="code-voice">runningTotal</code> and <code class="code-voice">amount</code> do not disappear when the call to <code class="code-voice">makeIncrementer</code> ends, and also ensures that <code class="code-voice">runningTotal</code> is available the next time the <code class="code-voice">incrementer</code> function is called.
+<br><span class="jpstr">
+<code class="code-voice">incrementer()</code>関数には全くパラメータがありません、それなのに、それはその関数本文内から<code class="code-voice">runningTotal</code>と<code class="code-voice">amount</code>に言及します。それは、それを囲んでいる関数から<code class="code-voice">runningTotal</code>と<code class="code-voice">amount</code>への<em>参照</em>を捕獲して、それらをそれ自身の関数本文内で使うことによってこれを行います。参照を捕獲することは、<code class="code-voice">makeIncrementer</code>への呼び出しが終わる時に<code class="code-voice">runningTotal</code>と<code class="code-voice">amount</code>が消えてなくならないことを確かにします、そしてまた<code class="code-voice">incrementer</code>関数が呼ばれる次の時に<code class="code-voice">runningTotal</code>が利用可能であることを確実にもします。
+</span><!--end_jpstr-->
+</p><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014097-CH11-NoLink_97"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">As an optimization, Swift may instead capture and store a <em>copy</em> of a value if that value is not mutated by a closure, and if the value is not mutated after the closure is created.
+    	<br><span class="jpstr">
+ひとつの最適化として、その値がクロージャによって変化させられないならば、そしてその値がクロージャが作成された後に変化されられないならば、スウィフトはそれよりむしろ値の<em>コピー</em>をキャプチャして保管するかもしれません。
+</span><!--end_jpstr-->
+</p>
+    <p class="para">
+  Swift also handles all memory management involved in disposing of variables when they are no longer needed.
+<br><span class="jpstr">
+スウィフトはまた、それがもはや必要とされないとき変数を処分することに関わるすべての記憶管理を取り扱います。
+</span><!--end_jpstr-->
+</p>
+
+  </aside>
+</div><p class="para">
+  Here’s an example of <code class="code-voice">makeIncrementer</code> in action:
+<br><span class="jpstr">
+動作している<code class="code-voice">makeIncrementer</code>の例がここにあります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">incrementByTen</span> = <span class="vc">makeIncrementer</span>(<span class="vc">forIncrement</span>: <span class="m">10</span>)</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  This example sets a constant called <code class="code-voice">incrementByTen</code> to refer to an incrementer function that adds <code class="code-voice">10</code> to its <code class="code-voice">runningTotal</code> variable each time it is called. Calling the function multiple times shows this behavior in action:
+<br><span class="jpstr">
+この例は、<code class="code-voice">incrementByTen</code>と呼ばれる定数を、それが呼ばれるたびに<code class="code-voice">10</code>をその<code class="code-voice">runningTotal</code>変数に加えるあるインクリメンタ関数に言及するように設定します。この関数を複数回呼ぶことは、活動中にこの挙動を示します：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="vc">incrementByTen</span>()</code></li>
+            <li><code class="code-voice"><span class="c">// returns a value of 10&nbsp;<span class="jpstr">（値10を返す）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"><span class="vc">incrementByTen</span>()</code></li>
+            <li><code class="code-voice"><span class="c">// returns a value of 20&nbsp;<span class="jpstr">（値20を返す）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"><span class="vc">incrementByTen</span>()</code></li>
+            <li><code class="code-voice"><span class="c">// returns a value of 30&nbsp;<span class="jpstr">（値30を返す）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  If you create a second incrementer, it will have its own stored reference to a new, separate <code class="code-voice">runningTotal</code> variable:
+<br><span class="jpstr">
+あなたが第２のインクリメンタをつくるならば、それは、独自に保存された、ある新しい、別個の<code class="code-voice">runningTotal</code>変数への参照を持ちます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">incrementBySeven</span> = <span class="vc">makeIncrementer</span>(<span class="vc">forIncrement</span>: <span class="m">7</span>)</code></li>
+            <li><code class="code-voice"><span class="vc">incrementBySeven</span>()</code></li>
+            <li><code class="code-voice"><span class="c">// returns a value of 7&nbsp;<span class="jpstr">（値7を返す）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Calling the original incrementer (<code class="code-voice">incrementByTen</code>) again continues to increment its own <code class="code-voice">runningTotal</code> variable, and does not affect the variable captured by <code class="code-voice">incrementBySeven</code>:
+<br><span class="jpstr">
+最初のインクリメンタ（<code class="code-voice">incrementByTen</code>）を再び呼ぶことは、それ独自の<code class="code-voice">runningTotal</code>変数を増加させることを継続します、そして<code class="code-voice">incrementBySeven</code>によってキャプチャされる変数に影響しません。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="vc">incrementByTen</span>()</code></li>
+            <li><code class="code-voice"><span class="c">// returns a value of 40&nbsp;<span class="jpstr">（値40を返す）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014097-CH11-NoLink_98"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">If you assign a closure to a property of a class instance, and the closure captures that instance by referring to the instance or its members, you will create a strong reference cycle between the closure and the instance. Swift uses <em>capture lists</em> to break these strong reference cycles. For more information, see <span class="x-name"><a href="AutomaticReferenceCounting.html#//apple_ref/doc/uid/TP40014097-CH20-ID56" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH20-ID56">Strong Reference Cycles for Closures</a></span>.
+    	<br><span class="jpstr">
+あなたが、あるクロージャをあるクラスインスタンスのプロパティに代入して、そしてクロージャがそのインスタンスを、インスタンスまたはそのメンバ（属するもの）に言及することによって捕獲するならば、あなたはクロージャとインスタンスの間で強い参照循環をつくります。スウィフトは、これらの強い参照循環を壊すために<em>捕獲リスト</em>を使用します。詳細は、<span class="x-name"><a href="AutomaticReferenceCounting.html#//apple_ref/doc/uid/TP40014097-CH20-ID56" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH20-ID56">クロージャのための強い参照循環</a></span>を見てください。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH11-ID104"></a>
+  <h3 class="section-name" tabindex="0">Closures Are Reference Types<br><span class="jpstr">
+クロージャは参照型です
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  In the example above, <code class="code-voice">incrementBySeven</code> and <code class="code-voice">incrementByTen</code> are constants, but the closures these constants refer to are still able to increment the <code class="code-voice">runningTotal</code> variables that they have captured. This is because functions and closures are <em>reference types</em>.
+<br><span class="jpstr">
+上の例で、<code class="code-voice">incrementBySeven</code>と<code class="code-voice">incrementByTen</code>は定数です、しかしこれらの定数が言及するクロージャはそれでもなお、それらが捕獲した<code class="code-voice">runningTotal</code>変数を増加させることができます。これは、関数とクロージャが<em>参照型</em>であるからです。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Whenever you assign a function or a closure to a constant or a variable, you are actually setting that constant or variable to be a <em>reference</em> to the function or closure. In the example above, it is the choice of closure that <code class="code-voice">incrementByTen</code> <em>refers to</em> that is constant, and not the contents of the closure itself.
+<br><span class="jpstr">
+あなたが関数やクロージャを定数または変数に代入するときはいつでも、あなたは実際はその定数または変数が関数やクロージャへの<em>参照</em>であると設定しています。上の例では、それは「クロージャの選択」です、それが<code class="code-voice">incrementByTen</code>が<em>参照するもの</em>であり、それは定数であり、そしてクロージャ自身の内容ではありません。
+</span><!--end_jpstr-->
+</p><p class="para">
+  This also means that if you assign a closure to two different constants or variables, both of those constants or variables will refer to the same closure:
+<br><span class="jpstr">
+これはまた、あなたがクロージャを２つの異なる定数または変数に代入するならば、それらの定数または変数の両方とも同じクロージャに言及することを意味します：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">alsoIncrementByTen</span> = <span class="vc">incrementByTen</span></code></li>
+            <li><code class="code-voice"><span class="vc">alsoIncrementByTen</span>()</code></li>
+            <li><code class="code-voice"><span class="c">// returns a value of 50&nbsp;<span class="jpstr">（値50を返す）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH11-ID546"></a>
+  <h3 class="section-name" tabindex="0">Escaping Closures<br><span class="jpstr">
+脱出クロージャ
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  A closure is said to <em>escape</em> a function when the closure is passed as an argument to the function, but is called after the function returns. When you declare a function that takes a closure as one of its parameters, you can write <code class="code-voice">@escaping</code> before the parameter’s type to indicate that the closure is allowed to escape.
+<br><span class="jpstr">
+クロージャが引数として関数に渡される、しかしその関数が戻った後に呼び出されるとき、クロージャは関数を<em>脱出する</em>と言われます。あなたがある関数、それのパラメータの１つとしてクロージャをとるものを宣言する時、あなたは<code class="code-voice">@escaping</code>をパラメータの型の前に書くことによって、そのクロージャが脱出を許可されるのを指し示すことができます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  One way that a closure can escape is by being stored in a variable that is defined outside the function. As an example, many functions that start an asynchronous operation take a closure argument as a completion handler. The function returns after it starts the operation, but the closure isn’t called until the operation is completed—the closure needs to escape, to be called later. For example:
+<br><span class="jpstr">
+クロージャが脱出出来る１つの方法は、関数の外側で定義される変数に格納されることです。例として、非同期の演算を開始する多くの関数は、クロージャ引数を完了ハンドラとして取ります。関数は、それが演算を開始した後に戻ります、しかしクロージャはその演算が完了されるまで呼び出されません—このクロージャは脱出する、後で呼び出される、必要があります。例えば：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">completionHandlers</span>: [() -&gt; <span class="n"><!-- a href="" -->Void<!-- /a --></span>] = []</code></li>
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">someFunctionWithEscapingClosure</span>(<span class="vc">completionHandler</span>: @<span class="kt">escaping</span> () -&gt; <span class="n"><!-- a href="" -->Void<!-- /a --></span>) {</code></li>
+            <li><code class="code-voice">    <span class="vc">completionHandlers</span>.<span class="vc">append</span>(<span class="vc">completionHandler</span>)</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The <code class="code-voice">someFunctionWithEscapingClosure(_:)</code> function takes a closure as its argument and adds it to an array that’s declared outside the function. If you didn’t mark the parameter of this function with <code class="code-voice">@escaping</code>, you would get a compiler error.
+<br><span class="jpstr">
+<code class="code-voice">someFunctionWithEscapingClosure(_:)</code>関数は、クロージャをそれの引数として取ります、そしてそれを関数の外側で宣言される配列に加えます。あなたがこの関数のパラメータを<code class="code-voice">@escaping</code>で印しないならば、あなたはコンパイラエラーを得るでしょう。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Marking a closure with <code class="code-voice">@escaping</code> means you have to refer to <code class="code-voice">self</code> explicitly within the closure. For example, in the code below, the closure passed to <code class="code-voice">someFunctionWithEscapingClosure(_:)</code> is an escaping closure, which means it needs to refer to <code class="code-voice">self</code> explicitly. In contrast, the closure passed to <code class="code-voice">someFunctionWithNonescapingClosure(_:)</code> is a nonescaping closure, which means it can refer to <code class="code-voice">self</code> implicitly.
+<br><span class="jpstr">
+あるクロージャを<code class="code-voice">@escaping</code>で印することは、あなたがそのクロージャ内部で<code class="code-voice">self</code>を明示的に参照しなければならないのを意味します。例えば、以下のコードにおいて、<code class="code-voice">someFunctionWithEscapingClosure(_:)</code>に渡されるクロージャは脱出クロージャです、それは、それが<code class="code-voice">self</code>を明示的に参照する必要があるのを意味します。対照的に、<code class="code-voice">someFunctionWithNonescapingClosure(_:)</code>に渡されるクロージャは非脱出クロージャです、それは、それが<code class="code-voice">self</code>を暗黙的に参照できるのを意味します。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">someFunctionWithNonescapingClosure</span>(<span class="vc">closure</span>: () -&gt; <span class="n"><!-- a href="" -->Void<!-- /a --></span>) {</code></li>
+            <li><code class="code-voice">    <span class="vc">closure</span>()</code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"> </code></li>
+            <li><code class="code-voice"><span class="kt">class</span> <span class="vc">SomeClass</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">x</span> = <span class="m">10</span></code></li>
+            <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">doSomething</span>() {</code></li>
+            <li><code class="code-voice">        <span class="vc">someFunctionWithEscapingClosure</span> { <span class="kt">self</span>.<span class="vc">x</span> = <span class="m">100</span> }</code></li>
+            <li><code class="code-voice">        <span class="vc">someFunctionWithNonescapingClosure</span> { <span class="vc">x</span> = <span class="m">200</span> }</code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"> </code></li>
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">instance</span> = <span class="vc">SomeClass</span>()</code></li>
+            <li><code class="code-voice"><span class="vc">instance</span>.<span class="vc">doSomething</span>()</code></li>
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="vc">instance</span>.<span class="vc">x</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;200&quot;</span></code></li>
+            <li><code class="code-voice"> </code></li>
+            <li><code class="code-voice"><span class="vc">completionHandlers</span>.<span class="vc">first</span>?()</code></li>
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="vc">instance</span>.<span class="vc">x</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;100&quot;</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH11-ID543"></a>
+  <h3 class="section-name" tabindex="0">Autoclosures<br><span class="jpstr">
+自動クロージャ
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  An <em>autoclosure</em> is a closure that is automatically created to wrap an expression that’s being passed as an argument to a function. It doesn’t take any arguments, and when it’s called, it returns the value of the expression that’s wrapped inside of it. This syntactic convenience lets you omit braces around a function’s parameter by writing a normal expression instead of an explicit closure.
+<br><span class="jpstr">
+<em>自動クロージャ</em>は、自動的に作成されて、引数として関数に渡されている式を包み込むクロージャです。それは、全く引数を取りません、そしてそれが呼ばれる時、その内部に包み込まれた式の値を返します。この統語上の便宜は、明示的なクロージャの代わりに通常の関数を書くことによって、あなたに関数のパラメータのまわりの波括弧を省略させます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  It’s common to <em>call</em> functions that take autoclosures, but it’s not common to <em>implement</em> that kind of function. For example, the <code class="code-voice">assert(condition:message:file:line:)</code> function takes an autoclosure for its <code class="code-voice">condition</code> and <code class="code-voice">message</code> parameters; its <code class="code-voice">condition</code> parameter is evaluated only in debug builds and its <code class="code-voice">message</code> parameter is evaluated only if <code class="code-voice">condition</code> is <code class="code-voice">false</code>.
+<br><span class="jpstr">
+自動クロージャを取る関数を<em>呼び出す</em>のは普通です、しかしそのような関数を<em>実装する</em>のは一般的ではありません。例えば、<code class="code-voice">assert(condition:message:file:line:)</code>関数は自動クロージャをそれの<code class="code-voice">condition</code>と<code class="code-voice">message</code>パラメータとして取ります；それの<code class="code-voice">condition</code>パラメータはデバッグビルドにおいてのみ評価されます、そしてそれの<code class="code-voice">message</code>パラメータは<code class="code-voice">condition</code>が<code class="code-voice">false</code>である場合にのみ評価されます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  An autoclosure lets you delay evaluation, because the code inside isn’t run until you call the closure. Delaying evaluation is useful for code that has side effects or is computationally expensive, because it lets you control when that code is evaluated. The code below shows how a closure delays evaluation.
+<br><span class="jpstr">
+自動クロージャは、あなたに評価を延期させます、内部のコードはあなたがそのクロージャを呼び出すまで実行されないからです。評価を遅らせることは、副作用を持つまたは計算的に高くつくコードに対して有用です、なぜならそれがあなたに何時そのコードが評価されるかを制御させるからです。下のコードは、どのようにクロージャが評価を遅らすかを示します。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">customersInLine</span> = [<span class="s">&quot;Chris&quot;</span>, <span class="s">&quot;Alex&quot;</span>, <span class="s">&quot;Ewa&quot;</span>, <span class="s">&quot;Barry&quot;</span>, <span class="s">&quot;Daniella&quot;</span>]</code></li>
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="vc">customersInLine</span>.<span class="vc">count</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;5&quot;</span></code></li>
+            <li><code class="code-voice"> </code></li>
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">customerProvider</span> = { <span class="vc">customersInLine</span>.<span class="vc">remove</span>(<span class="vc">at</span>: <span class="m">0</span>) }</code></li>
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="vc">customersInLine</span>.<span class="vc">count</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;5&quot;</span></code></li>
+            <li><code class="code-voice"> </code></li>
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="s">&quot;Now serving </span>\(<span class="vc">customerProvider</span>())<span class="s">!&quot;</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;Now serving Chris!&quot;</span></code></li>
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="vc">customersInLine</span>.<span class="vc">count</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;4&quot;</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Even though the first element of the <code class="code-voice">customersInLine</code> array is removed by the code inside the closure, the array element isn’t removed until the closure is actually called. If the closure is never called, the expression inside the closure is never evaluated, which means the array element is never removed. Note that the type of <code class="code-voice">customerProvider</code> is not <code class="code-voice">String</code> but <code class="code-voice">() -&gt; String</code>—a function with no parameters that returns a string.
+<br><span class="jpstr">
+たとえ<code class="code-voice">customersInLine</code>配列の最初の要素がクロージャ内部のコードによって取り除かれるとしても、その配列要素はクロージャが実際に呼び出されるまで実行されません。このクロージャが決して呼び出されないならば、クロージャ内部の式は決して評価されません、それは配列要素が決して取り除かれないことを意味します。注意すべきは、<code class="code-voice">customerProvider</code>の型は<code class="code-voice">String</code>ではなく<code class="code-voice">() -&gt; String</code>—ある文字列を返すパラメータのない関数—であることです。
+</span><!--end_jpstr-->
+</p><p class="para">
+  You get the same behavior of delayed evaluation when you pass a closure as an argument to a function.
+<br><span class="jpstr">
+あなたが同じ挙動の延期した評価を得るのは、あなたがクロージャを引数として関数に渡す時です。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="c">// customersInLine is [&quot;Alex&quot;, &quot;Ewa&quot;, &quot;Barry&quot;, &quot;Daniella&quot;]&nbsp;<span class="jpstr">（customersInLine（並んでいる顧客）は、["Alex", "Ewa", "Barry", "Daniella"]です）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">serve</span>(<span class="vc">customer</span> <span class="vc">customerProvider</span>: () -&gt; <span class="n"><!-- a href="" -->String<!-- /a --></span>) {</code></li>
+            <li><code class="code-voice">    <span class="vc">print</span>(<span class="s">&quot;Now serving </span>\(<span class="vc">customerProvider</span>())<span class="s">!&quot;</span>)</code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"><span class="vc">serve</span>(<span class="vc">customer</span>: { <span class="vc">customersInLine</span>.<span class="vc">remove</span>(<span class="vc">at</span>: <span class="m">0</span>) } )</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;Now serving Alex!&quot;&nbsp;<span class="jpstr">（今アレックスに対応中！）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The <code class="code-voice">serve(customer:)</code> function in the listing above takes an explicit closure that returns a customer’s name. The version of <code class="code-voice">serve(customer:)</code> below performs the same operation but, instead of taking an explicit closure, it takes an autoclosure by marking its parameter’s type with the <code class="code-voice">@autoclosure</code> attribute. Now you can call the function as if it took a <code class="code-voice">String</code> argument instead of a closure. The argument is automatically converted to a closure, because the <code class="code-voice">customerProvider</code> parameter’s type is marked with the <code class="code-voice">@autoclosure</code> attribute.
+<br><span class="jpstr">
+上で記載される<code class="code-voice">serve(customer:)</code>関数は、次の顧客の名前を返す、ある明示的なクロージャを取ります。下のバージョンの<code class="code-voice">serve(customer:)</code>は同じ演算を実行します、しかし明示的なクロージャを取るのではなく、それは自動クロージャを、それのパラメータの型を<code class="code-voice">@autoclosure</code>属性で記することによって取ります。今やあなたはこの関数を、まるでそれがクロージャではなく<code class="code-voice">String</code>引数を取るかのように呼び出せます。引数は、自動的にクロージャに変換されます、なぜなら<code class="code-voice">customerProvider</code>パラメータの型は<code class="code-voice">@autoclosure</code>属性で印されるからです。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="c">// customersInLine is [&quot;Ewa&quot;, &quot;Barry&quot;, &quot;Daniella&quot;]&nbsp;<span class="jpstr">（customersInLine（並んでいる顧客）は、["Ewa", "Barry", "Daniella"]です）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">serve</span>(<span class="vc">customer</span> <span class="vc">customerProvider</span>: @<span class="kt">autoclosure</span> () -&gt; <span class="n"><!-- a href="" -->String<!-- /a --></span>) {</code></li>
+            <li><code class="code-voice">    <span class="vc">print</span>(<span class="s">&quot;Now serving </span>\(<span class="vc">customerProvider</span>())<span class="s">!&quot;</span>)</code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"><span class="vc">serve</span>(<span class="vc">customer</span>: <span class="vc">customersInLine</span>.<span class="vc">remove</span>(<span class="vc">at</span>: <span class="m">0</span>))</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;Now serving Ewa!&quot;&nbsp;<span class="jpstr">（今エヴァに対応中！）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014097-CH11-NoLink_99"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">Overusing autoclosures can make your code hard to understand. The context and function name should make it clear that evaluation is being deferred.
+    	<br><span class="jpstr">
+自動クロージャの使いすぎは、あなたのコードを理解しにくくする可能性があります。文脈と関数名は、評価が猶予されていることを明確にしなければなりません。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div><p class="para">
+  If you want an autoclosure that is allowed to escape, use both the <code class="code-voice">@autoclosure</code> and <code class="code-voice">@escaping</code> attributes. The <code class="code-voice">@escaping</code> attribute is described above in <span class="x-name"><a href="#//apple_ref/doc/uid/TP40014097-CH11-ID546" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH11-ID546">Escaping Closures</a></span>.
+<br><span class="jpstr">
+あなたが脱出を許可される自動クロージャを望むならば、<code class="code-voice">@autoclosure</code>と<code class="code-voice">@escaping</code>属性を両方とも使ってください。<code class="code-voice">@escaping</code>属性は、上の<span class="x-name"><a href="#//apple_ref/doc/uid/TP40014097-CH11-ID546" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH11-ID546">脱出クロージャ</a></span>で解説されます。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="c">// customersInLine is [&quot;Barry&quot;, &quot;Daniella&quot;]&nbsp;<span class="jpstr">（customersInLine（並んでいる顧客）は、["Barry", "Daniella"]です）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">customerProviders</span>: [() -&gt; <span class="n"><!-- a href="" -->String<!-- /a --></span>] = []</code></li>
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">collectCustomerProviders</span>(<span class="kt">_</span> <span class="vc">customerProvider</span>: @<span class="kt">autoclosure</span> @<span class="kt">escaping</span> () -&gt; <span class="n"><!-- a href="" -->String<!-- /a --></span>) {</code></li>
+            <li><code class="code-voice">    <span class="vc">customerProviders</span>.<span class="vc">append</span>(<span class="vc">customerProvider</span>)</code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"><span class="vc">collectCustomerProviders</span>(<span class="vc">customersInLine</span>.<span class="vc">remove</span>(<span class="vc">at</span>: <span class="m">0</span>))</code></li>
+            <li><code class="code-voice"><span class="vc">collectCustomerProviders</span>(<span class="vc">customersInLine</span>.<span class="vc">remove</span>(<span class="vc">at</span>: <span class="m">0</span>))</code></li>
+            <li><code class="code-voice"> </code></li>
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="s">&quot;Collected </span>\(<span class="vc">customerProviders</span>.<span class="vc">count</span>)<span class="s"> closures.&quot;</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;Collected 2 closures.&quot;&nbsp;<span class="jpstr">（「２つのクロージャが集められた。」を出力します）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"><span class="kt">for</span> <span class="vc">customerProvider</span> <span class="kt">in</span> <span class="vc">customerProviders</span> {</code></li>
+            <li><code class="code-voice">    <span class="vc">print</span>(<span class="s">&quot;Now serving </span>\(<span class="vc">customerProvider</span>())<span class="s">!&quot;</span>)</code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;Now serving Barry!&quot;&nbsp;<span class="jpstr">（今バリーに対応中！）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;Now serving Daniella!&quot;&nbsp;<span class="jpstr">（今ダニエラに対応中！）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  In the code above, instead of calling the closure passed to it as its <code class="code-voice">customerProvider</code> argument, the <code class="code-voice">collectCustomerProviders(_:)</code> function appends the closure to the <code class="code-voice">customerProviders</code> array. The array is declared outside the scope of the function, which means the closures in the array can be executed after the function returns. As a result, the value of the <code class="code-voice">customerProvider</code> argument must be allowed to escape the function’s scope.
+<br><span class="jpstr">
+上のコードにおいて、それの<code class="code-voice">customerProvider</code>引数としてそれに渡されるクロージャを呼び出す代わりに、<code class="code-voice">collectCustomerProviders(_:)</code>関数は、そのクロージャを<code class="code-voice">customerProviders</code>配列に追加します。この配列は関数のスコープの外側で宣言されます、それは配列の中のクロージャが関数が戻った後で実行されることができるのを意味します。その結果、<code class="code-voice">customerProvider</code>引数の値は関数のスコープを脱出することを許されなければなりません。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+
+  	
+ 	<section id="next_previous" class="">
+    		<p class="previous-link"><a href="Functions.html#//apple_ref/doc/uid/TP40014097-CH10-ID158" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH10-ID158">Functions<br><span class="jpstr">
+関数
+</span><!--end_jpstr-->
+</a></p>
+  			<p class="next-link"><a href="Enumerations.html#//apple_ref/doc/uid/TP40014097-CH12-ID145" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH12-ID145">Enumerations<br><span class="jpstr">
+列挙
+</span><!--end_jpstr-->
+</a></p>
+
+    <p class="copyright">Copyright &#x00a9; 2016 Apple Inc. All rights reserved. 
+  <a class="link" href="http://www.apple.com/legal/terms/site.html" target="_blank" rel="external">Terms of Use</a> | 
+  <a class="link" href="http://www.apple.com/privacy/" target="_blank" rel="external">Privacy Policy</a> | 
+  Updated: 2016-10-27
+</p>
+  </section>
+</article>
+
+    </div>
+    <div id='big_button'></div>
+    <footer id="footer">
+  <div class="content-wrapper">
+  	<div id="leave_feedback" class="button" role="button" tabindex="0">Feedback</div>
+  </div>
+  <script src="../../../../Resources/1254/JavaScript/devpubs-1.6.3.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../../../Resources/1254/JavaScript/feedback-1.6.3.js" type="text/javascript" charset="utf-8"></script>
+  <div id="_omniture_top">
+<!-- SiteCatalyst code version: H.8. Copyright 1997-2006 Omniture, Inc. -->
+<script type="text/javascript">
+/* RSID: */
+var s_account="appleglobal,appleusdeveloper,dappdeveloperlib"
+</script>
+
+<!-- <script type="text/javascript" src="https://www.apple.com/metrics/scripts/s_code_h.js"></script> -->
+<script type="text/javascript">
+s.pageName=AC.Tracking.pageName();
+s.channel="www.us.developer"
+
+/************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+var s_code=s.t();if(s_code)document.write(s_code)</script>
+<!-- End SiteCatalyst code version: H.8. -->
+</div>
+
+</footer>
+
+    
+  </body>
+    <div id="blackout">
+    <div id="preload"></div>
+</div>
+<div id="modal" aria-hidden="true">
+    <div id="closebox" tabindex="0" aria-label="Close feedback form" role="button"></div>
+    <div id="sending" class="hidden">
+        <h2 tabindex="0">Sending feedback&hellip;</h2>
+        <div id="sending_img"></div>
+    </div>
+    <div id="error" class="hidden">
+        <h2 tabindex="0">We&rsquo;re sorry, an error has occurred.</h2>
+        <p>Please try submitting your feedback later.</p>
+        <div id="error_icon"></div>
+    </div>
+    <div id="success" class="hidden">
+        <h2 tabindex="0">Thank you for providing feedback!</h2>
+        <p>Your input helps improve our developer documentation.</p>
+        <div id="thank_you_icon"></div>
+    </div>
+    
+    <form id="feedback" action="#" method="post">
+        <div class="left-leaf">
+            <h2 id="helpful_title" data-asterisk="a1" tabindex="0">How helpful is this document?</h2>     
+            <sup id="a1" class="asterisk" aria-hidden="true">*</sup>
+
+            <div id="star_group" role="radiogroup" aria-required="true">
+                <label> 
+                    <input class="radio" type="radio" name="helped" value="1" /> 
+                    Very helpful
+                </label>
+                <label> 
+                    <input class="radio" type="radio" name="helped" value="2" /> 
+                    Somewhat helpful
+                </label>
+                <label>
+                    <input class="radio" type="radio" name="helped" value="3" /> 
+                    Not helpful
+                </label>
+            </div>
+        </div>
+        <div class="right-leaf">
+            <h2>How can we improve this document?</h2>
+            <div id="improve" class="checkboxes">
+                <label>
+                    <input type="checkbox" name="typo" /> 
+                    Fix typos or links
+                </label>
+                <label>
+                    <input type="checkbox" name="infoIncorrect" /> 
+                    Fix incorrect information
+                </label>
+                <label>
+                    <input type="checkbox" name="needs_examples" /> 
+                    Add or update code samples
+                </label>
+                <label>
+                    <input type="checkbox" name="needs_art" /> 
+                    Add or update illustrations
+                </label>
+                <label>
+                    <input type="checkbox" name="missingInfo" /> 
+                    Add information about...
+                </label>
+            </div>
+        </div>
+
+        <textarea id="comment" name="problem" cols="70" rows="8" placeholder="Please tell us more about your experience with this document" data-asterisk="a2" required></textarea>
+        <sup id="a2" class="asterisk" aria-hidden="true">*</sup>
+
+        <p class="fineprint">
+            <em aria-hidden="true"><span>*</span> Required information</em>
+        </p> 
+
+        <input id="submit" type="button" value="Send" />
+
+        <section id="legal">
+            <p>
+                To submit a product bug or enhancement request, please visit the 
+                <a href="https://developer.apple.com/bugreporter/" target="_blank">Bug Reporter</a> 
+                page.
+            </p>
+            <p>
+                Please read <a href="http://www.apple.com/legal/policies/ideas.html" target="_blank">Apple's Unsolicited Idea Submission Policy</a> 
+                before you send us your feedback.
+            </p> 
+        </section>
+    </form>
+</div>
+
+</div>
+</html>

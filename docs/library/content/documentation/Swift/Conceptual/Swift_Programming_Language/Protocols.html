@@ -1,0 +1,2435 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>  
+  <title>The Swift Programming Language (Swift 3.0.1): Protocols</title>
+  <link rel="stylesheet" type="text/css" href="../../../../Resources/1254/CSS/style-1.6.3.css" />
+  <link rel="stylesheet" type="text/css" href="../../../../Resources/1254/CSS/feedback-1.6.3.css" />
+  <meta charset='utf-8'> 
+<meta id="j-version" name="j-version" content="" />
+<meta id="build" name="build" content="0cd917ac01ec7578a7bd8964f41dd08b" />
+<meta id="document-version" name="document-version" content="8.0.3" />
+<meta id="book-assignments" name="book-assignments" content="{Type/Guide}, {Topic/Swift}" />
+<meta scheme="apple_ref" id="identifier" name="identifier" content="//apple_ref/doc/uid/TP40014097" />
+<meta id="chapterId" name="chapterId" content="TP40014097-CH25">
+<meta id="book-title" name="book-title" content="The Swift Programming Language (Swift 3.0.1)" />
+<meta id="book-resource-type" name="book-resource-type" content="Guide" />
+<meta id="book-root" name="book-root" content="./" />
+<meta id="book-json" name="book-json" content="book.json">
+<meta id="date" name="date" content="2016-10-27" />
+<meta id="description" name="description" content="The definitive guide to Swift, Apple’s new programming language for building iOS, OS X, watchOS, and tvOS apps." />
+<meta id="IndexTitle" name="IndexTitle" content="" />
+<meta id="resources-uri" name="resources-uri" content="../../../../Resources/1254">
+<link id="book-index-page" rel="Start" title="" type="text/html" href="./index.html">
+<!-- , next_chapter: next_chapter, previous_chapter: previous_chapter -->
+<link id="next-page" rel="Next" type="text/html" href="">
+<link id="previous-page" rel="Prev" type="text/html" href="">
+<meta id="devcenter" name="devcenter" content="<!-- DEVCENTER_NAME -->" />
+<meta id="devcenter-url" name="devcenter-url" content="<!-- DEVCENTER_URL -->" />
+<meta id="reflib" name="reflib" content="<!-- REFLIB_NAME -->" />
+
+<meta id="xcode-display" name="xcode-display" content="render" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta id="platforms" name="platforms" content="Xcode Developer Tools">
+</head>
+
+  <body id="conceptual_flow_with_tasks" class="jazz">
+    
+    <header id="ios_header" class="hideOnPrint hideInXcode">
+  <div class="content-wrapper">
+    <p class="header-text">
+    	<a href="../../../../navigation/index.html">Guides and Sample Code
+ 		</a>
+ </p>
+    <p id="wwdr"><img id="apple_logo" src="../../../../Resources/1254/Images/apple2.png" height="14px" width="12px" aria-hidden="true" /><a href="https://developer.apple.com">Developer</a></p>
+  </div>
+</header>
+
+    <section id="valence">
+  <div class="content-wrapper">
+    <p id="hierarchial_navigation">
+      <span id="book_title">The Swift Programming Language (Swift 3.0.1)</span>
+    </p>
+    <form id="search" class="hideInXcode" method="get" action="/search/index.php" accept-charset="utf-8" autocomplete="off">
+  <input type="search" id="ssi_SearchField" placeholder="Search Guides and Sample Code" name="q" autocomplete="off" tabindex="2" />
+</form>
+
+      
+   
+   
+
+
+
+
+    <span class="download-text hideInXcode">
+      <a href="https://itunes.apple.com/us/book/the-swift-programming-language/id881256329?mt=11">iBooks</a>
+    </span>
+
+    
+
+    <img id="shortstack" src="../../../../Resources/1254/Images/shortstack_2x.png"/>
+  </div>
+</section>
+    <div class="content-wrapper">
+      <nav id="navigator" class="book-parts hideInXcode" role="navigation">
+    <ul class="nav-parts">
+        <li data-id="//apple_ref/doc/uid/TP40014097-CH1-ID2"
+            class="part-name">
+            <a href="index.html#//apple_ref/doc/uid/TP40014097-CH3-ID0" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH3-ID0">Welcome to Swift<br><span class="jpstr">
+スウィフトにようこそ
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="index.html#//apple_ref/doc/uid/TP40014097-CH3-ID0" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH3-ID0">About Swift<br><span class="jpstr">
+スウィフトについて
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="GuidedTour.html#//apple_ref/doc/uid/TP40014097-CH2-ID1" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH2-ID1">A Swift Tour<br><span class="jpstr">
+スウィフトツアー
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+        <li data-id="//apple_ref/doc/uid/TP40014097-CH4-ID233"
+            class="part-name nav-part-active open-part">
+            <a href="TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH5-ID309">Language Guide<br><span class="jpstr">
+言語ガイド
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH5-ID309">The Basics<br><span class="jpstr">
+基本
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="BasicOperators.html#//apple_ref/doc/uid/TP40014097-CH6-ID60" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH6-ID60">Basic Operators<br><span class="jpstr">
+基本の演算子
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="StringsAndCharacters.html#//apple_ref/doc/uid/TP40014097-CH7-ID285" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH7-ID285">Strings and Characters<br><span class="jpstr">
+文字列と文字
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="CollectionTypes.html#//apple_ref/doc/uid/TP40014097-CH8-ID105" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH8-ID105">Collection Types<br><span class="jpstr">
+コレクション型
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="ControlFlow.html#//apple_ref/doc/uid/TP40014097-CH9-ID120" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH9-ID120">Control Flow<br><span class="jpstr">
+制御の流れ
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Functions.html#//apple_ref/doc/uid/TP40014097-CH10-ID158" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH10-ID158">Functions<br><span class="jpstr">
+関数
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Closures.html#//apple_ref/doc/uid/TP40014097-CH11-ID94" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH11-ID94">Closures<br><span class="jpstr">
+クロージャ
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Enumerations.html#//apple_ref/doc/uid/TP40014097-CH12-ID145" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH12-ID145">Enumerations<br><span class="jpstr">
+列挙
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="ClassesAndStructures.html#//apple_ref/doc/uid/TP40014097-CH13-ID82" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH13-ID82">Classes and Structures<br><span class="jpstr">
+クラスと構造体
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Properties.html#//apple_ref/doc/uid/TP40014097-CH14-ID254" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH14-ID254">Properties<br><span class="jpstr">
+プロパティ
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Methods.html#//apple_ref/doc/uid/TP40014097-CH15-ID234" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH15-ID234">Methods<br><span class="jpstr">
+メソッド
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Subscripts.html#//apple_ref/doc/uid/TP40014097-CH16-ID305" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH16-ID305">Subscripts<br><span class="jpstr">
+添え字
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Inheritance.html#//apple_ref/doc/uid/TP40014097-CH17-ID193" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH17-ID193">Inheritance<br><span class="jpstr">
+継承
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Initialization.html#//apple_ref/doc/uid/TP40014097-CH18-ID203" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH18-ID203">Initialization<br><span class="jpstr">
+初期化
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Deinitialization.html#//apple_ref/doc/uid/TP40014097-CH19-ID142" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH19-ID142">Deinitialization<br><span class="jpstr">
+デイニシャライズ
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="AutomaticReferenceCounting.html#//apple_ref/doc/uid/TP40014097-CH20-ID48" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH20-ID48">Automatic Reference Counting<br><span class="jpstr">
+自動参照カウント
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="OptionalChaining.html#//apple_ref/doc/uid/TP40014097-CH21-ID245" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH21-ID245">Optional Chaining<br><span class="jpstr">
+オプショナル連鎖
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="ErrorHandling.html#//apple_ref/doc/uid/TP40014097-CH42-ID508" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH42-ID508">Error Handling<br><span class="jpstr">
+エラーの処理
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="TypeCasting.html#//apple_ref/doc/uid/TP40014097-CH22-ID338" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH22-ID338">Type Casting<br><span class="jpstr">
+型キャスト
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="NestedTypes.html#//apple_ref/doc/uid/TP40014097-CH23-ID242" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH23-ID242">Nested Types<br><span class="jpstr">
+入れ子にされた型
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Extensions.html#//apple_ref/doc/uid/TP40014097-CH24-ID151" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH24-ID151">Extensions<br><span class="jpstr">
+拡張
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter nav-current-chapter">
+              	<a href="#//apple_ref/doc/uid/TP40014097-CH25-ID267" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH25-ID267">Protocols<br><span class="jpstr">
+プロトコル
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Generics.html#//apple_ref/doc/uid/TP40014097-CH26-ID179" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH26-ID179">Generics<br><span class="jpstr">
+総称体
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="AccessControl.html#//apple_ref/doc/uid/TP40014097-CH41-ID3" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH41-ID3">Access Control<br><span class="jpstr">
+アクセス制御
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="AdvancedOperators.html#//apple_ref/doc/uid/TP40014097-CH27-ID28" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH27-ID28">Advanced Operators<br><span class="jpstr">
+先進の演算子
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+        <li data-id="//apple_ref/doc/uid/TP40014097-CH28-ID427"
+            class="part-name">
+            <a href="AboutTheLanguageReference.html#//apple_ref/doc/uid/TP40014097-CH29-ID345" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH29-ID345">Language Reference<br><span class="jpstr">
+言語リファレンス
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="AboutTheLanguageReference.html#//apple_ref/doc/uid/TP40014097-CH29-ID345" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH29-ID345">About the Language Reference<br><span class="jpstr">
+言語リファレンスについて
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="LexicalStructure.html#//apple_ref/doc/uid/TP40014097-CH30-ID410" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH30-ID410">Lexical Structure<br><span class="jpstr">
+語彙の構造
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Types.html#//apple_ref/doc/uid/TP40014097-CH31-ID445" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH31-ID445">Types<br><span class="jpstr">
+型
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Expressions.html#//apple_ref/doc/uid/TP40014097-CH32-ID383" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH32-ID383">Expressions<br><span class="jpstr">
+式
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Statements.html#//apple_ref/doc/uid/TP40014097-CH33-ID428" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH33-ID428">Statements<br><span class="jpstr">
+文
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Declarations.html#//apple_ref/doc/uid/TP40014097-CH34-ID351" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH34-ID351">Declarations<br><span class="jpstr">
+宣言
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Attributes.html#//apple_ref/doc/uid/TP40014097-CH35-ID347" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH35-ID347">Attributes<br><span class="jpstr">
+属性
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Patterns.html#//apple_ref/doc/uid/TP40014097-CH36-ID419" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH36-ID419">Patterns<br><span class="jpstr">
+パターン
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="GenericParametersAndArguments.html#//apple_ref/doc/uid/TP40014097-CH37-ID406" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH37-ID406">Generic Parameters and Arguments<br><span class="jpstr">
+総称体パラメータと引数
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="zzSummaryOfTheGrammar.html#//apple_ref/doc/uid/TP40014097-CH38-ID458" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH38-ID458">Summary of the Grammar<br><span class="jpstr">
+文法の概要
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+        <li data-id="//apple_ref/doc/uid/TP40014097-CH39-ID460"
+            class="part-name">
+            <a href="RevisionHistory.html#//apple_ref/doc/uid/TP40014097-CH40-ID459" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH40-ID459">Revision History<br><span class="jpstr">
+改訂履歴
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="RevisionHistory.html#//apple_ref/doc/uid/TP40014097-CH40-ID459" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH40-ID459">Document Revision History<br><span class="jpstr">
+文書改訂履歴
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+    </ul>
+</nav>
+
+      <menu id="bashful" type="toolbar">
+  <div class="shield"></div>
+  <menuitem id="jump_to" class="menu-bar-item closed">
+  <span>On This Page</span>
+  <div class="chevron">
+    <div class="chevy chevron-left"></div>
+    <div class="chevy chevron-right"></div>
+  </div>
+  <menu type="list" class="details">
+      <ul class="list-bullet">
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH25-ID268">Protocol Syntax</a>
+<br><span class="jpstr">
+プロトコル構文
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH25-ID269">Property Requirements</a>
+<br><span class="jpstr">
+プロパティ要件
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH25-ID270">Method Requirements</a>
+<br><span class="jpstr">
+メソッド要件
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH25-ID271">Mutating Method Requirements</a>
+<br><span class="jpstr">
+可変メソッド要件
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH25-ID272">Initializer Requirements</a>
+<br><span class="jpstr">
+イニシャライザ要件
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH25-ID275">Protocols as Types</a>
+<br><span class="jpstr">
+型としてのプロトコル
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH25-ID276">Delegation</a>
+<br><span class="jpstr">
+委任
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH25-ID277">Adding Protocol Conformance with an Extension</a>
+<br><span class="jpstr">
+拡張を使ってプロトコル準拠を加える
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH25-ID279">Collections of Protocol Types</a>
+<br><span class="jpstr">
+プロトコル型のコレクション
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH25-ID280">Protocol Inheritance</a>
+<br><span class="jpstr">
+プロトコル継承
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH25-ID281">Class-Only Protocols</a>
+<br><span class="jpstr">
+クラス専用プロトコル
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH25-ID282">Protocol Composition</a>
+<br><span class="jpstr">
+プロトコル合成
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH25-ID283">Checking for Protocol Conformance</a>
+<br><span class="jpstr">
+プロトコル準拠の確認
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH25-ID284">Optional Protocol Requirements</a>
+<br><span class="jpstr">
+オプショナルのプロトコル要件
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH25-ID521">Protocol Extensions</a>
+<br><span class="jpstr">
+プロトコル拡張
+</span><!--end_jpstr-->
+          </li>
+      </ul>
+  </menu>
+</menuitem>
+
+</menu>
+<div class="pixel-line"></div>
+<div class="rubber-band-gap"></div>
+<article class="chapter">
+  <a name="//apple_ref/doc/uid/TP40014097-CH25"></a><a name="//apple_ref/doc/uid/TP40014097-CH25-ID267"></a>
+
+  <h2 class='chapter-name'>Protocols<br><span class="jpstr">
+プロトコル
+</span><!--end_jpstr-->
+</h2>
+
+
+  
+  	<section class="section">
+  		<p class="para">
+  A <em>protocol</em> defines a blueprint of methods, properties, and other requirements that suit a particular task or piece of functionality. The protocol can then be <em>adopted</em> by a class, structure, or enumeration to provide an actual implementation of those requirements. Any type that satisfies the requirements of a protocol is said to <em>conform</em> to that protocol.
+<br><span class="jpstr">
+ある<em>プロトコル</em>（規約）は、メソッド、プロパティ、そして他の要件からなるひとつの青写真を定義します、それは、ある特定の作業またはある機能性断片にふさわしくするものです。そのプロトコルは、それから、クラス、構造体、または列挙によって<em>採用される</em>ことで、それらの要件の実際の実装を提供することができます。あるプロトコルの要件を満たす何らかの型は、そのプロトコルに<em>準拠する</em>と言われます。
+</span><!--end_jpstr-->
+</p>
+<p class="para">
+  In addition to specifying requirements that conforming types must implement, you can extend a protocol to implement some of these requirements or to implement additional functionality that conforming types can take advantage of.
+<br><span class="jpstr">
+準拠する型が実装しなければならない要件を指定することに加えて、あなたはあるプロトコルを拡張してそれらの要件のいくつかを実装したり、更なる機能性を実装したりできます、それらは、準拠する型それぞれで利用可能です。
+</span><!--end_jpstr-->
+</p>
+
+		</section> 
+
+
+  <section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-ID268"></a>
+  <h3 class="section-name" tabindex="0">Protocol Syntax<br><span class="jpstr">
+プロトコル構文
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  You define protocols in a very similar way to classes, structures, and enumerations:
+<br><span class="jpstr">
+あなたは、クラス、構造体、および列挙と非常に類似した方法で、プロトコルを定義します：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">protocol</span> <span class="vc">SomeProtocol</span> {</code></li>
+            <li><code class="code-voice">    <span class="c">// protocol definition goes here&nbsp;<span class="jpstr">（プロトコル定義が、ここにきます）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Custom types state that they adopt a particular protocol by placing the protocol’s name after the type’s name, separated by a colon, as part of their definition. Multiple protocols can be listed, and are separated by commas:
+<br><span class="jpstr">
+あつらえの型は、それが特定のプロトコルを採用することを、型の名前の後に、コロンで区切って、それらの定義の一部としてプロトコルの名前を置くことによって示します。複数のプロトコルが、コンマで区切られて、リストされることができます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">struct</span> <span class="vc">SomeStructure</span>: <span class="n"><!-- a href="" -->FirstProtocol<!-- /a --></span>, <span class="n"><!-- a href="" -->AnotherProtocol<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="c">// structure definition goes here&nbsp;<span class="jpstr">（構造体定義が、ここにきます）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  If a class has a superclass, list the superclass name before any protocols it adopts, followed by a comma:
+<br><span class="jpstr">
+あるクラスがスーパークラスを持つならば、それが採用するあらゆるプロトコルの前に、コンマに続けてスーパークラス名を列記してください：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">class</span> <span class="vc">SomeClass</span>: <span class="n"><!-- a href="" -->SomeSuperclass<!-- /a --></span>, <span class="n"><!-- a href="" -->FirstProtocol<!-- /a --></span>, <span class="n"><!-- a href="" -->AnotherProtocol<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="c">// class definition goes here&nbsp;<span class="jpstr">（クラス定義が、ここにきます）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-ID269"></a>
+  <h3 class="section-name" tabindex="0">Property Requirements<br><span class="jpstr">
+プロパティ要件
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  A protocol can require any conforming type to provide an instance property or type property with a particular name and type. The protocol doesn’t specify whether the property should be a stored property or a computed property—it only specifies the required property name and type. The protocol also specifies whether each property must be gettable or gettable <em>and</em> settable.
+<br><span class="jpstr">
+あるプロトコルは、あらゆる準拠型に、特定の名前と型をもつインスタンスプロパティまたは型プロパティを提供するように要求することができます。プロトコルは、そのプロパティが保存プロパティまたは計算プロパティでなければならないかどうかは指定しません ― それは、必要なプロパティ名と型を指定するだけです。プロトコルはまた、各プロパティが取得可能または取得可能<em>かつまた</em>設定可能でなければならないかどうか指定します。
+</span><!--end_jpstr-->
+</p><p class="para">
+  If a protocol requires a property to be gettable and settable, that property requirement cannot be fulfilled by a constant stored property or a read-only computed property. If the protocol only requires a property to be gettable, the requirement can be satisfied by any kind of property, and it is valid for the property to be also settable if this is useful for your own code.
+<br><span class="jpstr">
+あるプロトコルがプロパティに取得可能かつまた設定可能であることを要求するならば、そのプロパティ要件は、定数保存プロパティまたは読み出し専用の計算プロパティによって満たされることができません。プロトコルがプロパティに取得可能なことを要求するだけならば、その要件はどんなプロパティにでもよって満たされることができます、そして、それが同時にまた設定可能であることは、もしそれがあなた自身のコードに役立つ場合には、そのプロパティにとって有効です。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Property requirements are always declared as variable properties, prefixed with the <code class="code-voice">var</code> keyword. Gettable and settable properties are indicated by writing <code class="code-voice">{ get set }</code> after their type declaration, and gettable properties are indicated by writing <code class="code-voice">{ get }</code>.
+<br><span class="jpstr">
+プロパティ要件は常に変数プロパティとして宣言されます、それで<code class="code-voice">var</code>キーワードを前に置かれます。取得可能かつまた設定可能なプロパティは、それらの型宣言の後に<code class="code-voice">{ get set }</code>を書くことによって示されます、そして取得可能なプロパティは<code class="code-voice">{ get }</code>を書くことによって示されます。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">protocol</span> <span class="vc">SomeProtocol</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">mustBeSettable</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span> { <span class="kt">get</span> <span class="kt">set</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">doesNotNeedToBeSettable</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span> { <span class="kt">get</span> }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Always prefix type property requirements with the <code class="code-voice">static</code> keyword when you define them in a protocol. This rule pertains even though type property requirements can be prefixed with the <code class="code-voice">class</code> or <code class="code-voice">static</code> keyword when implemented by a class:
+<br><span class="jpstr">
+あなたがあるプロトコルにおいてそれを定義するとき、常に、型プロパティ要件の前に<code class="code-voice">static</code>キーワードを置いてください。たとえ型プロパティ要件がクラスによって実装されるとき<code class="code-voice">class</code>または<code class="code-voice">static</code>キーワードを前に置かれるとしても、この規則は当てはまります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">protocol</span> <span class="vc">AnotherProtocol</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">someTypeProperty</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span> { <span class="kt">get</span> <span class="kt">set</span> }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Here’s an example of a protocol with a single instance property requirement:
+<br><span class="jpstr">
+ただ一つのインスタンスプロパティ要件を持つプロトコルの例が、ここにあります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">protocol</span> <span class="vc">FullyNamed</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">fullName</span>: <span class="n"><!-- a href="" -->String<!-- /a --></span> { <span class="kt">get</span> }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The <code class="code-voice">FullyNamed</code> protocol requires a conforming type to provide a fully-qualified name. The protocol doesn’t specify anything else about the nature of the conforming type—it only specifies that the type must be able to provide a full name for itself. The protocol states that any <code class="code-voice">FullyNamed</code> type must have a gettable instance property called <code class="code-voice">fullName</code>, which is of type <code class="code-voice">String</code>.
+<br><span class="jpstr">
+<code class="code-voice">FullyNamed</code>プロトコルは、完全修飾名を提供するある準拠型を要件とします。このプロトコルは、その準拠型の性質について何ら指定しません ― それはただその型がそれ自身のフルネームを提供できなければならないことだけを指定します。このプロトコルは、あらゆる<code class="code-voice">FullyNamed</code>型は<code class="code-voice">fullName</code>と呼ばれる、<code class="code-voice">String</code>型である、取得可能なインスタンスプロパティを持たなければならないことを述べます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Here’s an example of a simple structure that adopts and conforms to the <code class="code-voice">FullyNamed</code> protocol:
+<br><span class="jpstr">
+<code class="code-voice">FullyNamed</code>プロトコルを採用して準拠する単純な構造体の例は、ここにあります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">struct</span> <span class="vc">Person</span>: <span class="n"><!-- a href="" -->FullyNamed<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">fullName</span>: <span class="n"><!-- a href="" -->String<!-- /a --></span></code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">john</span> = <span class="vc">Person</span>(<span class="vc">fullName</span>: <span class="s">&quot;John Appleseed&quot;</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// john.fullName is &quot;John Appleseed&quot;&nbsp;<span class="jpstr">（john.fullNameは、「John Appleseed」です）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  This example defines a structure called <code class="code-voice">Person</code>, which represents a specific named person. It states that it adopts the <code class="code-voice">FullyNamed</code> protocol as part of the first line of its definition.
+<br><span class="jpstr">
+この例は、<code class="code-voice">Person</code>と呼ばれる構造体を定義します、それは、特定の名前の人物を表します。それは、その定義の最初の行の部分でそれが<code class="code-voice">FullyNamed</code>プロトコルを採用すると述べます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Each instance of <code class="code-voice">Person</code> has a single stored property called <code class="code-voice">fullName</code>, which is of type <code class="code-voice">String</code>. This matches the single requirement of the <code class="code-voice">FullyNamed</code> protocol, and means that <code class="code-voice">Person</code> has correctly conformed to the protocol. (Swift reports an error at compile-time if a protocol requirement is not fulfilled.)
+<br><span class="jpstr">
+<code class="code-voice">Person</code>の各インスタンスは、<code class="code-voice">fullName</code>と呼ばれる１つの保存プロパティを持ちます、それは、型<code class="code-voice">String</code>です。これは、<code class="code-voice">FullyNamed</code>プロトコルの唯一の要件に適合します、したがってその<code class="code-voice">Person</code>が正しくそのプロトコルに従ったことを意味します。（プロトコル要件が満たされないならば、スウィフトは実行時にエラーを報告します）。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Here’s a more complex class, which also adopts and conforms to the <code class="code-voice">FullyNamed</code> protocol:
+<br><span class="jpstr">
+また、<code class="code-voice">FullyNamed</code>プロトコルを採用して準拠するさらに複雑なクラスが、ここにあります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">class</span> <span class="vc">Starship</span>: <span class="n"><!-- a href="" -->FullyNamed<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">prefix</span>: <span class="n"><!-- a href="" -->String<!-- /a --></span>?</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">name</span>: <span class="n"><!-- a href="" -->String<!-- /a --></span></code></li>
+            <li><code class="code-voice">    <span class="kt">init</span>(<span class="vc">name</span>: <span class="n"><!-- a href="" -->String<!-- /a --></span>, <span class="vc">prefix</span>: <span class="n"><!-- a href="" -->String<!-- /a --></span>? = <span class="kt">nil</span>) {</code></li>
+            <li><code class="code-voice">        <span class="kt">self</span>.<span class="vc">name</span> = <span class="vc">name</span></code></li>
+            <li><code class="code-voice">        <span class="kt">self</span>.<span class="vc">prefix</span> = <span class="vc">prefix</span></code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">fullName</span>: <span class="n"><!-- a href="" -->String<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">        <span class="kt">return</span> (<span class="vc">prefix</span> != <span class="kt">nil</span> ? <span class="vc">prefix</span>! + <span class="s">&quot; &quot;</span> : <span class="s">&quot;&quot;</span>) + <span class="vc">name</span></code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">ncc1701</span> = <span class="vc">Starship</span>(<span class="vc">name</span>: <span class="s">&quot;Enterprise&quot;</span>, <span class="vc">prefix</span>: <span class="s">&quot;USS&quot;</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// ncc1701.fullName is &quot;USS Enterprise&quot;&nbsp;<span class="jpstr">（ncc1701.fullNameは、USSエンタープライズです）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  This class implements the <code class="code-voice">fullName</code> property requirement as a computed read-only property for a starship. Each <code class="code-voice">Starship</code> class instance stores a mandatory <code class="code-voice">name</code> and an optional <code class="code-voice">prefix</code>. The <code class="code-voice">fullName</code> property uses the <code class="code-voice">prefix</code> value if it exists, and prepends it to the beginning of <code class="code-voice">name</code> to create a full name for the starship.
+<br><span class="jpstr">
+このクラスは、<code class="code-voice">fullName</code>プロパティ要件をある宇宙船のための読み出し専用の計算プロパティとして実装します。各<code class="code-voice">Starship</code>クラスインスタンスは、義務的な<code class="code-voice">name</code>そしてオプショナルの<code class="code-voice">prefix</code>を格納します。<code class="code-voice">fullName</code>プロパティは、<code class="code-voice">prefix</code>値を、それが存在するならば使います、そしてそれを<code class="code-voice">name</code>の始めに付けて、その宇宙船の完全な名前をつくります。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-ID270"></a>
+  <h3 class="section-name" tabindex="0">Method Requirements<br><span class="jpstr">
+メソッド要件
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Protocols can require specific instance methods and type methods to be implemented by conforming types. These methods are written as part of the protocol’s definition in exactly the same way as for normal instance and type methods, but without curly braces or a method body. Variadic parameters are allowed, subject to the same rules as for normal methods. Default values, however, cannot be specified for method parameters within a protocol’s definition.
+<br><span class="jpstr">
+プロトコルは、準拠型によって特定のインスタンスメソッドと型メソッドが実装されるように要求することができます。これらのメソッドは、プロトコルの定義の一部として普通のインスタンスおよび型メソッドと正確に同じ方法で書かれます、しかし波括弧またはメソッド本文はありません。可変長パラメータは、許され、普通のメソッドと同じ規則の支配下にあります。省略時の値は、しかしながら、プロトコル定義の内部のメソッドパラメーターに対して指定されることはできません。
+</span><!--end_jpstr-->
+</p><p class="para">
+  As with type property requirements, you always prefix type method requirements with the <code class="code-voice">static</code> keyword when they are defined in a protocol. This is true even though type method requirements are prefixed with the <code class="code-voice">class</code> or <code class="code-voice">static</code> keyword when implemented by a class:
+<br><span class="jpstr">
+型プロパティ要件と同様に、あなたは常に型メソッド要件の前に、それらがプロトコルにおいて定義されるとき、<code class="code-voice">static</code>キーワードを置きます。たとえ型メソッド要件がクラスによって実装されるとき<code class="code-voice">class</code>または<code class="code-voice">static</code>キーワードを前に置かれるとしても、これは当てはまります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">protocol</span> <span class="vc">SomeProtocol</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">func</span> <span class="vc">someTypeMethod</span>()</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The following example defines a protocol with a single instance method requirement:
+<br><span class="jpstr">
+以下の例は、１つのインスタンスメソッド要件で、プロトコルを定義します：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">protocol</span> <span class="vc">RandomNumberGenerator</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">random</span>() -&gt; <span class="n"><!-- a href="" -->Double<!-- /a --></span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  This protocol, <code class="code-voice">RandomNumberGenerator</code>, requires any conforming type to have an instance method called <code class="code-voice">random</code>, which returns a <code class="code-voice">Double</code> value whenever it is called. Although it is not specified as part of the protocol, it is assumed that this value will be a number from <code class="code-voice">0.0</code> up to (but not including) <code class="code-voice">1.0</code>.
+<br><span class="jpstr">
+このプロトコル、<code class="code-voice">RandomNumberGenerator</code>は、あらゆる準拠型に<code class="code-voice">random</code>と呼ばれるインスタンスメソッドを持つことを要求します、それは、それが呼ばれた時はいつでも<code class="code-voice">Double</code>値を返すものです。それはプロトコルの一部として指定されないけれども、この値は<code class="code-voice">0.0</code>から<code class="code-voice">1.0</code>まで（しかし含めてではない）のある数を仮定されます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The <code class="code-voice">RandomNumberGenerator</code> protocol does not make any assumptions about how each random number will be generated—it simply requires the generator to provide a standard way to generate a new random number.
+<br><span class="jpstr">
+<code class="code-voice">RandomNumberGenerator</code>プロトコルは、それぞれの乱数が生成される方法について、全く仮定しません ― それは単に生成器に新しい乱数を生み出す標準の方法を提供することを要求します。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Here’s an implementation of a class that adopts and conforms to the <code class="code-voice">RandomNumberGenerator</code> protocol. This class implements a pseudorandom number generator algorithm known as a <em>linear congruential generator</em>:
+<br><span class="jpstr">
+<code class="code-voice">RandomNumberGenerator</code>プロトコルを採用して準拠するクラスの実施が、ここにあります。このクラスは、<em>線形合同法生成器</em>として知られている擬似乱数生成器アルゴリズムを実装します：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">class</span> <span class="vc">LinearCongruentialGenerator</span>: <span class="n"><!-- a href="" -->RandomNumberGenerator<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">lastRandom</span> = <span class="m">42.0</span></code></li>
+            <li><code class="code-voice">    <span class="kt">let</span> <span class="vc">m</span> = <span class="m">139968.0</span></code></li>
+            <li><code class="code-voice">    <span class="kt">let</span> <span class="vc">a</span> = <span class="m">3877.0</span></code></li>
+            <li><code class="code-voice">    <span class="kt">let</span> <span class="vc">c</span> = <span class="m">29573.0</span></code></li>
+            <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">random</span>() -&gt; <span class="n"><!-- a href="" -->Double<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">        <span class="vc">lastRandom</span> = ((<span class="vc">lastRandom</span> * <span class="vc">a</span> + <span class="vc">c</span>).<span class="vc">truncatingRemainder</span>(<span class="vc">dividingBy</span>:<span class="vc">m</span>))</code></li>
+            <li><code class="code-voice">        <span class="kt">return</span> <span class="vc">lastRandom</span> / <span class="vc">m</span></code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">generator</span> = <span class="vc">LinearCongruentialGenerator</span>()</code></li>
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="s">&quot;Here&#39;s a random number: </span>\(<span class="vc">generator</span>.<span class="vc">random</span>())<span class="s">&quot;</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;Here&#39;s a random number: 0.37464991998171&quot;&nbsp;<span class="jpstr">（「ここに任意の数: 0.37464991998171があります」を出力します）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="s">&quot;And another one: </span>\(<span class="vc">generator</span>.<span class="vc">random</span>())<span class="s">&quot;</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;And another one: 0.729023776863283&quot;&nbsp;<span class="jpstr">（「さらにもう一つ：0.729023776863283」を出力します）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-ID271"></a>
+  <h3 class="section-name" tabindex="0">Mutating Method Requirements<br><span class="jpstr">
+可変メソッド要件
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  It is sometimes necessary for a method to modify (or <em>mutate</em>) the instance it belongs to. For instance methods on value types (that is, structures and enumerations) you place the <code class="code-voice">mutating</code> keyword before a method’s <code class="code-voice">func</code> keyword to indicate that the method is allowed to modify the instance it belongs to and any properties of that instance. This process is described in <span class="x-name"><a href="Methods.html#//apple_ref/doc/uid/TP40014097-CH15-ID239" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH15-ID239">Modifying Value Types from Within Instance Methods</a></span>.
+<br><span class="jpstr">
+メソッドがそれが属しているインスタンスを修正する（または<em>変化させる</em>）ことは、時々必要です。値型（すなわち、構造体と列挙）のインスタンスメソッドのために、あなたは<code class="code-voice">mutating</code>キーワードをメソッドの<code class="code-voice">func</code>キーワードの前に置いて、メソッドがそれが属しているインスタンスおよびそのインスタンスのあらゆるプロパティを修正するのを許可されることを示します。この過程は、<span class="x-name"><a href="Methods.html#//apple_ref/doc/uid/TP40014097-CH15-ID239" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH15-ID239">値型をインスタンスメソッド内から修正する</a></span>で記述されます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  If you define a protocol instance method requirement that is intended to mutate instances of any type that adopts the protocol, mark the method with the <code class="code-voice">mutating</code> keyword as part of the protocol’s definition. This enables structures and enumerations to adopt the protocol and satisfy that method requirement.
+<br><span class="jpstr">
+あなたがそのプロトコルを採用するあらゆる型のインスタンスを変化させることを意図したインスタンスメソッド要件プロトコルを定義するならば、プロトコルの定義の一部としてそのメソッドに<code class="code-voice">mutating</code>キーワードで印をつけてください。これは、構造体と列挙に、そのプロトコルを採用してメソッド要件を満たすのを可能にします。
+</span><!--end_jpstr-->
+</p><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-NoLink_182"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">If you mark a protocol instance method requirement as <code class="code-voice">mutating</code>, you do not need to write the <code class="code-voice">mutating</code> keyword when writing an implementation of that method for a class. The <code class="code-voice">mutating</code> keyword is only used by structures and enumerations.
+    	<br><span class="jpstr">
+あなたがインスタンスメソッド要件プロトコルに<code class="code-voice">mutating</code>として印するならば、あるクラスのためにそのメソッドの実装を書くとき、あなたは<code class="code-voice">mutating</code>キーワードを書く必要がありません。<code class="code-voice">mutating</code>キーワードは、構造体と列挙によって使われるだけです。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div><p class="para">
+  The example below defines a protocol called <code class="code-voice">Togglable</code>, which defines a single instance method requirement called <code class="code-voice">toggle</code>. As its name suggests, the <code class="code-voice">toggle()</code> method is intended to toggle or invert the state of any conforming type, typically by modifying a property of that type.
+<br><span class="jpstr">
+下の例は、<code class="code-voice">Togglable</code>と呼ばれるプロトコルを定義します、それは、<code class="code-voice">toggle</code>と呼ばれる１つのインスタンスメソッド要件を定義します。その名前が暗示するように、<code class="code-voice">toggle()</code>メソッドはあらゆる準拠型の状態を切り換えるか逆にすることを意図します、概してその型のプロパティの修正によって。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The <code class="code-voice">toggle()</code> method is marked with the <code class="code-voice">mutating</code> keyword as part of the <code class="code-voice">Togglable</code> protocol definition, to indicate that the method is expected to mutate the state of a conforming instance when it is called:
+<br><span class="jpstr">
+<code class="code-voice">toggle()</code>メソッドは、<code class="code-voice">Togglable</code>プロトコル定義の一部として<code class="code-voice">mutating</code>キーワードで印されます、それによってそのメソッドが、それが呼ばれるとき準拠インスタンスの状態を変化させることを予期されるようにします：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">protocol</span> <span class="vc">Togglable</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">mutating</span> <span class="kt">func</span> <span class="vc">toggle</span>()</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  If you implement the <code class="code-voice">Togglable</code> protocol for a structure or enumeration, that structure or enumeration can conform to the protocol by providing an implementation of the <code class="code-voice">toggle()</code> method that is also marked as <code class="code-voice">mutating</code>.
+<br><span class="jpstr">
+あなたが<code class="code-voice">Togglable</code>プロトコルをある構造体または列挙のために実装するならば、その構造体または列挙は、同様に<code class="code-voice">mutating</code>として印される<code class="code-voice">toggle()</code>メソッドの実施を提供することによって、このプロトコルに準拠できます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The example below defines an enumeration called <code class="code-voice">OnOffSwitch</code>. This enumeration toggles between two states, indicated by the enumeration cases <code class="code-voice">on</code> and <code class="code-voice">off</code>. The enumeration’s <code class="code-voice">toggle</code> implementation is marked as <code class="code-voice">mutating</code>, to match the <code class="code-voice">Togglable</code> protocol’s requirements:
+<br><span class="jpstr">
+下の例は、<code class="code-voice">OnOffSwitch</code>と呼ばれる列挙を定義します。この列挙は、列挙のケース節<code class="code-voice">on</code>と<code class="code-voice">off</code>で示される、２つの状態の間で切替えをします。列挙の<code class="code-voice">toggle</code>実装は、<code class="code-voice">Togglable</code>プロトコルの要件に適合するように、<code class="code-voice">mutating</code>として印されます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">enum</span> <span class="vc">OnOffSwitch</span>: <span class="n"><!-- a href="" -->Togglable<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">case</span> <span class="vc">off</span>, <span class="vc">on</span></code></li>
+            <li><code class="code-voice">    <span class="kt">mutating</span> <span class="kt">func</span> <span class="vc">toggle</span>() {</code></li>
+            <li><code class="code-voice">        <span class="kt">switch</span> <span class="kt">self</span> {</code></li>
+            <li><code class="code-voice">        <span class="kt">case</span> .<span class="vc">off</span>:</code></li>
+            <li><code class="code-voice">            <span class="kt">self</span> = .<span class="vc">on</span></code></li>
+            <li><code class="code-voice">        <span class="kt">case</span> .<span class="vc">on</span>:</code></li>
+            <li><code class="code-voice">            <span class="kt">self</span> = .<span class="vc">off</span></code></li>
+            <li><code class="code-voice">        }</code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">lightSwitch</span> = <span class="vc">OnOffSwitch</span>.<span class="vc">off</span></code></li>
+            <li><code class="code-voice"><span class="vc">lightSwitch</span>.<span class="vc">toggle</span>()</code></li>
+            <li><code class="code-voice"><span class="c">// lightSwitch is now equal to .on&nbsp;<span class="jpstr">（lightSwitchは、現在.onと等しいです）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-ID272"></a>
+  <h3 class="section-name" tabindex="0">Initializer Requirements<br><span class="jpstr">
+イニシャライザ要件
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Protocols can require specific initializers to be implemented by conforming types. You write these initializers as part of the protocol’s definition in exactly the same way as for normal initializers, but without curly braces or an initializer body:
+<br><span class="jpstr">
+プロトコルは、準拠型によって特定のイニシャライザが実装されるように要求することができます。あなたは、これらのイニシャライザをプロトコル定義の一部として普通のイニシャライザと正確に同じ方法で書くことができます、しかし波括弧またはイニシャライザ本文はありません：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">protocol</span> <span class="vc">SomeProtocol</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">init</span>(<span class="vc">someParameter</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span>)</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  <section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-ID273"></a>
+  <h3 class="section-name" tabindex="0">Class Implementations of Protocol Initializer Requirements<br><span class="jpstr">
+イニシャライザ要件プロトコルのクラス実装
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  You can implement a protocol initializer requirement on a conforming class as either a designated initializer or a convenience initializer. In both cases, you must mark the initializer implementation with the <code class="code-voice">required</code> modifier:
+<br><span class="jpstr">
+あなたは、イニシャライザ要件プロトコルを準拠クラス上で指定イニシャライザまたは便宜イニシャライザとして実装することができます。両方の場合で、あなたはそのイニシャライザ実装を<code class="code-voice">required</code>修飾子で印しなければなりません：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">class</span> <span class="vc">SomeClass</span>: <span class="n"><!-- a href="" -->SomeProtocol<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">required</span> <span class="kt">init</span>(<span class="vc">someParameter</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span>) {</code></li>
+            <li><code class="code-voice">        <span class="c">// initializer implementation goes here&nbsp;<span class="jpstr">（イニシャライザ実装がここに来ます）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The use of the <code class="code-voice">required</code> modifier ensures that you provide an explicit or inherited implementation of the initializer requirement on all subclasses of the conforming class, such that they also conform to the protocol.
+<br><span class="jpstr">
+<code class="code-voice">required</code>修飾子の使用は、あなたがある明確なもしくは継承されたイニシャライザ要件の実装を準拠クラスの全てのサブクラス上で、それらもまたそのプロトコルに準拠するように、提供することを確かなものにします。
+</span><!--end_jpstr-->
+</p><p class="para">
+  For more information on required initializers, see <span class="x-name"><a href="Initialization.html#//apple_ref/doc/uid/TP40014097-CH18-ID231" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH18-ID231">Required Initializers</a></span>.
+<br><span class="jpstr">
+必須イニシャライザに関する更なる情報として、<span class="x-name"><a href="Initialization.html#//apple_ref/doc/uid/TP40014097-CH18-ID231" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH18-ID231">必須イニシャライザ</a></span>を見てください。
+</span><!--end_jpstr-->
+</p><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-NoLink_183"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">You do not need to mark protocol initializer implementations with the <code class="code-voice">required</code> modifier on classes that are marked with the <code class="code-voice">final</code> modifier, because final classes cannot be subclassed. For more on the <code class="code-voice">final</code> modifier, see <span class="x-name"><a href="Inheritance.html#//apple_ref/doc/uid/TP40014097-CH17-ID202" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH17-ID202">Preventing Overrides</a></span>.
+    	<br><span class="jpstr">
+あなたは<code class="code-voice">final</code>修飾子で印されるクラス上でプロトコルイニシャライザ実装を<code class="code-voice">required</code>修飾子で印する必要はありません、なぜなら、finalクラスはサブクラスを作られることができないからです。<code class="code-voice">final</code>修飾子に関する更なる情報として、<span class="x-name"><a href="Inheritance.html#//apple_ref/doc/uid/TP40014097-CH17-ID202" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH17-ID202">オーバーライドを防ぐ</a></span>を見てください。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div><p class="para">
+  If a subclass overrides a designated initializer from a superclass, and also implements a matching initializer requirement from a protocol, mark the initializer implementation with both the <code class="code-voice">required</code> and <code class="code-voice">override</code> modifiers:
+<br><span class="jpstr">
+あるサブクラスが、スーパークラスからの指定イニシャライザをオーバーライドして、またプロトコルからのイニシャライザ要件にも合致するものを実装するならば、そのイニシャライザ実装を<code class="code-voice">required</code>と<code class="code-voice">override</code>の両方の修飾子を使って印してください：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">protocol</span> <span class="vc">SomeProtocol</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">init</span>()</code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"> </code></li>
+            <li><code class="code-voice"><span class="kt">class</span> <span class="vc">SomeSuperClass</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">init</span>() {</code></li>
+            <li><code class="code-voice">        <span class="c">// initializer implementation goes here&nbsp;<span class="jpstr">（イニシャライザ実装がここに来ます）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"> </code></li>
+            <li><code class="code-voice"><span class="kt">class</span> <span class="vc">SomeSubClass</span>: <span class="n"><!-- a href="" -->SomeSuperClass<!-- /a --></span>, <span class="n"><!-- a href="" -->SomeProtocol<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="c">// &quot;required&quot; from SomeProtocol conformance; &quot;override&quot; from SomeSuperClass&nbsp;<span class="jpstr">（SomeProtocol準拠からの「required」；SomeSuperClasからの「override」）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice">    <span class="kt">required</span> <span class="kt">override</span> <span class="kt">init</span>() {</code></li>
+            <li><code class="code-voice">        <span class="c">// initializer implementation goes here&nbsp;<span class="jpstr">（イニシャライザ実装がここに来ます）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-ID274"></a>
+  <h3 class="section-name" tabindex="0">Failable Initializer Requirements<br><span class="jpstr">
+失敗できるイニシャライザ要件
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Protocols can define failable initializer requirements for conforming types, as defined in <span class="x-name"><a href="Initialization.html#//apple_ref/doc/uid/TP40014097-CH18-ID224" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH18-ID224">Failable Initializers</a></span>.
+<br><span class="jpstr">
+プロトコルは、<span class="x-name"><a href="Initialization.html#//apple_ref/doc/uid/TP40014097-CH18-ID224" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH18-ID224">失敗できるイニシャライザ</a></span>で記述されるように、準拠している型に対して失敗できるイニシャライザ要件を定義することができます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  A failable initializer requirement can be satisfied by a failable or nonfailable initializer on a conforming type. A nonfailable initializer requirement can be satisfied by a nonfailable initializer or an implicitly unwrapped failable initializer.
+<br><span class="jpstr">
+失敗できるイニシャライザ要件は、準拠している型上の失敗できるもしくは失敗できないイニシャライザによって満たされることができます。失敗できないイニシャライザ要件は、失敗できないイニシャライザまたは暗黙的にアンラップされる失敗できるイニシャライザによって満たされることができます。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-ID275"></a>
+  <h3 class="section-name" tabindex="0">Protocols as Types<br><span class="jpstr">
+型としてのプロトコル
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Protocols do not actually implement any functionality themselves. Nonetheless, any protocol you create will become a fully-fledged type for use in your code.
+<br><span class="jpstr">
+プロトコルは、実際に少しの機能性も実装しません。それでもなお、あなたがつくるどんなプロトコルでも、あなたのコードに用いられるひとつの完全に自立した型になります。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Because it is a type, you can use a protocol in many places where other types are allowed, including:
+<br><span class="jpstr">
+それが型であるので、以下を含む、他の型が許される多くの場所において、あなたはプロトコルを使うことができます：
+</span><!--end_jpstr-->
+</p><ul class="list-bullet">
+  <li class="item"><p class="para">
+  As a parameter type or return type in a function, method, or initializer
+<br><span class="jpstr">
+関数、メソッド、またはイニシャライザにおいてパラメータ型または戻り型として
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  As the type of a constant, variable, or property
+<br><span class="jpstr">
+定数、変数、またはプロパティの型として
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  As the type of items in an array, dictionary, or other container
+<br><span class="jpstr">
+配列、辞書、または他のコンテナ中の項目の型として
+</span><!--end_jpstr-->
+</p>
+</li>
+</ul><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-NoLink_184"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">Because protocols are types, begin their names with a capital letter (such as <code class="code-voice">FullyNamed</code> and <code class="code-voice">RandomNumberGenerator</code>) to match the names of other types in Swift (such as <code class="code-voice">Int</code>, <code class="code-voice">String</code>, and <code class="code-voice">Double</code>).
+    	<br><span class="jpstr">
+プロトコルが型であるので、それらの名前を大文字で開始してください（例えば<code class="code-voice">FullyNamed</code>と<code class="code-voice">RandomNumberGenerator</code>のように）、それによってスウィフトでの他の型の名前（例えば<code class="code-voice">Int</code>、<code class="code-voice">String</code>、および<code class="code-voice">Double</code>）と釣り合いがとれます。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div><p class="para">
+  Here’s an example of a protocol used as a type:
+<br><span class="jpstr">
+型として使われるプロトコルの例は、ここにあります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">class</span> <span class="vc">Dice</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">let</span> <span class="vc">sides</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span></code></li>
+            <li><code class="code-voice">    <span class="kt">let</span> <span class="vc">generator</span>: <span class="n"><!-- a href="" -->RandomNumberGenerator<!-- /a --></span></code></li>
+            <li><code class="code-voice">    <span class="kt">init</span>(<span class="vc">sides</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span>, <span class="vc">generator</span>: <span class="n"><!-- a href="" -->RandomNumberGenerator<!-- /a --></span>) {</code></li>
+            <li><code class="code-voice">        <span class="kt">self</span>.<span class="vc">sides</span> = <span class="vc">sides</span></code></li>
+            <li><code class="code-voice">        <span class="kt">self</span>.<span class="vc">generator</span> = <span class="vc">generator</span></code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">roll</span>() -&gt; <span class="n"><!-- a href="" -->Int<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">        <span class="kt">return</span> <span class="vc">Int</span>(<span class="vc">generator</span>.<span class="vc">random</span>() * <span class="vc">Double</span>(<span class="vc">sides</span>)) + <span class="m">1</span></code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  This example defines a new class called <code class="code-voice">Dice</code>, which represents an <em>n</em>-sided dice for use in a board game. <code class="code-voice">Dice</code> instances have an integer property called <code class="code-voice">sides</code>, which represents how many sides they have, and a property called <code class="code-voice">generator</code>, which provides a random number generator from which to create dice roll values.
+<br><span class="jpstr">
+この例は<code class="code-voice">Dice</code>と呼ばれる新しいクラスを定義します、それは、ボードゲームで使うのために<em>n</em>面のさいころを表します。<code class="code-voice">Dice</code>インスタンスは、それがどれくらいの面を持つのかを表す<code class="code-voice">sides</code>と呼ばれる整数プロパティ、そしてそこからさいころを振った値を作成する乱数生成器を提供する<code class="code-voice">generator</code>と呼ばれるプロパティを持ちます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The <code class="code-voice">generator</code> property is of type <code class="code-voice">RandomNumberGenerator</code>. Therefore, you can set it to an instance of <em>any</em> type that adopts the <code class="code-voice">RandomNumberGenerator</code> protocol. Nothing else is required of the instance you assign to this property, except that the instance must adopt the <code class="code-voice">RandomNumberGenerator</code> protocol.
+<br><span class="jpstr">
+<code class="code-voice">generator</code>プロパティは、型<code class="code-voice">RandomNumberGenerator</code>です。したがって、あなたはそれを<code class="code-voice">RandomNumberGenerator</code>プロトコルを採用する<em>あらゆる</em>型のインスタンスに設定することができます。そのインスタンスが<code class="code-voice">RandomNumberGenerator</code>プロトコルを採用しなければならないことをのぞいては、あなたがこのプロパティに代入するインスタンスに必要とされるものは他に何もありません。
+</span><!--end_jpstr-->
+</p><p class="para">
+  <code class="code-voice">Dice</code> also has an initializer, to set up its initial state. This initializer has a parameter called <code class="code-voice">generator</code>, which is also of type <code class="code-voice">RandomNumberGenerator</code>. You can pass a value of any conforming type in to this parameter when initializing a new <code class="code-voice">Dice</code> instance.
+<br><span class="jpstr">
+<code class="code-voice">Dice</code>はまた、その最初の状態を設定するために、イニシャライザを持ちます。このイニシャライザは、<code class="code-voice">generator</code>と呼ばれるパラメータを持ちます、それもまた、型<code class="code-voice">RandomNumberGenerator</code>です。新しい<code class="code-voice">Dice</code>インスタンスを初期化するとき、あなたはどんな準拠型の値でもこのパラメータに渡すことができます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  <code class="code-voice">Dice</code> provides one instance method, <code class="code-voice">roll</code>, which returns an integer value between 1 and the number of sides on the dice. This method calls the generator’s <code class="code-voice">random()</code> method to create a new random number between <code class="code-voice">0.0</code> and <code class="code-voice">1.0</code>, and uses this random number to create a dice roll value within the correct range. Because <code class="code-voice">generator</code> is known to adopt <code class="code-voice">RandomNumberGenerator</code>, it is guaranteed to have a <code class="code-voice">random()</code> method to call.
+<br><span class="jpstr">
+<code class="code-voice">Dice</code>は１つのインスタンスメソッド、<code class="code-voice">roll</code>を提供します、それは、１とさいころ上の面の数との間の整数値を返します。このメソッドは、<code class="code-voice">0.0</code>と<code class="code-voice">1.0</code>の間で新しい乱数をつくるgeneratorの<code class="code-voice">random()</code>メソッドを呼んで、この乱数を正しい範囲内でさいころを振った値をつくるために使います。<code class="code-voice">generator</code>が<code class="code-voice">RandomNumberGenerator</code>を採用すると知られているので、それは<code class="code-voice">random()</code>メソッドを呼ぶことを保証されます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Here’s how the <code class="code-voice">Dice</code> class can be used to create a six-sided dice with a <code class="code-voice">LinearCongruentialGenerator</code> instance as its random number generator:
+<br><span class="jpstr">
+<code class="code-voice">Dice</code>クラスが、６面のさいころをつくるためにその乱数生成器として<code class="code-voice">LinearCongruentialGenerator</code>インスタンスをつかってどのように使われることができるかが、ここにあります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">d6</span> = <span class="vc">Dice</span>(<span class="vc">sides</span>: <span class="m">6</span>, <span class="vc">generator</span>: <span class="vc">LinearCongruentialGenerator</span>())</code></li>
+            <li><code class="code-voice"><span class="kt">for</span> <span class="kt">_</span> <span class="kt">in</span> <span class="m">1</span>...<span class="m">5</span> {</code></li>
+            <li><code class="code-voice">    <span class="vc">print</span>(<span class="s">&quot;Random dice roll is </span>\(<span class="vc">d6</span>.<span class="vc">roll</span>())<span class="s">&quot;</span>)</code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"><span class="c">// Random dice roll is 3&nbsp;<span class="jpstr">（無作為にさいころを転がして、３です）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"><span class="c">// Random dice roll is 5&nbsp;<span class="jpstr">（無作為にさいころを転がして、５です）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"><span class="c">// Random dice roll is 4&nbsp;<span class="jpstr">（無作為にさいころを転がして、４です）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"><span class="c">// Random dice roll is 5&nbsp;<span class="jpstr">（無作為にさいころを転がして、５です）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"><span class="c">// Random dice roll is 4&nbsp;<span class="jpstr">（無作為にさいころを転がして、４です）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-ID276"></a>
+  <h3 class="section-name" tabindex="0">Delegation<br><span class="jpstr">
+委任
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  <em>Delegation</em> is a design pattern that enables a class or structure to hand off (or <em>delegate</em>) some of its responsibilities to an instance of another type. This design pattern is implemented by defining a protocol that encapsulates the delegated responsibilities, such that a conforming type (known as a delegate) is guaranteed to provide the functionality that has been delegated. Delegation can be used to respond to a particular action, or to retrieve data from an external source without needing to know the underlying type of that source.
+<br><span class="jpstr">
+<em>委任</em>は、クラスまたは構造体にそれのもつ責務の一部を別の型のインスタンスへと手渡す（または<em>委任する</em>）ことを可能にするデザイン・パターンです。このデザイン・パターンは、委任された責務をカプセル化するプロトコルを定義することによって実装されます、例えば、委任プロトコルに拠準する型が（代表、委任先として知られるものが）その委任されている機能性を提供する責任を負わされるといったこと。委任は、特定の動作に応答したり、外部ソースからそのソースの根底の型を知る必要なしにデータを取り出したりするのに使われることができます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The example below defines two protocols for use with dice-based board games:
+<br><span class="jpstr">
+下の例は、さいころに基づく様々なボードゲームで使うために、２つのプロトコルを定義します：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">protocol</span> <span class="vc">DiceGame</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">dice</span>: <span class="n"><!-- a href="" -->Dice<!-- /a --></span> { <span class="kt">get</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">play</span>()</code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"><span class="kt">protocol</span> <span class="vc">DiceGameDelegate</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">gameDidStart</span>(<span class="kt">_</span> <span class="vc">game</span>: <span class="n"><!-- a href="" -->DiceGame<!-- /a --></span>)</code></li>
+            <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">game</span>(<span class="kt">_</span> <span class="vc">game</span>: <span class="n"><!-- a href="" -->DiceGame<!-- /a --></span>, <span class="vc">didStartNewTurnWithDiceRoll</span> <span class="vc">diceRoll</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span>)</code></li>
+            <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">gameDidEnd</span>(<span class="kt">_</span> <span class="vc">game</span>: <span class="n"><!-- a href="" -->DiceGame<!-- /a --></span>)</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The <code class="code-voice">DiceGame</code> protocol is a protocol that can be adopted by any game that involves dice. The <code class="code-voice">DiceGameDelegate</code> protocol can be adopted by any type to track the progress of a <code class="code-voice">DiceGame</code>.
+<br><span class="jpstr">
+<code class="code-voice">DiceGame</code>プロトコルは、さいころが関わるどんなゲームによってでも採用されることができるプロトコルです。<code class="code-voice">DiceGameDelegate</code>プロトコルは、どんな型によってでも採用されることができて、ある<code class="code-voice">DiceGame</code>の進歩を追いかけます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Here’s a version of the <em>Snakes and Ladders</em> game originally introduced in <span class="x-name"><a href="ControlFlow.html#//apple_ref/doc/uid/TP40014097-CH9-ID120" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH9-ID120">Control Flow</a></span>. This version is adapted to use a <code class="code-voice">Dice</code> instance for its dice-rolls; to adopt the <code class="code-voice">DiceGame</code> protocol; and to notify a <code class="code-voice">DiceGameDelegate</code> about its progress:
+<br><span class="jpstr">
+<span class="x-name"><a href="ControlFlow.html#//apple_ref/doc/uid/TP40014097-CH9-ID120" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH9-ID120">制御の流れ</a></span>で元々は紹介される<em>ヘビとはしご</em>ゲームのひとつの改作が、ここにあります。この版は改変され、それにより、それのさいころ振りに<code class="code-voice">Dice</code>インスタンスを使用します；<code class="code-voice">DiceGame</code>プロトコルを採用します；そして、その進歩について<code class="code-voice">DiceGameDelegate</code>に通知します：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">class</span> <span class="vc">SnakesAndLadders</span>: <span class="n"><!-- a href="" -->DiceGame<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">let</span> <span class="vc">finalSquare</span> = <span class="m">25</span></code></li>
+            <li><code class="code-voice">    <span class="kt">let</span> <span class="vc">dice</span> = <span class="vc">Dice</span>(<span class="vc">sides</span>: <span class="m">6</span>, <span class="vc">generator</span>: <span class="vc">LinearCongruentialGenerator</span>())</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">square</span> = <span class="m">0</span></code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">board</span>: [<span class="n"><!-- a href="" -->Int<!-- /a --></span>]</code></li>
+            <li><code class="code-voice">    <span class="kt">init</span>() {</code></li>
+            <li><code class="code-voice">        <span class="vc">board</span> = <span class="vc">Array</span>(<span class="vc">repeating</span>: <span class="m">0</span>, <span class="vc">count</span>: <span class="vc">finalSquare</span> + <span class="m">1</span>)</code></li>
+            <li><code class="code-voice">        <span class="vc">board</span>[<span class="m">03</span>] = +<span class="m">08</span>; <span class="vc">board</span>[<span class="m">06</span>] = +<span class="m">11</span>; <span class="vc">board</span>[<span class="m">09</span>] = +<span class="m">09</span>; <span class="vc">board</span>[<span class="m">10</span>] = +<span class="m">02</span></code></li>
+            <li><code class="code-voice">        <span class="vc">board</span>[<span class="m">14</span>] = <span class="m">-10</span>; <span class="vc">board</span>[<span class="m">19</span>] = <span class="m">-11</span>; <span class="vc">board</span>[<span class="m">22</span>] = <span class="m">-02</span>; <span class="vc">board</span>[<span class="m">24</span>] = <span class="m">-08</span></code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">delegate</span>: <span class="n"><!-- a href="" -->DiceGameDelegate<!-- /a --></span>?</code></li>
+            <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">play</span>() {</code></li>
+            <li><code class="code-voice">        <span class="vc">square</span> = <span class="m">0</span></code></li>
+            <li><code class="code-voice">        <span class="vc">delegate</span>?.<span class="vc">gameDidStart</span>(<span class="kt">self</span>)</code></li>
+            <li><code class="code-voice">        <span class="vc">gameLoop</span>: <span class="kt">while</span> <span class="vc">square</span> != <span class="vc">finalSquare</span> {</code></li>
+            <li><code class="code-voice">            <span class="kt">let</span> <span class="vc">diceRoll</span> = <span class="vc">dice</span>.<span class="vc">roll</span>()</code></li>
+            <li><code class="code-voice">            <span class="vc">delegate</span>?.<span class="vc">game</span>(<span class="kt">self</span>, <span class="vc">didStartNewTurnWithDiceRoll</span>: <span class="vc">diceRoll</span>)</code></li>
+            <li><code class="code-voice">            <span class="kt">switch</span> <span class="vc">square</span> + <span class="vc">diceRoll</span> {</code></li>
+            <li><code class="code-voice">            <span class="kt">case</span> <span class="vc">finalSquare</span>:</code></li>
+            <li><code class="code-voice">                <span class="kt">break</span> <span class="vc">gameLoop</span></code></li>
+            <li><code class="code-voice">            <span class="kt">case</span> <span class="kt">let</span> <span class="vc">newSquare</span> <span class="kt">where</span> <span class="vc">newSquare</span> &gt; <span class="vc">finalSquare</span>:</code></li>
+            <li><code class="code-voice">                <span class="kt">continue</span> <span class="vc">gameLoop</span></code></li>
+            <li><code class="code-voice">            <span class="kt">default</span>:</code></li>
+            <li><code class="code-voice">                <span class="vc">square</span> += <span class="vc">diceRoll</span></code></li>
+            <li><code class="code-voice">                <span class="vc">square</span> += <span class="vc">board</span>[<span class="vc">square</span>]</code></li>
+            <li><code class="code-voice">            }</code></li>
+            <li><code class="code-voice">        }</code></li>
+            <li><code class="code-voice">        <span class="vc">delegate</span>?.<span class="vc">gameDidEnd</span>(<span class="kt">self</span>)</code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  For a description of the <em>Snakes and Ladders</em> gameplay, see <span class="x-name"><a href="ControlFlow.html#//apple_ref/doc/uid/TP40014097-CH9-ID137" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH9-ID137">Break</a></span> section of the <span class="x-name"><a href="ControlFlow.html#//apple_ref/doc/uid/TP40014097-CH9-ID120" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH9-ID120">Control Flow</a></span>.
+<br><span class="jpstr">
+<em>ヘビとはしご</em>のゲームプレイの解説として、<span class="x-name"><a href="ControlFlow.html#//apple_ref/doc/uid/TP40014097-CH9-ID120" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH9-ID120">制御の流れ</a></span>の<span class="x-name"><a href="ControlFlow.html#//apple_ref/doc/uid/TP40014097-CH9-ID137" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH9-ID137">中断する</a></span>の節を見てください。
+</span><!--end_jpstr-->
+</p><p class="para">
+  This version of the game is wrapped up as a class called <code class="code-voice">SnakesAndLadders</code>, which adopts the <code class="code-voice">DiceGame</code> protocol. It provides a gettable <code class="code-voice">dice</code> property and a <code class="code-voice">play()</code> method in order to conform to the protocol. (The <code class="code-voice">dice</code> property is declared as a constant property because it does not need to change after initialization, and the protocol only requires that it is gettable.)
+<br><span class="jpstr">
+ゲームのこの改作は、<code class="code-voice">SnakesAndLadders</code>と呼ばれるクラスで包まれます、それは、<code class="code-voice">DiceGame</code>プロトコルを採用します。それは、プロトコルに従うために取得可能な<code class="code-voice">dice</code>プロパティと<code class="code-voice">play()</code>メソッドを提供します。（<code class="code-voice">dice</code>プロパティは定数プロパティとして宣言されます、なぜなら、それが初期化の後に変化する必要がなく、そして、プロトコルはそれが取得可能なことを必要とするだけであるからです）。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The <em>Snakes and Ladders</em> game board setup takes place within the class’s <code class="code-voice">init()</code> initializer. All game logic is moved into the protocol’s <code class="code-voice">play</code> method, which uses the protocol’s required <code class="code-voice">dice</code> property to provide its dice roll values.
+<br><span class="jpstr">
+<em>ヘビとはしご</em>ゲーム盤設定は、このクラスの<code class="code-voice">init()</code>イニシャライザ内で行われます。全てのゲーム論理は、プロトコルの<code class="code-voice">play</code>メソッドに引っ越します、それは、プロトコルの要求する<code class="code-voice">dice</code>プロパティを使ってそれのさいころ振りの値を提供します。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Note that the <code class="code-voice">delegate</code> property is defined as an <em>optional</em> <code class="code-voice">DiceGameDelegate</code>, because a delegate isn’t required in order to play the game. Because it is of an optional type, the <code class="code-voice">delegate</code> property is automatically set to an initial value of <code class="code-voice">nil</code>. Thereafter, the game instantiator has the option to set the property to a suitable delegate.
+<br><span class="jpstr">
+<code class="code-voice">delegate</code>プロパティが、<em>オプショナル</em>の<code class="code-voice">DiceGameDelegate</code>として定義される点に注意してください、delegateがゲームをプレイするために必須でないからです。それがオプショナル型であるので、<code class="code-voice">delegate</code>プロパティは自動的に初期値の<code class="code-voice">nilに</code>設定されます。その後は、このゲームのイニシャライザは、このプロパティを適当な委任先に設定する選択肢を持ちます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  <code class="code-voice">DiceGameDelegate</code> provides three methods for tracking the progress of a game. These three methods have been incorporated into the game logic within the <code class="code-voice">play()</code> method above, and are called when a new game starts, a new turn begins, or the game ends.
+<br><span class="jpstr">
+<code class="code-voice">DiceGameDelegate</code>は、３つのメソッドをゲームの進捗を追うために提供します。これらの３つのメソッドは、上の<code class="code-voice">play()</code>メソッド内のゲーム論理に組み込まれています、そして、新しいゲームが始まるとき、新しいターンを開始するとき、あるいはこのゲームが終わるとき、呼ばれます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Because the <code class="code-voice">delegate</code> property is an <em>optional</em> <code class="code-voice">DiceGameDelegate</code>, the <code class="code-voice">play()</code> method uses optional chaining each time it calls a method on the delegate. If the <code class="code-voice">delegate</code> property is nil, these delegate calls fail gracefully and without error. If the <code class="code-voice">delegate</code> property is non-nil, the delegate methods are called, and are passed the <code class="code-voice">SnakesAndLadders</code> instance as a parameter.
+<br><span class="jpstr">
+<code class="code-voice">delegate</code>プロパティが<em>オプショナル</em>の<code class="code-voice">DiceGameDelegate</code>であるので、<code class="code-voice">play()</code>メソッドは、それが委任先でメソッドを呼ぶたびにオプショナル連鎖を使います。<code class="code-voice">delegate</code>プロパティがnilならば、これらの委任先呼び出しはエラーなしで美しく失敗します。<code class="code-voice">delegate</code>プロパティがnilでないならば、委任先のさまざまなメソッドが呼ばれます、そしてパラメータとして<code class="code-voice">SnakesAndLadders</code>インスタンスを渡されます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  This next example shows a class called <code class="code-voice">DiceGameTracker</code>, which adopts the <code class="code-voice">DiceGameDelegate</code> protocol:
+<br><span class="jpstr">
+この次の例は<code class="code-voice">DiceGameTracker</code>と呼ばれるクラスを示します、それは、<code class="code-voice">DiceGameDelegate</code>プロトコルを採用します：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">class</span> <span class="vc">DiceGameTracker</span>: <span class="n"><!-- a href="" -->DiceGameDelegate<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">numberOfTurns</span> = <span class="m">0</span></code></li>
+            <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">gameDidStart</span>(<span class="kt">_</span> <span class="vc">game</span>: <span class="n"><!-- a href="" -->DiceGame<!-- /a --></span>) {</code></li>
+            <li><code class="code-voice">        <span class="vc">numberOfTurns</span> = <span class="m">0</span></code></li>
+            <li><code class="code-voice">        <span class="kt">if</span> <span class="vc">game</span> <span class="kt">is</span> <span class="n"><!-- a href="" -->SnakesAndLadders<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">            <span class="vc">print</span>(<span class="s">&quot;Started a new game of Snakes and Ladders&quot;</span>)</code></li>
+            <li><code class="code-voice">        }</code></li>
+            <li><code class="code-voice">        <span class="vc">print</span>(<span class="s">&quot;The game is using a </span>\(<span class="vc">game</span>.<span class="vc">dice</span>.<span class="vc">sides</span>)<span class="s">-sided dice&quot;</span>)</code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">game</span>(<span class="kt">_</span> <span class="vc">game</span>: <span class="n"><!-- a href="" -->DiceGame<!-- /a --></span>, <span class="vc">didStartNewTurnWithDiceRoll</span> <span class="vc">diceRoll</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span>) {</code></li>
+            <li><code class="code-voice">        <span class="vc">numberOfTurns</span> += <span class="m">1</span></code></li>
+            <li><code class="code-voice">        <span class="vc">print</span>(<span class="s">&quot;Rolled a </span>\(<span class="vc">diceRoll</span>)<span class="s">&quot;</span>)</code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">gameDidEnd</span>(<span class="kt">_</span> <span class="vc">game</span>: <span class="n"><!-- a href="" -->DiceGame<!-- /a --></span>) {</code></li>
+            <li><code class="code-voice">        <span class="vc">print</span>(<span class="s">&quot;The game lasted for </span>\(<span class="vc">numberOfTurns</span>)<span class="s"> turns&quot;</span>)</code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  <code class="code-voice">DiceGameTracker</code> implements all three methods required by <code class="code-voice">DiceGameDelegate</code>. It uses these methods to keep track of the number of turns a game has taken. It resets a <code class="code-voice">numberOfTurns</code> property to zero when the game starts, increments it each time a new turn begins, and prints out the total number of turns once the game has ended.
+<br><span class="jpstr">
+<code class="code-voice">DiceGameTracker</code>は、<code class="code-voice">DiceGameDelegate</code>によって要求される３つのメソッド全てを実装します。それは、あるゲームがとったターンの数の情報を得続けるためにこれらのメソッドを使用します。それは、ゲームが始まるとき<code class="code-voice">numberOfTurns</code>プロパティをゼロに再設定します、新しいターンが開始するときそれぞれそれを増加させます、そしてひとたびゲームが終わってしまったならばターンの総数を出力します。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The implementation of <code class="code-voice">gameDidStart(_:)</code> shown above uses the <code class="code-voice">game</code> parameter to print some introductory information about the game that is about to be played. The <code class="code-voice">game</code> parameter has a type of <code class="code-voice">DiceGame</code>, not <code class="code-voice">SnakesAndLadders</code>, and so <code class="code-voice">gameDidStart(_:)</code> can access and use only methods and properties that are implemented as part of the <code class="code-voice">DiceGame</code> protocol. However, the method is still able to use type casting to query the type of the underlying instance. In this example, it checks whether <code class="code-voice">game</code> is actually an instance of <code class="code-voice">SnakesAndLadders</code> behind the scenes, and prints an appropriate message if so.
+<br><span class="jpstr">
+上で示される<code class="code-voice">gameDidStart(_:)</code>の実装は、<code class="code-voice">game</code>パラメータを使って、プレイされようとしているゲームに関する若干の紹介の情報を出力します。<code class="code-voice">game</code>パラメータは、型<code class="code-voice">DiceGame</code>を持ちます、<code class="code-voice">SnakesAndLadders</code>ではありません、なので、<code class="code-voice">gameDidStart(_:)</code>は<code class="code-voice">DiceGame</code>プロトコルの一部として実施されるメソッドとプロパティだけにアクセスして使用することができます。しかし、このメソッドは依然として基盤インスタンスの型についてたずねるために型キャストを使うことができます。この例では、<code class="code-voice">game</code>が実際に舞台裏でS<code class="code-voice">nakesAndLadders</code>のインスタンスであるかどうか調べて、もしそうならば適切なメッセージを出力します。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The <code class="code-voice">gameDidStart(_:)</code> method also accesses the <code class="code-voice">dice</code> property of the passed <code class="code-voice">game</code> parameter. Because <code class="code-voice">game</code> is known to conform to the <code class="code-voice">DiceGame</code> protocol, it is guaranteed to have a <code class="code-voice">dice</code> property, and so the <code class="code-voice">gameDidStart(_:)</code> method is able to access and print the dice’s <code class="code-voice">sides</code> property, regardless of what kind of game is being played.
+<br><span class="jpstr">
+<code class="code-voice">gameDidStart(_:)</code>メソッドはまた、渡された<code class="code-voice">game</code>パラメータの<code class="code-voice">dice</code>プロパティにアクセスします。<code class="code-voice">game</code>が<code class="code-voice">DiceGame</code>プロトコルに従うと知られているので、それは<code class="code-voice">dice</code>プロパティを持つと保証されます、なので、<code class="code-voice">gameDidStart(_:)</code>メソッドは、どんな種類のゲームがプレイされているかに関係なく、diceの<code class="code-voice">sides</code>プロパティにアクセスして出力することができます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Here’s how <code class="code-voice">DiceGameTracker</code> looks in action:
+<br><span class="jpstr">
+動作中の<code class="code-voice">DiceGameTracker</code>がどのように見えるかは、ここにあります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">tracker</span> = <span class="vc">DiceGameTracker</span>()</code></li>
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">game</span> = <span class="vc">SnakesAndLadders</span>()</code></li>
+            <li><code class="code-voice"><span class="vc">game</span>.<span class="vc">delegate</span> = <span class="vc">tracker</span></code></li>
+            <li><code class="code-voice"><span class="vc">game</span>.<span class="vc">play</span>()</code></li>
+            <li><code class="code-voice"><span class="c">// Started a new game of Snakes and Ladders&nbsp;<span class="jpstr">（ヘビとはしごの新しいゲームを始める）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"><span class="c">// The game is using a 6-sided dice&nbsp;<span class="jpstr">（ゲームは、６面のさいころを使っています）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"><span class="c">// Rolled a 3&nbsp;<span class="jpstr">（３を出した）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"><span class="c">// Rolled a 5&nbsp;<span class="jpstr">（５を出した）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"><span class="c">// Rolled a 4&nbsp;<span class="jpstr">（４を出した）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"><span class="c">// Rolled a 5&nbsp;<span class="jpstr">（５を出した）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"><span class="c">// The game lasted for 4 turns&nbsp;<span class="jpstr">（ゲームは、４回続きました）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-ID277"></a>
+  <h3 class="section-name" tabindex="0">Adding Protocol Conformance with an Extension<br><span class="jpstr">
+拡張を使ってプロトコル準拠を加える
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  You can extend an existing type to adopt and conform to a new protocol, even if you do not have access to the source code for the existing type. Extensions can add new properties, methods, and subscripts to an existing type, and are therefore able to add any requirements that a protocol may demand. For more about extensions, see <span class="x-name"><a href="Extensions.html#//apple_ref/doc/uid/TP40014097-CH24-ID151" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH24-ID151">Extensions</a></span>.
+<br><span class="jpstr">
+あなたは、ある新しいプロトコルを採用して準拠することで既存の型を拡張することができます、たとえあなたが既存の型のソース・コードにアクセスをしないとしてもです。拡張は、新しいプロパティ、メソッド、そして添え字を既存の型に加えることができます、したがって、あるプロトコルが要求するであろうどんな要件でも加えることができます。拡張についてのより多くのために、<span class="x-name"><a href="Extensions.html#//apple_ref/doc/uid/TP40014097-CH24-ID151" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH24-ID151">拡張</a></span>を見てください。
+</span><!--end_jpstr-->
+</p><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-NoLink_185"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">Existing instances of a type automatically adopt and conform to a protocol when that conformance is added to the instance’s type in an extension.
+    	<br><span class="jpstr">
+ある型の既存のインスタンスたちは、そのインスタンスの型に拡張の中で準拠が加えられるとき、そのプロトコルを自動的に採用して準拠します。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div><p class="para">
+  For example, this protocol, called <code class="code-voice">TextRepresentable</code>, can be implemented by any type that has a way to be represented as text. This might be a description of itself, or a text version of its current state:
+<br><span class="jpstr">
+例えば、このプロトコル、<code class="code-voice">TextRepresentable</code>と呼ばれるものは、テキストとして表わされる方法を持つどんな型によってでも実装されることができます。これは、それ自身の説明、またはテキスト版のそれの現在の状態であるかもしれません：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">protocol</span> <span class="vc">TextRepresentable</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">textualDescription</span>: <span class="n"><!-- a href="" -->String<!-- /a --></span> { <span class="kt">get</span> }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The <code class="code-voice">Dice</code> class from earlier can be extended to adopt and conform to <code class="code-voice">TextRepresentable</code>:
+<br><span class="jpstr">
+以前の<code class="code-voice">Dice</code>クラスは、拡張されることで、<code class="code-voice">TextRepresentable</code>を採用して準拠することができます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">extension</span> <span class="n"><!-- a href="" -->Dice<!-- /a --></span>: <span class="n"><!-- a href="" -->TextRepresentable<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">textualDescription</span>: <span class="n"><!-- a href="" -->String<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">        <span class="kt">return</span> <span class="s">&quot;A </span>\(<span class="vc">sides</span>)<span class="s">-sided dice&quot;</span></code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  This extension adopts the new protocol in exactly the same way as if <code class="code-voice">Dice</code> had provided it in its original implementation. The protocol name is provided after the type name, separated by a colon, and an implementation of all requirements of the protocol is provided within the extension’s curly braces.
+<br><span class="jpstr">
+この拡張は、まるで<code class="code-voice">Dice</code>がその最初の実装においてそれを提供したかのように、正確に同じふうに新しいプロトコルを採用します。プロトコル名は、型名の後にコロンで区切られて提供されます、そして、プロトコルの全ての要件の実装は、拡張の波括弧内で提供されます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Any <code class="code-voice">Dice</code> instance can now be treated as <code class="code-voice">TextRepresentable</code>:
+<br><span class="jpstr">
+どんな<code class="code-voice">Dice</code>インスタンスでも、今や<code class="code-voice">TextRepresentable</code>として扱われることができます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">d12</span> = <span class="vc">Dice</span>(<span class="vc">sides</span>: <span class="m">12</span>, <span class="vc">generator</span>: <span class="vc">LinearCongruentialGenerator</span>())</code></li>
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="vc">d12</span>.<span class="vc">textualDescription</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;A 12-sided dice&quot;&nbsp;<span class="jpstr">（「ひとつの12面さいころ」を出力します）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Similarly, the <code class="code-voice">SnakesAndLadders</code> game class can be extended to adopt and conform to the <code class="code-voice">TextRepresentable</code> protocol:
+<br><span class="jpstr">
+同じように、<code class="code-voice">SnakesAndLadders</code>ゲーム・クラスは、拡張されることで、<code class="code-voice">TextRepresentable</code>プロトコルを採用して準拠することができます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">extension</span> <span class="n"><!-- a href="" -->SnakesAndLadders<!-- /a --></span>: <span class="n"><!-- a href="" -->TextRepresentable<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">textualDescription</span>: <span class="n"><!-- a href="" -->String<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">        <span class="kt">return</span> <span class="s">&quot;A game of Snakes and Ladders with </span>\(<span class="vc">finalSquare</span>)<span class="s"> squares&quot;</span></code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="vc">game</span>.<span class="vc">textualDescription</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;A game of Snakes and Ladders with 25 squares&quot;&nbsp;<span class="jpstr">（「25ますのヘビとはしごのゲーム」を出力します）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  <section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-ID278"></a>
+  <h3 class="section-name" tabindex="0">Declaring Protocol Adoption with an Extension<br><span class="jpstr">
+拡張を使ってプロトコル採用を宣言する
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  If a type already conforms to all of the requirements of a protocol, but has not yet stated that it adopts that protocol, you can make it adopt the protocol with an empty extension:
+<br><span class="jpstr">
+ある型があるプロトコルの要件の全てにすでに準拠するが、それがそのプロトコルを採用するとまだ示していなかったならば、あなたは空の拡張を使ってそれがそのプロトコルを採用するようにできます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">struct</span> <span class="vc">Hamster</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">name</span>: <span class="n"><!-- a href="" -->String<!-- /a --></span></code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">textualDescription</span>: <span class="n"><!-- a href="" -->String<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">        <span class="kt">return</span> <span class="s">&quot;A hamster named </span>\(<span class="vc">name</span>)<span class="s">&quot;</span></code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"><span class="kt">extension</span> <span class="n"><!-- a href="" -->Hamster<!-- /a --></span>: <span class="n"><!-- a href="" -->TextRepresentable<!-- /a --></span> {}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Instances of <code class="code-voice">Hamster</code> can now be used wherever <code class="code-voice">TextRepresentable</code> is the required type:
+<br><span class="jpstr">
+<code class="code-voice">TextRepresentable</code>が必要な型であるどこででも、<code class="code-voice">Hamster</code>のインスタンスが現在使われることができます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">simonTheHamster</span> = <span class="vc">Hamster</span>(<span class="vc">name</span>: <span class="s">&quot;Simon&quot;</span>)</code></li>
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">somethingTextRepresentable</span>: <span class="n"><!-- a href="" -->TextRepresentable<!-- /a --></span> = <span class="vc">simonTheHamster</span></code></li>
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="vc">somethingTextRepresentable</span>.<span class="vc">textualDescription</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;A hamster named Simon&quot;&nbsp;<span class="jpstr">（「サイモンという名前のハムスター」を出力します）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-NoLink_186"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">Types do not automatically adopt a protocol just by satisfying its requirements. They must always explicitly declare their adoption of the protocol.
+    	<br><span class="jpstr">
+型は、単にその要件を満たすことだけによっては自動的にあるプロトコルを採用しません。それらは、常に明示的にそのプロトコルについてそれらが採用することを宣言しなければなりません。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div>
+  
+</section>
+
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-ID279"></a>
+  <h3 class="section-name" tabindex="0">Collections of Protocol Types<br><span class="jpstr">
+プロトコル型のコレクション
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  A protocol can be used as the type to be stored in a collection such as an array or a dictionary, as mentioned in <span class="x-name"><a href="#//apple_ref/doc/uid/TP40014097-CH25-ID275" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH25-ID275">Protocols as Types</a></span>. This example creates an array of <code class="code-voice">TextRepresentable</code> things:
+<br><span class="jpstr">
+<span class="x-name"><a href="#//apple_ref/doc/uid/TP40014097-CH25-ID275" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH25-ID275">型としてのプロトコル</a></span>で言及されるように、プロトコルは型として使われることで、コレクション、例えば配列や辞書などに保管されることができます。この例は、<code class="code-voice">TextRepresentable</code>なものの配列をつくります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">things</span>: [<span class="n"><!-- a href="" -->TextRepresentable<!-- /a --></span>] = [<span class="vc">game</span>, <span class="vc">d12</span>, <span class="vc">simonTheHamster</span>]</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  It is now possible to iterate over the items in the array, and print each item’s textual description:
+<br><span class="jpstr">
+現在この配列の項目の上に繰り返して、各項目のもつ説明テキストを出力することが可能です：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">for</span> <span class="vc">thing</span> <span class="kt">in</span> <span class="vc">things</span> {</code></li>
+            <li><code class="code-voice">    <span class="vc">print</span>(<span class="vc">thing</span>.<span class="vc">textualDescription</span>)</code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"><span class="c">// A game of Snakes and Ladders with 25 squares&nbsp;<span class="jpstr">（25ますのヘビとはしごのゲーム）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"><span class="c">// A 12-sided dice&nbsp;<span class="jpstr">（ひとつの12面のさいころ遊び）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"><span class="c">// A hamster named Simon&nbsp;<span class="jpstr">（サイモンという名前のハムスター）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Note that the <code class="code-voice">thing</code> constant is of type <code class="code-voice">TextRepresentable</code>. It is not of type <code class="code-voice">Dice</code>, or <code class="code-voice">DiceGame</code>, or <code class="code-voice">Hamster</code>, even if the actual instance behind the scenes is of one of those types. Nonetheless, because it is of type <code class="code-voice">TextRepresentable</code>, and anything that is <code class="code-voice">TextRepresentable</code> is known to have a <code class="code-voice">textualDescription</code> property, it is safe to access <code class="code-voice">thing.textualDescription</code> each time through the loop.
+<br><span class="jpstr">
+<code class="code-voice">thing</code>定数が型<code class="code-voice">TextRepresentable</code>であることに注意してください。それは型<code class="code-voice">Dice</code>、または<code class="code-voice">DiceGame</code>、または<code class="code-voice">Hamster</code>ではありません、たとえ舞台裏の実際のインスタンスがそれらの型のうちの１つであるとしてもです。それでもなお、それが<code class="code-voice">TextRepresentable</code>型であり、そして、<code class="code-voice">TextRepresentable</code>であるもの全てが<code class="code-voice">textualDescription</code>プロパティを持つと知られているので、それがループの各回で<code class="code-voice">thing.textualDescription</code>にアクセスするのは安全です。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-ID280"></a>
+  <h3 class="section-name" tabindex="0">Protocol Inheritance<br><span class="jpstr">
+プロトコル継承
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  A protocol can <em>inherit</em> one or more other protocols and can add further requirements on top of the requirements it inherits. The syntax for protocol inheritance is similar to the syntax for class inheritance, but with the option to list multiple inherited protocols, separated by commas:
+<br><span class="jpstr">
+プロトコルは、一つ以上の他のプロトコルを<em>継承する</em>ことができて、それが継承する要件の上に、更なる要件を加えることができます。プロトコル継承のための構文は、クラス継承のための構文に似ています、しかし複数の継承されたプロトコルをコンマで区切って列記する選択肢を持ちます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">protocol</span> <span class="vc">InheritingProtocol</span>: <span class="n"><!-- a href="" -->SomeProtocol<!-- /a --></span>, <span class="n"><!-- a href="" -->AnotherProtocol<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="c">// protocol definition goes here&nbsp;<span class="jpstr">（プロトコル定義が、ここにきます）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Here’s an example of a protocol that inherits the <code class="code-voice">TextRepresentable</code> protocol from above:
+<br><span class="jpstr">
+上の<code class="code-voice">TextRepresentable</code>プロトコルを継承するプロトコルの例は、ここにあります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">protocol</span> <span class="vc">PrettyTextRepresentable</span>: <span class="n"><!-- a href="" -->TextRepresentable<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">prettyTextualDescription</span>: <span class="n"><!-- a href="" -->String<!-- /a --></span> { <span class="kt">get</span> }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  This example defines a new protocol, <code class="code-voice">PrettyTextRepresentable</code>, which inherits from <code class="code-voice">TextRepresentable</code>. Anything that adopts <code class="code-voice">PrettyTextRepresentable</code> must satisfy all of the requirements enforced by <code class="code-voice">TextRepresentable</code>, <em>plus</em> the additional requirements enforced by <code class="code-voice">PrettyTextRepresentable</code>. In this example, <code class="code-voice">PrettyTextRepresentable</code> adds a single requirement to provide a gettable property called <code class="code-voice">prettyTextualDescription</code> that returns a <code class="code-voice">String</code>.
+<br><span class="jpstr">
+この例は、ある新しいプロトコル、<code class="code-voice">PrettyTextRepresentable</code>を定義します、それは、<code class="code-voice">TextRepresentable</code>から継承を受けます。<code class="code-voice">PrettyTextRepresentable</code>を採用するどんなものでも、<code class="code-voice">TextRepresentable</code>によって強制される要件の全て、それに<em>加えて</em><code class="code-voice">PrettyTextRepresentable</code>によって強制される追加の要件を満たさなければなりません。この例では、<code class="code-voice">PrettyTextRepresentable</code>は１つの要件を加えて、<code class="code-voice">String</code>を返す<code class="code-voice">prettyTextualDescription</code>と呼ばれる取得可能なプロパティを提供するようにします。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The <code class="code-voice">SnakesAndLadders</code> class can be extended to adopt and conform to <code class="code-voice">PrettyTextRepresentable</code>:
+<br><span class="jpstr">
+<code class="code-voice">SnakesAndLadders</code>クラスは、拡張されることで<code class="code-voice">PrettyTextRepresentable</code>を採用して準拠するようにできます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">extension</span> <span class="n"><!-- a href="" -->SnakesAndLadders<!-- /a --></span>: <span class="n"><!-- a href="" -->PrettyTextRepresentable<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">prettyTextualDescription</span>: <span class="n"><!-- a href="" -->String<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">        <span class="kt">var</span> <span class="vc">output</span> = <span class="vc">textualDescription</span> + <span class="s">&quot;:\n&quot;</span></code></li>
+            <li><code class="code-voice">        <span class="kt">for</span> <span class="vc">index</span> <span class="kt">in</span> <span class="m">1</span>...<span class="vc">finalSquare</span> {</code></li>
+            <li><code class="code-voice">            <span class="kt">switch</span> <span class="vc">board</span>[<span class="vc">index</span>] {</code></li>
+            <li><code class="code-voice">            <span class="kt">case</span> <span class="kt">let</span> <span class="vc">ladder</span> <span class="kt">where</span> <span class="vc">ladder</span> &gt; <span class="m">0</span>:</code></li>
+            <li><code class="code-voice">                <span class="vc">output</span> += <span class="s">&quot;▲ &quot;</span></code></li>
+            <li><code class="code-voice">            <span class="kt">case</span> <span class="kt">let</span> <span class="vc">snake</span> <span class="kt">where</span> <span class="vc">snake</span> &lt; <span class="m">0</span>:</code></li>
+            <li><code class="code-voice">                <span class="vc">output</span> += <span class="s">&quot;▼ &quot;</span></code></li>
+            <li><code class="code-voice">            <span class="kt">default</span>:</code></li>
+            <li><code class="code-voice">                <span class="vc">output</span> += <span class="s">&quot;○ &quot;</span></code></li>
+            <li><code class="code-voice">            }</code></li>
+            <li><code class="code-voice">        }</code></li>
+            <li><code class="code-voice">        <span class="kt">return</span> <span class="vc">output</span></code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  This extension states that it adopts the <code class="code-voice">PrettyTextRepresentable</code> protocol and provides an implementation of the <code class="code-voice">prettyTextualDescription</code> property for the <code class="code-voice">SnakesAndLadders</code> type. Anything that is <code class="code-voice">PrettyTextRepresentable</code> must also be <code class="code-voice">TextRepresentable</code>, and so the implementation of <code class="code-voice">prettyTextualDescription</code> starts by accessing the <code class="code-voice">textualDescription</code> property from the <code class="code-voice">TextRepresentable</code> protocol to begin an output string. It appends a colon and a line break, and uses this as the start of its pretty text representation. It then iterates through the array of board squares, and appends a geometric shape to represent the contents of each square:
+<br><span class="jpstr">
+この拡張が述べるのは、それが<code class="code-voice">PrettyTextRepresentable</code>プロトコルを採用して<code class="code-voice">prettyTextualDescription</code>プロパティの実装を<code class="code-voice">SnakesAndLadders</code>型に提供することです。<code class="code-voice">PrettyTextRepresentable</code>であるものは何でも、また<code class="code-voice">TextRepresentable</code>でなければなりません、なので<code class="code-voice">prettyTextualDescription</code>の実装は出力文字列を開始するために<code class="code-voice">TextRepresentable</code>プロトコルからの<code class="code-voice">textualDescription</code>プロパティにアクセスすることによって始まります。それはコロンと改行を追加します、そしてそれのきれいなテキスト表示のスタートとして、これを使います。それは、それからボードの正方形の配列の端から端まで繰り返して、ある幾何学形を各正方形の内容を表わすために追加します：
+</span><!--end_jpstr-->
+</p><ul class="list-bullet">
+  <li class="item"><p class="para">
+  If the square’s value is greater than <code class="code-voice">0</code>, it is the base of a ladder, and is represented by <code class="code-voice">▲</code>.
+<br><span class="jpstr">
+正方形の値が<code class="code-voice">0</code>より大きいならば、それははしごの基部であって、<code class="code-voice">▲</code>によって表されます。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  If the square’s value is less than <code class="code-voice">0</code>, it is the head of a snake, and is represented by <code class="code-voice">▼</code>.
+<br><span class="jpstr">
+正方形の値が<code class="code-voice">0</code>より小さいならば、それはヘビの頭であって、<code class="code-voice">▼</code>によって表されます。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  Otherwise, the square’s value is <code class="code-voice">0</code>, and it is a “free” square, represented by <code class="code-voice">○</code>.
+<br><span class="jpstr">
+一方、正方形の値は<code class="code-voice">0</code>ならば、それは「自由」な正方形であって、<code class="code-voice">○</code>によって表されます。
+</span><!--end_jpstr-->
+</p>
+</li>
+</ul><p class="para">
+  The <code class="code-voice">prettyTextualDescription</code> property can now be used to print a pretty text description of any <code class="code-voice">SnakesAndLadders</code> instance:
+<br><span class="jpstr">
+この<code class="code-voice">prettyTextualDescription</code>プロパティは、現在あらゆる<code class="code-voice">SnakesAndLadders</code>インスタンスのきれいなテキスト解説を出力するために使われることができます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="vc">game</span>.<span class="vc">prettyTextualDescription</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// A game of Snakes and Ladders with 25 squares:&nbsp;<span class="jpstr">（25ますのヘビとはしごのゲーム：）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"><span class="c">// ○ ○ ▲ ○ ○ ▲ ○ ○ ▲ ▲ ○ ○ ○ ▼ ○ ○ ○ ○ ▼ ○ ○ ▼ ○ ▼ ○</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-ID281"></a>
+  <h3 class="section-name" tabindex="0">Class-Only Protocols<br><span class="jpstr">
+クラス専用プロトコル
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  You can limit protocol adoption to class types (and not structures or enumerations) by adding the <code class="code-voice">class</code> keyword to a protocol’s inheritance list. The <code class="code-voice">class</code> keyword must always appear first in a protocol’s inheritance list, before any inherited protocols:
+<br><span class="jpstr">
+あなたは、プロトコル採用をクラス型に制限する（そして構造体や列挙で採用しない）ことが<code class="code-voice">class</code>キーワードをプロトコルの継承リストに加えることによって可能です。この<code class="code-voice">class</code>キーワードは、常にプロトコルの継承リストの最初、あらゆる継承プロトコルの前に現れなければなりません：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">protocol</span> <span class="vc">SomeClassOnlyProtocol</span>: <span class="kt">class</span>, <span class="n"><!-- a href="" -->SomeInheritedProtocol<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="c">// class-only protocol definition goes here&nbsp;<span class="jpstr">（クラス専用プロトコル定義が、ここにきます）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  In the example above, <code class="code-voice">SomeClassOnlyProtocol</code> can only be adopted by class types. It is a compile-time error to write a structure or enumeration definition that tries to adopt <code class="code-voice">SomeClassOnlyProtocol</code>.
+<br><span class="jpstr">
+上の例で、<code class="code-voice">SomeClassOnlyProtocol</code>はクラス型によってのみ採用されることができます。<code class="code-voice">SomeClassOnlyProtocol</code>を採用しようと試みる構造体や列挙定義を書くことは、コンパイル時エラーになります。
+</span><!--end_jpstr-->
+</p><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-NoLink_187"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">Use a class-only protocol when the behavior defined by that protocol’s requirements assumes or requires that a conforming type has reference semantics rather than value semantics. For more on reference and value semantics, see <span class="x-name"><a href="ClassesAndStructures.html#//apple_ref/doc/uid/TP40014097-CH13-ID88" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH13-ID88">Structures and Enumerations Are Value Types</a></span> and <span class="x-name"><a href="ClassesAndStructures.html#//apple_ref/doc/uid/TP40014097-CH13-ID89" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH13-ID89">Classes Are Reference Types</a></span>.
+    	<br><span class="jpstr">
+クラス専用プロトコルを、そのプロトコルの要件によって定義される挙動が想定されるまたは必要とされる時、準拠する型が値意味論ではなく参照意味論を持つ時に、使ってください。参照および値意味論についての詳細として、<span class="x-name"><a href="ClassesAndStructures.html#//apple_ref/doc/uid/TP40014097-CH13-ID88" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH13-ID88">構造体と列挙は値型です</a></span>と<span class="x-name"><a href="ClassesAndStructures.html#//apple_ref/doc/uid/TP40014097-CH13-ID89" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH13-ID89">クラスは、参照型です</a></span>を見てください。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-ID282"></a>
+  <h3 class="section-name" tabindex="0">Protocol Composition<br><span class="jpstr">
+プロトコル合成
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  It can be useful to require a type to conform to multiple protocols at once. You can combine multiple protocols into a single requirement with a <em>protocol composition</em>. Protocol compositions have the form <code class="code-voice">SomeProtocol &amp; AnotherProtocol</code>. You can list as many protocols as you need to, separating them by ampersands (<code class="code-voice">&amp;</code>).
+<br><span class="jpstr">
+ある型に一度に複数のプロトコルに従うことを要求することは、役に立つことがありえます。あなたは、<em>プロトコル合成</em>を使って複数のプロトコルを１つの要件に結合することができます。プロトコル合成は、形式<code class="code-voice">SomeProtocol &amp; AnotherProtocol</code>を持ちます。あなたは、あなたが必要とするだけの多くのプロトコルを、アンパサンド（<code class="code-voice">&amp;</code>）でそれらを隔てて並べることができます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Here’s an example that combines two protocols called <code class="code-voice">Named</code> and <code class="code-voice">Aged</code> into a single protocol composition requirement on a function parameter:
+<br><span class="jpstr">
+ここに、関数パラメータ上で<code class="code-voice">Named</code>と<code class="code-voice">Aged</code>と呼ばれる２つのプロトコルを１つのプロトコル合成要件に結合する例があります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">protocol</span> <span class="vc">Named</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">name</span>: <span class="n"><!-- a href="" -->String<!-- /a --></span> { <span class="kt">get</span> }</code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"><span class="kt">protocol</span> <span class="vc">Aged</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">age</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span> { <span class="kt">get</span> }</code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"><span class="kt">struct</span> <span class="vc">Person</span>: <span class="n"><!-- a href="" -->Named<!-- /a --></span>, <span class="n"><!-- a href="" -->Aged<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">name</span>: <span class="n"><!-- a href="" -->String<!-- /a --></span></code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">age</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span></code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">wishHappyBirthday</span>(<span class="vc">to</span> <span class="vc">celebrator</span>: <span class="n"><!-- a href="" -->Named<!-- /a --></span> &amp; <span class="n"><!-- a href="" -->Aged<!-- /a --></span>) {</code></li>
+            <li><code class="code-voice">    <span class="vc">print</span>(<span class="s">&quot;Happy birthday, </span>\(<span class="vc">celebrator</span>.<span class="vc">name</span>)<span class="s">, you&#39;re </span>\(<span class="vc">celebrator</span>.<span class="vc">age</span>)<span class="s">!&quot;</span>)</code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">birthdayPerson</span> = <span class="vc">Person</span>(<span class="vc">name</span>: <span class="s">&quot;Malcolm&quot;</span>, <span class="vc">age</span>: <span class="m">21</span>)</code></li>
+            <li><code class="code-voice"><span class="vc">wishHappyBirthday</span>(<span class="vc">to</span>: <span class="vc">birthdayPerson</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;Happy birthday, Malcolm, you&#39;re 21!&quot;&nbsp;<span class="jpstr">（「誕生日おめでとうマルコム、あなたは21です！」を出力します）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  This example defines a protocol called <code class="code-voice">Named</code>, with a single requirement for a gettable <code class="code-voice">String</code> property called <code class="code-voice">name</code>. It also defines a protocol called <code class="code-voice">Aged</code>, with a single requirement for a gettable <code class="code-voice">Int</code> property called <code class="code-voice">age</code>. Both of these protocols are adopted by a structure called <code class="code-voice">Person</code>.
+<br><span class="jpstr">
+この例は、<code class="code-voice">name</code>と呼ばれる取得可能な<code class="code-voice">String</code>プロパティのための要件を１つ持つ、<code class="code-voice">Named</code>と呼ばれるプロトコルを定義します。それはまた、<code class="code-voice">age</code>と呼ばれる取得可能な<code class="code-voice">Int</code>プロパティのための要件を１つ持つ、<code class="code-voice">Aged</code>と呼ばれるプロトコルを定義します。これらのプロトコルの両方とも、<code class="code-voice">Person</code>と呼ばれる構造体で採用されます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The example also defines a <code class="code-voice">wishHappyBirthday(to:)</code> function, The type of the <code class="code-voice">celebrator</code> parameter is <code class="code-voice">Named &amp; Aged</code>, which means “any type that conforms to both the <code class="code-voice">Named</code> and <code class="code-voice">Aged</code> protocols.” It doesn’t matter what specific type is passed to the function, as long as it conforms to both of the required protocols.
+<br><span class="jpstr">
+この例はまた、<code class="code-voice">wishHappyBirthday(to:)</code>関数を定義します。<code class="code-voice">celebrator</code>パラメータの型は<code class="code-voice">Named &amp; Aged</code>です、それは、「<code class="code-voice">Named</code>と<code class="code-voice">Aged</code>プロトコルの両方に準拠するあらゆる型」を意味します。どんな具体的な型が関数に渡されるかは重要ではありません、それが必要とされるプロトコルの両方に従う限りは。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The example then creates a new <code class="code-voice">Person</code> instance called <code class="code-voice">birthdayPerson</code> and passes this new instance to the <code class="code-voice">wishHappyBirthday(to:)</code> function. Because <code class="code-voice">Person</code> conforms to both protocols, this is a valid call, and the <code class="code-voice">wishHappyBirthday(to:)</code> function is able to print its birthday greeting.
+<br><span class="jpstr">
+この例は、それから<code class="code-voice">birthdayPerson</code>と呼ばれる新しい<code class="code-voice">Person</code>インスタンスをつくって、この新しいインスタンスを<code class="code-voice">wishHappyBirthday(to:)</code>関数に渡します。<code class="code-voice">Person</code>が両方のプロトコルに準拠するので、これは有効な呼び出しです、そして<code class="code-voice">wishHappyBirthday(to:)</code>関数はその誕生日のお祝いを出力することができます。
+</span><!--end_jpstr-->
+</p><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-NoLink_188"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">Protocol compositions do not define a new, permanent protocol type. Rather, they define a temporary local protocol that has the combined requirements of all protocols in the composition.
+    	<br><span class="jpstr">
+プロトコル合成は、新しい、永続的なプロトコル型を定義しません。そうではなく、それはその合成物の中の全てのプロトコルの要件を結合したものを持つ、一時的なローカル・プロトコルを定義します。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-ID283"></a>
+  <h3 class="section-name" tabindex="0">Checking for Protocol Conformance<br><span class="jpstr">
+プロトコル準拠の確認
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  You can use the <code class="code-voice">is</code> and <code class="code-voice">as</code> operators described in <span class="x-name"><a href="TypeCasting.html#//apple_ref/doc/uid/TP40014097-CH22-ID338" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH22-ID338">Type Casting</a></span> to check for protocol conformance, and to cast to a specific protocol. Checking for and casting to a protocol follows exactly the same syntax as checking for and casting to a type:
+<br><span class="jpstr">
+あなたは、<span class="x-name"><a href="TypeCasting.html#//apple_ref/doc/uid/TP40014097-CH22-ID338" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH22-ID338">型キャスト</a></span>で記述される<code class="code-voice">is</code>と<code class="code-voice">as</code>演算子を特定のプロトコルへキャストするために使うことができます。あるプロトコルについて調べたりそれにキャストすることは、ある型について調べたりキャストするのと正確に同じ構文に従います：
+</span><!--end_jpstr-->
+</p><ul class="list-bullet">
+  <li class="item"><p class="para">
+  The <code class="code-voice">is</code> operator returns <code class="code-voice">true</code> if an instance conforms to a protocol and returns <code class="code-voice">false</code> if it does not.
+<br><span class="jpstr">
+<code class="code-voice">is</code>演算子は、あるインスタンスがプロトコルに準拠するならば<code class="code-voice">true</code>を返して、それがそうしないならば<code class="code-voice">false</code>を返します。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  The <code class="code-voice">as?</code> version of the downcast operator returns an optional value of the protocol’s type, and this value is <code class="code-voice">nil</code> if the instance does not conform to that protocol.
+<br><span class="jpstr">
+<code class="code-voice">as?</code>版のダウンキャスト演算子は、そのプロトコルの型のオプショナルの値を返します、そしてインスタンスがそのプロトコルに準拠しないならばその値は<code class="code-voice">nil</code>です。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  The <code class="code-voice">as!</code> version of the downcast operator forces the downcast to the protocol type and triggers a runtime error if the downcast does not succeed.
+<br><span class="jpstr">
+<code class="code-voice">as!</code>版のダウンキャスト演算子は、そのプロトコル型へのダウンキャストを強制して、ダウンキャストが成功しなかったならば実行時エラーの引き金を引きます。
+</span><!--end_jpstr-->
+</p>
+</li>
+</ul><p class="para">
+  This example defines a protocol called <code class="code-voice">HasArea</code>, with a single property requirement of a gettable <code class="code-voice">Double</code> property called <code class="code-voice">area</code>:
+<br><span class="jpstr">
+この例は、<code class="code-voice">area</code>と呼ばれる取得可能な<code class="code-voice">Double</code>プロパティである１つだけのプロパティ要件をもつ、<code class="code-voice">HasArea</code>と呼ばれるプロトコルを定義します：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">protocol</span> <span class="vc">HasArea</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">area</span>: <span class="n"><!-- a href="" -->Double<!-- /a --></span> { <span class="kt">get</span> }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Here are two classes, <code class="code-voice">Circle</code> and <code class="code-voice">Country</code>, both of which conform to the <code class="code-voice">HasArea</code> protocol:
+<br><span class="jpstr">
+その両方とも<code class="code-voice">HasArea</code>プロトコルに従う２つのクラス、<code class="code-voice">Circle</code>と<code class="code-voice">Country</code>が、ここにあります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">class</span> <span class="vc">Circle</span>: <span class="n"><!-- a href="" -->HasArea<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">let</span> <span class="vc">pi</span> = <span class="m">3.1415927</span></code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">radius</span>: <span class="n"><!-- a href="" -->Double<!-- /a --></span></code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">area</span>: <span class="n"><!-- a href="" -->Double<!-- /a --></span> { <span class="kt">return</span> <span class="vc">pi</span> * <span class="vc">radius</span> * <span class="vc">radius</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">init</span>(<span class="vc">radius</span>: <span class="n"><!-- a href="" -->Double<!-- /a --></span>) { <span class="kt">self</span>.<span class="vc">radius</span> = <span class="vc">radius</span> }</code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"><span class="kt">class</span> <span class="vc">Country</span>: <span class="n"><!-- a href="" -->HasArea<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">area</span>: <span class="n"><!-- a href="" -->Double<!-- /a --></span></code></li>
+            <li><code class="code-voice">    <span class="kt">init</span>(<span class="vc">area</span>: <span class="n"><!-- a href="" -->Double<!-- /a --></span>) { <span class="kt">self</span>.<span class="vc">area</span> = <span class="vc">area</span> }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The <code class="code-voice">Circle</code> class implements the <code class="code-voice">area</code> property requirement as a computed property, based on a stored <code class="code-voice">radius</code> property. The <code class="code-voice">Country</code> class implements the <code class="code-voice">area</code> requirement directly as a stored property. Both classes correctly conform to the <code class="code-voice">HasArea</code> protocol.
+<br><span class="jpstr">
+<code class="code-voice">Circle</code>クラスは<code class="code-voice">area</code>プロパティ要件を、保存<code class="code-voice">radius</code>プロパティに基づいて計算プロパティとして、満たします。<code class="code-voice">Country</code>クラスは、<code class="code-voice">area</code>要件を保存プロパティとして直接に満たします。両方のクラスは、正しく<code class="code-voice">HasArea</code>プロトコルに従います。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Here’s a class called <code class="code-voice">Animal</code>, which does not conform to the <code class="code-voice">HasArea</code> protocol:
+<br><span class="jpstr">
+<code class="code-voice">HasArea</code>プロトコルに従わない<code class="code-voice">Animal</code>と呼ばれるクラスが、ここにあります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">class</span> <span class="vc">Animal</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">legs</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span></code></li>
+            <li><code class="code-voice">    <span class="kt">init</span>(<span class="vc">legs</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span>) { <span class="kt">self</span>.<span class="vc">legs</span> = <span class="vc">legs</span> }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The <code class="code-voice">Circle</code>, <code class="code-voice">Country</code> and <code class="code-voice">Animal</code> classes do not have a shared base class. Nonetheless, they are all classes, and so instances of all three types can be used to initialize an array that stores values of type <code class="code-voice">AnyObject</code>:
+<br><span class="jpstr">
+<code class="code-voice">Circle</code>、<code class="code-voice">Country</code>と<code class="code-voice">Animal</code>クラスには、共有の基盤クラスがありません。それでもなお、それらは全てクラスです、なので、３つの型全てのインスタンスは、型<code class="code-voice">AnyObject</code>の値を格納するある配列を初期化するために使用できます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">objects</span>: [<span class="n"><!-- a href="" -->AnyObject<!-- /a --></span>] = [</code></li>
+            <li><code class="code-voice">    <span class="vc">Circle</span>(<span class="vc">radius</span>: <span class="m">2.0</span>),</code></li>
+            <li><code class="code-voice">    <span class="vc">Country</span>(<span class="vc">area</span>: <span class="m">243_610</span>),</code></li>
+            <li><code class="code-voice">    <span class="vc">Animal</span>(<span class="vc">legs</span>: <span class="m">4</span>)</code></li>
+            <li><code class="code-voice">]</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The <code class="code-voice">objects</code> array is initialized with an array literal containing a <code class="code-voice">Circle</code> instance with a radius of 2 units; a <code class="code-voice">Country</code> instance initialized with the surface area of the United Kingdom in square kilometers; and an <code class="code-voice">Animal</code> instance with four legs.
+<br><span class="jpstr">
+<code class="code-voice">objects</code>配列は、単位２の半径をもつ<code class="code-voice">Circle</code>インスタンスを含んでいる配列リテラル；平方キロメートルでの英国の面積で初期化される<code class="code-voice">Country</code>インスタンス；そして、４本脚の<code class="code-voice">Animal</code>インスタンス；を含んでいる配列リテラルで初期化されます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The <code class="code-voice">objects</code> array can now be iterated, and each object in the array can be checked to see if it conforms to the <code class="code-voice">HasArea</code> protocol:
+<br><span class="jpstr">
+<code class="code-voice">objects</code>配列は、今や繰り返されることができます、そして配列の各オブジェクトはそれが<code class="code-voice">HasArea</code>プロトコルに従うかどうかを確認されることができます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">for</span> <span class="vc">object</span> <span class="kt">in</span> <span class="vc">objects</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">if</span> <span class="kt">let</span> <span class="vc">objectWithArea</span> = <span class="vc">object</span> <span class="kt">as</span>? <span class="n"><!-- a href="" -->HasArea<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">        <span class="vc">print</span>(<span class="s">&quot;Area is </span>\(<span class="vc">objectWithArea</span>.<span class="vc">area</span>)<span class="s">&quot;</span>)</code></li>
+            <li><code class="code-voice">    } <span class="kt">else</span> {</code></li>
+            <li><code class="code-voice">        <span class="vc">print</span>(<span class="s">&quot;Something that doesn&#39;t have an area&quot;</span>)</code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"><span class="c">// Area is 12.5663708&nbsp;<span class="jpstr">（面積は、12.5663708です）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"><span class="c">// Area is 243610.0&nbsp;<span class="jpstr">（面積は、243610.0です）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"><span class="c">// Something that doesn&#39;t have an area&nbsp;<span class="jpstr">（面積を持たない何か）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Whenever an object in the array conforms to the <code class="code-voice">HasArea</code> protocol, the optional value returned by the <code class="code-voice">as?</code> operator is unwrapped with optional binding into a constant called <code class="code-voice">objectWithArea</code>. The <code class="code-voice">objectWithArea</code> constant is known to be of type <code class="code-voice">HasArea</code>, and so its <code class="code-voice">area</code> property can be accessed and printed in a type-safe way.
+<br><span class="jpstr">
+配列のオブジェクトが<code class="code-voice">HasArea</code>プロトコルに準拠するときはいつでも、<code class="code-voice">as?</code>演算子によって返されるオプショナルの値は、オプショナル束縛によって<code class="code-voice">objectWithArea</code>と呼ばれる定数へとアンラップされます。定数の<code class="code-voice">objectWithArea</code>は、型<code class="code-voice">HasArea</code>であるということを知られています、なので、その<code class="code-voice">area</code>プロパティは型安全な方法でアクセスされて出力されることができます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Note that the underlying objects are not changed by the casting process. They continue to be a <code class="code-voice">Circle</code>, a <code class="code-voice">Country</code> and an <code class="code-voice">Animal</code>. However, at the point that they are stored in the <code class="code-voice">objectWithArea</code> constant, they are only known to be of type <code class="code-voice">HasArea</code>, and so only their <code class="code-voice">area</code> property can be accessed.
+<br><span class="jpstr">
+根底にあるオブジェクトがキャスト処理によって変更されない点に注意してください。それらは、<code class="code-voice">Circle</code>、<code class="code-voice">Country</code>、そして<code class="code-voice">Animal</code>であり続けます。しかし、それらが定数の<code class="code-voice">objectWithArea</code>に格納される時点で、それらは型<code class="code-voice">HasArea</code>であるということを知られているだけです、なので、それらの<code class="code-voice">area</code>プロパティだけがアクセスされることができます。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-ID284"></a>
+  <h3 class="section-name" tabindex="0">Optional Protocol Requirements<br><span class="jpstr">
+オプショナルのプロトコル要件
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  You can define <em>optional requirements</em> for protocols, These requirements do not have to be implemented by types that conform to the protocol. Optional requirements are prefixed by the <code class="code-voice">optional</code> modifier as part of the protocol’s definition. Optional requirements are available so that you can write code that interoperates with Objective-C. Both the protocol and the optional requirement must be marked with the <code class="code-voice">@objc</code> attribute. Note that <code class="code-voice">@objc</code> protocols can be adopted only by classes that inherit from Objective-C classes or other <code class="code-voice">@objc</code> classes. They can’t be adopted by structures or enumerations.
+<br><span class="jpstr">
+あなたはプロトコルのために<em>オプショナルの要件</em>を定義することができます。 それらの要件は、そのプロトコルに準拠する型によって実装されることは必要ではありません。 オプショナルの要件は、そのプロトコル定義において<code class="code-voice">optional</code>修飾子を前に置かれます。オプショナル要件が利用可能なことから、あなたはObjective-Cと相互運用するコードを書くことができます。プロトコルとオプショナル要件の両方は、<code class="code-voice">@objc</code>属性で印されなければなりません。<code class="code-voice">@objc</code>プロトコルがObjective-Cクラスや他の<code class="code-voice">@objc</code>クラスから継承するクラスによってのみ採用される点に注意してください。それは構造体や列挙によって採用されることはできません。
+</span><!--end_jpstr-->
+</p><p class="para">
+  When you use a method or property in an optional requirement, its type automatically becomes an optional. For example, a method of type <code class="code-voice">(Int) -&gt; String</code> becomes <code class="code-voice">((Int) -&gt; String)?</code>. Note that the entire function type is wrapped in the optional, not the method’s return value.
+<br><span class="jpstr">
+あなたがオプショナルの要件の中のメソッドやプロパティを使うとき、それの型は自動的にオプショナルになります。例えば、型<code class="code-voice">(Int) -&gt; String</code>のメソッドは<code class="code-voice">((Int) -&gt; String)?</code>になります。メソッドの戻り値ではなく、その関数型の全体がオプショナルの中のラップされることに注意してください。
+</span><!--end_jpstr-->
+</p><p class="para">
+  An optional protocol requirement can be called with optional chaining, to account for the possibility that the requirement was not implemented by a type that conforms to the protocol. You check for an implementation of an optional method by writing a question mark after the name of the method when it is called, such as <code class="code-voice">someOptionalMethod?(someArgument)</code>. For information on optional chaining, see <span class="x-name"><a href="OptionalChaining.html#//apple_ref/doc/uid/TP40014097-CH21-ID245" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH21-ID245">Optional Chaining</a></span>.
+<br><span class="jpstr">
+オプショナルのプロトコル要件は、オプショナル連鎖を使って呼び出されることができます、それによってプロトコルに準拠する型によって要件が満たされなかったという可能性に対応します。あなたは、それが呼ばれるときに疑問符をそのメソッドの後に書くことによって、あるオプショナルメソッドの実装について確認することができます、例えば<code class="code-voice">someOptionalMethod?(someArgument)</code>のように。オプショナル連鎖に関する情報のために、<span class="x-name"><a href="OptionalChaining.html#//apple_ref/doc/uid/TP40014097-CH21-ID245" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH21-ID245">オプショナル連鎖</a></span>を見てください。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The following example defines an integer-counting class called <code class="code-voice">Counter</code>, which uses an external data source to provide its increment amount. This data source is defined by the <code class="code-voice">CounterDataSource</code> protocol, which has two optional requirements:
+<br><span class="jpstr">
+以下の例は<code class="code-voice">Counter</code>と呼ばれる整数計数クラスを定義します、それは、その増加量を提供するために外部のデータ・ソースを使います。このデータ・ソースは<code class="code-voice">CounterDataSource</code>プロトコルによって定義されます、それは、２つのオプショナルの要件を持ちます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">@objc</span> <span class="kt">protocol</span> <span class="vc">CounterDataSource</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">@objc</span> <span class="kt">optional</span> <span class="kt">func</span> <span class="vc">increment</span>(<span class="vc">forCount</span> <span class="vc">count</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span>) -&gt; <span class="n"><!-- a href="" -->Int<!-- /a --></span></code></li>
+            <li><code class="code-voice">    <span class="kt">@objc</span> <span class="kt">optional</span> <span class="kt">var</span> <span class="vc">fixedIncrement</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span> { <span class="kt">get</span> }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The <code class="code-voice">CounterDataSource</code> protocol defines an optional method requirement called <code class="code-voice">increment(forCount:)</code> and an optional property requirement called <code class="code-voice">fixedIncrement</code>. These requirements define two different ways for data sources to provide an appropriate increment amount for a <code class="code-voice">Counter</code> instance.
+<br><span class="jpstr">
+<code class="code-voice">CounterDataSource</code>プロトコルは、<code class="code-voice">incrementForCount(_:)</code>と呼ばれるオプショナルのメソッド要件と<code class="code-voice">fixedIncrement</code>と呼ばれるオプショナルのプロパティ要件を定義します。これらの要件は、データ・ソースのために<code class="code-voice">Counter</code>インスタンスに適切な増加量を用意する２つの異なる方法を定義します。
+</span><!--end_jpstr-->
+</p><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-NoLink_189"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">Strictly speaking, you can write a custom class that conforms to <code class="code-voice">CounterDataSource</code> without implementing <em>either</em> protocol requirement. They are both optional, after all. Although technically allowed, this wouldn’t make for a very good data source.
+    	<br><span class="jpstr">
+厳密に言って、あなたは<code class="code-voice">CounterDataSource</code>に準拠する特注のクラスを書くことが<em>両方の</em>プロトコル要件を満たすことなく可能です。結局、それらは両方ともオプショナルです。技術的には可能であるけれども、これはあまり良いデータ・ソースにつながりません。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div><p class="para">
+  The <code class="code-voice">Counter</code> class, defined below, has an optional <code class="code-voice">dataSource</code> property of type <code class="code-voice">CounterDataSource?</code>:
+<br><span class="jpstr">
+下で定義される、<code class="code-voice">Counter</code>クラスは、型<code class="code-voice">CounterDataSource?</code>のオプショナルの<code class="code-voice">dataSource</code>プロパティを持ちます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">class</span> <span class="vc">Counter</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">count</span> = <span class="m">0</span></code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">dataSource</span>: <span class="n"><!-- a href="" -->CounterDataSource<!-- /a --></span>?</code></li>
+            <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">increment</span>() {</code></li>
+            <li><code class="code-voice">        <span class="kt">if</span> <span class="kt">let</span> <span class="vc">amount</span> = <span class="vc">dataSource</span>?.<span class="vc">increment</span>?(<span class="vc">forCount</span>: <span class="vc">count</span>) {</code></li>
+            <li><code class="code-voice">            <span class="vc">count</span> += <span class="vc">amount</span></code></li>
+            <li><code class="code-voice">        } <span class="kt">else</span> <span class="kt">if</span> <span class="kt">let</span> <span class="vc">amount</span> = <span class="vc">dataSource</span>?.<span class="vc">fixedIncrement</span> {</code></li>
+            <li><code class="code-voice">            <span class="vc">count</span> += <span class="vc">amount</span></code></li>
+            <li><code class="code-voice">        }</code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The <code class="code-voice">Counter</code> class stores its current value in a variable property called <code class="code-voice">count</code>. The <code class="code-voice">Counter</code> class also defines a method called <code class="code-voice">increment</code>, which increments the <code class="code-voice">count</code> property every time the method is called.
+<br><span class="jpstr">
+<code class="code-voice">Counter</code>クラスは、その現在の値を<code class="code-voice">count</code>と呼ばれる変数プロパティに保管します。<code class="code-voice">Counter</code>クラスはまた、<code class="code-voice">increment</code>と呼ばれるメソッドを定義します、それは、メソッドが呼ばれるたびに<code class="code-voice">count</code>プロパティを増加させます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The <code class="code-voice">increment()</code> method first tries to retrieve an increment amount by looking for an implementation of the <code class="code-voice">increment(forCount:)</code> method on its data source. The <code class="code-voice">increment()</code> method uses optional chaining to try to call <code class="code-voice">increment(forCount:)</code>, and passes the current <code class="code-voice">count</code> value as the method’s single argument.
+<br><span class="jpstr">
+<code class="code-voice">increment()</code>メソッドは、最初にそれのデータ・ソース上で<code class="code-voice">increment(forCount:)</code>メソッドの実装を捜すことによって増加量を取り出そうと試みます。<code class="code-voice">increment()</code>メソッドは、オプショナル連鎖を使って<code class="code-voice">increment(forCount:)</code>を呼ぶことを試みます、そしてメソッドのもつただ１つの引数として現在の<code class="code-voice">count</code>値を渡します。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Note that <em>two</em> levels of optional chaining are at play here. First, it is possible that <code class="code-voice">dataSource</code> may be <code class="code-voice">nil</code>, and so <code class="code-voice">dataSource</code> has a question mark after its name to indicate that <code class="code-voice">increment(forCount:)</code> should be called only if <code class="code-voice">dataSource</code> isn’t <code class="code-voice">nil</code>. Second, even if <code class="code-voice">dataSource</code> <em>does</em> exist, there is no guarantee that it implements <code class="code-voice">increment(forCount:)</code>, because it is an optional requirement. Here, the possibility that <code class="code-voice">increment(forCount:)</code> might not be implemented is also handled by optional chaining. The call to <code class="code-voice">increment(forCount:)</code> happens only if <code class="code-voice">increment(forCount:)</code> exists—that is, if it isn’t <code class="code-voice">nil</code>. This is why <code class="code-voice">increment(forCount:)</code> is also written with a question mark after its name.
+<br><span class="jpstr">
+ここで<em>２つの</em>階層のオプショナル連鎖が働いていることに注意してください。第１に、<code class="code-voice">dataSource</code>が<code class="code-voice">nil</code>かもしれない可能性があります、なので、<code class="code-voice">dataSource</code>はその名前の後に疑問符を持ち、<code class="code-voice">dataSource</code>が<code class="code-voice">nil</code>でない場合にのみ<code class="code-voice">increment(forCount:)</code>が呼ばれるべきであるのを示します。第２に、たとえ<code class="code-voice">dataSource</code>が<em>存在する</em>としても、それが<code class="code-voice">increment(forCount:)</code>を実装する保証はありません、それがオプショナルの要件であるからです。ここでは、<code class="code-voice">increment(forCount:)</code>が実装されないかもしれないという可能性もまたオプショナル連鎖によって取り扱われます。<code class="code-voice">increment(forCount:)</code>への呼び出しは、<code class="code-voice">increment(forCount:)</code>が存在する場合にのみ起こります ― すなわち、それが<code class="code-voice">nil</code>でない場合。これが、<code class="code-voice">increment(forCount:)</code>もまたその名前の後に疑問符を書かれる理由です。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Because the call to <code class="code-voice">increment(forCount:)</code> can fail for either of these two reasons, the call returns an <em>optional</em> <code class="code-voice">Int</code> value. This is true even though <code class="code-voice">increment(forCount:)</code> is defined as returning a nonoptional <code class="code-voice">Int</code> value in the definition of <code class="code-voice">CounterDataSource</code>. Even though there are two optional chaining operations, one after another, the result is still wrapped in a single optional. For more information about using multiple optional chaining operations, see <span class="x-name"><a href="OptionalChaining.html#//apple_ref/doc/uid/TP40014097-CH21-ID252" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH21-ID252">Linking Multiple Levels of Chaining</a></span>.
+<br><span class="jpstr">
+<code class="code-voice">increment(forCount:)</code>への呼び出しがこれらの２つの理由のどちらによっても失敗する可能性があるので、呼び出しは<em>オプショナルの</em><code class="code-voice">Int</code>値を返します。たとえ<code class="code-voice">increment(forCount:)</code>が<code class="code-voice">CounterDataSource</code>の定義の中で非オプショナルの<code class="code-voice">Int</code>値を返すように定義されるとしても、これは当てはまります。たとえ２つのオプショナル連鎖演算があったとしても、後から後から、その結果は依然としてただ１つのオプショナルの中にラップされます。複数のオプショナル連鎖演算を使用することについての更なる情報として、<span class="x-name"><a href="OptionalChaining.html#//apple_ref/doc/uid/TP40014097-CH21-ID252" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH21-ID252">連鎖の複数の階層を結ぶ</a></span>を見てください。
+</span><!--end_jpstr-->
+</p><p class="para">
+  After calling <code class="code-voice">increment(forCount:)</code>, the optional <code class="code-voice">Int</code> that it returns is unwrapped into a constant called <code class="code-voice">amount</code>, using optional binding. If the optional <code class="code-voice">Int</code> does contain a value—that is, if the delegate and method both exist, and the method returned a value—the unwrapped <code class="code-voice">amount</code> is added onto the stored <code class="code-voice">count</code> property, and incrementation is complete.
+<br><span class="jpstr">
+<code class="code-voice">increment(forCount:)</code>呼び出しの後、それが返すオプショナルの<code class="code-voice">Int</code>は、オプショナル束縛を使って、<code class="code-voice">amount</code>と呼ばれる定数へとアンラップされます。オプショナルの<code class="code-voice">Int</code>が値を含むならば ― すなわち、委任先とメソッドが両方とも存在する、そしてメソッドが値を返すならば ― アンラップされた<code class="code-voice">amount</code>が保存<code class="code-voice">count</code>プロパティへと加えられます、そして増加作業は完了です。
+</span><!--end_jpstr-->
+</p><p class="para">
+  If it is <em>not</em> possible to retrieve a value from the <code class="code-voice">increment(forCount:)</code> method—either because <code class="code-voice">dataSource</code> is nil, or because the data source does not implement <code class="code-voice">increment(forCount:)</code>—then the <code class="code-voice">increment()</code> method tries to retrieve a value from the data source’s <code class="code-voice">fixedIncrement</code> property instead. The <code class="code-voice">fixedIncrement</code> property is also an optional requirement, so its value is an optional <code class="code-voice">Int</code> value, even though <code class="code-voice">fixedIncrement</code> is defined as a nonoptional <code class="code-voice">Int</code> property as part of the <code class="code-voice">CounterDataSource</code> protocol definition.
+<br><span class="jpstr">
+値を<code class="code-voice">increment(forCount:)</code>メソッドから取り出すことが可能で<em>ない</em>ならば ― <code class="code-voice">dataSource</code>がnilであるから、またはデータ・ソースが<code class="code-voice">increment(forCount:)</code>を実装しないからのどちらでも ― その時<code class="code-voice">increment()</code>メソッドはその代わりに値をデータ・ソースの<code class="code-voice">fixedIncrement</code>プロパティから取り出そうとします。<code class="code-voice">fixedIncrement</code>プロパティもまたオプショナルの要件です、なのでその値はオプショナルの<code class="code-voice">Int</code>値です、たとえ<code class="code-voice">fixedIncrement</code>が<code class="code-voice">CounterDataSource</code>プロトコル定義の部分では非オプショナルの<code class="code-voice">Int</code>プロパティであると定義されるとしてもです。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Here’s a simple <code class="code-voice">CounterDataSource</code> implementation where the data source returns a constant value of <code class="code-voice">3</code> every time it is queried. It does this by implementing the optional <code class="code-voice">fixedIncrement</code> property requirement:
+<br><span class="jpstr">
+ある単純な<code class="code-voice">CounterDataSource</code>実装がここにあります、そこにおいて、データ・ソースは<code class="code-voice">3</code>の定数値をそれが問い合わされるたびに返します。それは、オプショナルの<code class="code-voice">fixedIncrement</code>プロパティ要件を実装することによってこれをします：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">class</span> <span class="vc">ThreeSource</span>: <span class="n"><!-- a href="" -->NSObject<!-- /a --></span>, <span class="n"><!-- a href="" -->CounterDataSource<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">let</span> <span class="vc">fixedIncrement</span> = <span class="m">3</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  You can use an instance of <code class="code-voice">ThreeSource</code> as the data source for a new <code class="code-voice">Counter</code> instance:
+<br><span class="jpstr">
+あなたは、<code class="code-voice">ThreeSource</code>のインスタンスを新しい<code class="code-voice">Counter</code>インスタンスのためのデータ・ソースとして使うことができます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">counter</span> = <span class="vc">Counter</span>()</code></li>
+            <li><code class="code-voice"><span class="vc">counter</span>.<span class="vc">dataSource</span> = <span class="vc">ThreeSource</span>()</code></li>
+            <li><code class="code-voice"><span class="kt">for</span> <span class="kt">_</span> <span class="kt">in</span> <span class="m">1</span>...<span class="m">4</span> {</code></li>
+            <li><code class="code-voice">    <span class="vc">counter</span>.<span class="vc">increment</span>()</code></li>
+            <li><code class="code-voice">    <span class="vc">print</span>(<span class="vc">counter</span>.<span class="vc">count</span>)</code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"><span class="c">// 3</span></code></li>
+            <li><code class="code-voice"><span class="c">// 6</span></code></li>
+            <li><code class="code-voice"><span class="c">// 9</span></code></li>
+            <li><code class="code-voice"><span class="c">// 12</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The code above creates a new <code class="code-voice">Counter</code> instance; sets its data source to be a new <code class="code-voice">ThreeSource</code> instance; and calls the counter’s <code class="code-voice">increment()</code> method four times. As expected, the counter’s <code class="code-voice">count</code> property increases by three each time <code class="code-voice">increment()</code> is called.
+<br><span class="jpstr">
+上のコードは、新しい<code class="code-voice">Counter</code>インスタンスをつくり；それのデータ・ソースを新しい<code class="code-voice">ThreeSource</code>インスタンスであるように設定します；そして、counterの<code class="code-voice">increment()</code>メソッドを４回呼び出します。予想されるように、counterの<code class="code-voice">count</code>プロパティは、<code class="code-voice">increment()</code>が呼ばれるたびに３つずつ増加します。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Here’s a more complex data source called <code class="code-voice">TowardsZeroSource</code>, which makes a <code class="code-voice">Counter</code> instance count up or down towards zero from its current <code class="code-voice">count</code> value:
+<br><span class="jpstr">
+<code class="code-voice">TowardsZeroSource</code>と呼ばれるより複雑なデータ・ソースがここにあります、それは、<code class="code-voice">Counter</code>インスタンスをその現在の<code class="code-voice">count</code>値から上下にゼロの方へ数えます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">@objc</span> <span class="kt">class</span> <span class="vc">TowardsZeroSource</span>: <span class="n"><!-- a href="" -->NSObject<!-- /a --></span>, <span class="n"><!-- a href="" -->CounterDataSource<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">increment</span>(<span class="vc">forCount</span> <span class="vc">count</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span>) -&gt; <span class="n"><!-- a href="" -->Int<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">        <span class="kt">if</span> <span class="vc">count</span> == <span class="m">0</span> {</code></li>
+            <li><code class="code-voice">            <span class="kt">return</span> <span class="m">0</span></code></li>
+            <li><code class="code-voice">        } <span class="kt">else</span> <span class="kt">if</span> <span class="vc">count</span> &lt; <span class="m">0</span> {</code></li>
+            <li><code class="code-voice">            <span class="kt">return</span> <span class="m">1</span></code></li>
+            <li><code class="code-voice">        } <span class="kt">else</span> {</code></li>
+            <li><code class="code-voice">            <span class="kt">return</span> <span class="m">-1</span></code></li>
+            <li><code class="code-voice">        }</code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The <code class="code-voice">TowardsZeroSource</code> class implements the optional <code class="code-voice">increment(forCount:)</code> method from the <code class="code-voice">CounterDataSource</code> protocol and uses the <code class="code-voice">count</code> argument value to work out which direction to count in. If <code class="code-voice">count</code> is already zero, the method returns <code class="code-voice">0</code> to indicate that no further counting should take place.
+<br><span class="jpstr">
+<code class="code-voice">TowardsZeroSource</code>クラスは、<code class="code-voice">CounterDataSource</code>プロトコルからのオプショナルの<code class="code-voice">increment(forCount:)</code>メソッドを実装して、どの方向に数えるべきか解決するために<code class="code-voice">count</code>引数値を使います。<code class="code-voice">count</code>がすでにゼロであるならば、メソッドは<code class="code-voice">0</code>を返して、これ以上数えることは必要ないことを示します。
+</span><!--end_jpstr-->
+</p><p class="para">
+  You can use an instance of <code class="code-voice">TowardsZeroSource</code> with the existing <code class="code-voice">Counter</code> instance to count from <code class="code-voice">-4</code> to zero. Once the counter reaches zero, no more counting takes place:
+<br><span class="jpstr">
+あなたは、<code class="code-voice">TowardsZeroSource</code>のインスタンスを既存の<code class="code-voice">Counter</code>インスタンスとともに使って、<code class="code-voice">-4</code>からゼロへと数えることができます。ひとたびcounterがゼロに達するならば、それ以上数えることは起こりません：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="vc">counter</span>.<span class="vc">count</span> = <span class="m">-4</span></code></li>
+            <li><code class="code-voice"><span class="vc">counter</span>.<span class="vc">dataSource</span> = <span class="vc">TowardsZeroSource</span>()</code></li>
+            <li><code class="code-voice"><span class="kt">for</span> <span class="kt">_</span> <span class="kt">in</span> <span class="m">1</span>...<span class="m">5</span> {</code></li>
+            <li><code class="code-voice">    <span class="vc">counter</span>.<span class="vc">increment</span>()</code></li>
+            <li><code class="code-voice">    <span class="vc">print</span>(<span class="vc">counter</span>.<span class="vc">count</span>)</code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"><span class="c">// -3</span></code></li>
+            <li><code class="code-voice"><span class="c">// -2</span></code></li>
+            <li><code class="code-voice"><span class="c">// -1</span></code></li>
+            <li><code class="code-voice"><span class="c">// 0</span></code></li>
+            <li><code class="code-voice"><span class="c">// 0</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-ID521"></a>
+  <h3 class="section-name" tabindex="0">Protocol Extensions<br><span class="jpstr">
+プロトコル拡張
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Protocols can be extended to provide method and property implementations to conforming types. This allows you to define behavior on protocols themselves, rather than in each type’s individual conformance or in a global function.
+<br><span class="jpstr">
+プロトコルは拡張されることが可能です、それによって準拠している型にメソッドとプロパティの実装を提供できます。これはあなたに、それぞれの型の個々の準拠においてまたはグローバル関数においてではなく、プロトコルそれ自体に振る舞いを定義することを可能にします。
+</span><!--end_jpstr-->
+</p><p class="para">
+  For example, the <code class="code-voice">RandomNumberGenerator</code> protocol can be extended to provide a <code class="code-voice">randomBool()</code> method, which uses the result of the required <code class="code-voice">random()</code> method to return a random <code class="code-voice">Bool</code> value:
+<br><span class="jpstr">
+例えば、<code class="code-voice">RandomNumberGenerator</code>プロトコルは拡張されて<code class="code-voice">randomBool()</code>メソッドを提供することができます、それは必須メソッドの<code class="code-voice">random()</code>を利用してランダムな<code class="code-voice">Bool</code>値を返すものです：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">extension</span> <span class="n"><!-- a href="" -->RandomNumberGenerator<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">randomBool</span>() -&gt; <span class="n"><!-- a href="" -->Bool<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">        <span class="kt">return</span> <span class="vc">random</span>() &gt; <span class="m">0.5</span></code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  By creating an extension on the protocol, all conforming types automatically gain this method implementation without any additional modification.
+<br><span class="jpstr">
+拡張をプロトコル上に作成することによって、すべての準拠している型が自動的にこのメソッド実装をなんら追加の修正なしに手に入れます。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">generator</span> = <span class="vc">LinearCongruentialGenerator</span>()</code></li>
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="s">&quot;Here&#39;s a random number: </span>\(<span class="vc">generator</span>.<span class="vc">random</span>())<span class="s">&quot;</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;Here&#39;s a random number: 0.37464991998171&quot;&nbsp;<span class="jpstr">（「ここに任意の数: 0.37464991998171があります」を出力します）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="s">&quot;And here&#39;s a random Boolean: </span>\(<span class="vc">generator</span>.<span class="vc">randomBool</span>())<span class="s">&quot;</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;And here&#39;s a random Boolean: true&quot;&nbsp;<span class="jpstr">（「そしてここに任意のブール: trueがあります」を出力します）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  <section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-ID529"></a>
+  <h3 class="section-name" tabindex="0">Providing Default Implementations<br><span class="jpstr">
+省略時の実装を提供する
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  You can use protocol extensions to provide a default implementation to any method or computed property requirement of that protocol. If a conforming type provides its own implementation of a required method or property, that implementation will be used instead of the one provided by the extension.
+<br><span class="jpstr">
+あなたはプロトコル拡張を使うことで省略時の実装をそのプロトコルのどのメソッドまたは計算プロパティ要件に対しても提供できます。準拠している型がある必須のメソッドやプロパティのそれ自身の実装を提供する場合は、その実装が拡張によって提供されるものの代わりに使用されます。
+</span><!--end_jpstr-->
+</p><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-NoLink_190"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">Protocol requirements with default implementations provided by extensions are distinct from optional protocol requirements. Although conforming types don’t have to provide their own implementation of either, requirements with default implementations can be called without optional chaining.
+    	<br><span class="jpstr">
+拡張によって提供される省略時の実装を持つプロトコル要件は、オプショナルプロトコル要件とは異なったものです。どちらにおいても準拠する型がそれ自身の実装を提供しなくても良いけれども、省略時の実装を持つ要件はオプショナル連鎖なしに呼ばれることができます。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div><p class="para">
+  For example, the <code class="code-voice">PrettyTextRepresentable</code> protocol, which inherits the <code class="code-voice">TextRepresentable</code> protocol can provide a default implementation of its required <code class="code-voice">prettyTextualDescription</code> property to simply return the result of accessing the <code class="code-voice">textualDescription</code> property:
+<br><span class="jpstr">
+例えば、<code class="code-voice">TextRepresentable</code>プロトコルを継承する<code class="code-voice">prettyTextualDescription</code>プロパティは、それの必須プロパティ<code class="code-voice">prettyTextualDescription</code>の省略時の実装を提供して、単に<code class="code-voice">textualDescription</code>プロパティの結果を返すようにできます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">extension</span> <span class="n"><!-- a href="" -->PrettyTextRepresentable<!-- /a --></span>  {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">prettyTextualDescription</span>: <span class="n"><!-- a href="" -->String<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">        <span class="kt">return</span> <span class="vc">textualDescription</span></code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-ID527"></a>
+  <h3 class="section-name" tabindex="0">Adding Constraints to Protocol Extensions<br><span class="jpstr">
+プロトコル拡張に制約を加える
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  When you define a protocol extension, you can specify constraints that conforming types must satisfy before the methods and properties of the extension are available. You write these constraints after the name of the protocol you’re extending using a generic <code class="code-voice">where</code> clause, as described in <span class="x-name"><a href="Generics.html#//apple_ref/doc/uid/TP40014097-CH26-ID192" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH26-ID192">Generic Where Clauses</a></span>.
+<br><span class="jpstr">
+あなたがプロトコル拡張を定義するとき、あなたは準拠している型がその拡張のメソッドやプロパティが利用可能になる前に満たさなければならない制約を指定することができます。あなたは、これらの制約をあなたが拡張しているプロトコルの名前の後に、<span class="x-name"><a href="Generics.html#//apple_ref/doc/uid/TP40014097-CH26-ID192" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH26-ID192">総称体where節</a></span>で記述される総称体<code class="code-voice">where</code>節を使って書きます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  For instance, you can define an extension to the <code class="code-voice">Collection</code> protocol that applies to any collection whose elements conform to the <code class="code-voice">TextRepresentable</code> protocol from the example above.
+<br><span class="jpstr">
+例えば、あなたはある拡張を<code class="code-voice">Collection</code>プロトコルに対して定義することができます、それはその要素が上の例の<code class="code-voice">TextRepresentable</code>プロトコルに準拠するあらゆるコレクションに適用するものです。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">extension</span> <span class="n"><!-- a href="" -->Collection<!-- /a --></span> <span class="kt">where</span> <span class="vc">Iterator</span>.<span class="vc">Element</span>: <span class="vc">TextRepresentable</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">textualDescription</span>: <span class="n"><!-- a href="" -->String<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">        <span class="kt">let</span> <span class="vc">itemsAsText</span> = <span class="kt">self</span>.<span class="vc">map</span> { <span class="vc">$0</span>.<span class="vc">textualDescription</span> }</code></li>
+            <li><code class="code-voice">        <span class="kt">return</span> <span class="s">&quot;[&quot;</span> + <span class="vc">itemsAsText</span>.<span class="vc">joined</span>(<span class="vc">separator</span>: <span class="s">&quot;, &quot;</span>) + <span class="s">&quot;]&quot;</span></code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The <code class="code-voice">textualDescription</code> property returns the textual description of the entire collection by concatenating the textual representation of each element in the collection into a comma-separated list, enclosed in brackets.
+<br><span class="jpstr">
+<code class="code-voice">textualDescription</code>プロパティは、コレクション全体の解説テキストを、コレクションの中の各要素のテキスト表現をコンマ区切りのリストへと連結して、角括弧に囲むことによって返します。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Consider the <code class="code-voice">Hamster</code> structure from before, which conforms to the <code class="code-voice">TextRepresentable</code> protocol, and an array of <code class="code-voice">Hamster</code> values:
+<br><span class="jpstr">
+前の<code class="code-voice">Hamster</code>構造体を考えてください、それは<code class="code-voice">TextRepresentable</code>プロトコルに準拠します、そして<code class="code-voice">Hamster</code>値の配列です：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">murrayTheHamster</span> = <span class="vc">Hamster</span>(<span class="vc">name</span>: <span class="s">&quot;Murray&quot;</span>)</code></li>
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">morganTheHamster</span> = <span class="vc">Hamster</span>(<span class="vc">name</span>: <span class="s">&quot;Morgan&quot;</span>)</code></li>
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">mauriceTheHamster</span> = <span class="vc">Hamster</span>(<span class="vc">name</span>: <span class="s">&quot;Maurice&quot;</span>)</code></li>
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">hamsters</span> = [<span class="vc">murrayTheHamster</span>, <span class="vc">morganTheHamster</span>, <span class="vc">mauriceTheHamster</span>]</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Because <code class="code-voice">Array</code> conforms to <code class="code-voice">Collection</code> and the array’s elements conform to the <code class="code-voice">TextRepresentable</code> protocol, the array can use the <code class="code-voice">textualDescription</code> property to get a textual representation of its contents:
+<br><span class="jpstr">
+<code class="code-voice">Array</code>が<code class="code-voice">Collection</code>に準拠して配列要素が<code class="code-voice">TextRepresentable</code>プロトコルに準拠することから、この配列は<code class="code-voice">textualDescription</code>プロパティを使ってそれの内容のテキスト表現を取得することができます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="vc">hamsters</span>.<span class="vc">textualDescription</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;[A hamster named Murray, A hamster named Morgan, A hamster named Maurice]&quot;&nbsp;<span class="jpstr">（「[マーレイという名のハムスター, モーガンという名のハムスター, モーリスという名のハムスター]」を出力します）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-NoLink_191"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">If a conforming type satisfies the requirements for multiple constrained extensions that provide implementations for the same method or property, Swift will use the implementation corresponding to the most specialized constraints.
+    	<br><span class="jpstr">
+ある準拠型が同じメソッドやプロパティに対する実装を提供する複数の制約付き拡張の要件を満たすならば、スウィフトは最も特殊化した制約と一致している実装を使います。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div>
+  
+</section>
+
+</section>
+
+  	
+ 	<section id="next_previous" class="">
+    		<p class="previous-link"><a href="Extensions.html#//apple_ref/doc/uid/TP40014097-CH24-ID151" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH24-ID151">Extensions<br><span class="jpstr">
+拡張
+</span><!--end_jpstr-->
+</a></p>
+  			<p class="next-link"><a href="Generics.html#//apple_ref/doc/uid/TP40014097-CH26-ID179" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH26-ID179">Generics<br><span class="jpstr">
+総称体
+</span><!--end_jpstr-->
+</a></p>
+
+    <p class="copyright">Copyright &#x00a9; 2016 Apple Inc. All rights reserved. 
+  <a class="link" href="http://www.apple.com/legal/terms/site.html" target="_blank" rel="external">Terms of Use</a> | 
+  <a class="link" href="http://www.apple.com/privacy/" target="_blank" rel="external">Privacy Policy</a> | 
+  Updated: 2016-10-27
+</p>
+  </section>
+</article>
+
+    </div>
+    <div id='big_button'></div>
+    <footer id="footer">
+  <div class="content-wrapper">
+  	<div id="leave_feedback" class="button" role="button" tabindex="0">Feedback</div>
+  </div>
+  <script src="../../../../Resources/1254/JavaScript/devpubs-1.6.3.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../../../Resources/1254/JavaScript/feedback-1.6.3.js" type="text/javascript" charset="utf-8"></script>
+  <div id="_omniture_top">
+<!-- SiteCatalyst code version: H.8. Copyright 1997-2006 Omniture, Inc. -->
+<script type="text/javascript">
+/* RSID: */
+var s_account="appleglobal,appleusdeveloper,dappdeveloperlib"
+</script>
+
+<!-- <script type="text/javascript" src="https://www.apple.com/metrics/scripts/s_code_h.js"></script> -->
+<script type="text/javascript">
+s.pageName=AC.Tracking.pageName();
+s.channel="www.us.developer"
+
+/************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+var s_code=s.t();if(s_code)document.write(s_code)</script>
+<!-- End SiteCatalyst code version: H.8. -->
+</div>
+
+</footer>
+
+    
+  </body>
+    <div id="blackout">
+    <div id="preload"></div>
+</div>
+<div id="modal" aria-hidden="true">
+    <div id="closebox" tabindex="0" aria-label="Close feedback form" role="button"></div>
+    <div id="sending" class="hidden">
+        <h2 tabindex="0">Sending feedback&hellip;</h2>
+        <div id="sending_img"></div>
+    </div>
+    <div id="error" class="hidden">
+        <h2 tabindex="0">We&rsquo;re sorry, an error has occurred.</h2>
+        <p>Please try submitting your feedback later.</p>
+        <div id="error_icon"></div>
+    </div>
+    <div id="success" class="hidden">
+        <h2 tabindex="0">Thank you for providing feedback!</h2>
+        <p>Your input helps improve our developer documentation.</p>
+        <div id="thank_you_icon"></div>
+    </div>
+    
+    <form id="feedback" action="#" method="post">
+        <div class="left-leaf">
+            <h2 id="helpful_title" data-asterisk="a1" tabindex="0">How helpful is this document?</h2>     
+            <sup id="a1" class="asterisk" aria-hidden="true">*</sup>
+
+            <div id="star_group" role="radiogroup" aria-required="true">
+                <label> 
+                    <input class="radio" type="radio" name="helped" value="1" /> 
+                    Very helpful
+                </label>
+                <label> 
+                    <input class="radio" type="radio" name="helped" value="2" /> 
+                    Somewhat helpful
+                </label>
+                <label>
+                    <input class="radio" type="radio" name="helped" value="3" /> 
+                    Not helpful
+                </label>
+            </div>
+        </div>
+        <div class="right-leaf">
+            <h2>How can we improve this document?</h2>
+            <div id="improve" class="checkboxes">
+                <label>
+                    <input type="checkbox" name="typo" /> 
+                    Fix typos or links
+                </label>
+                <label>
+                    <input type="checkbox" name="infoIncorrect" /> 
+                    Fix incorrect information
+                </label>
+                <label>
+                    <input type="checkbox" name="needs_examples" /> 
+                    Add or update code samples
+                </label>
+                <label>
+                    <input type="checkbox" name="needs_art" /> 
+                    Add or update illustrations
+                </label>
+                <label>
+                    <input type="checkbox" name="missingInfo" /> 
+                    Add information about...
+                </label>
+            </div>
+        </div>
+
+        <textarea id="comment" name="problem" cols="70" rows="8" placeholder="Please tell us more about your experience with this document" data-asterisk="a2" required></textarea>
+        <sup id="a2" class="asterisk" aria-hidden="true">*</sup>
+
+        <p class="fineprint">
+            <em aria-hidden="true"><span>*</span> Required information</em>
+        </p> 
+
+        <input id="submit" type="button" value="Send" />
+
+        <section id="legal">
+            <p>
+                To submit a product bug or enhancement request, please visit the 
+                <a href="https://developer.apple.com/bugreporter/" target="_blank">Bug Reporter</a> 
+                page.
+            </p>
+            <p>
+                Please read <a href="http://www.apple.com/legal/policies/ideas.html" target="_blank">Apple's Unsolicited Idea Submission Policy</a> 
+                before you send us your feedback.
+            </p> 
+        </section>
+    </form>
+</div>
+
+</div>
+</html>
