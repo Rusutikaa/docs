@@ -1,0 +1,2215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>  
+  <title>Using Swift with Cocoa and Objective-C (Swift 3.0.1): Interacting with C APIs</title>
+  <link rel="stylesheet" type="text/css" href="../../../../Resources/1254/CSS/style-1.6.3.css" />
+  <link rel="stylesheet" type="text/css" href="../../../../Resources/1254/CSS/feedback-1.6.3.css" />
+  <meta charset='utf-8'> 
+<meta id="j-version" name="j-version" content="" />
+<meta id="build" name="build" content="0cd917ac01ec7578a7bd8964f41dd08b" />
+<meta id="document-version" name="document-version" content="7.0.3" />
+<meta id="book-assignments" name="book-assignments" content="{Type/Guide}, {Topic/Swift}" />
+<meta scheme="apple_ref" id="identifier" name="identifier" content="//apple_ref/doc/uid/TP40014216" />
+<meta id="chapterId" name="chapterId" content="TP40014216-CH8">
+<meta id="book-title" name="book-title" content="Using Swift with Cocoa and Objective-C (Swift 3.0.1)" />
+<meta id="book-resource-type" name="book-resource-type" content="Guide" />
+<meta id="book-root" name="book-root" content="./" />
+<meta id="book-json" name="book-json" content="book.json">
+<meta id="date" name="date" content="2016-10-27" />
+<meta id="description" name="description" content="Describes various aspects of Swift&#39;s compatibility with the Objective-C language and Cocoa/Cocoa Touch frameworks." />
+<meta id="IndexTitle" name="IndexTitle" content="" />
+<meta id="resources-uri" name="resources-uri" content="../../../../Resources/1254">
+<link id="book-index-page" rel="Start" title="" type="text/html" href="./index.html">
+<!-- , next_chapter: next_chapter, previous_chapter: previous_chapter -->
+<link id="next-page" rel="Next" type="text/html" href="">
+<link id="previous-page" rel="Prev" type="text/html" href="">
+<meta id="devcenter" name="devcenter" content="<!-- DEVCENTER_NAME -->" />
+<meta id="devcenter-url" name="devcenter-url" content="<!-- DEVCENTER_URL -->" />
+<meta id="reflib" name="reflib" content="<!-- REFLIB_NAME -->" />
+
+<meta id="xcode-display" name="xcode-display" content="render" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta id="platforms" name="platforms" content="Xcode Developer Tools">
+</head>
+
+  <body id="conceptual_flow_with_tasks" class="jazz">
+    
+    <header id="ios_header" class="hideOnPrint hideInXcode">
+  <div class="content-wrapper">
+    <p class="header-text">
+    	<a href="../../../../navigation/index.html">Guides and Sample Code
+ 		</a>
+ </p>
+    <p id="wwdr"><img id="apple_logo" src="../../../../Resources/1254/Images/apple2.png" height="14px" width="12px" aria-hidden="true" /><a href="https://developer.apple.com">Developer</a></p>
+  </div>
+</header>
+
+    <section id="valence">
+  <div class="content-wrapper">
+    <p id="hierarchial_navigation">
+      <span id="book_title">Using Swift with Cocoa and Objective-C (Swift 3.0.1)</span>
+    </p>
+    <form id="search" class="hideInXcode" method="get" action="/search/index.php" accept-charset="utf-8" autocomplete="off">
+  <input type="search" id="ssi_SearchField" placeholder="Search Guides and Sample Code" name="q" autocomplete="off" tabindex="2" />
+</form>
+
+      
+   
+   
+
+
+
+
+    <span class="download-text hideInXcode">
+      <a href="https://itunes.apple.com/us/book/using-swift-cocoa-objective/id888894773?mt=11">iBooks</a>
+    </span>
+
+    
+
+    <img id="shortstack" src="../../../../Resources/1254/Images/shortstack_2x.png"/>
+  </div>
+</section>
+    <div class="content-wrapper">
+      <nav id="navigator" class="book-parts hideInXcode" role="navigation">
+    <ul class="nav-parts">
+        <li data-id="//apple_ref/doc/uid/TP40014216-CH1-ID5"
+            class="part-name">
+            <a href="index.html#//apple_ref/doc/uid/TP40014216-CH2-ID0" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH2-ID0">Getting Started<br><span class="jpstr">
+初めに
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="index.html#//apple_ref/doc/uid/TP40014216-CH2-ID0" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH2-ID0">Basic Setup<br><span class="jpstr">
+基本の準備
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+        <li data-id="//apple_ref/doc/uid/TP40014216-CH3-ID60"
+            class="part-name nav-part-active open-part">
+            <a href="InteractingWithObjective-CAPIs.html#//apple_ref/doc/uid/TP40014216-CH4-ID35" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH4-ID35">Interoperability<br><span class="jpstr">
+相互運用性
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="InteractingWithObjective-CAPIs.html#//apple_ref/doc/uid/TP40014216-CH4-ID35" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH4-ID35">Interacting with Objective-C APIs<br><span class="jpstr">
+Objective-C APIとの相互作用
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="WritingSwiftClassesWithObjective-CBehavior.html#//apple_ref/doc/uid/TP40014216-CH5-ID86" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH5-ID86">Writing Swift Classes and Protocols with Objective-C Behavior<br><span class="jpstr">
+スウィフトのクラスとプロトコルをObjective-C挙動で書く
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6-ID61" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH6-ID61">Working with Cocoa Frameworks<br><span class="jpstr">
+Cocoaフレームワークを扱う
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="AdoptingCocoaDesignPatterns.html#//apple_ref/doc/uid/TP40014216-CH7-ID6" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH7-ID6">Adopting Cocoa Design Patterns<br><span class="jpstr">
+ココア・デザインパターンの採用
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter nav-current-chapter">
+              	<a href="#//apple_ref/doc/uid/TP40014216-CH8-ID17" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH8-ID17">Interacting with C APIs<br><span class="jpstr">
+C APIとの相互作用
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+        <li data-id="//apple_ref/doc/uid/TP40014216-CH9-ID141"
+            class="part-name">
+            <a href="MixandMatch.html#//apple_ref/doc/uid/TP40014216-CH10-ID122" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH10-ID122">Mix and Match<br><span class="jpstr">
+混合と適合
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="MixandMatch.html#//apple_ref/doc/uid/TP40014216-CH10-ID122" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH10-ID122">Swift and Objective-C in the Same Project<br><span class="jpstr">
+同じプロジェクト中のスウィフトとObjective-C
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+        <li data-id="//apple_ref/doc/uid/TP40014216-CH11-ID121"
+            class="part-name">
+            <a href="Migration.html#//apple_ref/doc/uid/TP40014216-CH12-ID108" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH12-ID108">Migration<br><span class="jpstr">
+移行
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="Migration.html#//apple_ref/doc/uid/TP40014216-CH12-ID108" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH12-ID108">Migrating Your Objective-C Code to Swift<br><span class="jpstr">
+あなたのObjective-Cコードのスウィフトへの移行
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+        <li data-id="//apple_ref/doc/uid/TP40014216-CH13-ID143"
+            class="part-name">
+            <a href="RevisionHistory.html#//apple_ref/doc/uid/TP40014216-CH14-ID142" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH14-ID142">Revision History<br><span class="jpstr">
+改訂履歴
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="RevisionHistory.html#//apple_ref/doc/uid/TP40014216-CH14-ID142" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH14-ID142">Document Revision History<br><span class="jpstr">
+文書改訂履歴
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+    </ul>
+</nav>
+
+      <menu id="bashful" type="toolbar">
+  <div class="shield"></div>
+  <menuitem id="jump_to" class="menu-bar-item closed">
+  <span>On This Page</span>
+  <div class="chevron">
+    <div class="chevy chevron-left"></div>
+    <div class="chevy chevron-right"></div>
+  </div>
+  <menu type="list" class="details">
+      <ul class="list-bullet">
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH8-ID19">Primitive Types</a>
+<br><span class="jpstr">
+基本の型
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH8-ID29">Global Constants</a>
+<br><span class="jpstr">
+グローバルな定数
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH8-ID207">Functions</a>
+<br><span class="jpstr">
+関数
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH8-ID208">Structures</a>
+<br><span class="jpstr">
+構造体
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH8-ID21">Enumerations</a>
+<br><span class="jpstr">
+列挙
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH8-ID169">Option Sets</a>
+<br><span class="jpstr">
+オプションセット
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH8-ID170">Unions</a>
+<br><span class="jpstr">
+共用体
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH8-ID191">Bit Fields</a>
+<br><span class="jpstr">
+ビットフィールド
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH8-ID195">Unnamed Structure and Union Fields</a>
+<br><span class="jpstr">
+無名の構造体と共用体フィールド
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH8-ID23">Pointers</a>
+<br><span class="jpstr">
+ポインター
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH8-ID185">Data Type Size Calculation</a>
+<br><span class="jpstr">
+データ型サイズ計算
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH8-ID198">One-Time Initialization</a>
+<br><span class="jpstr">
+ワンタイム初期化
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH8-ID31">Preprocessor Directives</a>
+<br><span class="jpstr">
+プリプロセッサ指令
+</span><!--end_jpstr-->
+          </li>
+      </ul>
+  </menu>
+</menuitem>
+
+</menu>
+<div class="pixel-line"></div>
+<div class="rubber-band-gap"></div>
+<article class="chapter">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8"></a><a name="//apple_ref/doc/uid/TP40014216-CH8-ID17"></a>
+
+  <h2 class='chapter-name'>Interacting with C APIs<br><span class="jpstr">
+C APIとの相互作用
+</span><!--end_jpstr-->
+</h2>
+
+
+  
+  	<section class="section">
+  		<p class="para">
+  As part of its interoperability with Objective-C, Swift maintains compatibility with a number of C language types and features. Swift also provides a way of working with common C constructs and patterns, in case your code requires it.
+<br><span class="jpstr">
+そのObjective-Cとの相互運用性の一部として、スウィフトはたくさんのC言語型と特徴との互換性を維持します。スウィフトはまた、あなたのコードがそれを必要とする場合に備えて、一般的なC構造物とパターンを扱う方法を提供します。
+</span><!--end_jpstr-->
+</p>
+
+		</section> 
+
+
+  <section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-ID19"></a>
+  <h3 class="section-name" tabindex="0">Primitive Types<br><span class="jpstr">
+基本の型
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Swift provides equivalents of C primitive integer types—for example, <code class="code-voice">char</code>, <code class="code-voice">int</code>, <code class="code-voice">float</code>, and <code class="code-voice">double</code>. However, there is no implicit conversion between these types and core Swift integer types, such as <code class="code-voice">Int</code>. Therefore, use these types if your code specifically requires them, but use <code class="code-voice">Int</code> wherever possible otherwise.
+<br><span class="jpstr">
+スウィフトは、Cの基本の整数型の等価物を提供します ― 例えば、<code class="code-voice">char</code>、<code class="code-voice">int</code>、<code class="code-voice">float</code>、そして<code class="code-voice">double</code>。しかし、これらの型と中心的なスウィフト整数型、例えば<code class="code-voice">Int</code>との間に暗黙的な変換はありません。したがって、あなたのコードが特にそれらを必要とする場合にこれらの型を使ってください、しかし一方で可能な場合にはいつでも<code class="code-voice">Int</code>を使ってください。
+</span><!--end_jpstr-->
+</p><div class="tableholder">
+  
+  <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+    <caption class="tablecaption"></caption>
+    <thead>
+        <tr>
+            <th scope="col" class="TableHeading_TableRow_TableCell"><p class="para">
+  C Type
+<br><span class="jpstr">
+C型
+</span><!--end_jpstr-->
+</p></th>
+            <th scope="col" class="TableHeading_TableRow_TableCell"><p class="para">
+  Swift Type
+<br><span class="jpstr">
+スウィフト型
+</span><!--end_jpstr-->
+</p></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td scope="row"><p class="para">
+  <code class="code-voice">bool</code>
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">CBool</code>
+</p></td>
+        </tr>
+        <tr>
+            <td scope="row"><p class="para">
+  <code class="code-voice">char</code>, <code class="code-voice">signed char</code>
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">CChar</code>
+</p></td>
+        </tr>
+        <tr>
+            <td scope="row"><p class="para">
+  <code class="code-voice">unsigned char</code>
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">CUnsignedChar</code>
+</p></td>
+        </tr>
+        <tr>
+            <td scope="row"><p class="para">
+  <code class="code-voice">short</code>
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">CShort</code>
+</p></td>
+        </tr>
+        <tr>
+            <td scope="row"><p class="para">
+  <code class="code-voice">unsigned short</code>
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">CUnsignedShort</code>
+</p></td>
+        </tr>
+        <tr>
+            <td scope="row"><p class="para">
+  <code class="code-voice">int</code>
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">CInt</code>
+</p></td>
+        </tr>
+        <tr>
+            <td scope="row"><p class="para">
+  <code class="code-voice">unsigned int</code>
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">CUnsignedInt</code>
+</p></td>
+        </tr>
+        <tr>
+            <td scope="row"><p class="para">
+  <code class="code-voice">long</code>
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">CLong</code>
+</p></td>
+        </tr>
+        <tr>
+            <td scope="row"><p class="para">
+  <code class="code-voice">unsigned long</code>
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">CUnsignedLong</code>
+</p></td>
+        </tr>
+        <tr>
+            <td scope="row"><p class="para">
+  <code class="code-voice">long long</code>
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">CLongLong</code>
+</p></td>
+        </tr>
+        <tr>
+            <td scope="row"><p class="para">
+  <code class="code-voice">unsigned long long</code>
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">CUnsignedLongLong</code>
+</p></td>
+        </tr>
+        <tr>
+            <td scope="row"><p class="para">
+  <code class="code-voice">wchar_t</code>
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">CWideChar</code>
+</p></td>
+        </tr>
+        <tr>
+            <td scope="row"><p class="para">
+  <code class="code-voice">char16_t</code>
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">CChar16</code>
+</p></td>
+        </tr>
+        <tr>
+            <td scope="row"><p class="para">
+  <code class="code-voice">char32_t</code>
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">CChar32</code>
+</p></td>
+        </tr>
+        <tr>
+            <td scope="row"><p class="para">
+  <code class="code-voice">float</code>
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">CFloat</code>
+</p></td>
+        </tr>
+        <tr>
+            <td scope="row"><p class="para">
+  <code class="code-voice">double</code>
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">CDouble</code>
+</p></td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-ID29"></a>
+  <h3 class="section-name" tabindex="0">Global Constants<br><span class="jpstr">
+グローバルな定数
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Global constants defined in C and Objective-C source files are automatically imported by the Swift compiler as Swift global constants.
+<br><span class="jpstr">
+CとObjective-Cソース・ファイルにおいて定義されるグローバル定数は、スウィフトコンパイラによってスウィフトのグローバル定数として自動的にインポートされます。
+</span><!--end_jpstr-->
+</p>
+  <section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-ID206"></a>
+  <h3 class="section-name" tabindex="0">Imported Constant Enumerations and Structures<br><span class="jpstr">
+インポートされる定数列挙と構造体
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  In Objective-C, constants are often used to provide a list of possible values for properties and method parameters. You can annotate an Objective-C <code class="code-voice">typedef</code> declaration with the <code class="code-voice">NS_STRING_ENUM</code> or <code class="code-voice">NS_EXTENSIBLE_STRING_ENUM</code> macro to have constants of that type imported by Swift as members of a common type.
+<br><span class="jpstr">
+Objective-Cでは、プロパティおよびメソッドパラメータに対する可能な値のリストを提供するためにしばしば定数が使われます。あなたは、Objective-Cの<code class="code-voice">typedef</code>宣言に<code class="code-voice">NS_STRING_ENUM</code>または<code class="code-voice">NS_EXTENSIBLE_STRING_ENUM</code>マクロで注釈をつけることで、スウィフトによってインポートされるその型の定数を普通の型のメンバとして受け入れることができます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Constants that represent a fixed set of possible values can be imported as an enumeration by adding the <code class="code-voice">NS_STRING_ENUM</code> macro. For example, consider the following Objective-C declarations for string constants of type <code class="code-voice">TrafficLightColor</code>:
+<br><span class="jpstr">
+ある固定された一揃いの可能な値を表す、いくらかの定数は、<code class="code-voice">NS_STRING_ENUM</code>マクロを加えることによって列挙としてインポートされることができます。例えば、型<code class="code-voice">TrafficLightColor</code>の文字列定数のための以下のObjective-C宣言を考えてみてください：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Objective-C">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="k">typedef</span> <span class="n">NSString</span> <span class="o">*</span> <span class="n">TrafficLightColor</span> <span class="n">NS_STRING_ENUM</span><span class="p">;</span>
+</code></li>
+            <li><code class="code-voice"> 
+</code></li>
+            <li><code class="code-voice"><span class="n">TrafficLightColor</span> <span class="k">const</span> <span class="n">TrafficLightColorRed</span><span class="p">;</span>
+</code></li>
+            <li><code class="code-voice"><span class="n">TrafficLightColor</span> <span class="k">const</span> <span class="n">TrafficLightColorYellow</span><span class="p">;</span>
+</code></li>
+            <li><code class="code-voice"><span class="n">TrafficLightColor</span> <span class="k">const</span> <span class="n">TrafficLightColorGreen</span><span class="p">;</span>
+</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Here’s how Swift imports them:
+<br><span class="jpstr">
+ここにどのようにスウィフトがそれらをインポートするかがあります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">enum</span> <span class="vc">TrafficLightColor</span> : <span class="n"><!-- a href="" -->String<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">case</span> <span class="vc">red</span></code></li>
+            <li><code class="code-voice">    <span class="kt">case</span> <span class="vc">yellow</span></code></li>
+            <li><code class="code-voice">    <span class="kt">case</span> <span class="vc">green</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Constants that represent an extensible set of possible values can be imported as a structure by adding the <code class="code-voice">NS_EXTENSIBLE_STRING_ENUM</code> macro. For example, consider the following Objective-C declarations for string constants of type <code class="code-voice">StateOfMatter</code>:
+<br><span class="jpstr">
+ある拡張可能な一揃いの可能な値を表す、いくらかの定数は、<code class="code-voice">NS_EXTENSIBLE_STRING_ENUM</code>マクロを加えることによって構造体としてインポートされることができます。例えば、型<code class="code-voice">StateOfMatter</code>の文字列定数のための以下のObjective-C宣言を考えてみてください：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Objective-C">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="k">typedef</span> <span class="n">NSString</span> <span class="o">*</span> <span class="n">StateOfMatter</span> <span class="n">NS_EXTENSIBLE_STRING_ENUM</span><span class="p">;</span>
+</code></li>
+            <li><code class="code-voice"> 
+</code></li>
+            <li><code class="code-voice"><span class="n">StateOfMatter</span> <span class="k">const</span> <span class="n">StateOfMatterSolid</span><span class="p">;</span>
+</code></li>
+            <li><code class="code-voice"><span class="n">StateOfMatter</span> <span class="k">const</span> <span class="n">StateOfMatterLiquid</span><span class="p">;</span>
+</code></li>
+            <li><code class="code-voice"><span class="n">StateOfMatter</span> <span class="k">const</span> <span class="n">StateOfMatterGas</span><span class="p">;</span>
+</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Here’s how Swift imports them:
+<br><span class="jpstr">
+ここにどのようにスウィフトがそれらをインポートするかがあります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">struct</span> <span class="vc">StateOfMatter</span> : <span class="n"><!-- a href="" -->RawRepresentable<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">typealias</span> <span class="vc">RawValue</span> = <span class="n"><!-- a href="" -->String<!-- /a --></span></code></li>
+            <li><code class="code-voice">    </code></li>
+            <li><code class="code-voice">    <span class="kt">init</span>(<span class="vc">rawValue</span>: <span class="n"><!-- a href="" -->RawValue<!-- /a --></span>)</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">rawValue</span>: <span class="n"><!-- a href="" -->RawValue<!-- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice">    </code></li>
+            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">solid</span>: <span class="n"><!-- a href="" -->StateOfMatter<!-- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">liquid</span>: <span class="n"><!-- a href="" -->StateOfMatter<!-- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">gas</span>: <span class="n"><!-- a href="" -->StateOfMatter<!-- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Constants imported from a type declaration marked with the <code class="code-voice">NS_EXTENSIBLE_STRING_ENUM</code> macro can be extended in Swift code to add new values.
+<br><span class="jpstr">
+<code class="code-voice">NS_EXTENSIBLE_STRING_ENUM</code>マクロで印される型宣言からインポートされる定数は、スウィフトコードにおいて拡張されて新しい値を加えられることができます。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">extension</span> <span class="n"><!-- a href="" -->StateOfMatter<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">plasma</span>: <span class="n"><!-- a href="" -->StateOfMatter<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">        <span class="kt">return</span> <span class="vc">StateOfMatter</span>(<span class="vc">rawValue</span>: <span class="s">&quot;plasma&quot;</span>)</code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-ID207"></a>
+  <h3 class="section-name" tabindex="0">Functions<br><span class="jpstr">
+関数
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Swift imports any function declared in a C header as a Swift global function. For example, consider the following C function declarations:
+<br><span class="jpstr">
+スウィフトは、Cヘッダにおいて宣言されるどんな関数もスウィフトのグローバルな関数としてインポートします。例えば、以下のC関数定義を考えてみてください：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Objective-C">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">int</span> <span class="n">product</span><span class="p">(</span><span class="kt">int</span> <span class="n">multiplier</span><span class="p">,</span> <span class="kt">int</span> <span class="n">multiplicand</span><span class="p">);</span>
+</code></li>
+            <li><code class="code-voice"><span class="kt">int</span> <span class="n">quotient</span><span class="p">(</span><span class="kt">int</span> <span class="n">dividend</span><span class="p">,</span> <span class="kt">int</span> <span class="n">devisor</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">remainder</span><span class="p">);</span>
+</code></li>
+            <li><code class="code-voice"> 
+</code></li>
+            <li><code class="code-voice"><span class="k">struct</span> <span class="n">Point2D</span> <span class="n">createPoint2D</span><span class="p">(</span><span class="kt">float</span> <span class="n">x</span><span class="p">,</span> <span class="kt">float</span> <span class="n">y</span><span class="p">);</span>
+</code></li>
+            <li><code class="code-voice"><span class="kt">float</span> <span class="n">distance</span><span class="p">(</span><span class="k">struct</span> <span class="n">Point2D</span> <span class="n">from</span><span class="p">,</span> <span class="k">struct</span> <span class="n">Point2D</span> <span class="n">to</span><span class="p">);</span>
+</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Here’s how Swift imports them:
+<br><span class="jpstr">
+ここにどのようにスウィフトがそれらをインポートするかがあります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">product</span>(<span class="kt">_</span> <span class="vc">multiplier</span>: <span class="n"><!-- a href="" -->Int32<!-- /a --></span>, <span class="kt">_</span> <span class="vc">multiplicand</span>: <span class="n"><!-- a href="" -->Int32<!-- /a --></span>) -&gt; <span class="n"><!-- a href="" -->Int32<!-- /a --></span></code></li>
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">quotient</span>(<span class="kt">_</span> <span class="vc">dividend</span>: <span class="n"><!-- a href="" -->Int32<!-- /a --></span>, <span class="kt">_</span> <span class="vc">devisor</span>: <span class="n"><!-- a href="" -->Int32<!-- /a --></span>, <span class="kt">_</span> <span class="vc">remainder</span>: <span class="n"><!-- a href="" -->UnsafeMutablePointer<!-- /a --></span>&lt;<span class="n"><!-- a href="" -->Int32<!-- /a --></span>&gt;) -&gt; <span class="n"><!-- a href="" -->Int32<!-- /a --></span></code></li>
+            <li><code class="code-voice"> </code></li>
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">createPoint2D</span>(<span class="kt">_</span> <span class="vc">x</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span>, <span class="kt">_</span> <span class="vc">y</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span>) -&gt; <span class="n"><!-- a href="" -->Point2D<!-- /a --></span></code></li>
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">distance</span>(<span class="kt">_</span> <span class="vc">from</span>: <span class="n"><!-- a href="" -->Point2D<!-- /a --></span>, <span class="kt">_</span> <span class="vc">to</span>: <span class="n"><!-- a href="" -->Point2D<!-- /a --></span>) -&gt; <span class="n"><!-- a href="" -->Float<!-- /a --></span></code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  <section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-ID196"></a>
+  <h3 class="section-name" tabindex="0">Variadic Functions<br><span class="jpstr">
+可変長引数関数
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  In Swift, you can call C variadic functions, such as <code class="code-voice">vasprintf</code>, using the <code class="code-voice">getVaList(_:)</code> or <code class="code-voice">withVaList(_:_:)</code> functions. The <code class="code-voice">getVaList(_:)</code> function takes an array of <code class="code-voice">CVarArg</code> values and returns a <code class="code-voice">CVaListPointer</code> value, whereas the <code class="code-voice">withVaList(_:_:)</code> provides this value within the body a closure parameter rather than returning it directly. The resulting <code class="code-voice">CVaListPointer</code> value is then passed to the <code class="code-voice">va_list</code> argument of the C variadic function.
+<br><span class="jpstr">
+スウィフトにおいて、あなたはCの可変長引数関数、例えば<code class="code-voice">vasprintf</code>などを呼び出すことが<code class="code-voice">getVaList(_:)</code>または<code class="code-voice">withVaList(_:_:)</code>関数を使って可能です。<code class="code-voice">getVaList(_:)</code>関数は、<code class="code-voice">CVarArg</code>値からなるひとつの配列をとって<code class="code-voice">CVaListPointer</code>値を返します、一方で<code class="code-voice">withVaList(_:_:)</code>は、この値を本文内部でクロージャパラメータに提供します、それを直接返すのではなく。結果の<code class="code-voice">CVaListPointer</code>値は、それからC可変長引数関数の<code class="code-voice">va_list</code>引数に渡されます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  For example, here’s how to call the <code class="code-voice">vasprintf</code> function in Swift:
+<br><span class="jpstr">
+例えば、ここに<code class="code-voice">vasprintf</code>関数をスウィフトにおいて呼び出す方法があります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">swiftprintf</span>(<span class="vc">format</span>: <span class="n"><!-- a href="" -->String<!-- /a --></span>, <span class="vc">arguments</span>: <span class="n"><!-- a href="" -->CVarArg<!-- /a --></span>...) -&gt; <span class="n"><!-- a href="" -->String<!-- /a --></span>? {</code></li>
+            <li><code class="code-voice">    <span class="kt">return</span> <span class="vc">withVaList</span>(<span class="vc">arguments</span>) { <span class="vc">va_list</span> <span class="kt">in</span></code></li>
+            <li><code class="code-voice">        <span class="kt">var</span> <span class="vc">buffer</span>: <span class="n"><!-- a href="" -->UnsafeMutablePointer<!-- /a --></span>&lt;<span class="n"><!-- a href="" -->Int8<!-- /a --></span>&gt;? = <span class="kt">nil</span></code></li>
+            <li><code class="code-voice">        <span class="kt">return</span> <span class="vc">format</span>.<span class="vc">withCString</span> { <span class="vc">CString</span> <span class="kt">in</span></code></li>
+            <li><code class="code-voice">            <span class="kt">guard</span> <span class="vc">vasprintf</span>(&amp;<span class="vc">buffer</span>, <span class="vc">CString</span>, <span class="vc">va_list</span>) != <span class="m">0</span> <span class="kt">else</span> {</code></li>
+            <li><code class="code-voice">                <span class="kt">return</span> <span class="kt">nil</span></code></li>
+            <li><code class="code-voice">            }</code></li>
+            <li><code class="code-voice">            </code></li>
+            <li><code class="code-voice">            <span class="kt">return</span> <span class="vc">String</span>(<span class="vc">validatingUTF8</span>: <span class="vc">buffer</span>!)</code></li>
+            <li><code class="code-voice">        }</code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="vc">swiftprintf</span>(<span class="vc">format</span>: <span class="s">&quot;√2 ≅ %g&quot;</span>, <span class="vc">arguments</span>: <span class="vc">sqrt</span>(<span class="m">2.0</span>))!)</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;√2 ≅ 1.41421&quot;</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-NoLink_26"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">Optional pointers cannot be passed to the <code class="code-voice">withVaList(_:invoke:)</code> function. Instead, use the <code class="code-voice">Int.init(bitPattern:)</code> initializer to interpret the optional pointer as an <code class="code-voice">Int</code>, which has the same C variadic calling conventions as a pointer on all supported platforms.
+    	<br><span class="jpstr">
+オプショナルポインタは、<code class="code-voice">withVaList(_:invoke:)</code>関数に渡されることが可能ではありません。その代わりに、<code class="code-voice">Int.init(bitPattern:)</code>イニシャライザを使ってオプショナルポインタを<code class="code-voice">Int</code>として解釈してください、それはすべてのプラットホーム上でポインタと同じCの可変長引数呼び出し取り決めを持ちます。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div>
+  
+</section>
+
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-ID208"></a>
+  <h3 class="section-name" tabindex="0">Structures<br><span class="jpstr">
+構造体
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Swift imports any C structure declared in a C header as a Swift structure. The imported Swift structure contains a stored property for each C structure field and an initializer whose parameters correspond to the stored properties. If all of the imported members have default values, Swift also provides a default initializer that takes no arguments. For example, given the following C structure:
+<br><span class="jpstr">
+スウィフトは、Cヘッダにおいて宣言されるどんなC構造体もスウィフト構造体としてインポートします。インポートされたスウィフト構造体は、各C構造体フィールドに対してひとつの保存プロパティを、そしてそれのパラメータが保存プロパティと対応するひとつのイニシャライザを含みます。インポートされたメンバのすべてが省略時の値を持つならば、スウィフトもまた引数を取らない省略時のイニシャライザをひとつ提供します。例えば、以下のC構造体を与えられて：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Objective-C">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="k">struct</span> <span class="n">Color</span> <span class="p">{</span>
+</code></li>
+            <li><code class="code-voice">    <span class="kt">float</span> <span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span>
+</code></li>
+            <li><code class="code-voice"><span class="p">};</span>
+</code></li>
+            <li><code class="code-voice"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">Color</span> <span class="n">Color</span><span class="p">;</span>
+</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Here’s the corresponding Swift type:
+<br><span class="jpstr">
+ここに対応するスウィフト型があります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">public</span> <span class="kt">struct</span> <span class="vc">Color</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">r</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span></code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">g</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span></code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">b</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span></code></li>
+            <li><code class="code-voice">    </code></li>
+            <li><code class="code-voice">    <span class="kt">init</span>()</code></li>
+            <li><code class="code-voice">    <span class="kt">init</span>(<span class="vc">r</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span>, <span class="vc">g</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span>, <span class="vc">b</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span>)</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  <section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-ID209"></a>
+  <h3 class="section-name" tabindex="0">Importing Functions as Type Members<br><span class="jpstr">
+関数を型メンバとしてインポートする
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  C APIs, such as the Core Foundation framework, often provide functions that create, access, or modify C structures. You can use the <code class="code-voice">CF_SWIFT_NAME</code> macro in your own code to have Swift import C functions as members of the imported structure type. For example, given the following C function declarations:
+<br><span class="jpstr">
+C API、例えばCore Foundationフレームワークは、C構造体の作成、アクセス、または修正をする関数をしばしば提供します。あなたは、<code class="code-voice">CF_SWIFT_NAME</code>マクロをあなた自身のコードにおいて使うことで、スウィフトがC関数をインポートされた構造体型のメンバとしてインポートするようにします。例えば、以下のC関数定義を与えられて：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Objective-C">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="n">Color</span> <span class="n">ColorCreateWithCMYK</span><span class="p">(</span><span class="kt">float</span> <span class="n">c</span><span class="p">,</span> <span class="kt">float</span> <span class="n">m</span><span class="p">,</span> <span class="kt">float</span> <span class="n">y</span><span class="p">,</span> <span class="kt">float</span> <span class="n">k</span><span class="p">)</span> <span class="n">CF_SWIFT_NAME</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="n">init</span><span class="p">(</span><span class="nl">c:m:y:k:</span><span class="p">));</span>
+</code></li>
+            <li><code class="code-voice"> 
+</code></li>
+            <li><code class="code-voice"><span class="kt">float</span> <span class="n">ColorGetHue</span><span class="p">(</span><span class="n">Color</span> <span class="n">color</span><span class="p">)</span> <span class="n">CF_SWIFT_NAME</span><span class="p">(</span><span class="nl">getter:</span><span class="n">Color</span><span class="p">.</span><span class="n">hue</span><span class="p">(</span><span class="nl">self:</span><span class="p">));</span>
+</code></li>
+            <li><code class="code-voice"><span class="kt">void</span> <span class="n">ColorSetHue</span><span class="p">(</span><span class="n">Color</span> <span class="n">color</span><span class="p">,</span> <span class="kt">float</span> <span class="n">hue</span><span class="p">)</span> <span class="n">CF_SWIFT_NAME</span><span class="p">(</span><span class="nl">setter:</span><span class="n">Color</span><span class="p">.</span><span class="n">hue</span><span class="p">(</span><span class="nl">self:newValue:</span><span class="p">));</span>
+</code></li>
+            <li><code class="code-voice"> 
+</code></li>
+            <li><code class="code-voice"><span class="n">Color</span> <span class="n">ColorDarkenColor</span><span class="p">(</span><span class="n">Color</span> <span class="n">color</span><span class="p">,</span> <span class="kt">float</span> <span class="n">amount</span><span class="p">)</span> <span class="n">CF_SWIFT_NAME</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="n">darken</span><span class="p">(</span><span class="nl">self:amount:</span><span class="p">));</span>
+</code></li>
+            <li><code class="code-voice"> 
+</code></li>
+            <li><code class="code-voice"><span class="k">extern</span> <span class="k">const</span> <span class="n">Color</span> <span class="n">ColorBondiBlue</span> <span class="n">CF_SWIFT_NAME</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="n">bondiBlue</span><span class="p">);</span>
+</code></li>
+            <li><code class="code-voice"> 
+</code></li>
+            <li><code class="code-voice"><span class="n">Color</span> <span class="n">ColorGetCalibrationColor</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">CF_SWIFT_NAME</span><span class="p">(</span><span class="nl">getter:</span><span class="n">Color</span><span class="p">.</span><span class="n">calibration</span><span class="p">());</span>
+</code></li>
+            <li><code class="code-voice"><span class="n">Color</span> <span class="n">ColorSetCalibrationColor</span><span class="p">(</span><span class="n">Color</span> <span class="n">color</span><span class="p">)</span> <span class="n">CF_SWIFT_NAME</span><span class="p">(</span><span class="nl">setter:</span><span class="n">Color</span><span class="p">.</span><span class="n">calibration</span><span class="p">(</span><span class="nl">newValue:</span><span class="p">));</span>
+</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Here’s how Swift imports them as type members:
+<br><span class="jpstr">
+ここにどのようにスウィフトがそれらを型メンバとしてインポートするかがあります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">extension</span> <span class="n"><!-- a href="" -->Color<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">init</span>(<span class="vc">c</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span>, <span class="vc">m</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span>, <span class="vc">y</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span>, <span class="vc">k</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span>)</code></li>
+            <li><code class="code-voice">    </code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">hue</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span> { <span class="vc">get</span> <span class="vc">set</span> }</code></li>
+            <li><code class="code-voice">    </code></li>
+            <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">darken</span>(<span class="vc">amount</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span>) -&gt; <span class="n"><!-- a href="" -->Color<!-- /a --></span></code></li>
+            <li><code class="code-voice">    </code></li>
+            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">bondiBlue</span>: <span class="n"><!-- a href="" -->Color<!-- /a --></span></code></li>
+            <li><code class="code-voice">    </code></li>
+            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">calibration</span>: <span class="n"><!-- a href="" -->Color<!-- /a --></span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The argument passed to the <code class="code-voice">CF_SWIFT_NAME</code> macro uses the same syntax as the <code class="code-voice">#selector</code> expression. The use of <code class="code-voice">self</code> in a <code class="code-voice">CF_SWIFT_NAME</code> argument is used for instance methods to refer to the method receiver.
+<br><span class="jpstr">
+<code class="code-voice">CF_SWIFT_NAME</code>マクロに渡された引数は、<code class="code-voice">#selector</code>式と同じ構文を使います。<code class="code-voice">CF_SWIFT_NAME</code>引数における<code class="code-voice">self</code>の使用は、インスタンスメソッドに対して使われてメソッドのレシーバを参照します。
+</span><!--end_jpstr-->
+</p><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-NoLink_27"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">You cannot reorder or change the number of arguments for type members imported using the <code class="code-voice">CF_SWIFT_NAME</code> macro. To provide a refined Swift interface to C functionality, create an overlay by declaring new Swift functions that make the necessary C function calls in their implementation.
+    	<br><span class="jpstr">
+あなたは、<code class="code-voice">CF_SWIFT_NAME</code>マクロを使ってインポートされる型メンバのための引数の数を変更したり順番を変えたりできません。洗練されたスウィフトインターフェイスをCの機能性に提供するには、必要なC関数をそれの実装において呼び出すようにする新しいスウィフト関数を定義することによって、オーバーレイを作成してください。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div>
+  
+</section>
+
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-ID21"></a>
+  <h3 class="section-name" tabindex="0">Enumerations<br><span class="jpstr">
+列挙
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Swift imports any C enumeration marked with the <code class="code-voice">NS_ENUM</code> macro as a Swift enumeration with an <code class="code-voice">Int</code> raw value type. The prefixes to C enumeration case names are removed when they are imported into Swift, whether they’re defined in system frameworks or in custom code.
+<br><span class="jpstr">
+スウィフトは、<code class="code-voice">NS_ENUM</code>マクロで印を付けられるどんなCの列挙でも、生の値型<code class="code-voice">Int</code>を持つスウィフト列挙としてインポートします。C列挙ケース節名への接頭辞は、それらがスウィフトにインポートされるとき削除されます、それらがシステムフレームワークでまたはあつらえのコードで定義されるかに関係なくです。
+</span><!--end_jpstr-->
+</p><p class="para">
+  For example, the C enumeration below is declared using the <code class="code-voice">NS_ENUM</code> macro.
+<br><span class="jpstr">
+例えば、以下のC列挙は<code class="code-voice">NS_ENUM</code>マクロを使って宣言されます。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Objective-C">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="k">typedef</span> <span class="nf">NS_ENUM</span><span class="p">(</span><span class="n">NSInteger</span><span class="p">,</span> <span class="n">UITableViewCellStyle</span><span class="p">)</span> <span class="p">{</span>
+</code></li>
+            <li><code class="code-voice">   <span class="n">UITableViewCellStyleDefault</span><span class="p">,</span>
+</code></li>
+            <li><code class="code-voice">   <span class="n">UITableViewCellStyleValue1</span><span class="p">,</span>
+</code></li>
+            <li><code class="code-voice">   <span class="n">UITableViewCellStyleValue2</span><span class="p">,</span>
+</code></li>
+            <li><code class="code-voice">   <span class="n">UITableViewCellStyleSubtitle</span>
+</code></li>
+            <li><code class="code-voice"><span class="p">};</span>
+</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  In Swift, it’s imported like this:
+<br><span class="jpstr">
+スウィフトでは、それはこのようにインポートされます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">enum</span> <span class="vc">UITableViewCellStyle</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">case</span> <span class="vc">`default`</span></code></li>
+            <li><code class="code-voice">    <span class="kt">case</span> <span class="vc">value1</span></code></li>
+            <li><code class="code-voice">    <span class="kt">case</span> <span class="vc">value2</span></code></li>
+            <li><code class="code-voice">    <span class="kt">case</span> <span class="vc">subtitle</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  When you refer to an enumeration value, use the value name with a leading dot (<code class="code-voice">.</code>).
+<br><span class="jpstr">
+あなたが列挙値に言及するとき、前にドット（<code class="code-voice">.</code>）をつけた値名を使用してください。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">cellStyle</span>: <span class="n"><!-- a href="" -->UITableViewCellStyle<!-- /a --></span> = .<span class="kt">default</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-NoLink_28"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">C enumerations imported by Swift do not fail when initializing with a raw value that does not correspond to an enumeration case. This is done for compatibility with C, which allows any value to be stored in an enumeration, including values used internally but not exposed in headers.
+    	<br><span class="jpstr">
+スウィフトによってインポートされるC列挙は、ある生の値が列挙ケース節と調和しない状態での初期化の時に失敗しません。これは、Cとの互換性のために行われます、それはどんな値も列挙に格納されることを許します、内部的に使われるがヘッダに暴露されない値も含めて。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div><p class="para">
+  A C enumeration that is not marked with the <code class="code-voice">NS_ENUM</code> or <code class="code-voice">NS_OPTIONS</code> macro is imported as a Swift structure. Each member of the C enumeration is imported as a global read-only computed property of the structure’s type—not as a member of the Swift structure itself.
+<br><span class="jpstr">
+<code class="code-voice">NS_ENUM</code>または<code class="code-voice">NS_OPTIONS</code>マクロで印されないC列挙は、スウィフト構造体としてインポートされます。C列挙の各メンバーは、その構造体の型のグローバルな読み出し専用の計算プロパティとしてインポートされます ― スウィフト構造体自身のメンバーとしてではなく。
+</span><!--end_jpstr-->
+</p><p class="para">
+  For example, the following C enumeration is not declared using the <code class="code-voice">NS_ENUM</code> macro:
+<br><span class="jpstr">
+例えば、以下のC列挙は<code class="code-voice">NS_ENUM</code>マクロを使って宣言されません。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Objective-C">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="k">typedef</span> <span class="k">enum</span> <span class="p">{</span>
+</code></li>
+            <li><code class="code-voice">   <span class="n">MessageDispositionUnread</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+</code></li>
+            <li><code class="code-voice">   <span class="n">MessageDispositionRead</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+</code></li>
+            <li><code class="code-voice">   <span class="n">MessageDispositionDeleted</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+</code></li>
+            <li><code class="code-voice"><span class="p">}</span> <span class="n">MessageDisposition</span><span class="p">;</span>
+</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  In Swift, it’s imported like this:
+<br><span class="jpstr">
+スウィフトでは、それはこのようにインポートされます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">struct</span> <span class="vc">MessageDisposition</span>: <span class="n"><!-- a href="" -->RawRepresentable<!-- /a --></span>, <span class="n"><!-- a href="" -->Equatable<!-- /a --></span> {}</code></li>
+            <li><code class="code-voice"> </code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">MessageDispositionUnread</span>: <span class="n"><!-- a href="" -->MessageDisposition<!-- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">MessageDispositionRead</span>: <span class="n"><!-- a href="" -->MessageDisposition<!-- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">MessageDispositionDeleted</span>: <span class="n"><!-- a href="" -->MessageDisposition<!-- /a --></span> { <span class="vc">get</span> }</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Swift automatically synthesizes conformance to the <code class="code-voice">Equatable</code> protocol for imported C enumeration types.
+<br><span class="jpstr">
+スウィフトは、インポートされたC列挙型に対して自動的に<code class="code-voice">Equatable</code>プロトコルへの準拠を合成します。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-ID169"></a>
+  <h3 class="section-name" tabindex="0">Option Sets<br><span class="jpstr">
+オプションセット
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Swift also imports C enumerations marked with the <code class="code-voice">NS_OPTIONS</code> macro as a Swift option set. Option sets behave similarly to imported enumerations by truncating their prefixes to option value names.
+<br><span class="jpstr">
+スウィフトはまた、<code class="code-voice">NS_OPTIONS</code>マクロで印を付けられるCの列挙をスウィフトオプションセットとしてインポートします。オプションセットは、それらのオプション値名の接頭辞を切り取ることでインポートされた列挙と同じように振舞います。
+</span><!--end_jpstr-->
+</p><p class="para">
+  For example, consider the following Objective-C options declaration:
+<br><span class="jpstr">
+例として、以下のObjective-Cオプション定義を考えてみてください。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Objective-C">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="k">typedef</span> <span class="nf">NS_OPTIONS</span><span class="p">(</span><span class="n">NSUInteger</span><span class="p">,</span> <span class="n">UIViewAutoresizing</span><span class="p">)</span> <span class="p">{</span>
+</code></li>
+            <li><code class="code-voice">        <span class="n">UIViewAutoresizingNone</span>                 <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+</code></li>
+            <li><code class="code-voice">        <span class="n">UIViewAutoresizingFlexibleLeftMargin</span>   <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">,</span>
+</code></li>
+            <li><code class="code-voice">        <span class="n">UIViewAutoresizingFlexibleWidth</span>        <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">,</span>
+</code></li>
+            <li><code class="code-voice">        <span class="n">UIViewAutoresizingFlexibleRightMargin</span>  <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span><span class="p">,</span>
+</code></li>
+            <li><code class="code-voice">        <span class="n">UIViewAutoresizingFlexibleTopMargin</span>    <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">3</span><span class="p">,</span>
+</code></li>
+            <li><code class="code-voice">        <span class="n">UIViewAutoresizingFlexibleHeight</span>       <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="p">,</span>
+</code></li>
+            <li><code class="code-voice">        <span class="n">UIViewAutoresizingFlexibleBottomMargin</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">5</span>
+</code></li>
+            <li><code class="code-voice"><span class="p">};</span>
+</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  In Swift, it’s imported like this:
+<br><span class="jpstr">
+スウィフトでは、それはこのようにインポートされます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">public</span> <span class="kt">struct</span> <span class="vc">UIViewAutoresizing</span> : <span class="n"><!-- a href="" -->OptionSet<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">public</span> <span class="kt">init</span>(<span class="vc">rawValue</span>: <span class="n"><!-- a href="" -->UInt<!-- /a --></span>)</code></li>
+            <li><code class="code-voice">    </code></li>
+            <li><code class="code-voice">    <span class="kt">public</span> <span class="kt">static</span> <span class="kt">var</span> <span class="vc">flexibleLeftMargin</span>: <span class="n"><!-- a href="" -->UIViewAutoresizing<!-- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">public</span> <span class="kt">static</span> <span class="kt">var</span> <span class="vc">flexibleWidth</span>: <span class="n"><!-- a href="" -->UIViewAutoresizing<!-- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">public</span> <span class="kt">static</span> <span class="kt">var</span> <span class="vc">flexibleRightMargin</span>: <span class="n"><!-- a href="" -->UIViewAutoresizing<!-- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">public</span> <span class="kt">static</span> <span class="kt">var</span> <span class="vc">flexibleTopMargin</span>: <span class="n"><!-- a href="" -->UIViewAutoresizing<!-- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">public</span> <span class="kt">static</span> <span class="kt">var</span> <span class="vc">flexibleHeight</span>: <span class="n"><!-- a href="" -->UIViewAutoresizing<!-- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">public</span> <span class="kt">static</span> <span class="kt">var</span> <span class="vc">flexibleBottomMargin</span>: <span class="n"><!-- a href="" -->UIViewAutoresizing<!-- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  In Objective-C, an option set is a bit mask of integer values. You use the bitwise OR operator (<code class="code-voice">|</code>) to combine option values, and the bitwise AND operator (<code class="code-voice">&amp;</code>) to check for option values. You create a new option set from a constant value or expression, An empty option set is represented by the constant zero (<code class="code-voice">0</code>).
+<br><span class="jpstr">
+Objective-Cでは、オプションセットは整数値のビットマスクです。あなたはビット単位OR演算子（<code class="code-voice">|</code>）をオプション値を結合するために、そしてビット単位AND演算子（<code class="code-voice">&amp;</code>）をオプション値の確認に使います。あなたは、新しいオプションセットを定数値または式から作成します。空のオプションセットは定数ゼロ（<code class="code-voice">0</code>）で表現されます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  In Swift, option sets are represented by structures conforming to the <code class="code-voice">OptionSet</code> protocol, with static variables for each option value. You can create a new option set value using an array literal, and access option values with a leading dot (<code class="code-voice">.</code>), similar to an enumeration. An empty option set can be created from an empty array literal (<code class="code-voice">[]</code>) or by calling its default initializer.
+<br><span class="jpstr">
+スウィフトでは、オプションセットは<code class="code-voice">OptionSet</code>プロトコルに準拠している構造体によって表され、静的変数を各オプション値に対して持ちます。あなたは、新しいオプションセット値を配列リテラルを使って作成すること、そしてオプション値へ前に付けたドット（<code class="code-voice">.</code>）で、列挙のようにアクセスすることができます。空のオプションセットは、空の配列リテラル（<code class="code-voice">[]</code>）から、またはそれの省略時のイニシャライザを呼ぶことによって作成されることができます。
+</span><!--end_jpstr-->
+</p><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-NoLink_29"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">When importing C enumeration marked with the <code class="code-voice">NS_OPTIONS</code> macro, Swift marks any members that have a value of <code class="code-voice">0</code> as unavailable, because Swift uses an empty option set to specify no options.
+    	<br><span class="jpstr">
+<code class="code-voice">NS_OPTIONS</code>マクロで印されたC列挙をインポートするとき、スウィフトは<code class="code-voice">0</code>の値を持つメンバはなんであれ利用不可として印します、なぜならスウィフトは空のオプションセットをオプション無しを指定するために使うからです。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div><p class="para">
+  Option sets behave like Swift’s <code class="code-voice">Set</code> collection type. You use the <code class="code-voice">insert(_:)</code> or <code class="code-voice">formUnion(_:)</code> methods to add option values, the <code class="code-voice">remove(_:)</code> or <code class="code-voice">subtract(_:)</code> methods to remove option values, and the <code class="code-voice">contains(_:)</code> method to check for an option value.
+<br><span class="jpstr">
+オプションセットは、スウィフトの<code class="code-voice">Set</code>コレクション型に似た振る舞いをします。あなたは<code class="code-voice">insert(_:)</code>または<code class="code-voice">formUnion(_:)</code>メソッドを使ってオプション値を付け加え、<code class="code-voice">remove(_:)</code>または<code class="code-voice">subtract(_:)</code>メソッドを使ってオプション値を削除し、そして<code class="code-voice">contains(_:)</code>メソッドを使ってあるオプション値を調べます。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">options</span>: <span class="n"><!-- a href="" -->Data<!-- /a --></span>.<span class="n"><!-- a href="" -->Base64EncodingOptions<!-- /a --></span> = [</code></li>
+            <li><code class="code-voice">    .<span class="vc">lineLength64Characters</span>,</code></li>
+            <li><code class="code-voice">    .<span class="vc">endLineWithLineFeed</span></code></li>
+            <li><code class="code-voice">]</code></li>
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">string</span> = <span class="vc">data</span>.<span class="vc">base64EncodedString</span>(<span class="vc">options</span>: <span class="vc">options</span>)</code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-ID170"></a>
+  <h3 class="section-name" tabindex="0">Unions<br><span class="jpstr">
+共用体
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Swift has only partial support of C <code class="code-voice">union</code> types. When importing C aggregates containing unions, Swift cannot access unsupported fields. However, C and Objective-C APIs that have arguments of those types or return values of those types can be used in Swift.
+<br><span class="jpstr">
+スウィフトは、Cの<code class="code-voice">union</code>型のサポートを部分的にだけします。共用体を含んでいるCの集成体をインポートするとき、スウィフトはサポートされないフィールドにアクセスすることができません。しかしながら、それらの型の引数やそれらの型の戻り値を持つCとObjective-C APIは、スウィフトにおいて使用されることができます。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-ID191"></a>
+  <h3 class="section-name" tabindex="0">Bit Fields<br><span class="jpstr">
+ビットフィールド
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Swift imports bit fields in structures, such those found in Foundation’s <code class="code-voice">NSDecimal</code> type, as computed properties. When accessing a computed property corresponding to a bit field, Swift automatically converts the value to and from compatible Swift types.
+<br><span class="jpstr">
+スウィフトは、構造体においてビットフィールド、Foundationの<code class="code-voice">NSDecimal</code>型において見つけられるものなどを、計算プロパティとしてインポートします。あるビットフィールドに対応している計算プロパティにアクセスするとき、スウィフトはその値を自動的に互換性のあるスウィフト型へと、またはそれから、変換します。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-ID195"></a>
+  <h3 class="section-name" tabindex="0">Unnamed Structure and Union Fields<br><span class="jpstr">
+無名の構造体と共用体フィールド
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  C <code class="code-voice">struct</code> and <code class="code-voice">union</code> types may define unnamed <code class="code-voice">struct</code> and <code class="code-voice">union</code> types as fields. Swift does not support unnamed structures, so these fields are imported with nested types with names that take the form <code class="code-voice">__Unnamed_fieldName</code>.
+<br><span class="jpstr">
+Cの<code class="code-voice">struct</code>および<code class="code-voice">union</code>型は、無名の<code class="code-voice">struct</code>および<code class="code-voice">union</code>型をフィールドとして定義します。スウィフトは、無名構造体をサポートしません、それでこれらのフィールドは、<code class="code-voice">__Unnamed_fieldName</code>から取られる名前を持つ入れ子にされた型を使ってインポートされます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  For example, consider a C structure named <code class="code-voice">Pie</code> that contains a <code class="code-voice">crust</code> field with an unnamed <code class="code-voice">struct</code> type and a <code class="code-voice">filling</code> field with an unnamed <code class="code-voice">union</code> type:
+<br><span class="jpstr">
+例えば、<code class="code-voice">Pie</code>と名付けられるC構造体を考えてください、それは<code class="code-voice">crust</code>フィールドを無名<code class="code-voice">struct</code>型で、<code class="code-voice">filling</code>フィールドを無名<code class="code-voice">union</code>型で含みます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Objective-C">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="k">struct</span> <span class="n">Pie</span> <span class="p">{</span>
+</code></li>
+            <li><code class="code-voice">   <span class="k">struct</span> <span class="p">{</span> <span class="n">bool</span> <span class="n">flakey</span><span class="p">;</span> <span class="p">}</span> <span class="n">crust</span><span class="p">;</span>
+</code></li>
+            <li><code class="code-voice">   <span class="k">union</span> <span class="p">{</span> <span class="kt">int</span> <span class="n">fruit</span><span class="p">;</span> <span class="kt">int</span> <span class="n">meat</span><span class="p">;</span> <span class="p">}</span> <span class="n">filling</span><span class="p">;</span>
+</code></li>
+            <li><code class="code-voice"><span class="p">}</span>
+</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  When imported by Swift, the <code class="code-voice">crust</code> property has type <code class="code-voice">Pie.__Unnamed_crust</code> and the <code class="code-voice">filling</code> property has type <code class="code-voice">Pie.__Unnamed_filling</code>.
+<br><span class="jpstr">
+スウィフトによってインポートされる時、<code class="code-voice">crust</code>プロパティは<code class="code-voice">Pie.__Unnamed_crust</code>型を持ち、そして<code class="code-voice">filling</code>プロパティは<code class="code-voice">Pie.__Unnamed_filling</code>型を持ちます。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-ID23"></a>
+  <h3 class="section-name" tabindex="0">Pointers<br><span class="jpstr">
+ポインター
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Whenever possible, Swift avoids giving you direct access to pointers. There are, however, various pointer types available for your use when you need direct access to memory. The following tables use <code class="code-voice">Type</code> as a placeholder type name to indicate syntax for the mappings.
+<br><span class="jpstr">
+可能なときはいつでも、スウィフトはあなたにポインターへの直接のアクセスを与えることを避けます。しかし、あなたがメモリへの直接のアクセスを必要とするとき、あなたの利用に応じられるいろいろなポインター型があります。以下の表は、<code class="code-voice">Type</code>をプレースホルダー型名として使ってマップのための構文を示します。
+</span><!--end_jpstr-->
+</p><p class="para">
+  For return types, variables, and arguments, the following mappings apply:
+<br><span class="jpstr">
+戻り型、変数、そして引数のために、以下のマッピングが適用されます：
+</span><!--end_jpstr-->
+</p><div class="tableholder">
+  
+  <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+    <caption class="tablecaption"></caption>
+    <thead>
+        <tr>
+            <th scope="col" class="TableHeading_TableRow_TableCell"><p class="para">
+  C Syntax
+<br><span class="jpstr">
+C構文
+</span><!--end_jpstr-->
+</p></th>
+            <th scope="col" class="TableHeading_TableRow_TableCell"><p class="para">
+  Swift Syntax
+<br><span class="jpstr">
+スウィフト構文
+</span><!--end_jpstr-->
+</p></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td scope="row"><p class="para">
+  <code class="code-voice">const Type *</code>
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">UnsafePointer&lt;Type&gt;</code>
+</p></td>
+        </tr>
+        <tr>
+            <td scope="row"><p class="para">
+  <code class="code-voice">Type *</code>
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">UnsafeMutablePointer&lt;Type&gt;</code>
+</p></td>
+        </tr>
+    </tbody>
+  </table>
+</div><p class="para">
+  For class types, the following mappings apply:
+<br><span class="jpstr">
+クラス型のために、以下のマッピングが適用されます：
+</span><!--end_jpstr-->
+</p><div class="tableholder">
+  
+  <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+    <caption class="tablecaption"></caption>
+    <thead>
+        <tr>
+            <th scope="col" class="TableHeading_TableRow_TableCell"><p class="para">
+  C Syntax
+<br><span class="jpstr">
+C構文
+</span><!--end_jpstr-->
+</p></th>
+            <th scope="col" class="TableHeading_TableRow_TableCell"><p class="para">
+  Swift Syntax
+<br><span class="jpstr">
+スウィフト構文
+</span><!--end_jpstr-->
+</p></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td scope="row"><p class="para">
+  <code class="code-voice">Type * const *</code>
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">UnsafePointer&lt;Type&gt;</code>
+</p></td>
+        </tr>
+        <tr>
+            <td scope="row"><p class="para">
+  <code class="code-voice">Type * __strong *</code>
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">UnsafeMutablePointer&lt;Type&gt;</code>
+</p></td>
+        </tr>
+        <tr>
+            <td scope="row"><p class="para">
+  <code class="code-voice">Type **</code>
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">AutoreleasingUnsafeMutablePointer&lt;Type&gt;</code>
+</p></td>
+        </tr>
+    </tbody>
+  </table>
+</div><p class="para">
+  For pointers to untyped, raw memory, the following mappings apply:
+<br><span class="jpstr">
+型無しの、生のメモリへのポインタに対して、以下のマッピングを適用します：
+</span><!--end_jpstr-->
+</p><div class="tableholder">
+  
+  <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+    <caption class="tablecaption"></caption>
+    <thead>
+        <tr>
+            <th scope="col" class="TableHeading_TableRow_TableCell"><p class="para">
+  C Syntax
+<br><span class="jpstr">
+C構文
+</span><!--end_jpstr-->
+</p></th>
+            <th scope="col" class="TableHeading_TableRow_TableCell"><p class="para">
+  Swift Syntax
+<br><span class="jpstr">
+スウィフト構文
+</span><!--end_jpstr-->
+</p></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td scope="row"><p class="para">
+  <code class="code-voice">const void *</code>
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">UnsafeRawPointer</code>
+</p></td>
+        </tr>
+        <tr>
+            <td scope="row"><p class="para">
+  <code class="code-voice">void *</code>
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">UnsafeMutableRawPointer</code>
+</p></td>
+        </tr>
+    </tbody>
+  </table>
+</div><p class="para">
+  Swift also provides pointer types for working with buffers, which are discussed in <span class="x-name"><a href="#//apple_ref/doc/uid/TP40014216-CH8-ID222" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH8-ID222">Buffer Pointers</a></span>.
+<br><span class="jpstr">
+スウィフトはまたバッファを扱うためにいくつかのポインタ型を提供します、それらは<span class="x-name"><a href="#//apple_ref/doc/uid/TP40014216-CH8-ID222" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH8-ID222">バッファポインタ</a></span>において解説されます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  If the type of the value pointed to by a C pointer cannot be represented by Swift, such as an incomplete struct type, the pointer is imported as an <code class="code-voice">OpaquePointer</code>.
+<br><span class="jpstr">
+Cポインタによって指し示される値の型がスウィフトによって表されることができないならば、たとえば不完全なstruct型など、そのポインタは<code class="code-voice">OpaquePointer</code>としてインポートされます。
+</span><!--end_jpstr-->
+</p>
+  <section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-ID146"></a>
+  <h3 class="section-name" tabindex="0">Constant Pointers<br><span class="jpstr">
+定数ポインター
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  When a function is declared as taking an <code class="code-voice">UnsafePointer&lt;Type&gt;</code> argument, it can accept any of the following:
+<br><span class="jpstr">
+ある関数が<code class="code-voice">UnsafePointer&lt;Type&gt;</code>引数を取るとして宣言されるとき、それは以下の何でも受け入れることができます：
+</span><!--end_jpstr-->
+</p><ul class="list-bullet">
+  <li class="item"><p class="para">
+  An <code class="code-voice">UnsafePointer&lt;Type&gt;</code>, <code class="code-voice">UnsafeMutablePointer&lt;Type&gt;</code>, or <code class="code-voice">AutoreleasingUnsafeMutablePointer&lt;Type&gt;</code> value, which is converted to <code class="code-voice">UnsafePointer&lt;Type&gt;</code> if necessary.
+<br><span class="jpstr">
+ひとつの<code class="code-voice">UnsafePointer&lt;Type&gt;</code>、<code class="code-voice">UnsafeMutablePointer&lt;Type&gt;</code>、または<code class="code-voice">AutoreleasingUnsafeMutablePointer&lt;Type&gt;</code>値、それは必要ならば<code class="code-voice">UnsafePointer&lt;Type&gt;</code>に変換されます。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  A <code class="code-voice">String</code> value, if <code class="code-voice">Type</code> is <code class="code-voice">Int8</code> or <code class="code-voice">UInt8</code>. The string will automatically be converted to UTF8 in a buffer, and a pointer to that buffer is passed to the function.
+<br><span class="jpstr">
+ひとつの<code class="code-voice">String</code>値、<code class="code-voice">Type</code>が<code class="code-voice">Int8</code>または<code class="code-voice">UInt8</code>であるならば。その文字列は、あるバッファにおいて自動的にUTF8に変換されます、そしてそのバッファへのポインタが関数へ渡されます。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  An in-out expression that contains a mutable variable, property, or subscript reference of type <code class="code-voice">Type</code>, which is passed as a pointer to the address of the left-hand side identifier.
+<br><span class="jpstr">
+ひとつのin-out式で、それが型<code class="code-voice">Type</code>の可変の変数、プロパティ、または添え字参照を含むもの、それは左手側識別子のアドレスへのポインタとして渡されます。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  A <code class="code-voice">[Type]</code> value, which is passed as a pointer to the start of the array.
+<br><span class="jpstr">
+ひとつの<code class="code-voice">[Type]</code>値、それは配列の始まりへのポインターとして渡されます。
+</span><!--end_jpstr-->
+</p>
+</li>
+</ul><p class="para">
+  The pointer passed to the function is guaranteed to be valid only for the duration of the function call. Don’t try to persist the pointer and access it after the function has returned.
+<br><span class="jpstr">
+関数に渡されるポインタは、その関数呼び出しの継続期間に対してのみ有効であることを保証されます。そのポインタに固執すること、そして関数が帰った後でそれにアクセスすることを試みないでください
+</span><!--end_jpstr-->
+</p><p class="para">
+  If you have declared a function like this one:
+<br><span class="jpstr">
+あなたがこのような関数を宣言したならば：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">takesAPointer</span>(<span class="kt">_</span> <span class="vc">p</span>: <span class="n"><!-- a href="" -->UnsafePointer<!-- /a --></span>&lt;<span class="n"><!-- a href="" -->Float<!-- /a --></span>&gt;) {</code></li>
+            <li><code class="code-voice">    <span class="c">// ...</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  You can call it in any of the following ways:
+<br><span class="jpstr">
+あなたは、以下の方法の何ででもそれを呼ぶことができます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">x</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span> = <span class="m">0.0</span></code></li>
+            <li><code class="code-voice"><span class="vc">takesAPointer</span>(&amp;<span class="vc">x</span>)</code></li>
+            <li><code class="code-voice"><span class="vc">takesAPointer</span>([<span class="m">1.0</span>, <span class="m">2.0</span>, <span class="m">3.0</span>])</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  When a function is declared as taking an <code class="code-voice">UnsafeRawPointer</code> argument, it can accept the same operands as <code class="code-voice">UnsafePointer&lt;Type&gt;</code> for any type <code class="code-voice">Type</code>.
+<br><span class="jpstr">
+ある関数が<code class="code-voice">UnsafeRawPointer</code>引数を取るとして宣言されるとき、それは何らかの型<code class="code-voice">Type</code>に対する<code class="code-voice">UnsafePointer&lt;Type&gt;</code>と同じ演算数を受け入れることができます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  If you have declared a function like this one:
+<br><span class="jpstr">
+あなたがこのような関数を宣言したならば：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">takesARawPointer</span>(<span class="kt">_</span> <span class="vc">p</span>: <span class="n"><!-- a href="" -->UnsafeRawPointer<!-- /a --></span>?)  {</code></li>
+            <li><code class="code-voice">    <span class="c">// ...</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  You can call it in any of the following ways:
+<br><span class="jpstr">
+あなたは、以下の方法の何ででもそれを呼ぶことができます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">x</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span> = <span class="m">0.0</span>, <span class="vc">y</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span> = <span class="m">0</span></code></li>
+            <li><code class="code-voice"><span class="vc">takesARawPointer</span>(&amp;<span class="vc">x</span>)</code></li>
+            <li><code class="code-voice"><span class="vc">takesARawPointer</span>(&amp;<span class="vc">y</span>)</code></li>
+            <li><code class="code-voice"><span class="vc">takesARawPointer</span>([<span class="m">1.0</span>, <span class="m">2.0</span>, <span class="m">3.0</span>] <span class="kt">as</span> [<span class="n"><!-- a href="" -->Float<!-- /a --></span>])</code></li>
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">intArray</span> = [<span class="m">1</span>, <span class="m">2</span>, <span class="m">3</span>]</code></li>
+            <li><code class="code-voice"><span class="vc">takesARawPointer</span>(<span class="vc">intArray</span>)</code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-ID25"></a>
+  <h3 class="section-name" tabindex="0">Mutable Pointers<br><span class="jpstr">
+可変ポインター
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  When a function is declared as taking an <code class="code-voice">UnsafeMutablePointer&lt;Type&gt;</code> argument, it can accept any of the following:
+<br><span class="jpstr">
+ある関数が<code class="code-voice">UnsafeMutablePointer&lt;Type&gt;</code>引数を取るとして宣言されるとき、それは以下の何でも受け入れることができます：
+</span><!--end_jpstr-->
+</p><ul class="list-bullet">
+  <li class="item"><p class="para">
+  An <code class="code-voice">UnsafeMutablePointer&lt;Type&gt;</code> value
+<br><span class="jpstr">
+ひとつの<code class="code-voice">UnsafeMutablePointer&lt;Type&gt;</code>値
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  An in-out expression of type <code class="code-voice">Type</code> that contains a mutable variable, property, or subscript reference, which is passed as a pointer to the address of the mutable value.
+<br><span class="jpstr">
+１つの可変の変数、プロパティ、または添え字参照を含んでいる、型<code class="code-voice">Type</code>の１つのin-out式、それは、ボインタとしてその可変値のアドレスへと渡されます。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  An in-out expression of type <code class="code-voice">[Type]</code> that contains a mutable variable, property, or subscript reference, which is passed as a pointer to the start of the array, and is lifetime-extended for the duration of the call
+<br><span class="jpstr">
+可変の変数、プロパティ、または添え字参照を含んでいる、型<code class="code-voice">[Type]</code>のin-out式、それは、ポインタとしてその配列の始まりへと渡されます、そして呼び出しの持続期間は寿命延長されます
+</span><!--end_jpstr-->
+</p>
+</li>
+</ul><p class="para">
+  If you have declared a function like this one:
+<br><span class="jpstr">
+あなたがこのような関数を宣言したならば：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">takesAMutablePointer</span>(<span class="kt">_</span> <span class="vc">p</span>: <span class="n"><!-- a href="" -->UnsafeMutablePointer<!-- /a --></span>&lt;<span class="n"><!-- a href="" -->Float<!-- /a --></span>&gt;) {</code></li>
+            <li><code class="code-voice">    <span class="c">// ...</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  You can call it in any of the following ways:
+<br><span class="jpstr">
+あなたは、以下の方法の何ででもそれを呼ぶことができます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">x</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span> = <span class="m">0.0</span></code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">a</span>: [<span class="n"><!-- a href="" -->Float<!-- /a --></span>] = [<span class="m">1.0</span>, <span class="m">2.0</span>, <span class="m">3.0</span>]</code></li>
+            <li><code class="code-voice"><span class="vc">takesAMutablePointer</span>(&amp;<span class="vc">x</span>)</code></li>
+            <li><code class="code-voice"><span class="vc">takesAMutablePointer</span>(&amp;<span class="vc">a</span>)</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  When a function is declared as taking an <code class="code-voice">UnsafeMutableRawPointer</code> argument, it can accept the same operands as <code class="code-voice">UnsafeMutablePointer&lt;Type&gt;</code> for any type <code class="code-voice">Type</code>.
+<br><span class="jpstr">
+ある関数が<code class="code-voice">UnsafeMutableRawPointer</code>引数を取るとして宣言されるとき、それは何らかの型<code class="code-voice">Type</code>に対する<code class="code-voice">UnsafeMutablePointer&lt;Type&gt;</code>と同じ演算数を受け入れることができます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  If you have declared a function like this one:
+<br><span class="jpstr">
+あなたがこのような関数を宣言したならば：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">takesAMutableRawPointer</span>(<span class="kt">_</span> <span class="vc">p</span>: <span class="n"><!-- a href="" -->UnsafeMutableRawPointer<!-- /a --></span>?)  {</code></li>
+            <li><code class="code-voice">    <span class="c">// ...</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  You can call it in any of the following ways:
+<br><span class="jpstr">
+あなたは、以下の方法の何ででもそれを呼ぶことができます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">x</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span> = <span class="m">0.0</span>, <span class="vc">y</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span> = <span class="m">0</span></code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">a</span>: [<span class="n"><!-- a href="" -->Float<!-- /a --></span>] = [<span class="m">1.0</span>, <span class="m">2.0</span>, <span class="m">3.0</span>], <span class="vc">b</span>: [<span class="n"><!-- a href="" -->Int<!-- /a --></span>] = [<span class="m">1</span>, <span class="m">2</span>, <span class="m">3</span>]</code></li>
+            <li><code class="code-voice"><span class="vc">takesAMutableRawPointer</span>(&amp;<span class="vc">x</span>)</code></li>
+            <li><code class="code-voice"><span class="vc">takesAMutableRawPointer</span>(&amp;<span class="vc">y</span>)</code></li>
+            <li><code class="code-voice"><span class="vc">takesAMutableRawPointer</span>(&amp;<span class="vc">a</span>)</code></li>
+            <li><code class="code-voice"><span class="vc">takesAMutableRawPointer</span>(&amp;<span class="vc">b</span>)</code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-ID147"></a>
+  <h3 class="section-name" tabindex="0">Autoreleasing Pointers<br><span class="jpstr">
+自動解放ポインター
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  When a function is declared as taking an <code class="code-voice">AutoreleasingUnsafeMutablePointer&lt;Type&gt;</code>, it can accept any of the following:
+<br><span class="jpstr">
+ある関数が<code class="code-voice">AutoreleasingUnsafeMutablePointer&lt;Type&gt;</code>を取るとして宣言されるとき、それは以下の何でも受け入れることができます：
+</span><!--end_jpstr-->
+</p><ul class="list-bullet">
+  <li class="item"><p class="para">
+  An <code class="code-voice">AutoreleasingUnsafeMutablePointer&lt;Type&gt;</code> value
+<br><span class="jpstr">
+ひとつの<code class="code-voice">AutoreleasingUnsafeMutablePointer&lt;Type&gt;</code>値
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  An in-out expression that contains a mutable variable, property, or subscript reference of type <code class="code-voice">Type</code>, which is copied bitwise into a temporary nonowning buffer. The address of that buffer is passed to the callee, and on return, the value in the buffer is loaded, retained, and reassigned into the operand.
+<br><span class="jpstr">
+ひとつのin-out式で、それが型<code class="code-voice">Type</code>の可変の変数、プロパティ、または添え字参照を含むもの、それは一時的な非所有バッファにビット単位でコピーされるものです。そのバッファのアドレスは呼び出される側に渡されます、そして戻る時に、バッファの値はロードされ、保持され、演算数に再割り当てされます。
+</span><!--end_jpstr-->
+</p>
+</li>
+</ul><p class="para">
+  Note that this list does not include arrays.
+<br><span class="jpstr">
+このリストが配列を含まない点に注意してください。
+</span><!--end_jpstr-->
+</p><p class="para">
+  If you have declared a function like this one:
+<br><span class="jpstr">
+あなたがこのような関数を宣言したならば：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">takesAnAutoreleasingPointer</span>(<span class="kt">_</span> <span class="vc">p</span>: <span class="n"><!-- a href="" -->AutoreleasingUnsafeMutablePointer<!-- /a --></span>&lt;<span class="n"><!-- a href="" -->NSDate<!-- /a --></span>?&gt;) {</code></li>
+            <li><code class="code-voice">    <span class="c">// ...</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  You can call it in the following way:
+<br><span class="jpstr">
+あなたは、以下の方法でそれを呼ぶことができます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">x</span>: <span class="n"><!-- a href="" -->NSDate<!-- /a --></span>? = <span class="kt">nil</span></code></li>
+            <li><code class="code-voice"><span class="vc">takesAnAutoreleasingPointer</span>(&amp;<span class="vc">x</span>)</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Types that are pointed to are not bridged. For example, <code class="code-voice">NSString **</code> comes over to Swift as <code class="code-voice">AutoreleasingUnsafeMutablePointer&lt;NSString?&gt;</code>, not <code class="code-voice">AutoreleasingUnsafeMutablePointer&lt;String?&gt;</code>.
+<br><span class="jpstr">
+ポインターで指される型は、橋渡しされません。例えば、<code class="code-voice">NSString **</code>はスウィフトに<code class="code-voice">AutoreleasingUnsafeMutablePointer&lt;NSString?></code>としてやってきます、<code class="code-voice">AutoreleasingUnsafeMutablePointer&lt;String?></code>ではなく。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-ID148"></a>
+  <h3 class="section-name" tabindex="0">Function Pointers<br><span class="jpstr">
+関数ポインター
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  C function pointers are imported into Swift as closures with C function pointer calling convention, denoted by the <code class="code-voice">@convention(c)</code> attribute. For example, a function pointer that has the type <code class="code-voice">int (*)(void)</code> in C is imported into Swift as <code class="code-voice">@convention(c) () -&gt; Int32</code>.
+<br><span class="jpstr">
+C関数ポインターは、スウィフトにC関数呼出規約を持つクロージャとしてインポートされ、<code class="code-voice">@convention(c)属性</code>によって印を付けられます。例えば、Cにおける<code class="code-voice">int (*)(void)</code>型をもつ関数ポインターは、スウィフトに<code class="code-voice">@convention(c) () -&gt; Int32</code>としてインポートされます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  When calling a function that takes a function pointer argument, you can pass a top-level Swift function, a closure literal, or <code class="code-voice">nil</code>. You can also pass a closure property of a generic type or a generic method as long as no generic type parameters are referenced in the closure’s argument list or body. For example, consider Core Foundation’s <code class="code-voice">CFArrayCreateMutable(_:_:_:)</code> function. The <code class="code-voice">CFArrayCreateMutable(_:_:_:)</code> function takes a <code class="code-voice">CFArrayCallBacks</code> structure, which is initialized with function pointer callbacks:
+<br><span class="jpstr">
+関数ポインタ引数を取る関数を呼び出しているとき、あなたはトップレベルスウィフト関数、クロージャリテラル、または<code class="code-voice">nil</code>を渡すことができます。あなたはまた、ひとつの総称体型のクロージャプロパティまたは総称体メソッドを渡すことが、いくつかの総称体型パラメータがクロージャの引数リストまたは本文において参照されるのでない限りは可能です。例えば、Core Foundationの<code class="code-voice">CFArrayCreateMutable(_:_:_:)</code>関数を考えてみてください。<code class="code-voice">CFArrayCreateMutable(_:_:_:)</code>関数は、ひとつの<code class="code-voice">CFArrayCallBacks</code>構造体を取ります、それは関数ポインタコールバックで初期化されます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">customCopyDescription</span>(<span class="kt">_</span> <span class="vc">p</span>: <span class="n"><!-- a href="" -->UnsafeRawPointer<!-- /a --></span>?) -&gt; <span class="n"><!-- a href="" -->Unmanaged<!-- /a --></span>&lt;<span class="n"><!-- a href="" -->CFString<!-- /a --></span>&gt;? {</code></li>
+            <li><code class="code-voice">    <span class="c">// return an Unmanaged&lt;CFString&gt;? value</span></code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"> </code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">callbacks</span> = <span class="vc">CFArrayCallBacks</span>(</code></li>
+            <li><code class="code-voice">    <span class="vc">version</span>: <span class="m">0</span>,</code></li>
+            <li><code class="code-voice">    <span class="vc">retain</span>: <span class="kt">nil</span>,</code></li>
+            <li><code class="code-voice">    <span class="vc">release</span>: <span class="kt">nil</span>,</code></li>
+            <li><code class="code-voice">    <span class="vc">copyDescription</span>: <span class="vc">customCopyDescription</span>,</code></li>
+            <li><code class="code-voice">    <span class="vc">equal</span>: { (<span class="vc">p1</span>, <span class="vc">p2</span>) -&gt; <span class="n"><!-- a href="" -->DarwinBoolean<!-- /a --></span> <span class="kt">in</span></code></li>
+            <li><code class="code-voice">        <span class="c">// return Bool value</span></code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">)</code></li>
+            <li><code class="code-voice"> </code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">mutableArray</span> = <span class="vc">CFArrayCreateMutable</span>(<span class="kt">nil</span>, <span class="m">0</span>, &amp;<span class="vc">callbacks</span>)</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  In the example above, the <code class="code-voice">CFArrayCallBacks</code> initializer uses <code class="code-voice">nil</code> values as arguments for the <code class="code-voice">retain</code> and <code class="code-voice">release</code> parameters, the <code class="code-voice">customCopyDescription(_:)</code> function as the argument for the <code class="code-voice">customCopyDescription</code> parameter, and a closure literal as the argument for the <code class="code-voice">equal</code> parameter.
+<br><span class="jpstr">
+上の例において、<code class="code-voice">CFArrayCallBacks</code>イニシャライザは<code class="code-voice">nil</code>値を<code class="code-voice">retain</code>と<code class="code-voice">release</code>パラメーターに対する引数として、<code class="code-voice">customCopyDescription(_:)</code>関数を<code class="code-voice">customCopyDescription</code>パラメーターに対する引数として、そしてクロージャリテラルを<code class="code-voice">equal</code>パラメーターに対する引数として使います。
+</span><!--end_jpstr-->
+</p><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-NoLink_30"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">Only Swift function types with C function reference calling convention may be used for function pointer arguments. Like a C function pointer, a Swift function type with the <code class="code-voice">@convention(c)</code> attribute does not capture the context of its surrounding scope.
+    	<br><span class="jpstr">
+C関数参照呼出手法を持つスウィフト関数型だけが、関数ポインタ引数のために使われます。C関数ポインタのように、<code class="code-voice">@convention(c)</code>属性を持つスウィフト関数型は、それを取り囲んでいるスコープのコンテキストをキャプチャしません。
+</span><!--end_jpstr-->
+</p>
+    <p class="para">
+  For more information, see <a href="../Swift_Programming_Language/Attributes.html#//apple_ref/doc/uid/TP40014097-CH35-ID350" data-renderer-version="2" target="_self">Type Attributes</a> in <em class="u-book"><a href="../Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097" data-renderer-version="2" target="_self">The Swift Programming Language (Swift 3.0.1)</a></em>.
+<br><span class="jpstr">
+更なる情報としては、<a href="../Swift_Programming_Language/Attributes.html#//apple_ref/doc/uid/TP40014097-CH35-ID350" data-renderer-version="2" target="_self">型属性</a>を<em class="u-book"><a href="../Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097" data-renderer-version="2" target="_self">スウィフトプログラミング言語（Swift 3.0.1）</a></em>において見てください。
+</span><!--end_jpstr-->
+</p>
+
+  </aside>
+</div>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-ID222"></a>
+  <h3 class="section-name" tabindex="0">Buffer Pointers<br><span class="jpstr">
+バッファポインタ
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  A <em>buffer pointer</em> is used for low-level access to a region of memory. For example, you can use a buffer pointer for efficent processing and communication of data between apps and services.
+<br><span class="jpstr">
+<em>バッファポインタ</em>は、メモリのある領域への低水準アクセスのために使われます。たとえば、あなたはアプリとサービス間での効率の良いデータの処理および通信のためにバッファポインタを使うことができます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Swift has the following buffer pointer types:
+<br><span class="jpstr">
+スウィフトは、以下のバッファポインタ型を持ちます：
+</span><!--end_jpstr-->
+</p><ul class="list-bullet">
+  <li class="item"><p class="para">
+  <code class="code-voice">UnsafeBufferPointer</code>
+</p>
+</li><li class="item"><p class="para">
+  <code class="code-voice">UnsafeMutableBufferPointer</code>
+</p>
+</li><li class="item"><p class="para">
+  <code class="code-voice">UnsafeRawBufferPointer</code>
+</p>
+</li><li class="item"><p class="para">
+  <code class="code-voice">UnsafeMutableRawBufferPointer</code>
+</p>
+</li>
+</ul><p class="para">
+  The typed buffer pointer types, <code class="code-voice">UnsafeBufferPointer</code> and <code class="code-voice">UnsafeMutableBufferPointer</code>, let you view or mutate a contiguous block of memory. These types let you access the memory as a collection, where each item is an instance of the buffer type’s <code class="code-voice">Element</code> generic type parameter.
+<br><span class="jpstr">
+型付きバッファポインタ型、<code class="code-voice">UnsafeBufferPointer</code>および<code class="code-voice">UnsafeMutableBufferPointer</code>は、あなたにメモリの隣接ブロックを眺めさせたり変化させたりします。これらの型は、あなたにコレクションとしてメモリにアクセスさせます、そこで各項目はそのバッファ型のもつ<code class="code-voice">Element</code>総称体型パラメータのインスタンスです。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The raw buffer pointer types, <code class="code-voice">UnsafeRawBufferPointer</code> and <code class="code-voice">UnsafeMutableRawBufferPointer</code>, let you view or mutate a contiguous block of memory as a collection of <code class="code-voice">UInt8</code> values, where each value corresponds to a byte of memory. These types let you use low-level programming patterns, such as operating on raw memory without compiler-checked type safety, or switching between several different typed interpretations of the same memory.
+<br><span class="jpstr">
+生のバッファポインタ型、<code class="code-voice">UnsafeRawBufferPointer</code>および<code class="code-voice">UnsafeMutableRawBufferPointer</code>は、あなたにメモリの隣接ブロックを<code class="code-voice">UInt8</code>値のコレクションとして眺めさせたり変化させたりします、そこで各値はメモリのあるバイトに対応します。これらの型はあなたに低水準プログラミングパターンを使用させます、たとえばコンパイラ確認の型安全なしの生の値上での演算など、または同じメモリのいくつかの異なる型での実装の間での切り替えなど。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-ID210"></a>
+  <h3 class="section-name" tabindex="0">Null Pointers<br><span class="jpstr">
+ヌルポインタ
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  In Objective-C, a pointer type declaration can use the <code class="code-voice">_Nullable</code> and <code class="code-voice">_Nonnull</code> annotations to specify whether or not that pointer may have a <code class="code-voice">nil</code> or <code class="code-voice">NULL</code> value. In Swift, a null pointer is represented by a <code class="code-voice">nil</code> value of an optional pointer type. Pointer initializers taking the integer representation of an address in memory are failable. A non-optional pointer type cannot be assigned a <code class="code-voice">nil</code> value.
+<br><span class="jpstr">
+Objective-Cでは、ボインタ型宣言は<code class="code-voice">_Nullable</code>および<code class="code-voice">_Nonnull</code>注釈を使うことで、そのポインタが<code class="code-voice">nil</code>または<code class="code-voice">NULL</code>値を持つかどうか指定できます。スウィフトでは、ヌルポインタはオプショナルポインタ型の<code class="code-voice">nil</code>値によって表されます。メモリ中のあるアドレスの整数表現をとるポインタイニシャライザは失敗可能です。非オプショナルポインタ型は、<code class="code-voice">nil</code>値を割り当てられることはできません。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The following mappings apply:
+<br><span class="jpstr">
+以下のマッピングを適用します：
+</span><!--end_jpstr-->
+</p><div class="tableholder">
+  
+  <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+    <caption class="tablecaption"></caption>
+    <thead>
+        <tr>
+            <th scope="col" class="TableHeading_TableRow_TableCell"><p class="para">
+  Objective-C Syntax
+<br><span class="jpstr">
+Objective-C構文
+</span><!--end_jpstr-->
+</p></th>
+            <th scope="col" class="TableHeading_TableRow_TableCell"><p class="para">
+  Swift Syntax
+<br><span class="jpstr">
+スウィフト構文
+</span><!--end_jpstr-->
+</p></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td scope="row"><p class="para">
+  <code class="code-voice">const Type * _Nonnull</code>
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">UnsafePointer&lt;Type&gt;</code>
+</p></td>
+        </tr>
+        <tr>
+            <td scope="row"><p class="para">
+  <code class="code-voice">const Type * _Nullable</code>
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">UnsafePointer&lt;Type&gt;?</code>
+</p></td>
+        </tr>
+        <tr>
+            <td scope="row"><p class="para">
+  <code class="code-voice">const Type * _Null_unspecified</code>
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">UnsafePointer&lt;Type&gt;!</code>
+</p></td>
+        </tr>
+    </tbody>
+  </table>
+</div><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-NoLink_31"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">Prior to Swift 3, both nullable and non-nullable pointers were represented by a non-optional unsafe pointer type. When migrating existing code to the latest version of Swift, you may need to mark any pointers that are initialized with a <code class="code-voice">nil</code> literal value to be optional.
+    	<br><span class="jpstr">
+スウィフト 3以前では、ヌル可能およびヌル不可ポインタの両方とも非オプショナルの非安全ポインタ型によって表されました。既存のコードをスウィフトの最新版に移行するとき、あなたは<code class="code-voice">nil</code>リテラル値によって初期化されるあらゆるポインタをオプショナルであるように印する必要があるでしょう。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-ID201"></a>
+  <h3 class="section-name" tabindex="0">Pointer Arithmetic<br><span class="jpstr">
+ポインタ算術
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  When working with opaque data types, you may need to perform unsafe pointer operations. You can use the arithmetic operators on Swift pointer values to create new pointers at a specified offset.
+<br><span class="jpstr">
+不透明データ型を扱うとき、あなたは非安全ポインタ演算を行う必要があるでしょう。あなたは算術演算子をスウィフトポインタ値上で使って、新しいポインタを指定されたオフセットで作成することができます。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">pointer</span>: <span class="n"><!-- a href="" -->UnsafePointer<!-- /a --></span>&lt;<span class="n"><!-- a href="" -->Int8<!-- /a --></span>&gt;</code></li>
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">offsetPointer</span> = <span class="vc">pointer</span> + <span class="m">24</span></code></li>
+            <li><code class="code-voice"><span class="c">// offsetPointer is 24 strides ahead of pointer&nbsp;<span class="jpstr">（offsetPointerは、pointerの前方24ストライドです）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-NoLink_32"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">See <span class="x-name"><a href="#//apple_ref/doc/uid/TP40014216-CH8-ID185" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH8-ID185">Data Type Size Calculation</a></span> for more information about how Swift calculates the sizes of data types and values.
+    	<br><span class="jpstr">
+<span class="x-name"><a href="#//apple_ref/doc/uid/TP40014216-CH8-ID185" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH8-ID185">データ型サイズ計算</a></span>をスウィフトがデータ型と値の大きさを計算する方法についての詳細のために見てください。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div>
+  
+</section>
+
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-ID185"></a>
+  <h3 class="section-name" tabindex="0">Data Type Size Calculation<br><span class="jpstr">
+データ型サイズ計算
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  In C, the <code class="code-voice">sizeof</code> and <code class="code-voice">alignof</code> operators return the size and alignment of any variable or data type, In Swift, you use <code class="code-voice">MemoryLayout&lt;T&gt;</code> to access the memory layout of the parameterized type <code class="code-voice">T</code> through the <code class="code-voice">size</code>, <code class="code-voice">stride</code>, and <code class="code-voice">alignment</code> properties. For example, the <code class="code-voice">timeval</code> structure in Darwin has a size and stride of <code class="code-voice">16</code> and an alignment of <code class="code-voice">8</code>:
+<br><span class="jpstr">
+Cでは、<code class="code-voice">sizeof</code>および<code class="code-voice">alignof</code>演算子はあらゆる変数またはデータ型のサイズとアラインメントを返します、スウィフトでは、あなたは<code class="code-voice">MemoryLayout&lt;T&gt;</code>を使って、パラメータ化された型<code class="code-voice">T</code>のメモリレイアウトに<code class="code-voice">size</code>、<code class="code-voice">stride</code>、そして<code class="code-voice">alignment</code>プロパティを通してアクセスします。例えば、Darwinにおける<code class="code-voice">timeval</code>構造体は、<code class="code-voice">16</code>のサイズとストライドおよび<code class="code-voice">8</code>のアラインメントを持ちます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="vc">MemoryLayout</span>&lt;<span class="n"><!-- a href="" -->timeval<!-- /a --></span>&gt;.<span class="vc">size</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;16&quot;</span></code></li>
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="vc">MemoryLayout</span>&lt;<span class="n"><!-- a href="" -->timeval<!-- /a --></span>&gt;.<span class="vc">stride</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;16&quot;</span></code></li>
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="vc">MemoryLayout</span>&lt;<span class="n"><!-- a href="" -->timeval<!-- /a --></span>&gt;.<span class="vc">alignment</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;8&quot;</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  You use this when calling C functions from Swift that take the size of a type or value as an argument. For example, the <code class="code-voice">setsockopt(_:_:_:_:_:)</code> function can specify a <code class="code-voice">timeval</code> value as a receive timeout option (<code class="code-voice">SO_RCVTIMEO</code>) for a socket by passing a pointer to that value and the length of that value:
+<br><span class="jpstr">
+あなたがこれを使うのは、ある型や値のサイズを引数としてとるC関数をスウィフトから呼び出している時です。例えば、<code class="code-voice">setsockopt(_:_:_:_:_:)</code>関数は、ある<code class="code-voice">timeval</code>値を、受信時間切れオプション（<code class="code-voice">SO_RCVTIMEO</code>）としてあるソケットに対して指定することが、その値へのポインタとその値の長さを渡すことによって可能です：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">sockfd</span> = <span class="vc">socket</span>(<span class="vc">AF_INET</span>, <span class="vc">SOCK_STREAM</span>, <span class="m">0</span>)</code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">optval</span> = <span class="vc">timeval</span>(<span class="vc">tv_sec</span>: <span class="m">30</span>, <span class="vc">tv_usec</span>: <span class="m">0</span>)</code></li>
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">optlen</span> = <span class="vc">socklen_t</span>(<span class="vc">MemoryLayout</span>&lt;<span class="n"><!-- a href="" -->timeval<!-- /a --></span>&gt;.<span class="vc">size</span>)</code></li>
+            <li><code class="code-voice"><span class="kt">if</span> <span class="vc">setsockopt</span>(<span class="vc">sockfd</span>, <span class="vc">SOL_SOCKET</span>, <span class="vc">SO_RCVTIMEO</span>, &amp;<span class="vc">optval</span>, <span class="vc">optlen</span>) == <span class="m">0</span> {</code></li>
+            <li><code class="code-voice">    <span class="c">// ...</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  For more information, see the <a href="https://developer.apple.com/reference/swift/memorylayout">MemoryLayout&lt;T&gt; API reference</a>.
+<br><span class="jpstr">
+さらなる情報は、<a href="https://developer.apple.com/reference/swift/memorylayout">MemoryLayout&lt;T&gt; APIリファレンス</a>を見てください。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-ID198"></a>
+  <h3 class="section-name" tabindex="0">One-Time Initialization<br><span class="jpstr">
+ワンタイム初期化
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  In C, the <code class="code-voice">pthread_once()</code> function in POSIX and the <code class="code-voice">dispatch_once()</code> and <code class="code-voice">dispatch_once_f()</code> functions in Grand Central Dispatch provide mechanisms for executing initialization code exactly once. In Swift, global constants and stored type properties are guaranteed to be initialized only once, even when accessed across multiple threads simultaneously. Because this functionality is provided through language features, the corresponding POSIX and Grand Central Dispatch C function calls are not exposed by Swift.
+<br><span class="jpstr">
+Cでは、POSIXでの<code class="code-voice">pthread_once()</code>関数およびGrand Central Dispatchでの<code class="code-voice">dispatch_once()</code>と<code class="code-voice">dispatch_once_f()</code>関数は、厳密に一度だけ初期化コードを実行する仕組みを提供します。スウィフトでは、グローバル定数と保存型プロパティは、ただ一度だけ初期化されることを保証されます、複数のスレッドをまたいで同時にアクセスされた時でさえもです。この機能性は言語特徴によって提供されるので、相当するPOSIXおよびGrand Central DispatchのC関数呼び出しはスウィフトによって暴露されません。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-ID31"></a>
+  <h3 class="section-name" tabindex="0">Preprocessor Directives<br><span class="jpstr">
+プリプロセッサ指令
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  The Swift compiler does not include a preprocessor. Instead, it takes advantage of compile-time attributes, conditional compilation blocks, and language features to accomplish the same functionality. For this reason, preprocessor directives are not imported in Swift.
+<br><span class="jpstr">
+スウィフトコンパイラは、プリプロセッサを含みません。その代わりに、それは同じ機能性を達成するために、さまざまなコンパイル時属性、条件コンパイルブロック、そして言語機能を活用します。この理由のために、プリプロセッサ指令は、スウィフトにインポートされません。
+</span><!--end_jpstr-->
+</p>
+  <section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-ID149"></a>
+  <h3 class="section-name" tabindex="0">Simple Macros<br><span class="jpstr">
+単純なマクロ
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Where you typically used the <code class="code-voice">#define</code> directive to define a primitive constant in C and Objective-C, in Swift you use a global constant instead. For example, the constant definition <code class="code-voice">#define FADE_ANIMATION_DURATION 0.35</code> can be better expressed in Swift with <code class="code-voice">let FADE_ANIMATION_DURATION = 0.35</code>. Because simple constant-like macros map directly to Swift global variables, the compiler automatically imports simple macros defined in C and Objective-C source files.
+<br><span class="jpstr">
+あなたがCとObjective-Cでプリミティブ定数を定義するために概して<code class="code-voice">#define</code>指令を使ったところを、スウィフトでは、あなたはその代わりにグローバル定数を使います。例えば、定数定義<code class="code-voice">#define FADE_ANIMATION_DURATION 0.35</code>は、スウィフトにおいてよりよく表されることが<code class="code-voice">let FADE_ANIMATION_DURATION = 0.35</code>でできます。単純な定数的なマクロがスウィフトのグローバル変数に直接にマップするので、コンパイラは、CとObjective-Cソース・ファイルにおいて定義される単純なマクロを自動的にインポートします。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-ID150"></a>
+  <h3 class="section-name" tabindex="0">Complex Macros<br><span class="jpstr">
+複雑なマクロ
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Complex macros are used in C and Objective-C but have no counterpart in Swift. Complex macros are macros that do not define constants, including parenthesized, function-like macros. You use complex macros in C and Objective-C to avoid type-checking constraints or to avoid retyping large amounts of boilerplate code. However, macros can make debugging and refactoring difficult. In Swift, you can use functions and generics to achieve the same results without any compromises. Therefore, the complex macros that are in C and Objective-C source files are not made available to your Swift code.
+<br><span class="jpstr">
+複雑なマクロがCとObjective-Cで使われますが、スウィフトにおいて対応するものがありません。複雑なマクロは、定数を定義するものではなく、括弧に入れられた、関数のようなマクロのことです。あなたは、複雑なマクロをCとObjective-Cにおいて型チェック制約を避けたり、常用文コードの大きな塊を繰り返しタイピングすることを避けるために使います。しかし、マクロはデバッグやリファクタリングを難しくすることがあります。スウィフトでは、あなたはどんな妥協もなしで同じ結果を成し遂げるために、関数と総称体を使用することができます。したがって、CとObjective-Cソース・ファイルの中にある複雑なマクロは、あなたのスウィフトコードで利用可能にされません。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-ID203"></a>
+  <h3 class="section-name" tabindex="0">Conditional Compilation Blocks<br><span class="jpstr">
+条件コンパイルブロック
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Swift code and Objective-C code are conditionally compiled in different ways. Swift code can be conditionally compiled using <em>conditional compilation blocks</em>. For example, if you compile the code below using <code class="code-voice">swift -D DEBUG_LOGGING</code> to set the <code class="code-voice">DEBUG_LOGGING</code> conditional compilation flag, the compiler includes the code in the body of the conditional complication block.
+<br><span class="jpstr">
+スウィフトコードとObjective-Cコードは、異なる方法で条件付きコンパイルされます。スウィフトコードは、<em>条件コンパイルブロック</em>を使って条件付きコンパイルされることができます。例えば、あなたが下記のコードを<code class="code-voice">swift -D DEBUG_LOGGING</code>を使ってコンパイルして<code class="code-voice">DEBUG_LOGGING</code>条件コンパイルフラグを設定するならば、コンパイラはそのコードを条件コンパイルブロックの本文の中に含めます。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">#if</span> <span class="kt">DEBUG_LOGGING</span></code></li>
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="s">&quot;Flag enabled.&quot;</span>)</code></li>
+            <li><code class="code-voice"><span class="kt">#endif</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  A <em>compilation condition</em> can include the literal <code class="code-voice">true</code> and <code class="code-voice">false</code> values, custom conditional compilation flags (specified using <code class="code-voice">-D &lt;#flag#&gt;</code>), and the platform conditions listed in the table below.
+<br><span class="jpstr">
+<em>コンパイル条件</em>は、リテラルの<code class="code-voice">true</code>と<code class="code-voice">false</code>値、誂えの条件コンパイルフラグ（<code class="code-voice">-D &lt;#flag#&gt;</code>を使って指定される）、そして以下の表で一覧にされるプラットホーム条件を含むことができます、
+</span><!--end_jpstr-->
+</p><div class="tableholder">
+  
+  <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+    <caption class="tablecaption"></caption>
+    <thead>
+        <tr>
+            <th scope="col" class="TableHeading_TableRow_TableCell"><p class="para">
+  Function
+<br><span class="jpstr">
+関数
+</span><!--end_jpstr-->
+</p></th>
+            <th scope="col" class="TableHeading_TableRow_TableCell"><p class="para">
+  Valid arguments
+<br><span class="jpstr">
+有効な引数
+</span><!--end_jpstr-->
+</p></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td scope="row"><p class="para">
+  <code class="code-voice">os()</code>
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">macOS</code>, <code class="code-voice">iOS</code>, <code class="code-voice">watchOS</code>, <code class="code-voice">tvOS</code>, <code class="code-voice">Linux</code>
+</p></td>
+        </tr>
+        <tr>
+            <td scope="row"><p class="para">
+  <code class="code-voice">arch()</code>
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">x86_64</code>, <code class="code-voice">arm</code>, <code class="code-voice">arm64</code>, <code class="code-voice">i386</code>
+</p></td>
+        </tr>
+        <tr>
+            <td scope="row"><p class="para">
+  <code class="code-voice">swift()</code>
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">&gt;=</code> followed by a version number
+<br><span class="jpstr">
+<code class="code-voice">&gt;=</code>にバージョン番号が続きます
+</span><!--end_jpstr-->
+</p></td>
+        </tr>
+    </tbody>
+  </table>
+</div><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-NoLink_33"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">The <code class="code-voice">arch(arm)</code> platform condition does not return <code class="code-voice">true</code> for ARM 64 devices. The <code class="code-voice">arch(i386)</code> platform condition returns <code class="code-voice">true</code> when code is compiled for the 32–bit iOS simulator.
+    	<br><span class="jpstr">
+<code class="code-voice">arch(arm)</code>プラットホーム条件は、ARM 64機器に対して<code class="code-voice">true</code>を返しません。<code class="code-voice">arch(i386)</code>プラットホーム条件は、コードが32ビットiOSシミュレーターに対してコンパイルされるとき<code class="code-voice">true</code>を返します。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div><p class="para">
+  You can combine compilation conditions using the <code class="code-voice">&amp;&amp;</code> and <code class="code-voice">||</code> operators, negate them with the <code class="code-voice">!</code> operator, and add branches with <code class="code-voice">#elseif</code> and <code class="code-voice">#else</code> compilation directives. You can also nest conditional compilation blocks within other conditional compilation blocks.
+<br><span class="jpstr">
+あなたは、コンパイル条件を<code class="code-voice">&amp;&amp;</code>と<code class="code-voice">||</code>を使って結合すること、<code class="code-voice">!</code>演算子でそれらを無効にすること、そして<code class="code-voice">#elseif</code>と<code class="code-voice">#else</code>条件指示子で分岐を加えることができます。あなたはまた、条件コンパイルブロックを他の条件コンパイルブロックの内部に入れ子にすることができます。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">#if</span> <span class="kt">arch</span>(<span class="kt">arm</span>) || <span class="kt">arch</span>(<span class="kt">arm64</span>)</code></li>
+            <li><code class="code-voice"><span class="kt">#if</span> <span class="kt">swift</span>(&gt;=<span class="m">3.0</span>)</code></li>
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="s">&quot;Using Swift 3 ARM code&quot;</span>)</code></li>
+            <li><code class="code-voice">    <span class="kt">#else</span></code></li>
+            <li><code class="code-voice">    <span class="vc">print</span>(<span class="s">&quot;Using Swift 2.2 ARM code&quot;</span>)</code></li>
+            <li><code class="code-voice"><span class="kt">#endif</span></code></li>
+            <li><code class="code-voice"><span class="kt">#elseif</span> <span class="kt">arch</span>(<span class="kt">x86_64</span>)</code></li>
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="s">&quot;Using 64-bit x86 code.&quot;</span>)</code></li>
+            <li><code class="code-voice"><span class="kt">#else</span></code></li>
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="s">&quot;Using general code.&quot;</span>)</code></li>
+            <li><code class="code-voice"><span class="kt">#endif</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  In contrast with condition compilation in the C preprocessor, conditional compilation blocks in Swift must completely surround blocks of code that are self-contained and syntactically valid. This is because all Swift code is syntax checked, even when it is not compiled. However, there is an exception if the compilation condition includes a <code class="code-voice">swift()</code> platform condition: The statements are parsed only if the compiler’s version of Swift matches what is specified in the platform condition. This exception ensures that an older compiler doesn’t attempt to parse syntax introduced in a newer version of Swift.
+<br><span class="jpstr">
+Cプリプロセッサでの条件コンパイルと対照的に、スウィフトでの条件コンパイルブロックは、自給自足で統語論的に有効であるコードのブロックを完全に伴っていなければなりません。これは全てのスウィフトコードが、それがコンパイルされないときでも、構文チェックされるからです。しかしながら、例外があります、それはコンパイル条件が<code class="code-voice">swift()</code>プラットホーム条件を含む場合です：文はスウィフトのコンパイラのバージョンがプラットホーム条件において指定されるものと合致する場合にのみ構文解析されます。この例外は、古いコンパイラがより新しいバージョンのスウィフトで導入される構文の解析を試みないことを確実にします。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+
+</section>
+
+  	
+ 	<section id="next_previous" class="">
+    		<p class="previous-link"><a href="AdoptingCocoaDesignPatterns.html#//apple_ref/doc/uid/TP40014216-CH7-ID6" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH7-ID6">Adopting Cocoa Design Patterns<br><span class="jpstr">
+ココア・デザインパターンの採用
+</span><!--end_jpstr-->
+</a></p>
+  			<p class="next-link"><a href="MixandMatch.html#//apple_ref/doc/uid/TP40014216-CH10-ID122" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH10-ID122">Swift and Objective-C in the Same Project<br><span class="jpstr">
+同じプロジェクト中のスウィフトとObjective-C
+</span><!--end_jpstr-->
+</a></p>
+
+    <p class="copyright">Copyright &#x00a9; 2016 Apple Inc. All rights reserved. 
+  <a class="link" href="http://www.apple.com/legal/terms/site.html" target="_blank" rel="external">Terms of Use</a> | 
+  <a class="link" href="http://www.apple.com/privacy/" target="_blank" rel="external">Privacy Policy</a> | 
+  Updated: 2016-10-27
+</p>
+  </section>
+</article>
+
+    </div>
+    <div id='big_button'></div>
+    <footer id="footer">
+  <div class="content-wrapper">
+  	<div id="leave_feedback" class="button" role="button" tabindex="0">Feedback</div>
+  </div>
+  <script src="../../../../Resources/1254/JavaScript/devpubs-1.6.3.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../../../Resources/1254/JavaScript/feedback-1.6.3.js" type="text/javascript" charset="utf-8"></script>
+  <div id="_omniture_top">
+<!-- SiteCatalyst code version: H.8. Copyright 1997-2006 Omniture, Inc. -->
+<script type="text/javascript">
+/* RSID: */
+var s_account="appleglobal,appleusdeveloper,dappdeveloperlib"
+</script>
+
+<!-- <script type="text/javascript" src="https://www.apple.com/metrics/scripts/s_code_h.js"></script> -->
+<script type="text/javascript">
+s.pageName=AC.Tracking.pageName();
+s.channel="www.us.developer"
+
+/************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+var s_code=s.t();if(s_code)document.write(s_code)</script>
+<!-- End SiteCatalyst code version: H.8. -->
+</div>
+
+</footer>
+
+    
+  </body>
+    <div id="blackout">
+    <div id="preload"></div>
+</div>
+<div id="modal" aria-hidden="true">
+    <div id="closebox" tabindex="0" aria-label="Close feedback form" role="button"></div>
+    <div id="sending" class="hidden">
+        <h2 tabindex="0">Sending feedback&hellip;</h2>
+        <div id="sending_img"></div>
+    </div>
+    <div id="error" class="hidden">
+        <h2 tabindex="0">We&rsquo;re sorry, an error has occurred.</h2>
+        <p>Please try submitting your feedback later.</p>
+        <div id="error_icon"></div>
+    </div>
+    <div id="success" class="hidden">
+        <h2 tabindex="0">Thank you for providing feedback!</h2>
+        <p>Your input helps improve our developer documentation.</p>
+        <div id="thank_you_icon"></div>
+    </div>
+    
+    <form id="feedback" action="#" method="post">
+        <div class="left-leaf">
+            <h2 id="helpful_title" data-asterisk="a1" tabindex="0">How helpful is this document?</h2>     
+            <sup id="a1" class="asterisk" aria-hidden="true">*</sup>
+
+            <div id="star_group" role="radiogroup" aria-required="true">
+                <label> 
+                    <input class="radio" type="radio" name="helped" value="1" /> 
+                    Very helpful
+                </label>
+                <label> 
+                    <input class="radio" type="radio" name="helped" value="2" /> 
+                    Somewhat helpful
+                </label>
+                <label>
+                    <input class="radio" type="radio" name="helped" value="3" /> 
+                    Not helpful
+                </label>
+            </div>
+        </div>
+        <div class="right-leaf">
+            <h2>How can we improve this document?</h2>
+            <div id="improve" class="checkboxes">
+                <label>
+                    <input type="checkbox" name="typo" /> 
+                    Fix typos or links
+                </label>
+                <label>
+                    <input type="checkbox" name="infoIncorrect" /> 
+                    Fix incorrect information
+                </label>
+                <label>
+                    <input type="checkbox" name="needs_examples" /> 
+                    Add or update code samples
+                </label>
+                <label>
+                    <input type="checkbox" name="needs_art" /> 
+                    Add or update illustrations
+                </label>
+                <label>
+                    <input type="checkbox" name="missingInfo" /> 
+                    Add information about...
+                </label>
+            </div>
+        </div>
+
+        <textarea id="comment" name="problem" cols="70" rows="8" placeholder="Please tell us more about your experience with this document" data-asterisk="a2" required></textarea>
+        <sup id="a2" class="asterisk" aria-hidden="true">*</sup>
+
+        <p class="fineprint">
+            <em aria-hidden="true"><span>*</span> Required information</em>
+        </p> 
+
+        <input id="submit" type="button" value="Send" />
+
+        <section id="legal">
+            <p>
+                To submit a product bug or enhancement request, please visit the 
+                <a href="https://developer.apple.com/bugreporter/" target="_blank">Bug Reporter</a> 
+                page.
+            </p>
+            <p>
+                Please read <a href="http://www.apple.com/legal/policies/ideas.html" target="_blank">Apple's Unsolicited Idea Submission Policy</a> 
+                before you send us your feedback.
+            </p> 
+        </section>
+    </form>
+</div>
+
+</div>
+</html>
