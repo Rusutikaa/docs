@@ -132,13 +132,13 @@ print(maximumRange.contains(Int8.max))
 </h3><div><p>Because each element of a <code class="code-voice">CountableRange</code> instance is its own index, for the range <code class="code-voice">(-99..&lt;100)</code> the element at index <code class="code-voice">0</code> is <code class="code-voice">0</code>. This is an unexpected result for those accustomed to zero-based collection indices, who might expect the result to be <code class="code-voice">-99</code>. To prevent this confusion, in a context where <code class="code-voice">Bound</code> is known to be an integer type, subscripting directly is a compile-time error:<br><span class="jpstr">
 <code class="code-voice">CountableRange</code>インスタンスの各要素がそれ自身インデックスであることから、範囲<code class="code-voice">(-99..&lt;100)</code>に対してインデックス<code class="code-voice">0</code>での要素は<code class="code-voice">0</code>です。これはゼロベースのコレクションに慣れている人たちにとって思いもよらない結果です、彼らは<code class="code-voice">-99</code>になる結果を予想するかもしれません。この混乱を防ぐために、<code class="code-voice">Bound</code>が整数型であると知られている文脈では、添え字を使うことは直ちにコンパイルエラーになります：
 </span><!--end_jpstr-->
-</p><figure id="2673946"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>// error: ambiguous use of &#x27;subscript&#x27;&nbsp;<span class="jpstr">（エラー：「添え字」のあいまいな使用）</span><!--end_jpstr-->
+</p><figure id="2673946"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>// error: ambiguous use of &#x27;subscript&#x27;
 print((-99..&lt;100)[0])
 </code></pre></div></div></figure><p>However, subscripting that range still works in a generic context:<br><span class="jpstr">
 しかしながら、この範囲に添え字を使うことは総称体の文脈では依然として働きます：
 </span><!--end_jpstr-->
 </p><figure id="2673947"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>func brackets&lt;T&gt;(_ x: CountableRange&lt;T&gt;, _ i: T) -&gt; T {
-    return x[i] // Just forward to subscript&nbsp;<span class="jpstr">（単に添え字に転送する）</span><!--end_jpstr-->
+    return x[i] // Just forward to subscript
 }
 print(brackets(-99..&lt;100, 0))
 // Prints &quot;0&quot;
