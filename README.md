@@ -1,4 +1,4 @@
-﻿# Swift Standard Library Reference 2016.10.28 日本語訳
+﻿# Swift Standard Library Reference 2016.11.01 日本語訳
 
 https://rusutikaa.github.io/developer.apple.com/reference/swift.html
 
