@@ -5,3 +5,5 @@
 * [Using Swift with Cocoa and Objective-C 2016.10.28 日本語訳](https://rusutikaa.github.io/developer.apple.com/library/content/documentation/Swift/Conceptual/BuildingCocoaApps/index.html)
 
 * [Start Developing iOS Apps (Swift) 2016.12.08 日本語訳](https://rusutikaa.github.io/developer.apple.com/library/content/referencelibrary/GettingStarted/DevelopiOSAppsSwift/index.html)
+
+* [Playground Book Format Reference 2016.10.24 日本語訳](https://rusutikaa.github.io/developer.apple.com/library/content/documentation/Xcode/Conceptual/swift_playgrounds_doc_format/index.html)
