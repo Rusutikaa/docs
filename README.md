@@ -1,8 +1,8 @@
-﻿* 旧版 [Swift Standard Library Reference 2017.1.5 日本語訳](https://rusutikaa.github.io/developer.apple.com/reference/swift.html)
+﻿* [Swift Standard Library Reference 2017.1.5 日本語訳](https://rusutikaa.github.io/developer.apple.com/reference/swift.html)
 
-* 旧版 [The Swift Programming Language 2016.10.28 日本語訳](https://rusutikaa.github.io/developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/index.html)
+* [The Swift Programming Language 2017.3.27 日本語訳](https://rusutikaa.github.io/developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/index.html)
 
-* 旧版 [Using Swift with Cocoa and Objective-C 2016.10.28 日本語訳](https://rusutikaa.github.io/developer.apple.com/library/content/documentation/Swift/Conceptual/BuildingCocoaApps/index.html)
+* [Using Swift with Cocoa and Objective-C 2016.10.28 日本語訳](https://rusutikaa.github.io/developer.apple.com/library/content/documentation/Swift/Conceptual/BuildingCocoaApps/index.html)
 
 * [Start Developing iOS Apps (Swift) 2016.12.08 日本語訳](https://rusutikaa.github.io/developer.apple.com/library/content/referencelibrary/GettingStarted/DevelopiOSAppsSwift/index.html)
 
