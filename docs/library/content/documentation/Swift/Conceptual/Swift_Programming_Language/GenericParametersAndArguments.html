@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>  
-  <title>The Swift Programming Language (Swift 3.1): Generic Parameters and Arguments</title>
-  <link rel="stylesheet" type="text/css" href="../../../../Resources/1260/CSS/style-1.6.3.css" />
-  <link rel="stylesheet" type="text/css" href="../../../../Resources/1260/CSS/feedback-1.6.3.css" />
+  <title>The Swift Programming Language (Swift 4): Generic Parameters and Arguments</title>
+  <link rel="stylesheet" type="text/css" href="../../../../Resources/1264/CSS/style-1.6.3.css" />
+  <link rel="stylesheet" type="text/css" href="../../../../Resources/1264/CSS/feedback-1.6.3.css" />
   <meta charset='utf-8'> 
 <meta id="j-version" name="j-version" content="" />
-<meta id="build" name="build" content="c137a03eac32e0c00344dfd48a9f8baf" />
-<meta id="document-version" name="document-version" content="9.0.13" />
+<meta id="build" name="build" content="dadaf8814eb04e8376a0501374bda6be" />
+<meta id="document-version" name="document-version" content="10.0.8" />
 <meta id="book-assignments" name="book-assignments" content="{Type/Guide}, {Topic/Swift}" />
 <meta scheme="apple_ref" id="identifier" name="identifier" content="//apple_ref/doc/uid/TP40014097" />
 <meta id="chapterId" name="chapterId" content="TP40014097-CH37">
-<meta id="book-title" name="book-title" content="The Swift Programming Language (Swift 3.1)" />
+<meta id="book-title" name="book-title" content="The Swift Programming Language (Swift 4)" />
 <meta id="book-resource-type" name="book-resource-type" content="Guide" />
 <meta id="book-root" name="book-root" content="./" />
 <meta id="book-json" name="book-json" content="book.json">
-<meta id="date" name="date" content="2017-03-27" />
-<meta id="description" name="description" content="The definitive guide to Swift, Apple’s new programming language for building iOS, OS X, watchOS, and tvOS apps." />
+<meta id="date" name="date" content="2017-06-05" />
+<meta id="description" name="description" content="The definitive guide to Swift, Apple’s programming language for building iOS, macOS, watchOS, and tvOS apps." />
 <meta id="IndexTitle" name="IndexTitle" content="" />
-<meta id="resources-uri" name="resources-uri" content="../../../../Resources/1260">
+<meta id="resources-uri" name="resources-uri" content="../../../../Resources/1264">
 <link id="book-index-page" rel="Start" title="" type="text/html" href="./index.html">
 <!-- , next_chapter: next_chapter, previous_chapter: previous_chapter -->
 <link id="next-page" rel="Next" type="text/html" href="">
@@ -41,14 +41,14 @@
     	<a href="../../../../navigation/index.html">Guides and Sample Code
  		</a>
  </p>
-    <p id="wwdr"><img id="apple_logo" src="../../../../Resources/1260/Images/apple2.png" height="14px" width="12px" aria-hidden="true" /><a href="https://developer.apple.com">Developer</a></p>
+    <p id="wwdr"><img id="apple_logo" src="../../../../Resources/1264/Images/apple2.png" height="14px" width="12px" aria-hidden="true" /><a href="https://developer.apple.com">Developer</a></p>
   </div>
 </header>
 
     <section id="valence">
   <div class="content-wrapper">
     <p id="hierarchial_navigation">
-      <span id="book_title">The Swift Programming Language (Swift 3.1)</span>
+      <span id="book_title">The Swift Programming Language (Swift 4)</span>
     </p>
     <form id="search" class="hideInXcode" method="get" action="/search/index.php" accept-charset="utf-8" autocomplete="off">
   <input type="search" id="ssi_SearchField" placeholder="Search Guides and Sample Code" name="q" autocomplete="off" tabindex="2" />
@@ -62,12 +62,12 @@
 
 
     <span class="download-text hideInXcode">
-      <a href="https://itunes.apple.com/us/book/the-swift-programming-language/id881256329?mt=11">iBooks</a>
+      <a href="https://itunes.apple.com/us/book/the-swift-programming-language/id1002622538?mt=11">iBooks</a>
     </span>
 
     
 
-    <img id="shortstack" src="../../../../Resources/1260/Images/shortstack_2x.png"/>
+    <img id="shortstack" src="../../../../Resources/1264/Images/shortstack_2x.png"/>
   </div>
 </section>
     <div class="content-wrapper">
@@ -83,6 +83,12 @@
               <li class="nav-chapter">
               	<a href="index.html#//apple_ref/doc/uid/TP40014097-CH3-ID0" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH3-ID0">About Swift<br><span class="jpstr">
 スウィフトについて
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Compatibility.html#//apple_ref/doc/uid/TP40014097-CH45-ID561" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH45-ID561">Version Compatibility<br><span class="jpstr">
+バージョン互換性
 </span><!--end_jpstr-->
 </a>
               </li>
@@ -381,9 +387,9 @@
   
   	<section class="section">
   		<p class="para">
-  This chapter describes parameters and arguments for generic types, functions, and initializers. When you declare a generic type, function, or initializer, you specify the type parameters that the generic type, function, or initializer can work with. These type parameters act as placeholders that are replaced by actual concrete type arguments when an instance of a generic type is created or a generic function or initializer is called.
+  This chapter describes parameters and arguments for generic types, functions, and initializers. When you declare a generic type, function, subscript, or initializer, you specify the type parameters that the generic type, function, or initializer can work with. These type parameters act as placeholders that are replaced by actual concrete type arguments when an instance of a generic type is created or a generic function or initializer is called.
 <br><span class="jpstr">
-この章は、総称体の型、関数、そしてイニシャライザに対するパラメータと引数を記載します。あなたがある総称体型、関数、またはイニシャライザを宣言するとき、あなたはその総称体型、関数、またはイニシャライザが扱うことができる型パラメータを指定します。これらの型パラメータは、総称体型のインスタンスがつくられる、あるいは、総称体の関数やイニシャライザが呼ばれるとき、実際の具体的な型引数と取り替えられるプレースホルダの働きをします。
+この章は、総称体の型、関数、そしてイニシャライザに対するパラメータと引数を記載します。あなたがある総称体型、添え字、関数、またはイニシャライザを宣言するとき、あなたはその総称体型、関数、またはイニシャライザが扱うことができる型パラメータを指定します。これらの型パラメータは、総称体型のインスタンスがつくられる、あるいは、総称体の関数やイニシャライザが呼ばれるとき、実際の具体的な型引数と取り替えられるプレースホルダの働きをします。
 </span><!--end_jpstr-->
 </p>
 <p class="para">
@@ -541,7 +547,7 @@
   →
 </span><span class="syntactic-cat"><a href="Types.html#//apple_ref/swift/grammar/type-name" data-renderer-version="2" data-id="//apple_ref/swift/grammar/type-name">type-name</a>&shy;</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH37-NoLink_859"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH37-NoLink_866"></a>
   <span class="syntax-def-name">
   generic-parameter
 </span>
@@ -549,7 +555,7 @@
   →
 </span><span class="syntactic-cat"><a href="Types.html#//apple_ref/swift/grammar/type-name" data-renderer-version="2" data-id="//apple_ref/swift/grammar/type-name">type-name</a>&shy;</span><code class="literal">:&shy;</code><span class="syntactic-cat"><a href="Types.html#//apple_ref/swift/grammar/type-identifier" data-renderer-version="2" data-id="//apple_ref/swift/grammar/type-identifier">type-identifier</a>&shy;</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH37-NoLink_860"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH37-NoLink_867"></a>
   <span class="syntax-def-name">
   generic-parameter
 </span>
@@ -601,7 +607,7 @@
   →
 </span><span class="syntactic-cat"><a href="Types.html#//apple_ref/swift/grammar/type-identifier" data-renderer-version="2" data-id="//apple_ref/swift/grammar/type-identifier">type-identifier</a>&shy;</span><code class="literal">:&shy;</code><span class="syntactic-cat"><a href="Types.html#//apple_ref/swift/grammar/type-identifier" data-renderer-version="2" data-id="//apple_ref/swift/grammar/type-identifier">type-identifier</a>&shy;</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH37-NoLink_865"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH37-NoLink_872"></a>
   <span class="syntax-def-name">
   conformance-requirement
 </span>
@@ -734,7 +740,7 @@
     <p class="copyright">Copyright &#x00a9; 2017 Apple Inc. All rights reserved. 
   <a class="link" href="http://www.apple.com/legal/terms/site.html" target="_blank" rel="external">Terms of Use</a> | 
   <a class="link" href="http://www.apple.com/privacy/" target="_blank" rel="external">Privacy Policy</a> | 
-  Updated: 2017-03-27
+  Updated: 2017-06-05
 </p>
   </section>
 </article>
@@ -745,8 +751,8 @@
   <div class="content-wrapper">
   	<div id="leave_feedback" class="button" role="button" tabindex="0">Feedback</div>
   </div>
-  <script src="../../../../Resources/1260/JavaScript/devpubs-1.6.3.js" type="text/javascript" charset="utf-8"></script>
-  <script src="../../../../Resources/1260/JavaScript/feedback-1.6.3.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../../../Resources/1264/JavaScript/devpubs-1.6.3.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../../../Resources/1264/JavaScript/feedback-1.6.3.js" type="text/javascript" charset="utf-8"></script>
   <div id="_omniture_top">
 <!-- SiteCatalyst code version: H.8. Copyright 1997-2006 Omniture, Inc. -->
 <script type="text/javascript">

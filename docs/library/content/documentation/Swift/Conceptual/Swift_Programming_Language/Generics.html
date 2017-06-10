@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>  
-  <title>The Swift Programming Language (Swift 3.1): Generics</title>
-  <link rel="stylesheet" type="text/css" href="../../../../Resources/1260/CSS/style-1.6.3.css" />
-  <link rel="stylesheet" type="text/css" href="../../../../Resources/1260/CSS/feedback-1.6.3.css" />
+  <title>The Swift Programming Language (Swift 4): Generics</title>
+  <link rel="stylesheet" type="text/css" href="../../../../Resources/1264/CSS/style-1.6.3.css" />
+  <link rel="stylesheet" type="text/css" href="../../../../Resources/1264/CSS/feedback-1.6.3.css" />
   <meta charset='utf-8'> 
 <meta id="j-version" name="j-version" content="" />
-<meta id="build" name="build" content="c137a03eac32e0c00344dfd48a9f8baf" />
-<meta id="document-version" name="document-version" content="9.0.13" />
+<meta id="build" name="build" content="dadaf8814eb04e8376a0501374bda6be" />
+<meta id="document-version" name="document-version" content="10.0.8" />
 <meta id="book-assignments" name="book-assignments" content="{Type/Guide}, {Topic/Swift}" />
 <meta scheme="apple_ref" id="identifier" name="identifier" content="//apple_ref/doc/uid/TP40014097" />
 <meta id="chapterId" name="chapterId" content="TP40014097-CH26">
-<meta id="book-title" name="book-title" content="The Swift Programming Language (Swift 3.1)" />
+<meta id="book-title" name="book-title" content="The Swift Programming Language (Swift 4)" />
 <meta id="book-resource-type" name="book-resource-type" content="Guide" />
 <meta id="book-root" name="book-root" content="./" />
 <meta id="book-json" name="book-json" content="book.json">
-<meta id="date" name="date" content="2017-03-27" />
-<meta id="description" name="description" content="The definitive guide to Swift, Apple’s new programming language for building iOS, OS X, watchOS, and tvOS apps." />
+<meta id="date" name="date" content="2017-06-05" />
+<meta id="description" name="description" content="The definitive guide to Swift, Apple’s programming language for building iOS, macOS, watchOS, and tvOS apps." />
 <meta id="IndexTitle" name="IndexTitle" content="" />
-<meta id="resources-uri" name="resources-uri" content="../../../../Resources/1260">
+<meta id="resources-uri" name="resources-uri" content="../../../../Resources/1264">
 <link id="book-index-page" rel="Start" title="" type="text/html" href="./index.html">
 <!-- , next_chapter: next_chapter, previous_chapter: previous_chapter -->
 <link id="next-page" rel="Next" type="text/html" href="">
@@ -41,14 +41,14 @@
     	<a href="../../../../navigation/index.html">Guides and Sample Code
  		</a>
  </p>
-    <p id="wwdr"><img id="apple_logo" src="../../../../Resources/1260/Images/apple2.png" height="14px" width="12px" aria-hidden="true" /><a href="https://developer.apple.com">Developer</a></p>
+    <p id="wwdr"><img id="apple_logo" src="../../../../Resources/1264/Images/apple2.png" height="14px" width="12px" aria-hidden="true" /><a href="https://developer.apple.com">Developer</a></p>
   </div>
 </header>
 
     <section id="valence">
   <div class="content-wrapper">
     <p id="hierarchial_navigation">
-      <span id="book_title">The Swift Programming Language (Swift 3.1)</span>
+      <span id="book_title">The Swift Programming Language (Swift 4)</span>
     </p>
     <form id="search" class="hideInXcode" method="get" action="/search/index.php" accept-charset="utf-8" autocomplete="off">
   <input type="search" id="ssi_SearchField" placeholder="Search Guides and Sample Code" name="q" autocomplete="off" tabindex="2" />
@@ -62,12 +62,12 @@
 
 
     <span class="download-text hideInXcode">
-      <a href="https://itunes.apple.com/us/book/the-swift-programming-language/id881256329?mt=11">iBooks</a>
+      <a href="https://itunes.apple.com/us/book/the-swift-programming-language/id1002622538?mt=11">iBooks</a>
     </span>
 
     
 
-    <img id="shortstack" src="../../../../Resources/1260/Images/shortstack_2x.png"/>
+    <img id="shortstack" src="../../../../Resources/1264/Images/shortstack_2x.png"/>
   </div>
 </section>
     <div class="content-wrapper">
@@ -83,6 +83,12 @@
               <li class="nav-chapter">
               	<a href="index.html#//apple_ref/doc/uid/TP40014097-CH3-ID0" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH3-ID0">About Swift<br><span class="jpstr">
 スウィフトについて
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Compatibility.html#//apple_ref/doc/uid/TP40014097-CH45-ID561" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH45-ID561">Version Compatibility<br><span class="jpstr">
+バージョン互換性
 </span><!--end_jpstr-->
 </a>
               </li>
@@ -408,6 +414,18 @@
             <a href="#//apple_ref/doc/uid/TP40014097-CH26-ID553">Extensions with a Generic Where Clause</a>
 <br><span class="jpstr">
 総称体where節を持つ拡張
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH26-ID557">Associated Types with a Generic Where Clause</a>
+<br><span class="jpstr">
+総称体where節を持つ関連型
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH26-ID558">Generic Subscripts</a>
+<br><span class="jpstr">
+総称体添え字
 </span><!--end_jpstr-->
           </li>
       </ul>
@@ -1375,6 +1393,39 @@
 </p>
   
 </section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH26-ID560"></a>
+  <h3 class="section-name" tabindex="0">Using Type Annotations to Constrain an Associated Type<br><span class="jpstr">
+型注釈を使って関連型を制約する
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  You can add a type annotation to an associated type in a protocol, to require that conforming types satisfy the constraints described by the type annotation. For example, the following code defines a version of <code class="code-voice">Container</code> that requires the items in the container to be equatable.
+<br><span class="jpstr">
+あなたは、型注釈を関連型へとプロトコルの中で加えることで、準拠する型が型注釈によって記述される制約を満たすことを要求できます。例えば、以下のコードは<code class="code-voice">Container</code>のあるバージョンを定義します、それはコンテナの中の項目に同等評価可能であることを要求するものです。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">protocol</span> <span class="vc">Container</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">associatedtype</span> <span class="vc">Item</span>: <span class="n"><!-- a href="" -->Equatable<!-- /a --></span></code></li>
+            <li><code class="code-voice">    <span class="kt">mutating</span> <span class="kt">func</span> <span class="vc">append</span>(<span class="kt">_</span> <span class="vc">item</span>: <span class="n"><!-- a href="" -->Item<!-- /a --></span>)</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">count</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span> { <span class="kt">get</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">subscript</span>(<span class="vc">i</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span>) -&gt; <span class="n"><!-- a href="" -->Item<!-- /a --></span> { <span class="kt">get</span> }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  In order to conform to this version of <code class="code-voice">Container</code>, the container’s <code class="code-voice">Item</code> type has to conform to the <code class="code-voice">Equatable</code> protocol.
+<br><span class="jpstr">
+この<code class="code-voice">Container</code>のバージョンに準拠するために、コンテナのもつ<code class="code-voice">Item</code>型は<code class="code-voice">Equatable</code>プロトコルに準拠しなければなりません。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
 
 </section>
 <section class="section">
@@ -1384,9 +1435,9 @@
 </span><!--end_jpstr-->
 </h3>
   <p class="para">
-  Type constraints, as described in <span class="x-name"><a href="#//apple_ref/doc/uid/TP40014097-CH26-ID186" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH26-ID186">Type Constraints</a></span>, enable you to define requirements on the type parameters associated with a generic function or type.
+  Type constraints, as described in <span class="x-name"><a href="#//apple_ref/doc/uid/TP40014097-CH26-ID186" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH26-ID186">Type Constraints</a></span>, enable you to define requirements on the type parameters associated with a generic function, subscript, or type.
 <br><span class="jpstr">
-<span class="x-name"><a href="#//apple_ref/doc/uid/TP40014097-CH26-ID186" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH26-ID186">型制約</a></span>で記述されるように、型制約によって、あなたは総称体関数または総称体型と結び付けられた型パラメータ上で要件を定義することが可能になります。
+型制約は、「<span class="x-name"><a href="#//apple_ref/doc/uid/TP40014097-CH26-ID186" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH26-ID186">型制約</a></span>」で記述されるように、総称体の関数、添え字、または型と関連した型パラメータに要件を定義することをあなたに可能にします。
 </span><!--end_jpstr-->
 </p><p class="para">
   It can also be useful to define requirements for associated types. You do this by defining a <em>generic where clause</em>. A generic <code class="code-voice">where</code> clause enables you to require that an associated type must conform to a certain protocol, or that certain type parameters and associated types must be the same. A generic <code class="code-voice">where</code> clause starts with the <code class="code-voice">where</code> keyword, followed by constraints for associated types or equality relationships between types and associated types. You write a generic <code class="code-voice">where</code> clause right before the opening curly brace of a type or function’s body.
@@ -1708,6 +1759,118 @@
 </p>
   
 </section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH26-ID557"></a>
+  <h3 class="section-name" tabindex="0">Associated Types with a Generic Where Clause<br><span class="jpstr">
+総称体where節を持つ関連型
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  You can include a generic <code class="code-voice">where</code> clause on an associated type. For example, suppose you wanted to make a version of <code class="code-voice">Container</code> that includes an iterator, like what the <code class="code-voice">Sequence</code> protocol uses in the standard library. Here’s how you write that:
+<br><span class="jpstr">
+あなたは、総称体<code class="code-voice">where</code>節を関連型に関して含めることができます。例えば、あなたが<code class="code-voice">Container</code>のあるバージョンを作りたいと仮定してください、それはあるイテレータ、標準ライブラリで使われている<code class="code-voice">Sequence</code>プロトコルのようなものを含みます。あなたがそれをどう書くかここにあります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">protocol</span> <span class="vc">Container</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">associatedtype</span> <span class="vc">Item</span></code></li>
+            <li><code class="code-voice">    <span class="kt">mutating</span> <span class="kt">func</span> <span class="vc">append</span>(<span class="kt">_</span> <span class="vc">item</span>: <span class="n"><!-- a href="" -->Item<!-- /a --></span>)</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">count</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span> { <span class="kt">get</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">subscript</span>(<span class="vc">i</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span>) -&gt; <span class="n"><!-- a href="" -->Item<!-- /a --></span> { <span class="kt">get</span> }</code></li>
+            <li><code class="code-voice">    </code></li>
+            <li><code class="code-voice">    <span class="kt">associatedtype</span> <span class="vc">Iterator</span>: <span class="n"><!-- a href="" -->IteratorProtocol<!-- /a --></span> <span class="kt">where</span> <span class="vc">Iterator</span>.<span class="vc">Element</span> == <span class="vc">Item</span></code></li>
+            <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">makeIterator</span>() -&gt; <span class="n"><!-- a href="" -->Iterator<!-- /a --></span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The generic <code class="code-voice">where</code> clause on <code class="code-voice">Iterator</code> requires that the iterator traverses over elements of the same item type as the container’s items, regardless of the iterator’s type. The <code class="code-voice">makeIterator()</code> function provides access to a container’s iterator.
+<br><span class="jpstr">
+この総称体<code class="code-voice">where</code>節が<code class="code-voice">Iterator</code>上で要求するのは、そのイテレータがコンテナのもつ要素と同じ項目型の要素に対して見ていくことです、そのイテレータの持つ型に関係なく。<code class="code-voice">makeIterator()</code>関数は、コンテナの持つイテレータに対するアクセスを提供します。
+</span><!--end_jpstr-->
+</p><p class="para">
+  For a protocol that inherits from another protocol, you add a constraint to an inherited associated type by including the generic <code class="code-voice">where</code> clause in the protocol declaration. For example, the following code declares a <code class="code-voice">ComparableContainer</code> protocol which requires <code class="code-voice">Item</code> to conform to <code class="code-voice">Comparable</code>:
+<br><span class="jpstr">
+別のプロトコルから継承するプロトコルに対して、あなたは継承された関連型への制約の追加を、総称体<code class="code-voice">where</code>節をそのプロトコル宣言の中で含めることによって行います。例えば、以下のコードは<code class="code-voice">ComparableContainer</code>プロトコルを宣言します、それは<code class="code-voice">Item</code>が<code class="code-voice">Comparable</code>に準拠することを要求します：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">protocol</span> <span class="vc">ComparableContainer</span>: <span class="n"><!-- a href="" -->Container<!-- /a --></span> <span class="kt">where</span> <span class="vc">Item</span>: <span class="vc">Comparable</span> { }</code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH26-ID558"></a>
+  <h3 class="section-name" tabindex="0">Generic Subscripts<br><span class="jpstr">
+総称体添え字
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Subscripts can be generic, and they can include generic <code class="code-voice">where</code> clauses. You write the placeholder type name inside angle brackets after <code class="code-voice">subscript</code>, and you write a generic <code class="code-voice">where</code> clause right before the opening curly brace of the subscript’s body. For example:
+<br><span class="jpstr">
+添え字は総称体であることができます、そしてそれらは総称体<code class="code-voice">where</code>節を含むことができます。あなたは、プレースホルダ型名を山括弧の内部に<code class="code-voice">subscript</code>の後に書きます、そしてあなたは総称体<code class="code-voice">where</code>節を添え字本文の開き波括弧の直前に書きます。例えば：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">extension</span> <span class="n"><!-- a href="" -->Container<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">subscript</span>&lt;<span class="vc">Indices</span>: <span class="vc">Sequence</span>&gt;(<span class="vc">indices</span>: <span class="n"><!-- a href="" -->Indices<!-- /a --></span>) -&gt; [<span class="n"><!-- a href="" -->Item<!-- /a --></span>]</code></li>
+            <li><code class="code-voice">        <span class="kt">where</span> <span class="n"><!-- a href="" -->Indices<!-- /a --></span>.<span class="n"><!-- a href="" -->Iterator<!-- /a --></span>.<span class="n"><!-- a href="" -->Element<!-- /a --></span> == <span class="n"><!-- a href="" -->Int<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">            <span class="kt">var</span> <span class="vc">result</span> = [<span class="vc">Item</span>]()</code></li>
+            <li><code class="code-voice">            <span class="kt">for</span> <span class="vc">index</span> <span class="kt">in</span> <span class="vc">indices</span> {</code></li>
+            <li><code class="code-voice">                <span class="vc">result</span>.<span class="vc">append</span>(<span class="kt">self</span>[<span class="vc">index</span>])</code></li>
+            <li><code class="code-voice">            }</code></li>
+            <li><code class="code-voice">            <span class="kt">return</span> <span class="vc">result</span></code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  This extension to the <code class="code-voice">Container</code> protocol adds a subscript that takes a sequence of indices and returns an array containing the items at each given index. This generic subscript is constrained as follows:
+<br><span class="jpstr">
+この<code class="code-voice">Container</code>プロトコルに対する拡張は、ある添え字を追加します、それはインデックスのシーケンスをとって、与えられたインデックスそれぞれでの項目を含んでいる配列を返します。この総称体添え字は、以下のように制約されます：
+</span><!--end_jpstr-->
+</p><ul class="list-bullet">
+  <li class="item"><p class="para">
+  The generic parameter <code class="code-voice">Indices</code> in angle brackets has to be some type that conforms to the <code class="code-voice">Sequence</code> protocol from the standard library.
+<br><span class="jpstr">
+山括弧の中の総称体パラメータ<code class="code-voice">Indices</code>は、それは標準ライブラリからの<code class="code-voice">Sequence</code>プロトコルに準拠する何らかの型でなければなりません。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  The subscript takes a single parameter, <code class="code-voice">indices</code>, which is an instance of that <code class="code-voice">Indices</code> type.
+<br><span class="jpstr">
+この添え字は、ただ１つだけのパラメータ、<code class="code-voice">indices</code>をとります、それは<code class="code-voice">Indices</code>型のインスタンスです。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  The generic <code class="code-voice">where</code> clause requires that the iterator for the sequence must traverse over elements of type <code class="code-voice">Int</code>. This ensures that the indices in the sequence are the same type as the indices used for a container.
+<br><span class="jpstr">
+この総称体<code class="code-voice">where</code>節が要求するのは、このシーケンスのためのイテレータが型<code class="code-voice">Int</code>の要素について見ていかなければなければならないことです。これは、このシーケンスのインデックスがコンテナに対して使われるインデックスと同じ型であるのを保証することになります。
+</span><!--end_jpstr-->
+</p>
+</li>
+</ul><p class="para">
+  Taken together, these constraints mean that the value passed for the <code class="code-voice">indices</code> parameter is a sequence of integers.
+<br><span class="jpstr">
+総合すると、これらの制約が意味するのは、<code class="code-voice">indices</code>パラメータに対して渡される値は整数からなるシーケンスであるということです。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
 
   	
  	<section id="next_previous" class="">
@@ -1723,7 +1886,7 @@
     <p class="copyright">Copyright &#x00a9; 2017 Apple Inc. All rights reserved. 
   <a class="link" href="http://www.apple.com/legal/terms/site.html" target="_blank" rel="external">Terms of Use</a> | 
   <a class="link" href="http://www.apple.com/privacy/" target="_blank" rel="external">Privacy Policy</a> | 
-  Updated: 2017-03-27
+  Updated: 2017-06-05
 </p>
   </section>
 </article>
@@ -1734,8 +1897,8 @@
   <div class="content-wrapper">
   	<div id="leave_feedback" class="button" role="button" tabindex="0">Feedback</div>
   </div>
-  <script src="../../../../Resources/1260/JavaScript/devpubs-1.6.3.js" type="text/javascript" charset="utf-8"></script>
-  <script src="../../../../Resources/1260/JavaScript/feedback-1.6.3.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../../../Resources/1264/JavaScript/devpubs-1.6.3.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../../../Resources/1264/JavaScript/feedback-1.6.3.js" type="text/javascript" charset="utf-8"></script>
   <div id="_omniture_top">
 <!-- SiteCatalyst code version: H.8. Copyright 1997-2006 Omniture, Inc. -->
 <script type="text/javascript">
