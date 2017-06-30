@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>  
-  <title>Playground Book Format Reference: Hidden Code</title>
+  <title>Playground Book Format Reference: Comment Markers</title>
   <link rel="stylesheet" type="text/css" href="../../../../Resources/1264/CSS/style-1.6.3.css" />
   <link rel="stylesheet" type="text/css" href="../../../../Resources/1264/CSS/feedback-1.6.3.css" />
   <meta charset='utf-8'> 
@@ -10,7 +10,7 @@
 <meta id="document-version" name="document-version" content="1.5.1" />
 <meta id="book-assignments" name="book-assignments" content="{Type/Guide}, {Topic/Xcode}" />
 <meta scheme="apple_ref" id="identifier" name="identifier" content="//apple_ref/doc/uid/TP40017343" />
-<meta id="chapterId" name="chapterId" content="TP40017343-CH32">
+<meta id="chapterId" name="chapterId" content="TP40017343-CH71">
 <meta id="book-title" name="book-title" content="Playground Book Format Reference" />
 <meta id="book-resource-type" name="book-resource-type" content="Guide" />
 <meta id="book-root" name="book-root" content="./" />
@@ -127,8 +127,8 @@ Playgroundページ注釈
 </span><!--end_jpstr-->
 </a>
               </li>
-              <li class="nav-chapter">
-              	<a href="Prose.html#//apple_ref/doc/uid/TP40017343-CH71-SW1" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40017343-CH71-SW1">Comment Markers<br><span class="jpstr">
+              <li class="nav-chapter nav-current-chapter">
+              	<a href="#//apple_ref/doc/uid/TP40017343-CH71-SW1" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40017343-CH71-SW1">Comment Markers<br><span class="jpstr">
 コメントマーカー
 </span><!--end_jpstr-->
 </a>
@@ -145,8 +145,8 @@ Playgroundページ注釈
 </span><!--end_jpstr-->
 </a>
               </li>
-              <li class="nav-chapter nav-current-chapter">
-              	<a href="#//apple_ref/doc/uid/TP40017343-CH32-SW1" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40017343-CH32-SW1">Hidden Code<br><span class="jpstr">
+              <li class="nav-chapter">
+              	<a href="HiddenCode.html#//apple_ref/doc/uid/TP40017343-CH32-SW1" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40017343-CH32-SW1">Hidden Code<br><span class="jpstr">
 非表示コード
 </span><!--end_jpstr-->
 </a>
@@ -319,10 +319,10 @@ PlaygroundValue列挙
 <div class="pixel-line"></div>
 <div class="rubber-band-gap"></div>
 <article class="chapter">
-  <a name="//apple_ref/doc/uid/TP40017343-CH32"></a><a name="//apple_ref/doc/uid/TP40017343-CH32-SW1"></a>
+  <a name="//apple_ref/doc/uid/TP40017343-CH71"></a><a name="//apple_ref/doc/uid/TP40017343-CH71-SW1"></a>
 
-  <h2 class='chapter-name'>Hidden Code<br><span class="jpstr">
-非表示コード
+  <h2 class='chapter-name'>Comment Markers<br><span class="jpstr">
+コメントマーカー
 </span><!--end_jpstr-->
 </h2>
 
@@ -330,93 +330,109 @@ PlaygroundValue列挙
   
   	<section class="section">
   		<p class="para">
-  You can hide code that is not related to the main content of a playground page, such as calls to page setup functions, code for assessing the progress of the learner, and functions used in editable examples. Hidden code is executed when the playground is run and all of the public symbols are accessible on the playground page.
+  You can add prose to be displayed on a page by using comment markers in <code class="code-voice">.swift</code> files.
 <br><span class="jpstr">
-あなたは、プレイグラウンドページのメインコンテンツに関係しないコード、例えばページ設定関数への呼び出し、学習者のはかどり具合を評価するためのコード、そして編集可能な例で使われる関数などを隠すことが出来ます。非表示コードは、プレイグラウンドが実行されて、全てのパブリックシンボルがプレイグラウンドページ上で利用可能である時に遂行されます。
+あなたは、散文を加えてページで表示されるようにすることが<code class="code-voice">.swift</code>ファイルの中のコメントマーカーを使って行えます。
+</span><!--end_jpstr-->
+</p>
+<p class="para">
+  <em>Single-line</em> comment markers consist of one line of text containing markup delimiters. Use two forward slash characters followed by a colon (<code class="code-voice">//:</code>) for a single line of markup for a playground.
+<br><span class="jpstr">
+<em>単一行</em>コメントマーカーは、マークアップ区切り記号を含んでいる一行のテキストから成ります。２つのスラッシュ文字に続くコロン（<code class="code-voice">//:</code>）を単一行のマークアップとしてプレイグラウンドに使ってください。
 </span><!--end_jpstr-->
 </p>
 
 <span class="caption"></span>
 <div class="code-outline">
   <ul class="code-outline-lines">
-    <li><pre class="code-voice"><span class="c">//#-hidden-code</span></pre></li><li><pre class="code-voice"><em class="variable-text">line of code</em></pre></li><li><pre class="code-voice">…</pre></li><li><pre class="code-voice"><span class="c">//#-end-hidden-code</span></pre></li>
+    <li><pre class="code-voice"><span class="c">//: <em class="variable-text">line of markup content</em></span></pre></li>
   </ul>
 </div><p class="para">
-  Hidden code is placed between the <code class="code-voice">hidden-code</code> and <code class="code-voice">end-hidden-code</code> delimiters. The opening and closing delimiters are preceded by two forward slash characters followed by a pound sign and a hyphen (<code class="code-voice">//#-</code>) and appear on a separate line.
+  <em>Block</em> comment markers enclose one or more lines of text containing markup delimiters. Use a forward slash followed by an asterisk and then a colon (<code class="code-voice">/*:</code>) for the opening comment delimiter. Use an asterisk followed by a forward slash (<code class="code-voice">*/</code>) for the closing comment delimiter.
 <br><span class="jpstr">
-非表示コードは、<code class="code-voice">hidden-code</code>と<code class="code-voice">end-hidden-code</code>区切り記号の間に置かれます。開きおよび閉じ区切り記号は、２つのフォワードスラッシュ文字とそれに続くポンド記号とハイフン（<code class="code-voice">//#-</code>）を前に置いて個別の行に現れます。
+<em>ブロック</em>コメントメーカは、１つ以上の行のテキストを含むマークアップ区切り記号に納めます。１つのスラッシュに続けてアスタリスクとそれからコロン（<code class="code-voice">/*:</code>）を開きコメント区切り記号に使ってください。１つのアスタリスクに続けてスラッシュ（<code class="code-voice">*/</code>）を閉じコメント区切り記号に使ってください。
+</span><!--end_jpstr-->
+</p>
+
+<span class="caption"></span>
+<div class="code-outline">
+  <ul class="code-outline-lines">
+    <li><pre class="code-voice"><span class="c">/*:</span></pre></li><li><pre class="code-voice"><span class="c">     line of text with optional markup</span></pre></li><li><pre class="code-voice"><span class="c">     …</span></pre></li><li><pre class="code-voice"><span class="c">     line of text with optional markup</span></pre></li><li><pre class="code-voice"><span class="c"> */</span></pre></li>
+  </ul>
+</div><p class="para">
+  The lines between the opening and closing comment delimiters can contain text, text and markup, or nothing. There is no limit to the number of lines in a comment. Text on the same line as the opening comment delimiter is ignored.
+<br><span class="jpstr">
+開きと閉じコメント区切り記号の間の行は、テキスト、テキストとマークアップを含む、または何も含まないことができます。あるコメントの中の行数に限界はありません。開きコメント区切り記号と同じ行でのテキストは無視されます。
 </span><!--end_jpstr-->
 </p>
 <p class="para">
-  You can place hidden code at the top and bottom of a playground page. Additionally, on pages with at least one editable area, you can place hidden code anywhere on the page outside of an editable area.
+  For more information, see <em class="u-book"><a href="../../Reference/xcode_markup_formatting_ref/index.html#//apple_ref/doc/uid/TP40016497" data-renderer-version="2" target="_self">Markup Formatting Reference</a></em>.
 <br><span class="jpstr">
-あなたは、非表示コードをプレイグラウンドページの最上部と最下部に置くことが出来ます。さらに加えて、少なくとも１つの編集エリアを持つページでは、あなたは非表示コードをページ上の編集エリアの外側のどこにでも置くことが出来ます。
+詳細は、<em class="u-book"><a href="../../Reference/xcode_markup_formatting_ref/index.html#//apple_ref/doc/uid/TP40016497" data-renderer-version="2" target="_self">Markup Formatting Reference</a></em>を見てください。
 </span><!--end_jpstr-->
 </p>
-<p class="para">
-  <span class="x-name-no-link">Listing 10-1</span> uses hidden code to show a live view. The user has access to symbols in <code class="code-voice">UKit</code> and <code class="code-voice">PlaygroundSupport</code>, even though the <code class="code-voice">import</code> statements are hidden.
-<br><span class="jpstr">
-<span class="x-name-no-link">コード出力 10-1</span> は、非表示コードをライブビューに対して使います。ユーザは、<code class="code-voice">UKit</code>と<code class="code-voice">PlaygroundSupport</code>でのシンボルにアクセスします、<code class="code-voice">import</code>文が隠されているとしてもです。
-</span><!--end_jpstr-->
-</p>
-<section class="code-listing">
-  <a name="//apple_ref/doc/uid/TP40017343-CH32-SW2"></a>
-    <span class="caption"><strong class="caption-number">Listing 10-1</strong>Hiding the code to show a live view<br><span class="jpstr">
-<strong class="caption-number">コード出力 10-1</strong> ライブビューを表示するための隠されたコード
-</span><!--end_jpstr-->
-</span>
-  <div class="code-sample">
-      <div class="Swift">
-        <ol class="code-lines">
-            <li><code class="code-voice"><span class="c">/*:</span></code></li>
-            <li><code class="code-voice"><span class="c">  Change properties of `theView` and run the playground.</span></code></li>
-            <li><code class="code-voice"><span class="c">  Try modifying:</span></code></li>
-            <li><code class="code-voice"><span class="c">  * `CGColor`: `markColor` and `backgroundColor`</span></code></li>
-            <li><code class="code-voice"><span class="c">  * `Bool`: `isChecked`</span></code></li>
-            <li><code class="code-voice"><span class="c">  * `CGFloat`: `strokeFactor`, `insetFactor`, and `markInsetFactor`</span></code></li>
-            <li><code class="code-voice"><span class="c">  */</span></code></li>
-            <li><code class="code-voice"><span class="c">//#-hidden-code</span></code></li>
-            <li><code class="code-voice"><span class="kt">import</span> <span class="vc">UIKit</span></code></li>
-            <li><code class="code-voice"><span class="kt">import</span> <span class="vc">PlaygroundSupport</span></code></li>
-            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">viewRect</span> = <span class="vc">CGRect</span>(<span class="vc">x</span>: <span class="m">0</span>, <span class="vc">y</span>: <span class="m">0</span>, <span class="vc">width</span>: <span class="m">100</span> , <span class="vc">height</span>: <span class="m">400</span>)</code></li>
-            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">theView</span> = <span class="vc">CustomView</span>(<span class="vc">frame</span>: <span class="vc">viewRect</span>)</code></li>
-            <li><code class="code-voice"><span class="vc">PlaygroundPage</span>.<span class="vc">current</span>.<span class="vc">liveView</span> = <span class="vc">theView</span></code></li>
-            <li><code class="code-voice"><span class="c">//#-end-hidden-code</span></code></li>
-            <li><code class="code-voice"><span class="c">//#-editable-code</span></code></li>
-            <li><code class="code-voice"><span class="vc">theView</span>.<span class="vc">markColor</span> = <span class="vc">UIColor</span>.<span class="vc">darkGray</span></code></li>
-            <li><code class="code-voice"><span class="vc">theView</span>.<span class="vc">isChecked</span> = <span class="kt">true</span></code></li>
-            <li><code class="code-voice"><span class="c">//#-end-editable-code</span></code></li>
-        </ol>
-      </div>
-  </div>
-</section>
-<p class="para">
-  <span class="x-name-no-link">Figure 10-1</span> shows the playground page rendered from <span class="x-name-no-link">Listing 10-1</span>. The code on lines 8-12, which is inside the hidden code delimiters, is not shown on the playground page. <code class="code-voice">theView</code> is used to change properties of the live view, even though it is defined in the hidden code.
-<br><span class="jpstr">
-<span class="x-name-no-link">図 10-1</span> は、<span class="x-name-no-link">コード出力 10-1</span>から描画されるプレイグラウンドページを示します。行８-１２でのコード、非表示区切り記号の内側にあるものは、プレイグラウンドページで表示されません。<code class="code-voice">theView</code>は、ライブビューのプロパティを変更するために使われます、たとえそれが非表示コードで定義されるとしてもです。
-</span><!--end_jpstr-->
-</p>
-<figure class="figure">
-  <a name="//apple_ref/doc/uid/TP40017343-CH32-SW3"></a>
-  <span class="caption"><strong class="caption-number">Figure 10-1</strong>Playground page with hidden code<br><span class="jpstr">
-<strong class="caption-number">図 10-1</strong> 非表示コードを持つプレイグラウンドページ
-</span><!--end_jpstr-->
-</span>
-  <img src="Art/SP_hidden_code_2x.png" alt="image: ../Art/SP_hidden_code_2x.png" width="680" height="513" />
-</figure>
 
 		</section> 
 
 
+  <section class="section">
+  <a name="//apple_ref/doc/uid/TP40017343-CH71-DontLinkElementID_4"></a>
+  <h3 class="section-name" tabindex="0">Localized Comment Markers<br><span class="jpstr">
+ローカライズされたコメントマーカー
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  You can localize the content displayed in comment markers by using the <code class="code-voice">localized</code> delimiter. To enable this, a playground page must have a <code class="code-voice">Prose.strings</code> file in each localization folder in the <code class="code-voice">PrivateResources</code> folder.
+<br><span class="jpstr">
+あなたは、コメントマーカーの中に表示される内容を<code class="code-voice">localized</code>区切り記号を使うことでローカライズできます。これを可能にするために、プレイグラウンドページは<code class="code-voice">Prose.strings</code>ファイルを<code class="code-voice">PrivateResources</code>の中の各ローカライズフォルダに持たなければなりません。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The <code class="code-voice">localized</code> delimiter takes a single labeled <code class="code-voice">key</code> argument, for the identifier corresponding to a localization key in the <code class="code-voice">Prose.strings</code> file. The  delimiter is preceded by two forward slash characters followed by a colon and a pound sign (<code class="code-voice">//:#</code>).
+<br><span class="jpstr">
+<code class="code-voice">localized</code>区切り記号は、ただ１つのラベル付き<code class="code-voice">key</code>引数を、<code class="code-voice">Prose.strings</code>ファイルの中のローカライズキーに対応している識別子に対して取ります。区切り記号は、２つのスラッシュに続けてコロンとポンド記号（<code class="code-voice">//:#</code>）を前に置きます。
+</span><!--end_jpstr-->
+</p><span class="caption"></span>
+<div class="code-outline">
+  <ul class="code-outline-lines">
+    <li><pre class="code-voice"><span class="c">//:#localized(key: &quot;FirstProseBlock&quot;)</span></pre></li>
+  </ul>
+</div><p class="para">
+  The <code class="code-voice">Prose.strings</code> file contains a list of key-value pairs along with optional comments describing the purpose of each key-value pair. Key and value strings are separated by an equal sign (<code class="code-voice">=</code>), and the entire entry must be terminated with a semicolon character (<code class="code-voice">;</code>). By convention, comments are enclosed inside C-style comment delimiters (<code class="code-voice">/*</code> and <code class="code-voice">*/</code>) and are placed immediately before the entry they describe.
+<br><span class="jpstr">
+<code class="code-voice">Prose.strings</code>ファイルは、キー値ペアのリスト、それに加えて各キー値ペアの目的を解説する任意のコメントを含みます。キーおよび値文字列は、等号（<code class="code-voice">=</code>）で分けられ、そして登録項目全体はセミコロン文字（<code class="code-voice">;</code>）で終わらなければなりません。慣行によって、コメントはC形式コメント区切り記号（<code class="code-voice">/*</code>と<code class="code-voice">*/</code>）の内側に納められます、そしてそれらが解説する登録項目のすぐ前に置かれます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  For example, a playground page with the <code class="code-voice">//:#localized(key: &quot;FirstProseBlock&quot;)</code> comment marker may contain an <code class="code-voice">en.lproj</code> folder in the <code class="code-voice">PrivateResources</code> folder containing the following <code class="code-voice">Prose.strings</code> file:
+<br><span class="jpstr">
+例えば、あるプレイグラウンドページで<code class="code-voice">//:#localized(key: "FirstProseBlock")</code>コメントマーカーを持つものは、<code class="code-voice">en.lproj</code>フォルダを<code class="code-voice">PrivateResources</code>フォルダの中に含んで、以下の<code class="code-voice">Prose.strings</code>ファイルを含んでいるかもしれません：
+</span><!--end_jpstr-->
+</p><span class="caption"></span>
+<div class="code-outline">
+  <ul class="code-outline-lines">
+    <li><pre class="code-voice"><span class="c">/* First block of prose for the page */</span></pre></li><li><pre class="code-voice"><span class="s">&quot;FirstProseBlock&quot;</span>=<span class="s">&quot;Caring for a llama can be a challenging, but rewarding, experience.&quot;</span>;</pre></li>
+  </ul>
+</div><p class="para">
+  When run on a device set to an English-speaking locale, the playground page automatically replaces the localization delimiter with the text.
+<br><span class="jpstr">
+英語を話すロケールに設定されたデバイス上で実行される場合、プレイグラウンドページは自動的にローカライズ区切り記号をテキストと置き換えます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  For more information, see <a href="../../../Cocoa/Conceptual/LoadingResources/Strings/Strings.html#//apple_ref/doc/uid/10000051i-CH6" data-renderer-version="1" target="_self">String Resources</a> in <em class="u-book"><a href="../../../Cocoa/Conceptual/LoadingResources/Introduction/Introduction.html#//apple_ref/doc/uid/10000051i" data-renderer-version="1" target="_self">Resource Programming Guide</a></em>, and <em class="u-book"><a href="../../../MacOSX/Conceptual/BPInternational/Introduction/Introduction.html#//apple_ref/doc/uid/10000171i" data-renderer-version="1" target="_self">Internationalization and Localization Guide</a></em>.
+<br><span class="jpstr">
+詳細は、<a href="../../../Cocoa/Conceptual/LoadingResources/Strings/Strings.html#//apple_ref/doc/uid/10000051i-CH6" data-renderer-version="1" target="_self">String Resources</a>を<em class="u-book"><a href="../../../Cocoa/Conceptual/LoadingResources/Introduction/Introduction.html#//apple_ref/doc/uid/10000051i" data-renderer-version="1" target="_self">Resource Programming Guide</a></em>で、そして<em class="u-book"><a href="../../../MacOSX/Conceptual/BPInternational/Introduction/Introduction.html#//apple_ref/doc/uid/10000171i" data-renderer-version="1" target="_self">Internationalization and Localization Guide</a></em>を見てください。
+</span><!--end_jpstr-->
+</p>
   
+</section>
+
   	
  	<section id="next_previous" class="">
-    		<p class="previous-link"><a href="EditAreaPlaceholders.html#//apple_ref/doc/uid/TP40017343-CH39-SW1" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40017343-CH39-SW1">Placeholder Tokens<br><span class="jpstr">
-プレースホルダートークン
+    		<p class="previous-link"><a href="PageAnnotationOverview.html#//apple_ref/doc/uid/TP40017343-CH31-SW1" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40017343-CH31-SW1">About Page Annotations<br><span class="jpstr">
+ページ注釈について
 </span><!--end_jpstr-->
 </a></p>
-  			<p class="next-link"><a href="CodeCompletion.html#//apple_ref/doc/uid/TP40017343-CH34-SW1" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40017343-CH34-SW1">Customized Code Completion<br><span class="jpstr">
-カスタマイズされたコード補完
+  			<p class="next-link"><a href="EditableAreas.html#//apple_ref/doc/uid/TP40017343-CH33-SW1" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40017343-CH33-SW1">Editable Areas<br><span class="jpstr">
+編集エリア
 </span><!--end_jpstr-->
 </a></p>
 
