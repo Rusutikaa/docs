@@ -6,8 +6,8 @@
   <link rel="stylesheet" type="text/css" href="../../../../Resources/1264/CSS/feedback-1.6.3.css" />
   <meta charset='utf-8'> 
 <meta id="j-version" name="j-version" content="" />
-<meta id="build" name="build" content="dadaf8814eb04e8376a0501374bda6be" />
-<meta id="document-version" name="document-version" content="9.0.4" />
+<meta id="build" name="build" content="0c869c990fa765914a9edf9866da5f1b" />
+<meta id="document-version" name="document-version" content="9.0.7" />
 <meta id="book-assignments" name="book-assignments" content="{Type/Guide}, {Topic/Swift}" />
 <meta scheme="apple_ref" id="identifier" name="identifier" content="//apple_ref/doc/uid/TP40014216" />
 <meta id="chapterId" name="chapterId" content="TP40014216-CH8">
@@ -15,7 +15,7 @@
 <meta id="book-resource-type" name="book-resource-type" content="Guide" />
 <meta id="book-root" name="book-root" content="./" />
 <meta id="book-json" name="book-json" content="book.json">
-<meta id="date" name="date" content="2017-06-05" />
+<meta id="date" name="date" content="2017-08-21" />
 <meta id="description" name="description" content="Describes various aspects of Swift&#39;s compatibility with the Objective-C language and Cocoa/Cocoa Touch frameworks." />
 <meta id="IndexTitle" name="IndexTitle" content="" />
 <meta id="resources-uri" name="resources-uri" content="../../../../Resources/1264">
@@ -475,21 +475,23 @@ CとObjective-Cソース・ファイルにおいて定義されるグローバ�
 </span><!--end_jpstr-->
 </h3>
   <p class="para">
-  In Objective-C, constants are often used to provide a list of possible values for properties and method parameters. You can annotate an Objective-C <code class="code-voice">typedef</code> declaration with the <code class="code-voice">NS_STRING_ENUM</code> or <code class="code-voice">NS_EXTENSIBLE_STRING_ENUM</code> macro to have constants of that type imported by Swift as members of a common type. Use <code class="code-voice">NS_STRING_ENUM</code> for sets of values that can’t logically have additional values added by code in adopting modules. Use <code class="code-voice">NS_EXTENSIBLE_STRING_ENUM</code> for sets of values which may be expanded in a Swift extension.
+  In Objective-C, constants are often used to provide a list of possible values for properties and method parameters. You can annotate an Objective-C <code class="code-voice">typedef</code> declaration with the <code class="code-voice">NS_TYPED_ENUM</code> or <code class="code-voice">NS_TYPED_EXTENSIBLE_ENUM</code> macro to have constants of that type imported by Swift as members of a common type. Use <code class="code-voice">NS_TYPED_ENUM</code> for sets of values that can’t logically have additional values added by code in adopting modules. Use <code class="code-voice">NS_TYPED_EXTENSIBLE_ENUM</code> for sets of values which may be expanded in a Swift extension.
 <br><span class="jpstr">
-Objective-Cでは、プロパティおよびメソッドパラメータに対する可能な値のリストを提供するためにしばしば定数が使われます。あなたは、Objective-Cの<code class="code-voice">typedef</code>宣言に<code class="code-voice">NS_STRING_ENUM</code>または<code class="code-voice">NS_EXTENSIBLE_STRING_ENUM</code>マクロで注釈をつけることで、スウィフトによってインポートされるその型の定数を普通の型のメンバとして受け入れることができます。採用しているモジュールの中のコードによって加えられる追加的な値を論理的に持たない値の集合に対して、<code class="code-voice">NS_STRING_ENUM</code>を使ってください。値の集合に対して、<code class="code-voice">NS_EXTENSIBLE_STRING_ENUM</code>を使ってください。
+Objective-Cでは、プロパティおよびメソッドパラメータに対する候補の値のリストを提供するためにしばしば定数が使われます。あなたは、Objective-Cの<code class="code-voice">typedef</code>宣言に<code class="code-voice">NS_TYPED_ENUM</code>または<code class="code-voice">NS_TYPED_EXTENSIBLE_ENUM</code>マクロで注釈をつけることで、その型の定数をスウィフトによって普通の型のメンバとしてインポートされるようにします。採用しているモジュールの中のコードによって追加的な値を加えられることが論理的に不可能な値の集合に対して、<code class="code-voice">NS_TYPED_ENUM</code>を使ってください。あるスウィフト拡張において拡張されるかもしれない値の集合に対して、<code class="code-voice">NS_TYPED_EXTENSIBLE_ENUM</code>を使ってください。
 </span><!--end_jpstr-->
 </p><p class="para">
-  Constants that represent a fixed set of possible values can be imported as a structure by adding the <code class="code-voice">NS_STRING_ENUM</code> macro. For example, consider the following Objective-C declarations for string constants of type <code class="code-voice">TrafficLightColor</code>:
+  Constants that represent a fixed set of possible values can be imported as a structure by adding the <code class="code-voice">NS_TYPED_ENUM</code> macro. For example, consider the following Objective-C declarations for integer constants of type <code class="code-voice">TrafficLightColor</code>:
 <br><span class="jpstr">
-ある固定された一揃いの可能な値を表す、いくらかの定数は、<code class="code-voice">NS_STRING_ENUM</code>マクロを加えることによって構造体としてインポートされることができます。例えば、型<code class="code-voice">TrafficLightColor</code>の文字列定数のための以下のObjective-C宣言を考えてみてください：
+ある固定された一揃いの候補の値を表す定数いくらかは、構造体としてインポートされることが<code class="code-voice">NS_TYPED_ENUM</code>マクロを加えることによって可能です。例えば、型<code class="code-voice">TrafficLightColor</code>の整数定数のための以下のObjective-C宣言を考えてみてください：
 </span><!--end_jpstr-->
 </p><section class="code-listing">
   
   <div class="code-sample">
       <div class="Objective-C">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="k">typedef</span> <span class="n">NSString</span> <span class="o">*</span> <span class="n">TrafficLightColor</span> <span class="n">NS_STRING_ENUM</span><span class="p">;</span>
+            <li><code class="code-voice"><span class="c1">// Store the three traffic light color options as 0, 1, and 2.</span>
+</code></li>
+            <li><code class="code-voice"><span class="k">typedef</span> <span class="kt">long</span> <span class="n">TrafficLightColor</span> <span class="n">NS_TYPED_ENUM</span><span class="p">;</span>
 </code></li>
             <li><code class="code-voice"> 
 </code></li>
@@ -512,8 +514,8 @@ Objective-Cでは、プロパティおよびメソッドパラメータに対す
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="kt">struct</span> <span class="vc">TrafficLightColor</span>: <span class="n"><!-- a href="" -->RawRepresentable<!-- /a --></span> {</code></li>
-            <li><code class="code-voice">    <span class="kt">typealias</span> <span class="vc">RawValue</span> = <span class="n"><!-- a href="" -->String<!-- /a --></span></code></li>
+            <li><code class="code-voice"><span class="kt">struct</span> <span class="vc">TrafficLightColor</span>: <span class="n"><!-- a href="" -->RawRepresentable<!-- /a --></span>, <span class="n"><!-- a href="" -->Equatable<!-- /a --></span>, <span class="n"><!-- a href="" -->Hashable<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">typealias</span> <span class="vc">RawValue</span> = <span class="n"><!-- a href="" -->Int<!-- /a --></span></code></li>
             <li><code class="code-voice">    </code></li>
             <li><code class="code-voice">    <span class="kt">init</span>(<span class="vc">rawValue</span>: <span class="n"><!-- a href="" -->RawValue<!-- /a --></span>)</code></li>
             <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">rawValue</span>: <span class="n"><!-- a href="" -->RawValue<!-- /a --></span> { <span class="vc">get</span> }</code></li>
@@ -526,24 +528,30 @@ Objective-Cでは、プロパティおよびメソッドパラメータに対す
       </div>
   </div>
 </section><p class="para">
-  Constants that represent an extensible set of possible values can be imported as a structure by adding the <code class="code-voice">NS_EXTENSIBLE_STRING_ENUM</code> macro. For example, consider the following Objective-C declarations for string constants of type <code class="code-voice">StateOfMatter</code>:
+  Constants that represent an extensible set of possible values can be imported as a structure by adding the <code class="code-voice">NS_TYPED_EXTENSIBLE_ENUM</code> macro. For example, consider the following Objective-C declarations that represent sets of actively illuminated colors on a traffic light:
 <br><span class="jpstr">
-ある拡張可能な一揃いの可能な値を表す、いくらかの定数は、<code class="code-voice">NS_EXTENSIBLE_STRING_ENUM</code>マクロを加えることによって構造体としてインポートされることができます。例えば、型<code class="code-voice">StateOfMatter</code>の文字列定数のための以下のObjective-C宣言を考えてみてください：
+ある拡張可能な一揃いの候補の値を表す定数いくらかは、<code class="code-voice">NS_TYPED_EXTENSIBLE_ENUM</code>マクロを加えることによって構造体としてインポートされることができます。例えば、信号機上で活発に変わる照明された色の一揃いを表す以下のObjective-C宣言を考えてみてください：
 </span><!--end_jpstr-->
 </p><section class="code-listing">
   
   <div class="code-sample">
       <div class="Objective-C">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="k">typedef</span> <span class="n">NSString</span> <span class="o">*</span> <span class="n">StateOfMatter</span> <span class="n">NS_EXTENSIBLE_STRING_ENUM</span><span class="p">;</span>
+            <li><code class="code-voice"><span class="k">typedef</span> <span class="n">TrafficLightColor</span> <span class="n">TrafficLightCombo</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">NS_TYPED_EXTENSIBLE_ENUM</span><span class="p">;</span>
 </code></li>
             <li><code class="code-voice"> 
 </code></li>
-            <li><code class="code-voice"><span class="n">StateOfMatter</span> <span class="k">const</span> <span class="n">StateOfMatterSolid</span><span class="p">;</span>
+            <li><code class="code-voice"><span class="n">TrafficLightCombo</span> <span class="k">const</span> <span class="n">TrafficLightComboJustRed</span><span class="p">;</span>
 </code></li>
-            <li><code class="code-voice"><span class="n">StateOfMatter</span> <span class="k">const</span> <span class="n">StateOfMatterLiquid</span><span class="p">;</span>
+            <li><code class="code-voice"><span class="n">TrafficLightCombo</span> <span class="k">const</span> <span class="n">TrafficLightComboJustYellow</span><span class="p">;</span>
 </code></li>
-            <li><code class="code-voice"><span class="n">StateOfMatter</span> <span class="k">const</span> <span class="n">StateOfMatterGas</span><span class="p">;</span>
+            <li><code class="code-voice"><span class="n">TrafficLightCombo</span> <span class="k">const</span> <span class="n">TrafficLightComboJustGreen</span><span class="p">;</span>
+</code></li>
+            <li><code class="code-voice"> 
+</code></li>
+            <li><code class="code-voice"><span class="c1">// Some places use a combination of lights to indicate a specific condition.</span>
+</code></li>
+            <li><code class="code-voice"><span class="n">TrafficLightCombo</span> <span class="k">const</span> <span class="n">TrafficLightComboRedYellow</span><span class="p">;</span>
 </code></li>
         </ol>
       </div>
@@ -558,16 +566,17 @@ Objective-Cでは、プロパティおよびメソッドパラメータに対す
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="kt">struct</span> <span class="vc">StateOfMatter</span>: <span class="n"><!-- a href="" -->RawRepresentable<!-- /a --></span> {</code></li>
-            <li><code class="code-voice">    <span class="kt">typealias</span> <span class="vc">RawValue</span> = <span class="n"><!-- a href="" -->String<!-- /a --></span></code></li>
+            <li><code class="code-voice"><span class="kt">struct</span> <span class="vc">TrafficLightCombo</span>: <span class="n"><!-- a href="" -->RawRepresentable<!-- /a --></span>, <span class="n"><!-- a href="" -->Equatable<!-- /a --></span>, <span class="n"><!-- a href="" -->Hashable<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">typealias</span> <span class="vc">RawValue</span> = (<span class="n"><!-- a href="" -->TrafficLightColor<!-- /a --></span>, <span class="n"><!-- a href="" -->TrafficLightColor<!-- /a --></span>, <span class="n"><!-- a href="" -->TrafficLightColor<!-- /a --></span>)</code></li>
             <li><code class="code-voice">    </code></li>
             <li><code class="code-voice">    <span class="kt">init</span>(<span class="kt">_</span> <span class="vc">rawValue</span>: <span class="n"><!-- a href="" -->RawValue<!-- /a --></span>)</code></li>
             <li><code class="code-voice">    <span class="kt">init</span>(<span class="vc">rawValue</span>: <span class="n"><!-- a href="" -->RawValue<!-- /a --></span>)</code></li>
             <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">rawValue</span>: <span class="n"><!-- a href="" -->RawValue<!-- /a --></span> { <span class="vc">get</span> }</code></li>
             <li><code class="code-voice">    </code></li>
-            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">solid</span>: <span class="n"><!-- a href="" -->StateOfMatter<!-- /a --></span> { <span class="vc">get</span> }</code></li>
-            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">liquid</span>: <span class="n"><!-- a href="" -->StateOfMatter<!-- /a --></span> { <span class="vc">get</span> }</code></li>
-            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">gas</span>: <span class="n"><!-- a href="" -->StateOfMatter<!-- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">justRed</span>: <span class="n"><!-- a href="" -->TrafficLightCombo<!-- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">justYellow</span>: <span class="n"><!-- a href="" -->TrafficLightCombo<!-- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">justGreen</span>: <span class="n"><!-- a href="" -->TrafficLightCombo<!-- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">redYellow</span>: <span class="n"><!-- a href="" -->TrafficLightCombo<!-- /a --></span> { <span class="vc">get</span> }</code></li>
             <li><code class="code-voice">}</code></li>
         </ol>
       </div>
@@ -578,24 +587,39 @@ Objective-Cでは、プロパティおよびメソッドパラメータに対す
 この拡張可能な形式を使う定数は、追加的なイニシャライザ、新しい値を持つ集合を拡張する時に呼出し側に引数ラベルを省略させるもの、でインポートされます。
 </span><!--end_jpstr-->
 </p><p class="para">
-  Constants imported from a type declaration marked with the <code class="code-voice">NS_EXTENSIBLE_STRING_ENUM</code> macro can be extended in Swift code to add new values.
+  Constants imported from a type declaration marked with the <code class="code-voice">NS_TYPED_EXTENSIBLE_ENUM</code> macro can be extended in Swift code to add new values.
 <br><span class="jpstr">
-<code class="code-voice">NS_EXTENSIBLE_STRING_ENUM</code>マクロで印される型宣言からインポートされる定数は、スウィフトコードにおいて拡張されて新しい値を加えられることができます。
+<code class="code-voice">NS_TYPED_EXTENSIBLE_ENUM</code>マクロで印される型宣言からインポートされる定数は、スウィフトコードにおいて拡張されて新しい値を加えられることが可能です。
 </span><!--end_jpstr-->
 </p><section class="code-listing">
   
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="kt">extension</span> <span class="n"><!-- a href="" -->StateOfMatter<!-- /a --></span> {</code></li>
-            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">plasma</span>: <span class="n"><!-- a href="" -->StateOfMatter<!-- /a --></span> {</code></li>
-            <li><code class="code-voice">        <span class="kt">return</span> <span class="vc">StateOfMatter</span>(<span class="s">&quot;plasma&quot;</span>)</code></li>
+            <li><code class="code-voice"><span class="kt">extension</span> <span class="n"><!-- a href="" -->TrafficLightCombo<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">all</span>: <span class="n"><!-- a href="" -->TrafficLightCombo<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">        <span class="kt">return</span> <span class="vc">TrafficLightCombo</span>((.<span class="vc">red</span>, .<span class="vc">yellow</span>, .<span class="vc">green</span>))</code></li>
             <li><code class="code-voice">    }</code></li>
             <li><code class="code-voice">}</code></li>
         </ol>
       </div>
   </div>
-</section>
+</section><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014216-CH8-NoLink_24"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">You might encounter Objective-C code that uses the older <code class="code-voice">NS_STRING_ENUM</code> and <code class="code-voice">NS_EXTENSIBLE_STRING_ENUM</code> macros, which were used to group string constants. You should use <code class="code-voice">NS_TYPED_ENUM</code> and <code class="code-voice">NS_TYPED_EXTENSIBLE_ENUM</code> when grouping related constants of any type, including string constants.
+    	<br><span class="jpstr">
+あなたは、より古い<code class="code-voice">NS_STRING_ENUM</code>および<code class="code-voice">NS_EXTENSIBLE_STRING_ENUM</code>マクロを使うObjective-Cコードに直面するかもしれません、それは文字列定数をグループにするために使われました。あなたは、<code class="code-voice">NS_TYPED_ENUM</code>および<code class="code-voice">NS_TYPED_EXTENSIBLE_ENUM</code>を、文字列定数を含む何らかの型の関連する定数をグループにする時に使うべきです。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div>
   
 </section>
 
@@ -2201,7 +2225,7 @@ Cプリプロセッサでの条件コンパイルと対照的に、スウィフ�
     <p class="copyright">Copyright &#x00a9; 2017 Apple Inc. All rights reserved. 
   <a class="link" href="http://www.apple.com/legal/terms/site.html" target="_blank" rel="external">Terms of Use</a> | 
   <a class="link" href="http://www.apple.com/privacy/" target="_blank" rel="external">Privacy Policy</a> | 
-  Updated: 2017-06-05
+  Updated: 2017-08-21
 </p>
   </section>
 </article>

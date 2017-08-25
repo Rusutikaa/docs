@@ -6,8 +6,8 @@
   <link rel="stylesheet" type="text/css" href="../../../../Resources/1264/CSS/feedback-1.6.3.css" />
   <meta charset='utf-8'> 
 <meta id="j-version" name="j-version" content="" />
-<meta id="build" name="build" content="dadaf8814eb04e8376a0501374bda6be" />
-<meta id="document-version" name="document-version" content="10.0.8" />
+<meta id="build" name="build" content="0c869c990fa765914a9edf9866da5f1b" />
+<meta id="document-version" name="document-version" content="10.0.10" />
 <meta id="book-assignments" name="book-assignments" content="{Type/Guide}, {Topic/Swift}" />
 <meta scheme="apple_ref" id="identifier" name="identifier" content="//apple_ref/doc/uid/TP40014097" />
 <meta id="chapterId" name="chapterId" content="TP40014097-CH30">
@@ -15,7 +15,7 @@
 <meta id="book-resource-type" name="book-resource-type" content="Guide" />
 <meta id="book-root" name="book-root" content="./" />
 <meta id="book-json" name="book-json" content="book.json">
-<meta id="date" name="date" content="2017-06-05" />
+<meta id="date" name="date" content="2017-08-21" />
 <meta id="description" name="description" content="The definitive guide to Swift, Apple’s programming language for building iOS, macOS, watchOS, and tvOS apps." />
 <meta id="IndexTitle" name="IndexTitle" content="" />
 <meta id="resources-uri" name="resources-uri" content="../../../../Resources/1264">
@@ -436,7 +436,161 @@
 <br><span class="jpstr">
 コメントは、コンパイラによって空白とみなされます。一行コメントは<code class="code-voice">//</code>で始まります、そして行送り（U+000A）または復帰（U+000D）まで続きます。複数行コメントは<code class="code-voice">/*</code>で始まり<code class="code-voice">*/</code>で終わります。複数行コメントが入れ子にされることは許されます、しかしコメント目印が釣り合っている必要があります。
 </span><!--end_jpstr-->
-</p><p class="para">
+</p><div class="syntax-defs">
+  <p class="syntax-defs-name">
+  Grammar of whitespace
+<br><span class="jpstr">
+空白の文法
+</span><!--end_jpstr-->
+</p><div class="syntax-defs-group">
+  <p class="syntax-def">
+  <a name="//apple_ref/swift/grammar/whitespace"></a>
+  <span class="syntax-def-name">
+  whitespace
+</span>
+<span class="arrow">
+  →
+</span><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/whitespace-item" data-renderer-version="2" data-id="//apple_ref/swift/grammar/whitespace-item">whitespace-item</a>&shy;</span><span class="optional"><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/whitespace" data-renderer-version="2" data-id="//apple_ref/swift/grammar/whitespace">whitespace</a>&shy;</span><sub class="subscript">opt</sub>&shy;</span>
+</p><p class="syntax-def">
+  <a name="//apple_ref/swift/grammar/whitespace-item"></a>
+  <span class="syntax-def-name">
+  whitespace-item
+</span>
+<span class="arrow">
+  →
+</span><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/line-break" data-renderer-version="2" data-id="//apple_ref/swift/grammar/line-break">line-break</a>&shy;</span>
+</p><p class="syntax-def">
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_218"></a>
+  <span class="syntax-def-name">
+  whitespace-item
+</span>
+<span class="arrow">
+  →
+</span><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/comment" data-renderer-version="2" data-id="//apple_ref/swift/grammar/comment">comment</a>&shy;</span>
+</p><p class="syntax-def">
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_219"></a>
+  <span class="syntax-def-name">
+  whitespace-item
+</span>
+<span class="arrow">
+  →
+</span><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/multiline-comment" data-renderer-version="2" data-id="//apple_ref/swift/grammar/multiline-comment">multiline-comment</a>&shy;</span>
+</p><p class="syntax-def">
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_220"></a>
+  <span class="syntax-def-name">
+  whitespace-item
+</span>
+<span class="arrow">
+  →
+</span><span class="text-description">U+0000, U+0009, U+000B, U+000C, or U+0020</span>
+</p>
+</div><div class="syntax-defs-group">
+  <p class="syntax-def">
+  <a name="//apple_ref/swift/grammar/line-break"></a>
+  <span class="syntax-def-name">
+  line-break
+</span>
+<span class="arrow">
+  →
+</span><span class="text-description">U+000A</span>
+</p><p class="syntax-def">
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_222"></a>
+  <span class="syntax-def-name">
+  line-break
+</span>
+<span class="arrow">
+  →
+</span><span class="text-description">U+000D</span>
+</p><p class="syntax-def">
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_223"></a>
+  <span class="syntax-def-name">
+  line-break
+</span>
+<span class="arrow">
+  →
+</span><span class="text-description">U+000D followed by U+000A</span>
+&nbsp;<span class="jpstr">
+<span class="text-description">U+000D に続けて U+000A</span>
+</span><!--end_jpstr-->
+</p>
+</div><div class="syntax-defs-group">
+  <p class="syntax-def">
+  <a name="//apple_ref/swift/grammar/comment"></a>
+  <span class="syntax-def-name">
+  comment
+</span>
+<span class="arrow">
+  →
+</span><code class="literal">//&shy;</code><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/comment-text" data-renderer-version="2" data-id="//apple_ref/swift/grammar/comment-text">comment-text</a>&shy;</span><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/line-break" data-renderer-version="2" data-id="//apple_ref/swift/grammar/line-break">line-break</a>&shy;</span>
+</p><p class="syntax-def">
+  <a name="//apple_ref/swift/grammar/multiline-comment"></a>
+  <span class="syntax-def-name">
+  multiline-comment
+</span>
+<span class="arrow">
+  →
+</span><code class="literal">/*&shy;</code><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/multiline-comment-text" data-renderer-version="2" data-id="//apple_ref/swift/grammar/multiline-comment-text">multiline-comment-text</a>&shy;</span><code class="literal">*/&shy;</code>
+</p>
+</div><div class="syntax-defs-group">
+  <p class="syntax-def">
+  <a name="//apple_ref/swift/grammar/comment-text"></a>
+  <span class="syntax-def-name">
+  comment-text
+</span>
+<span class="arrow">
+  →
+</span><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/comment-text-item" data-renderer-version="2" data-id="//apple_ref/swift/grammar/comment-text-item">comment-text-item</a>&shy;</span><span class="optional"><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/comment-text-item" data-renderer-version="2" data-id="//apple_ref/swift/grammar/comment-text-item">comment-text-item</a>&shy;</span><sub class="subscript">opt</sub>&shy;</span>
+</p><p class="syntax-def">
+  <a name="//apple_ref/swift/grammar/comment-text-item"></a>
+  <span class="syntax-def-name">
+  comment-text-item
+</span>
+<span class="arrow">
+  →
+</span><span class="text-description">Any Unicode scalar value except U+000A or U+000D</span>
+&nbsp;<span class="jpstr">
+<span class="text-description">任意のユニコードスカラー値、 しかし U+000A または U+000D を除く</span>
+</span><!--end_jpstr-->
+</p>
+</div><div class="syntax-defs-group">
+  <p class="syntax-def">
+  <a name="//apple_ref/swift/grammar/multiline-comment-text"></a>
+  <span class="syntax-def-name">
+  multiline-comment-text
+</span>
+<span class="arrow">
+  →
+</span><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/multiline-comment-text-item" data-renderer-version="2" data-id="//apple_ref/swift/grammar/multiline-comment-text-item">multiline-comment-text-item</a>&shy;</span><span class="optional"><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/multiline-comment-text" data-renderer-version="2" data-id="//apple_ref/swift/grammar/multiline-comment-text">multiline-comment-text</a>&shy;</span><sub class="subscript">opt</sub>&shy;</span>
+</p><p class="syntax-def">
+  <a name="//apple_ref/swift/grammar/multiline-comment-text-item"></a>
+  <span class="syntax-def-name">
+  multiline-comment-text-item
+</span>
+<span class="arrow">
+  →
+</span><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/multiline-comment" data-renderer-version="2" data-id="//apple_ref/swift/grammar/multiline-comment">multiline-comment</a>&shy;</span>
+</p><p class="syntax-def">
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_230"></a>
+  <span class="syntax-def-name">
+  multiline-comment-text-item
+</span>
+<span class="arrow">
+  →
+</span><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/comment-text-item" data-renderer-version="2" data-id="//apple_ref/swift/grammar/comment-text-item">comment-text-item</a>&shy;</span>
+</p><p class="syntax-def">
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_231"></a>
+  <span class="syntax-def-name">
+  multiline-comment-text-item
+</span>
+<span class="arrow">
+  →
+</span><span class="text-description">Any Unicode scalar value except <code class="literal">/*&shy;</code> or <code class="literal">*/&shy;</code></span>
+<br><span class="jpstr">
+<span class="text-description">任意のユニコードスカラー値、 しかし<code class="literal">/*­</code> または <code class="literal">*/­</code> を除く</span>
+</span><!--end_jpstr-->
+</p>
+</div>
+ </div><p class="para">
   Comments can contain additional formatting and markup, as described in <em class="u-book"><a href="../../../Xcode/Reference/xcode_markup_formatting_ref/index.html#//apple_ref/doc/uid/TP40016497" data-renderer-version="2" target="_self">Markup Formatting Reference</a></em>.
 <br><span class="jpstr">
 コメントは、さらに追加の書式とマークアップを含む事が、<em class="u-book"><a href="../../../Xcode/Reference/xcode_markup_formatting_ref/index.html#//apple_ref/doc/uid/TP40016497" data-renderer-version="2" target="_self">マークアップ書式リファレンス</a></em>で記述されるように可能です。
@@ -456,7 +610,7 @@
 <em>識別子</em>は、大文字または小文字のAからZ、アンダースコア（<code class="code-voice">_</code>）、基本多言語面の非合成英数字のUnicode文字、または基本他言語面の外側ての使用領域の中でない文字で始まります。最初の文字の後は、桁および合成Unicode文字もまた、許されます。
 </span><!--end_jpstr-->
 </p><p class="para">
-  To use a reserved word as an identifier, put a backtick (<code class="code-voice">`</code>) before and after it. For example, <code class="code-voice">class</code> is not a valid identifier, but <code class="code-voice">`class`</code> is valid. The backticks are not considered part of the identifier; <code class="code-voice">`x`</code> and <code class="code-voice">x</code> have the same meaning.
+  To use a reserved word as an identifier, put a backtick (<code class="code-voice">`</code>) before and after it. For example, <code class="code-voice">class</code> is not a valid identifier, but <code class="code-voice">`class`</code> is valid. The backticks aren’t considered part of the identifier; <code class="code-voice">`x`</code> and <code class="code-voice">x</code> have the same meaning.
 <br><span class="jpstr">
 識別子として予約語を使用するために、それの前後にバッククォート（<code class="code-voice">`</code>）を置いてください。例えば、<code class="code-voice">class</code>は有効な識別子ではありません、しかし、<code class="code-voice">`class`</code>は有効です。バッククォートは、識別子の一部とみなされません；<code class="code-voice">`x`</code>と<code class="code-voice">x</code>は、同じ意味を持ちます。
 </span><!--end_jpstr-->
@@ -481,7 +635,7 @@
   →
 </span><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/identifier-head" data-renderer-version="2" data-id="//apple_ref/swift/grammar/identifier-head">identifier-head</a>&shy;</span><span class="optional"><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/identifier-characters" data-renderer-version="2" data-id="//apple_ref/swift/grammar/identifier-characters">identifier-characters</a>&shy;</span><sub class="subscript">opt</sub>&shy;</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_218"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_234"></a>
   <span class="syntax-def-name">
   identifier
 </span>
@@ -489,7 +643,7 @@
   →
 </span><code class="literal">`&shy;</code><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/identifier-head" data-renderer-version="2" data-id="//apple_ref/swift/grammar/identifier-head">identifier-head</a>&shy;</span><span class="optional"><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/identifier-characters" data-renderer-version="2" data-id="//apple_ref/swift/grammar/identifier-characters">identifier-characters</a>&shy;</span><sub class="subscript">opt</sub>&shy;</span><code class="literal">`&shy;</code>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_219"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_235"></a>
   <span class="syntax-def-name">
   identifier
 </span>
@@ -522,7 +676,7 @@
 <span class="text-description">大文字または小文字のAからZ</span>
 </span><!--end_jpstr-->
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_222"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_238"></a>
   <span class="syntax-def-name">
   identifier-head
 </span>
@@ -530,7 +684,7 @@
   →
 </span><code class="literal">_&shy;</code>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_223"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_239"></a>
   <span class="syntax-def-name">
   identifier-head
 </span>
@@ -538,7 +692,7 @@
   →
 </span><span class="text-description">U+00A8, U+00AA, U+00AD, U+00AF, U+00B2–U+00B5, or U+00B7–U+00BA</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_224"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_240"></a>
   <span class="syntax-def-name">
   identifier-head
 </span>
@@ -546,7 +700,7 @@
   →
 </span><span class="text-description">U+00BC–U+00BE, U+00C0–U+00D6, U+00D8–U+00F6, or U+00F8–U+00FF</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_225"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_241"></a>
   <span class="syntax-def-name">
   identifier-head
 </span>
@@ -554,7 +708,7 @@
   →
 </span><span class="text-description">U+0100–U+02FF, U+0370–U+167F, U+1681–U+180D, or U+180F–U+1DBF</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_226"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_242"></a>
   <span class="syntax-def-name">
   identifier-head
 </span>
@@ -562,7 +716,7 @@
   →
 </span><span class="text-description">U+1E00–U+1FFF</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_227"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_243"></a>
   <span class="syntax-def-name">
   identifier-head
 </span>
@@ -570,7 +724,7 @@
   →
 </span><span class="text-description">U+200B–U+200D, U+202A–U+202E, U+203F–U+2040, U+2054, or U+2060–U+206F</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_228"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_244"></a>
   <span class="syntax-def-name">
   identifier-head
 </span>
@@ -578,7 +732,7 @@
   →
 </span><span class="text-description">U+2070–U+20CF, U+2100–U+218F, U+2460–U+24FF, or U+2776–U+2793</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_229"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_245"></a>
   <span class="syntax-def-name">
   identifier-head
 </span>
@@ -586,7 +740,7 @@
   →
 </span><span class="text-description">U+2C00–U+2DFF or U+2E80–U+2FFF</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_230"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_246"></a>
   <span class="syntax-def-name">
   identifier-head
 </span>
@@ -594,7 +748,7 @@
   →
 </span><span class="text-description">U+3004–U+3007, U+3021–U+302F, U+3031–U+303F, or U+3040–U+D7FF</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_231"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_247"></a>
   <span class="syntax-def-name">
   identifier-head
 </span>
@@ -602,7 +756,7 @@
   →
 </span><span class="text-description">U+F900–U+FD3D, U+FD40–U+FDCF, U+FDF0–U+FE1F, or U+FE30–U+FE44</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_232"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_248"></a>
   <span class="syntax-def-name">
   identifier-head
 </span>
@@ -610,7 +764,7 @@
   →
 </span><span class="text-description">U+FE47–U+FFFD</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_233"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_249"></a>
   <span class="syntax-def-name">
   identifier-head
 </span>
@@ -618,7 +772,7 @@
   →
 </span><span class="text-description">U+10000–U+1FFFD, U+20000–U+2FFFD, U+30000–U+3FFFD, or U+40000–U+4FFFD</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_234"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_250"></a>
   <span class="syntax-def-name">
   identifier-head
 </span>
@@ -626,7 +780,7 @@
   →
 </span><span class="text-description">U+50000–U+5FFFD, U+60000–U+6FFFD, U+70000–U+7FFFD, or U+80000–U+8FFFD</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_235"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_251"></a>
   <span class="syntax-def-name">
   identifier-head
 </span>
@@ -634,7 +788,7 @@
   →
 </span><span class="text-description">U+90000–U+9FFFD, U+A0000–U+AFFFD, U+B0000–U+BFFFD, or U+C0000–U+CFFFD</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_236"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_252"></a>
   <span class="syntax-def-name">
   identifier-head
 </span>
@@ -655,7 +809,7 @@
 <span class="text-description">アラビア数字の0から9</span>
 </span><!--end_jpstr-->
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_238"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_254"></a>
   <span class="syntax-def-name">
   identifier-character
 </span>
@@ -663,7 +817,7 @@
   →
 </span><span class="text-description">U+0300–U+036F, U+1DC0–U+1DFF, U+20D0–U+20FF, or U+FE20–U+FE2F</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_239"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_255"></a>
   <span class="syntax-def-name">
   identifier-character
 </span>
@@ -700,7 +854,7 @@
 </span><!--end_jpstr-->
 </h3>
   <p class="para">
-  The following keywords are reserved and can’t be used as identifiers, unless they’re escaped with backticks, as described above in <span class="x-name"><a href="#//apple_ref/doc/uid/TP40014097-CH30-ID412" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH30-ID412">Identifiers</a></span>. Keywords other than <code class="code-voice">inout</code>, <code class="code-voice">var</code>, and <code class="code-voice">let</code> can be used as parameter names in a function declaration or function call without being escaped with backticks. When a member has the same name as a keyword, references to that member don’t need to be escaped with backticks, except when there is ambiguity between referring to the member and using the keyword—for example, <code class="code-voice">self</code>, <code class="code-voice">Type</code>, and <code class="code-voice">Protocol</code> have special meaning in an explicit member expression, so they must be escaped with backticks in that context.
+  The following keywords are reserved and can’t be used as identifiers, unless they’re escaped with backticks, as described above in <span class="x-name"><a href="#//apple_ref/doc/uid/TP40014097-CH30-ID412" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH30-ID412">Identifiers</a></span>. Keywords other than <code class="code-voice">inout</code>, <code class="code-voice">var</code>, and <code class="code-voice">let</code> can be used as parameter names in a function declaration or function call without being escaped with backticks. When a member has the same name as a keyword, references to that member don’t need to be escaped with backticks, except when there’s ambiguity between referring to the member and using the keyword—for example, <code class="code-voice">self</code>, <code class="code-voice">Type</code>, and <code class="code-voice">Protocol</code> have special meaning in an explicit member expression, so they must be escaped with backticks in that context.
 <br><span class="jpstr">
 上の<span class="x-name"><a href="#//apple_ref/doc/uid/TP40014097-CH30-ID412" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH30-ID412">識別子</a></span>で記述されるように、以下のキーワードは予約済で、それらがバッククォートでエスケープされない限り、識別子として使われることはできません。<code class="code-voice">inout</code>、<code class="code-voice">var</code>、そして<code class="code-voice">let</code>以外のキーワードは、パラメータ名として関数定義または関数呼び出しにおいてバッククォートでエスケープされることなく使われることができます。あるメンバがあるキーワードと同じ名前を持つ時、そのメンバへの参照はバッククォートでエスケープされる必要はありません、そのメンバへの参照とキーワードの使用の間に曖昧さがある場合を除いては—例えば、<code class="code-voice">self</code>、<code class="code-voice">Type</code>、そして<code class="code-voice">Protocol</code>は、特別な意味をある明示的なメンバ式の中で持ちます、それでそれらはバッククォートでエスケープされることがその文脈においては必要です。
 </span><!--end_jpstr-->
@@ -876,9 +1030,9 @@
 負整数リテラルは、負符号（<code class="code-voice">-</code>）をリテラル整数の前に付けることによって表されます、<code class="code-voice">-42</code>のように。
 </span><!--end_jpstr-->
 </p><p class="para">
-  Underscores (<code class="code-voice">_</code>) are allowed between digits for readability, but they are ignored and therefore don’t affect the value of the literal. Integer literals can begin with leading zeros (<code class="code-voice">0</code>), but they are likewise ignored and don’t affect the base or value of the literal.
+  Underscores (<code class="code-voice">_</code>) are allowed between digits for readability, but they’re ignored and therefore don’t affect the value of the literal. Integer literals can begin with leading zeros (<code class="code-voice">0</code>), but they’re likewise ignored and don’t affect the base or value of the literal.
 <br><span class="jpstr">
-アンダースコア（<code class="code-voice">_</code>）は、可読性のために桁の間で認められます、しかしそれらは無視されるのでリテラルの値に影響を及ぼしません。整数リテラルは、いくつかのゼロ（<code class="code-voice">0</code>）を先頭に始まることができます、しかしそれらは同様に無視されて、リテラルの基数または値に影響を及ぼしません。
+アンダースコア（<code class="code-voice">_</code>）は、可読性のために桁の間で認められます、しかしそれらは無視されて、それゆえにリテラルの値に影響を及ぼしません。整数リテラルは、いくつかのゼロ（<code class="code-voice">0</code>）を先頭に始まることができます、しかしそれらは同様に無視されて、リテラルの基数または値に影響を及ぼしません。
 </span><!--end_jpstr-->
 </p><p class="para">
   Unless otherwise specified, the default inferred type of an integer literal is the Swift standard library type <code class="code-voice">Int</code>. The Swift standard library also defines types for various sizes of signed and unsigned integers, as described in <span class="x-name"><a href="TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID317" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH5-ID317">Integers</a></span>.
@@ -901,7 +1055,7 @@
   →
 </span><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/binary-literal" data-renderer-version="2" data-id="//apple_ref/swift/grammar/binary-literal">binary-literal</a>&shy;</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_249"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_265"></a>
   <span class="syntax-def-name">
   integer-literal
 </span>
@@ -909,7 +1063,7 @@
   →
 </span><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/octal-literal" data-renderer-version="2" data-id="//apple_ref/swift/grammar/octal-literal">octal-literal</a>&shy;</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_250"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_266"></a>
   <span class="syntax-def-name">
   integer-literal
 </span>
@@ -917,7 +1071,7 @@
   →
 </span><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/decimal-literal" data-renderer-version="2" data-id="//apple_ref/swift/grammar/decimal-literal">decimal-literal</a>&shy;</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_251"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_267"></a>
   <span class="syntax-def-name">
   integer-literal
 </span>
@@ -1158,7 +1312,7 @@
   →
 </span><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/decimal-literal" data-renderer-version="2" data-id="//apple_ref/swift/grammar/decimal-literal">decimal-literal</a>&shy;</span><span class="optional"><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/decimal-fraction" data-renderer-version="2" data-id="//apple_ref/swift/grammar/decimal-fraction">decimal-fraction</a>&shy;</span><sub class="subscript">opt</sub>&shy;</span><span class="optional"><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/decimal-exponent" data-renderer-version="2" data-id="//apple_ref/swift/grammar/decimal-exponent">decimal-exponent</a>&shy;</span><sub class="subscript">opt</sub>&shy;</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_271"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_287"></a>
   <span class="syntax-def-name">
   floating-point-literal
 </span>
@@ -1251,9 +1405,9 @@
 </span><!--end_jpstr-->
 </h3>
   <p class="para">
-  A string literal is a sequence of characters surrounded by quotes. A single-line string literal is surrounded by double quotes, with the following form:
+  A string literal is a sequence of characters surrounded by quotes. A single-line string literal is surrounded by double quotes and has the following form:
 <br><span class="jpstr">
-文字列リテラルは、引用符によって囲まれた一連の文字です。一行の文字列リテラルは、二重引用符によって囲まれ、以下の形式を持ちます：
+文字列リテラルは、引用符によって囲まれた一連の文字です。単一行の文字列リテラルは、二重引用符によって囲まれて、以下の形式を持ちます：
 </span><!--end_jpstr-->
 </p><span class="caption"></span>
 <div class="code-outline">
@@ -1266,14 +1420,14 @@
 文字列リテラルは、エスケープされない二重引用符（<code class="code-voice">"</code>）、エスケープされないバックスラッシュ（<code class="code-voice">\</code>）、キャリッジリターン、またはラインフィードを含むことが出来ません。
 </span><!--end_jpstr-->
 </p><p class="para">
-  A multiline string literal is surrounded by three double quotes, with the following form:
+  A multiline string literal is surrounded by three double quotes and has the following form:
 <br><span class="jpstr">
-複数行の文字列リテラルは、３つの二重引用符によって囲まれ、以下の形式を持ちます：
+複数行の文字列リテラルは、３つの二重引用符によって囲まれて、以下の形式を持ちます：
 </span><!--end_jpstr-->
 </p><span class="caption"></span>
 <div class="code-outline">
   <ul class="code-outline-lines">
-    <li><pre class="code-voice">&quot;&quot;<span class="s">&quot;</span></pre></li><li><pre class="code-voice"><em class="variable-text">characters</em></pre></li><li><pre class="code-voice"><span class="s">&quot;</span>&quot;&quot;</pre></li>
+    <li><pre class="code-voice"><span class="s">&quot;&quot;&quot;</span></pre></li><li><pre class="code-voice"><em class="variable-text">characters</em></pre></li><li><pre class="code-voice"><span class="s">&quot;&quot;&quot;</span></pre></li>
   </ul>
 </div><p class="para">
   Unlike a single-line string literal, a multiline string literal can contain unescaped double quotes (<code class="code-voice">&quot;</code>), carriage returns, and line feeds. It can’t contain three unescaped double quotes next to each other.
@@ -1281,19 +1435,24 @@
 単一行の文字列リテラルと違い、複数行の文字列リテラルはエスケープされていない二重引用符（<code class="code-voice">"</code>）、キャリッジリターン、そしてラインフィードを含むことが出来ません。それは、お互いは別として３つのエスケープされない二重引用符を含むことが出来ません。
 </span><!--end_jpstr-->
 </p><p class="para">
-  The carriage return or line feed after the <code class="code-voice">&quot;&quot;&quot;</code> that begins the multiline string literal is not part of the string. The carriage return or line feed before the <code class="code-voice">&quot;&quot;&quot;</code> that ends the literal is also not part of the string. To make a multiline string literal that begins or ends with a line feed, write a blank line as its first or last line.
+  The line break after the <code class="code-voice">&quot;&quot;&quot;</code> that begins the multiline string literal is not part of the string. The line break before the <code class="code-voice">&quot;&quot;&quot;</code> that ends the literal is also not part of the string. To make a multiline string literal that begins or ends with a line feed, write a blank line as its first or last line.
 <br><span class="jpstr">
-複数行文字列リテラルの始まりの<code class="code-voice">"""</code>の後ろのキャリッジリターンまたはラインフィードは、その文字列の一部ではありません。リテラルの終わりの<code class="code-voice">"""</code>の前のキャリッジリターンまたはラインフィードもまた、その文字列の一部ではありません。ラインフィードで始まるまたは終わる複数行文字列リテラルを作るには、空の行をそれの最初または最後の行に書いてください。
+複数行文字列リテラルを開始する<code class="code-voice">"""</code>の後のラインブレークは、その文字列の一部ではありません。リテラルの終わりの<code class="code-voice">"""</code>の前のキャリッジリターンまたはラインフィードもまた、その文字列の一部ではありません。ラインフィードで始まるまたは終わる複数行文字列リテラルを作るには、空の行をそれの最初または最後の行に書いてください。
 </span><!--end_jpstr-->
 </p><p class="para">
-  A multiline string literal can be indented using any combination of spaces and tabs; this indentation is not included in the string. The <code class="code-voice">&quot;&quot;&quot;</code> that ends the literal determines the indentation: Every nonblank line in the literal must begin with exactly the same indentation that appears before the closing <code class="code-voice">&quot;&quot;&quot;</code>; there is no conversion between tabs and spaces. You can include additional spaces and tabs after that indentation; those spaces and tabs appear in the string.
+  A multiline string literal can be indented using any combination of spaces and tabs; this indentation is not included in the string. The <code class="code-voice">&quot;&quot;&quot;</code> that ends the literal determines the indentation: Every nonblank line in the literal must begin with exactly the same indentation that appears before the closing <code class="code-voice">&quot;&quot;&quot;</code>; there’s no conversion between tabs and spaces. You can include additional spaces and tabs after that indentation; those spaces and tabs appear in the string.
 <br><span class="jpstr">
 複数行文字列リテラルは、空白とタブの任意の組み合わせを使って字下げできます；この字下げはその文字列に含まれません。リテラルの終わりの<code class="code-voice">"""</code>はその字下げを決定します：リテラルの中のあらゆる空でない行は、閉じている<code class="code-voice">"""</code>の前に現れるのと正確に同じ字下げで始まらなければなりません；タブと空白の間の変換はありません。あなたは、追加の空白とタブをその字下げの後に含めることができます；それらの空白とタブは文字列の中に現れます。
 </span><!--end_jpstr-->
 </p><p class="para">
-  Line endings in a multiline string literal are normalized to use the line feed character. Even if your source file has a mix of carriage returns and line feeds, all of the line endings in the string will be the same.
+  Line breaks in a multiline string literal are normalized to use the line feed character. Even if your source file has a mix of carriage returns and line feeds, all of the line breaks in the string will be the same.
 <br><span class="jpstr">
-複数行文字列リテラルの中の行終止は、正規化されて、ラインフィード文字を使います。たとえあなたのソースファイルがキャリッジリターンとラインフィードの混合を持つとしても、文字列の中の行終止の全ては同じになります。
+複数行文字列リテラルの中のラインブレークは、正規化されて、ラインフィード文字を使用します。たとえあなたのソースファイルがキャリッジリターンとラインフィードの混合を持つとしても、文字列の中のラインブレークの全ては同じになります。
+</span><!--end_jpstr-->
+</p><p class="para">
+  In a multiline string literal, writing a backslash (<code class="code-voice">\</code>) at the end of a line omits that line break from the string. Any whitespace between the backslash and the line break is also omitted. You can use this syntax to hard wrap a multiline string literal in your source code, without changing the value of the resulting string.
+<br><span class="jpstr">
+複数行文字列リテラルにおいて、バックスラッシュ（<code class="code-voice">\</code>）を行の終わりで書くことはそのラインブレークを文字列から省きます。バックスラッシュとラインブレークの間のあらゆる空白もまた省かれます。あなたは、この構文を使うことで、複数行文字列リテラルをあなたのソースコードにおいてハードラップする（次行に送る）ことが、結果となる文字列の値を変更することなく行えます。
 </span><!--end_jpstr-->
 </p><p class="para">
   Special characters can be included in string literals of both the single-line and multiline forms using the following escape sequences:
@@ -1302,7 +1461,7 @@
 </span><!--end_jpstr-->
 </p><ul class="list-bullet">
   <li class="item"><p class="para">
-  Null Character (<code class="code-voice">\0</code>)
+  Null character (<code class="code-voice">\0</code>)
 <br><span class="jpstr">
 null文字（<code class="code-voice">\0</code>）
 </span><!--end_jpstr-->
@@ -1314,51 +1473,51 @@ null文字（<code class="code-voice">\0</code>）
 </span><!--end_jpstr-->
 </p>
 </li><li class="item"><p class="para">
-  Horizontal Tab (<code class="code-voice">\t</code>)
+  Horizontal tab (<code class="code-voice">\t</code>)
 <br><span class="jpstr">
 水平タブ（<code class="code-voice">\t</code>）
 </span><!--end_jpstr-->
 </p>
 </li><li class="item"><p class="para">
-  Line Feed (<code class="code-voice">\n</code>)
+  Line feed (<code class="code-voice">\n</code>)
 <br><span class="jpstr">
 ラインフィード「字送り文字」（<code class="code-voice">\n</code>）
 </span><!--end_jpstr-->
 </p>
 </li><li class="item"><p class="para">
-  Carriage Return (<code class="code-voice">\r</code>)
+  Carriage return (<code class="code-voice">\r</code>)
 <br><span class="jpstr">
 キャリッジリターン「復帰文字」（<code class="code-voice">\r</code>）
 </span><!--end_jpstr-->
 </p>
 </li><li class="item"><p class="para">
-  Double Quote (<code class="code-voice">\&quot;</code>)
+  Double quote (<code class="code-voice">\&quot;</code>)
 <br><span class="jpstr">
 二重引用符（<code class="code-voice">\"</code>）
 </span><!--end_jpstr-->
 </p>
 </li><li class="item"><p class="para">
-  Single Quote (<code class="code-voice">\&#39;</code>)
+  Single quote (<code class="code-voice">\&#39;</code>)
 <br><span class="jpstr">
 一重引用符（<code class="code-voice">\'</code>）
 </span><!--end_jpstr-->
 </p>
 </li><li class="item"><p class="para">
-  Unicode scalar (<code class="code-voice">\u{</code><em>n</em><code class="code-voice">}</code>), where <em>n</em> is between one and eight hexadecimal digits
+  Unicode scalar (<code class="code-voice">\u{</code><em>n</em><code class="code-voice">}</code>), where <em>n</em> is a hexadecimal number that has one to eight digits
 <br><span class="jpstr">
-ユニコード・スカラー（<code class="code-voice">\u{</code><em>n</em><code class="code-voice">}</code>）、ここで<em>n</em>は１から８桁の16進数です
+ユニコード・スカラー（<code class="code-voice">\u{</code><em>n</em><code class="code-voice">}</code>）、ここで<em>n</em>は16進数で１から８桁を持ちます
 </span><!--end_jpstr-->
 </p>
 </li>
 </ul><p class="para">
-  The value of an expression can be inserted into a string literal by placing the expression in parentheses after a backslash (<code class="code-voice">\</code>). The interpolated expression can contain a string literal, but can’t contain an unescaped backslash (<code class="code-voice">\</code>), a carriage return, or a line feed.
+  The value of an expression can be inserted into a string literal by placing the expression in parentheses after a backslash (<code class="code-voice">\</code>). The interpolated expression can contain a string literal, but can’t contain an unescaped backslash, a carriage return, or a line feed.
 <br><span class="jpstr">
-式の値は、バックスラッシュ（<code class="code-voice">\</code>）の後の丸括弧の中にその式を置くことによってリテラル文字列に差し込まれることができます。差し込まれた式は、文字列リテラルを含むことができます、しかしエスケープされないバックスラッシュ（<code class="code-voice">\</code>）、キャリッジリターン、またはラインフィードを含むことはできません。
+式の値は、バックスラッシュ（<code class="code-voice">\</code>）の後の丸括弧の中にその式を置くことによってリテラル文字列に差し込まれることができます。差し込まれた式は、文字列リテラルを含むことができます、しかしエスケープされないバックスラッシュ、キャリッジリターン、またはラインフィードを含むことはできません。
 </span><!--end_jpstr-->
 </p><p class="para">
-  For example, all the following string literals have the same value:
+  For example, all of the following string literals have the same value:
 <br><span class="jpstr">
-例えば、以下の全ての文字列リテラルは、同じ値を持ちます：
+例えば、以下の文字列リテラルの全ては、同じ値を持ちます：
 </span><!--end_jpstr-->
 </p><section class="code-listing">
   
@@ -1374,9 +1533,9 @@ null文字（<code class="code-voice">\0</code>）
       </div>
   </div>
 </section><p class="para">
-  The default inferred type of a string literal is <code class="code-voice">String</code>. For more information about the <code class="code-voice">String</code> type, see <span class="x-name"><a href="StringsAndCharacters.html#//apple_ref/doc/uid/TP40014097-CH7-ID285" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH7-ID285">Strings and Characters</a></span> and <em class="u-book"><!-- a href="" target="_self" -->String Structure Reference<!-- /a --></em>.
+  The default inferred type of a string literal is <code class="code-voice">String</code>. For more information about the <code class="code-voice">String</code> type, see <span class="x-name"><a href="StringsAndCharacters.html#//apple_ref/doc/uid/TP40014097-CH7-ID285" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH7-ID285">Strings and Characters</a></span> and <code class="code-voice u-api"><a href="https://developer.apple.com/documentation/swift/string" class="urlLink">String Structure Reference</a></code>.
 <br><span class="jpstr">
-初期状態で推論されるリテラル文字列の型は、<code class="code-voice">String</code>です。<code class="code-voice">String</code>型の詳細については、<span class="x-name"><a href="StringsAndCharacters.html#//apple_ref/doc/uid/TP40014097-CH7-ID285" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH7-ID285">文字列と文字</a></span>と<em class="u-book"><!-- a href="" target="_self" -->文字列構造リファレンス<!-- /a --></em>を見てください。
+初期状態で推論されるリテラル文字列の型は、<code class="code-voice">String</code>です。<code class="code-voice">String</code>型の詳細については、<span class="x-name"><a href="StringsAndCharacters.html#//apple_ref/doc/uid/TP40014097-CH7-ID285" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH7-ID285">文字列と文字</a></span>と<code class="code-voice u-api"><a href="https://developer.apple.com/documentation/swift/string" class="urlLink">String Structure Reference</a></code>を見てください。
 </span><!--end_jpstr-->
 </p><p class="para">
   String literals that are concatenated by the <code class="code-voice">+</code> operator are concatenated at compile time. For example, the values of <code class="code-voice">textA</code> and <code class="code-voice">textB</code> in the example below are identical—no runtime concatenation is performed.
@@ -1423,7 +1582,7 @@ null文字（<code class="code-voice">\0</code>）
   →
 </span><code class="literal">&quot;&shy;</code><span class="optional"><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/quoted-text" data-renderer-version="2" data-id="//apple_ref/swift/grammar/quoted-text">quoted-text</a>&shy;</span><sub class="subscript">opt</sub>&shy;</span><code class="literal">&quot;&shy;</code>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_282"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_298"></a>
   <span class="syntax-def-name">
   static-string-literal
 </span>
@@ -1449,7 +1608,7 @@ null文字（<code class="code-voice">\0</code>）
   →
 </span><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/escaped-character" data-renderer-version="2" data-id="//apple_ref/swift/grammar/escaped-character">escaped-character</a>&shy;</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_285"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_301"></a>
   <span class="syntax-def-name">
   quoted-text-item
 </span>
@@ -1478,13 +1637,24 @@ null文字（<code class="code-voice">\0</code>）
   →
 </span><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/escaped-character" data-renderer-version="2" data-id="//apple_ref/swift/grammar/escaped-character">escaped-character</a>&shy;</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_288"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_304"></a>
   <span class="syntax-def-name">
   multiline-quoted-text-item
 </span>
 <span class="arrow">
   →
 </span><span class="text-description">Any Unicode scalar value except <code class="literal">\&shy;</code></span>
+<br><span class="jpstr">
+<span class="text-description">任意のユニコードスカラー値、しかし<code class="literal">\­</code></span>を除く
+</span><!--end_jpstr-->
+</p><p class="syntax-def">
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_305"></a>
+  <span class="syntax-def-name">
+  multiline-quoted-text-item
+</span>
+<span class="arrow">
+  →
+</span><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/escaped-newline" data-renderer-version="2" data-id="//apple_ref/swift/grammar/escaped-newline">escaped-newline</a>&shy;</span>
 </p>
 </div><div class="syntax-defs-group">
   <p class="syntax-def">
@@ -1496,7 +1666,7 @@ null文字（<code class="code-voice">\0</code>）
   →
 </span><code class="literal">&quot;&shy;</code><span class="optional"><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/interpolated-text" data-renderer-version="2" data-id="//apple_ref/swift/grammar/interpolated-text">interpolated-text</a>&shy;</span><sub class="subscript">opt</sub>&shy;</span><code class="literal">&quot;&shy;</code>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_290"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_307"></a>
   <span class="syntax-def-name">
   interpolated-string-literal
 </span>
@@ -1572,7 +1742,7 @@ null文字（<code class="code-voice">\0</code>）
   <code class="literal">\&#39;&shy;</code>
 </span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_296"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_313"></a>
   <span class="syntax-def-name">
   escaped-character
 </span>
@@ -1591,6 +1761,16 @@ null文字（<code class="code-voice">\0</code>）
 <span class="text-description">１から８桁の16進数</span>
 </span><!--end_jpstr-->
 </p>
+</div><div class="syntax-defs-group">
+  <p class="syntax-def">
+  <a name="//apple_ref/swift/grammar/escaped-newline"></a>
+  <span class="syntax-def-name">
+  escaped-newline
+</span>
+<span class="arrow">
+  →
+</span><code class="literal">\&shy;</code><span class="optional"><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/whitespace" data-renderer-version="2" data-id="//apple_ref/swift/grammar/whitespace">whitespace</a>&shy;</span><sub class="subscript">opt</sub>&shy;</span><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/line-break" data-renderer-version="2" data-id="//apple_ref/swift/grammar/line-break">line-break</a>&shy;</span>
+</p>
 </div>
  </div>
   
@@ -1606,7 +1786,7 @@ null文字（<code class="code-voice">\0</code>）
   <p class="para">
   The Swift standard library defines a number of operators for your use, many of which are discussed in <span class="x-name"><a href="BasicOperators.html#//apple_ref/doc/uid/TP40014097-CH6-ID60" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH6-ID60">Basic Operators</a></span> and <span class="x-name"><a href="AdvancedOperators.html#//apple_ref/doc/uid/TP40014097-CH27-ID28" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH27-ID28">Advanced Operators</a></span>. The present section describes which characters can be used to define custom operators.
 <br><span class="jpstr">
-スウィフト標準ライブラリは、いくつかの演算子をあなたが使うために定義します、その多くは<span class="x-name"><a href="BasicOperators.html#//apple_ref/doc/uid/TP40014097-CH6-ID60" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH6-ID60">基本の演算子</a></span>と<span class="x-name"><a href="AdvancedOperators.html#//apple_ref/doc/uid/TP40014097-CH27-ID28" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH27-ID28">先進の演算子</a></span>で記述されます。いま目の前の節は、どの文字があつらえの演算子を定義するために使われることができるかを記述します。
+スウィフト標準ライブラリは、いくつかの演算子をあなたが使うために定義します、その多くは<span class="x-name"><a href="BasicOperators.html#//apple_ref/doc/uid/TP40014097-CH6-ID60" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH6-ID60">基本の演算子</a></span>と<span class="x-name"><a href="AdvancedOperators.html#//apple_ref/doc/uid/TP40014097-CH27-ID28" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH27-ID28">先進の演算子</a></span>で記述されます。この前の節は、どの文字があつらえの演算子を定義するために使用できるかを記述します。
 </span><!--end_jpstr-->
 </p><p class="para">
   Custom operators can begin with one of the ASCII characters <code class="code-voice">/</code>, <code class="code-voice">=</code>, <code class="code-voice">-</code>, <code class="code-voice">+</code>, <code class="code-voice">!</code>, <code class="code-voice">*</code>, <code class="code-voice">%</code>, <code class="code-voice">&lt;</code>, <code class="code-voice">&gt;</code>, <code class="code-voice">&amp;</code>, <code class="code-voice">|</code>, <code class="code-voice">^</code>, <code class="code-voice">?</code>, or <code class="code-voice">~</code>, or one of the Unicode characters defined in the grammar below (which include characters from the <em>Mathematical Operators</em>, <em>Miscellaneous Symbols</em>, and <em>Dingbats</em> Unicode blocks, among others). After the first character, combining Unicode characters are also allowed.
@@ -1619,12 +1799,12 @@ null文字（<code class="code-voice">\0</code>）
 あなたはまた、１つのドット（<code class="code-voice">.</code>）で始まるあつらえの演算子を定義することができます。これらの演算子は、さらなるドットを含むことが可能です。例えば、<code class="code-voice">.+.</code>は単一の演算子とみなされます。ある演算子がドットで始まらないならば、それはどこか他にドットを含むことはできません。例えば、<code class="code-voice">+.+</code>は、<code class="code-voice">+</code>演算子に<code class="code-voice">.+</code>演算子が続くとみなされます。
 </span><!--end_jpstr-->
 </p><p class="para">
-  Although you can define custom operators that contain a question mark (<code class="code-voice">?</code>), they can’t consist of a single question mark character only. Additionally, although operators can contain an exclamation mark (<code class="code-voice">!</code>), postfix operators cannot begin with either a question mark or an exclamation mark.
+  Although you can define custom operators that contain a question mark (<code class="code-voice">?</code>), they can’t consist of a single question mark character only. Additionally, although operators can contain an exclamation mark (<code class="code-voice">!</code>), postfix operators can’t begin with either a question mark or an exclamation mark.
 <br><span class="jpstr">
 あなたは疑問符（<code class="code-voice">?</code>）を含むあつらえの演算子を定義できるけれども、それは単一の疑問符文字だけから構成されることはできません。それに加えて、演算子は感嘆符（<code class="code-voice">!</code>）を含むことができますが、接尾辞演算子は、疑問符または感嘆符のどちらかで始まることはできません。
 </span><!--end_jpstr-->
 </p><div class="note">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_298"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_316"></a>
   <aside class="aside">
     <p class="aside-title">Note
     <br><span class="jpstr">
@@ -1645,25 +1825,25 @@ null文字（<code class="code-voice">\0</code>）
 </span><!--end_jpstr-->
 </p><ul class="list-bullet">
   <li class="item"><p class="para">
-  If an operator has whitespace around both sides or around neither side, it is treated as a binary operator. As an example, the <code class="code-voice">+++</code> operator in <code class="code-voice">a+++b</code> and <code class="code-voice">a +++ b</code> is treated as a binary operator.
+  If an operator has whitespace around both sides or around neither side, it’s treated as a binary operator. As an example, the <code class="code-voice">+++</code> operator in <code class="code-voice">a+++b</code> and <code class="code-voice">a +++ b</code> is treated as a binary operator.
 <br><span class="jpstr">
 ある演算子が、空白をそのまわりの両側に持つか、そのまわりのどちら側にも持たないならば、それは二項演算子とみなされます。例として、<code class="code-voice">a+++b</code>と<code class="code-voice">a +++ b</code>における<code class="code-voice">+++</code>演算子は、二項演算子とみなされます。
 </span><!--end_jpstr-->
 </p>
 </li><li class="item"><p class="para">
-  If an operator has whitespace on the left side only, it is treated as a prefix unary operator. As an example, the <code class="code-voice">+++</code> operator in <code class="code-voice">a +++b</code> is treated as a prefix unary operator.
+  If an operator has whitespace on the left side only, it’s treated as a prefix unary operator. As an example, the <code class="code-voice">+++</code> operator in <code class="code-voice">a +++b</code> is treated as a prefix unary operator.
 <br><span class="jpstr">
 ある演算子が左側だけで空白を持つならば、それは接頭辞単項演算子とみなされます。例として、<code class="code-voice">a +++b</code>における<code class="code-voice">+++</code>演算子は、接頭辞単項演算子とみなされます。
 </span><!--end_jpstr-->
 </p>
 </li><li class="item"><p class="para">
-  If an operator has whitespace on the right side only, it is treated as a postfix unary operator. As an example, the <code class="code-voice">+++</code> operator in <code class="code-voice">a+++ b</code> is treated as a postfix unary operator.
+  If an operator has whitespace on the right side only, it’s treated as a postfix unary operator. As an example, the <code class="code-voice">+++</code> operator in <code class="code-voice">a+++ b</code> is treated as a postfix unary operator.
 <br><span class="jpstr">
 ある演算子が右側だけで空白を持つならば、それは接尾辞単項演算子とみなされます。例として、<code class="code-voice">a+++ b</code>における<code class="code-voice">+++</code>演算子は、接尾辞単項演算子とみなされます。
 </span><!--end_jpstr-->
 </p>
 </li><li class="item"><p class="para">
-  If an operator has no whitespace on the left but is followed immediately by a dot (<code class="code-voice">.</code>), it is treated as a postfix unary operator. As an example, the <code class="code-voice">+++</code> operator in <code class="code-voice">a+++.b</code> is treated as a postfix unary operator (<code class="code-voice">a+++ .b</code> rather than <code class="code-voice">a +++ .b</code>).
+  If an operator has no whitespace on the left but is followed immediately by a dot (<code class="code-voice">.</code>), it’s treated as a postfix unary operator. As an example, the <code class="code-voice">+++</code> operator in <code class="code-voice">a+++.b</code> is treated as a postfix unary operator (<code class="code-voice">a+++ .b</code> rather than <code class="code-voice">a +++ .b</code>).
 <br><span class="jpstr">
 ある演算子が左側では空白を持たないが直ちに続けて１つのドット（<code class="code-voice">.</code>）を持つならば、それは接尾辞単項演算子と見なされます。例として、<code class="code-voice">a+++.b</code>における<code class="code-voice">+++</code>演算子は、接尾辞単項演算子とみなされます（<code class="code-voice">a +++ .b</code>ではなく<code class="code-voice">a+++ .b</code>）。
 </span><!--end_jpstr-->
@@ -1675,14 +1855,14 @@ null文字（<code class="code-voice">\0</code>）
 これらの規則を理由に、演算子の前の文字<code class="code-voice">(</code>、<code class="code-voice">[</code>、および<code class="code-voice">{</code>、演算子の後の文字<code class="code-voice">)</code>、<code class="code-voice">]</code>、および<code class="code-voice">}</code>、そして文字<code class="code-voice">,</code>、<code class="code-voice">;</code>、および<code class="code-voice">:</code>は、また、空白と見なされます。
 </span><!--end_jpstr-->
 </p><p class="para">
-  There is one caveat to the rules above. If the <code class="code-voice">!</code> or <code class="code-voice">?</code> predefined operator has no whitespace on the left, it is treated as a postfix operator, regardless of whether it has whitespace on the right. To use the <code class="code-voice">?</code> as the optional-chaining operator, it must not have whitespace on the left. To use it in the ternary conditional (<code class="code-voice">?</code> <code class="code-voice">:</code>) operator, it must have whitespace around both sides.
+  There’s one caveat to the rules above. If the <code class="code-voice">!</code> or <code class="code-voice">?</code> predefined operator has no whitespace on the left, it’s treated as a postfix operator, regardless of whether it has whitespace on the right. To use the <code class="code-voice">?</code> as the optional-chaining operator, it must not have whitespace on the left. To use it in the ternary conditional (<code class="code-voice">?</code> <code class="code-voice">:</code>) operator, it must have whitespace around both sides.
 <br><span class="jpstr">
 １つのただし書きが、上の規則にあります。あらかじめ定義された演算子<code class="code-voice">!</code>または<code class="code-voice">?</code>が左側に空白を持たないならば、それは接尾辞演算子と見なされます、それが右側に空白を持つかどうかに関係なく。<code class="code-voice">?</code>をオプショナル連鎖演算子として使うには、それは左側に空白を持ってはなりません。それを三項条件（<code class="code-voice">?</code> <code class="code-voice">:</code>）において使うためには、それは両側に空白を持ってはなりません。
 </span><!--end_jpstr-->
 </p><p class="para">
-  In certain constructs, operators with a leading <code class="code-voice">&lt;</code> or <code class="code-voice">&gt;</code> may be split into two or more tokens. The remainder is treated the same way and may be split again. As a result, there is no need to use whitespace to disambiguate between the closing <code class="code-voice">&gt;</code> characters in constructs like <code class="code-voice">Dictionary&lt;String, Array&lt;Int&gt;&gt;</code>. In this example, the closing <code class="code-voice">&gt;</code> characters are not treated as a single token that may then be misinterpreted as a bit shift <code class="code-voice">&gt;&gt;</code> operator.
+  In certain constructs, operators with a leading <code class="code-voice">&lt;</code> or <code class="code-voice">&gt;</code> may be split into two or more tokens. The remainder is treated the same way and may be split again. As a result, there’s no need to use whitespace to disambiguate between the closing <code class="code-voice">&gt;</code> characters in constructs like <code class="code-voice">Dictionary&lt;String, Array&lt;Int&gt;&gt;</code>. In this example, the closing <code class="code-voice">&gt;</code> characters are not treated as a single token that may then be misinterpreted as a bit shift <code class="code-voice">&gt;&gt;</code> operator.
 <br><span class="jpstr">
-特定の構造物において、先導する<code class="code-voice">&lt;</code>または<code class="code-voice">&gt;</code>をもつ演算子は、２つ以上のトークンに分割されるでしょう。剰余は、同じ方法で扱われて、そして再び分割されるでしょう。その結果、曖昧さをなくすために空白を使う必要は、<code class="code-voice">Dictionary&lt;String, Array&lt;Int&gt;&gt;</code>のような構造物における閉じ<code class="code-voice">&gt;</code>文字たちの間にはありません。この例において、閉じ<code class="code-voice">&gt;</code>文字たちは、単一のトークンとして見なされることはなく、それでビットシフト演算子<code class="code-voice">&gt;&gt;</code>と誤解されることはありません。
+特定の構造物において、先導する<code class="code-voice">&lt;</code>または<code class="code-voice">&gt;</code>をもつ演算子は、２つ以上のトークンに分割されるでしょう。剰余は、同じ方法で扱われて、そして再び分割されるでしょう。その結果、閉じ<code class="code-voice">&gt;</code>文字の間の曖昧さをなくすために空白を使う必要は、<code class="code-voice">Dictionary&lt;String, Array&lt;Int&gt;&gt;</code>のような構造物においてはありません。この例において、閉じ<code class="code-voice">&gt;</code>文字たちは、単一のトークンとして見なされることはなく、それでビットシフト演算子<code class="code-voice">&gt;&gt;</code>と誤解されることはありません。
 </span><!--end_jpstr-->
 </p><p class="para">
   To learn how to define new, custom operators, see <span class="x-name"><a href="AdvancedOperators.html#//apple_ref/doc/uid/TP40014097-CH27-ID46" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH27-ID46">Custom Operators</a></span> and <span class="x-name"><a href="Declarations.html#//apple_ref/doc/uid/TP40014097-CH34-ID380" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH34-ID380">Operator Declaration</a></span>. To learn how to overload existing operators, see <span class="x-name"><a href="AdvancedOperators.html#//apple_ref/doc/uid/TP40014097-CH27-ID42" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH27-ID42">Operator Methods</a></span>.
@@ -1705,7 +1885,7 @@ null文字（<code class="code-voice">\0</code>）
   →
 </span><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/operator-head" data-renderer-version="2" data-id="//apple_ref/swift/grammar/operator-head">operator-head</a>&shy;</span><span class="optional"><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/operator-characters" data-renderer-version="2" data-id="//apple_ref/swift/grammar/operator-characters">operator-characters</a>&shy;</span><sub class="subscript">opt</sub>&shy;</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_301"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_319"></a>
   <span class="syntax-def-name">
   operator
 </span>
@@ -1751,7 +1931,7 @@ null文字（<code class="code-voice">\0</code>）
   <code class="literal">?&shy;</code>
 </span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_303"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_321"></a>
   <span class="syntax-def-name">
   operator-head
 </span>
@@ -1759,7 +1939,7 @@ null文字（<code class="code-voice">\0</code>）
   →
 </span><span class="text-description">U+00A1–U+00A7</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_304"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_322"></a>
   <span class="syntax-def-name">
   operator-head
 </span>
@@ -1767,7 +1947,7 @@ null文字（<code class="code-voice">\0</code>）
   →
 </span><span class="text-description">U+00A9 or U+00AB</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_305"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_323"></a>
   <span class="syntax-def-name">
   operator-head
 </span>
@@ -1775,7 +1955,7 @@ null文字（<code class="code-voice">\0</code>）
   →
 </span><span class="text-description">U+00AC or U+00AE</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_306"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_324"></a>
   <span class="syntax-def-name">
   operator-head
 </span>
@@ -1783,7 +1963,7 @@ null文字（<code class="code-voice">\0</code>）
   →
 </span><span class="text-description">U+00B0–U+00B1, U+00B6, U+00BB, U+00BF, U+00D7, or U+00F7</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_307"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_325"></a>
   <span class="syntax-def-name">
   operator-head
 </span>
@@ -1791,7 +1971,7 @@ null文字（<code class="code-voice">\0</code>）
   →
 </span><span class="text-description">U+2016–U+2017 or U+2020–U+2027</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_308"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_326"></a>
   <span class="syntax-def-name">
   operator-head
 </span>
@@ -1799,7 +1979,7 @@ null文字（<code class="code-voice">\0</code>）
   →
 </span><span class="text-description">U+2030–U+203E</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_309"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_327"></a>
   <span class="syntax-def-name">
   operator-head
 </span>
@@ -1807,7 +1987,7 @@ null文字（<code class="code-voice">\0</code>）
   →
 </span><span class="text-description">U+2041–U+2053</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_310"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_328"></a>
   <span class="syntax-def-name">
   operator-head
 </span>
@@ -1815,7 +1995,7 @@ null文字（<code class="code-voice">\0</code>）
   →
 </span><span class="text-description">U+2055–U+205E</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_311"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_329"></a>
   <span class="syntax-def-name">
   operator-head
 </span>
@@ -1823,7 +2003,7 @@ null文字（<code class="code-voice">\0</code>）
   →
 </span><span class="text-description">U+2190–U+23FF</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_312"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_330"></a>
   <span class="syntax-def-name">
   operator-head
 </span>
@@ -1831,7 +2011,7 @@ null文字（<code class="code-voice">\0</code>）
   →
 </span><span class="text-description">U+2500–U+2775</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_313"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_331"></a>
   <span class="syntax-def-name">
   operator-head
 </span>
@@ -1839,7 +2019,7 @@ null文字（<code class="code-voice">\0</code>）
   →
 </span><span class="text-description">U+2794–U+2BFF</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_314"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_332"></a>
   <span class="syntax-def-name">
   operator-head
 </span>
@@ -1847,7 +2027,7 @@ null文字（<code class="code-voice">\0</code>）
   →
 </span><span class="text-description">U+2E00–U+2E7F</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_315"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_333"></a>
   <span class="syntax-def-name">
   operator-head
 </span>
@@ -1855,7 +2035,7 @@ null文字（<code class="code-voice">\0</code>）
   →
 </span><span class="text-description">U+3001–U+3003</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_316"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_334"></a>
   <span class="syntax-def-name">
   operator-head
 </span>
@@ -1873,7 +2053,7 @@ null文字（<code class="code-voice">\0</code>）
   →
 </span><span class="syntactic-cat"><a href="#//apple_ref/swift/grammar/operator-head" data-renderer-version="2" data-id="//apple_ref/swift/grammar/operator-head">operator-head</a>&shy;</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_318"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_336"></a>
   <span class="syntax-def-name">
   operator-character
 </span>
@@ -1881,7 +2061,7 @@ null文字（<code class="code-voice">\0</code>）
   →
 </span><span class="text-description">U+0300–U+036F</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_319"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_337"></a>
   <span class="syntax-def-name">
   operator-character
 </span>
@@ -1889,7 +2069,7 @@ null文字（<code class="code-voice">\0</code>）
   →
 </span><span class="text-description">U+1DC0–U+1DFF</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_320"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_338"></a>
   <span class="syntax-def-name">
   operator-character
 </span>
@@ -1897,7 +2077,7 @@ null文字（<code class="code-voice">\0</code>）
   →
 </span><span class="text-description">U+20D0–U+20FF</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_321"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_339"></a>
   <span class="syntax-def-name">
   operator-character
 </span>
@@ -1905,7 +2085,7 @@ null文字（<code class="code-voice">\0</code>）
   →
 </span><span class="text-description">U+FE00–U+FE0F</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_322"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_340"></a>
   <span class="syntax-def-name">
   operator-character
 </span>
@@ -1913,7 +2093,7 @@ null文字（<code class="code-voice">\0</code>）
   →
 </span><span class="text-description">U+FE20–U+FE2F</span>
 </p><p class="syntax-def">
-  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_323"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH30-NoLink_341"></a>
   <span class="syntax-def-name">
   operator-character
 </span>
@@ -2004,7 +2184,7 @@ null文字（<code class="code-voice">\0</code>）
     <p class="copyright">Copyright &#x00a9; 2017 Apple Inc. All rights reserved. 
   <a class="link" href="http://www.apple.com/legal/terms/site.html" target="_blank" rel="external">Terms of Use</a> | 
   <a class="link" href="http://www.apple.com/privacy/" target="_blank" rel="external">Privacy Policy</a> | 
-  Updated: 2017-06-05
+  Updated: 2017-08-21
 </p>
   </section>
 </article>

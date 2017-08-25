@@ -6,8 +6,8 @@
   <link rel="stylesheet" type="text/css" href="../../../../Resources/1264/CSS/feedback-1.6.3.css" />
   <meta charset='utf-8'> 
 <meta id="j-version" name="j-version" content="" />
-<meta id="build" name="build" content="dadaf8814eb04e8376a0501374bda6be" />
-<meta id="document-version" name="document-version" content="9.0.4" />
+<meta id="build" name="build" content="0c869c990fa765914a9edf9866da5f1b" />
+<meta id="document-version" name="document-version" content="9.0.7" />
 <meta id="book-assignments" name="book-assignments" content="{Type/Guide}, {Topic/Swift}" />
 <meta scheme="apple_ref" id="identifier" name="identifier" content="//apple_ref/doc/uid/TP40014216" />
 <meta id="chapterId" name="chapterId" content="TP40014216-CH10">
@@ -15,7 +15,7 @@
 <meta id="book-resource-type" name="book-resource-type" content="Guide" />
 <meta id="book-root" name="book-root" content="./" />
 <meta id="book-json" name="book-json" content="book.json">
-<meta id="date" name="date" content="2017-06-05" />
+<meta id="date" name="date" content="2017-08-21" />
 <meta id="description" name="description" content="Describes various aspects of Swift&#39;s compatibility with the Objective-C language and Cocoa/Cocoa Touch frameworks." />
 <meta id="IndexTitle" name="IndexTitle" content="" />
 <meta id="resources-uri" name="resources-uri" content="../../../../Resources/1264">
@@ -222,15 +222,21 @@ Objective-Cインターフェイスのためのスウィフト名のオーバー
 </span><!--end_jpstr-->
           </li>
           <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH10-ID188">Refining Objective-C Declarations</a>
+<br><span class="jpstr">
+Objective-C宣言を改良する
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
             <a href="#//apple_ref/doc/uid/TP40014216-CH10-ID178">Making Objective-C Interfaces Unavailable in Swift</a>
 <br><span class="jpstr">
 Objective-Cインターフェイスをスウィフトで利用できなくする
 </span><!--end_jpstr-->
           </li>
           <li class="item">
-            <a href="#//apple_ref/doc/uid/TP40014216-CH10-ID188">Refining Objective-C Declarations</a>
+            <a href="#//apple_ref/doc/uid/TP40014216-CH10-ID224">Adding Availability Information to Objective-C APIs</a>
 <br><span class="jpstr">
-Objective-C宣言を改良する
+利用可能性情報をObjective-C APIに加える
 </span><!--end_jpstr-->
           </li>
           <li class="item">
@@ -1086,40 +1092,6 @@ Objective-Cインターフェイスのためのスウィフト名のオーバー
 
 </section>
 <section class="section">
-  <a name="//apple_ref/doc/uid/TP40014216-CH10-ID178"></a>
-  <h3 class="section-name" tabindex="0">Making Objective-C Interfaces Unavailable in Swift<br><span class="jpstr">
-Objective-Cインターフェイスをスウィフトで利用できなくする
-</span><!--end_jpstr-->
-</h3>
-  <p class="para">
-  Some Objective-C interfaces may not be suitable or necessary to be exposed as Swift interfaces. To prevent an Objective-C declaration from being imported by Swift, use the <code class="code-voice">NS_SWIFT_UNAVAILABLE</code> macro, passing a message directing API consumers to any alternatives that may exist.
-<br><span class="jpstr">
-いくつかのObjective-Cインターフェイスは、スウィフトインターフェイスとして露出されるのにふさわしくないもしくは必要でない可能性があります。あるObjective-C宣言がスウィフトによってインポートされるのを防止するために、<code class="code-voice">NS_SWIFT_UNAVAILABLE</code>マクロを使って、API消費者に存在するであろう何らかの代替手段を指示するメッセージを渡してください。
-</span><!--end_jpstr-->
-</p><p class="para">
-  For example, an Objective-C class providing a convenience initializer that takes variadic arguments for keys-value pairs may advise a Swift consumer to use a dictionary literal instead:
-<br><span class="jpstr">
-例えば、あるObjective-Cクラスは便利なイニシャライザを提供していて、それは可変長引数をキー-値ペアに対して取るもので、スウィフト消費者に勧めるのは代わりに1つの辞書を使うことです：
-</span><!--end_jpstr-->
-</p><section class="code-listing">
-  
-  <div class="code-sample">
-      <div class="Objective-C">
-        <ol class="code-lines">
-            <li><code class="code-voice"><span class="o">+</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="nl">collectionWithValues:</span><span class="p">(</span><span class="n">NSArray</span> <span class="o">*</span><span class="p">)</span><span class="n">values</span> <span class="nl">forKeys:</span><span class="p">(</span><span class="n">NSArray</span><span class="o">&lt;</span><span class="n">NSCopying</span><span class="o">&gt;</span> <span class="o">*</span><span class="p">)</span><span class="n">keys</span> <span class="n">NS_SWIFT_UNAVAILABLE</span><span class="p">(</span><span class="s">&quot;Use a dictionary literal instead&quot;</span><span class="p">);</span>
-</code></li>
-        </ol>
-      </div>
-  </div>
-</section><p class="para">
-  Attempting to call the <code class="code-voice">+collectionWithValues:forKeys:</code> method from Swift code will result in a compiler error.
-<br><span class="jpstr">
-<code class="code-voice">+collectionWithValues:forKeys:</code>メソッドをスウィフトコードから呼び出す試みは、コンパイラエラーの結果になるでしょう。
-</span><!--end_jpstr-->
-</p>
-  
-</section>
-<section class="section">
   <a name="//apple_ref/doc/uid/TP40014216-CH10-ID188"></a>
   <h3 class="section-name" tabindex="0">Refining Objective-C Declarations<br><span class="jpstr">
 Objective-C宣言を改良する
@@ -1203,6 +1175,146 @@ Objective-C宣言を改良する
       </div>
   </div>
 </section>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH10-ID178"></a>
+  <h3 class="section-name" tabindex="0">Making Objective-C Interfaces Unavailable in Swift<br><span class="jpstr">
+Objective-Cインターフェイスをスウィフトで利用できなくする
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Some Objective-C interfaces may not be suitable or necessary to be exposed as Swift interfaces. To prevent an Objective-C declaration from being imported by Swift, use the <code class="code-voice">NS_SWIFT_UNAVAILABLE</code> macro, passing a message directing API consumers to any alternatives that may exist.
+<br><span class="jpstr">
+いくつかのObjective-Cインターフェイスは、スウィフトインターフェイスとして露出されるのにふさわしくないもしくは必要でない可能性があります。あるObjective-C宣言がスウィフトによってインポートされるのを防止するために、<code class="code-voice">NS_SWIFT_UNAVAILABLE</code>マクロを使って、API消費者に存在するであろう何らかの代替手段を指示するメッセージを渡してください。
+</span><!--end_jpstr-->
+</p><p class="para">
+  For example, an Objective-C class providing a convenience initializer that takes variadic arguments for keys-value pairs may advise a Swift consumer to use a dictionary literal instead:
+<br><span class="jpstr">
+例えば、あるObjective-Cクラスは便利なイニシャライザを提供していて、それは可変長引数をキー-値ペアに対して取るもので、スウィフト消費者に勧めるのは代わりに1つの辞書を使うことです：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Objective-C">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="o">+</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="nl">collectionWithValues:</span><span class="p">(</span><span class="n">NSArray</span> <span class="o">*</span><span class="p">)</span><span class="n">values</span> <span class="nl">forKeys:</span><span class="p">(</span><span class="n">NSArray</span><span class="o">&lt;</span><span class="n">NSCopying</span><span class="o">&gt;</span> <span class="o">*</span><span class="p">)</span><span class="n">keys</span> <span class="n">NS_SWIFT_UNAVAILABLE</span><span class="p">(</span><span class="s">&quot;Use a dictionary literal instead&quot;</span><span class="p">);</span>
+</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Attempting to call the <code class="code-voice">+collectionWithValues:forKeys:</code> method from Swift code will result in a compiler error.
+<br><span class="jpstr">
+<code class="code-voice">+collectionWithValues:forKeys:</code>メソッドをスウィフトコードから呼び出す試みは、コンパイラエラーの結果になるでしょう。
+</span><!--end_jpstr-->
+</p><p class="para">
+  To make an Objective-C declaration unavailable at compile time in both Swift and Objective-C, use the <code class="code-voice">NS_UNAVAILABLE</code> macro. The macro behaves just like the <code class="code-voice">NS_SWIFT_UNAVAILABLE</code> macro except that it omits the customizable error message and it restricts compile-time access to the declaration in Objective-C code.
+<br><span class="jpstr">
+Objective-C宣言をコンパイル時にSwiftとObjective-Cの両方で利用できなくするには、<code class="code-voice">NS_UNAVAILABLE</code>マクロを使ってください。このマクロはちょうど<code class="code-voice">NS_SWIFT_UNAVAILABLE</code>マクロのように振舞います、しかしそれがカスタマイズ可能なエラーメッセージを省略することと、それがコンパイル時アクセスをObjective-Cコードの中の宣言に制限することを除きます。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH10-ID224"></a>
+  <h3 class="section-name" tabindex="0">Adding Availability Information to Objective-C APIs<br><span class="jpstr">
+利用可能性情報をObjective-C APIに加える
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  In Swift, you use the <code class="code-voice">@available</code> attribute to control whether a declaration is available to use when building an app for a particular target platform. Similarly, you use the <code class="code-voice">#available</code> availability condition to conditionally execute code based on required platform and version conditions.
+<br><span class="jpstr">
+スウィフトでは、あなたは<code class="code-voice">@available</code>属性を使うことで、ある宣言が利用可能であるかどうかを制御して、特定の対象プラットホームのためにアプリをビルドするときに使うようにします。同様に、あなたは<code class="code-voice">#available</code>利用可能性条件を使うことで、必要なプラットホームおよびバージョン条件に基づいて、条件付きでコードを実行します。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Both kinds of availability specifier are available in Objective-C using the corresponding syntax shown in the following examples.
+<br><span class="jpstr">
+両方の種類の利用可能性指定子は、以下の例で示される対応する構文を使ってObjective-Cで利用可能です。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The example below shows availability information used on a declaration in Swift:
+<br><span class="jpstr">
+下の例は、スウィフトでのある宣言で使われる利用可能性情報を示します：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">@available</span>(<span class="kt">iOS</span> <span class="m">11</span>, <span class="vc">macOS</span> <span class="m">10.13</span>, *)</code></li>
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">newMethod</span>() {</code></li>
+            <li><code class="code-voice">    <span class="c">// Use iOS 11 APIs.</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  And here’s how you add the same availability information in Objective-C:
+<br><span class="jpstr">
+そしてここにあなたが同じ利用可能性情報をObjective-Cにおいて加える方法があります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Objective-C">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="k">@interface</span> <span class="nc">MyViewController</span> : <span class="nc">UIViewController</span>
+</code></li>
+            <li><code class="code-voice"><span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">newMethod</span> <span class="n">API_AVAILABLE</span><span class="p">(</span><span class="n">ios</span><span class="p">(</span><span class="mi">11</span><span class="p">),</span> <span class="n">macosx</span><span class="p">(</span><span class="mf">10.13</span><span class="p">));</span>
+</code></li>
+            <li><code class="code-voice"><span class="k">@end</span>
+</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The example below shows availability information used in a conditional statement in Swift:
+<br><span class="jpstr">
+下の例は、スウィフトでの条件文で使われる利用可能性情報を示します：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">if</span> <span class="kt">#available</span>(<span class="kt">iOS</span> <span class="m">11</span>, *) {</code></li>
+            <li><code class="code-voice">    <span class="c">// Use iOS 11 APIs.</span></code></li>
+            <li><code class="code-voice">} <span class="kt">else</span> {</code></li>
+            <li><code class="code-voice">    <span class="c">// Alternative code for earlier versions of iOS.</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  And here’s how you use the same availability information in Objective-C:
+<br><span class="jpstr">
+そしてここにはあなたが同じ利用可能性情報をObjective-Cで使う方法があります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Objective-C">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="k">if</span> <span class="p">(</span><span class="err">@</span><span class="n">available</span><span class="p">(</span><span class="n">iOS</span> <span class="mi">11</span><span class="p">,</span> <span class="o">*</span><span class="p">))</span> <span class="p">{</span>
+</code></li>
+            <li><code class="code-voice">    <span class="c1">// Use iOS 11 APIs.</span>
+</code></li>
+            <li><code class="code-voice"><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</code></li>
+            <li><code class="code-voice">    <span class="c1">// Alternative code for earlier versions of iOS.</span>
+</code></li>
+            <li><code class="code-voice"><span class="p">}</span>
+</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  For more information about specifiying platform availability, see <a href="../Swift_Programming_Language/Attributes.html#//apple_ref/doc/uid/TP40014097-CH35-ID348" data-renderer-version="2" target="_self">Declaration Attributes</a> in <em class="u-book"><a href="../Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097" data-renderer-version="2" target="_self">The Swift Programming Language (Swift 4)</a></em>.
+<br><span class="jpstr">
+プラットホーム利用可能性を指定することについての更なる情報として、<a href="../Swift_Programming_Language/Attributes.html#//apple_ref/doc/uid/TP40014097-CH35-ID348" data-renderer-version="2" target="_self">宣言属性</a>を<em class="u-book"><a href="../Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097" data-renderer-version="2" target="_self">The Swift Programming Language (Swift 4)</a></em>で見てください。
+</span><!--end_jpstr-->
+</p>
   
 </section>
 <section class="section">
@@ -1325,7 +1437,7 @@ C APIとの相互作用
     <p class="copyright">Copyright &#x00a9; 2017 Apple Inc. All rights reserved. 
   <a class="link" href="http://www.apple.com/legal/terms/site.html" target="_blank" rel="external">Terms of Use</a> | 
   <a class="link" href="http://www.apple.com/privacy/" target="_blank" rel="external">Privacy Policy</a> | 
-  Updated: 2017-06-05
+  Updated: 2017-08-21
 </p>
   </section>
 </article>

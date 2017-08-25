@@ -6,8 +6,8 @@
   <link rel="stylesheet" type="text/css" href="../../../../Resources/1264/CSS/feedback-1.6.3.css" />
   <meta charset='utf-8'> 
 <meta id="j-version" name="j-version" content="" />
-<meta id="build" name="build" content="dadaf8814eb04e8376a0501374bda6be" />
-<meta id="document-version" name="document-version" content="10.0.8" />
+<meta id="build" name="build" content="0c869c990fa765914a9edf9866da5f1b" />
+<meta id="document-version" name="document-version" content="10.0.10" />
 <meta id="book-assignments" name="book-assignments" content="{Type/Guide}, {Topic/Swift}" />
 <meta scheme="apple_ref" id="identifier" name="identifier" content="//apple_ref/doc/uid/TP40014097" />
 <meta id="chapterId" name="chapterId" content="TP40014097-CH25">
@@ -15,7 +15,7 @@
 <meta id="book-resource-type" name="book-resource-type" content="Guide" />
 <meta id="book-root" name="book-root" content="./" />
 <meta id="book-json" name="book-json" content="book.json">
-<meta id="date" name="date" content="2017-06-05" />
+<meta id="date" name="date" content="2017-08-21" />
 <meta id="description" name="description" content="The definitive guide to Swift, Apple’s programming language for building iOS, macOS, watchOS, and tvOS apps." />
 <meta id="IndexTitle" name="IndexTitle" content="" />
 <meta id="resources-uri" name="resources-uri" content="../../../../Resources/1264">
@@ -552,9 +552,9 @@
 あるプロトコルは、あらゆる準拠型に、特定の名前と型をもつインスタンスプロパティまたは型プロパティを提供するように要求することができます。プロトコルは、そのプロパティが保存プロパティまたは計算プロパティでなければならないかどうかは指定しません ― それは、必要なプロパティ名と型を指定するだけです。プロトコルはまた、各プロパティが取得可能または取得可能<em>かつまた</em>設定可能でなければならないかどうか指定します。
 </span><!--end_jpstr-->
 </p><p class="para">
-  If a protocol requires a property to be gettable and settable, that property requirement cannot be fulfilled by a constant stored property or a read-only computed property. If the protocol only requires a property to be gettable, the requirement can be satisfied by any kind of property, and it is valid for the property to be also settable if this is useful for your own code.
+  If a protocol requires a property to be gettable and settable, that property requirement can’t be fulfilled by a constant stored property or a read-only computed property. If the protocol only requires a property to be gettable, the requirement can be satisfied by any kind of property, and it’s valid for the property to be also settable if this is useful for your own code.
 <br><span class="jpstr">
-あるプロトコルがプロパティに取得可能かつまた設定可能であることを要求するならば、そのプロパティ要件は、定数保存プロパティまたは読み出し専用の計算プロパティによって満たされることができません。プロトコルがプロパティに取得可能なことを要求するだけならば、その要件はどんなプロパティにでもよって満たされることができます、そして、それが同時にまた設定可能であることは、もしそれがあなた自身のコードに役立つ場合には、そのプロパティにとって有効です。
+あるプロトコルがプロパティに取得可能かつまた設定可能であることを要求するならば、そのプロパティ要件は、定数保存プロパティまたは読み出し専用の計算プロパティによって満たされることができません。プロトコルがプロパティに取得可能であるのを要求するだけならば、その要件はどんなプロパティにでもよって満たされることができます、そして、同時にまた設定可能でもあることは、もしそれがあなた自身のコードに役立つ場合には、そのプロパティにとって有効です。
 </span><!--end_jpstr-->
 </p><p class="para">
   Property requirements are always declared as variable properties, prefixed with the <code class="code-voice">var</code> keyword. Gettable and settable properties are indicated by writing <code class="code-voice">{ get set }</code> after their type declaration, and gettable properties are indicated by writing <code class="code-voice">{ get }</code>.
@@ -681,12 +681,12 @@
 </span><!--end_jpstr-->
 </h3>
   <p class="para">
-  Protocols can require specific instance methods and type methods to be implemented by conforming types. These methods are written as part of the protocol’s definition in exactly the same way as for normal instance and type methods, but without curly braces or a method body. Variadic parameters are allowed, subject to the same rules as for normal methods. Default values, however, cannot be specified for method parameters within a protocol’s definition.
+  Protocols can require specific instance methods and type methods to be implemented by conforming types. These methods are written as part of the protocol’s definition in exactly the same way as for normal instance and type methods, but without curly braces or a method body. Variadic parameters are allowed, subject to the same rules as for normal methods. Default values, however, can’t be specified for method parameters within a protocol’s definition.
 <br><span class="jpstr">
 プロトコルは、準拠型によって特定のインスタンスメソッドと型メソッドが実装されるように要求することができます。これらのメソッドは、プロトコルの定義の一部として普通のインスタンスおよび型メソッドと正確に同じ方法で書かれます、しかし波括弧またはメソッド本文はありません。可変長パラメータは、許され、普通のメソッドと同じ規則の支配下にあります。省略時の値は、しかしながら、プロトコル定義の内部のメソッドパラメーターに対して指定されることはできません。
 </span><!--end_jpstr-->
 </p><p class="para">
-  As with type property requirements, you always prefix type method requirements with the <code class="code-voice">static</code> keyword when they are defined in a protocol. This is true even though type method requirements are prefixed with the <code class="code-voice">class</code> or <code class="code-voice">static</code> keyword when implemented by a class:
+  As with type property requirements, you always prefix type method requirements with the <code class="code-voice">static</code> keyword when they’re defined in a protocol. This is true even though type method requirements are prefixed with the <code class="code-voice">class</code> or <code class="code-voice">static</code> keyword when implemented by a class:
 <br><span class="jpstr">
 型プロパティ要件と同様に、あなたは常に型メソッド要件の前に、それらがプロトコルにおいて定義されるとき、<code class="code-voice">static</code>キーワードを置きます。たとえ型メソッド要件がクラスによって実装されるとき<code class="code-voice">class</code>または<code class="code-voice">static</code>キーワードを前に置かれるとしても、これは当てはまります：
 </span><!--end_jpstr-->
@@ -718,14 +718,14 @@
       </div>
   </div>
 </section><p class="para">
-  This protocol, <code class="code-voice">RandomNumberGenerator</code>, requires any conforming type to have an instance method called <code class="code-voice">random</code>, which returns a <code class="code-voice">Double</code> value whenever it is called. Although it is not specified as part of the protocol, it is assumed that this value will be a number from <code class="code-voice">0.0</code> up to (but not including) <code class="code-voice">1.0</code>.
+  This protocol, <code class="code-voice">RandomNumberGenerator</code>, requires any conforming type to have an instance method called <code class="code-voice">random</code>, which returns a <code class="code-voice">Double</code> value whenever it’s called. Although it’s not specified as part of the protocol, it’s assumed that this value will be a number from <code class="code-voice">0.0</code> up to (but not including) <code class="code-voice">1.0</code>.
 <br><span class="jpstr">
-このプロトコル、<code class="code-voice">RandomNumberGenerator</code>は、あらゆる準拠型に<code class="code-voice">random</code>と呼ばれるインスタンスメソッドを持つことを要求します、それは、それが呼ばれた時はいつでも<code class="code-voice">Double</code>値を返すものです。それはプロトコルの一部として指定されないけれども、この値は<code class="code-voice">0.0</code>から<code class="code-voice">1.0</code>まで（しかし含めてではない）のある数を仮定されます。
+このプロトコル、<code class="code-voice">RandomNumberGenerator</code>は、あらゆる準拠型に<code class="code-voice">random</code>と呼ばれるインスタンスメソッドを持つことを要求します、それは、それが呼ばれた時はいつでもある<code class="code-voice">Double</code>値を返すものです。それはプロトコルの一部として指定されないけれども、この値は<code class="code-voice">0.0</code>から<code class="code-voice">1.0</code>まで（しかし含めてではない）のある数であるのを仮定されます。
 </span><!--end_jpstr-->
 </p><p class="para">
-  The <code class="code-voice">RandomNumberGenerator</code> protocol does not make any assumptions about how each random number will be generated—it simply requires the generator to provide a standard way to generate a new random number.
+  The <code class="code-voice">RandomNumberGenerator</code> protocol doesn’t make any assumptions about how each random number will be generated—it simply requires the generator to provide a standard way to generate a new random number.
 <br><span class="jpstr">
-<code class="code-voice">RandomNumberGenerator</code>プロトコルは、それぞれの乱数が生成される方法について、全く仮定しません ― それは単に生成器に新しい乱数を生み出す標準の方法を提供することを要求します。
+<code class="code-voice">RandomNumberGenerator</code>プロトコルは、乱数それぞれが生成される方法について、全く仮定しません ― それは単に生成器に新しい乱数を生み出す標準の方法を提供することを要求します。
 </span><!--end_jpstr-->
 </p><p class="para">
   Here’s an implementation of a class that adopts and conforms to the <code class="code-voice">RandomNumberGenerator</code> protocol. This class implements a pseudorandom number generator algorithm known as a <em>linear congruential generator</em>:
@@ -767,7 +767,7 @@
 </span><!--end_jpstr-->
 </h3>
   <p class="para">
-  It is sometimes necessary for a method to modify (or <em>mutate</em>) the instance it belongs to. For instance methods on value types (that is, structures and enumerations) you place the <code class="code-voice">mutating</code> keyword before a method’s <code class="code-voice">func</code> keyword to indicate that the method is allowed to modify the instance it belongs to and any properties of that instance. This process is described in <span class="x-name"><a href="Methods.html#//apple_ref/doc/uid/TP40014097-CH15-ID239" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH15-ID239">Modifying Value Types from Within Instance Methods</a></span>.
+  It’s sometimes necessary for a method to modify (or <em>mutate</em>) the instance it belongs to. For instance methods on value types (that is, structures and enumerations) you place the <code class="code-voice">mutating</code> keyword before a method’s <code class="code-voice">func</code> keyword to indicate that the method is allowed to modify the instance it belongs to and any properties of that instance. This process is described in <span class="x-name"><a href="Methods.html#//apple_ref/doc/uid/TP40014097-CH15-ID239" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH15-ID239">Modifying Value Types from Within Instance Methods</a></span>.
 <br><span class="jpstr">
 メソッドがそれが属しているインスタンスを修正する（または<em>変化させる</em>）ことは、時々必要です。値型（すなわち、構造体と列挙）のインスタンスメソッドのために、あなたは<code class="code-voice">mutating</code>キーワードをメソッドの<code class="code-voice">func</code>キーワードの前に置いて、メソッドがそれが属しているインスタンスおよびそのインスタンスのあらゆるプロパティを修正するのを許可されることを示します。この過程は、<span class="x-name"><a href="Methods.html#//apple_ref/doc/uid/TP40014097-CH15-ID239" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH15-ID239">値型をインスタンスメソッド内から修正する</a></span>で記述されます。
 </span><!--end_jpstr-->
@@ -777,14 +777,14 @@
 あなたがそのプロトコルを採用するあらゆる型のインスタンスを変化させることを意図したインスタンスメソッド要件プロトコルを定義するならば、プロトコルの定義の一部としてそのメソッドに<code class="code-voice">mutating</code>キーワードで印をつけてください。これは、構造体と列挙に、そのプロトコルを採用してメソッド要件を満たすのを可能にします。
 </span><!--end_jpstr-->
 </p><div class="note">
-  <a name="//apple_ref/doc/uid/TP40014097-CH25-NoLink_182"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-NoLink_181"></a>
   <aside class="aside">
     <p class="aside-title">Note
     <br><span class="jpstr">
 注意
 </span><!--end_jpstr-->
 </p>
-    	<p class="para">If you mark a protocol instance method requirement as <code class="code-voice">mutating</code>, you do not need to write the <code class="code-voice">mutating</code> keyword when writing an implementation of that method for a class. The <code class="code-voice">mutating</code> keyword is only used by structures and enumerations.
+    	<p class="para">If you mark a protocol instance method requirement as <code class="code-voice">mutating</code>, you don’t need to write the <code class="code-voice">mutating</code> keyword when writing an implementation of that method for a class. The <code class="code-voice">mutating</code> keyword is only used by structures and enumerations.
     	<br><span class="jpstr">
 あなたがインスタンスメソッド要件プロトコルに<code class="code-voice">mutating</code>として印するならば、あるクラスのためにそのメソッドの実装を書くとき、あなたは<code class="code-voice">mutating</code>キーワードを書く必要がありません。<code class="code-voice">mutating</code>キーワードは、構造体と列挙によって使われるだけです。
 </span><!--end_jpstr-->
@@ -797,7 +797,7 @@
 下の例は、<code class="code-voice">Togglable</code>と呼ばれるプロトコルを定義します、それは、<code class="code-voice">toggle</code>と呼ばれる１つのインスタンスメソッド要件を定義します。その名前が暗示するように、<code class="code-voice">toggle()</code>メソッドはあらゆる準拠型の状態を切り換えるか逆にすることを意図します、概してその型のプロパティの修正によって。
 </span><!--end_jpstr-->
 </p><p class="para">
-  The <code class="code-voice">toggle()</code> method is marked with the <code class="code-voice">mutating</code> keyword as part of the <code class="code-voice">Togglable</code> protocol definition, to indicate that the method is expected to mutate the state of a conforming instance when it is called:
+  The <code class="code-voice">toggle()</code> method is marked with the <code class="code-voice">mutating</code> keyword as part of the <code class="code-voice">Togglable</code> protocol definition, to indicate that the method is expected to mutate the state of a conforming instance when it’s called:
 <br><span class="jpstr">
 <code class="code-voice">toggle()</code>メソッドは、<code class="code-voice">Togglable</code>プロトコル定義の一部として<code class="code-voice">mutating</code>キーワードで印されます、それによってそのメソッドが、それが呼ばれるとき準拠インスタンスの状態を変化させることを予期されるようにします：
 </span><!--end_jpstr-->
@@ -907,14 +907,14 @@
 必須イニシャライザに関する更なる情報として、<span class="x-name"><a href="Initialization.html#//apple_ref/doc/uid/TP40014097-CH18-ID231" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH18-ID231">必須イニシャライザ</a></span>を見てください。
 </span><!--end_jpstr-->
 </p><div class="note">
-  <a name="//apple_ref/doc/uid/TP40014097-CH25-NoLink_183"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-NoLink_182"></a>
   <aside class="aside">
     <p class="aside-title">Note
     <br><span class="jpstr">
 注意
 </span><!--end_jpstr-->
 </p>
-    	<p class="para">You do not need to mark protocol initializer implementations with the <code class="code-voice">required</code> modifier on classes that are marked with the <code class="code-voice">final</code> modifier, because final classes cannot be subclassed. For more on the <code class="code-voice">final</code> modifier, see <span class="x-name"><a href="Inheritance.html#//apple_ref/doc/uid/TP40014097-CH17-ID202" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH17-ID202">Preventing Overrides</a></span>.
+    	<p class="para">You don’t need to mark protocol initializer implementations with the <code class="code-voice">required</code> modifier on classes that are marked with the <code class="code-voice">final</code> modifier, because final classes can’t subclassed. For more on the <code class="code-voice">final</code> modifier, see <span class="x-name"><a href="Inheritance.html#//apple_ref/doc/uid/TP40014097-CH17-ID202" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH17-ID202">Preventing Overrides</a></span>.
     	<br><span class="jpstr">
 あなたは<code class="code-voice">final</code>修飾子で印されるクラス上でプロトコルイニシャライザ実装を<code class="code-voice">required</code>修飾子で印する必要はありません、なぜなら、finalクラスはサブクラスを作られることができないからです。<code class="code-voice">final</code>修飾子に関する更なる情報として、<span class="x-name"><a href="Inheritance.html#//apple_ref/doc/uid/TP40014097-CH17-ID202" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH17-ID202">オーバーライドを防ぐ</a></span>を見てください。
 </span><!--end_jpstr-->
@@ -984,12 +984,12 @@
 </span><!--end_jpstr-->
 </h3>
   <p class="para">
-  Protocols do not actually implement any functionality themselves. Nonetheless, any protocol you create will become a fully-fledged type for use in your code.
+  Protocols don’t actually implement any functionality themselves. Nonetheless, any protocol you create will become a fully-fledged type for use in your code.
 <br><span class="jpstr">
 プロトコルは、実際に少しの機能性も実装しません。それでもなお、あなたがつくるどんなプロトコルでも、あなたのコードに用いられるひとつの完全に自立した型になります。
 </span><!--end_jpstr-->
 </p><p class="para">
-  Because it is a type, you can use a protocol in many places where other types are allowed, including:
+  Because it’s a type, you can use a protocol in many places where other types are allowed, including:
 <br><span class="jpstr">
 それが型であるので、以下を含む、他の型が許される多くの場所において、あなたはプロトコルを使うことができます：
 </span><!--end_jpstr-->
@@ -1014,7 +1014,7 @@
 </p>
 </li>
 </ul><div class="note">
-  <a name="//apple_ref/doc/uid/TP40014097-CH25-NoLink_184"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-NoLink_183"></a>
   <aside class="aside">
     <p class="aside-title">Note
     <br><span class="jpstr">
@@ -1068,7 +1068,7 @@
 <code class="code-voice">Dice</code>はまた、その最初の状態を設定するために、イニシャライザを持ちます。このイニシャライザは、<code class="code-voice">generator</code>と呼ばれるパラメータを持ちます、それもまた、型<code class="code-voice">RandomNumberGenerator</code>です。新しい<code class="code-voice">Dice</code>インスタンスを初期化するとき、あなたはどんな準拠型の値でもこのパラメータに渡すことができます。
 </span><!--end_jpstr-->
 </p><p class="para">
-  <code class="code-voice">Dice</code> provides one instance method, <code class="code-voice">roll</code>, which returns an integer value between 1 and the number of sides on the dice. This method calls the generator’s <code class="code-voice">random()</code> method to create a new random number between <code class="code-voice">0.0</code> and <code class="code-voice">1.0</code>, and uses this random number to create a dice roll value within the correct range. Because <code class="code-voice">generator</code> is known to adopt <code class="code-voice">RandomNumberGenerator</code>, it is guaranteed to have a <code class="code-voice">random()</code> method to call.
+  <code class="code-voice">Dice</code> provides one instance method, <code class="code-voice">roll</code>, which returns an integer value between 1 and the number of sides on the dice. This method calls the generator’s <code class="code-voice">random()</code> method to create a new random number between <code class="code-voice">0.0</code> and <code class="code-voice">1.0</code>, and uses this random number to create a dice roll value within the correct range. Because <code class="code-voice">generator</code> is known to adopt <code class="code-voice">RandomNumberGenerator</code>, it’s guaranteed to have a <code class="code-voice">random()</code> method to call.
 <br><span class="jpstr">
 <code class="code-voice">Dice</code>は１つのインスタンスメソッド、<code class="code-voice">roll</code>を提供します、それは、１とさいころ上の面の数との間の整数値を返します。このメソッドは、<code class="code-voice">0.0</code>と<code class="code-voice">1.0</code>の間で新しい乱数をつくるgeneratorの<code class="code-voice">random()</code>メソッドを呼んで、この乱数を正しい範囲内でさいころを振った値をつくるために使います。<code class="code-voice">generator</code>が<code class="code-voice">RandomNumberGenerator</code>を採用すると知られているので、それは<code class="code-voice">random()</code>メソッドを呼ぶことを保証されます。
 </span><!--end_jpstr-->
@@ -1189,7 +1189,7 @@
 <em>ヘビとはしご</em>のゲームプレイの解説として、<span class="x-name"><a href="ControlFlow.html#//apple_ref/doc/uid/TP40014097-CH9-ID120" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH9-ID120">制御の流れ</a></span>の<span class="x-name"><a href="ControlFlow.html#//apple_ref/doc/uid/TP40014097-CH9-ID137" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH9-ID137">中断する</a></span>の節を見てください。
 </span><!--end_jpstr-->
 </p><p class="para">
-  This version of the game is wrapped up as a class called <code class="code-voice">SnakesAndLadders</code>, which adopts the <code class="code-voice">DiceGame</code> protocol. It provides a gettable <code class="code-voice">dice</code> property and a <code class="code-voice">play()</code> method in order to conform to the protocol. (The <code class="code-voice">dice</code> property is declared as a constant property because it does not need to change after initialization, and the protocol only requires that it is gettable.)
+  This version of the game is wrapped up as a class called <code class="code-voice">SnakesAndLadders</code>, which adopts the <code class="code-voice">DiceGame</code> protocol. It provides a gettable <code class="code-voice">dice</code> property and a <code class="code-voice">play()</code> method in order to conform to the protocol. (The <code class="code-voice">dice</code> property is declared as a constant property because it doesn’t need to change after initialization, and the protocol only requires that it must be gettable.)
 <br><span class="jpstr">
 ゲームのこの改作は、<code class="code-voice">SnakesAndLadders</code>と呼ばれるクラスで包まれます、それは、<code class="code-voice">DiceGame</code>プロトコルを採用します。それは、プロトコルに従うために取得可能な<code class="code-voice">dice</code>プロパティと<code class="code-voice">play()</code>メソッドを提供します。（<code class="code-voice">dice</code>プロパティは定数プロパティとして宣言されます、なぜなら、それが初期化の後に変化する必要がなく、そして、プロトコルはそれが取得可能なことを必要とするだけであるからです）。
 </span><!--end_jpstr-->
@@ -1199,7 +1199,7 @@
 <em>ヘビとはしご</em>ゲーム盤設定は、このクラスの<code class="code-voice">init()</code>イニシャライザ内で行われます。全てのゲーム論理は、プロトコルの<code class="code-voice">play</code>メソッドに引っ越します、それは、プロトコルの要求する<code class="code-voice">dice</code>プロパティを使ってそれのさいころ振りの値を提供します。
 </span><!--end_jpstr-->
 </p><p class="para">
-  Note that the <code class="code-voice">delegate</code> property is defined as an <em>optional</em> <code class="code-voice">DiceGameDelegate</code>, because a delegate isn’t required in order to play the game. Because it is of an optional type, the <code class="code-voice">delegate</code> property is automatically set to an initial value of <code class="code-voice">nil</code>. Thereafter, the game instantiator has the option to set the property to a suitable delegate.
+  Note that the <code class="code-voice">delegate</code> property is defined as an <em>optional</em> <code class="code-voice">DiceGameDelegate</code>, because a delegate isn’t required in order to play the game. Because it’s of an optional type, the <code class="code-voice">delegate</code> property is automatically set to an initial value of <code class="code-voice">nil</code>. Thereafter, the game instantiator has the option to set the property to a suitable delegate.
 <br><span class="jpstr">
 <code class="code-voice">delegate</code>プロパティが、<em>オプショナル</em>の<code class="code-voice">DiceGameDelegate</code>として定義される点に注意してください、delegateがゲームをプレイするために必須でないからです。それがオプショナル型であるので、<code class="code-voice">delegate</code>プロパティは自動的に初期値の<code class="code-voice">nilに</code>設定されます。その後は、このゲームのイニシャライザは、このプロパティを適当な委任先に設定する選択肢を持ちます。
 </span><!--end_jpstr-->
@@ -1254,7 +1254,7 @@
 上で示される<code class="code-voice">gameDidStart(_:)</code>の実装は、<code class="code-voice">game</code>パラメータを使って、プレイされようとしているゲームに関する若干の紹介の情報を出力します。<code class="code-voice">game</code>パラメータは、型<code class="code-voice">DiceGame</code>を持ちます、<code class="code-voice">SnakesAndLadders</code>ではありません、なので、<code class="code-voice">gameDidStart(_:)</code>は<code class="code-voice">DiceGame</code>プロトコルの一部として実施されるメソッドとプロパティだけにアクセスして使用することができます。しかし、このメソッドは依然として基盤インスタンスの型についてたずねるために型キャストを使うことができます。この例では、<code class="code-voice">game</code>が実際に舞台裏でS<code class="code-voice">nakesAndLadders</code>のインスタンスであるかどうか調べて、もしそうならば適切なメッセージを出力します。
 </span><!--end_jpstr-->
 </p><p class="para">
-  The <code class="code-voice">gameDidStart(_:)</code> method also accesses the <code class="code-voice">dice</code> property of the passed <code class="code-voice">game</code> parameter. Because <code class="code-voice">game</code> is known to conform to the <code class="code-voice">DiceGame</code> protocol, it is guaranteed to have a <code class="code-voice">dice</code> property, and so the <code class="code-voice">gameDidStart(_:)</code> method is able to access and print the dice’s <code class="code-voice">sides</code> property, regardless of what kind of game is being played.
+  The <code class="code-voice">gameDidStart(_:)</code> method also accesses the <code class="code-voice">dice</code> property of the passed <code class="code-voice">game</code> parameter. Because <code class="code-voice">game</code> is known to conform to the <code class="code-voice">DiceGame</code> protocol, it’s guaranteed to have a <code class="code-voice">dice</code> property, and so the <code class="code-voice">gameDidStart(_:)</code> method is able to access and print the dice’s <code class="code-voice">sides</code> property, regardless of what kind of game is being played.
 <br><span class="jpstr">
 <code class="code-voice">gameDidStart(_:)</code>メソッドはまた、渡された<code class="code-voice">game</code>パラメータの<code class="code-voice">dice</code>プロパティにアクセスします。<code class="code-voice">game</code>が<code class="code-voice">DiceGame</code>プロトコルに従うと知られているので、それは<code class="code-voice">dice</code>プロパティを持つと保証されます、なので、<code class="code-voice">gameDidStart(_:)</code>メソッドは、どんな種類のゲームがプレイされているかに関係なく、diceの<code class="code-voice">sides</code>プロパティにアクセスして出力することができます。
 </span><!--end_jpstr-->
@@ -1299,12 +1299,12 @@
 </span><!--end_jpstr-->
 </h3>
   <p class="para">
-  You can extend an existing type to adopt and conform to a new protocol, even if you do not have access to the source code for the existing type. Extensions can add new properties, methods, and subscripts to an existing type, and are therefore able to add any requirements that a protocol may demand. For more about extensions, see <span class="x-name"><a href="Extensions.html#//apple_ref/doc/uid/TP40014097-CH24-ID151" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH24-ID151">Extensions</a></span>.
+  You can extend an existing type to adopt and conform to a new protocol, even if you don’t have access to the source code for the existing type. Extensions can add new properties, methods, and subscripts to an existing type, and are therefore able to add any requirements that a protocol may demand. For more about extensions, see <span class="x-name"><a href="Extensions.html#//apple_ref/doc/uid/TP40014097-CH24-ID151" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH24-ID151">Extensions</a></span>.
 <br><span class="jpstr">
 あなたは、ある新しいプロトコルを採用して準拠することで既存の型を拡張することができます、たとえあなたが既存の型のソース・コードにアクセスをしないとしてもです。拡張は、新しいプロパティ、メソッド、そして添え字を既存の型に加えることができます、したがって、あるプロトコルが要求するであろうどんな要件でも加えることができます。拡張についてのより多くのために、<span class="x-name"><a href="Extensions.html#//apple_ref/doc/uid/TP40014097-CH24-ID151" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH24-ID151">拡張</a></span>を見てください。
 </span><!--end_jpstr-->
 </p><div class="note">
-  <a name="//apple_ref/doc/uid/TP40014097-CH25-NoLink_185"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-NoLink_184"></a>
   <aside class="aside">
     <p class="aside-title">Note
     <br><span class="jpstr">
@@ -1441,14 +1441,14 @@
       </div>
   </div>
 </section><div class="note">
-  <a name="//apple_ref/doc/uid/TP40014097-CH25-NoLink_186"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-NoLink_185"></a>
   <aside class="aside">
     <p class="aside-title">Note
     <br><span class="jpstr">
 注意
 </span><!--end_jpstr-->
 </p>
-    	<p class="para">Types do not automatically adopt a protocol just by satisfying its requirements. They must always explicitly declare their adoption of the protocol.
+    	<p class="para">Types don’t automatically adopt a protocol just by satisfying its requirements. They must always explicitly declare their adoption of the protocol.
     	<br><span class="jpstr">
 型は、単にその要件を満たすことだけによっては自動的にあるプロトコルを採用しません。それらは、常に明示的にそのプロトコルについてそれらが採用することを宣言しなければなりません。
 </span><!--end_jpstr-->
@@ -1481,7 +1481,7 @@
       </div>
   </div>
 </section><p class="para">
-  It is now possible to iterate over the items in the array, and print each item’s textual description:
+  It’s now possible to iterate over the items in the array, and print each item’s textual description:
 <br><span class="jpstr">
 現在この配列の項目の上に繰り返して、各項目のもつ説明テキストを出力することが可能です：
 </span><!--end_jpstr-->
@@ -1503,7 +1503,7 @@
       </div>
   </div>
 </section><p class="para">
-  Note that the <code class="code-voice">thing</code> constant is of type <code class="code-voice">TextRepresentable</code>. It is not of type <code class="code-voice">Dice</code>, or <code class="code-voice">DiceGame</code>, or <code class="code-voice">Hamster</code>, even if the actual instance behind the scenes is of one of those types. Nonetheless, because it is of type <code class="code-voice">TextRepresentable</code>, and anything that is <code class="code-voice">TextRepresentable</code> is known to have a <code class="code-voice">textualDescription</code> property, it is safe to access <code class="code-voice">thing.textualDescription</code> each time through the loop.
+  Note that the <code class="code-voice">thing</code> constant is of type <code class="code-voice">TextRepresentable</code>. It’s not of type <code class="code-voice">Dice</code>, or <code class="code-voice">DiceGame</code>, or <code class="code-voice">Hamster</code>, even if the actual instance behind the scenes is of one of those types. Nonetheless, because it’s of type <code class="code-voice">TextRepresentable</code>, and anything that is <code class="code-voice">TextRepresentable</code> is known to have a <code class="code-voice">textualDescription</code> property, it’s safe to access <code class="code-voice">thing.textualDescription</code> each time through the loop.
 <br><span class="jpstr">
 <code class="code-voice">thing</code>定数が型<code class="code-voice">TextRepresentable</code>であることに注意してください。それは型<code class="code-voice">Dice</code>、または<code class="code-voice">DiceGame</code>、または<code class="code-voice">Hamster</code>ではありません、たとえ舞台裏の実際のインスタンスがそれらの型のうちの１つであるとしてもです。それでもなお、それが<code class="code-voice">TextRepresentable</code>型であり、そして、<code class="code-voice">TextRepresentable</code>であるもの全てが<code class="code-voice">textualDescription</code>プロパティを持つと知られているので、それがループの各回で<code class="code-voice">thing.textualDescription</code>にアクセスするのは安全です。
 </span><!--end_jpstr-->
@@ -1590,19 +1590,19 @@
 </span><!--end_jpstr-->
 </p><ul class="list-bullet">
   <li class="item"><p class="para">
-  If the square’s value is greater than <code class="code-voice">0</code>, it is the base of a ladder, and is represented by <code class="code-voice">▲</code>.
+  If the square’s value is greater than <code class="code-voice">0</code>, it’s the base of a ladder, and is represented by <code class="code-voice">▲</code>.
 <br><span class="jpstr">
 正方形の値が<code class="code-voice">0</code>より大きいならば、それははしごの基部であって、<code class="code-voice">▲</code>によって表されます。
 </span><!--end_jpstr-->
 </p>
 </li><li class="item"><p class="para">
-  If the square’s value is less than <code class="code-voice">0</code>, it is the head of a snake, and is represented by <code class="code-voice">▼</code>.
+  If the square’s value is less than <code class="code-voice">0</code>, it’s the head of a snake, and is represented by <code class="code-voice">▼</code>.
 <br><span class="jpstr">
 正方形の値が<code class="code-voice">0</code>より小さいならば、それはヘビの頭であって、<code class="code-voice">▼</code>によって表されます。
 </span><!--end_jpstr-->
 </p>
 </li><li class="item"><p class="para">
-  Otherwise, the square’s value is <code class="code-voice">0</code>, and it is a “free” square, represented by <code class="code-voice">○</code>.
+  Otherwise, the square’s value is <code class="code-voice">0</code>, and it’s a “free” square, represented by <code class="code-voice">○</code>.
 <br><span class="jpstr">
 一方、正方形の値は<code class="code-voice">0</code>ならば、それは「自由」な正方形であって、<code class="code-voice">○</code>によって表されます。
 </span><!--end_jpstr-->
@@ -1652,12 +1652,12 @@
       </div>
   </div>
 </section><p class="para">
-  In the example above, <code class="code-voice">SomeClassOnlyProtocol</code> can only be adopted by class types. It is a compile-time error to write a structure or enumeration definition that tries to adopt <code class="code-voice">SomeClassOnlyProtocol</code>.
+  In the example above, <code class="code-voice">SomeClassOnlyProtocol</code> can only be adopted by class types. It’s a compile-time error to write a structure or enumeration definition that tries to adopt <code class="code-voice">SomeClassOnlyProtocol</code>.
 <br><span class="jpstr">
 上の例で、<code class="code-voice">SomeClassOnlyProtocol</code>はクラス型によってのみ採用されることができます。<code class="code-voice">SomeClassOnlyProtocol</code>を採用しようと試みる構造体や列挙定義を書くことは、コンパイル時エラーになります。
 </span><!--end_jpstr-->
 </p><div class="note">
-  <a name="//apple_ref/doc/uid/TP40014097-CH25-NoLink_187"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-NoLink_186"></a>
   <aside class="aside">
     <p class="aside-title">Note
     <br><span class="jpstr">
@@ -1681,14 +1681,14 @@
 </span><!--end_jpstr-->
 </h3>
   <p class="para">
-  It can be useful to require a type to conform to multiple protocols at once. You can combine multiple protocols into a single requirement with a <em>protocol composition</em>. Protocol compositions behave like you defined a temporary local protocol that has the combined requirements of all protocols in the composition. Protocol compositions don’t define any new protocol types.
+  It can be useful to require a type to conform to multiple protocols at the same time. You can combine multiple protocols into a single requirement with a <em>protocol composition</em>. Protocol compositions behave as if you defined a temporary local protocol that has the combined requirements of all protocols in the composition. Protocol compositions don’t define any new protocol types.
 <br><span class="jpstr">
-ある型に一度に複数のプロトコルに従うことを要求することは、役に立つことがありえます。あなたは、<em>プロトコル合成</em>を使って複数のプロトコルを１つの要件に結合することができます。プロトコル合成は、あなたが定義した一時的なローカル・プロトコルのように振る舞います、それはその合成物の中の全てのプロトコルの要件を結合したものを持っています。プロトコル合成は、何ら新しいプロトコル型を定義しません。
+ある型に複数のプロトコルに一時に従うことを要求することは、役に立つことがありえます。あなたは、<em>プロトコル合成</em>を使って複数のプロトコルを１つの要件に結合することができます。プロトコル合成は、あなたが全てのプロトコルの要件を結合したものをその合成物の中に持っている一時的なローカルプロトコルを定義したかのように振る舞います。プロトコル合成は、何ら新しいプロトコル型を定義しません。
 </span><!--end_jpstr-->
 </p><p class="para">
-  Protocol compositions have the form <code class="code-voice">SomeProtocol &amp; AnotherProtocol</code>. You can list as many protocols as you need to, separating them by ampersands (<code class="code-voice">&amp;</code>). In addition to its list of protocols, a protocol composition can also contain one class type, which lets you specify a required superclass.
+  Protocol compositions have the form <code class="code-voice">SomeProtocol &amp; AnotherProtocol</code>. You can list as many protocols as you need, separating them with ampersands (<code class="code-voice">&amp;</code>). In addition to its list of protocols, a protocol composition can also contain one class type, which you can use to specify a required superclass.
 <br><span class="jpstr">
-プロトコル合成は、形式<code class="code-voice">SomeProtocol &amp; AnotherProtocol</code>を持ちます。あなたは、多くのプロトコルをあなたが必要とするだけ、それらをアンパサンド（<code class="code-voice">&amp;</code>）で隔てて列記できます。いくつかのプロトコルからなるそれのリストに加えて、あるプロトコル合成はまた１つのクラス型を含むことができます、それは必要とされるスーパークラスをあなたに指定させます。
+プロトコル合成は、形式<code class="code-voice">SomeProtocol &amp; AnotherProtocol</code>を持ちます。あなたは、あなたが必要とするだけ多くのプロトコルを、それらをアンパサンド（<code class="code-voice">&amp;</code>）で隔てて列記できます。いくつかのプロトコルからなるそれのリストに加えて、あるプロトコル合成はまた１つのクラス型を含むことができます、それはあなたが必要とされるスーパークラスを指定するのに使用します。
 </span><!--end_jpstr-->
 </p><p class="para">
   Here’s an example that combines two protocols called <code class="code-voice">Named</code> and <code class="code-voice">Aged</code> into a single protocol composition requirement on a function parameter:
@@ -1721,19 +1721,19 @@
       </div>
   </div>
 </section><p class="para">
-  This example defines a protocol called <code class="code-voice">Named</code>, with a single requirement for a gettable <code class="code-voice">String</code> property called <code class="code-voice">name</code>. It also defines a protocol called <code class="code-voice">Aged</code>, with a single requirement for a gettable <code class="code-voice">Int</code> property called <code class="code-voice">age</code>. Both of these protocols are adopted by a structure called <code class="code-voice">Person</code>.
+  In this example, the <code class="code-voice">Named</code> protocol has a single requirement for a gettable <code class="code-voice">String</code> property called <code class="code-voice">name</code>. The <code class="code-voice">Aged</code> protocol has a single requirement for a gettable <code class="code-voice">Int</code> property called <code class="code-voice">age</code>. Both protocols are adopted by a structure called <code class="code-voice">Person</code>.
 <br><span class="jpstr">
-この例は、<code class="code-voice">name</code>と呼ばれる取得可能な<code class="code-voice">String</code>プロパティのための要件を１つ持つ、<code class="code-voice">Named</code>と呼ばれるプロトコルを定義します。それはまた、<code class="code-voice">age</code>と呼ばれる取得可能な<code class="code-voice">Int</code>プロパティのための要件を１つ持つ、<code class="code-voice">Aged</code>と呼ばれるプロトコルを定義します。これらのプロトコルの両方とも、<code class="code-voice">Person</code>と呼ばれる構造体で採用されます。
+この例において、<code class="code-voice">Named</code>プロトコルは、取得可能な<code class="code-voice">String</code>プロパティで<code class="code-voice">name</code>と呼ばれるものに対するただ１つの要件を持ちます。<code class="code-voice">Aged</code>プロトコルは、取得可能な<code class="code-voice">Int</code>プロパティで<code class="code-voice">age</code>と呼ばれるものに対するただ一つの要件を持ちます。両方のプロトコルは、<code class="code-voice">Person</code>と呼ばれる構造体によって採用されます。
 </span><!--end_jpstr-->
 </p><p class="para">
-  The example also defines a <code class="code-voice">wishHappyBirthday(to:)</code> function, The type of the <code class="code-voice">celebrator</code> parameter is <code class="code-voice">Named &amp; Aged</code>, which means “any type that conforms to both the <code class="code-voice">Named</code> and <code class="code-voice">Aged</code> protocols.” It doesn’t matter what specific type is passed to the function, as long as it conforms to both of the required protocols.
+  The example also defines a <code class="code-voice">wishHappyBirthday(to:)</code> function. The type of the <code class="code-voice">celebrator</code> parameter is <code class="code-voice">Named &amp; Aged</code>, which means “any type that conforms to both the <code class="code-voice">Named</code> and <code class="code-voice">Aged</code> protocols.” It doesn’t matter which specific type is passed to the function, as long as it conforms to both of the required protocols.
 <br><span class="jpstr">
-この例はまた、<code class="code-voice">wishHappyBirthday(to:)</code>関数を定義します。<code class="code-voice">celebrator</code>パラメータの型は<code class="code-voice">Named &amp; Aged</code>です、それは、「<code class="code-voice">Named</code>と<code class="code-voice">Aged</code>プロトコルの両方に準拠するあらゆる型」を意味します。どんな具体的な型が関数に渡されるかは重要ではありません、それが必要とされるプロトコルの両方に従う限りは。
+例はまた、<code class="code-voice">wishHappyBirthday(to:)</code>関数を定義します。<code class="code-voice">celebrator</code>パラメータの型は<code class="code-voice">Named &amp; Aged</code>です、それは「<code class="code-voice">Named</code>と<code class="code-voice">Aged</code>プロトコルの両方に準拠する何らかの型」を意味します。どのような具体的な型が関数へ渡されるかは問題ではありません、それが必須プロトコルの両方に準拠する限りは。
 </span><!--end_jpstr-->
 </p><p class="para">
-  The example then creates a new <code class="code-voice">Person</code> instance called <code class="code-voice">birthdayPerson</code> and passes this new instance to the <code class="code-voice">wishHappyBirthday(to:)</code> function. Because <code class="code-voice">Person</code> conforms to both protocols, this is a valid call, and the <code class="code-voice">wishHappyBirthday(to:)</code> function is able to print its birthday greeting.
+  The example then creates a new <code class="code-voice">Person</code> instance called <code class="code-voice">birthdayPerson</code> and passes this new instance to the <code class="code-voice">wishHappyBirthday(to:)</code> function. Because <code class="code-voice">Person</code> conforms to both protocols, this call is valid, and the <code class="code-voice">wishHappyBirthday(to:)</code> function can print its birthday greeting.
 <br><span class="jpstr">
-この例は、それから<code class="code-voice">birthdayPerson</code>と呼ばれる新しい<code class="code-voice">Person</code>インスタンスをつくって、この新しいインスタンスを<code class="code-voice">wishHappyBirthday(to:)</code>関数に渡します。<code class="code-voice">Person</code>が両方のプロトコルに準拠するので、これは有効な呼び出しです、そして<code class="code-voice">wishHappyBirthday(to:)</code>関数はその誕生日のお祝いを出力することができます。
+この例は、それから<code class="code-voice">birthdayPerson</code>と呼ばれる新しい<code class="code-voice">Person</code>インスタンスをつくって、この新しいインスタンスを<code class="code-voice">wishHappyBirthday(to:)</code>関数に渡します。<code class="code-voice">Person</code>が両方のプロトコルに準拠するので、これは有効な呼び出しです、それで<code class="code-voice">wishHappyBirthday(to:)</code>関数はその誕生日のお祝いを出力できます。
 </span><!--end_jpstr-->
 </p><p class="para">
   Here’s an example that combines the <code class="code-voice">Named</code> protocol from the previous example with a <code class="code-voice">Location</code> class:
@@ -1771,14 +1771,14 @@
       </div>
   </div>
 </section><p class="para">
-  The <code class="code-voice">beginConcert(in:)</code> function takes a parameter of type <code class="code-voice">Location &amp; Named</code>, which means any type that is a subclass of <code class="code-voice">Location</code> and that conforms to the <code class="code-voice">Named</code> protocol. In this case, <code class="code-voice">City</code> satisfies both requirements.
+  The <code class="code-voice">beginConcert(in:)</code> function takes a parameter of type <code class="code-voice">Location &amp; Named</code>, which means “any type that’s a subclass of <code class="code-voice">Location</code> and that conforms to the <code class="code-voice">Named</code> protocol.” In this case, <code class="code-voice">City</code> satisfies both requirements.
 <br><span class="jpstr">
-<code class="code-voice">beginConcert(in:)</code>関数は、型<code class="code-voice">Location &amp; Named</code>のパラメータを１つとります、それは<code class="code-voice">Location</code>のサブクラスである何らかの型で<code class="code-voice">Named</code>プロトコルに準拠するものを意味します。この場合では、<code class="code-voice">City</code>は両方の要件を満たします。
+<code class="code-voice">beginConcert(in:)</code>関数は、型<code class="code-voice">Location &amp; Named</code>のパラメータを１つとります、それは「<code class="code-voice">Location</code>のサブクラスであり、<code class="code-voice">Named</code>プロトコルに準拠する何らかの型」を意味します。この場合では、<code class="code-voice">City</code>は両方の要件を満たします。
 </span><!--end_jpstr-->
 </p><p class="para">
-  If you tried to pass <code class="code-voice">birthdayPerson</code> to the <code class="code-voice">beginConcert(in:)</code> function, that would be invalid because <code class="code-voice">Person</code> isn’t a subclass of <code class="code-voice">Location</code>. Likewise, if you made a subclass of <code class="code-voice">Location</code> that didn’t conform to the <code class="code-voice">Named</code> protocol, calling <code class="code-voice">beginConcert(in:)</code> with an instance of that type would also be invalid.
+  Passing <code class="code-voice">birthdayPerson</code> to the <code class="code-voice">beginConcert(in:)</code> function is invalid because <code class="code-voice">Person</code> isn’t a subclass of <code class="code-voice">Location</code>. Likewise, if you made a subclass of <code class="code-voice">Location</code> that didn’t conform to the <code class="code-voice">Named</code> protocol, calling <code class="code-voice">beginConcert(in:)</code> with an instance of that type is also invalid.
 <br><span class="jpstr">
-あなたが<code class="code-voice">birthdayPerson</code>を<code class="code-voice">beginConcert(in:)</code>関数に渡すことを試みるならば、それは無効となるでしょう、なぜなら<code class="code-voice">Person</code>は<code class="code-voice">Location</code>のサブクラスではないからです。同様に、あなたが<code class="code-voice">Location</code>のサブクラスで<code class="code-voice">Named</code>プロトコルに準拠しないものを作成したならば、<code class="code-voice">beginConcert(in:)</code>をその型のインスタンスで呼び出すことはまた無効となるでしょう。
+<code class="code-voice">birthdayPerson</code>を<code class="code-voice">beginConcert(in:)</code>関数に渡すことは無効です、なぜなら<code class="code-voice">Person</code>は<code class="code-voice">Location</code>のサブクラスではないからです。同様に、あなたが<code class="code-voice">Location</code>のサブクラスで<code class="code-voice">Named</code>プロトコルに準拠しないものを作成したならば、<code class="code-voice">beginConcert(in:)</code>をその型のインスタンスで呼び出すことはまた無効です。
 </span><!--end_jpstr-->
 </p>
   
@@ -1796,19 +1796,19 @@
 </span><!--end_jpstr-->
 </p><ul class="list-bullet">
   <li class="item"><p class="para">
-  The <code class="code-voice">is</code> operator returns <code class="code-voice">true</code> if an instance conforms to a protocol and returns <code class="code-voice">false</code> if it does not.
+  The <code class="code-voice">is</code> operator returns <code class="code-voice">true</code> if an instance conforms to a protocol and returns <code class="code-voice">false</code> if it doesn’t.
 <br><span class="jpstr">
 <code class="code-voice">is</code>演算子は、あるインスタンスがプロトコルに準拠するならば<code class="code-voice">true</code>を返して、それがそうしないならば<code class="code-voice">false</code>を返します。
 </span><!--end_jpstr-->
 </p>
 </li><li class="item"><p class="para">
-  The <code class="code-voice">as?</code> version of the downcast operator returns an optional value of the protocol’s type, and this value is <code class="code-voice">nil</code> if the instance does not conform to that protocol.
+  The <code class="code-voice">as?</code> version of the downcast operator returns an optional value of the protocol’s type, and this value is <code class="code-voice">nil</code> if the instance doesn’t conform to that protocol.
 <br><span class="jpstr">
 <code class="code-voice">as?</code>版のダウンキャスト演算子は、そのプロトコルの型のオプショナルの値を返します、そしてインスタンスがそのプロトコルに準拠しないならばその値は<code class="code-voice">nil</code>です。
 </span><!--end_jpstr-->
 </p>
 </li><li class="item"><p class="para">
-  The <code class="code-voice">as!</code> version of the downcast operator forces the downcast to the protocol type and triggers a runtime error if the downcast does not succeed.
+  The <code class="code-voice">as!</code> version of the downcast operator forces the downcast to the protocol type and triggers a runtime error if the downcast doesn’t succeed.
 <br><span class="jpstr">
 <code class="code-voice">as!</code>版のダウンキャスト演算子は、そのプロトコル型へのダウンキャストを強制して、ダウンキャストが成功しなかったならば実行時エラーの引き金を引きます。
 </span><!--end_jpstr-->
@@ -1859,7 +1859,7 @@
 <code class="code-voice">Circle</code>クラスは<code class="code-voice">area</code>プロパティ要件を、保存<code class="code-voice">radius</code>プロパティに基づいて計算プロパティとして、満たします。<code class="code-voice">Country</code>クラスは、<code class="code-voice">area</code>要件を保存プロパティとして直接に満たします。両方のクラスは、正しく<code class="code-voice">HasArea</code>プロトコルに従います。
 </span><!--end_jpstr-->
 </p><p class="para">
-  Here’s a class called <code class="code-voice">Animal</code>, which does not conform to the <code class="code-voice">HasArea</code> protocol:
+  Here’s a class called <code class="code-voice">Animal</code>, which doesn’t conform to the <code class="code-voice">HasArea</code> protocol:
 <br><span class="jpstr">
 <code class="code-voice">HasArea</code>プロトコルに従わない<code class="code-voice">Animal</code>と呼ばれるクラスが、ここにあります：
 </span><!--end_jpstr-->
@@ -1876,7 +1876,7 @@
       </div>
   </div>
 </section><p class="para">
-  The <code class="code-voice">Circle</code>, <code class="code-voice">Country</code> and <code class="code-voice">Animal</code> classes do not have a shared base class. Nonetheless, they are all classes, and so instances of all three types can be used to initialize an array that stores values of type <code class="code-voice">AnyObject</code>:
+  The <code class="code-voice">Circle</code>, <code class="code-voice">Country</code> and <code class="code-voice">Animal</code> classes don’t have a shared base class. Nonetheless, they’re all classes, and so instances of all three types can be used to initialize an array that stores values of type <code class="code-voice">AnyObject</code>:
 <br><span class="jpstr">
 <code class="code-voice">Circle</code>、<code class="code-voice">Country</code>と<code class="code-voice">Animal</code>クラスには、共有の基盤クラスがありません。それでもなお、それらは全てクラスです、なので、３つの型全てのインスタンスは、型<code class="code-voice">AnyObject</code>の値を格納するある配列を初期化するために使用できます：
 </span><!--end_jpstr-->
@@ -1930,7 +1930,7 @@
 配列のオブジェクトが<code class="code-voice">HasArea</code>プロトコルに準拠するときはいつでも、<code class="code-voice">as?</code>演算子によって返されるオプショナルの値は、オプショナル束縛によって<code class="code-voice">objectWithArea</code>と呼ばれる定数へとアンラップされます。定数の<code class="code-voice">objectWithArea</code>は、型<code class="code-voice">HasArea</code>であるということを知られています、なので、その<code class="code-voice">area</code>プロパティは型安全な方法でアクセスされて出力されることができます。
 </span><!--end_jpstr-->
 </p><p class="para">
-  Note that the underlying objects are not changed by the casting process. They continue to be a <code class="code-voice">Circle</code>, a <code class="code-voice">Country</code> and an <code class="code-voice">Animal</code>. However, at the point that they are stored in the <code class="code-voice">objectWithArea</code> constant, they are only known to be of type <code class="code-voice">HasArea</code>, and so only their <code class="code-voice">area</code> property can be accessed.
+  Note that the underlying objects aren’t changed by the casting process. They continue to be a <code class="code-voice">Circle</code>, a <code class="code-voice">Country</code> and an <code class="code-voice">Animal</code>. However, at the point that they’re stored in the <code class="code-voice">objectWithArea</code> constant, they’re only known to be of type <code class="code-voice">HasArea</code>, and so only their <code class="code-voice">area</code> property can be accessed.
 <br><span class="jpstr">
 根底にあるオブジェクトがキャスト処理によって変更されない点に注意してください。それらは、<code class="code-voice">Circle</code>、<code class="code-voice">Country</code>、そして<code class="code-voice">Animal</code>であり続けます。しかし、それらが定数の<code class="code-voice">objectWithArea</code>に格納される時点で、それらは型<code class="code-voice">HasArea</code>であるということを知られているだけです、なので、それらの<code class="code-voice">area</code>プロパティだけがアクセスされることができます。
 </span><!--end_jpstr-->
@@ -1944,7 +1944,7 @@
 </span><!--end_jpstr-->
 </h3>
   <p class="para">
-  You can define <em>optional requirements</em> for protocols, These requirements do not have to be implemented by types that conform to the protocol. Optional requirements are prefixed by the <code class="code-voice">optional</code> modifier as part of the protocol’s definition. Optional requirements are available so that you can write code that interoperates with Objective-C. Both the protocol and the optional requirement must be marked with the <code class="code-voice">@objc</code> attribute. Note that <code class="code-voice">@objc</code> protocols can be adopted only by classes that inherit from Objective-C classes or other <code class="code-voice">@objc</code> classes. They can’t be adopted by structures or enumerations.
+  You can define <em>optional requirements</em> for protocols, These requirements don’t have to be implemented by types that conform to the protocol. Optional requirements are prefixed by the <code class="code-voice">optional</code> modifier as part of the protocol’s definition. Optional requirements are available so that you can write code that interoperates with Objective-C. Both the protocol and the optional requirement must be marked with the <code class="code-voice">@objc</code> attribute. Note that <code class="code-voice">@objc</code> protocols can be adopted only by classes that inherit from Objective-C classes or other <code class="code-voice">@objc</code> classes. They can’t be adopted by structures or enumerations.
 <br><span class="jpstr">
 あなたはプロトコルのために<em>オプショナルの要件</em>を定義することができます。 それらの要件は、そのプロトコルに準拠する型によって実装されることは必要ではありません。 オプショナルの要件は、そのプロトコル定義において<code class="code-voice">optional</code>修飾子を前に置かれます。オプショナル要件が利用可能なことから、あなたはObjective-Cと相互運用するコードを書くことができます。プロトコルとオプショナル要件の両方は、<code class="code-voice">@objc</code>属性で印されなければなりません。<code class="code-voice">@objc</code>プロトコルがObjective-Cクラスや他の<code class="code-voice">@objc</code>クラスから継承するクラスによってのみ採用される点に注意してください。それは構造体や列挙によって採用されることはできません。
 </span><!--end_jpstr-->
@@ -1954,7 +1954,7 @@
 あなたがオプショナルの要件の中のメソッドやプロパティを使うとき、それの型は自動的にオプショナルになります。例えば、型<code class="code-voice">(Int) -&gt; String</code>のメソッドは<code class="code-voice">((Int) -&gt; String)?</code>になります。メソッドの戻り値ではなく、その関数型の全体がオプショナルの中のラップされることに注意してください。
 </span><!--end_jpstr-->
 </p><p class="para">
-  An optional protocol requirement can be called with optional chaining, to account for the possibility that the requirement was not implemented by a type that conforms to the protocol. You check for an implementation of an optional method by writing a question mark after the name of the method when it is called, such as <code class="code-voice">someOptionalMethod?(someArgument)</code>. For information on optional chaining, see <span class="x-name"><a href="OptionalChaining.html#//apple_ref/doc/uid/TP40014097-CH21-ID245" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH21-ID245">Optional Chaining</a></span>.
+  An optional protocol requirement can be called with optional chaining, to account for the possibility that the requirement was not implemented by a type that conforms to the protocol. You check for an implementation of an optional method by writing a question mark after the name of the method when it’s called, such as <code class="code-voice">someOptionalMethod?(someArgument)</code>. For information on optional chaining, see <span class="x-name"><a href="OptionalChaining.html#//apple_ref/doc/uid/TP40014097-CH21-ID245" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH21-ID245">Optional Chaining</a></span>.
 <br><span class="jpstr">
 オプショナルのプロトコル要件は、オプショナル連鎖を使って呼び出されることができます、それによってプロトコルに準拠する型によって要件が満たされなかったという可能性に対応します。あなたは、それが呼ばれるときに疑問符をそのメソッドの後に書くことによって、あるオプショナルメソッドの実装について確認することができます、例えば<code class="code-voice">someOptionalMethod?(someArgument)</code>のように。オプショナル連鎖に関する情報のために、<span class="x-name"><a href="OptionalChaining.html#//apple_ref/doc/uid/TP40014097-CH21-ID245" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH21-ID245">オプショナル連鎖</a></span>を見てください。
 </span><!--end_jpstr-->
@@ -1981,14 +1981,14 @@
 <code class="code-voice">CounterDataSource</code>プロトコルは、<code class="code-voice">incrementForCount(_:)</code>と呼ばれるオプショナルのメソッド要件と<code class="code-voice">fixedIncrement</code>と呼ばれるオプショナルのプロパティ要件を定義します。これらの要件は、データ・ソースのために<code class="code-voice">Counter</code>インスタンスに適切な増加量を用意する２つの異なる方法を定義します。
 </span><!--end_jpstr-->
 </p><div class="note">
-  <a name="//apple_ref/doc/uid/TP40014097-CH25-NoLink_188"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-NoLink_187"></a>
   <aside class="aside">
     <p class="aside-title">Note
     <br><span class="jpstr">
 注意
 </span><!--end_jpstr-->
 </p>
-    	<p class="para">Strictly speaking, you can write a custom class that conforms to <code class="code-voice">CounterDataSource</code> without implementing <em>either</em> protocol requirement. They are both optional, after all. Although technically allowed, this wouldn’t make for a very good data source.
+    	<p class="para">Strictly speaking, you can write a custom class that conforms to <code class="code-voice">CounterDataSource</code> without implementing <em>either</em> protocol requirement. They’re both optional, after all. Although technically allowed, this wouldn’t make for a very good data source.
     	<br><span class="jpstr">
 厳密に言って、あなたは<code class="code-voice">CounterDataSource</code>に準拠する特注のクラスを書くことが<em>両方の</em>プロトコル要件を満たすことなく可能です。結局、それらは両方ともオプショナルです。技術的には可能であるけれども、これはあまり良いデータ・ソースにつながりません。
 </span><!--end_jpstr-->
@@ -2030,7 +2030,7 @@
 <code class="code-voice">increment()</code>メソッドは、最初にそれのデータ・ソース上で<code class="code-voice">increment(forCount:)</code>メソッドの実装を捜すことによって増加量を取り出そうと試みます。<code class="code-voice">increment()</code>メソッドは、オプショナル連鎖を使って<code class="code-voice">increment(forCount:)</code>を呼ぶことを試みます、そしてメソッドのもつただ１つの引数として現在の<code class="code-voice">count</code>値を渡します。
 </span><!--end_jpstr-->
 </p><p class="para">
-  Note that <em>two</em> levels of optional chaining are at play here. First, it is possible that <code class="code-voice">dataSource</code> may be <code class="code-voice">nil</code>, and so <code class="code-voice">dataSource</code> has a question mark after its name to indicate that <code class="code-voice">increment(forCount:)</code> should be called only if <code class="code-voice">dataSource</code> isn’t <code class="code-voice">nil</code>. Second, even if <code class="code-voice">dataSource</code> <em>does</em> exist, there is no guarantee that it implements <code class="code-voice">increment(forCount:)</code>, because it is an optional requirement. Here, the possibility that <code class="code-voice">increment(forCount:)</code> might not be implemented is also handled by optional chaining. The call to <code class="code-voice">increment(forCount:)</code> happens only if <code class="code-voice">increment(forCount:)</code> exists—that is, if it isn’t <code class="code-voice">nil</code>. This is why <code class="code-voice">increment(forCount:)</code> is also written with a question mark after its name.
+  Note that <em>two</em> levels of optional chaining are at play here. First, it’s possible that <code class="code-voice">dataSource</code> may be <code class="code-voice">nil</code>, and so <code class="code-voice">dataSource</code> has a question mark after its name to indicate that <code class="code-voice">increment(forCount:)</code> should be called only if <code class="code-voice">dataSource</code> isn’t <code class="code-voice">nil</code>. Second, even if <code class="code-voice">dataSource</code> <em>does</em> exist, there’s no guarantee that it implements <code class="code-voice">increment(forCount:)</code>, because it’s an optional requirement. Here, the possibility that <code class="code-voice">increment(forCount:)</code> might not be implemented is also handled by optional chaining. The call to <code class="code-voice">increment(forCount:)</code> happens only if <code class="code-voice">increment(forCount:)</code> exists—that is, if it isn’t <code class="code-voice">nil</code>. This is why <code class="code-voice">increment(forCount:)</code> is also written with a question mark after its name.
 <br><span class="jpstr">
 ここで<em>２つの</em>階層のオプショナル連鎖が働いていることに注意してください。第１に、<code class="code-voice">dataSource</code>が<code class="code-voice">nil</code>かもしれない可能性があります、なので、<code class="code-voice">dataSource</code>はその名前の後に疑問符を持ち、<code class="code-voice">dataSource</code>が<code class="code-voice">nil</code>でない場合にのみ<code class="code-voice">increment(forCount:)</code>が呼ばれるべきであるのを示します。第２に、たとえ<code class="code-voice">dataSource</code>が<em>存在する</em>としても、それが<code class="code-voice">increment(forCount:)</code>を実装する保証はありません、それがオプショナルの要件であるからです。ここでは、<code class="code-voice">increment(forCount:)</code>が実装されないかもしれないという可能性もまたオプショナル連鎖によって取り扱われます。<code class="code-voice">increment(forCount:)</code>への呼び出しは、<code class="code-voice">increment(forCount:)</code>が存在する場合にのみ起こります ― すなわち、それが<code class="code-voice">nil</code>でない場合。これが、<code class="code-voice">increment(forCount:)</code>もまたその名前の後に疑問符を書かれる理由です。
 </span><!--end_jpstr-->
@@ -2045,12 +2045,12 @@
 <code class="code-voice">increment(forCount:)</code>呼び出しの後、それが返すオプショナルの<code class="code-voice">Int</code>は、オプショナル束縛を使って、<code class="code-voice">amount</code>と呼ばれる定数へとアンラップされます。オプショナルの<code class="code-voice">Int</code>が値を含むならば ― すなわち、委任先とメソッドが両方とも存在する、そしてメソッドが値を返すならば ― アンラップされた<code class="code-voice">amount</code>が保存<code class="code-voice">count</code>プロパティへと加えられます、そして増加作業は完了です。
 </span><!--end_jpstr-->
 </p><p class="para">
-  If it is <em>not</em> possible to retrieve a value from the <code class="code-voice">increment(forCount:)</code> method—either because <code class="code-voice">dataSource</code> is nil, or because the data source does not implement <code class="code-voice">increment(forCount:)</code>—then the <code class="code-voice">increment()</code> method tries to retrieve a value from the data source’s <code class="code-voice">fixedIncrement</code> property instead. The <code class="code-voice">fixedIncrement</code> property is also an optional requirement, so its value is an optional <code class="code-voice">Int</code> value, even though <code class="code-voice">fixedIncrement</code> is defined as a nonoptional <code class="code-voice">Int</code> property as part of the <code class="code-voice">CounterDataSource</code> protocol definition.
+  If it’s <em>not</em> possible to retrieve a value from the <code class="code-voice">increment(forCount:)</code> method—either because <code class="code-voice">dataSource</code> is nil, or because the data source doesn’t implement <code class="code-voice">increment(forCount:)</code>—then the <code class="code-voice">increment()</code> method tries to retrieve a value from the data source’s <code class="code-voice">fixedIncrement</code> property instead. The <code class="code-voice">fixedIncrement</code> property is also an optional requirement, so its value is an optional <code class="code-voice">Int</code> value, even though <code class="code-voice">fixedIncrement</code> is defined as a nonoptional <code class="code-voice">Int</code> property as part of the <code class="code-voice">CounterDataSource</code> protocol definition.
 <br><span class="jpstr">
 値を<code class="code-voice">increment(forCount:)</code>メソッドから取り出すことが可能で<em>ない</em>ならば ― <code class="code-voice">dataSource</code>がnilであるから、またはデータ・ソースが<code class="code-voice">increment(forCount:)</code>を実装しないからのどちらでも ― その時<code class="code-voice">increment()</code>メソッドはその代わりに値をデータ・ソースの<code class="code-voice">fixedIncrement</code>プロパティから取り出そうとします。<code class="code-voice">fixedIncrement</code>プロパティもまたオプショナルの要件です、なのでその値はオプショナルの<code class="code-voice">Int</code>値です、たとえ<code class="code-voice">fixedIncrement</code>が<code class="code-voice">CounterDataSource</code>プロトコル定義の部分では非オプショナルの<code class="code-voice">Int</code>プロパティであると定義されるとしてもです。
 </span><!--end_jpstr-->
 </p><p class="para">
-  Here’s a simple <code class="code-voice">CounterDataSource</code> implementation where the data source returns a constant value of <code class="code-voice">3</code> every time it is queried. It does this by implementing the optional <code class="code-voice">fixedIncrement</code> property requirement:
+  Here’s a simple <code class="code-voice">CounterDataSource</code> implementation where the data source returns a constant value of <code class="code-voice">3</code> every time it’s queried. It does this by implementing the optional <code class="code-voice">fixedIncrement</code> property requirement:
 <br><span class="jpstr">
 ある単純な<code class="code-voice">CounterDataSource</code>実装がここにあります、そこにおいて、データ・ソースは<code class="code-voice">3</code>の定数値をそれが問い合わされるたびに返します。それは、オプショナルの<code class="code-voice">fixedIncrement</code>プロパティ要件を実装することによってこれをします：
 </span><!--end_jpstr-->
@@ -2211,7 +2211,7 @@
 あなたはプロトコル拡張を使うことで省略時の実装をそのプロトコルのどのメソッドまたは計算プロパティ要件に対しても提供できます。準拠している型がある必須のメソッドやプロパティのそれ自身の実装を提供する場合は、その実装が拡張によって提供されるものの代わりに使用されます。
 </span><!--end_jpstr-->
 </p><div class="note">
-  <a name="//apple_ref/doc/uid/TP40014097-CH25-NoLink_189"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-NoLink_188"></a>
   <aside class="aside">
     <p class="aside-title">Note
     <br><span class="jpstr">
@@ -2315,7 +2315,7 @@
       </div>
   </div>
 </section><div class="note">
-  <a name="//apple_ref/doc/uid/TP40014097-CH25-NoLink_190"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-NoLink_189"></a>
   <aside class="aside">
     <p class="aside-title">Note
     <br><span class="jpstr">
@@ -2349,7 +2349,7 @@
     <p class="copyright">Copyright &#x00a9; 2017 Apple Inc. All rights reserved. 
   <a class="link" href="http://www.apple.com/legal/terms/site.html" target="_blank" rel="external">Terms of Use</a> | 
   <a class="link" href="http://www.apple.com/privacy/" target="_blank" rel="external">Privacy Policy</a> | 
-  Updated: 2017-06-05
+  Updated: 2017-08-21
 </p>
   </section>
 </article>
