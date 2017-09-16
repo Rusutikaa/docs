@@ -6,8 +6,8 @@
   <link rel="stylesheet" type="text/css" href="../../../../Resources/1264/CSS/feedback-1.6.3.css" />
   <meta charset='utf-8'> 
 <meta id="j-version" name="j-version" content="" />
-<meta id="build" name="build" content="0c869c990fa765914a9edf9866da5f1b" />
-<meta id="document-version" name="document-version" content="10.0.10" />
+<meta id="build" name="build" content="73a86ab2241a413ce0c3e0e8d970ff25" />
+<meta id="document-version" name="document-version" content="10.0.12" />
 <meta id="book-assignments" name="book-assignments" content="{Type/Guide}, {Topic/Swift}" />
 <meta scheme="apple_ref" id="identifier" name="identifier" content="//apple_ref/doc/uid/TP40014097" />
 <meta id="chapterId" name="chapterId" content="TP40014097-CH19">
@@ -15,7 +15,7 @@
 <meta id="book-resource-type" name="book-resource-type" content="Guide" />
 <meta id="book-root" name="book-root" content="./" />
 <meta id="book-json" name="book-json" content="book.json">
-<meta id="date" name="date" content="2017-08-21" />
+<meta id="date" name="date" content="2017-09-12" />
 <meta id="description" name="description" content="The definitive guide to Swift, Apple’s programming language for building iOS, macOS, watchOS, and tvOS apps." />
 <meta id="IndexTitle" name="IndexTitle" content="" />
 <meta id="resources-uri" name="resources-uri" content="../../../../Resources/1264">
@@ -446,7 +446,7 @@
   <p class="para">
   Here’s an example of a deinitializer in action. This example defines two new types, <code class="code-voice">Bank</code> and <code class="code-voice">Player</code>, for a simple game. The <code class="code-voice">Bank</code> class manages a made-up currency, which can never have more than 10,000 coins in circulation. There can only ever be one <code class="code-voice">Bank</code> in the game, and so the <code class="code-voice">Bank</code> is implemented as a class with type properties and methods to store and manage its current state:
 <br><span class="jpstr">
-デイニシャライザの動作の例は、ここにあります。この例は、２つの新しい型<code class="code-voice">Bank</code>と<code class="code-voice">Player</code>を、単純なゲームのために定義します。<code class="code-voice">Bank</code>クラスは、ある架空の通貨を管理します、そしてそれは、流通する10,000個以上のコインを決して持つことができません１つの<code class="code-voice">Bank</code>だけがゲームにおいて存在することができます、なので<code class="code-voice">Bank</code>は型プロパティと型メソッドをもつクラスとして実装されて、その現在の状態を保存および管理します：
+デイニシャライザの動作の例は、ここにあります。この例は、２つの新しい型<code class="code-voice">Bank</code>と<code class="code-voice">Player</code>を、単純なゲームのために定義します。<code class="code-voice">Bank</code>クラスは、ある架空の通貨を管理します、そしてそれは、流通する10,000個以上のコインを決して持つことができません１つの<code class="code-voice">Bank</code>だけがゲームにおいて存在することができます、なので<code class="code-voice">Bank</code>は型プロパティと型メソッドをもつクラスとして実装されて、その現在の状態を格納および管理します：
 </span><!--end_jpstr-->
 </p><section class="code-listing">
   
@@ -455,12 +455,12 @@
         <ol class="code-lines">
             <li><code class="code-voice"><span class="kt">class</span> <span class="vc">Bank</span> {</code></li>
             <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">coinsInBank</span> = <span class="m">10_000</span></code></li>
-            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">func</span> <span class="vc">distribute</span>(<span class="vc">coins</span> <span class="vc">numberOfCoinsRequested</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span>) -&gt; <span class="n"><!-- a href="" -->Int<!-- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">func</span> <span class="vc">distribute</span>(<span class="vc">coins</span> <span class="vc">numberOfCoinsRequested</span>: <span class="n"><! -- a href="" -->Int<! -- /a --></span>) -&gt; <span class="n"><! -- a href="" -->Int<! -- /a --></span> {</code></li>
             <li><code class="code-voice">        <span class="kt">let</span> <span class="vc">numberOfCoinsToVend</span> = <span class="vc">min</span>(<span class="vc">numberOfCoinsRequested</span>, <span class="vc">coinsInBank</span>)</code></li>
             <li><code class="code-voice">        <span class="vc">coinsInBank</span> -= <span class="vc">numberOfCoinsToVend</span></code></li>
             <li><code class="code-voice">        <span class="kt">return</span> <span class="vc">numberOfCoinsToVend</span></code></li>
             <li><code class="code-voice">    }</code></li>
-            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">func</span> <span class="vc">receive</span>(<span class="vc">coins</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span>) {</code></li>
+            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">func</span> <span class="vc">receive</span>(<span class="vc">coins</span>: <span class="n"><! -- a href="" -->Int<! -- /a --></span>) {</code></li>
             <li><code class="code-voice">        <span class="vc">coinsInBank</span> += <span class="vc">coins</span></code></li>
             <li><code class="code-voice">    }</code></li>
             <li><code class="code-voice">}</code></li>
@@ -493,11 +493,11 @@
       <div class="Swift">
         <ol class="code-lines">
             <li><code class="code-voice"><span class="kt">class</span> <span class="vc">Player</span> {</code></li>
-            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">coinsInPurse</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span></code></li>
-            <li><code class="code-voice">    <span class="kt">init</span>(<span class="vc">coins</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span>) {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">coinsInPurse</span>: <span class="n"><! -- a href="" -->Int<! -- /a --></span></code></li>
+            <li><code class="code-voice">    <span class="kt">init</span>(<span class="vc">coins</span>: <span class="n"><! -- a href="" -->Int<! -- /a --></span>) {</code></li>
             <li><code class="code-voice">        <span class="vc">coinsInPurse</span> = <span class="vc">Bank</span>.<span class="vc">distribute</span>(<span class="vc">coins</span>: <span class="vc">coins</span>)</code></li>
             <li><code class="code-voice">    }</code></li>
-            <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">win</span>(<span class="vc">coins</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span>) {</code></li>
+            <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">win</span>(<span class="vc">coins</span>: <span class="n"><! -- a href="" -->Int<! -- /a --></span>) {</code></li>
             <li><code class="code-voice">        <span class="vc">coinsInPurse</span> += <span class="vc">Bank</span>.<span class="vc">distribute</span>(<span class="vc">coins</span>: <span class="vc">coins</span>)</code></li>
             <li><code class="code-voice">    }</code></li>
             <li><code class="code-voice">    <span class="kt">deinit</span> {</code></li>
@@ -522,7 +522,7 @@
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">playerOne</span>: <span class="n"><!-- a href="" -->Player<!-- /a --></span>? = <span class="vc">Player</span>(<span class="vc">coins</span>: <span class="m">100</span>)</code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">playerOne</span>: <span class="n"><! -- a href="" -->Player<! -- /a --></span>? = <span class="vc">Player</span>(<span class="vc">coins</span>: <span class="m">100</span>)</code></li>
             <li><code class="code-voice"><span class="vc">print</span>(<span class="s">&quot;A new player has joined the game with </span>\(<span class="vc">playerOne</span>!.<span class="vc">coinsInPurse</span>)<span class="s"> coins&quot;</span>)</code></li>
             <li><code class="code-voice"><span class="c">// Prints &quot;A new player has joined the game with 100 coins&quot;&nbsp;<span class="jpstr">（「新しいプレーヤーが、100のコインを持ってゲームに参加しました」を出力します）</span><!--end_jpstr-->
 </span></code></li>
@@ -535,7 +535,7 @@
 </section><p class="para">
   A new <code class="code-voice">Player</code> instance is created, with a request for 100 coins if they are available. This <code class="code-voice">Player</code> instance is stored in an optional <code class="code-voice">Player</code> variable called <code class="code-voice">playerOne</code>. An optional variable is used here, because players can leave the game at any point. The optional lets you track whether there is currently a player in the game.
 <br><span class="jpstr">
-新しい<code class="code-voice">Player</code>インスタンスが、それが可能ならば100のコインを要請して作成されます。この<code class="code-voice">Player</code>インスタンスは、<code class="code-voice">playerOne</code>と呼ばれるオプショナルの<code class="code-voice">Player</code>変数に保存されます。オプショナルの変数がここで使われます、なぜなら、プレーヤーはどの時点でもゲームから離れることができるからです。オプショナルは、プレーヤーが現在ゲーム中かどうかあなたに追跡させます。
+新しい<code class="code-voice">Player</code>インスタンスが、それが可能ならば100のコインを要請して作成されます。この<code class="code-voice">Player</code>インスタンスは、<code class="code-voice">playerOne</code>と呼ばれるオプショナルの<code class="code-voice">Player</code>変数に格納されます。オプショナルの変数がここで使われます、なぜなら、プレーヤーはどの時点でもゲームから離れることができるからです。オプショナルは、プレーヤーが現在ゲーム中かどうかあなたに追跡させます。
 </span><!--end_jpstr-->
 </p><p class="para">
   Because <code class="code-voice">playerOne</code> is an optional, it is qualified with an exclamation mark (<code class="code-voice">!</code>) when its <code class="code-voice">coinsInPurse</code> property is accessed to print its default number of coins, and whenever its <code class="code-voice">win(coins:)</code> method is called:
@@ -600,7 +600,7 @@
     <p class="copyright">Copyright &#x00a9; 2017 Apple Inc. All rights reserved. 
   <a class="link" href="http://www.apple.com/legal/terms/site.html" target="_blank" rel="external">Terms of Use</a> | 
   <a class="link" href="http://www.apple.com/privacy/" target="_blank" rel="external">Privacy Policy</a> | 
-  Updated: 2017-08-21
+  Updated: 2017-09-12
 </p>
   </section>
 </article>
