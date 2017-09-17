@@ -6,8 +6,8 @@
   <link rel="stylesheet" type="text/css" href="../../../../Resources/1264/CSS/feedback-1.6.3.css" />
   <meta charset='utf-8'> 
 <meta id="j-version" name="j-version" content="" />
-<meta id="build" name="build" content="0c869c990fa765914a9edf9866da5f1b" />
-<meta id="document-version" name="document-version" content="9.0.7" />
+<meta id="build" name="build" content="73a86ab2241a413ce0c3e0e8d970ff25" />
+<meta id="document-version" name="document-version" content="9.0.9" />
 <meta id="book-assignments" name="book-assignments" content="{Type/Guide}, {Topic/Swift}" />
 <meta scheme="apple_ref" id="identifier" name="identifier" content="//apple_ref/doc/uid/TP40014216" />
 <meta id="chapterId" name="chapterId" content="TP40014216-CH8">
@@ -15,7 +15,7 @@
 <meta id="book-resource-type" name="book-resource-type" content="Guide" />
 <meta id="book-root" name="book-root" content="./" />
 <meta id="book-json" name="book-json" content="book.json">
-<meta id="date" name="date" content="2017-08-21" />
+<meta id="date" name="date" content="2017-09-12" />
 <meta id="description" name="description" content="Describes various aspects of Swift&#39;s compatibility with the Objective-C language and Cocoa/Cocoa Touch frameworks." />
 <meta id="IndexTitle" name="IndexTitle" content="" />
 <meta id="resources-uri" name="resources-uri" content="../../../../Resources/1264">
@@ -475,9 +475,9 @@ CとObjective-Cソース・ファイルにおいて定義されるグローバ�
 </span><!--end_jpstr-->
 </h3>
   <p class="para">
-  In Objective-C, constants are often used to provide a list of possible values for properties and method parameters. You can annotate an Objective-C <code class="code-voice">typedef</code> declaration with the <code class="code-voice">NS_TYPED_ENUM</code> or <code class="code-voice">NS_TYPED_EXTENSIBLE_ENUM</code> macro to have constants of that type imported by Swift as members of a common type. Use <code class="code-voice">NS_TYPED_ENUM</code> for sets of values that can’t logically have additional values added by code in adopting modules. Use <code class="code-voice">NS_TYPED_EXTENSIBLE_ENUM</code> for sets of values which may be expanded in a Swift extension.
+  In Objective-C, constants are often used to provide a list of possible values for properties and method parameters. You can annotate an Objective-C <code class="code-voice">typedef</code> declaration with the <code class="code-voice">NS_TYPED_ENUM</code> or <code class="code-voice">NS_TYPED_EXTENSIBLE_ENUM</code> macro to have constants of that type imported by Swift as members of a common type. Use <code class="code-voice">NS_TYPED_ENUM</code> for sets of values that can’t logically have values added in a Swift extension. Use <code class="code-voice">NS_TYPED_EXTENSIBLE_ENUM</code> for sets of values that can be expanded in an extension.
 <br><span class="jpstr">
-Objective-Cでは、プロパティおよびメソッドパラメータに対する候補の値のリストを提供するためにしばしば定数が使われます。あなたは、Objective-Cの<code class="code-voice">typedef</code>宣言に<code class="code-voice">NS_TYPED_ENUM</code>または<code class="code-voice">NS_TYPED_EXTENSIBLE_ENUM</code>マクロで注釈をつけることで、その型の定数をスウィフトによって普通の型のメンバとしてインポートされるようにします。採用しているモジュールの中のコードによって追加的な値を加えられることが論理的に不可能な値の集合に対して、<code class="code-voice">NS_TYPED_ENUM</code>を使ってください。あるスウィフト拡張において拡張されるかもしれない値の集合に対して、<code class="code-voice">NS_TYPED_EXTENSIBLE_ENUM</code>を使ってください。
+Objective-Cでは、プロパティおよびメソッドパラメータに対する候補の値のリストを提供するためにしばしば定数が使われます。あなたは、Objective-Cの<code class="code-voice">typedef</code>宣言に<code class="code-voice">NS_TYPED_ENUM</code>または<code class="code-voice">NS_TYPED_EXTENSIBLE_ENUM</code>マクロで注釈をつけることで、その型の定数をスウィフトによって普通の型のメンバとしてインポートされるようにします。<code class="code-voice">NS_TYPED_ENUM</code>を、一揃いの値で論理的に値を追加することがスウィフト拡張において不可能なものに対して使ってください。<code class="code-voice">NS_TYPED_EXTENSIBLE_ENUM</code>を、一揃いの値で拡張において拡張可能なものに使ってください。
 </span><!--end_jpstr-->
 </p><p class="para">
   Constants that represent a fixed set of possible values can be imported as a structure by adding the <code class="code-voice">NS_TYPED_ENUM</code> macro. For example, consider the following Objective-C declarations for integer constants of type <code class="code-voice">TrafficLightColor</code>:
@@ -489,7 +489,8 @@ Objective-Cでは、プロパティおよびメソッドパラメータに対す
   <div class="code-sample">
       <div class="Objective-C">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="c1">// Store the three traffic light color options as 0, 1, and 2.</span>
+            <li><code class="code-voice"><span class="c1">// Store the three traffic light color options as 0, 1, and 2.&nbsp;<span class="jpstr">（３つの交通信号色選択肢を0、1、および2として格納する。）</span><!--end_jpstr-->
+</span>
 </code></li>
             <li><code class="code-voice"><span class="k">typedef</span> <span class="kt">long</span> <span class="n">TrafficLightColor</span> <span class="n">NS_TYPED_ENUM</span><span class="p">;</span>
 </code></li>
@@ -514,15 +515,15 @@ Objective-Cでは、プロパティおよびメソッドパラメータに対す
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="kt">struct</span> <span class="vc">TrafficLightColor</span>: <span class="n"><!-- a href="" -->RawRepresentable<!-- /a --></span>, <span class="n"><!-- a href="" -->Equatable<!-- /a --></span>, <span class="n"><!-- a href="" -->Hashable<!-- /a --></span> {</code></li>
-            <li><code class="code-voice">    <span class="kt">typealias</span> <span class="vc">RawValue</span> = <span class="n"><!-- a href="" -->Int<!-- /a --></span></code></li>
+            <li><code class="code-voice"><span class="kt">struct</span> <span class="vc">TrafficLightColor</span>: <span class="n"><! -- a href="" -->RawRepresentable<! -- /a --></span>, <span class="n"><! -- a href="" -->Equatable<! -- /a --></span>, <span class="n"><! -- a href="" -->Hashable<! -- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">typealias</span> <span class="vc">RawValue</span> = <span class="n"><! -- a href="" -->Int<! -- /a --></span></code></li>
             <li><code class="code-voice">    </code></li>
-            <li><code class="code-voice">    <span class="kt">init</span>(<span class="vc">rawValue</span>: <span class="n"><!-- a href="" -->RawValue<!-- /a --></span>)</code></li>
-            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">rawValue</span>: <span class="n"><!-- a href="" -->RawValue<!-- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">init</span>(<span class="vc">rawValue</span>: <span class="n"><! -- a href="" -->RawValue<! -- /a --></span>)</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">rawValue</span>: <span class="n"><! -- a href="" -->RawValue<! -- /a --></span> { <span class="vc">get</span> }</code></li>
             <li><code class="code-voice">    </code></li>
-            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">red</span>: <span class="n"><!-- a href="" -->TrafficLightColor<!-- /a --></span> { <span class="vc">get</span> }</code></li>
-            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">yellow</span>: <span class="n"><!-- a href="" -->TrafficLightColor<!-- /a --></span> { <span class="vc">get</span> }</code></li>
-            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">green</span>: <span class="n"><!-- a href="" -->TrafficLightColor<!-- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">red</span>: <span class="n"><! -- a href="" -->TrafficLightColor<! -- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">yellow</span>: <span class="n"><! -- a href="" -->TrafficLightColor<! -- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">green</span>: <span class="n"><! -- a href="" -->TrafficLightColor<! -- /a --></span> { <span class="vc">get</span> }</code></li>
             <li><code class="code-voice">}</code></li>
         </ol>
       </div>
@@ -566,25 +567,25 @@ Objective-Cでは、プロパティおよびメソッドパラメータに対す
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="kt">struct</span> <span class="vc">TrafficLightCombo</span>: <span class="n"><!-- a href="" -->RawRepresentable<!-- /a --></span>, <span class="n"><!-- a href="" -->Equatable<!-- /a --></span>, <span class="n"><!-- a href="" -->Hashable<!-- /a --></span> {</code></li>
-            <li><code class="code-voice">    <span class="kt">typealias</span> <span class="vc">RawValue</span> = (<span class="n"><!-- a href="" -->TrafficLightColor<!-- /a --></span>, <span class="n"><!-- a href="" -->TrafficLightColor<!-- /a --></span>, <span class="n"><!-- a href="" -->TrafficLightColor<!-- /a --></span>)</code></li>
+            <li><code class="code-voice"><span class="kt">struct</span> <span class="vc">TrafficLightCombo</span>: <span class="n"><! -- a href="" -->RawRepresentable<! -- /a --></span>, <span class="n"><! -- a href="" -->Equatable<! -- /a --></span>, <span class="n"><! -- a href="" -->Hashable<! -- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">typealias</span> <span class="vc">RawValue</span> = (<span class="n"><! -- a href="" -->TrafficLightColor<! -- /a --></span>, <span class="n"><! -- a href="" -->TrafficLightColor<! -- /a --></span>, <span class="n"><! -- a href="" -->TrafficLightColor<! -- /a --></span>)</code></li>
             <li><code class="code-voice">    </code></li>
-            <li><code class="code-voice">    <span class="kt">init</span>(<span class="kt">_</span> <span class="vc">rawValue</span>: <span class="n"><!-- a href="" -->RawValue<!-- /a --></span>)</code></li>
-            <li><code class="code-voice">    <span class="kt">init</span>(<span class="vc">rawValue</span>: <span class="n"><!-- a href="" -->RawValue<!-- /a --></span>)</code></li>
-            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">rawValue</span>: <span class="n"><!-- a href="" -->RawValue<!-- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">init</span>(<span class="kt">_</span> <span class="vc">rawValue</span>: <span class="n"><! -- a href="" -->RawValue<! -- /a --></span>)</code></li>
+            <li><code class="code-voice">    <span class="kt">init</span>(<span class="vc">rawValue</span>: <span class="n"><! -- a href="" -->RawValue<! -- /a --></span>)</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">rawValue</span>: <span class="n"><! -- a href="" -->RawValue<! -- /a --></span> { <span class="vc">get</span> }</code></li>
             <li><code class="code-voice">    </code></li>
-            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">justRed</span>: <span class="n"><!-- a href="" -->TrafficLightCombo<!-- /a --></span> { <span class="vc">get</span> }</code></li>
-            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">justYellow</span>: <span class="n"><!-- a href="" -->TrafficLightCombo<!-- /a --></span> { <span class="vc">get</span> }</code></li>
-            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">justGreen</span>: <span class="n"><!-- a href="" -->TrafficLightCombo<!-- /a --></span> { <span class="vc">get</span> }</code></li>
-            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">redYellow</span>: <span class="n"><!-- a href="" -->TrafficLightCombo<!-- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">justRed</span>: <span class="n"><! -- a href="" -->TrafficLightCombo<! -- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">justYellow</span>: <span class="n"><! -- a href="" -->TrafficLightCombo<! -- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">justGreen</span>: <span class="n"><! -- a href="" -->TrafficLightCombo<! -- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">redYellow</span>: <span class="n"><! -- a href="" -->TrafficLightCombo<! -- /a --></span> { <span class="vc">get</span> }</code></li>
             <li><code class="code-voice">}</code></li>
         </ol>
       </div>
   </div>
 </section><p class="para">
-  Constants using this extensible form are imported with an additional initializer that lets callers omit the argument label when extending the set with new values.
+  Constants using this extensible form are imported with an additional initializer that lets you omit the argument label when extending the set with new values.
 <br><span class="jpstr">
-この拡張可能な形式を使う定数は、追加的なイニシャライザ、新しい値を持つ集合を拡張する時に呼出し側に引数ラベルを省略させるもの、でインポートされます。
+この拡張可能な形式を使う定数は、追加的なイニシャライザ、集合を新しい値で拡張する時に引数ラベルをあなたに省略させるもの、でインポートされます。
 </span><!--end_jpstr-->
 </p><p class="para">
   Constants imported from a type declaration marked with the <code class="code-voice">NS_TYPED_EXTENSIBLE_ENUM</code> macro can be extended in Swift code to add new values.
@@ -596,8 +597,8 @@ Objective-Cでは、プロパティおよびメソッドパラメータに対す
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="kt">extension</span> <span class="n"><!-- a href="" -->TrafficLightCombo<!-- /a --></span> {</code></li>
-            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">all</span>: <span class="n"><!-- a href="" -->TrafficLightCombo<!-- /a --></span> {</code></li>
+            <li><code class="code-voice"><span class="kt">extension</span> <span class="n"><! -- a href="" -->TrafficLightCombo<! -- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">all</span>: <span class="n"><! -- a href="" -->TrafficLightCombo<! -- /a --></span> {</code></li>
             <li><code class="code-voice">        <span class="kt">return</span> <span class="vc">TrafficLightCombo</span>((.<span class="vc">red</span>, .<span class="vc">yellow</span>, .<span class="vc">green</span>))</code></li>
             <li><code class="code-voice">    }</code></li>
             <li><code class="code-voice">}</code></li>
@@ -612,9 +613,9 @@ Objective-Cでは、プロパティおよびメソッドパラメータに対す
 注意
 </span><!--end_jpstr-->
 </p>
-    	<p class="para">You might encounter Objective-C code that uses the older <code class="code-voice">NS_STRING_ENUM</code> and <code class="code-voice">NS_EXTENSIBLE_STRING_ENUM</code> macros, which were used to group string constants. You should use <code class="code-voice">NS_TYPED_ENUM</code> and <code class="code-voice">NS_TYPED_EXTENSIBLE_ENUM</code> when grouping related constants of any type, including string constants.
+    	<p class="para">You might encounter Objective-C code that uses the older <code class="code-voice">NS_STRING_ENUM</code> and <code class="code-voice">NS_EXTENSIBLE_STRING_ENUM</code> macros, which were used to group string constants. Use <code class="code-voice">NS_TYPED_ENUM</code> and <code class="code-voice">NS_TYPED_EXTENSIBLE_ENUM</code> when grouping related constants of any type, including string constants.
     	<br><span class="jpstr">
-あなたは、より古い<code class="code-voice">NS_STRING_ENUM</code>および<code class="code-voice">NS_EXTENSIBLE_STRING_ENUM</code>マクロを使うObjective-Cコードに直面するかもしれません、それは文字列定数をグループにするために使われました。あなたは、<code class="code-voice">NS_TYPED_ENUM</code>および<code class="code-voice">NS_TYPED_EXTENSIBLE_ENUM</code>を、文字列定数を含む何らかの型の関連する定数をグループにする時に使うべきです。
+あなたは、より古い<code class="code-voice">NS_STRING_ENUM</code>および<code class="code-voice">NS_EXTENSIBLE_STRING_ENUM</code>マクロを使うObjective-Cコードに直面するかもしれません、それは文字列定数をグループにするために使われました。<code class="code-voice">NS_TYPED_ENUM</code>および<code class="code-voice">NS_TYPED_EXTENSIBLE_ENUM</code>を、文字列定数を含む、任意の型の関連する定数をグループにする場合に使ってください。
 </span><!--end_jpstr-->
 </p>
     
@@ -663,11 +664,11 @@ Objective-Cでは、プロパティおよびメソッドパラメータに対す
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">product</span>(<span class="kt">_</span> <span class="vc">multiplier</span>: <span class="n"><!-- a href="" -->Int32<!-- /a --></span>, <span class="kt">_</span> <span class="vc">multiplicand</span>: <span class="n"><!-- a href="" -->Int32<!-- /a --></span>) -&gt; <span class="n"><!-- a href="" -->Int32<!-- /a --></span></code></li>
-            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">quotient</span>(<span class="kt">_</span> <span class="vc">dividend</span>: <span class="n"><!-- a href="" -->Int32<!-- /a --></span>, <span class="kt">_</span> <span class="vc">divisor</span>: <span class="n"><!-- a href="" -->Int32<!-- /a --></span>, <span class="kt">_</span> <span class="vc">remainder</span>: <span class="n"><!-- a href="" -->UnsafeMutablePointer<!-- /a --></span>&lt;<span class="n"><!-- a href="" -->Int32<!-- /a --></span>&gt;) -&gt; <span class="n"><!-- a href="" -->Int32<!-- /a --></span></code></li>
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">product</span>(<span class="kt">_</span> <span class="vc">multiplier</span>: <span class="n"><! -- a href="" -->Int32<! -- /a --></span>, <span class="kt">_</span> <span class="vc">multiplicand</span>: <span class="n"><! -- a href="" -->Int32<! -- /a --></span>) -&gt; <span class="n"><! -- a href="" -->Int32<! -- /a --></span></code></li>
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">quotient</span>(<span class="kt">_</span> <span class="vc">dividend</span>: <span class="n"><! -- a href="" -->Int32<! -- /a --></span>, <span class="kt">_</span> <span class="vc">divisor</span>: <span class="n"><! -- a href="" -->Int32<! -- /a --></span>, <span class="kt">_</span> <span class="vc">remainder</span>: <span class="n"><! -- a href="" -->UnsafeMutablePointer<! -- /a --></span>&lt;<span class="n"><! -- a href="" -->Int32<! -- /a --></span>&gt;) -&gt; <span class="n"><! -- a href="" -->Int32<! -- /a --></span></code></li>
             <li><code class="code-voice"> </code></li>
-            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">createPoint2D</span>(<span class="kt">_</span> <span class="vc">x</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span>, <span class="kt">_</span> <span class="vc">y</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span>) -&gt; <span class="n"><!-- a href="" -->Point2D<!-- /a --></span></code></li>
-            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">distance</span>(<span class="kt">_</span> <span class="vc">from</span>: <span class="n"><!-- a href="" -->Point2D<!-- /a --></span>, <span class="kt">_</span> <span class="vc">to</span>: <span class="n"><!-- a href="" -->Point2D<!-- /a --></span>) -&gt; <span class="n"><!-- a href="" -->Float<!-- /a --></span></code></li>
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">createPoint2D</span>(<span class="kt">_</span> <span class="vc">x</span>: <span class="n"><! -- a href="" -->Float<! -- /a --></span>, <span class="kt">_</span> <span class="vc">y</span>: <span class="n"><! -- a href="" -->Float<! -- /a --></span>) -&gt; <span class="n"><! -- a href="" -->Point2D<! -- /a --></span></code></li>
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">distance</span>(<span class="kt">_</span> <span class="vc">from</span>: <span class="n"><! -- a href="" -->Point2D<! -- /a --></span>, <span class="kt">_</span> <span class="vc">to</span>: <span class="n"><! -- a href="" -->Point2D<! -- /a --></span>) -&gt; <span class="n"><! -- a href="" -->Float<! -- /a --></span></code></li>
         </ol>
       </div>
   </div>
@@ -693,9 +694,9 @@ Objective-Cでは、プロパティおよびメソッドパラメータに対す
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">swiftprintf</span>(<span class="vc">format</span>: <span class="n"><!-- a href="" -->String<!-- /a --></span>, <span class="vc">arguments</span>: <span class="n"><!-- a href="" -->CVarArg<!-- /a --></span>...) -&gt; <span class="n"><!-- a href="" -->String<!-- /a --></span>? {</code></li>
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">swiftprintf</span>(<span class="vc">format</span>: <span class="n"><! -- a href="" -->String<! -- /a --></span>, <span class="vc">arguments</span>: <span class="n"><! -- a href="" -->CVarArg<! -- /a --></span>...) -&gt; <span class="n"><! -- a href="" -->String<! -- /a --></span>? {</code></li>
             <li><code class="code-voice">    <span class="kt">return</span> <span class="vc">withVaList</span>(<span class="vc">arguments</span>) { <span class="vc">va_list</span> <span class="kt">in</span></code></li>
-            <li><code class="code-voice">        <span class="kt">var</span> <span class="vc">buffer</span>: <span class="n"><!-- a href="" -->UnsafeMutablePointer<!-- /a --></span>&lt;<span class="n"><!-- a href="" -->Int8<!-- /a --></span>&gt;? = <span class="kt">nil</span></code></li>
+            <li><code class="code-voice">        <span class="kt">var</span> <span class="vc">buffer</span>: <span class="n"><! -- a href="" -->UnsafeMutablePointer<! -- /a --></span>&lt;<span class="n"><! -- a href="" -->Int8<! -- /a --></span>&gt;? = <span class="kt">nil</span></code></li>
             <li><code class="code-voice">        <span class="kt">return</span> <span class="vc">format</span>.<span class="vc">withCString</span> { <span class="vc">cString</span> <span class="kt">in</span></code></li>
             <li><code class="code-voice">            <span class="kt">guard</span> <span class="vc">vasprintf</span>(&amp;<span class="vc">buffer</span>, <span class="vc">cString</span>, <span class="vc">va_list</span>) != <span class="m">0</span> <span class="kt">else</span> {</code></li>
             <li><code class="code-voice">                <span class="kt">return</span> <span class="kt">nil</span></code></li>
@@ -739,7 +740,7 @@ Objective-Cでは、プロパティおよびメソッドパラメータに対す
   <p class="para">
   Swift imports any C structure declared in a C header as a Swift structure. The imported Swift structure contains a stored property for each C structure field and an initializer whose parameters correspond to the stored properties. If all of the imported members have default values, Swift also provides a default initializer that takes no arguments. For example, given the following C structure:
 <br><span class="jpstr">
-スウィフトは、Cヘッダにおいて宣言されるどんなC構造体もスウィフト構造体としてインポートします。インポートされたスウィフト構造体は、各C構造体フィールドに対してひとつの保存プロパティを、そしてそれのパラメータが保存プロパティと対応するひとつのイニシャライザを含みます。インポートされたメンバのすべてが省略時の値を持つならば、スウィフトもまた引数を取らない省略時のイニシャライザをひとつ提供します。例えば、以下のC構造体を与えられて：
+スウィフトは、Cヘッダにおいて宣言されるどんなC構造体もスウィフト構造体としてインポートします。インポートされたスウィフト構造体は、各C構造体フィールドに対してひとつの格納プロパティを、そしてそれのパラメータが格納プロパティと対応するひとつのイニシャライザを含みます。インポートされたメンバのすべてが省略時の値を持つならば、スウィフトもまた引数を取らない省略時のイニシャライザをひとつ提供します。例えば、以下のC構造体を与えられて：
 </span><!--end_jpstr-->
 </p><section class="code-listing">
   
@@ -768,12 +769,12 @@ Objective-Cでは、プロパティおよびメソッドパラメータに対す
       <div class="Swift">
         <ol class="code-lines">
             <li><code class="code-voice"><span class="kt">public</span> <span class="kt">struct</span> <span class="vc">Color</span> {</code></li>
-            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">r</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span></code></li>
-            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">g</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span></code></li>
-            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">b</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span></code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">r</span>: <span class="n"><! -- a href="" -->Float<! -- /a --></span></code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">g</span>: <span class="n"><! -- a href="" -->Float<! -- /a --></span></code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">b</span>: <span class="n"><! -- a href="" -->Float<! -- /a --></span></code></li>
             <li><code class="code-voice">    </code></li>
             <li><code class="code-voice">    <span class="kt">init</span>()</code></li>
-            <li><code class="code-voice">    <span class="kt">init</span>(<span class="vc">r</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span>, <span class="vc">g</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span>, <span class="vc">b</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span>)</code></li>
+            <li><code class="code-voice">    <span class="kt">init</span>(<span class="vc">r</span>: <span class="n"><! -- a href="" -->Float<! -- /a --></span>, <span class="vc">g</span>: <span class="n"><! -- a href="" -->Float<! -- /a --></span>, <span class="vc">b</span>: <span class="n"><! -- a href="" -->Float<! -- /a --></span>)</code></li>
             <li><code class="code-voice">}</code></li>
         </ol>
       </div>
@@ -830,16 +831,16 @@ C API、例えばCore Foundationフレームワークは、C構造体の作成�
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="kt">extension</span> <span class="n"><!-- a href="" -->Color<!-- /a --></span> {</code></li>
-            <li><code class="code-voice">    <span class="kt">init</span>(<span class="vc">c</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span>, <span class="vc">m</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span>, <span class="vc">y</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span>, <span class="vc">k</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span>)</code></li>
+            <li><code class="code-voice"><span class="kt">extension</span> <span class="n"><! -- a href="" -->Color<! -- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">init</span>(<span class="vc">c</span>: <span class="n"><! -- a href="" -->Float<! -- /a --></span>, <span class="vc">m</span>: <span class="n"><! -- a href="" -->Float<! -- /a --></span>, <span class="vc">y</span>: <span class="n"><! -- a href="" -->Float<! -- /a --></span>, <span class="vc">k</span>: <span class="n"><! -- a href="" -->Float<! -- /a --></span>)</code></li>
             <li><code class="code-voice">    </code></li>
-            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">hue</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span> { <span class="vc">get</span> <span class="vc">set</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">hue</span>: <span class="n"><! -- a href="" -->Float<! -- /a --></span> { <span class="vc">get</span> <span class="vc">set</span> }</code></li>
             <li><code class="code-voice">    </code></li>
-            <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">darken</span>(<span class="vc">amount</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span>) -&gt; <span class="n"><!-- a href="" -->Color<!-- /a --></span></code></li>
+            <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">darken</span>(<span class="vc">amount</span>: <span class="n"><! -- a href="" -->Float<! -- /a --></span>) -&gt; <span class="n"><! -- a href="" -->Color<! -- /a --></span></code></li>
             <li><code class="code-voice">    </code></li>
-            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">bondiBlue</span>: <span class="n"><!-- a href="" -->Color<!-- /a --></span></code></li>
+            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">bondiBlue</span>: <span class="n"><! -- a href="" -->Color<! -- /a --></span></code></li>
             <li><code class="code-voice">    </code></li>
-            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">calibration</span>: <span class="n"><!-- a href="" -->Color<!-- /a --></span></code></li>
+            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">var</span> <span class="vc">calibration</span>: <span class="n"><! -- a href="" -->Color<! -- /a --></span></code></li>
             <li><code class="code-voice">}</code></li>
         </ol>
       </div>
@@ -915,7 +916,7 @@ C API、例えばCore Foundationフレームワークは、C構造体の作成�
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="kt">enum</span> <span class="vc">UITableViewCellStyle</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span> {</code></li>
+            <li><code class="code-voice"><span class="kt">enum</span> <span class="vc">UITableViewCellStyle</span>: <span class="n"><! -- a href="" -->Int<! -- /a --></span> {</code></li>
             <li><code class="code-voice">    <span class="kt">case</span> <span class="vc">`default`</span></code></li>
             <li><code class="code-voice">    <span class="kt">case</span> <span class="vc">value1</span></code></li>
             <li><code class="code-voice">    <span class="kt">case</span> <span class="vc">value2</span></code></li>
@@ -934,7 +935,7 @@ C API、例えばCore Foundationフレームワークは、C構造体の作成�
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">cellStyle</span>: <span class="n"><!-- a href="" -->UITableViewCellStyle<!-- /a --></span> = .<span class="kt">default</span></code></li>
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">cellStyle</span>: <span class="n"><! -- a href="" -->UITableViewCellStyle<! -- /a --></span> = .<span class="kt">default</span></code></li>
         </ol>
       </div>
   </div>
@@ -991,11 +992,11 @@ C API、例えばCore Foundationフレームワークは、C構造体の作成�
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="kt">struct</span> <span class="vc">MessageDisposition</span>: <span class="n"><!-- a href="" -->RawRepresentable<!-- /a --></span>, <span class="n"><!-- a href="" -->Equatable<!-- /a --></span> {}</code></li>
+            <li><code class="code-voice"><span class="kt">struct</span> <span class="vc">MessageDisposition</span>: <span class="n"><! -- a href="" -->RawRepresentable<! -- /a --></span>, <span class="n"><! -- a href="" -->Equatable<! -- /a --></span> {}</code></li>
             <li><code class="code-voice"> </code></li>
-            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">MessageDispositionUnread</span>: <span class="n"><!-- a href="" -->MessageDisposition<!-- /a --></span> { <span class="vc">get</span> }</code></li>
-            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">MessageDispositionRead</span>: <span class="n"><!-- a href="" -->MessageDisposition<!-- /a --></span> { <span class="vc">get</span> }</code></li>
-            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">MessageDispositionDeleted</span>: <span class="n"><!-- a href="" -->MessageDisposition<!-- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">MessageDispositionUnread</span>: <span class="n"><! -- a href="" -->MessageDisposition<! -- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">MessageDispositionRead</span>: <span class="n"><! -- a href="" -->MessageDisposition<! -- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">MessageDispositionDeleted</span>: <span class="n"><! -- a href="" -->MessageDisposition<! -- /a --></span> { <span class="vc">get</span> }</code></li>
         </ol>
       </div>
   </div>
@@ -1059,15 +1060,15 @@ C API、例えばCore Foundationフレームワークは、C構造体の作成�
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="kt">public</span> <span class="kt">struct</span> <span class="vc">UIViewAutoresizing</span> : <span class="n"><!-- a href="" -->OptionSet<!-- /a --></span> {</code></li>
-            <li><code class="code-voice">    <span class="kt">public</span> <span class="kt">init</span>(<span class="vc">rawValue</span>: <span class="n"><!-- a href="" -->UInt<!-- /a --></span>)</code></li>
+            <li><code class="code-voice"><span class="kt">public</span> <span class="kt">struct</span> <span class="vc">UIViewAutoresizing</span> : <span class="n"><! -- a href="" -->OptionSet<! -- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">public</span> <span class="kt">init</span>(<span class="vc">rawValue</span>: <span class="n"><! -- a href="" -->UInt<! -- /a --></span>)</code></li>
             <li><code class="code-voice">    </code></li>
-            <li><code class="code-voice">    <span class="kt">public</span> <span class="kt">static</span> <span class="kt">var</span> <span class="vc">flexibleLeftMargin</span>: <span class="n"><!-- a href="" -->UIViewAutoresizing<!-- /a --></span> { <span class="vc">get</span> }</code></li>
-            <li><code class="code-voice">    <span class="kt">public</span> <span class="kt">static</span> <span class="kt">var</span> <span class="vc">flexibleWidth</span>: <span class="n"><!-- a href="" -->UIViewAutoresizing<!-- /a --></span> { <span class="vc">get</span> }</code></li>
-            <li><code class="code-voice">    <span class="kt">public</span> <span class="kt">static</span> <span class="kt">var</span> <span class="vc">flexibleRightMargin</span>: <span class="n"><!-- a href="" -->UIViewAutoresizing<!-- /a --></span> { <span class="vc">get</span> }</code></li>
-            <li><code class="code-voice">    <span class="kt">public</span> <span class="kt">static</span> <span class="kt">var</span> <span class="vc">flexibleTopMargin</span>: <span class="n"><!-- a href="" -->UIViewAutoresizing<!-- /a --></span> { <span class="vc">get</span> }</code></li>
-            <li><code class="code-voice">    <span class="kt">public</span> <span class="kt">static</span> <span class="kt">var</span> <span class="vc">flexibleHeight</span>: <span class="n"><!-- a href="" -->UIViewAutoresizing<!-- /a --></span> { <span class="vc">get</span> }</code></li>
-            <li><code class="code-voice">    <span class="kt">public</span> <span class="kt">static</span> <span class="kt">var</span> <span class="vc">flexibleBottomMargin</span>: <span class="n"><!-- a href="" -->UIViewAutoresizing<!-- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">public</span> <span class="kt">static</span> <span class="kt">var</span> <span class="vc">flexibleLeftMargin</span>: <span class="n"><! -- a href="" -->UIViewAutoresizing<! -- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">public</span> <span class="kt">static</span> <span class="kt">var</span> <span class="vc">flexibleWidth</span>: <span class="n"><! -- a href="" -->UIViewAutoresizing<! -- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">public</span> <span class="kt">static</span> <span class="kt">var</span> <span class="vc">flexibleRightMargin</span>: <span class="n"><! -- a href="" -->UIViewAutoresizing<! -- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">public</span> <span class="kt">static</span> <span class="kt">var</span> <span class="vc">flexibleTopMargin</span>: <span class="n"><! -- a href="" -->UIViewAutoresizing<! -- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">public</span> <span class="kt">static</span> <span class="kt">var</span> <span class="vc">flexibleHeight</span>: <span class="n"><! -- a href="" -->UIViewAutoresizing<! -- /a --></span> { <span class="vc">get</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">public</span> <span class="kt">static</span> <span class="kt">var</span> <span class="vc">flexibleBottomMargin</span>: <span class="n"><! -- a href="" -->UIViewAutoresizing<! -- /a --></span> { <span class="vc">get</span> }</code></li>
             <li><code class="code-voice">}</code></li>
         </ol>
       </div>
@@ -1107,7 +1108,7 @@ Objective-Cでは、オプションセットは整数値のビットマスクで
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">options</span>: <span class="n"><!-- a href="" -->Data<!-- /a --></span>.<span class="n"><!-- a href="" -->Base64EncodingOptions<!-- /a --></span> = [</code></li>
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">options</span>: <span class="n"><! -- a href="" -->Data<! -- /a --></span>.<span class="n"><! -- a href="" -->Base64EncodingOptions<! -- /a --></span> = [</code></li>
             <li><code class="code-voice">    .<span class="vc">lineLength64Characters</span>,</code></li>
             <li><code class="code-voice">    .<span class="vc">endLineWithLineFeed</span></code></li>
             <li><code class="code-voice">]</code></li>
@@ -1156,11 +1157,11 @@ Objective-Cでは、オプションセットは整数値のビットマスクで
       <div class="Swift">
         <ol class="code-lines">
             <li><code class="code-voice"><span class="kt">struct</span> <span class="vc">SchroedingersCat</span> {</code></li>
-            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">isAlive</span>: <span class="n"><!-- a href="" -->Bool<!-- /a --></span> { <span class="vc">get</span> <span class="vc">set</span> }</code></li>
-            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">isDead</span>: <span class="n"><!-- a href="" -->Bool<!-- /a --></span> { <span class="vc">get</span> <span class="vc">set</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">isAlive</span>: <span class="n"><! -- a href="" -->Bool<! -- /a --></span> { <span class="vc">get</span> <span class="vc">set</span> }</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">isDead</span>: <span class="n"><! -- a href="" -->Bool<! -- /a --></span> { <span class="vc">get</span> <span class="vc">set</span> }</code></li>
             <li><code class="code-voice">    </code></li>
-            <li><code class="code-voice">    <span class="kt">init</span>(<span class="vc">isAlive</span>: <span class="n"><!-- a href="" -->Bool<!-- /a --></span>)</code></li>
-            <li><code class="code-voice">    <span class="kt">init</span>(<span class="vc">isDead</span>: <span class="n"><!-- a href="" -->Bool<!-- /a --></span>)</code></li>
+            <li><code class="code-voice">    <span class="kt">init</span>(<span class="vc">isAlive</span>: <span class="n"><! -- a href="" -->Bool<! -- /a --></span>)</code></li>
+            <li><code class="code-voice">    <span class="kt">init</span>(<span class="vc">isDead</span>: <span class="n"><! -- a href="" -->Bool<! -- /a --></span>)</code></li>
             <li><code class="code-voice">    </code></li>
             <li><code class="code-voice">    <span class="kt">init</span>()</code></li>
             <li><code class="code-voice">}</code></li>
@@ -1517,7 +1518,7 @@ Cポインタによって指し示される値の型がスウィフトによっ�
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">takesAPointer</span>(<span class="kt">_</span> <span class="vc">p</span>: <span class="n"><!-- a href="" -->UnsafePointer<!-- /a --></span>&lt;<span class="n"><!-- a href="" -->Float<!-- /a --></span>&gt;) {</code></li>
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">takesAPointer</span>(<span class="kt">_</span> <span class="vc">p</span>: <span class="n"><! -- a href="" -->UnsafePointer<! -- /a --></span>&lt;<span class="n"><! -- a href="" -->Float<! -- /a --></span>&gt;) {</code></li>
             <li><code class="code-voice">    <span class="c">// ...</span></code></li>
             <li><code class="code-voice">}</code></li>
         </ol>
@@ -1533,7 +1534,7 @@ Cポインタによって指し示される値の型がスウィフトによっ�
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">x</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span> = <span class="m">0.0</span></code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">x</span>: <span class="n"><! -- a href="" -->Float<! -- /a --></span> = <span class="m">0.0</span></code></li>
             <li><code class="code-voice"><span class="vc">takesAPointer</span>(&amp;<span class="vc">x</span>)</code></li>
             <li><code class="code-voice"><span class="vc">takesAPointer</span>([<span class="m">1.0</span>, <span class="m">2.0</span>, <span class="m">3.0</span>])</code></li>
         </ol>
@@ -1554,7 +1555,7 @@ Cポインタによって指し示される値の型がスウィフトによっ�
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">takesARawPointer</span>(<span class="kt">_</span> <span class="vc">p</span>: <span class="n"><!-- a href="" -->UnsafeRawPointer<!-- /a --></span>?)  {</code></li>
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">takesARawPointer</span>(<span class="kt">_</span> <span class="vc">p</span>: <span class="n"><! -- a href="" -->UnsafeRawPointer<! -- /a --></span>?)  {</code></li>
             <li><code class="code-voice">    <span class="c">// ...</span></code></li>
             <li><code class="code-voice">}</code></li>
         </ol>
@@ -1570,10 +1571,10 @@ Cポインタによって指し示される値の型がスウィフトによっ�
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">x</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span> = <span class="m">0.0</span>, <span class="vc">y</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span> = <span class="m">0</span></code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">x</span>: <span class="n"><! -- a href="" -->Float<! -- /a --></span> = <span class="m">0.0</span>, <span class="vc">y</span>: <span class="n"><! -- a href="" -->Int<! -- /a --></span> = <span class="m">0</span></code></li>
             <li><code class="code-voice"><span class="vc">takesARawPointer</span>(&amp;<span class="vc">x</span>)</code></li>
             <li><code class="code-voice"><span class="vc">takesARawPointer</span>(&amp;<span class="vc">y</span>)</code></li>
-            <li><code class="code-voice"><span class="vc">takesARawPointer</span>([<span class="m">1.0</span>, <span class="m">2.0</span>, <span class="m">3.0</span>] <span class="kt">as</span> [<span class="n"><!-- a href="" -->Float<!-- /a --></span>])</code></li>
+            <li><code class="code-voice"><span class="vc">takesARawPointer</span>([<span class="m">1.0</span>, <span class="m">2.0</span>, <span class="m">3.0</span>] <span class="kt">as</span> [<span class="n"><! -- a href="" -->Float<! -- /a --></span>])</code></li>
             <li><code class="code-voice"><span class="kt">let</span> <span class="vc">intArray</span> = [<span class="m">1</span>, <span class="m">2</span>, <span class="m">3</span>]</code></li>
             <li><code class="code-voice"><span class="vc">takesARawPointer</span>(<span class="vc">intArray</span>)</code></li>
         </ol>
@@ -1623,7 +1624,7 @@ Cポインタによって指し示される値の型がスウィフトによっ�
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">takesAMutablePointer</span>(<span class="kt">_</span> <span class="vc">p</span>: <span class="n"><!-- a href="" -->UnsafeMutablePointer<!-- /a --></span>&lt;<span class="n"><!-- a href="" -->Float<!-- /a --></span>&gt;) {</code></li>
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">takesAMutablePointer</span>(<span class="kt">_</span> <span class="vc">p</span>: <span class="n"><! -- a href="" -->UnsafeMutablePointer<! -- /a --></span>&lt;<span class="n"><! -- a href="" -->Float<! -- /a --></span>&gt;) {</code></li>
             <li><code class="code-voice">    <span class="c">// ...</span></code></li>
             <li><code class="code-voice">}</code></li>
         </ol>
@@ -1639,8 +1640,8 @@ Cポインタによって指し示される値の型がスウィフトによっ�
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">x</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span> = <span class="m">0.0</span></code></li>
-            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">a</span>: [<span class="n"><!-- a href="" -->Float<!-- /a --></span>] = [<span class="m">1.0</span>, <span class="m">2.0</span>, <span class="m">3.0</span>]</code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">x</span>: <span class="n"><! -- a href="" -->Float<! -- /a --></span> = <span class="m">0.0</span></code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">a</span>: [<span class="n"><! -- a href="" -->Float<! -- /a --></span>] = [<span class="m">1.0</span>, <span class="m">2.0</span>, <span class="m">3.0</span>]</code></li>
             <li><code class="code-voice"><span class="vc">takesAMutablePointer</span>(&amp;<span class="vc">x</span>)</code></li>
             <li><code class="code-voice"><span class="vc">takesAMutablePointer</span>(&amp;<span class="vc">a</span>)</code></li>
         </ol>
@@ -1661,7 +1662,7 @@ Cポインタによって指し示される値の型がスウィフトによっ�
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">takesAMutableRawPointer</span>(<span class="kt">_</span> <span class="vc">p</span>: <span class="n"><!-- a href="" -->UnsafeMutableRawPointer<!-- /a --></span>?)  {</code></li>
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">takesAMutableRawPointer</span>(<span class="kt">_</span> <span class="vc">p</span>: <span class="n"><! -- a href="" -->UnsafeMutableRawPointer<! -- /a --></span>?)  {</code></li>
             <li><code class="code-voice">    <span class="c">// ...</span></code></li>
             <li><code class="code-voice">}</code></li>
         </ol>
@@ -1677,8 +1678,8 @@ Cポインタによって指し示される値の型がスウィフトによっ�
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">x</span>: <span class="n"><!-- a href="" -->Float<!-- /a --></span> = <span class="m">0.0</span>, <span class="vc">y</span>: <span class="n"><!-- a href="" -->Int<!-- /a --></span> = <span class="m">0</span></code></li>
-            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">a</span>: [<span class="n"><!-- a href="" -->Float<!-- /a --></span>] = [<span class="m">1.0</span>, <span class="m">2.0</span>, <span class="m">3.0</span>], <span class="vc">b</span>: [<span class="n"><!-- a href="" -->Int<!-- /a --></span>] = [<span class="m">1</span>, <span class="m">2</span>, <span class="m">3</span>]</code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">x</span>: <span class="n"><! -- a href="" -->Float<! -- /a --></span> = <span class="m">0.0</span>, <span class="vc">y</span>: <span class="n"><! -- a href="" -->Int<! -- /a --></span> = <span class="m">0</span></code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">a</span>: [<span class="n"><! -- a href="" -->Float<! -- /a --></span>] = [<span class="m">1.0</span>, <span class="m">2.0</span>, <span class="m">3.0</span>], <span class="vc">b</span>: [<span class="n"><! -- a href="" -->Int<! -- /a --></span>] = [<span class="m">1</span>, <span class="m">2</span>, <span class="m">3</span>]</code></li>
             <li><code class="code-voice"><span class="vc">takesAMutableRawPointer</span>(&amp;<span class="vc">x</span>)</code></li>
             <li><code class="code-voice"><span class="vc">takesAMutableRawPointer</span>(&amp;<span class="vc">y</span>)</code></li>
             <li><code class="code-voice"><span class="vc">takesAMutableRawPointer</span>(&amp;<span class="vc">a</span>)</code></li>
@@ -1729,7 +1730,7 @@ Cポインタによって指し示される値の型がスウィフトによっ�
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">takesAnAutoreleasingPointer</span>(<span class="kt">_</span> <span class="vc">p</span>: <span class="n"><!-- a href="" -->AutoreleasingUnsafeMutablePointer<!-- /a --></span>&lt;<span class="n"><!-- a href="" -->NSDate<!-- /a --></span>?&gt;) {</code></li>
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">takesAnAutoreleasingPointer</span>(<span class="kt">_</span> <span class="vc">p</span>: <span class="n"><! -- a href="" -->AutoreleasingUnsafeMutablePointer<! -- /a --></span>&lt;<span class="n"><! -- a href="" -->NSDate<! -- /a --></span>?&gt;) {</code></li>
             <li><code class="code-voice">    <span class="c">// ...</span></code></li>
             <li><code class="code-voice">}</code></li>
         </ol>
@@ -1745,7 +1746,7 @@ Cポインタによって指し示される値の型がスウィフトによっ�
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">x</span>: <span class="n"><!-- a href="" -->NSDate<!-- /a --></span>? = <span class="kt">nil</span></code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">x</span>: <span class="n"><! -- a href="" -->NSDate<! -- /a --></span>? = <span class="kt">nil</span></code></li>
             <li><code class="code-voice"><span class="vc">takesAnAutoreleasingPointer</span>(&amp;<span class="vc">x</span>)</code></li>
         </ol>
       </div>
@@ -1779,7 +1780,7 @@ C関数ポインターは、スウィフトにC関数呼出規約を持つクロ
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">customCopyDescription</span>(<span class="kt">_</span> <span class="vc">p</span>: <span class="n"><!-- a href="" -->UnsafeRawPointer<!-- /a --></span>?) -&gt; <span class="n"><!-- a href="" -->Unmanaged<!-- /a --></span>&lt;<span class="n"><!-- a href="" -->CFString<!-- /a --></span>&gt;? {</code></li>
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">customCopyDescription</span>(<span class="kt">_</span> <span class="vc">p</span>: <span class="n"><! -- a href="" -->UnsafeRawPointer<! -- /a --></span>?) -&gt; <span class="n"><! -- a href="" -->Unmanaged<! -- /a --></span>&lt;<span class="n"><! -- a href="" -->CFString<! -- /a --></span>&gt;? {</code></li>
             <li><code class="code-voice">    <span class="c">// return an Unmanaged&lt;CFString&gt;? value</span></code></li>
             <li><code class="code-voice">}</code></li>
             <li><code class="code-voice"> </code></li>
@@ -1788,7 +1789,7 @@ C関数ポインターは、スウィフトにC関数呼出規約を持つクロ
             <li><code class="code-voice">    <span class="vc">retain</span>: <span class="kt">nil</span>,</code></li>
             <li><code class="code-voice">    <span class="vc">release</span>: <span class="kt">nil</span>,</code></li>
             <li><code class="code-voice">    <span class="vc">copyDescription</span>: <span class="vc">customCopyDescription</span>,</code></li>
-            <li><code class="code-voice">    <span class="vc">equal</span>: { (<span class="vc">p1</span>, <span class="vc">p2</span>) -&gt; <span class="n"><!-- a href="" -->DarwinBoolean<!-- /a --></span> <span class="kt">in</span></code></li>
+            <li><code class="code-voice">    <span class="vc">equal</span>: { (<span class="vc">p1</span>, <span class="vc">p2</span>) -&gt; <span class="n"><! -- a href="" -->DarwinBoolean<! -- /a --></span> <span class="kt">in</span></code></li>
             <li><code class="code-voice">        <span class="c">// return Bool value</span></code></li>
             <li><code class="code-voice">}</code></li>
             <li><code class="code-voice">)</code></li>
@@ -1951,7 +1952,7 @@ Objective-C構文
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">pointer</span>: <span class="n"><!-- a href="" -->UnsafePointer<!-- /a --></span>&lt;<span class="n"><!-- a href="" -->Int8<!-- /a --></span>&gt;</code></li>
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">pointer</span>: <span class="n"><! -- a href="" -->UnsafePointer<! -- /a --></span>&lt;<span class="n"><! -- a href="" -->Int8<! -- /a --></span>&gt;</code></li>
             <li><code class="code-voice"><span class="kt">let</span> <span class="vc">offsetPointer</span> = <span class="vc">pointer</span> + <span class="m">24</span></code></li>
             <li><code class="code-voice"><span class="c">// offsetPointer is 24 strides ahead of pointer&nbsp;<span class="jpstr">（offsetPointerは、pointerの前方24ストライドです）</span><!--end_jpstr-->
 </span></code></li>
@@ -1994,11 +1995,11 @@ Cでは、<code class="code-voice">sizeof</code>および<code class="code-voice
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="vc">print</span>(<span class="vc">MemoryLayout</span>&lt;<span class="n"><!-- a href="" -->timeval<!-- /a --></span>&gt;.<span class="vc">size</span>)</code></li>
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="vc">MemoryLayout</span>&lt;<span class="n"><! -- a href="" -->timeval<! -- /a --></span>&gt;.<span class="vc">size</span>)</code></li>
             <li><code class="code-voice"><span class="c">// Prints &quot;16&quot;</span></code></li>
-            <li><code class="code-voice"><span class="vc">print</span>(<span class="vc">MemoryLayout</span>&lt;<span class="n"><!-- a href="" -->timeval<!-- /a --></span>&gt;.<span class="vc">stride</span>)</code></li>
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="vc">MemoryLayout</span>&lt;<span class="n"><! -- a href="" -->timeval<! -- /a --></span>&gt;.<span class="vc">stride</span>)</code></li>
             <li><code class="code-voice"><span class="c">// Prints &quot;16&quot;</span></code></li>
-            <li><code class="code-voice"><span class="vc">print</span>(<span class="vc">MemoryLayout</span>&lt;<span class="n"><!-- a href="" -->timeval<!-- /a --></span>&gt;.<span class="vc">alignment</span>)</code></li>
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="vc">MemoryLayout</span>&lt;<span class="n"><! -- a href="" -->timeval<! -- /a --></span>&gt;.<span class="vc">alignment</span>)</code></li>
             <li><code class="code-voice"><span class="c">// Prints &quot;8&quot;</span></code></li>
         </ol>
       </div>
@@ -2015,7 +2016,7 @@ Cでは、<code class="code-voice">sizeof</code>および<code class="code-voice
         <ol class="code-lines">
             <li><code class="code-voice"><span class="kt">let</span> <span class="vc">sockfd</span> = <span class="vc">socket</span>(<span class="vc">AF_INET</span>, <span class="vc">SOCK_STREAM</span>, <span class="m">0</span>)</code></li>
             <li><code class="code-voice"><span class="kt">var</span> <span class="vc">optval</span> = <span class="vc">timeval</span>(<span class="vc">tv_sec</span>: <span class="m">30</span>, <span class="vc">tv_usec</span>: <span class="m">0</span>)</code></li>
-            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">optlen</span> = <span class="vc">socklen_t</span>(<span class="vc">MemoryLayout</span>&lt;<span class="n"><!-- a href="" -->timeval<!-- /a --></span>&gt;.<span class="vc">size</span>)</code></li>
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">optlen</span> = <span class="vc">socklen_t</span>(<span class="vc">MemoryLayout</span>&lt;<span class="n"><! -- a href="" -->timeval<! -- /a --></span>&gt;.<span class="vc">size</span>)</code></li>
             <li><code class="code-voice"><span class="kt">if</span> <span class="vc">setsockopt</span>(<span class="vc">sockfd</span>, <span class="vc">SOL_SOCKET</span>, <span class="vc">SO_RCVTIMEO</span>, &amp;<span class="vc">optval</span>, <span class="vc">optlen</span>) == <span class="m">0</span> {</code></li>
             <li><code class="code-voice">    <span class="c">// ...</span></code></li>
             <li><code class="code-voice">}</code></li>
@@ -2039,7 +2040,7 @@ Cでは、<code class="code-voice">sizeof</code>および<code class="code-voice
   <p class="para">
   In C, the <code class="code-voice">pthread_once()</code> function in POSIX and the <code class="code-voice">dispatch_once()</code> and <code class="code-voice">dispatch_once_f()</code> functions in Grand Central Dispatch provide mechanisms for executing initialization code exactly once. In Swift, global constants and stored type properties are guaranteed to be initialized only once, even when accessed across multiple threads simultaneously. Because this functionality is provided through language features, the corresponding POSIX and Grand Central Dispatch C function calls are not exposed by Swift.
 <br><span class="jpstr">
-Cでは、POSIXでの<code class="code-voice">pthread_once()</code>関数およびGrand Central Dispatchでの<code class="code-voice">dispatch_once()</code>と<code class="code-voice">dispatch_once_f()</code>関数は、厳密に一度だけ初期化コードを実行する仕組みを提供します。スウィフトでは、グローバル定数と保存型プロパティは、ただ一度だけ初期化されることを保証されます、複数のスレッドをまたいで同時にアクセスされた時でさえもです。この機能性は言語特徴によって提供されるので、相当するPOSIXおよびGrand Central DispatchのC関数呼び出しはスウィフトによって暴露されません。
+Cでは、POSIXでの<code class="code-voice">pthread_once()</code>関数およびGrand Central Dispatchでの<code class="code-voice">dispatch_once()</code>と<code class="code-voice">dispatch_once_f()</code>関数は、厳密に一度だけ初期化コードを実行する仕組みを提供します。スウィフトでは、グローバル定数と格納型プロパティは、ただ一度だけ初期化されることを保証されます、複数のスレッドをまたいで同時にアクセスされた時でさえもです。この機能性は言語特徴によって提供されるので、相当するPOSIXおよびGrand Central DispatchのC関数呼び出しはスウィフトによって暴露されません。
 </span><!--end_jpstr-->
 </p>
   
@@ -2225,7 +2226,7 @@ Cプリプロセッサでの条件コンパイルと対照的に、スウィフ�
     <p class="copyright">Copyright &#x00a9; 2017 Apple Inc. All rights reserved. 
   <a class="link" href="http://www.apple.com/legal/terms/site.html" target="_blank" rel="external">Terms of Use</a> | 
   <a class="link" href="http://www.apple.com/privacy/" target="_blank" rel="external">Privacy Policy</a> | 
-  Updated: 2017-08-21
+  Updated: 2017-09-12
 </p>
   </section>
 </article>
