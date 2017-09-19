@@ -1,4 +1,4 @@
-﻿* [Swift Standard Library Reference 2017.8.29 日本語訳](https://rusutikaa.github.io/developer.apple.com/documentation/swift.html)
+﻿* [Swift Standard Library Reference 2017.9.18 日本語訳](https://rusutikaa.github.io/developer.apple.com/documentation/swift.html)
 
 * [The Swift Programming Language 2017.9.12α 日本語訳](https://rusutikaa.github.io/developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/index.html)
 
