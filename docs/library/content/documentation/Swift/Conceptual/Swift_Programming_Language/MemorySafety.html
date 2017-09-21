@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>  
+  <title>The Swift Programming Language (Swift 4): Memory Safety</title>
+  <link rel="stylesheet" type="text/css" href="../../../../Resources/1264/CSS/style-1.6.3.css" />
+  <link rel="stylesheet" type="text/css" href="../../../../Resources/1264/CSS/feedback-1.6.3.css" />
+  <meta charset='utf-8'> 
+<meta id="j-version" name="j-version" content="" />
+<meta id="build" name="build" content="c84576297fc3afc02d9f919c74344612" />
+<meta id="document-version" name="document-version" content="10.0.14" />
+<meta id="book-assignments" name="book-assignments" content="{Type/Guide}, {Topic/Swift}" />
+<meta scheme="apple_ref" id="identifier" name="identifier" content="//apple_ref/doc/uid/TP40014097" />
+<meta id="chapterId" name="chapterId" content="TP40014097-CH46">
+<meta id="book-title" name="book-title" content="The Swift Programming Language (Swift 4)" />
+<meta id="book-resource-type" name="book-resource-type" content="Guide" />
+<meta id="book-root" name="book-root" content="./" />
+<meta id="book-json" name="book-json" content="book.json">
+<meta id="date" name="date" content="2017-09-19" />
+<meta id="description" name="description" content="The definitive guide to Swift, Apple’s programming language for building iOS, macOS, watchOS, and tvOS apps." />
+<meta id="IndexTitle" name="IndexTitle" content="" />
+<meta id="resources-uri" name="resources-uri" content="../../../../Resources/1264">
+<link id="book-index-page" rel="Start" title="" type="text/html" href="./index.html">
+<!-- , next_chapter: next_chapter, previous_chapter: previous_chapter -->
+<link id="next-page" rel="Next" type="text/html" href="">
+<link id="previous-page" rel="Prev" type="text/html" href="">
+<meta id="devcenter" name="devcenter" content="<!-- DEVCENTER_NAME -->" />
+<meta id="devcenter-url" name="devcenter-url" content="<!-- DEVCENTER_URL -->" />
+<meta id="reflib" name="reflib" content="<!-- REFLIB_NAME -->" />
+
+<meta id="xcode-display" name="xcode-display" content="render" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta id="platforms" name="platforms" content="Xcode Developer Tools">
+</head>
+
+  <body id="conceptual_flow_with_tasks" class="jazz">
+    
+    <header id="ios_header" class="hideOnPrint hideInXcode">
+  <div class="content-wrapper">
+    <p class="header-text">
+    	<a href="../../../../navigation/index.html">Guides and Sample Code
+ 		</a>
+ </p>
+    <p id="wwdr"><img id="apple_logo" src="../../../../Resources/1264/Images/apple2.png" height="14px" width="12px" aria-hidden="true" /><a href="https://developer.apple.com">Developer</a></p>
+  </div>
+</header>
+
+    <section id="valence">
+  <div class="content-wrapper">
+    <p id="hierarchial_navigation">
+      <span id="book_title">The Swift Programming Language (Swift 4)</span>
+    </p>
+    <form id="search" class="hideInXcode" method="get" action="/search/index.php" accept-charset="utf-8" autocomplete="off">
+  <input type="search" id="ssi_SearchField" placeholder="Search Guides and Sample Code" name="q" autocomplete="off" tabindex="2" />
+</form>
+
+      
+   
+   
+
+
+
+
+    <span class="download-text hideInXcode">
+      <a href="https://itunes.apple.com/us/book/the-swift-programming-language/id881256329?mt=11">iBooks</a>
+    </span>
+
+    
+
+    <img id="shortstack" src="../../../../Resources/1264/Images/shortstack_2x.png"/>
+  </div>
+</section>
+    <div class="content-wrapper">
+      <nav id="navigator" class="book-parts hideInXcode" role="navigation">
+    <ul class="nav-parts">
+        <li data-id="//apple_ref/doc/uid/TP40014097-CH1-ID2"
+            class="part-name">
+            <a href="index.html#//apple_ref/doc/uid/TP40014097-CH3-ID0" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH3-ID0">Welcome to Swift<br><span class="jpstr">
+スウィフトにようこそ
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="index.html#//apple_ref/doc/uid/TP40014097-CH3-ID0" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH3-ID0">About Swift<br><span class="jpstr">
+スウィフトについて
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Compatibility.html#//apple_ref/doc/uid/TP40014097-CH45-ID561" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH45-ID561">Version Compatibility<br><span class="jpstr">
+バージョン互換性
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="GuidedTour.html#//apple_ref/doc/uid/TP40014097-CH2-ID1" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH2-ID1">A Swift Tour<br><span class="jpstr">
+スウィフトツアー
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+        <li data-id="//apple_ref/doc/uid/TP40014097-CH4-ID233"
+            class="part-name nav-part-active open-part">
+            <a href="TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH5-ID309">Language Guide<br><span class="jpstr">
+言語ガイド
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH5-ID309">The Basics<br><span class="jpstr">
+基本
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="BasicOperators.html#//apple_ref/doc/uid/TP40014097-CH6-ID60" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH6-ID60">Basic Operators<br><span class="jpstr">
+基本の演算子
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="StringsAndCharacters.html#//apple_ref/doc/uid/TP40014097-CH7-ID285" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH7-ID285">Strings and Characters<br><span class="jpstr">
+文字列と文字
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="CollectionTypes.html#//apple_ref/doc/uid/TP40014097-CH8-ID105" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH8-ID105">Collection Types<br><span class="jpstr">
+コレクション型
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="ControlFlow.html#//apple_ref/doc/uid/TP40014097-CH9-ID120" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH9-ID120">Control Flow<br><span class="jpstr">
+制御の流れ
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Functions.html#//apple_ref/doc/uid/TP40014097-CH10-ID158" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH10-ID158">Functions<br><span class="jpstr">
+関数
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Closures.html#//apple_ref/doc/uid/TP40014097-CH11-ID94" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH11-ID94">Closures<br><span class="jpstr">
+クロージャ
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Enumerations.html#//apple_ref/doc/uid/TP40014097-CH12-ID145" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH12-ID145">Enumerations<br><span class="jpstr">
+列挙
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="ClassesAndStructures.html#//apple_ref/doc/uid/TP40014097-CH13-ID82" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH13-ID82">Classes and Structures<br><span class="jpstr">
+クラスと構造体
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Properties.html#//apple_ref/doc/uid/TP40014097-CH14-ID254" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH14-ID254">Properties<br><span class="jpstr">
+プロパティ
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Methods.html#//apple_ref/doc/uid/TP40014097-CH15-ID234" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH15-ID234">Methods<br><span class="jpstr">
+メソッド
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Subscripts.html#//apple_ref/doc/uid/TP40014097-CH16-ID305" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH16-ID305">Subscripts<br><span class="jpstr">
+添え字
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Inheritance.html#//apple_ref/doc/uid/TP40014097-CH17-ID193" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH17-ID193">Inheritance<br><span class="jpstr">
+継承
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Initialization.html#//apple_ref/doc/uid/TP40014097-CH18-ID203" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH18-ID203">Initialization<br><span class="jpstr">
+初期化
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Deinitialization.html#//apple_ref/doc/uid/TP40014097-CH19-ID142" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH19-ID142">Deinitialization<br><span class="jpstr">
+デイニシャライズ
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="OptionalChaining.html#//apple_ref/doc/uid/TP40014097-CH21-ID245" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH21-ID245">Optional Chaining<br><span class="jpstr">
+オプショナル連鎖
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="ErrorHandling.html#//apple_ref/doc/uid/TP40014097-CH42-ID508" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH42-ID508">Error Handling<br><span class="jpstr">
+エラーの処理
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="TypeCasting.html#//apple_ref/doc/uid/TP40014097-CH22-ID338" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH22-ID338">Type Casting<br><span class="jpstr">
+型キャスト
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="NestedTypes.html#//apple_ref/doc/uid/TP40014097-CH23-ID242" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH23-ID242">Nested Types<br><span class="jpstr">
+入れ子にされた型
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Extensions.html#//apple_ref/doc/uid/TP40014097-CH24-ID151" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH24-ID151">Extensions<br><span class="jpstr">
+拡張
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Protocols.html#//apple_ref/doc/uid/TP40014097-CH25-ID267" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH25-ID267">Protocols<br><span class="jpstr">
+プロトコル
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Generics.html#//apple_ref/doc/uid/TP40014097-CH26-ID179" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH26-ID179">Generics<br><span class="jpstr">
+総称体
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="AutomaticReferenceCounting.html#//apple_ref/doc/uid/TP40014097-CH20-ID48" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH20-ID48">Automatic Reference Counting<br><span class="jpstr">
+自動参照カウント
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter nav-current-chapter">
+              	<a href="#//apple_ref/doc/uid/TP40014097-CH46-ID567" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH46-ID567">Memory Safety<br><span class="jpstr">
+メモリ安全
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="AccessControl.html#//apple_ref/doc/uid/TP40014097-CH41-ID3" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH41-ID3">Access Control<br><span class="jpstr">
+アクセス制御
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="AdvancedOperators.html#//apple_ref/doc/uid/TP40014097-CH27-ID28" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH27-ID28">Advanced Operators<br><span class="jpstr">
+先進の演算子
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+        <li data-id="//apple_ref/doc/uid/TP40014097-CH28-ID427"
+            class="part-name">
+            <a href="AboutTheLanguageReference.html#//apple_ref/doc/uid/TP40014097-CH29-ID345" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH29-ID345">Language Reference<br><span class="jpstr">
+言語リファレンス
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="AboutTheLanguageReference.html#//apple_ref/doc/uid/TP40014097-CH29-ID345" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH29-ID345">About the Language Reference<br><span class="jpstr">
+言語リファレンスについて
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="LexicalStructure.html#//apple_ref/doc/uid/TP40014097-CH30-ID410" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH30-ID410">Lexical Structure<br><span class="jpstr">
+語彙の構造
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Types.html#//apple_ref/doc/uid/TP40014097-CH31-ID445" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH31-ID445">Types<br><span class="jpstr">
+型
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Expressions.html#//apple_ref/doc/uid/TP40014097-CH32-ID383" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH32-ID383">Expressions<br><span class="jpstr">
+式
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Statements.html#//apple_ref/doc/uid/TP40014097-CH33-ID428" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH33-ID428">Statements<br><span class="jpstr">
+文
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Declarations.html#//apple_ref/doc/uid/TP40014097-CH34-ID351" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH34-ID351">Declarations<br><span class="jpstr">
+宣言
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Attributes.html#//apple_ref/doc/uid/TP40014097-CH35-ID347" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH35-ID347">Attributes<br><span class="jpstr">
+属性
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="Patterns.html#//apple_ref/doc/uid/TP40014097-CH36-ID419" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH36-ID419">Patterns<br><span class="jpstr">
+パターン
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="GenericParametersAndArguments.html#//apple_ref/doc/uid/TP40014097-CH37-ID406" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH37-ID406">Generic Parameters and Arguments<br><span class="jpstr">
+総称体パラメータと引数
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="zzSummaryOfTheGrammar.html#//apple_ref/doc/uid/TP40014097-CH38-ID458" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH38-ID458">Summary of the Grammar<br><span class="jpstr">
+文法の概要
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+        <li data-id="//apple_ref/doc/uid/TP40014097-CH39-ID460"
+            class="part-name">
+            <a href="RevisionHistory.html#//apple_ref/doc/uid/TP40014097-CH40-ID459" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH40-ID459">Revision History<br><span class="jpstr">
+改訂履歴
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="RevisionHistory.html#//apple_ref/doc/uid/TP40014097-CH40-ID459" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH40-ID459">Document Revision History<br><span class="jpstr">
+文書改訂履歴
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+    </ul>
+</nav>
+
+      <menu id="bashful" type="toolbar">
+  <div class="shield"></div>
+  <menuitem id="jump_to" class="menu-bar-item closed">
+  <span>On This Page</span>
+  <div class="chevron">
+    <div class="chevy chevron-left"></div>
+    <div class="chevy chevron-right"></div>
+  </div>
+  <menu type="list" class="details">
+      <ul class="list-bullet">
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH46-ID568">Understanding Conflicting Access to Memory</a>
+<br><span class="jpstr">
+メモリへのアクセスの衝突を理解する
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH46-ID569">Conflicting Access to In-Out Parameters</a>
+<br><span class="jpstr">
+in-outパラメータに対するアクセスの衝突
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH46-ID570">Conflicting Access to self in Methods</a>
+<br><span class="jpstr">
+メソッドの中でのselfに対するアクセスの衝突
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014097-CH46-ID571">Conflicting Access to Properties</a>
+<br><span class="jpstr">
+プロパティに対するアクセスの衝突
+</span><!--end_jpstr-->
+          </li>
+      </ul>
+  </menu>
+</menuitem>
+
+</menu>
+<div class="pixel-line"></div>
+<div class="rubber-band-gap"></div>
+<article class="chapter">
+  <a name="//apple_ref/doc/uid/TP40014097-CH46"></a><a name="//apple_ref/doc/uid/TP40014097-CH46-ID567"></a>
+
+  <h2 class='chapter-name'>Memory Safety<br><span class="jpstr">
+メモリ安全
+</span><!--end_jpstr-->
+</h2>
+
+
+  
+  	<section class="section">
+  		<p class="para">
+  By default, Swift prevents unsafe behavior from happening in your code. For example, Swift ensures that variables are initialized before they’re used, memory isn’t accessed after it’s been deallocated, and array indices are checked for out-of-bounds errors.
+<br><span class="jpstr">
+初期状態では、スウィフトはあなたのコードにおける偶発事由来の安全でない挙動を防止します。例えば、変数はそれらが使用される前に初期化されること、メモリはそれがデアロケートされてしまった後にアクセスされないこと、そして配列インデックスは境界外エラーを調べられることを、スウィフトは保証します。
+</span><!--end_jpstr-->
+</p>
+<p class="para">
+  Swift also makes sure that multiple accesses to the same area of memory don’t conflict, by requiring code that modifies a location in memory to have exclusive access to that memory. Because Swift manages memory automatically, most of the time you don’t have to think about accessing memory at all. However, it’s important to understand where potential conflicts can occur, so you can avoid writing code that has conflicting access to memory. If your code does contain conflicts, you’ll get a compile-time or runtime error.
+<br><span class="jpstr">
+スウィフトはまた、同じメモリ領域に対する複数のアクセスが衝突しないことを、メモリ中の位置を修正するコードにそのメモリに対する排他的アクセスを持つよう要求することによって確保します。スウィフトはメモリを自動的に管理することから、ほとんどの場合あなたはメモリアクセスについて考える必要は全くありません。しかしながら、潜在的に衝突が起こり得るところを理解するのは重要です、そうすることであなたはメモリへのアクセスが衝突するコードを書くのを防止できます。あなたのコードが衝突を含むならば、あなたはコンパイル時または実行時エラーを得るでしょう。
+</span><!--end_jpstr-->
+</p>
+
+		</section> 
+
+
+  <section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH46-ID568"></a>
+  <h3 class="section-name" tabindex="0">Understanding Conflicting Access to Memory<br><span class="jpstr">
+メモリへのアクセスの衝突を理解する
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Access to memory happens in your code when you do things like set the value of a variable or pass an argument to a function. For example, the following code contains both a read access and a write access:
+<br><span class="jpstr">
+メモリへのアクセスは、あなたが変数の値を設定するまたは関数に引数を渡すといったような事を行う時にあなたのコードで起こります。例えば、以下のコードは読み出しアクセスと書き込みアクセスの両方を含みます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="c">// A write access to the memory where one is stored.&nbsp;<span class="jpstr">（oneが格納されるところのメモリに対する書き込みアクセス）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">one</span> = <span class="m">1</span></code></li>
+            <li><code class="code-voice"> </code></li>
+            <li><code class="code-voice"><span class="c">// A read access from the memory where one is stored.&nbsp;<span class="jpstr">（oneが格納されるところのメモリから読み出しアクセス）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="s">&quot;We&#39;re number </span>\(<span class="vc">one</span>)<span class="s">!&quot;</span>)</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  A conflicting access to memory can occur when different parts of your code are trying to access the same location in memory at the same time. Multiple accesses to a location in memory at the same time can produce unpredictable or inconsistent behavior. In Swift, there are ways to modify a value that span several lines of code, making it possible to attempt to access a value in the middle of its own modification.
+<br><span class="jpstr">
+メモリアクセスの衝突は、あなたのコードの異なる部分がメモリの同じ位置に同じ時にアクセスしようとする場合に生じます。メモリの同じ位置への同時での複数のアクセスは、予期されないまたは一貫性のない挙動を生じ得ます。スウィフトには、複数コード行にまたがるある値を修正する方法があります、それが可能にするのはある値に対してそれ自身の修正の途中でアクセスを試みることです。
+</span><!--end_jpstr-->
+</p><p class="para">
+  You can see a similar problem by thinking about how you update a budget that’s written on a piece of paper. Updating the budget is a two-step process: First you add the items’ names and prices, and then you change the total amount to reflect the items currently on the list. Before and after the update, you can read any information from the budget and get a correct answer, as shown in the figure below.
+<br><span class="jpstr">
+あなたは、一片の紙に書かれる予算案を更新する方法について考えることによって、同種の問題を調べられます。予算案の更新は２段階の処理です：最初にあなたはその項目の名前と値段を加えます、それからあなたは総支出額を変更してそれら項目の現在をリスト上に反映します。更新の前後で、あなたはあらゆる情報を予算案から読み出して正しい答えを得ることができます、下の図で示すように。
+</span><!--end_jpstr-->
+</p><figure class="figure">
+  
+  <span class="caption"></span>
+  <img src="Art/memory_shopping_2x.png" alt="image: ../Art/memory_shopping_2x.png" width="430" height="158" />
+</figure><p class="para">
+  While you’re adding items to the budget, it’s in a temporary, invalid state because the total amount hasn’t been updated to reflect the newly added items. Reading the total amount during the process of adding an item gives you incorrect information.
+<br><span class="jpstr">
+あなたが項目を予算案に加えている間、それは一時的な、無効な状態にあります、なぜなら総支出額は新しく追加された項目を反映するよう更新されていないからです、ある項目を追加する処理の間に総支出額を読み出すことは、あなたに正しくない情報を与えます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  This example also demonstrates a challenge you may encounter when fixing conflicting access to memory: There are sometimes multiple ways to fix the conflict that produce different answers, and it’s not always obvious which answer is correct. In this example, depending on whether you wanted the original total amount or the updated total amount, either $5 or $320 could be the correct answer. Before you can fix the conflicting access, you have to determine what it was intended to do.
+<br><span class="jpstr">
+この例はまた、メモリアクセスの衝突を直す場合にあなたが直面するある困難を実演します；時として複数の方法が衝突を修正するために存在してそれらは異なる答えを生み出します、そしてどの答えが正しいか必ずしも明確ではありません。この例では、あなたが望んだのが元の総支出額か更新後の総支出額かにより、5ドルか320ドルのどちらかが正しい答えとなります。あなたがこのアクセス衝突を修正するためには、あなたは実行を意図されたものは何かを判定する必要があります。
+</span><!--end_jpstr-->
+</p><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014097-CH46-NoLink_195"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">If you’ve written concurrent or multithreaded code, conflicting access to memory might be a familiar problem. However, the conflicting access discussed here can happen on a single thread and <em>doesn’t</em> involve concurrent or multithreaded code.
+    	<br><span class="jpstr">
+あなたが並列のまたはマルチスレッドのコードを書いたことがあるならば、メモリアクセスの衝突はおなじみの問題でしょう。しかしながら、ここで議論するアクセス衝突は、単一スレッド上で起こることが可能で、並列またはマルチスレッドのコードを伴い<em>ません</em>。
+</span><!--end_jpstr-->
+</p>
+    <p class="para">
+  If you have conflicting access to memory from within a single thread, Swift guarantees that you’ll get an error at either compile time or runtime. For multithreaded code, use <a href="https://developer.apple.com/documentation/code_diagnostics/thread_sanitizer">Thread Sanitizer</a> to help detect conflicting access across threads.
+<br><span class="jpstr">
+あなたがシングルスレッド内部からのメモリアクセス衝突を起こしているならば、スウィフトはコンパイル時または実行時のどちらかであなたがエラーを得るのを保証します。マルチスレッドコードに対しては、<a href="https://developer.apple.com/documentation/code_diagnostics/thread_sanitizer">Thread Sanitizer</a>を使うことでスレッドをまたぐアクセス衝突を検出する助けとしてください。
+</span><!--end_jpstr-->
+</p>
+
+  </aside>
+</div>
+  <section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH46-ID573"></a>
+  <h3 class="section-name" tabindex="0">Characteristics of Memory Access<br><span class="jpstr">
+メモリアクセスの特徴
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  There are three characteristics of memory access to consider in the context of conflicting access: whether the access is a read or a write, the duration of the access, and the location in memory being accessed. Specifically, a conflict occurs if you have two accesses that meet all of the following conditions:
+<br><span class="jpstr">
+アクセス衝突の文脈において考慮すべき３つのメモリアクセスの特徴があります：アクセスが読み出しか書き込みか、アクセスの期間、そしてメモリの中のアクセスされる位置とりわけ、あなたが２つのアクセスを持ち以下の条件のすべてに出会う場合に、ある衝突が起こります：
+</span><!--end_jpstr-->
+</p><ul class="list-bullet">
+  <li class="item"><p class="para">
+  At least one is a write access.
+<br><span class="jpstr">
+少なくとも１つが書き込みアクセスである。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  They access the same location in memory.
+<br><span class="jpstr">
+それらがメモリ中の同じ位置にアクセスする。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  Their durations overlap.
+<br><span class="jpstr">
+それらの期間が重なる（オーバーラップする）。
+</span><!--end_jpstr-->
+</p>
+</li>
+</ul><p class="para">
+  The difference between a read and write access is usually obvious: a write access changes the location in memory, but a read access doesn’t. The location in memory refers to what is being accessed—for example, a variable, constant, or property. The duration of a memory access is either instantaneous or long-term.
+<br><span class="jpstr">
+読み出しと書き込みアクセスの間の違いは、通常は明白です：書き込みアクセスはメモリ中の位置を変更します、しかし読み出しアクセスはそうしません。メモリ中の位置はアクセスされているのは何かを参照します — 例えば、変数、定数、またはプロパティ。メモリアクセスの期間は、即時か長期のどちらかです。
+</span><!--end_jpstr-->
+</p><p class="para">
+  An access is <em>instantaneous</em> if it’s not possible for other code to run after that access starts but before it ends. By their nature, two instantaneous accesses can’t happen at the same time. Most memory access is instantaneous. For example, all the read and write accesses in the code listing below are instantaneous:
+<br><span class="jpstr">
+あるアクセスは、もしそのアクセスが始まった後でしかしそれが終わる前に他のコードに実行が可能でないならば、<em>即時的</em>です。本質的に、２つの即時アクセスは同時に起こりえません。ほとんどのメモリアクセスは即時的です。例えば、以下のコード出力での全ての読み出しおよび書き込みアクセスは即時的です：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">oneMore</span>(<span class="vc">than</span> <span class="vc">number</span>: <span class="n"><! -- a href="" -->Int<! -- /a --></span>) -&gt; <span class="n"><! -- a href="" -->Int<! -- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">return</span> <span class="vc">number</span> + <span class="m">1</span></code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"> </code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">myNumber</span> = <span class="m">1</span></code></li>
+            <li><code class="code-voice"><span class="vc">myNumber</span> = <span class="vc">oneMore</span>(<span class="vc">than</span>: <span class="vc">myNumber</span>)</code></li>
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="vc">myNumber</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;2&quot;</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  However, there are several ways to access memory, called <em>long-term</em> accesses, that span the execution of other code. The difference between instantaneous access and long-term access is that it’s possible for other code to run after a long-term access starts but before it ends, which is called <em>overlap</em>. A long-term access can overlap with other long-term accesses and instantaneous accesses.
+<br><span class="jpstr">
+しかしながら、メモリにアクセスするための幾つかの方法、<em>長期</em>アクセスと呼ばれる、他のコードの実行の期間にまたがるいくつかのものがあります。即時アクセスと長期アクセスの違いは、ある長期アクセスが開始した後しかしそれが終わる前に他のコードに実行が可能であることです、それは<em>オーバーラップ</em>と呼ばれます。長期アクセスは、他の長期アクセスおよび即時アクセスでオーバーラップ可能です。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Overlapping accesses appear primarily in code that uses in-out parameters in functions and methods or mutating methods of a structure. The specific kinds of Swift code that use long-term accesses are discussed in the sections below.
+<br><span class="jpstr">
+オーバーラップするアクセスは、関数およびメソッドにおいてまたは構造体の可変メソッドにおいてin-outパラメータを使うコードに主に現れます。特定の種類のスウィフトコードでそれら長期アクセスを使うものは、下の節で議論されます。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH46-ID569"></a>
+  <h3 class="section-name" tabindex="0">Conflicting Access to In-Out Parameters<br><span class="jpstr">
+in-outパラメータに対するアクセスの衝突
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  A function has long-term write access to all of its in-out parameters. The write access for an in-out parameter starts after all of the non-in-out parameters have been evaluated and lasts for the entire duration of that function call. If there are multiple in-out parameters, the write accesses start in the same order as the parameters appear.
+<br><span class="jpstr">
+ある関数は長期書き込みアクセスをそれのin-outパラメータの全てに対して持ちます。あるin-outパラメータに対する書き込みアクセスは、すべての非in-outパラメータが評価された後に始まって、その関数呼び出しの全期間持続します。複数のin-outパラメータが存在するならば、書き込みアクセスはパラメータが現れるのと同じ順番で始まります。
+</span><!--end_jpstr-->
+</p><p class="para">
+  One consequence of this long-term write access is that you can’t access the original variable that was passed as in-out, even if scoping rules and access control would otherwise permit it—any access to the original creates a conflict. For example:
+<br><span class="jpstr">
+この長期書き込みアクセスの１つの帰結として、あなたはin-outとして渡された元の変数にアクセス出来ません、たとえスコープ規則とアクセス制御がその他の点ではそれを許すとしてもです — 元のものに対するどんなアクセスも衝突を作り出します。例えば：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">stepSize</span> = <span class="m">1</span></code></li>
+            <li><code class="code-voice"> </code></li>
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">increment</span>(<span class="kt">_</span> <span class="vc">number</span>: <span class="kt">inout</span> <span class="n"><! -- a href="" -->Int<! -- /a --></span>) {</code></li>
+            <li><code class="code-voice">    <span class="vc">number</span> += <span class="vc">stepSize</span></code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"> </code></li>
+            <li><code class="code-voice"><span class="vc">increment</span>(&amp;<span class="vc">stepSize</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// Error: conflicting accesses to stepSize&nbsp;<span class="jpstr">（エラー：stepSizeに対するアクセス衝突）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  In the code above, <code class="code-voice">stepSize</code> is a global variable, and it is normally accessible from within <code class="code-voice">increment(_:)</code>. However, the read access to <code class="code-voice">stepSize</code> overlaps with the write access to <code class="code-voice">number</code>. As shown in the figure below, both <code class="code-voice">number</code> and <code class="code-voice">stepSize</code> refer to the same location in memory. The read and write accesses refer to the same memory and they overlap, producing a conflict.
+<br><span class="jpstr">
+上のコードにおいて、<code class="code-voice">stepSize</code>はグローバル変数です、そしてそれは通常は<code class="code-voice">increment(_:)</code>内部からアクセス可能です。しかしながら、<code class="code-voice">stepSize</code>に対する読み出しアクセスは<code class="code-voice">number</code>に対する書き込みアクセスとオーバーラップします（重なります）。下の図で示すように、<code class="code-voice">number</code>と<code class="code-voice">stepSize</code>の両方ともメモリ中の同じ位置を参照します。読み出しと書き込みアクセスは同じメモリを参照してそれらはオーバーラッブして、衝突を生み出しています。
+</span><!--end_jpstr-->
+</p><figure class="figure">
+  
+  <span class="caption"></span>
+  <img src="Art/memory_increment_2x.png" alt="image: ../Art/memory_increment_2x.png" width="384" height="135" />
+</figure><p class="para">
+  One way to solve this conflict is to make an explicit copy of <code class="code-voice">stepSize</code>:
+<br><span class="jpstr">
+この衝突を解決する１つの方法は、明示的に<code class="code-voice">stepSize</code>のコピーを作ることです：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="c">// Make an explicit copy.&nbsp;<span class="jpstr">（明示的なコピーを作る）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">copyOfStepSize</span> = <span class="vc">stepSize</span></code></li>
+            <li><code class="code-voice"><span class="vc">increment</span>(&amp;<span class="vc">copyOfStepSize</span>)</code></li>
+            <li><code class="code-voice"> </code></li>
+            <li><code class="code-voice"><span class="c">// Update the original.&nbsp;<span class="jpstr">（元のものを更新する）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"><span class="vc">stepSize</span> = <span class="vc">copyOfStepSize</span></code></li>
+            <li><code class="code-voice"><span class="c">// stepSize is now 2&nbsp;<span class="jpstr">（stepSize は現在 2 です）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice">// stepSize is now 2<br><span class="jpstr">
+（stepSize は現在 2 です）
+</span><!--end_jpstr-->
+</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  When you make a copy of <code class="code-voice">stepSize</code> before calling <code class="code-voice">increment(_:)</code>, it’s clear that the value of <code class="code-voice">copyOfStepSize</code> is incremented by the current step size. The read access ends before the write access starts, so there isn’t a conflict.
+<br><span class="jpstr">
+あなたが<code class="code-voice">stepSize</code>のコピーを<code class="code-voice">increment(_:)</code>を呼び出す前に作る場合、それは<code class="code-voice">copyOfStepSize</code>の値が現在の段階量だけ漸増されることを明確にします。読み出しアクセスは書き込みアクセスが始まる前に終わります、それでそれらは衝突しません。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Another consequence of long-term write access to in-out parameters is that passing a single variable as the argument for multiple in-out parameters of the same function produces a conflict. For example:
+<br><span class="jpstr">
+in-outパラメータに対する長期書き込みアクセスの別の帰着は、同じ関数の複数in-outパラメータのための引数として単一の変数を渡すことが衝突を生み出すことです。例えば：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">balance</span>(<span class="kt">_</span> <span class="vc">x</span>: <span class="kt">inout</span> <span class="n"><! -- a href="" -->Int<! -- /a --></span>, <span class="kt">_</span> <span class="vc">y</span>: <span class="kt">inout</span> <span class="n"><! -- a href="" -->Int<! -- /a --></span>) {</code></li>
+            <li><code class="code-voice">    <span class="kt">let</span> <span class="vc">sum</span> = <span class="vc">x</span> + <span class="vc">y</span></code></li>
+            <li><code class="code-voice">    <span class="vc">x</span> = <span class="vc">sum</span> / <span class="m">2</span></code></li>
+            <li><code class="code-voice">    <span class="vc">y</span> = <span class="vc">sum</span> - <span class="vc">x</span></code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">playerOneScore</span> = <span class="m">42</span></code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">playerTwoScore</span> = <span class="m">30</span></code></li>
+            <li><code class="code-voice"><span class="vc">balance</span>(&amp;<span class="vc">playerOneScore</span>, &amp;<span class="vc">playerTwoScore</span>)  <span class="c">// OK</span></code></li>
+            <li><code class="code-voice"><span class="vc">balance</span>(&amp;<span class="vc">playerOneScore</span>, &amp;<span class="vc">playerOneScore</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// Error: Conflicting accesses to playerOneScore</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The <code class="code-voice">balance(_:_:)</code> function above modifies its two parameters to divide the total value evenly between them. Calling it with <code class="code-voice">playerOneScore</code> and <code class="code-voice">playerTwoScore</code> as arguments doesn’t produce a conflict—there are two write accesses that overlap in time, but they access different locations in memory. In contrast, passing <code class="code-voice">playerOneScore</code> as the value for both parameters produces a conflict because it tries to perform two write accesses to the same location in memory at the same time.
+<br><span class="jpstr">
+上の<code class="code-voice">balance(_:_:)</code>関数は、それの２つのパラメータを修正して、それらの間でその合計値を均等に分割するようにします。それを<code class="code-voice">playerOneScore</code>と<code class="code-voice">playerTwoScore</code>を引数として使って呼び出すことは衝突を生み出しません — 時間内にオーバーラップする２つの書き込みアクセスがあります、しかしそれらはメモリ中の異なる位置にアクセスします。対照的に、<code class="code-voice">playerOneScore</code>をそれらパラメータ両方の値として渡すことは衝突を生み出します、なぜならそれは２つの書き込みアクセスをメモリ中の同じ位置に同じ時間に実行しようと試みるからです。
+</span><!--end_jpstr-->
+</p><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014097-CH46-NoLink_196"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">Because operators are functions, they can also have long-term accesses to their in-out parameters. For example, if <code class="code-voice">balance(_:_:)</code> was an operator function named <code class="code-voice">&lt;^&gt;</code>, writing <code class="code-voice">playerOneScore &lt;^&gt; playerOneScore</code> would result in the same conflict as <code class="code-voice">balance(&amp;playerOneScore, &amp;playerOneScore)</code>.
+    	<br><span class="jpstr">
+これら演算が関数であることから、それらはまた長期アクセスをそれらのin-outパラメータに対して持つことができます。例えば、<code class="code-voice">balance(_:_:)</code>が<code class="code-voice">&lt;^&gt;</code>という名前の演算子関数であったならば、書き込み<code class="code-voice">playerOneScore &lt;^&gt; playerOneScore</code>は、<code class="code-voice">balance(&amp;playerOneScore, &amp;playerOneScore)</code>と同じ衝突という結果になるでしょう。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH46-ID570"></a>
+  <h3 class="section-name" tabindex="0">Conflicting Access to self in Methods<br><span class="jpstr">
+メソッドの中でのselfに対するアクセスの衝突
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  A mutating method on a structure has write access to <code class="code-voice">self</code> for the duration of the method call. For example, consider a game where each player has a health amount, which decreases when taking damage, and an energy amount, which decreases when using special abilities.
+<br><span class="jpstr">
+ある構造体での可変メソッドは、<code class="code-voice">self</code>に対する書き込みアクセスをそのメソッド呼び出しの継続期間にわたって持ちます。例えば、あるゲームを考えてください、そこにおいて各プレイヤーはダメージを受ける場合に減少する体力量、そして特別な能力を使う場合に減少するエネルギー量を持ちます。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">struct</span> <span class="vc">Player</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">name</span>: <span class="n"><! -- a href="" -->String<! -- /a --></span></code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">health</span>: <span class="n"><! -- a href="" -->Int<! -- /a --></span></code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">energy</span>: <span class="n"><! -- a href="" -->Int<! -- /a --></span></code></li>
+            <li><code class="code-voice">    </code></li>
+            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">let</span> <span class="vc">maxHealth</span> = <span class="m">10</span></code></li>
+            <li><code class="code-voice">    <span class="kt">mutating</span> <span class="kt">func</span> <span class="vc">restoreHealth</span>() {</code></li>
+            <li><code class="code-voice">        <span class="vc">health</span> = <span class="vc">Player</span>.<span class="vc">maxHealth</span></code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  In the <code class="code-voice">restoreHealth()</code> method above, a write access to <code class="code-voice">self</code> starts at the beginning of the method and lasts until the method returns. In this case, there’s no other code inside <code class="code-voice">restoreHealth()</code> that could have an overlapping access to the properties of a <code class="code-voice">Player</code> instance. The <code class="code-voice">shareHealth(with:)</code> method below takes another <code class="code-voice">Player</code> instance as an in-out parameter, creating the possibility of overlapping accesses.
+<br><span class="jpstr">
+上の<code class="code-voice">restoreHealth()</code>メソッドにおいて、<code class="code-voice">self</code>への書き込みアクセスはメソッドの始まりで開始してメソッドが返るまでの間続きます。この場合には、<code class="code-voice">restoreHealth()</code>内部の他のコードで、<code class="code-voice">Player</code>インスタンスのプロパティに対するオーバーラップするアクセスを持つことができるものはありません。下の<code class="code-voice">shareHealth(with:)</code>メソッドは、別の<code class="code-voice">Player</code>インスタンスをin-outパラメータとして取り、オーバーラップアクセスの可能性を作り出しています。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">extension</span> <span class="n"><! -- a href="" -->Player<! -- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">mutating</span> <span class="kt">func</span> <span class="vc">shareHealth</span>(<span class="vc">with</span> <span class="vc">teammate</span>: <span class="kt">inout</span> <span class="n"><! -- a href="" -->Player<! -- /a --></span>) {</code></li>
+            <li><code class="code-voice">        <span class="vc">balance</span>(&amp;<span class="vc">teammate</span>.<span class="vc">health</span>, &amp;<span class="vc">health</span>)</code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"> </code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">oscar</span> = <span class="vc">Player</span>(<span class="vc">name</span>: <span class="s">&quot;Oscar&quot;</span>, <span class="vc">health</span>: <span class="m">10</span>, <span class="vc">energy</span>: <span class="m">10</span>)</code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">maria</span> = <span class="vc">Player</span>(<span class="vc">name</span>: <span class="s">&quot;Maria&quot;</span>, <span class="vc">health</span>: <span class="m">5</span>, <span class="vc">energy</span>: <span class="m">10</span>)</code></li>
+            <li><code class="code-voice"><span class="vc">oscar</span>.<span class="vc">shareHealth</span>(<span class="vc">with</span>: &amp;<span class="vc">maria</span>)  <span class="c">// OK</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  In the example above, calling the <code class="code-voice">shareHealth(with:)</code> method for Oscar’s player to share health with Maria’s player doesn’t cause a conflict. There’s a write access to <code class="code-voice">oscar</code> during the method call because <code class="code-voice">oscar</code> is the value of <code class="code-voice">self</code> in a mutating method, and there’s a write access to <code class="code-voice">maria</code> for the same duration because <code class="code-voice">maria</code> was passed as an in-out parameter. As shown in the figure below, they access different locations in memory. Even though the two write accesses overlap in time, they don’t conflict.
+<br><span class="jpstr">
+上の例において、<code class="code-voice">shareHealth(with:)</code>メソッドをOscarのプレイヤーに対して呼びだしてMariaのプレイヤーと体力を共有することは、衝突を引き起こしません。<code class="code-voice">oscar</code>への書き込みアクセスがメソッド呼び出しの間にあります、なぜなら<code class="code-voice">oscar</code>は可変メソッドの中の<code class="code-voice">self</code>の値であるからです、そして<code class="code-voice">maria</code>への書き込みアクセスが同じ期間にあります、なぜなら<code class="code-voice">maria</code>がin-outパラメータとして渡されたからです。下の図で示すように、それらはメモリ中の異なる位置を参照します。たとえ２つの書き込みアクセスが時間内にオーバーラップしても、それらは衝突しません。
+</span><!--end_jpstr-->
+</p><figure class="figure">
+  
+  <span class="caption"></span>
+  <img src="Art/memory_share_health_maria_2x.png" alt="image: ../Art/memory_share_health_maria_2x.png" width="506" height="158" />
+</figure><p class="para">
+  However, if you pass <code class="code-voice">oscar</code> as the argument to <code class="code-voice">shareHealth(with:)</code>, there’s a conflict:
+<br><span class="jpstr">
+しかしながら、あなたが<code class="code-voice">oscar</code>を引数として<code class="code-voice">shareHealth(with:)</code>に渡すならば、衝突が存在します。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="vc">oscar</span>.<span class="vc">shareHealth</span>(<span class="vc">with</span>: &amp;<span class="vc">oscar</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// Error: conflicting accesses to oscar&nbsp;<span class="jpstr">（エラー：oscarに対するアクセス衝突）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The mutating method needs write access to <code class="code-voice">self</code> for the duration of the method, and the in-out parameter needs write access to <code class="code-voice">teammate</code> for the same duration. Within the method, both <code class="code-voice">self</code> and <code class="code-voice">teammate</code> refer to the same location in memory—as shown in the figure below. The two write accesses refer to the same memory and they overlap, producing a conflict.
+<br><span class="jpstr">
+可変メソッドは、<code class="code-voice">self</code>に対する書き込みアクセスをメソッドの期間中に必要とします、そしてin-outパラメータは<code class="code-voice">teammate</code>に対する書き込みアクセスを同じ期間に必要とします。メソッド内部で、<code class="code-voice">self</code>および<code class="code-voice">teammate</code>の両方がメモリ中の同じ位置を参照します — 下の図で示すように。２つの書き込みアクセスは同じメモリを参照してそれらはオーバーラッブして、衝突を生み出しています。
+</span><!--end_jpstr-->
+</p><figure class="figure">
+  
+  <span class="caption"></span>
+  <img src="Art/memory_share_health_oscar_2x.png" alt="image: ../Art/memory_share_health_oscar_2x.png" width="506" height="156" />
+</figure>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH46-ID571"></a>
+  <h3 class="section-name" tabindex="0">Conflicting Access to Properties<br><span class="jpstr">
+プロパティに対するアクセスの衝突
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Types like structures, tuples, and enumerations are made up of individual constituent values, such as the properties of a structure or the elements of a tuple. Because these are value types, mutating any piece of the value mutates the whole value, meaning read or write access to one of the properties requires read or write access to the whole value. For example, overlapping write accesses to the elements of a tuple produces a conflict:
+<br><span class="jpstr">
+構造体、タプル、そして列挙のようないくつかの型は、例えば構造体のプロパティやタプルの要素などのような個々の構成要素から作り上げられます。それらが値型であることから、その値の何か１つを変更することは値全体を変更し、プロパティの１つに対する読み出しや書き込みアクセスを意図することは値全体への読み出しや書き込みアクセスを必要とします。例えば、あるタプルの要素いくつかへの書き込みアクセスがオーバーラップすると衝突を生み出します：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">playerInformation</span> = (<span class="vc">health</span>: <span class="m">10</span>, <span class="vc">energy</span>: <span class="m">20</span>)</code></li>
+            <li><code class="code-voice"><span class="vc">balance</span>(&amp;<span class="vc">playerInformation</span>.<span class="vc">health</span>, &amp;<span class="vc">playerInformation</span>.<span class="vc">energy</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// Error: conflicting access to properties of playerInformation&nbsp;<span class="jpstr">（エラー：playerInformationのプロパティに対するアクセス衝突）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  In the example above, calling <code class="code-voice">balance(_:_:)</code> on the elements of a tuple produces a conflict because there are overlapping write accesses to <code class="code-voice">playerInformation</code>. Both <code class="code-voice">playerInformation.health</code> and <code class="code-voice">playerInformation.energy</code> are passed as in-out parameters, which means <code class="code-voice">balance(_:_:)</code> needs write access to them for the duration of the function call. In both cases, a write access to the tuple element requires a write access to the entire tuple. This means there are two write accesses to <code class="code-voice">playerInformation</code> with durations that overlap, causing a conflict.
+<br><span class="jpstr">
+上の例において、<code class="code-voice">balance(_:_:)</code>をタプルの要素上で呼び出すことは衝突を生み出します、なぜなら<code class="code-voice">playerInformation</code>に対するオーパーラップ書き込みアクセスが存在するからです。<code class="code-voice">playerInformation.health</code>と<code class="code-voice">playerInformation.energy</code>の両方ともin-outパラメータとして渡されます、それは<code class="code-voice">balance(_:_:)</code>がそれらへの書き込みアクセスを関数呼び出しの期間中に必要とすることを意味します。両方の場合において、タプル要素に対する書き込みアクセスは、タプル全体に対する書き込みアクセスを要求とします。これは、２つの書き込みアクセスが<code class="code-voice">playerInformation</code>に対してオーバーラップする期間に存在して、衝突を起こしていることを意味します。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The code below shows that the same error appears for overlapping write accesses to the properties of a structure that’s stored in a global variable.
+<br><span class="jpstr">
+下のコードは、グローバル変数に格納される構造体に属するプロパティに対するオーバーラップする書き込みアクセスに、同じエラーが起こることを示します。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">holly</span> = <span class="vc">Player</span>(<span class="vc">name</span>: <span class="s">&quot;Holly&quot;</span>, <span class="vc">health</span>: <span class="m">10</span>, <span class="vc">energy</span>: <span class="m">10</span>)</code></li>
+            <li><code class="code-voice"><span class="vc">balance</span>(&amp;<span class="vc">holly</span>.<span class="vc">health</span>, &amp;<span class="vc">holly</span>.<span class="vc">energy</span>)  <span class="c">// Error</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  In practice, most access to the properties of a structure can overlap safely. For example, if the variable <code class="code-voice">holly</code> in the example above is changed to a local variable instead of a global variable, the compiler can prove that overlapping access to stored properties of the structure is safe:
+<br><span class="jpstr">
+実際には、構造体のプロパティに対するほとんどのアクセスは安全にオーバーラップできます。例えば、変数<code class="code-voice">holly</code>が上の例においてグローバル変数ではなくローカル変数に変更されるならば、コンパイラは構造体に属する格納プロパティへのオーバーラッブするアクセスが安全であることを立証できます。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">someFunction</span>() {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">oscar</span> = <span class="vc">Player</span>(<span class="vc">name</span>: <span class="s">&quot;Oscar&quot;</span>, <span class="vc">health</span>: <span class="m">10</span>, <span class="vc">energy</span>: <span class="m">10</span>)</code></li>
+            <li><code class="code-voice">    <span class="vc">balance</span>(&amp;<span class="vc">oscar</span>.<span class="vc">health</span>, &amp;<span class="vc">oscar</span>.<span class="vc">energy</span>)  <span class="c">// OK</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  In the example above, Oscar’s health and energy are passed as the two in-out parameters to <code class="code-voice">balance(_:_:)</code>. The compiler can prove that memory safety is preserved because the two stored properties don’t interact in any way.
+<br><span class="jpstr">
+上の例において、Oscarの体力とエネルギーは２つのin-outパラメータとして<code class="code-voice">balance(_:_:)</code>に渡されますコンパイラはメモリ安全が守られることを立証できます、なぜなら２つの格納プロパティはどんな方法でも相互作用しないからです。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The restriction against overlapping access to properties of a structure isn’t always necessary to preserve memory safety. Memory safety is the desired guarantee, but exclusive access is a stricter requirement than memory safety—which means some code preserves memory safety, even though it violates exclusive access to memory. Swift allows this memory-safe code if the compiler can prove that the nonexclusive access to memory is still safe. Specifically, it can prove that overlapping access to properties of a structure is safe if the following conditions apply:
+<br><span class="jpstr">
+構造体のプロパティに対するオーバーラップするアクセスを禁じる制限は、メモリ安全を守るために必ずしも必要ではありません。メモリ安全は望まれる保証です、しかし排他アクセスはメモリ安全より厳格な要件です — それが意味するのは、たとえそれがメモリに対する排他アクセスを破るとしても、幾つかのコードはメモリ安全を守るということです。スウィフトは、メモリへの非排他アクセスが依然として安全であるとコンパイラが立証できるならば、このメモリ安全コードを許可します。とりわけ、関数のプロパティに対するオーバーラップアクセスが安全であることは、以下の条件が当てはまるならば立証できます：
+</span><!--end_jpstr-->
+</p><ul class="list-bullet">
+  <li class="item"><p class="para">
+  You’re accessing only stored properties of an instance, not computed properties or class properties.
+<br><span class="jpstr">
+あなたがインスタンスの格納プロパティだけにアクセスしている、計算プロパティやクラスプロパティではなく。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  The structure is the value of a local variable, not a global variable.
+<br><span class="jpstr">
+その構造体はローカル変数の値である、グローバル変数ではなく。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  The structure is either not captured by any closures, or it’s captured only by nonescaping closures.
+<br><span class="jpstr">
+その構造体はどんなクロージャによってもキャプチャされない、またはそれは非脱出クロージャによってのみキャプチャされる。
+</span><!--end_jpstr-->
+</p>
+</li>
+</ul><p class="para">
+  If the compiler can’t prove the access is safe, it doesn’t allow the access.
+<br><span class="jpstr">
+コンパイラがそのアクセスを安全であると立証できないならば、それはアクセスを許可しません。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+
+  	
+ 	<section id="next_previous" class="">
+    		<p class="previous-link"><a href="AutomaticReferenceCounting.html#//apple_ref/doc/uid/TP40014097-CH20-ID48" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH20-ID48">Automatic Reference Counting<br><span class="jpstr">
+自動参照カウント
+</span><!--end_jpstr-->
+</a></p>
+  			<p class="next-link"><a href="AccessControl.html#//apple_ref/doc/uid/TP40014097-CH41-ID3" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH41-ID3">Access Control<br><span class="jpstr">
+アクセス制御
+</span><!--end_jpstr-->
+</a></p>
+
+    <p class="copyright">Copyright &#x00a9; 2017 Apple Inc. All rights reserved. 
+  <a class="link" href="http://www.apple.com/legal/terms/site.html" target="_blank" rel="external">Terms of Use</a> | 
+  <a class="link" href="http://www.apple.com/privacy/" target="_blank" rel="external">Privacy Policy</a> | 
+  Updated: 2017-09-19
+</p>
+  </section>
+</article>
+
+    </div>
+    <div id='big_button'></div>
+    <footer id="footer">
+  <div class="content-wrapper">
+  	<div id="leave_feedback" class="button" role="button" tabindex="0">Feedback</div>
+  </div>
+  <script src="../../../../Resources/1264/JavaScript/devpubs-1.6.3.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../../../Resources/1264/JavaScript/feedback-1.6.3.js" type="text/javascript" charset="utf-8"></script>
+  <div id="_omniture_top">
+<!-- SiteCatalyst code version: H.8. Copyright 1997-2006 Omniture, Inc. -->
+<script type="text/javascript">
+/* RSID: */
+var s_account="appleglobal,appleusdeveloper,dappdeveloperlib"
+</script>
+
+<!-- <script type="text/javascript" src="https://www.apple.com/metrics/scripts/s_code_h.js"></script> -->
+<script type="text/javascript">
+s.pageName=AC.Tracking.pageName();
+s.channel="www.us.developer"
+
+/************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+var s_code=s.t();if(s_code)document.write(s_code)</script>
+<!-- End SiteCatalyst code version: H.8. -->
+</div>
+
+</footer>
+
+    
+  </body>
+    <div id="blackout">
+    <div id="preload"></div>
+</div>
+<div id="modal" aria-hidden="true">
+    <div id="closebox" tabindex="0" aria-label="Close feedback form" role="button"></div>
+    <div id="sending" class="hidden">
+        <h2 tabindex="0">Sending feedback&hellip;</h2>
+        <div id="sending_img"></div>
+    </div>
+    <div id="error" class="hidden">
+        <h2 tabindex="0">We&rsquo;re sorry, an error has occurred.</h2>
+        <p>Please try submitting your feedback later.</p>
+        <div id="error_icon"></div>
+    </div>
+    <div id="success" class="hidden">
+        <h2 tabindex="0">Thank you for providing feedback!</h2>
+        <p>Your input helps improve our developer documentation.</p>
+        <div id="thank_you_icon"></div>
+    </div>
+    
+    <form id="feedback" action="#" method="post">
+        <div class="left-leaf">
+            <h2 id="helpful_title" data-asterisk="a1" tabindex="0">How helpful is this document?</h2>     
+            <sup id="a1" class="asterisk" aria-hidden="true">*</sup>
+
+            <div id="star_group" role="radiogroup" aria-required="true">
+                <label> 
+                    <input class="radio" type="radio" name="helped" value="1" /> 
+                    Very helpful
+                </label>
+                <label> 
+                    <input class="radio" type="radio" name="helped" value="2" /> 
+                    Somewhat helpful
+                </label>
+                <label>
+                    <input class="radio" type="radio" name="helped" value="3" /> 
+                    Not helpful
+                </label>
+            </div>
+        </div>
+        <div class="right-leaf">
+            <h2>How can we improve this document?</h2>
+            <div id="improve" class="checkboxes">
+                <label>
+                    <input type="checkbox" name="typo" /> 
+                    Fix typos or links
+                </label>
+                <label>
+                    <input type="checkbox" name="infoIncorrect" /> 
+                    Fix incorrect information
+                </label>
+                <label>
+                    <input type="checkbox" name="needs_examples" /> 
+                    Add or update code samples
+                </label>
+                <label>
+                    <input type="checkbox" name="needs_art" /> 
+                    Add or update illustrations
+                </label>
+                <label>
+                    <input type="checkbox" name="missingInfo" /> 
+                    Add information about...
+                </label>
+            </div>
+        </div>
+
+        <textarea id="comment" name="problem" cols="70" rows="8" placeholder="Please tell us more about your experience with this document" data-asterisk="a2" required></textarea>
+        <sup id="a2" class="asterisk" aria-hidden="true">*</sup>
+
+        <p class="fineprint">
+            <em aria-hidden="true"><span>*</span> Required information</em>
+        </p> 
+
+        <input id="submit" type="button" value="Send" />
+
+        <section id="legal">
+            <p>
+                To submit a product bug or enhancement request, please visit the 
+                <a href="https://developer.apple.com/bugreporter/" target="_blank">Bug Reporter</a> 
+                page.
+            </p>
+            <p>
+                Please read <a href="http://www.apple.com/legal/policies/ideas.html" target="_blank">Apple's Unsolicited Idea Submission Policy</a> 
+                before you send us your feedback.
+            </p> 
+        </section>
+    </form>
+</div>
+
+</div>
+</html>
