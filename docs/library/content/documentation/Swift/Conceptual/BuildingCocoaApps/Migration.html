@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>  
+  <title>Using Swift with Cocoa and Objective-C (Swift 4.0.3): Migrating Your Objective-C Code to Swift</title>
+  <link rel="stylesheet" type="text/css" href="../../../../Resources/1274/CSS/style-1.6.3.css" />
+  <link rel="stylesheet" type="text/css" href="../../../../Resources/1274/CSS/feedback-1.6.3.css" />
+  <meta charset='utf-8'> 
+<meta id="j-version" name="j-version" content="" />
+<meta id="build" name="build" content="3b40de4ca2af51e302b3b9b9306b0a3e" />
+<meta id="document-version" name="document-version" content="9.1.5" />
+<meta id="book-assignments" name="book-assignments" content="{Type/Guide}, {Topic/Swift}" />
+<meta scheme="apple_ref" id="identifier" name="identifier" content="//apple_ref/doc/uid/TP40014216" />
+<meta id="chapterId" name="chapterId" content="TP40014216-CH12">
+<meta id="book-title" name="book-title" content="Using Swift with Cocoa and Objective-C (Swift 4.0.3)" />
+<meta id="book-resource-type" name="book-resource-type" content="Guide" />
+<meta id="book-root" name="book-root" content="./" />
+<meta id="book-json" name="book-json" content="book.json">
+<meta id="date" name="date" content="2017-12-04" />
+<meta id="description" name="description" content="Describes various aspects of Swift&#39;s compatibility with the Objective-C language and Cocoa/Cocoa Touch frameworks." />
+<meta id="IndexTitle" name="IndexTitle" content="" />
+<meta id="resources-uri" name="resources-uri" content="../../../../Resources/1274">
+<link id="book-index-page" rel="Start" title="" type="text/html" href="./index.html">
+<!-- , next_chapter: next_chapter, previous_chapter: previous_chapter -->
+<link id="next-page" rel="Next" type="text/html" href="">
+<link id="previous-page" rel="Prev" type="text/html" href="">
+<meta id="devcenter" name="devcenter" content="<!-- DEVCENTER_NAME -->" />
+<meta id="devcenter-url" name="devcenter-url" content="<!-- DEVCENTER_URL -->" />
+<meta id="reflib" name="reflib" content="<!-- REFLIB_NAME -->" />
+
+<meta id="xcode-display" name="xcode-display" content="render" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta id="platforms" name="platforms" content="Xcode Developer Tools">
+</head>
+
+  <body id="conceptual_flow_with_tasks" class="jazz">
+    
+    <header id="ios_header" class="hideOnPrint hideInXcode">
+  <div class="content-wrapper">
+    <p class="header-text">
+    	<a href="../../../../navigation/index.html">Guides and Sample Code
+ 		</a>
+ </p>
+    <p id="wwdr"><img id="apple_logo" src="../../../../Resources/1274/Images/apple2.png" height="14px" width="12px" aria-hidden="true" /><a href="https://developer.apple.com">Developer</a></p>
+  </div>
+</header>
+
+    <section id="valence">
+  <div class="content-wrapper">
+    <p id="hierarchial_navigation">
+      <span id="book_title">Using Swift with Cocoa and Objective-C (Swift 4.0.3)</span>
+    </p>
+    <form id="search" class="hideInXcode" method="get" action="/search/index.php" accept-charset="utf-8" autocomplete="off">
+  <input type="search" id="ssi_SearchField" placeholder="Search Guides and Sample Code" name="q" autocomplete="off" tabindex="2" />
+</form>
+
+      
+   
+   
+
+
+
+
+    <span class="download-text hideInXcode">
+      <a href="https://itunes.apple.com/us/book/using-swift-cocoa-objective/id888894773?mt=11">iBooks</a>
+    </span>
+
+    
+
+    <img id="shortstack" src="../../../../Resources/1274/Images/shortstack_2x.png"/>
+  </div>
+</section>
+    <div class="content-wrapper">
+      <nav id="navigator" class="book-parts hideInXcode" role="navigation">
+    <ul class="nav-parts">
+        <li data-id="//apple_ref/doc/uid/TP40014216-CH1-ID5"
+            class="part-name">
+            <a href="index.html#//apple_ref/doc/uid/TP40014216-CH2-ID0" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH2-ID0">Getting Started<br><span class="jpstr">
+初めに
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="index.html#//apple_ref/doc/uid/TP40014216-CH2-ID0" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH2-ID0">Basic Setup<br><span class="jpstr">
+基本の準備
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+        <li data-id="//apple_ref/doc/uid/TP40014216-CH3-ID60"
+            class="part-name">
+            <a href="InteractingWithObjective-CAPIs.html#//apple_ref/doc/uid/TP40014216-CH4-ID35" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH4-ID35">Interoperability<br><span class="jpstr">
+相互運用性
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="InteractingWithObjective-CAPIs.html#//apple_ref/doc/uid/TP40014216-CH4-ID35" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH4-ID35">Interacting with Objective-C APIs<br><span class="jpstr">
+Objective-C APIとの相互作用
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="WritingSwiftClassesWithObjective-CBehavior.html#//apple_ref/doc/uid/TP40014216-CH5-ID86" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH5-ID86">Writing Swift Classes and Protocols with Objective-C Behavior<br><span class="jpstr">
+スウィフトのクラスとプロトコルをObjective-C挙動で書く
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6-ID61" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH6-ID61">Working with Cocoa Frameworks<br><span class="jpstr">
+Cocoaフレームワークを扱う
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="AdoptingCocoaDesignPatterns.html#//apple_ref/doc/uid/TP40014216-CH7-ID6" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH7-ID6">Adopting Cocoa Design Patterns<br><span class="jpstr">
+ココア・デザインパターンの採用
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="InteractingWithCAPIs.html#//apple_ref/doc/uid/TP40014216-CH8-ID17" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH8-ID17">Interacting with C APIs<br><span class="jpstr">
+C APIとの相互作用
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+        <li data-id="//apple_ref/doc/uid/TP40014216-CH9-ID141"
+            class="part-name">
+            <a href="MixandMatch.html#//apple_ref/doc/uid/TP40014216-CH10-ID122" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH10-ID122">Mix and Match<br><span class="jpstr">
+混合と適合
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="MixandMatch.html#//apple_ref/doc/uid/TP40014216-CH10-ID122" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH10-ID122">Swift and Objective-C in the Same Project<br><span class="jpstr">
+同じプロジェクト中のスウィフトとObjective-C
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+        <li data-id="//apple_ref/doc/uid/TP40014216-CH11-ID121"
+            class="part-name nav-part-active open-part">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH12-ID108" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH12-ID108">Migration<br><span class="jpstr">
+移行
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter nav-current-chapter">
+              	<a href="#//apple_ref/doc/uid/TP40014216-CH12-ID108" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH12-ID108">Migrating Your Objective-C Code to Swift<br><span class="jpstr">
+あなたのObjective-Cコードのスウィフトへの移行
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+        <li data-id="//apple_ref/doc/uid/TP40014216-CH13-ID143"
+            class="part-name">
+            <a href="RevisionHistory.html#//apple_ref/doc/uid/TP40014216-CH14-ID142" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH14-ID142">Revision History<br><span class="jpstr">
+改訂履歴
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="RevisionHistory.html#//apple_ref/doc/uid/TP40014216-CH14-ID142" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH14-ID142">Document Revision History<br><span class="jpstr">
+文書改訂履歴
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+    </ul>
+</nav>
+
+      <menu id="bashful" type="toolbar">
+  <div class="shield"></div>
+  <menuitem id="jump_to" class="menu-bar-item closed">
+  <span>On This Page</span>
+  <div class="chevron">
+    <div class="chevy chevron-left"></div>
+    <div class="chevy chevron-right"></div>
+  </div>
+  <menu type="list" class="details">
+      <ul class="list-bullet">
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH12-ID110">Preparing Your Objective-C Code for Migration</a>
+<br><span class="jpstr">
+移動のためのあなたのObjective-Cコードの準備
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH12-ID112">The Migration Process</a>
+<br><span class="jpstr">
+移動プロセス
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH12-ID120">Troubleshooting Tips and Reminders</a>
+<br><span class="jpstr">
+問題解決の秘訣と注意
+</span><!--end_jpstr-->
+          </li>
+      </ul>
+  </menu>
+</menuitem>
+
+</menu>
+<div class="pixel-line"></div>
+<div class="rubber-band-gap"></div>
+<article class="chapter">
+  <a name="//apple_ref/doc/uid/TP40014216-CH12"></a><a name="//apple_ref/doc/uid/TP40014216-CH12-ID108"></a>
+      <a name="//apple_ref/doc/uid/TP40014216-CH11"></a><a name="//apple_ref/doc/uid/TP40014216-CH11-ID121"></a>
+
+  <h2 class='chapter-name'>Migrating Your Objective-C Code to Swift<br><span class="jpstr">
+あなたのObjective-Cコードのスウィフトへの移行
+</span><!--end_jpstr-->
+</h2>
+
+
+  
+  	<section class="section">
+  		<p class="para">
+  <em>Migration</em> provides an opportunity to revisit an existing Objective-C app and improve its architecture, logic, and performance by replacing pieces of it in Swift. For a straightforward, incremental migration of an app, you’ll be using the tools learned earlier—mix and match plus interoperability. Mix-and-match functionality makes it easy to choose which features and functionality to implement in Swift, and which to leave in Objective-C. Interoperability makes it possible to integrate those features back into Objective-C code with no hassle. Use these tools to explore Swift’s extensive functionality and integrate it back into your existing Objective-C app without having to rewrite the entire app in Swift at once.
+<br><span class="jpstr">
+<em>移行</em>は、既存のObjective-Cアプリを再検討するための、およびその設計仕様、論理、そして性能をそれの一部をスウィフトにおいて取り替えることによって向上させるための機会を提供します。アプリのわかりやすい、徐々に進める移動のために、あなたは以前に学んだいくつかの手段を使用することになります ― 混合と適合それに相互運用性。混合と適合の機能性は、どの特徴と機能性をスウィフトにおいて実装するか、そしてどれをObjective-Cのままにしておくべきかを選択をするのを容易にします。相互運用性は、それらの特徴をObjective-Cコードに逆に戻って統合することを面倒なしで可能にします。これらのツールを使用して、スウィフトの広大な機能性を調査して、いっぺんにスウィフトでアプリ全体を書き直ししなくとも、それをあなたの既存のObjective-Cアプリに逆に組み込んでください。
+</span><!--end_jpstr-->
+</p>
+
+		</section> 
+
+
+  <section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH12-ID110"></a>
+  <h3 class="section-name" tabindex="0">Preparing Your Objective-C Code for Migration<br><span class="jpstr">
+移動のためのあなたのObjective-Cコードの準備
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Before you begin migrating your codebase, make sure that your Objective-C and Swift code has optimal compatibility. This means tidying up and modernizing your existing Objective-C codebase. Your existing code should follow modern coding practices to make it easier to interact with Swift seamlessly. For a short list of practices to adopt before moving forward, see <em class="u-book"><a href="../../../../releasenotes/ObjectiveC/ModernizationObjC/AdoptingModernObjective-C/AdoptingModernObjective-C.html#//apple_ref/doc/uid/TP40014150" data-renderer-version="1" target="_self">Adopting Modern Objective-C</a></em>.
+<br><span class="jpstr">
+あなたがあなたのコードベースを移行し始める前に、あなたのObjective-Cとスウィフトコードが最適の互換性を持つことを確かにしてください。これは、あなたの既存のObjective-Cコードベースを整えて、現代化することを意味します。あなたの既存のコードは、継ぎ目なくスウィフトと相互に作用することをより簡単にするために、現代のコード記述慣行に従わなければなりません。前進する前に採用するべき短い慣行リストとして、<em class="u-book"><a href="../../../../releasenotes/ObjectiveC/ModernizationObjC/AdoptingModernObjective-C/AdoptingModernObjective-C.html#//apple_ref/doc/uid/TP40014150" data-renderer-version="1" target="_self">現代のObjective-Cを採用する</a></em>を見てください。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH12-ID112"></a>
+  <h3 class="section-name" tabindex="0">The Migration Process<br><span class="jpstr">
+移動プロセス
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  The most effective approach for migrating code to Swift is on a per-file basis—that is, one class at a time. Because you can’t subclass Swift classes in Objective-C, it’s best to choose a class in your app that doesn’t have any subclasses. You’ll replace the <code class="code-voice">.m</code> and <code class="code-voice">.h</code> files for that class with a single <code class="code-voice">.swift</code> file. Everything from your implementation and interface goes directly into this single Swift file. You won’t create a header file; Xcode generates a header automatically in case you need to reference it.
+<br><span class="jpstr">
+スウィフトへの移っているコードのために最も効果的なアプローチは、ファイル毎原則の上にあります ― すなわち、一度にひとつのクラス。あなたがスウィフトクラスをObjective-Cにおいてサブクラス化できないので、あなたのアプリにおいて全くサブクラスを持たないクラスを選択するのは最も良いことです。あなたは、そのクラスのための<code class="code-voice">.m</code>と<code class="code-voice">.h</code>ファイルを単一の<code class="code-voice">.swift</code>ファイルで置き換えます。あなたの実装とインタフェースからのすべては、直接この単一のスウィフトファイルに入ります。あなたはヘッダ・ファイルを作成しません；あなたがそれに参照をつける必要がある場合に備えて、Xcodeが自動的にヘッダを生成します。
+</span><!--end_jpstr-->
+</p>
+  <section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH12-ID114"></a>
+  <h3 class="section-name" tabindex="0">Before You Start<br><span class="jpstr">
+あなたが始める前に
+</span><!--end_jpstr-->
+</h3>
+  <ul class="list-check">
+  <li class="item"><p class="para">
+   Create a Swift class for your corresponding Objective-C <code class="code-voice">.m</code> and <code class="code-voice">.h</code> files by choosing File &gt; New &gt; File &gt; (iOS, watchOS, tvOS, <em>or</em> macOS) &gt; Source &gt; Swift File. You can use the same or a different name than your Objective-C class. Class prefixes are optional in Swift.
+<br><span class="jpstr">
+スウィフトクラスをあなたの対応するObjective-Cの<code class="code-voice">.m</code>と<code class="code-voice">.h</code>ファイルのために、File &gt; New &gt; File &gt;（iOS、watchOS、tvOS、<em>または</em>macOS）&gt; Source &gt; Swift Fileを選ぶことによって作成してください。あなたは、あなたのObjective-Cクラスと同じまたは異なる名前を使用することができます。クラス接頭辞は、スウィフトでは随意です。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  Import relevant system frameworks.
+<br><span class="jpstr">
+関連するシステム・フレームワークをインポートしてください。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  Fill out an Objective-C bridging header if you need to access Objective-C code from the same app target in your Swift file. For instructions, see <span class="x-name"><a href="MixandMatch.html#//apple_ref/doc/uid/TP40014216-CH10-ID126" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH10-ID126">Importing Code from Within the Same App Target</a></span>.
+<br><span class="jpstr">
+あなたがあなたのスウィフトファイルにおいて同じアプリターゲットからのObjective-Cコードにアクセスする必要があるならば、Objective-C橋渡しヘッダに記入してください。手順指示のために、<span class="x-name"><a href="MixandMatch.html#//apple_ref/doc/uid/TP40014216-CH10-ID126" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH10-ID126">コードを同じアプリターゲットからインポートする</a></span>を見てください。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  To make your Swift class accessible and usable back in Objective-C, make it a descendant of an Objective-C class. To specify a particular name for the class to use in Objective-C, mark it with <code class="code-voice">@objc(</code><em>name</em><code class="code-voice">)</code>, where <em>name</em> is the name that your Objective-C code uses to reference the Swift class. For more information on <code class="code-voice">@objc</code>, see <span class="x-name"><a href="InteractingWithObjective-CAPIs.html#//apple_ref/doc/uid/TP40014216-CH4-ID53" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH4-ID53">Swift Type Compatibility</a></span>.
+<br><span class="jpstr">
+あなたのスウィフトクラスをObjective-Cから逆にアクセス可能および使用可能にするために、それをObjective-Cクラスの子孫にしてください。クラスに対してObjective-Cで使うために特定の名前を指定するために、それを<code class="code-voice">@objc(</code><em>name</em><code class="code-voice">)</code>で印してください、そこにおいて<em>name</em>はあなたのObjective-Cコードがスウィフトクラスを参照するために使う名前です。<code class="code-voice">@objc</code>の詳細については、<span class="x-name"><a href="InteractingWithObjective-CAPIs.html#//apple_ref/doc/uid/TP40014216-CH4-ID53" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH4-ID53">スウィフト型互換性</a></span>を見てください。
+</span><!--end_jpstr-->
+</p>
+</li>
+</ul>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH12-ID116"></a>
+  <h3 class="section-name" tabindex="0">As You Work<br><span class="jpstr">
+あなたが作業するとき
+</span><!--end_jpstr-->
+</h3>
+  <ul class="list-check">
+  <li class="item"><p class="para">
+   You can set up your Swift class to integrate Objective-C behavior by subclassing Objective-C classes, adopting Objective-C protocols, and more. For more information, see <span class="x-name"><a href="WritingSwiftClassesWithObjective-CBehavior.html#//apple_ref/doc/uid/TP40014216-CH5-ID86" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH5-ID86">Writing Swift Classes and Protocols with Objective-C Behavior</a></span>.
+<br><span class="jpstr">
+あなたは、あなたのスウィフトクラスをObjective-Cクラスのサブクラスにすること、Objective-Cプロトコルを採用すること、そしてもっと多くのことによって、Objective-C挙動に溶け込むように準備することができます。詳細は、<span class="x-name"><a href="WritingSwiftClassesWithObjective-CBehavior.html#//apple_ref/doc/uid/TP40014216-CH5-ID86" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH5-ID86">スウィフトのクラスとプロトコルをObjective-C挙動で書く</a></span>を見てください。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  As you work with Objective-C APIs, you’ll need to know how Swift translates certain Objective-C language features. For more information, see <span class="x-name"><a href="InteractingWithObjective-CAPIs.html#//apple_ref/doc/uid/TP40014216-CH4-ID35" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH4-ID35">Interacting with Objective-C APIs</a></span>.
+<br><span class="jpstr">
+あなたがObjective-C APIを扱うとき、あなたはスウィフトがどのように特定のObjective-C言語機能を翻訳するか知っている必要があります。詳細は、<span class="x-name"><a href="InteractingWithObjective-CAPIs.html#//apple_ref/doc/uid/TP40014216-CH4-ID35" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH4-ID35">Objective-C APIとの相互作用</a></span>を見てください。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  When writing Swift code that incorporates Cocoa frameworks, remember that certain types are bridged, which means you can work with Swift types in place of Objective-C types. For more information, see <span class="x-name"><a href="WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6-ID61" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH6-ID61">Working with Cocoa Frameworks</a></span>.
+<br><span class="jpstr">
+ココア・フレームワークを取り入れるスウィフトコードを書くとき、特定の型が橋渡しをされるのを思い出してください、それはあなたがスウィフト型をObjective-C型の代わりに扱うことができるのを意味します。詳細は、<span class="x-name"><a href="WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6-ID61" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH6-ID61">ココアフレームワーク</a></span>を扱うを見てください。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  As you incorporate Cocoa patterns into your Swift class, see <span class="x-name"><a href="AdoptingCocoaDesignPatterns.html#//apple_ref/doc/uid/TP40014216-CH7-ID6" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH7-ID6">Adopting Cocoa Design Patterns</a></span> for information on translating common design patterns.
+<br><span class="jpstr">
+あなたがココアパターンをあなたのスウィフトクラスに組み込むとき、<span class="x-name"><a href="AdoptingCocoaDesignPatterns.html#//apple_ref/doc/uid/TP40014216-CH7-ID6" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH7-ID6">ココア・デザインパターンの採用</a></span>を一般的なデザイン・パターンを翻訳することに関する情報のために見てください。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  For considerations on translating your properties from Objective-C to Swift, read <a href="../Swift_Programming_Language/Properties.html#//apple_ref/doc/uid/TP40014097-CH14" data-renderer-version="2" target="_self">Properties</a> in <em class="u-book"><a href="../Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097" data-renderer-version="2" target="_self">The Swift Programming Language (Swift 4.0.3)</a></em>.
+<br><span class="jpstr">
+スウィフトにあなたのプロパティをObjective-Cから翻訳することでの配慮について、<a href="../Swift_Programming_Language/Properties.html#//apple_ref/doc/uid/TP40014097-CH14" data-renderer-version="2" target="_self">プロパティ</a>を<em class="u-book"><a href="../Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097" data-renderer-version="2" target="_self">スウィフトプログラミング言語（Swift 4.0.3）</a></em>で読んでください。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  Use the <code class="code-voice">@objc(</code><em>name</em><code class="code-voice">)</code> attribute to provide Objective-C names for properties and methods when necessary. For example, you can mark a property called <code class="code-voice">enabled</code> to have a getter named <code class="code-voice">isEnabled</code> in Objective-C like this:
+<br><span class="jpstr">
+<code class="code-voice">@objc(</code><em>name</em><code class="code-voice">)</code>属性をObjective-C名をプロパティとメソッドに必要に応じて用意するために使ってください。例えば、あなたは<code class="code-voice">enabled</code>と呼ばれるあるプロパティを、以下のように印してObjective-Cにおいて<code class="code-voice">isEnabled</code>と名前をつけられるゲッターを持つようにできます：
+</span><!--end_jpstr-->
+</p>
+<section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">@objc</span> <span class="kt">var</span> <span class="vc">enabled</span>: <span class="n"><! -- a href="" -->Bool<! -- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">@objc</span>(<span class="vc">isEnabled</span>) <span class="kt">get</span> {</code></li>
+            <li><code class="code-voice">        <span class="c">// ...</span></code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+</li><li class="item"><p class="para">
+  Denote instance (<code class="code-voice">-</code>) and class (<code class="code-voice">+</code>) methods with <code class="code-voice">func</code> and <code class="code-voice">class func</code>, respectively.
+<br><span class="jpstr">
+インスタンス（<code class="code-voice">-</code>）およびクラス（<code class="code-voice">+</code>）メソッドであることを、それぞれ<code class="code-voice">func</code>および<code class="code-voice">class func</code>で示してください。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  Declare simple macros as global constants, and translate complex macros into functions.
+<br><span class="jpstr">
+単純なマクロをグローバルな定数として宣言してください、そして複雑なマクロを関数へと翻訳してください。
+</span><!--end_jpstr-->
+</p>
+</li>
+</ul>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH12-ID118"></a>
+  <h3 class="section-name" tabindex="0">After You Finish<br><span class="jpstr">
+あなたがやり終えたあと
+</span><!--end_jpstr-->
+</h3>
+  <ul class="list-check">
+  <li class="item"><p class="para">
+   Update import statements in your Objective-C code (to <code class="code-voice">#import &quot;ProductModuleName-Swift.h&quot;</code>), as described in <span class="x-name"><a href="MixandMatch.html#//apple_ref/doc/uid/TP40014216-CH10-ID126" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH10-ID126">Importing Code from Within the Same App Target</a></span>.
+<br><span class="jpstr">
+あなたのObjective-Cコードにおいてインポート文を更新してください（<code class="code-voice">#import "ProductModuleName-Swift.h"</code>へと）、<span class="x-name"><a href="MixandMatch.html#//apple_ref/doc/uid/TP40014216-CH10-ID126" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH10-ID126">コードを同じアプリターゲットからインポートする</a></span>で記述されるように。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  Remove the original Objective-C <code class="code-voice">.m</code> file from the target by deselecting the target membership checkbox. Don’t delete the <code class="code-voice">.m</code> and <code class="code-voice">.h</code> files immediately; use them to troubleshoot.
+<br><span class="jpstr">
+ターゲットから本来のObjective-C <code class="code-voice">.m</code>ファイルを、ターゲットメンバーシップ・チェックボックスの選択を外すことによって取り除いてください。<code class="code-voice">.m</code>と<code class="code-voice">.h</code>ファイルを直ぐに削除しないでください；それらを不具合対処のために使ってください。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  Update your code to use the Swift class name instead of the Objective-C name if you gave the Swift class a different name.
+<br><span class="jpstr">
+あなたがスウィフトクラスに異なる名前を与えるならば、Objective-C名でなくてスウィフトクラス名を使用するようにあなたのコードを更新してください。
+</span><!--end_jpstr-->
+</p>
+</li>
+</ul>
+  
+</section>
+
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH12-ID120"></a>
+  <h3 class="section-name" tabindex="0">Troubleshooting Tips and Reminders<br><span class="jpstr">
+問題解決の秘訣と注意
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Even though each migration experience is different depending on your existing codebase, there are some general steps and tools to help you troubleshoot your code migration:
+<br><span class="jpstr">
+たとえそれぞれの移行体験があなたの既存のコードベースに従い異なるものではあっても、あなたのコード移行の問題解決を助けるいくつかの一般的な取るべき段階と手段があります：
+</span><!--end_jpstr-->
+</p><ul class="list-bullet">
+  <li class="item"><p class="para">
+  Remember that you cannot subclass a Swift class in Objective-C. Therefore, the class you migrate cannot have any Objective-C subclasses in your app.
+<br><span class="jpstr">
+あなたがObjective-Cにおいてスウィフトクラスをサブクラス化することができないことを忘れないでください。したがって、あなたが移行するクラスは、あなたのアプリにおいて１つもObjective-Cサブクラスを持つことができません。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  Once you migrate a class to Swift, you must remove the corresponding <code class="code-voice">.m</code> file from the target before building to avoid a duplicate symbol error.
+<br><span class="jpstr">
+一旦あなたがあるクラスをスウィフトに移行したならば、あなたは、ビルドの前にそのターゲットから対応する<code class="code-voice">.m</code>ファイルを取り除いて重複シンボル・エラーを避けなければなりません。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  To be accessible and usable in Objective-C, a Swift class must be a descendant of an Objective-C class.
+<br><span class="jpstr">
+Objective-Cでアクセス可能で利用可能であるために、スウィフトクラスはObjective-Cクラスの子孫でなければなりません。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  When you bring Swift code into Objective-C, remember that Objective-C won’t be able to translate certain features that are specific to Swift. For a list, see <span class="x-name"><a href="MixandMatch.html#//apple_ref/doc/uid/TP40014216-CH10-ID136" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH10-ID136">Using Swift from Objective-C</a></span>.
+<br><span class="jpstr">
+あなたがObjective-Cにスウィフトコードを連れて来るとき、Objective-Cがスウィフトに特有である特定の特徴を翻訳することができないのを思い出してください。その一覧のために、<span class="x-name"><a href="MixandMatch.html#//apple_ref/doc/uid/TP40014216-CH10-ID136" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH10-ID136">スウィフトをObjective-Cから使う</a></span>を見てください。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  Command-click a Swift class name to see its generated header.
+<br><span class="jpstr">
+スウィフトクラス名をコマンド-クリックして、その生成ヘッダを見てください。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  Option-click a symbol to see implicit information about it, like its type, attributes, and documentation comments.
+<br><span class="jpstr">
+シンボルをオプション-クリックして、それに関する暗黙表示の情報、その型、属性、そして注釈文書などを見てください。
+</span><!--end_jpstr-->
+</p>
+</li>
+</ul>
+  
+</section>
+
+  	
+ 	<section id="next_previous" class="">
+    		<p class="previous-link"><a href="MixandMatch.html#//apple_ref/doc/uid/TP40014216-CH10-ID122" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH10-ID122">Swift and Objective-C in the Same Project<br><span class="jpstr">
+同じプロジェクト中のスウィフトとObjective-C
+</span><!--end_jpstr-->
+</a></p>
+  			<p class="next-link"><a href="RevisionHistory.html#//apple_ref/doc/uid/TP40014216-CH14-ID142" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH14-ID142">Document Revision History<br><span class="jpstr">
+文書改訂履歴
+</span><!--end_jpstr-->
+</a></p>
+
+    <p class="copyright">Copyright &#x00a9; 2017 Apple Inc. All rights reserved. 
+  <a class="link" href="http://www.apple.com/legal/terms/site.html" target="_blank" rel="external">Terms of Use</a> | 
+  <a class="link" href="http://www.apple.com/privacy/" target="_blank" rel="external">Privacy Policy</a> | 
+  Updated: 2017-12-04
+</p>
+  </section>
+</article>
+
+    </div>
+    <div id='big_button'></div>
+    <footer id="footer">
+  <div class="content-wrapper">
+  	<div id="leave_feedback" class="button" role="button" tabindex="0">Feedback</div>
+  </div>
+  <script src="../../../../Resources/1274/JavaScript/devpubs-1.6.3.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../../../Resources/1274/JavaScript/feedback-1.6.3.js" type="text/javascript" charset="utf-8"></script>
+  <div id="_omniture_top">
+<!-- SiteCatalyst code version: H.8. Copyright 1997-2006 Omniture, Inc. -->
+<script type="text/javascript">
+/* RSID: */
+var s_account="appleglobal,appleusdeveloper,dappdeveloperlib"
+</script>
+
+<!-- <script type="text/javascript" src="https://www.apple.com/metrics/scripts/s_code_h.js"></script> -->
+<script type="text/javascript">
+s.pageName=AC.Tracking.pageName();
+s.channel="www.us.developer"
+
+/************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+var s_code=s.t();if(s_code)document.write(s_code)</script>
+<!-- End SiteCatalyst code version: H.8. -->
+</div>
+
+</footer>
+
+    
+  </body>
+    <div id="blackout">
+    <div id="preload"></div>
+</div>
+<div id="modal" aria-hidden="true">
+    <div id="closebox" tabindex="0" aria-label="Close feedback form" role="button"></div>
+    <div id="sending" class="hidden">
+        <h2 tabindex="0">Sending feedback&hellip;</h2>
+        <div id="sending_img"></div>
+    </div>
+    <div id="error" class="hidden">
+        <h2 tabindex="0">We&rsquo;re sorry, an error has occurred.</h2>
+        <p>Please try submitting your feedback later.</p>
+        <div id="error_icon"></div>
+    </div>
+    <div id="success" class="hidden">
+        <h2 tabindex="0">Thank you for providing feedback!</h2>
+        <p>Your input helps improve our developer documentation.</p>
+        <div id="thank_you_icon"></div>
+    </div>
+    
+    <form id="feedback" action="#" method="post">
+        <div class="left-leaf">
+            <h2 id="helpful_title" data-asterisk="a1" tabindex="0">How helpful is this document?</h2>     
+            <sup id="a1" class="asterisk" aria-hidden="true">*</sup>
+
+            <div id="star_group" role="radiogroup" aria-required="true">
+                <label> 
+                    <input class="radio" type="radio" name="helped" value="1" /> 
+                    Very helpful
+                </label>
+                <label> 
+                    <input class="radio" type="radio" name="helped" value="2" /> 
+                    Somewhat helpful
+                </label>
+                <label>
+                    <input class="radio" type="radio" name="helped" value="3" /> 
+                    Not helpful
+                </label>
+            </div>
+        </div>
+        <div class="right-leaf">
+            <h2>How can we improve this document?</h2>
+            <div id="improve" class="checkboxes">
+                <label>
+                    <input type="checkbox" name="typo" /> 
+                    Fix typos or links
+                </label>
+                <label>
+                    <input type="checkbox" name="infoIncorrect" /> 
+                    Fix incorrect information
+                </label>
+                <label>
+                    <input type="checkbox" name="needs_examples" /> 
+                    Add or update code samples
+                </label>
+                <label>
+                    <input type="checkbox" name="needs_art" /> 
+                    Add or update illustrations
+                </label>
+                <label>
+                    <input type="checkbox" name="missingInfo" /> 
+                    Add information about...
+                </label>
+            </div>
+        </div>
+
+        <textarea id="comment" name="problem" cols="70" rows="8" placeholder="Please tell us more about your experience with this document" data-asterisk="a2" required></textarea>
+        <sup id="a2" class="asterisk" aria-hidden="true">*</sup>
+
+        <p class="fineprint">
+            <em aria-hidden="true"><span>*</span> Required information</em>
+        </p> 
+
+        <input id="submit" type="button" value="Send" />
+
+        <section id="legal">
+            <p>
+                To submit a product bug or enhancement request, please visit the 
+                <a href="https://developer.apple.com/bugreporter/" target="_blank">Bug Reporter</a> 
+                page.
+            </p>
+            <p>
+                Please read <a href="http://www.apple.com/legal/policies/ideas.html" target="_blank">Apple's Unsolicited Idea Submission Policy</a> 
+                before you send us your feedback.
+            </p> 
+        </section>
+    </form>
+</div>
+
+</div>
+</html>

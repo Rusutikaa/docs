@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>  
+  <title>Using Swift with Cocoa and Objective-C (Swift 4.0.3): Writing Swift Classes and Protocols with Objective-C Behavior</title>
+  <link rel="stylesheet" type="text/css" href="../../../../Resources/1274/CSS/style-1.6.3.css" />
+  <link rel="stylesheet" type="text/css" href="../../../../Resources/1274/CSS/feedback-1.6.3.css" />
+  <meta charset='utf-8'> 
+<meta id="j-version" name="j-version" content="" />
+<meta id="build" name="build" content="3b40de4ca2af51e302b3b9b9306b0a3e" />
+<meta id="document-version" name="document-version" content="9.1.5" />
+<meta id="book-assignments" name="book-assignments" content="{Type/Guide}, {Topic/Swift}" />
+<meta scheme="apple_ref" id="identifier" name="identifier" content="//apple_ref/doc/uid/TP40014216" />
+<meta id="chapterId" name="chapterId" content="TP40014216-CH5">
+<meta id="book-title" name="book-title" content="Using Swift with Cocoa and Objective-C (Swift 4.0.3)" />
+<meta id="book-resource-type" name="book-resource-type" content="Guide" />
+<meta id="book-root" name="book-root" content="./" />
+<meta id="book-json" name="book-json" content="book.json">
+<meta id="date" name="date" content="2017-12-04" />
+<meta id="description" name="description" content="Describes various aspects of Swift&#39;s compatibility with the Objective-C language and Cocoa/Cocoa Touch frameworks." />
+<meta id="IndexTitle" name="IndexTitle" content="" />
+<meta id="resources-uri" name="resources-uri" content="../../../../Resources/1274">
+<link id="book-index-page" rel="Start" title="" type="text/html" href="./index.html">
+<!-- , next_chapter: next_chapter, previous_chapter: previous_chapter -->
+<link id="next-page" rel="Next" type="text/html" href="">
+<link id="previous-page" rel="Prev" type="text/html" href="">
+<meta id="devcenter" name="devcenter" content="<!-- DEVCENTER_NAME -->" />
+<meta id="devcenter-url" name="devcenter-url" content="<!-- DEVCENTER_URL -->" />
+<meta id="reflib" name="reflib" content="<!-- REFLIB_NAME -->" />
+
+<meta id="xcode-display" name="xcode-display" content="render" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta id="platforms" name="platforms" content="Xcode Developer Tools">
+</head>
+
+  <body id="conceptual_flow_with_tasks" class="jazz">
+    
+    <header id="ios_header" class="hideOnPrint hideInXcode">
+  <div class="content-wrapper">
+    <p class="header-text">
+    	<a href="../../../../navigation/index.html">Guides and Sample Code
+ 		</a>
+ </p>
+    <p id="wwdr"><img id="apple_logo" src="../../../../Resources/1274/Images/apple2.png" height="14px" width="12px" aria-hidden="true" /><a href="https://developer.apple.com">Developer</a></p>
+  </div>
+</header>
+
+    <section id="valence">
+  <div class="content-wrapper">
+    <p id="hierarchial_navigation">
+      <span id="book_title">Using Swift with Cocoa and Objective-C (Swift 4.0.3)</span>
+    </p>
+    <form id="search" class="hideInXcode" method="get" action="/search/index.php" accept-charset="utf-8" autocomplete="off">
+  <input type="search" id="ssi_SearchField" placeholder="Search Guides and Sample Code" name="q" autocomplete="off" tabindex="2" />
+</form>
+
+      
+   
+   
+
+
+
+
+    <span class="download-text hideInXcode">
+      <a href="https://itunes.apple.com/us/book/using-swift-cocoa-objective/id888894773?mt=11">iBooks</a>
+    </span>
+
+    
+
+    <img id="shortstack" src="../../../../Resources/1274/Images/shortstack_2x.png"/>
+  </div>
+</section>
+    <div class="content-wrapper">
+      <nav id="navigator" class="book-parts hideInXcode" role="navigation">
+    <ul class="nav-parts">
+        <li data-id="//apple_ref/doc/uid/TP40014216-CH1-ID5"
+            class="part-name">
+            <a href="index.html#//apple_ref/doc/uid/TP40014216-CH2-ID0" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH2-ID0">Getting Started<br><span class="jpstr">
+初めに
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="index.html#//apple_ref/doc/uid/TP40014216-CH2-ID0" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH2-ID0">Basic Setup<br><span class="jpstr">
+基本の準備
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+        <li data-id="//apple_ref/doc/uid/TP40014216-CH3-ID60"
+            class="part-name nav-part-active open-part">
+            <a href="InteractingWithObjective-CAPIs.html#//apple_ref/doc/uid/TP40014216-CH4-ID35" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH4-ID35">Interoperability<br><span class="jpstr">
+相互運用性
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="InteractingWithObjective-CAPIs.html#//apple_ref/doc/uid/TP40014216-CH4-ID35" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH4-ID35">Interacting with Objective-C APIs<br><span class="jpstr">
+Objective-C APIとの相互作用
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter nav-current-chapter">
+              	<a href="#//apple_ref/doc/uid/TP40014216-CH5-ID86" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH5-ID86">Writing Swift Classes and Protocols with Objective-C Behavior<br><span class="jpstr">
+スウィフトのクラスとプロトコルをObjective-C挙動で書く
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6-ID61" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH6-ID61">Working with Cocoa Frameworks<br><span class="jpstr">
+Cocoaフレームワークを扱う
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="AdoptingCocoaDesignPatterns.html#//apple_ref/doc/uid/TP40014216-CH7-ID6" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH7-ID6">Adopting Cocoa Design Patterns<br><span class="jpstr">
+ココア・デザインパターンの採用
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="InteractingWithCAPIs.html#//apple_ref/doc/uid/TP40014216-CH8-ID17" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH8-ID17">Interacting with C APIs<br><span class="jpstr">
+C APIとの相互作用
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+        <li data-id="//apple_ref/doc/uid/TP40014216-CH9-ID141"
+            class="part-name">
+            <a href="MixandMatch.html#//apple_ref/doc/uid/TP40014216-CH10-ID122" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH10-ID122">Mix and Match<br><span class="jpstr">
+混合と適合
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="MixandMatch.html#//apple_ref/doc/uid/TP40014216-CH10-ID122" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH10-ID122">Swift and Objective-C in the Same Project<br><span class="jpstr">
+同じプロジェクト中のスウィフトとObjective-C
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+        <li data-id="//apple_ref/doc/uid/TP40014216-CH11-ID121"
+            class="part-name">
+            <a href="Migration.html#//apple_ref/doc/uid/TP40014216-CH12-ID108" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH12-ID108">Migration<br><span class="jpstr">
+移行
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="Migration.html#//apple_ref/doc/uid/TP40014216-CH12-ID108" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH12-ID108">Migrating Your Objective-C Code to Swift<br><span class="jpstr">
+あなたのObjective-Cコードのスウィフトへの移行
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+        <li data-id="//apple_ref/doc/uid/TP40014216-CH13-ID143"
+            class="part-name">
+            <a href="RevisionHistory.html#//apple_ref/doc/uid/TP40014216-CH14-ID142" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH14-ID142">Revision History<br><span class="jpstr">
+改訂履歴
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="RevisionHistory.html#//apple_ref/doc/uid/TP40014216-CH14-ID142" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH14-ID142">Document Revision History<br><span class="jpstr">
+文書改訂履歴
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+    </ul>
+</nav>
+
+      <menu id="bashful" type="toolbar">
+  <div class="shield"></div>
+  <menuitem id="jump_to" class="menu-bar-item closed">
+  <span>On This Page</span>
+  <div class="chevron">
+    <div class="chevy chevron-left"></div>
+    <div class="chevy chevron-right"></div>
+  </div>
+  <menu type="list" class="details">
+      <ul class="list-bullet">
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH5-ID88">Inheriting from Objective-C Classes</a>
+<br><span class="jpstr">
+Objective-Cクラスから継承する
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH5-ID90">Adopting Protocols</a>
+<br><span class="jpstr">
+プロトコルを採用する
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH5-ID92">Writing Initializers and Deinitializers</a>
+<br><span class="jpstr">
+イニシャライザとデイニシャライザを書く
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH5-ID190">Using Swift Class Names with Objective-C APIs</a>
+<br><span class="jpstr">
+スウィフトクラス名をObjective-C APIで使う
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH5-ID94">Integrating with Interface Builder</a>
+<br><span class="jpstr">
+インタフェースビルダーと統合する
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH5-ID100">Specifying Property Attributes</a>
+<br><span class="jpstr">
+プロパティ属性を指定する
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH5-ID105">Implementing Core Data Managed Object Subclasses</a>
+<br><span class="jpstr">
+コアデータ管理オブジェクトのサブクラスを実装する
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH5-ID215">Declaring Protocols</a>
+<br><span class="jpstr">
+プロトコルを宣言する
+</span><!--end_jpstr-->
+          </li>
+      </ul>
+  </menu>
+</menuitem>
+
+</menu>
+<div class="pixel-line"></div>
+<div class="rubber-band-gap"></div>
+<article class="chapter">
+  <a name="//apple_ref/doc/uid/TP40014216-CH5"></a><a name="//apple_ref/doc/uid/TP40014216-CH5-ID86"></a>
+
+  <h2 class='chapter-name'>Writing Swift Classes and Protocols with Objective-C Behavior<br><span class="jpstr">
+スウィフトのクラスとプロトコルをObjective-C挙動で書く
+</span><!--end_jpstr-->
+</h2>
+
+
+  
+  	<section class="section">
+  		<p class="para">
+  Interoperability lets you write Swift code that incorporates Objective-C behavior. You can subclass Objective-C classes, declare and adopt Objective-C protocols, and take advantage of other Objective-C functionality when writing Swift code. This means that you can create classes and protocols based on familiar, established behavior in Objective-C and enhance them with Swift’s modern and powerful language features.
+<br><span class="jpstr">
+相互運用性は、あなたにObjective-C挙動を取り入れるスウィフトコードを書かせます。あなたは、スウィフトコードを記述する時に、Objective-Cクラスのサブクラス作成、Objective-Cプロトコルの宣言と採用、そして他のObjective-C機能性の利用が可能です。これは、あなたがObjective-Cでのお馴染みの、確立された挙動に基づいてクラスおよびプロトコルを作成して、それらをスウィフトの現代的で強力な言語機能で強化することができることを意味します。
+</span><!--end_jpstr-->
+</p>
+
+		</section> 
+
+
+  <section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH5-ID88"></a>
+  <h3 class="section-name" tabindex="0">Inheriting from Objective-C Classes<br><span class="jpstr">
+Objective-Cクラスから継承する
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  In Swift, you can define subclasses of Objective-C classes. To create a Swift class that inherits from an Objective-C class, add a colon (<code class="code-voice">:</code>) after the name of the Swift class, followed by the name of the Objective-C class.
+<br><span class="jpstr">
+スウィフトにおいて、あなたはObjective-Cクラスのサブクラスを定義することができます。Objective-Cクラスから継承するスウィフトクラスを作成するために、スウィフトクラスの名前の後にコロン（<code class="code-voice">:</code>）、それに続けてObjective-Cクラスの名前を加えてください。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">import</span> <span class="vc">UIKit</span></code></li>
+            <li><code class="code-voice"><span class="kt">class</span> <span class="vc">MySwiftViewController</span>: <span class="n"><! -- a href="" -->UIViewController<! -- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="c">// define the class&nbsp;<span class="jpstr">（クラスを定義する）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  A Swift subclass gets all the functionality offered by the superclass in Objective-C.
+<br><span class="jpstr">
+スウィフトのサブクラスは、Objective-Cでのスーパークラスによって提供される全ての機能性を獲得します。
+</span><!--end_jpstr-->
+</p><p class="para">
+  To provide your own implementations of the superclass’s methods, use the <code class="code-voice">override</code> modifier. The compiler automatically infers the name of the overridden Objective-C method that matches the Swift method name. You can use the <code class="code-voice">@objc(</code><em>name</em><code class="code-voice">)</code> attribute to explicitly specify the corresponding Objective-C symbol.
+<br><span class="jpstr">
+そのスーパークラスの持つメソッドのあなた独自の実装を提供するには、<code class="code-voice">override</code>修飾子を使ってください。コンパイラは、そのスウィフトメソッド名と適合するオーバーライドされたObjective-Cメソッドの名前を自動的に推論します。あなたは、<code class="code-voice">@objc(</code><em>name</em><code class="code-voice">)</code>属性を使うことで、対応するObjective-Cシンボルを明示的に指定することができます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  When a Swift class introduces many new methods or properties that require behavior from the Objective-C runtime, use the <code class="code-voice">@objcMembers</code> attribute in the declaration of that class. Applying the <code class="code-voice">@objcMembers</code> attribute to a class implicitly adds the <code class="code-voice">@objc</code> attribute to all of its Objective-C compatible members. Because applying the <code class="code-voice">@objc</code> attribute can increase the compiled size of an app and adversely affect performance, only apply the <code class="code-voice">@objcMembers</code> attribute on declarations when each member needs to have the <code class="code-voice">@objc</code> attribute applied.
+<br><span class="jpstr">
+あるスウィフトクラスがObjective-Cランタイムからの挙動を要求する多くの新しいメソッドまたはプロパティを導入するならば、<code class="code-voice">@objcMembers</code>属性をそのクラスの宣言において使ってください。<code class="code-voice">@objcMembers</code>属性をあるクラスに適用することは、それのObjective-C互換メンバの全てに暗黙的に<code class="code-voice">@objc</code>属性を加えます。<code class="code-voice">@objc</code>属性を適用することはアプリのコンパイル済みサイズを増大させて性能に不利な影響をもたらすことから、各メンバが<code class="code-voice">@objc</code>属性を適用される必要がある場合に、ただ<code class="code-voice">@objcMembers</code>属性を宣言上でだけ適用してください。
+</span><!--end_jpstr-->
+</p>
+  <section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH5-ID152"></a>
+  <h3 class="section-name" tabindex="0">NSCoding<br><span class="jpstr">
+NSCodingプロトコル
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  The <code class="code-voice">NSCoding</code> protocol requires that conforming types implement the required initializer <code class="code-voice">init(coder:)</code> and the required method <code class="code-voice">encode(with:)</code>. Classes that adopt <code class="code-voice">NSCoding</code> directly must implement this method. Subclasses of classes that adopt <code class="code-voice">NSCoding</code> that have one or more custom initializers or any properties without initial values must also implement this method.
+<br><span class="jpstr">
+<code class="code-voice">NSCoding</code>プロトコルは、準拠している型が必須イニシャライザ<code class="code-voice">init(coder:)</code>および必須メソッド<code class="code-voice">encode(with:)</code>を実装することを必要とします。直接に<code class="code-voice">NSCoding</code>を採用するクラスは、このメソッドを実装しなければなりません。<code class="code-voice">NSCoding</code>を採用するクラスのサブクラスで１つ以上のカスタムイニシャライザまたはなんらかの初期値なしのプロパティを持つものは、同様にこのメソッドを実装しなければなりません。
+</span><!--end_jpstr-->
+</p><p class="para">
+  For objects that are loaded from Storyboards or archived to disk using the <code class="code-voice">NSUserDefaults</code> or <code class="code-voice">NSKeyedArchiver</code> classes, you must provide a full implementation of this initializer. However, you might not need to implement an initializer for types that are expected to or cannot be instantiated in this way.
+<br><span class="jpstr">
+ストーリーボードからロードされるかディスクに<code class="code-voice">NSUserDefaults</code>や<code class="code-voice">NSKeyedArchiver</code>クラスを使ってアーカイブされるオブジェクトに対して、あなたはこのイニシャライザの完全な実装を提供しなければなりません。しかしながら、あなたはこの方法でインスタンス化されることが出来ないかそうするつもりでない型のためにイニシャライザを実装する必要はありません。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH5-ID90"></a>
+  <h3 class="section-name" tabindex="0">Adopting Protocols<br><span class="jpstr">
+プロトコルを採用する
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Objective-C protocols are imported as Swift protocols, which can be adopted by a class in a comma-separated list following the name of a class’s superclass, if any.
+<br><span class="jpstr">
+Objective-Cプロトコルは、スウィフトプロトコルとしてインポートされます、そしてそれは、クラスによって採用されることが、もしあればクラスのもつスーパークラスの名前に続けて、コンマ区切りのリストに入れて、可能です。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">class</span> <span class="vc">MySwiftViewController</span>: <span class="n"><! -- a href="" -->UIViewController<! -- /a --></span>, <span class="n"><! -- a href="" -->UITableViewDelegate<! -- /a --></span>, <span class="n"><! -- a href="" -->UITableViewDataSource<! -- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="c">// define the class&nbsp;<span class="jpstr">（クラスを定義する）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  To declare a type that conforms to a single protocol in Swift code, use the protocol name directly as its type (as compared to <code class="code-voice">id&lt;SomeProtocol&gt;</code> in Objective-C). To declare a type that conforms to multiple protocols in Swift code, use a protocol composition, which takes the form <code class="code-voice">SomeProtocol &amp; AnotherProtocol</code> (as compared to <code class="code-voice">id&lt;SomeProtocol, AnotherProtocol&gt;</code> in Objective-C).
+<br><span class="jpstr">
+ただ１つのプロトコルに準拠する型をスウィフトコードにおいて定義するには、そのプロトコル名を直接にそれの型として使ってください（Objective-Cでの<code class="code-voice">id&lt;SomeProtocol&gt;</code>になぞらえられる）。複数のプロトコルに準拠する型をスウィフトコードにおいて定義するには、プロトコル合成物を使ってください、それは形式<code class="code-voice">SomeProtocol &amp; AnotherProtocol</code>をとります（Objective-Cでの<code class="code-voice">id&lt;SomeProtocol, AnotherProtocol&gt;</code>になぞらえられる）。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">textFieldDelegate</span>: <span class="n"><! -- a href="" -->UITextFieldDelegate<! -- /a --></span></code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">tableViewController</span>: <span class="n"><! -- a href="" -->UITableViewDataSource<! -- /a --></span> &amp; <span class="n"><! -- a href="" -->UITableViewDelegate<! -- /a --></span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014216-CH5-NoLink_12"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">Because the namespace of classes and protocols is unified in Swift, the <code class="code-voice">NSObject</code> protocol in Objective-C is remapped to <code class="code-voice">NSObjectProtocol</code> in Swift.
+    	<br><span class="jpstr">
+クラスとプロトコルの名前空間はスウィフトにおいて統一されるので、Objective-Cの<code class="code-voice">NSObject</code>プロトコルはスウィフトにおいて<code class="code-voice">NSObjectProtocol</code>にリマップされます。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div><p class="para">
+  When a Swift initializer, property, subscript, or method is used to satisfy a requirement of an Objective-C protocol, the compiler automatically infers the name to match the requirement, similar to what is done for overridden methods. You can use the <code class="code-voice">@objc(</code><em>name</em><code class="code-voice">)</code> attribute to explicitly specify the corresponding Objective-C symbol.
+<br><span class="jpstr">
+スウィフトのイニシャライザ、プロパティ、添え字、またはメソッドがObjective-Cプロトコルのある要件を満たすために使われる場合、コンパイラは自動的にその要件と適合する名前を推論します、オーバーライドされたメソッドに対して行われることと同じように。あなたは、<code class="code-voice">&gt;@objc(</code><em>name</em><code class="code-voice">)</code>属性を使うことで、対応するObjective-Cシンボルを明示的に指定することができます。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH5-ID92"></a>
+  <h3 class="section-name" tabindex="0">Writing Initializers and Deinitializers<br><span class="jpstr">
+イニシャライザとデイニシャライザを書く
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  The Swift compiler ensures that your initializers do not leave any properties in your class uninitialized to increase the safety and predictability of your code. Additionally, unlike Objective-C, in Swift there is no separate memory allocation method to invoke. You use native Swift initialization syntax even when you are working with Objective-C classes—Swift converts Objective-C initialization methods to Swift initializers. For more information about implementing your own initializers, see <a href="../Swift_Programming_Language/Initialization.html#//apple_ref/doc/uid/TP40014097-CH18" data-renderer-version="2" target="_self">Initializers</a> in <em class="u-book"><a href="../Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097" data-renderer-version="2" target="_self">The Swift Programming Language (Swift 4.0.3)</a></em>.
+<br><span class="jpstr">
+スウィフトコンパイラは、あなたのコードの安全性と予測可能性を高めるためにあなたのイニシャライザたちがアンイニシャライズされるあなたのクラスにおいて１つのプロパティもそのままにしておかないことを確実にします。その上に、Objective-Cと違って、スウィフトでは別々のメモリ割り当てメソッドが呼ばれることはありません。あなたがObjective-Cクラスを扱っているときでも、あなたは生粋のスウィフト初期化構文を使います ― スウィフトは、Objective-C初期化メソッドをスウィフトイニシャライザに変換します。あなた自身のイニシャライザを実装することについての更なる情報として、<a href="../Swift_Programming_Language/Initialization.html#//apple_ref/doc/uid/TP40014097-CH18" data-renderer-version="2" target="_self">イニシャライザ</a>を<em class="u-book"><a href="../Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097" data-renderer-version="2" target="_self">スウィフトプログラミング言語（Swift 4.0.3）</a></em>でみてください。
+</span><!--end_jpstr-->
+</p><p class="para">
+  When you want to perform additional clean-up before your class is deallocated, you can implement a deninitializer instead of the <code class="code-voice">dealloc</code> method. Swift deinitializers are called automatically, just before instance deallocation happens. Swift automatically calls the superclass deinitializer after invoking your subclass’ deinitializer. When you are working with an Objective-C class or your Swift class inherits from an Objective-C class, Swift calls your class’s superclass <code class="code-voice">dealloc</code> method for you as well. For more information about implementing your own deinitializers, see <a href="../Swift_Programming_Language/Deinitialization.html#//apple_ref/doc/uid/TP40014097-CH19" data-renderer-version="2" target="_self">Deinitializers</a> in <em class="u-book"><a href="../Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097" data-renderer-version="2" target="_self">The Swift Programming Language (Swift 4.0.3)</a></em>.
+<br><span class="jpstr">
+あなたのクラスがメモリ割り当て解除される前に、あなたが追加の掃除をしたいときは、あなたは<code class="code-voice">dealloc</code>メソッドでなくてデイニシャライザを実行することができます。スウィフトデイニシャライザは、ちょうどインスタンスの割り当て解除が起こる前に、自動的に呼ばれます。スウィフトは、あなたのサブクラスのデイニシャライザを呼び出した後、自動的にスーパークラスのデイニシャライザを呼び出します。あなたがObjective-CクラスまたはObjective-Cクラスから継承するあなたのスウィフトクラスを扱ってとき、スウィフトはあなたのクラスのスーパークラスの<code class="code-voice">dealloc</code>メソッドもまたあなたの代わりに呼び出します。あなた自身のデイニシャライザを実装することについての更なる情報として、<a href="../Swift_Programming_Language/Deinitialization.html#//apple_ref/doc/uid/TP40014097-CH19" data-renderer-version="2" target="_self">デイニシャライザ</a>を<em class="u-book"><a href="../Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097" data-renderer-version="2" target="_self">スウィフトプログラミング言語（Swift 4.0.3）</a></em>でみてください。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH5-ID190"></a>
+  <h3 class="section-name" tabindex="0">Using Swift Class Names with Objective-C APIs<br><span class="jpstr">
+スウィフトクラス名をObjective-C APIで使う
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Swift classes are namespaced based on the module they are compiled in, even when used from Objective-C code. Unlike Objective-C, where all classes are part of a global namespace–and must not have the same name–Swift classes can be disambiguated based on the module they reside in. For example, the fully qualified name of a Swift class named <code class="code-voice">DataManager</code> in a framework named <code class="code-voice">MyFramework</code> is <code class="code-voice">MyFramework.DataManager</code>. A Swift app target is a module itself, so the fully qualified name of a Swift class named <code class="code-voice">Observer</code> in an app called <code class="code-voice">MyGreatApp</code> is <code class="code-voice">MyGreatApp.Observer</code>.
+<br><span class="jpstr">
+スウィフトクラスは、それらがコンパイルされているモジュールに基づく名前空間に置かれます、Objective-Cコードから使用される時でさえもです。Objective-Cとは違い、全てのクラスがグローバルな名前空間の一部である ― それゆえ同じ名前を持ってはならない ― ところで、スウィフトクラスは、それらが属するモジュールに基づいて違いを明らかにされることができます。例えば、<code class="code-voice">MyFramework</code>と命名されるあるフレームワークの<code class="code-voice">DataManager</code>と命名されるあるスウィフトクラスの完全修飾名は、<code class="code-voice">MyFramework.DataManager</code>です。あるスウィフトアプリ・ターゲートは、あるモジュールそれ自体です、なので<code class="code-voice">MyGreatApp</code>と呼ばれるあるアプリの中の<code class="code-voice">Observer</code>と命名されるあるスウィフトクラスの完全修飾名は、<code class="code-voice">MyGreatApp.Observer</code>です。
+</span><!--end_jpstr-->
+</p><p class="para">
+  In order to preserve namespacing when a Swift class is used in Objective-C code, Swift classes are exposed to the Objective-C runtime with their fully qualified names. Therefore, when you work with APIs that operate on the string representation of a Swift class, you must include the fully qualified name of the class. For example, when you create a document–based Mac app, you provide the name of your <code class="code-voice">NSDocument</code> subclass in your app’s <code class="code-voice">Info.plist</code> file. In Swift, you must use the full name of your document subclass, including the module name derived from the name of your app or framework.
+<br><span class="jpstr">
+スウィフトクラスがObjective-Cコードの中で使用されるときに名前空間を保護する目的で、スウィフトクラスたちはそれらの完全修飾名を使ってObjective-Cランタイムに露出されます。それゆえに、あなたがあるスウィフトクラスの文字列表現で作動するAPIを扱うとき、あなたはそのクラスの完全修飾名を含めなければなりません。例えば、あなたがドキュメントベースのMacアプリを作成しているとき、あなたは、あなたの<code class="code-voice">NSDocument</code>サブクラスの名前をあなたのアプリの<code class="code-voice">Info.plist</code>ファイルにおいて提供しなければなりません。スウィフトにおいて、あなたは、あなたのアプリまたはフレームワークの名前から引き出されるモジュール名を含めて、あなたのドキュメントサブクラスの完全な名前を使う必要があります。
+</span><!--end_jpstr-->
+</p><p class="para">
+  In the example below, the <code class="code-voice">NSClassFromString(_:)</code> function is used to retrieve a reference to a class from its string representation. In order to retrieve a Swift class, the fully qualified name, including the name of the app, is used.
+<br><span class="jpstr">
+以下の例において、<code class="code-voice">NSClassFromString(_:)</code>関数は、あるクラスへの参照をそれの文字列表現から取り出すために使われます。あるスウィフトクラスを取り出すために、その完全修飾名が、そのアプリの名前を含めて、使用されます。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">myPersonClass</span>: <span class="n"><! -- a href="" -->AnyClass<! -- /a --></span>? = <span class="vc">NSClassFromString</span>(<span class="s">&quot;MyGreatApp.Person&quot;</span>)</code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH5-ID94"></a>
+  <h3 class="section-name" tabindex="0">Integrating with Interface Builder<br><span class="jpstr">
+インタフェースビルダーと統合する
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  The Swift compiler includes attributes that enable Interface Builder features for your Swift classes. As in Objective-C, you can use outlets, actions, and live rendering in Swift.
+<br><span class="jpstr">
+スウィフトコンパイラは、あなたのスウィフトクラスのためにインタフェースビルダー機能を可能にする属性を含みます。Objective-Cの場合のように、あなたはスウィフトにおいてアウトレット、アクション、そしてライブレンダリングを使うことができます。
+</span><!--end_jpstr-->
+</p>
+  <section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH5-ID96"></a>
+  <h3 class="section-name" tabindex="0">Working with Outlets and Actions<br><span class="jpstr">
+アウトレットとアクションを扱う
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Outlets and actions allow you to connect your source code to user interface objects in Interface Builder. To use outlets and actions in Swift, insert <code class="code-voice">@IBOutlet</code> or <code class="code-voice">@IBAction</code> just before the property or method declaration. You use the same <code class="code-voice">@IBOutlet</code> attribute to declare an outlet collection—just specify an array for the type.
+<br><span class="jpstr">
+アウトレットとアクションによって、あなたは、あなたのソース・コードをインタフェースビルダーのユーザー・インタフェースオブジェクトに接続することができます。スウィフトにおいてアウトレットとアクションを使うために、プロパティまたはメソッド宣言の直前に<code class="code-voice">@IBOutlet</code>または<code class="code-voice">@IBAction</code>を書き込んでください。あなたは、同じ<code class="code-voice">@IBOutlet</code>属性をアウトレット・コレクションを宣言するために使います ― ちょうどある配列に型を指定するように。
+</span><!--end_jpstr-->
+</p><p class="para">
+  When you declare an outlet in Swift, you should make the type of the outlet an implicitly unwrapped optional. This way, you can let the storyboard connect the outlets at runtime, after initialization. When your class is initialized from a storyboard or <code class="code-voice">xib</code> file, you can assume that the outlet has been connected.
+<br><span class="jpstr">
+あなたがスウィフトにおいてアウトレットを宣言するとき、あなたはそのアウトレットの型を暗黙的にアンラップされるオプショナルにしなければなりません。そうして、あなたは、初期化の後で、実行時にストーリーボードをアウトレットたちに接続させます。あなたのクラスがストーリーボードまたは<code class="code-voice">xib</code>ファイルから初期化されるときは、あなたはアウトレットが接続されてしまっていることを確信できます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  For example, the following Swift code declares a class with an outlet, an outlet collection, and an action:
+<br><span class="jpstr">
+例えば、以下のスウィフトコードは、１つのアウトレット、１つのアウトレット接続、そして１つのアクションを持つクラスを宣言します：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">class</span> <span class="vc">MyViewController</span>: <span class="n"><! -- a href="" -->UIViewController<! -- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">@IBOutlet</span> <span class="kt">weak</span> <span class="kt">var</span> <span class="vc">button</span>: <span class="n"><! -- a href="" -->UIButton<! -- /a --></span>!</code></li>
+            <li><code class="code-voice">    <span class="kt">@IBOutlet</span> <span class="kt">var</span> <span class="vc">textFields</span>: [<span class="n"><! -- a href="" -->UITextField<! -- /a --></span>]!</code></li>
+            <li><code class="code-voice">    <span class="kt">@IBAction</span> <span class="kt">func</span> <span class="vc">tappedButton</span>(<span class="kt">_</span> <span class="vc">sender</span>: <span class="n"><! -- a href="" -->UIButton<! -- /a --></span>?) {</code></li>
+            <li><code class="code-voice">        <span class="vc">print</span>(<span class="s">&quot;button was tapped!&quot;</span>)</code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH5-ID98"></a>
+  <h3 class="section-name" tabindex="0">Live Rendering<br><span class="jpstr">
+ライブレンダリング
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  You can use two different attributes—<code class="code-voice">@IBDesignable</code> and <code class="code-voice">@IBInspectable</code>—to enable live, interactive custom view design in Interface Builder. When you create a custom view that inherits from the <code class="code-voice">UIView</code> class or the <code class="code-voice">NSView</code> class, you can add the <code class="code-voice">@IBDesignable</code> attribute just before the class declaration. After you add the custom view to Interface Builder (by setting the custom class of the view in the inspector pane), Interface Builder renders your view in the canvas.
+<br><span class="jpstr">
+あなたは、インタフェースビルダーにおいて、生の、双方向のあつらえのビュー設計をできるように、２つの異なる属性 ― <code class="code-voice">@IBDesignable</code>と<code class="code-voice">@IBInspectable</code> ― を使うことができます。あなたが<code class="code-voice">UIView</code>クラスまたは<code class="code-voice">NSView</code>クラスから継承するカスタムメイドのビューをつくるとき、あなたは<code class="code-voice">@IBDesignable</code>属性をクラス宣言の直前に加えることができます。あなたがカスタムメイドのビューをインタフェースビルダーに加えた（インスペクターペインにおいてそのビューのカスタム・クラスを設定することによって）後に、インタフェースビルダーはキャンバスにおいてあなたのビューを描画します。
+</span><!--end_jpstr-->
+</p><p class="para">
+  You can also add the <code class="code-voice">@IBInspectable</code> attribute to properties with types compatible with user defined runtime attributes. After you add your custom view to Interface Builder, you can edit these properties in the inspector.
+<br><span class="jpstr">
+あなたは、また、ユーザー定義のランタイム属性と互換性を持つ型をもつプロパティへ<code class="code-voice">@IBInspectable</code>属性を加えることができます。あなたがあなたのカスタムメイドのビューをインタフェースビルダーに加えたあと、あなたはインスペクターにおいてこれらのプロパティを編集することができます。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">@IBDesignable</span></code></li>
+            <li><code class="code-voice"><span class="kt">class</span> <span class="vc">MyCustomView</span>: <span class="n"><! -- a href="" -->UIView<! -- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">@IBInspectable</span> <span class="kt">var</span> <span class="vc">textColor</span>: <span class="n"><! -- a href="" -->UIColor<! -- /a --></span></code></li>
+            <li><code class="code-voice">    <span class="kt">@IBInspectable</span> <span class="kt">var</span> <span class="vc">iconHeight</span>: <span class="n"><! -- a href="" -->CGFloat<! -- /a --></span></code></li>
+            <li><code class="code-voice">    <span class="c">// ...</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH5-ID100"></a>
+  <h3 class="section-name" tabindex="0">Specifying Property Attributes<br><span class="jpstr">
+プロパティ属性を指定する
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  In Objective-C, properties have a range of potential attributes that specify additional information about a property’s behavior. In Swift, you specify these property attributes in a different way.
+<br><span class="jpstr">
+Objective-Cにおいて、プロパティたちは、あるプロパティの挙動に関する追加の情報を指定する多種多様な潜在的な属性を持ちます。スウィフトにおいて、あなたは異なる方法でこれらのプロパティ属性を指定します。
+</span><!--end_jpstr-->
+</p>
+  <section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH5-ID153"></a>
+  <h3 class="section-name" tabindex="0">Strong and Weak<br><span class="jpstr">
+強い、弱い
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Swift properties are strong by default. Use the <code class="code-voice">weak</code> keyword to indicate that a property has a weak reference to the object stored as its value. This keyword can be used only for properties that are optional class types. For more information, see <a href="../Swift_Programming_Language/Attributes.html#//apple_ref/doc/uid/TP40014097-CH35" data-renderer-version="2" target="_self">Attributes</a>.
+<br><span class="jpstr">
+スウィフトプロパティは、特に何もしなければ強いです。<code class="code-voice">weak</code>キーワードを使用して、あるプロパティがその値として格納しておくオブジェクトへの弱い参照を持つことを示してください。オプショナルのクラス型であるプロパティだけに対して、このキーワードは使われることができます。詳細は、<a href="../Swift_Programming_Language/Attributes.html#//apple_ref/doc/uid/TP40014097-CH35" data-renderer-version="2" target="_self">属性</a>を見てください。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH5-ID154"></a>
+  <h3 class="section-name" tabindex="0">Read/Write and Read-Only<br><span class="jpstr">
+「読み/書き」と「読み出し専用」
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  In Swift, there are no <code class="code-voice">readwrite</code> and <code class="code-voice">readonly</code> attributes. When declaring a stored property, use <code class="code-voice">let</code> to make it read-only, and use <code class="code-voice">var</code> to make it read/write. When declaring a computed property, provide a getter only to make it read-only and provide both a getter and setter to make it read/write. For more information, see <a href="../Swift_Programming_Language/Properties.html#//apple_ref/doc/uid/TP40014097-CH14" data-renderer-version="2" target="_self">Properties</a> in <em class="u-book"><a href="../Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097" data-renderer-version="2" target="_self">The Swift Programming Language (Swift 4.0.3)</a></em>.
+<br><span class="jpstr">
+スウィフトでは、<code class="code-voice">readwrite</code>と<code class="code-voice">readonly</code>属性はありません。ある格納プロパティを宣言するとき、それを読み出し専用にするために<code class="code-voice">let</code>を、そしてそれを読み／書きにするために<code class="code-voice">var</code>を使ってください。ある計算プロパティを宣言するとき、それを読み出し専用にするためにゲッターのみを提供してください、そしてそれを読み／書きにするためにゲッターとセッターの両方を提供してください。詳細は、<a href="../Swift_Programming_Language/Properties.html#//apple_ref/doc/uid/TP40014097-CH14" data-renderer-version="2" target="_self">プロパティ</a>を<em class="u-book"><a href="../Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097" data-renderer-version="2" target="_self">スウィフトプログラミング言語（Swift 4.0.3）</a></em>で見てください。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH5-ID155"></a>
+  <h3 class="section-name" tabindex="0">Copy Semantics<br><span class="jpstr">
+コピー意味論
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  In Swift, the Objective-C <code class="code-voice">copy</code> property attribute translates to <code class="code-voice">@NSCopying</code>. The type of the property must conform to the <code class="code-voice">NSCopying</code> protocol. For more information, see <a href="../Swift_Programming_Language/Attributes.html#//apple_ref/doc/uid/TP40014097-CH35" data-renderer-version="2" target="_self">Attributes</a> in <em class="u-book"><a href="../Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097" data-renderer-version="2" target="_self">The Swift Programming Language (Swift 4.0.3)</a></em>.
+<br><span class="jpstr">
+スウィフトでは、Objective-Cの<code class="code-voice">copy</code>プロパティ属性は、<code class="code-voice">@NSCopying</code>として解釈します。プロパティの型は、<code class="code-voice">NSCopying</code>プロトコルに準拠しなければなりません。詳細は、<a href="../Swift_Programming_Language/Attributes.html#//apple_ref/doc/uid/TP40014097-CH35" data-renderer-version="2" target="_self">属性</a>を<em class="u-book"><a href="../Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097" data-renderer-version="2" target="_self">スウィフトプログラミング言語（Swift 4.0.3）</a></em>で見てください。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH5-ID105"></a>
+  <h3 class="section-name" tabindex="0">Implementing Core Data Managed Object Subclasses<br><span class="jpstr">
+コアデータ管理オブジェクトのサブクラスを実装する
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Core Data provides the underlying storage and implementation of properties in subclasses of the <code class="code-voice">NSManagedObject</code> class. Core Data also provides the implementation of instance methods that you use to add and remove objects from to-many relationships. You use the <code class="code-voice">@NSManaged</code> attribute to inform the Swift compiler that Core Data provides the storage and implementation of a declaration at runtime.
+<br><span class="jpstr">
+コアデータは、プロパティたちの基盤となる外部記憶と実装を<code class="code-voice">NSManagedObject</code>クラスのサブクラスにおいて提供します。コアデータはまた、あなたが対多リレーションシップからのオブジェクトの追加と削除をするために使うインスタンスメソッドの実装を提供します。あなたは、<code class="code-voice">@NSManaged</code>属性を使って、コアデータがある宣言のストレージと実装を実行時に提供することをスウィフトコンパイラに知らせます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Add the <code class="code-voice">@NSManaged</code> attribute to each property or method declaration in your managed object subclass that corresponds to an attribute or relationship in your Core Data model. For example, consider a Core Data entity called “Person” with a String attribute “name” and a to-many relationship “friends”:
+<br><span class="jpstr">
+あなたのコアデータモデルの中の属性またはリレーションシップに対応する、あなたの管理オブジェクトのサブクラスにおけるプロパティまたはメソッド宣言それぞれに、<code class="code-voice">@NSManaged</code>属性を加えてください。例えば、あるコアデータ・エントリ、「Person」と呼ばれて、String属性「name」と対多リレーションシップ「friends」をもつものを考えてみてください：
+</span><!--end_jpstr-->
+</p><figure class="figure">
+  
+  <span class="caption"></span>
+  <img src="Art/coredataeditor_2x.png" alt="image: ../Art/coredataeditor_2x.png" width="622" height="281" />
+</figure><p class="para">
+  Choose “Create NSManagedObject Subclass…” from the “Editor” menu to generate corresponding Swift code for the <code class="code-voice">NSManagedObject</code> subclass, <code class="code-voice">Person</code>:
+<br><span class="jpstr">
+「Create NSManagedObject Subclass…」を「Editor」メニューから選択することで、<code class="code-voice">NSManagedObject</code>のサブクラス、<code class="code-voice">Person</code>に対応するスウィフトコードを生成してください：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="c">// Person+CoreDataClass.swift</span></code></li>
+            <li><code class="code-voice"><span class="kt">import</span> <span class="vc">CoreData</span></code></li>
+            <li><code class="code-voice"><span class="kt">class</span> <span class="vc">Person</span>: <span class="n"><! -- a href="" -->NSManagedObject<! -- /a --></span> {</code></li>
+            <li><code class="code-voice">    </code></li>
+            <li><code class="code-voice">    <span class="c">// Insert code here to add functionality to your managed object subclass&nbsp;<span class="jpstr">（コードをここに挿入して機能性をあなたの管理オブジェクトサブクラスに加えます）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice">    </code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"> </code></li>
+            <li><code class="code-voice"><span class="c">// Person+CoreDataProperties.swift</span></code></li>
+            <li><code class="code-voice"><span class="kt">extension</span> <span class="n"><! -- a href="" -->Person<! -- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">@NSManaged</span> <span class="kt">var</span> <span class="vc">name</span>: <span class="n"><! -- a href="" -->String<! -- /a --></span></code></li>
+            <li><code class="code-voice">    <span class="kt">@NSManaged</span> <span class="kt">var</span> <span class="vc">friends</span>: <span class="n"><! -- a href="" -->NSSet<! -- /a --></span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The <code class="code-voice">name</code> and <code class="code-voice">friends</code> properties are both declared with the <code class="code-voice">@NSManaged</code> attribute to indicate that Core Data provides their implementation and storage at runtime.
+<br><span class="jpstr">
+<code class="code-voice">name</code>と<code class="code-voice">friends</code>プロパティは、両方とも<code class="code-voice">@NSManaged</code>属性を使って宣言され、コアデータがそれらの実装とストレージを実行時に提供することを指し示します。
+</span><!--end_jpstr-->
+</p><p class="para">
+  To configure a Swift subclass of <code class="code-voice">NSManagedObject</code> for use by a Core Data model entity, open the model entity inspector in Xcode, enter the class name into the Class field, and choose “Current Product Module” from the Module field drop-down list.
+<br><span class="jpstr">
+あるコアデータ・エントリによって使うために<code class="code-voice">NSManagedObject</code>のスウィフトサブクラスを構成するには、そのモデルのEntityインスペクタをXcodeにおいて開いて、クラス名をClass欄に入力して、「Current Product Module」をModule欄ポップダウンリストから選んでください。
+</span><!--end_jpstr-->
+</p><figure class="figure">
+  
+  <span class="caption"></span>
+  <img src="Art/coredatanamespace_2x.png" alt="image: ../Art/coredatanamespace_2x.png" width="259" height="162" />
+</figure>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH5-ID215"></a>
+  <h3 class="section-name" tabindex="0">Declaring Protocols<br><span class="jpstr">
+プロトコルを宣言する
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  In Swift, you can define protocols that Objective-C classes can conform to. To create a Swift protocol that can be adopted by an Objective-C class, mark the <code class="code-voice">protocol</code> declaration with the <code class="code-voice">@objc</code> attribute.
+<br><span class="jpstr">
+スウィフトにおいて、あなたはObjective-Cクラスが準拠できるプロトコルを定義できます。Objective-Cクラスによって採用されることができるスウィフトプロトコルを宣言するには、<code class="code-voice">protocol</code>宣言を<code class="code-voice">@objc</code>属性で印してください。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">import</span> <span class="vc">UIKit</span></code></li>
+            <li><code class="code-voice"><span class="kt">@objc</span> <span class="kt">protocol</span> <span class="vc">MyCustomProtocol</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">people</span>: [<span class="n"><! -- a href="" -->Person<! -- /a --></span>] { <span class="kt">get</span> }</code></li>
+            <li><code class="code-voice">    </code></li>
+            <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">tableView</span>(<span class="kt">_</span> <span class="vc">tableView</span>: <span class="n"><! -- a href="" -->UITableView<! -- /a --></span>, <span class="vc">configure</span> <span class="vc">cell</span>: <span class="n"><! -- a href="" -->UITableViewCell<! -- /a --></span>, <span class="vc">forPerson</span> <span class="vc">person</span>: <span class="n"><! -- a href="" -->Person<! -- /a --></span>)</code></li>
+            <li><code class="code-voice">    </code></li>
+            <li><code class="code-voice">    <span class="kt">@objc</span> <span class="kt">optional</span> <span class="kt">func</span> <span class="vc">tableView</span>(<span class="kt">_</span> <span class="vc">tableView</span>: <span class="n"><! -- a href="" -->UITableView<! -- /a --></span>, <span class="vc">willDisplay</span> <span class="vc">cell</span>: <span class="n"><! -- a href="" -->UITableViewCell<! -- /a --></span>, <span class="vc">forPerson</span> <span class="vc">person</span>: <span class="n"><! -- a href="" -->Person<! -- /a --></span>)</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  A protocol declares all initializers, properties, subscripts, and methods that an Objective-C class must implement in order to conform to the protocol. Any optional protocol requirements must be marked with the <code class="code-voice">@objc</code> attribute and have the <code class="code-voice">optional</code> modifier.
+<br><span class="jpstr">
+プロトコルは、Objective-Cクラスがそのプロトコルに準拠するために実装しなければならない全てのイニシャライザ、プロパティ、添え字、そしてメソッドを宣言します。なんであれオプショナルのプロトコル要件は、<code class="code-voice">@objc</code>属性で印されて<code class="code-voice">optional</code>修飾子を持たなければなりません。
+</span><!--end_jpstr-->
+</p><p class="para">
+  An Objective-C class can conform a protocol declared in Swift in the same way that it would an Objective-C protocol, by implementing the required methods.
+<br><span class="jpstr">
+Objective-Cクラスは、スウィフトで宣言されるプロトコルにそれがObjective-Cプロトコルにするのと同じ方法で、必須メソッドを実装することによって、準拠できます。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Objective-C">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="k">@interface</span> <span class="nc">MyCustomController</span>: <span class="nc">UIViewController</span> <span class="o">&lt;</span><span class="n">MyCustomProtocol</span><span class="o">&gt;</span>
+</code></li>
+            <li><code class="code-voice"><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">NSArray</span><span class="o">&lt;</span><span class="n">Person</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="n">people</span><span class="p">;</span>
+</code></li>
+            <li><code class="code-voice"><span class="k">@end</span>
+</code></li>
+            <li><code class="code-voice"> 
+</code></li>
+            <li><code class="code-voice"><span class="k">@implementation</span> <span class="nc">MyCustomController</span>
+</code></li>
+            <li><code class="code-voice"><span class="k">@synthesize</span> <span class="n">people</span><span class="p">;</span>
+</code></li>
+            <li><code class="code-voice"> 
+</code></li>
+            <li><code class="code-voice"><span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nl">tableView:</span><span class="p">(</span><span class="n">UITableView</span> <span class="o">*</span><span class="p">)</span><span class="n">tableView</span>
+</code></li>
+            <li><code class="code-voice">        <span class="nl">configure:</span><span class="p">(</span><span class="n">UITableViewCell</span> <span class="o">*</span><span class="p">)</span><span class="n">cell</span>
+</code></li>
+            <li><code class="code-voice">        <span class="nl">forPerson:</span><span class="p">(</span><span class="n">Person</span> <span class="o">*</span><span class="p">)</span><span class="n">person</span>
+</code></li>
+            <li><code class="code-voice"><span class="p">{</span>
+</code></li>
+            <li><code class="code-voice">   <span class="c1">// Configure cell&nbsp;<span class="jpstr">（セルを構成設定する）</span><!--end_jpstr-->
+</span>
+</code></li>
+            <li><code class="code-voice"><span class="p">}</span>
+</code></li>
+            <li><code class="code-voice"><span class="k">@end</span>
+</code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+
+  	
+ 	<section id="next_previous" class="">
+    		<p class="previous-link"><a href="InteractingWithObjective-CAPIs.html#//apple_ref/doc/uid/TP40014216-CH4-ID35" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH4-ID35">Interacting with Objective-C APIs<br><span class="jpstr">
+Objective-C APIとの相互作用
+</span><!--end_jpstr-->
+</a></p>
+  			<p class="next-link"><a href="WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6-ID61" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH6-ID61">Working with Cocoa Frameworks<br><span class="jpstr">
+Cocoaフレームワークを扱う
+</span><!--end_jpstr-->
+</a></p>
+
+    <p class="copyright">Copyright &#x00a9; 2017 Apple Inc. All rights reserved. 
+  <a class="link" href="http://www.apple.com/legal/terms/site.html" target="_blank" rel="external">Terms of Use</a> | 
+  <a class="link" href="http://www.apple.com/privacy/" target="_blank" rel="external">Privacy Policy</a> | 
+  Updated: 2017-12-04
+</p>
+  </section>
+</article>
+
+    </div>
+    <div id='big_button'></div>
+    <footer id="footer">
+  <div class="content-wrapper">
+  	<div id="leave_feedback" class="button" role="button" tabindex="0">Feedback</div>
+  </div>
+  <script src="../../../../Resources/1274/JavaScript/devpubs-1.6.3.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../../../Resources/1274/JavaScript/feedback-1.6.3.js" type="text/javascript" charset="utf-8"></script>
+  <div id="_omniture_top">
+<!-- SiteCatalyst code version: H.8. Copyright 1997-2006 Omniture, Inc. -->
+<script type="text/javascript">
+/* RSID: */
+var s_account="appleglobal,appleusdeveloper,dappdeveloperlib"
+</script>
+
+<!-- <script type="text/javascript" src="https://www.apple.com/metrics/scripts/s_code_h.js"></script> -->
+<script type="text/javascript">
+s.pageName=AC.Tracking.pageName();
+s.channel="www.us.developer"
+
+/************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+var s_code=s.t();if(s_code)document.write(s_code)</script>
+<!-- End SiteCatalyst code version: H.8. -->
+</div>
+
+</footer>
+
+    
+  </body>
+    <div id="blackout">
+    <div id="preload"></div>
+</div>
+<div id="modal" aria-hidden="true">
+    <div id="closebox" tabindex="0" aria-label="Close feedback form" role="button"></div>
+    <div id="sending" class="hidden">
+        <h2 tabindex="0">Sending feedback&hellip;</h2>
+        <div id="sending_img"></div>
+    </div>
+    <div id="error" class="hidden">
+        <h2 tabindex="0">We&rsquo;re sorry, an error has occurred.</h2>
+        <p>Please try submitting your feedback later.</p>
+        <div id="error_icon"></div>
+    </div>
+    <div id="success" class="hidden">
+        <h2 tabindex="0">Thank you for providing feedback!</h2>
+        <p>Your input helps improve our developer documentation.</p>
+        <div id="thank_you_icon"></div>
+    </div>
+    
+    <form id="feedback" action="#" method="post">
+        <div class="left-leaf">
+            <h2 id="helpful_title" data-asterisk="a1" tabindex="0">How helpful is this document?</h2>     
+            <sup id="a1" class="asterisk" aria-hidden="true">*</sup>
+
+            <div id="star_group" role="radiogroup" aria-required="true">
+                <label> 
+                    <input class="radio" type="radio" name="helped" value="1" /> 
+                    Very helpful
+                </label>
+                <label> 
+                    <input class="radio" type="radio" name="helped" value="2" /> 
+                    Somewhat helpful
+                </label>
+                <label>
+                    <input class="radio" type="radio" name="helped" value="3" /> 
+                    Not helpful
+                </label>
+            </div>
+        </div>
+        <div class="right-leaf">
+            <h2>How can we improve this document?</h2>
+            <div id="improve" class="checkboxes">
+                <label>
+                    <input type="checkbox" name="typo" /> 
+                    Fix typos or links
+                </label>
+                <label>
+                    <input type="checkbox" name="infoIncorrect" /> 
+                    Fix incorrect information
+                </label>
+                <label>
+                    <input type="checkbox" name="needs_examples" /> 
+                    Add or update code samples
+                </label>
+                <label>
+                    <input type="checkbox" name="needs_art" /> 
+                    Add or update illustrations
+                </label>
+                <label>
+                    <input type="checkbox" name="missingInfo" /> 
+                    Add information about...
+                </label>
+            </div>
+        </div>
+
+        <textarea id="comment" name="problem" cols="70" rows="8" placeholder="Please tell us more about your experience with this document" data-asterisk="a2" required></textarea>
+        <sup id="a2" class="asterisk" aria-hidden="true">*</sup>
+
+        <p class="fineprint">
+            <em aria-hidden="true"><span>*</span> Required information</em>
+        </p> 
+
+        <input id="submit" type="button" value="Send" />
+
+        <section id="legal">
+            <p>
+                To submit a product bug or enhancement request, please visit the 
+                <a href="https://developer.apple.com/bugreporter/" target="_blank">Bug Reporter</a> 
+                page.
+            </p>
+            <p>
+                Please read <a href="http://www.apple.com/legal/policies/ideas.html" target="_blank">Apple's Unsolicited Idea Submission Policy</a> 
+                before you send us your feedback.
+            </p> 
+        </section>
+    </form>
+</div>
+
+</div>
+</html>

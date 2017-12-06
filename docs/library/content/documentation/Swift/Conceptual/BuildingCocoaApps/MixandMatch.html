@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>  
+  <title>Using Swift with Cocoa and Objective-C (Swift 4.0.3): Swift and Objective-C in the Same Project</title>
+  <link rel="stylesheet" type="text/css" href="../../../../Resources/1274/CSS/style-1.6.3.css" />
+  <link rel="stylesheet" type="text/css" href="../../../../Resources/1274/CSS/feedback-1.6.3.css" />
+  <meta charset='utf-8'> 
+<meta id="j-version" name="j-version" content="" />
+<meta id="build" name="build" content="3b40de4ca2af51e302b3b9b9306b0a3e" />
+<meta id="document-version" name="document-version" content="9.1.5" />
+<meta id="book-assignments" name="book-assignments" content="{Type/Guide}, {Topic/Swift}" />
+<meta scheme="apple_ref" id="identifier" name="identifier" content="//apple_ref/doc/uid/TP40014216" />
+<meta id="chapterId" name="chapterId" content="TP40014216-CH10">
+<meta id="book-title" name="book-title" content="Using Swift with Cocoa and Objective-C (Swift 4.0.3)" />
+<meta id="book-resource-type" name="book-resource-type" content="Guide" />
+<meta id="book-root" name="book-root" content="./" />
+<meta id="book-json" name="book-json" content="book.json">
+<meta id="date" name="date" content="2017-12-04" />
+<meta id="description" name="description" content="Describes various aspects of Swift&#39;s compatibility with the Objective-C language and Cocoa/Cocoa Touch frameworks." />
+<meta id="IndexTitle" name="IndexTitle" content="" />
+<meta id="resources-uri" name="resources-uri" content="../../../../Resources/1274">
+<link id="book-index-page" rel="Start" title="" type="text/html" href="./index.html">
+<!-- , next_chapter: next_chapter, previous_chapter: previous_chapter -->
+<link id="next-page" rel="Next" type="text/html" href="">
+<link id="previous-page" rel="Prev" type="text/html" href="">
+<meta id="devcenter" name="devcenter" content="<!-- DEVCENTER_NAME -->" />
+<meta id="devcenter-url" name="devcenter-url" content="<!-- DEVCENTER_URL -->" />
+<meta id="reflib" name="reflib" content="<!-- REFLIB_NAME -->" />
+
+<meta id="xcode-display" name="xcode-display" content="render" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta id="platforms" name="platforms" content="Xcode Developer Tools">
+</head>
+
+  <body id="conceptual_flow_with_tasks" class="jazz">
+    
+    <header id="ios_header" class="hideOnPrint hideInXcode">
+  <div class="content-wrapper">
+    <p class="header-text">
+    	<a href="../../../../navigation/index.html">Guides and Sample Code
+ 		</a>
+ </p>
+    <p id="wwdr"><img id="apple_logo" src="../../../../Resources/1274/Images/apple2.png" height="14px" width="12px" aria-hidden="true" /><a href="https://developer.apple.com">Developer</a></p>
+  </div>
+</header>
+
+    <section id="valence">
+  <div class="content-wrapper">
+    <p id="hierarchial_navigation">
+      <span id="book_title">Using Swift with Cocoa and Objective-C (Swift 4.0.3)</span>
+    </p>
+    <form id="search" class="hideInXcode" method="get" action="/search/index.php" accept-charset="utf-8" autocomplete="off">
+  <input type="search" id="ssi_SearchField" placeholder="Search Guides and Sample Code" name="q" autocomplete="off" tabindex="2" />
+</form>
+
+      
+   
+   
+
+
+
+
+    <span class="download-text hideInXcode">
+      <a href="https://itunes.apple.com/us/book/using-swift-cocoa-objective/id888894773?mt=11">iBooks</a>
+    </span>
+
+    
+
+    <img id="shortstack" src="../../../../Resources/1274/Images/shortstack_2x.png"/>
+  </div>
+</section>
+    <div class="content-wrapper">
+      <nav id="navigator" class="book-parts hideInXcode" role="navigation">
+    <ul class="nav-parts">
+        <li data-id="//apple_ref/doc/uid/TP40014216-CH1-ID5"
+            class="part-name">
+            <a href="index.html#//apple_ref/doc/uid/TP40014216-CH2-ID0" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH2-ID0">Getting Started<br><span class="jpstr">
+初めに
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="index.html#//apple_ref/doc/uid/TP40014216-CH2-ID0" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH2-ID0">Basic Setup<br><span class="jpstr">
+基本の準備
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+        <li data-id="//apple_ref/doc/uid/TP40014216-CH3-ID60"
+            class="part-name">
+            <a href="InteractingWithObjective-CAPIs.html#//apple_ref/doc/uid/TP40014216-CH4-ID35" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH4-ID35">Interoperability<br><span class="jpstr">
+相互運用性
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="InteractingWithObjective-CAPIs.html#//apple_ref/doc/uid/TP40014216-CH4-ID35" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH4-ID35">Interacting with Objective-C APIs<br><span class="jpstr">
+Objective-C APIとの相互作用
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="WritingSwiftClassesWithObjective-CBehavior.html#//apple_ref/doc/uid/TP40014216-CH5-ID86" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH5-ID86">Writing Swift Classes and Protocols with Objective-C Behavior<br><span class="jpstr">
+スウィフトのクラスとプロトコルをObjective-C挙動で書く
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6-ID61" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH6-ID61">Working with Cocoa Frameworks<br><span class="jpstr">
+Cocoaフレームワークを扱う
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="AdoptingCocoaDesignPatterns.html#//apple_ref/doc/uid/TP40014216-CH7-ID6" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH7-ID6">Adopting Cocoa Design Patterns<br><span class="jpstr">
+ココア・デザインパターンの採用
+</span><!--end_jpstr-->
+</a>
+              </li>
+              <li class="nav-chapter">
+              	<a href="InteractingWithCAPIs.html#//apple_ref/doc/uid/TP40014216-CH8-ID17" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH8-ID17">Interacting with C APIs<br><span class="jpstr">
+C APIとの相互作用
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+        <li data-id="//apple_ref/doc/uid/TP40014216-CH9-ID141"
+            class="part-name nav-part-active open-part">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH10-ID122" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH10-ID122">Mix and Match<br><span class="jpstr">
+混合と適合
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter nav-current-chapter">
+              	<a href="#//apple_ref/doc/uid/TP40014216-CH10-ID122" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH10-ID122">Swift and Objective-C in the Same Project<br><span class="jpstr">
+同じプロジェクト中のスウィフトとObjective-C
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+        <li data-id="//apple_ref/doc/uid/TP40014216-CH11-ID121"
+            class="part-name">
+            <a href="Migration.html#//apple_ref/doc/uid/TP40014216-CH12-ID108" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH12-ID108">Migration<br><span class="jpstr">
+移行
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="Migration.html#//apple_ref/doc/uid/TP40014216-CH12-ID108" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH12-ID108">Migrating Your Objective-C Code to Swift<br><span class="jpstr">
+あなたのObjective-Cコードのスウィフトへの移行
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+        <li data-id="//apple_ref/doc/uid/TP40014216-CH13-ID143"
+            class="part-name">
+            <a href="RevisionHistory.html#//apple_ref/doc/uid/TP40014216-CH14-ID142" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH14-ID142">Revision History<br><span class="jpstr">
+改訂履歴
+</span><!--end_jpstr-->
+</a>
+          <ul class="nav-chapters">
+              <li class="nav-chapter">
+              	<a href="RevisionHistory.html#//apple_ref/doc/uid/TP40014216-CH14-ID142" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH14-ID142">Document Revision History<br><span class="jpstr">
+文書改訂履歴
+</span><!--end_jpstr-->
+</a>
+              </li>
+          </ul>
+        </li>
+    </ul>
+</nav>
+
+      <menu id="bashful" type="toolbar">
+  <div class="shield"></div>
+  <menuitem id="jump_to" class="menu-bar-item closed">
+  <span>On This Page</span>
+  <div class="chevron">
+    <div class="chevy chevron-left"></div>
+    <div class="chevy chevron-right"></div>
+  </div>
+  <menu type="list" class="details">
+      <ul class="list-bullet">
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH10-ID124">Mix and Match Overview</a>
+<br><span class="jpstr">
+混合と適合の概要
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH10-ID126">Importing Code from Within the Same App Target</a>
+<br><span class="jpstr">
+コードを同じアプリターゲットからインポートする
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH10-ID130">Importing Code from Within the Same Framework Target</a>
+<br><span class="jpstr">
+コードを同じフレームワークターゲット内からインポートする
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH10-ID134">Importing External Frameworks</a>
+<br><span class="jpstr">
+外部のフレームワークをインポートする
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH10-ID136">Using Swift from Objective-C</a>
+<br><span class="jpstr">
+スウィフトをObjective-Cから使う
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH10-ID162">Overriding Swift Names for Objective-C Interfaces</a>
+<br><span class="jpstr">
+Objective-Cインターフェイスのためのスウィフト名のオーバーライド
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH10-ID188">Refining Objective-C Declarations</a>
+<br><span class="jpstr">
+Objective-C宣言を改良する
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH10-ID178">Making Objective-C Interfaces Unavailable in Swift</a>
+<br><span class="jpstr">
+Objective-Cインターフェイスをスウィフトで利用できなくする
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH10-ID224">Adding Availability Information to Objective-C APIs</a>
+<br><span class="jpstr">
+利用可能性情報をObjective-C APIに加える
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH10-ID138">Naming Your Product Module</a>
+<br><span class="jpstr">
+あなたの製品モジュールに名前をつける
+</span><!--end_jpstr-->
+          </li>
+          <li class="item">
+            <a href="#//apple_ref/doc/uid/TP40014216-CH10-ID140">Troubleshooting Tips and Reminders</a>
+<br><span class="jpstr">
+問題解決の秘訣と注意
+</span><!--end_jpstr-->
+          </li>
+      </ul>
+  </menu>
+</menuitem>
+
+</menu>
+<div class="pixel-line"></div>
+<div class="rubber-band-gap"></div>
+<article class="chapter">
+  <a name="//apple_ref/doc/uid/TP40014216-CH10"></a><a name="//apple_ref/doc/uid/TP40014216-CH10-ID122"></a>
+      <a name="//apple_ref/doc/uid/TP40014216-CH9"></a><a name="//apple_ref/doc/uid/TP40014216-CH9-ID141"></a>
+
+  <h2 class='chapter-name'>Swift and Objective-C in the Same Project<br><span class="jpstr">
+同じプロジェクト中のスウィフトとObjective-C
+</span><!--end_jpstr-->
+</h2>
+
+
+  
+  	<section class="section">
+  		<p class="para">
+  Swift’s compatibility with Objective-C lets you create a project that contains files written in either language. You can use this feature, called <em>mix and match</em>, to write apps that have a mixed-language codebase. Using mix and match, you can implement part of your app’s functionality using the latest Swift features and seamlessly incorporate it back into your existing Objective-C codebase.
+<br><span class="jpstr">
+Objective-Cとのスウィフトの互換性は、あなたにどちらの言語ででも記述されるファイルを含むプロジェクトをつくらせます。あなたはこの特徴、<em>混合と適合</em>と呼ばれるものを働かせて、混合言語のコードベースを持つアプリを記述することができます。混合と適合を使って、あなたは最新のスウィフト特徴を使ってあなたのアプリの機能性の一部を実施して、継ぎ目なくそれをあなたの既存のObjective-Cコードベースにさかのぼって組み込むことができます。
+</span><!--end_jpstr-->
+</p>
+
+		</section> 
+
+
+  <section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH10-ID124"></a>
+  <h3 class="section-name" tabindex="0">Mix and Match Overview<br><span class="jpstr">
+混合と適合の概要
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Objective-C and Swift files can coexist in a single project, whether the project was originally an Objective-C or Swift project. You can simply add a file of the other language directly to an existing project. This natural workflow makes creating mixed-language app and framework targets as straightforward as creating an app or framework target written in a single language.
+<br><span class="jpstr">
+プロジェクトが元々はObjective-Cかスウィフトのプロジェクトであったかどうかに関係なく、Objective-Cとスウィフトのファイルは一つのプロジェクトにおいて共存することができます。あなたは、単に既存のプロジェクトに直接他の言語のファイルを加えることができます。この自然なワークフローは、一つの言語で書かれるアプリまたはフレームワーク・ターゲットをつくるのと同じくらい直接的に、混合言語のアプリとフレームワーク・ターゲットを作成することをもたらします。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The process for working with mixed-language targets differs slightly depending on whether you’re writing an app or a framework. The general import model for working with both languages within the same target is depicted below and described in more detail in the following sections.
+<br><span class="jpstr">
+混合言語のターゲットを扱う過程は、あなたがアプリを書いているかフレームワークを書いているかに従い、わずかに異なります。同じターゲット内で両方の言語を扱う一般的なインポートモデルは下で表され、更に詳細に以下の節において記述されます。
+</span><!--end_jpstr-->
+</p><figure class="figure">
+  
+  <span class="caption"></span>
+  <img src="Art/DAG_2x.png" alt="image: ../Art/DAG_2x.png" width="473" height="321" />
+</figure>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH10-ID126"></a>
+  <h3 class="section-name" tabindex="0">Importing Code from Within the Same App Target<br><span class="jpstr">
+コードを同じアプリターゲットからインポートする
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  If you’re writing a mixed-language app, you may need to access your Objective-C code from Swift and your Swift code from Objective-C. The process described in this section applies to non-framework targets.
+<br><span class="jpstr">
+あなたが混合言語のアプリを書いているならば、あなたは、あなたのObjective-Cコードにスウィフトから、そしてあなたのスウィフトコードにObjective-Cからアクセスする必要があるかもしれません。この節で記述されるプロセスは、非フレームワークターゲットにあてはまります。
+</span><!--end_jpstr-->
+</p>
+  <section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH10-ID156"></a>
+  <h3 class="section-name" tabindex="0">Importing Objective-C into Swift<br><span class="jpstr">
+Objective-Cをスウィフトにインポートする
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  To import a set of Objective-C files in the same app target as your Swift code, you rely on an <em>Objective-C bridging header</em> to expose those files to Swift. Xcode offers to create this header file when you add a Swift file to an existing Objective-C app, or an Objective-C file to an existing Swift app.
+<br><span class="jpstr">
+あなたのスウィフトコードと同じアプリターゲットにひとそろいのObjective-Cファイルをインポートするために、あなたは<em>Objective-C橋渡しヘッダ</em>を当てにしてそれらのファイルをスウィフトに露出します。Xcodeは、あなたがスウィフトファイルを既存のObjective-Cアプリに、またはObjective-Cファイルを既存のスウィフトアプリに加えるとき、このヘッダ・ファイルを作成することを提案します。
+</span><!--end_jpstr-->
+</p><figure class="figure">
+  
+  <span class="caption"></span>
+  <img src="Art/bridgingheader_2x.png" alt="image: ../Art/bridgingheader_2x.png" width="592" height="168" />
+</figure><p class="para">
+  If you accept, Xcode creates the header file along with the file you were creating, and names it by your product module name followed by adding <code class="code-voice">&quot;-Bridging-Header.h&quot;</code>. (You’ll learn more about the product module name later, in <span class="x-name"><a href="#//apple_ref/doc/uid/TP40014216-CH10-ID138" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH10-ID138">Naming Your Product Module</a></span>.)
+<br><span class="jpstr">
+あなたが承諾するならば、Xcodeはヘッダ・ファイルをあなたがつくっていたファイルと一緒に作成して、あなたの製品モジュール名に続けて<code class="code-voice">"-Bridging-Header.h"</code>を加わることによってそれに名前をつけます。（あなたは後で製品モジュール名について<span class="x-name"><a href="#//apple_ref/doc/uid/TP40014216-CH10-ID138" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH10-ID138">「あなたの製品モジュールに名前をつける」</a></span>でさらに学びます。）
+</span><!--end_jpstr-->
+</p><p class="para">
+  Alternatively, you can create a bridging header yourself by choosing File &gt; New &gt; File &gt; (iOS, watchOS, tvOS, <em>or</em> macOS) &gt; Source &gt; Header File.
+<br><span class="jpstr">
+代わりに、あなたは橋渡しヘッダをあなた自身でFile &gt; New &gt; File &gt; (iOS、watchOS、tvOS、<em>または</em>macOS) &gt; Source &gt; Header Fileを選ぶことによって作成することもできます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  You’ll need to edit the bridging header file to expose your Objective-C code to your Swift code.
+<br><span class="jpstr">
+あなたは、あなたのObjective-Cコードをあなたのスウィフトコードに露出するためにこのファイルを編集する必要があります。
+</span><!--end_jpstr-->
+</p><p class="para">
+  <strong>To import Objective-C code into Swift from the same target<br><span class="jpstr">
+同じターゲットからObjective-Cコードをスウィフトにインポートするには
+</span><!--end_jpstr-->
+</strong>
+</p><ol class="list-number">
+  <li class="item"><p class="para">
+  In your Objective-C bridging header file, import every Objective-C header you want to expose to Swift. For example:
+<br><span class="jpstr">
+あなたのObjective-C橋渡しヘッダ・ファイルにおいて、あなたがスウィフトに露出したいあらゆるObjective-Cヘッダをインポートしてください。例えば：
+</span><!--end_jpstr-->
+</p>
+<section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Objective-C">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="cp">#import &quot;XYZCustomCell.h&quot;</span>
+</code></li>
+            <li><code class="code-voice"><span class="cp">#import &quot;XYZCustomView.h&quot;</span>
+</code></li>
+            <li><code class="code-voice"><span class="cp">#import &quot;XYZCustomViewController.h&quot;</span>
+</code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+</li><li class="item"><p class="para">
+  In Build Settings, in Swift Compiler - Code Generation, make sure the Objective-C Bridging Header build setting has a path to the bridging header file.
+<br><span class="jpstr">
+Build Settingsにおいて、Swift Compiler - Code Generationにおいて、Objective-C Bridging Headerビルド設定がブリッジしているヘッダファイルへのパスを持つことを確実にしてください。
+</span><!--end_jpstr-->
+</p>
+<p class="para">
+  The path should be relative to your project, similar to the way your Info.plist path is specified in Build Settings. In most cases, you should not need to modify this setting.
+<br><span class="jpstr">
+パスは、あなたのプロジェクトに相対的でなければなりません、あなたのInfo.plistパスが「Build Settings」において指定される方法に似ています。ほとんどの場合、あなたはこの説定を修正する必要がないはずです。
+</span><!--end_jpstr-->
+</p>
+</li>
+</ol><p class="para">
+  Any public Objective-C headers listed in this bridging header file will be visible to Swift. The Objective-C functionality will be available in any Swift file within that target automatically, without any import statements. Use your custom Objective-C code with the same Swift syntax you use with system classes.
+<br><span class="jpstr">
+この橋渡しヘッダ・ファイルにリストされるどんなパブリックObjective-Cヘッダでも、スウィフトに見えるようになります。Objective-C機能性は、まったくインポート文なしで、自動的にそのターゲット内のどんなスウィフトファイルにおいても利用できます。あなたのあつらえのObjective-Cコードを、あなたがシステム・クラスで使うのと同じスウィフト構文で使ってください。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">myCell</span> = <span class="vc">XYZCustomCell</span>()</code></li>
+            <li><code class="code-voice"><span class="vc">myCell</span>.<span class="vc">subtitle</span> = <span class="s">&quot;A custom cell&quot;</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH10-ID157"></a>
+  <h3 class="section-name" tabindex="0">Importing Swift into Objective-C<br><span class="jpstr">
+スウィフトをObjective-Cにインポートする
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  When you import Swift code into Objective-C, you rely on an <em>Xcode-generated header</em> file to expose those files to Objective-C. This automatically generated file is an Objective-C header that declares the Swift interfaces in your target. It can be thought of as an umbrella header for your Swift code. The name of this header is your product module name followed by adding <code class="code-voice">&quot;-Swift.h&quot;</code>. (You’ll learn more about the product module name later, in <span class="x-name"><a href="#//apple_ref/doc/uid/TP40014216-CH10-ID138" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH10-ID138">Naming Your Product Module</a></span>.)
+<br><span class="jpstr">
+あなたがスウィフトコードをObjective-Cにインポートするとき、あなたはそれらのファイルをObjective-Cにさらすために<em>Xcode生成のヘッダ</em>ファイルに頼ります。この自動的に生成されるファイルは、あなたのターゲットの中のスウィフトインタフェースを宣言するObjective-Cヘッダです。それは、あなたのスウィフトコードのためのアンブレラヘッダとみなされることができます。このヘッダの名前は、あなたの製品モジュール名に続けて<code class="code-voice">"-Swift.h"</code>を加えたものです。（あなたは後で製品モジュール名について<span class="x-name"><a href="#//apple_ref/doc/uid/TP40014216-CH10-ID138" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH10-ID138">「あなたの製品モジュールに名前をつける」</a></span>でさらに学びます。）
+</span><!--end_jpstr-->
+</p><p class="para">
+  By default, the generated header contains interfaces for Swift declarations marked with the <code class="code-voice">public</code> or <code class="code-voice">open</code> modifier. It also contains those marked with the <code class="code-voice">internal</code> modifier if your app target has an Objective-C bridging header. Declarations marked with the <code class="code-voice">private</code> or <code class="code-voice">fileprivate</code> modifier do not appear in the generated header. Private declarations are not exposed to Objective-C unless they are explicitly marked with <code class="code-voice">@IBAction</code>, <code class="code-voice">@IBOutlet</code>, or <code class="code-voice">@objc</code>. If your app target is compiled with testing enabled, a unit test target can access any declaration with the <code class="code-voice">internal</code> modifier as if they were declared with the <code class="code-voice">public</code> modifier by prepending <code class="code-voice">@testable</code> to the product module import statement.
+<br><span class="jpstr">
+特に何もしなければ、生成されたヘッダはスウィフト宣言を<code class="code-voice">public</code>または<code class="code-voice">open</code>修飾子で印して含みます。それはまた、あなたのアプリターゲットがObjective-C橋渡しヘッダを持つならば、それらを<code class="code-voice">internal</code>修飾子で印して含みます。<code class="code-voice">private</code>または<code class="code-voice">fileprivate</code>修飾子で印される宣言は、生成されたヘッダの中に現れることはありません。プライベートな宣言はObjective-Cにさらされません、それらが明示的に<code class="code-voice">@IBAction</code>、<code class="code-voice">@IBOutlet</code>、または<code class="code-voice">@objc</code>で印されない限りは。あなたのアプリターゲットがテスト可能にされてコンパイルされるならば、ユニットテストターゲットは<code class="code-voice">internal</code>修飾子を持つあらゆる宣言にアクセスできます、まるでそれらが、<code class="code-voice">@testable</code>を製品モジュールインポート文の先頭に付けることで、<code class="code-voice">public</code>修飾子とともに宣言をされたかのようにです。
+</span><!--end_jpstr-->
+</p><p class="para">
+  For more information on access-level modifiers, see <a href="../Swift_Programming_Language/AccessControl.html#//apple_ref/doc/uid/TP40014097-CH41" data-renderer-version="2" target="_self">Access Control</a> in <em class="u-book"><a href="../Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097" data-renderer-version="2" target="_self">The Swift Programming Language (Swift 4.0.3)</a></em>.
+<br><span class="jpstr">
+アクセス水準修飾子に関する更なる情報のために、<a href="../Swift_Programming_Language/AccessControl.html#//apple_ref/doc/uid/TP40014097-CH41" data-renderer-version="2" target="_self">アクセス制御</a>を<em class="u-book"><a href="../Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097" data-renderer-version="2" target="_self">スウィフトプログラミング言語（Swift 4.0.3）</a></em>で見てください。
+</span><!--end_jpstr-->
+</p><p class="para">
+  You don’t need to do anything special to create the generated header file—just import it to use its contents in your Objective-C code. Note that the Swift interfaces in the generated header include references to all of the Objective-C types used in them. If you use your own Objective-C types in your Swift code, make sure to import the Objective-C headers for those types before importing the Swift generated header into the Objective-C <code class="code-voice">.m</code> file you want to access the Swift code from.
+<br><span class="jpstr">
+あなたは、生成ヘッダ・ファイルを作成するために特に何もする必要がありません ― あなたは、単にあなたのObjective-Cコードにおいてその内容を使うためにそれをインポートしてください。生成されたヘッダの中のスウィフトインタフェースたちが、それらの中で使われるObjective-C型への全ての参照を含む点に注意してください。あなたがあなた独自のObjective-C型をあなたのスウィフトコードにおいて使うならば、必ずそれらの型のためのObjective-Cヘッダをインポートするようにするようにしてください、スウィフトの生成ヘッダをあなたがそれからスウィフトコードにアクセスすることを望むObjective-Cの<code class="code-voice">.m</code>ファイルにインポートする前にです。
+</span><!--end_jpstr-->
+</p><p class="para">
+  <strong>To import Swift code into Objective-C from the same target<br><span class="jpstr">
+同じターゲットからObjective-Cにスウィフトコードをインポートするには
+</span><!--end_jpstr-->
+</strong>
+</p><ul class="list-bullet">
+  <li class="item"><p class="para">
+  Import the Swift code from that target into any Objective-C <code class="code-voice">.m</code> file within that target using this syntax and substituting the appropriate name:
+<br><span class="jpstr">
+そのターゲットからスウィフトコードを何らかのObjective-Cの<code class="code-voice">.m</code>ファイルへ、この構文を使って、適切な名前で置き換えて、インポートしてください：
+</span><!--end_jpstr-->
+</p>
+<section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Objective-C">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="cp">#import &quot;ProductModuleName-Swift.h&quot;</span>
+</code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+</li>
+</ul><p class="para">
+  The Swift files in your target will be visible in Objective-C <code class="code-voice">.m</code> files containing this import statement. For information on using Swift from Objective-C code, see <span class="x-name"><a href="#//apple_ref/doc/uid/TP40014216-CH10-ID136" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH10-ID136">Using Swift from Objective-C</a></span>.
+<br><span class="jpstr">
+あなたのターゲットの中のスウィフトファイルは、このインポート文を含んでいるObjective-C <code class="code-voice">.m</code>ファイルにおいて見えるようになります。Objective-Cコードからスウィフトを使うことに関する情報のために、<span class="x-name"><a href="#//apple_ref/doc/uid/TP40014216-CH10-ID136" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH10-ID136">スウィフトをObjective-Cから使う</a></span>を見てください。
+</span><!--end_jpstr-->
+</p><div class="tableholder">
+  
+  <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+    <caption class="tablecaption"></caption>
+    <thead>
+        <tr>
+            <th scope="col" class="TableHeading_TableRow_TableCell"></th>
+            <th scope="col" class="TableHeading_TableRow_TableCell"><p class="para">
+  Import into Swift
+<br><span class="jpstr">
+スウィフトへインポートする
+</span><!--end_jpstr-->
+</p></th>
+            <th scope="col" class="TableHeading_TableRow_TableCell"><p class="para">
+  Import into Objective-C
+<br><span class="jpstr">
+Objective-Cへインポートする
+</span><!--end_jpstr-->
+</p></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td scope="row"><p class="para">
+  Swift code
+<br><span class="jpstr">
+スウィフトコード
+</span><!--end_jpstr-->
+</p></td>
+            <td><p class="para">
+  No import statement
+<br><span class="jpstr">
+インポート文なし
+</span><!--end_jpstr-->
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">#import &quot;ProductModuleName-Swift.h&quot;</code>
+</p></td>
+        </tr>
+        <tr>
+            <td scope="row"><p class="para">
+  Objective-C code
+<br><span class="jpstr">
+Objective-Cコード
+</span><!--end_jpstr-->
+</p></td>
+            <td><p class="para">
+  No import statement; Objective-C bridging header required
+<br><span class="jpstr">
+インポート文なし；Objective-Cブリッジヘッダ必須
+</span><!--end_jpstr-->
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">#import &quot;Header.h&quot;</code>
+</p></td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+  
+</section>
+
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH10-ID130"></a>
+  <h3 class="section-name" tabindex="0">Importing Code from Within the Same Framework Target<br><span class="jpstr">
+コードを同じフレームワークターゲット内からインポートする
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  If you’re writing a mixed-language framework, you may need to access your Objective-C code from Swift and your Swift code from Objective-C.
+<br><span class="jpstr">
+あなたが混合言語のフレームワークを書いているならば、あなたはObjective-Cコードにあなたのスウィフトから、そしてあなたのスウィフトコードにObjective-Cからアクセスする必要があるかもしれません。
+</span><!--end_jpstr-->
+</p>
+  <section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH10-ID171"></a>
+  <h3 class="section-name" tabindex="0">Importing Objective-C into Swift<br><span class="jpstr">
+Objective-Cをスウィフトにインポートする
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  To import a set of Objective-C files in the same framework target as your Swift code, you’ll need to import those files into the Objective-C umbrella header for the framework.
+<br><span class="jpstr">
+ひとそろいのObjective-Cファイルをあなたのスウィフトコードと同じフレームワークターゲットにインポートするために、あなたはそれらのファイルをそのフレームワークのためのObjective-Cアンブレラヘッダにインポートする必要があります。
+</span><!--end_jpstr-->
+</p><p class="para">
+  <strong>To import Objective-C code into Swift from the same framework<br><span class="jpstr">
+同じフレームワークからスウィフトにObjective-Cコードをインポートするには
+</span><!--end_jpstr-->
+</strong>
+</p><ol class="list-number">
+  <li class="item"><p class="para">
+  Under Build Settings, in Packaging, make sure the Defines Module setting for that framework target is set to “Yes”.
+<br><span class="jpstr">
+「Build Settings」において、「Packaging」の中で、そのフレームワークターゲットのための「Defines Module」設定が「Yes」に設定されることを確認します。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  In your umbrella header file, import every Objective-C header you want to expose to Swift. For example:
+<br><span class="jpstr">
+あなたのアンブレラヘッダ・ファイルにおいて、あなたがスウィフトに露出したいあらゆるObjective-Cヘッダをインポートしてください。例えば：
+</span><!--end_jpstr-->
+</p>
+<section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Objective-C">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="cp">#import &lt;XYZ/XYZCustomCell.h&gt;</span>
+</code></li>
+            <li><code class="code-voice"><span class="cp">#import &lt;XYZ/XYZCustomView.h&gt;</span>
+</code></li>
+            <li><code class="code-voice"><span class="cp">#import &lt;XYZ/XYZCustomViewController.h&gt;</span>
+</code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+</li>
+</ol><p class="para">
+  Swift will see every header you expose publicly in your umbrella header. The contents of the Objective-C files in that framework will be available in any Swift file within that framework target automatically, without any import statements. Use your custom Objective-C code with the same Swift syntax you use with system classes.
+<br><span class="jpstr">
+スウィフトは、あなたがあなたのアンブレラヘッダにおいて公的に露出するあらゆるヘッダを見るようになります。そのフレームワークの中のObjective-Cファイルの中身は、まったくインポート文なしで、そのフレームワークターゲット内のあらゆるスウィフトファイルにおいて自動的に利用可能になります。あなたのあつらえのObjective-Cコードを、あなたがシステム・クラスで使うのと同じスウィフト構文で使ってください。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">myOtherCell</span> = <span class="vc">XYZCustomCell</span>()</code></li>
+            <li><code class="code-voice"><span class="vc">myOtherCell</span>.<span class="vc">subtitle</span> = <span class="s">&quot;Another custom cell&quot;</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH10-ID172"></a>
+  <h3 class="section-name" tabindex="0">Importing Swift into Objective-C<br><span class="jpstr">
+スウィフトをObjective-Cにインポートする
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  To import a set of Swift files in the same framework target as your Objective-C code, you don’t need to import anything into the umbrella header for the framework. Instead, import the Xcode-generated header file for your Swift code into any Objective-C <code class="code-voice">.m</code> file you want to use your Swift code from.
+<br><span class="jpstr">
+ひとそろいのスウィフトファイルをあなたのObjective-Cコードと同じフレームワークターゲットにインポートするために、あなたはそのフレームワークのためのアンブレラヘッダに何もインポートする必要がありません。その代わりに、あなたのスウィフトコードのためのXcode生成のヘッダ・ファイルを、あなたがそのコードを使いたい何らかのObjective-C <code class="code-voice">.m</code>ファイルにインポートしてください。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Because the generated header for a framework target is part of the framework’s public interface, only declarations marked with the <code class="code-voice">public</code> or <code class="code-voice">open</code> modifier appear in the generated header for a framework target.
+<br><span class="jpstr">
+あるフレームワークターゲットのために生成されたヘッダはそのフレームワークのパブリックなインターフェイスの一部なので、<code class="code-voice">public</code>または<code class="code-voice">open</code>修飾子で印された宣言だけがフレームワークターゲットのために生成されたヘッダの中に現れます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Swift methods and properties that are marked with the <code class="code-voice">internal</code> modifier and declared within a class that inherits from an Objective-C class are accessible to the Objective-C runtime. However, they are not accessible at compile time and do not appear in the generated header for a framework target.
+<br><span class="jpstr">
+Objective-Cクラスから継承するクラスの内部で宣言されて<code class="code-voice">internal</code>修飾子で印されるスウィフトのメソッドとプロパティは、Objective-Cランタイムへとアクセス可能です。しかしながら、それらはコンパイル時にアクセス可能ではありません、そしてフレームワークターゲットのための生成ヘッダの中に現れません。
+</span><!--end_jpstr-->
+</p><p class="para">
+  For more information on access-level modifiers, see <a href="../Swift_Programming_Language/AccessControl.html#//apple_ref/doc/uid/TP40014097-CH41" data-renderer-version="2" target="_self">Access Control</a> in <em class="u-book"><a href="../Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097" data-renderer-version="2" target="_self">The Swift Programming Language (Swift 4.0.3)</a></em>.
+<br><span class="jpstr">
+アクセス水準修飾子に関する更なる情報のために、<a href="../Swift_Programming_Language/AccessControl.html#//apple_ref/doc/uid/TP40014097-CH41" data-renderer-version="2" target="_self">アクセス制御</a>を<em class="u-book"><a href="../Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097" data-renderer-version="2" target="_self">スウィフトプログラミング言語（Swift 4.0.3）</a></em>で見てください。
+</span><!--end_jpstr-->
+</p><p class="para">
+  <strong>To import Swift code into Objective-C from the same framework<br><span class="jpstr">
+スウィフトコードを同じフレームワークからObjective-Cにインポートするには
+</span><!--end_jpstr-->
+</strong>
+</p><ol class="list-number">
+  <li class="item"><p class="para">
+  Under Build Settings, in Packaging, make sure the Defines Module setting for that framework target is set to “Yes”.
+<br><span class="jpstr">
+「Build Settings」において、「Packaging」の中で、そのフレームワークターゲットのための「Defines Module」設定が「Yes」に設定されることを確認します。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  Import the Swift code from that framework target into any Objective-C <code class="code-voice">.m</code> file within that framework target using this syntax and substituting the appropriate names:
+<br><span class="jpstr">
+スウィフトコードをそのフレームワークターゲットから、そのフレームワークターゲット内の何らかのObjective-C <code class="code-voice">.m</code>ファイルにこの構文を使って、適切な名前で置き換えて、インポートしてください：
+</span><!--end_jpstr-->
+</p>
+<section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Objective-C">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="cp">#import &lt;ProductName/ProductModuleName-Swift.h&gt;</span>
+</code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+</li>
+</ol><p class="para">
+  The Swift files in your framework target will be visible in Objective-C <code class="code-voice">.m</code> files containing this import statement. For information on using Swift from Objective-C code, see <span class="x-name"><a href="#//apple_ref/doc/uid/TP40014216-CH10-ID136" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH10-ID136">Using Swift from Objective-C</a></span>.
+<br><span class="jpstr">
+あなたのフレームワークターゲットの中のスウィフトファイルは、このインポート文を含んでいるObjective-C <code class="code-voice">.m</code>ファイルにおいて見えるようになります。Objective-Cコードからスウィフトを使うことに関する情報のために、<span class="x-name"><a href="#//apple_ref/doc/uid/TP40014216-CH10-ID136" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH10-ID136">スウィフトをObjective-Cから使う</a></span>を見てください。
+</span><!--end_jpstr-->
+</p><div class="tableholder">
+  
+  <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+    <caption class="tablecaption"></caption>
+    <thead>
+        <tr>
+            <th scope="col" class="TableHeading_TableRow_TableCell"></th>
+            <th scope="col" class="TableHeading_TableRow_TableCell"><p class="para">
+  Import into Swift
+<br><span class="jpstr">
+スウィフトへインポートする
+</span><!--end_jpstr-->
+</p></th>
+            <th scope="col" class="TableHeading_TableRow_TableCell"><p class="para">
+  Import into Objective-C
+<br><span class="jpstr">
+Objective-Cへインポートする
+</span><!--end_jpstr-->
+</p></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td scope="row"><p class="para">
+  Swift code
+<br><span class="jpstr">
+スウィフトコード
+</span><!--end_jpstr-->
+</p></td>
+            <td><p class="para">
+  No import statement
+<br><span class="jpstr">
+インポート文なし
+</span><!--end_jpstr-->
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">#import &lt;ProductName/ProductModuleName-Swift.h&gt;</code>
+</p></td>
+        </tr>
+        <tr>
+            <td scope="row"><p class="para">
+  Objective-C code
+<br><span class="jpstr">
+Objective-Cコード
+</span><!--end_jpstr-->
+</p></td>
+            <td><p class="para">
+  No import statement; Objective-C umbrella header required
+<br><span class="jpstr">
+インポート文なし；Objective-Cアンブレラヘッダ必須
+</span><!--end_jpstr-->
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">#import &quot;Header.h&quot;</code>
+</p></td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+  
+</section>
+
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH10-ID134"></a>
+  <h3 class="section-name" tabindex="0">Importing External Frameworks<br><span class="jpstr">
+外部のフレームワークをインポートする
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  You can import external frameworks that have a pure Objective-C codebase, a pure Swift codebase, or a mixed-language codebase. The process for importing an external framework is the same whether the framework is written in a single language or contains files from both languages. When you import an external framework, make sure the Defines Module build setting for the framework you’re importing is set to “Yes”.
+<br><span class="jpstr">
+あなたは、純粋なObjective-Cコードベース、純粋なスウィフトコードベース、または混合言語のコードベースを持つ外部のフレームワークをインポートすることができます。外部フレームワークをインポートするプロセスは、そのフレームワークが１つだけの言語で書かれるか、両方の言語からのファイルを含むかに関係なく、同じものです。あなたが外部のフレームワークをインポートするとき、あなたがインポートしているフレームワークのための「Defines Module」ビルド設定が「Yes」に設定されることを確認してください。
+</span><!--end_jpstr-->
+</p><p class="para">
+  You can import a framework into any Swift file within a different target using the following syntax:
+<br><span class="jpstr">
+あなたはフレームワークをある異なるターゲット内のどんなスウィフトファイルにでも、以下の構文を使ってインポートすることができます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">import</span> <span class="vc">FrameworkName</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  You can import a framework into any Objective-C <code class="code-voice">.m</code> file within a different target using the following syntax:
+<br><span class="jpstr">
+あなたは、フレームワークを異なるターゲット内のどんなObjective-C <code class="code-voice">.m</code>ファイルにでも以下の構文を使ってインポートすることができます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Objective-C">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="err">@</span><span class="n">import</span> <span class="n">FrameworkName</span><span class="p">;</span>
+</code></li>
+        </ol>
+      </div>
+  </div>
+</section><div class="tableholder">
+  
+  <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+    <caption class="tablecaption"></caption>
+    <thead>
+        <tr>
+            <th scope="col" class="TableHeading_TableRow_TableCell"></th>
+            <th scope="col" class="TableHeading_TableRow_TableCell"><p class="para">
+  Import into Swift
+<br><span class="jpstr">
+スウィフトへインポートする
+</span><!--end_jpstr-->
+</p></th>
+            <th scope="col" class="TableHeading_TableRow_TableCell"><p class="para">
+  Import into Objective-C
+<br><span class="jpstr">
+Objective-Cへインポートする
+</span><!--end_jpstr-->
+</p></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td scope="row"><p class="para">
+  Any language framework
+<br><span class="jpstr">
+何らかの言語フレームワーク
+</span><!--end_jpstr-->
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">import FrameworkName</code>
+</p></td>
+            <td><p class="para">
+  <code class="code-voice">@import FrameworkName;</code>
+</p></td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH10-ID136"></a>
+  <h3 class="section-name" tabindex="0">Using Swift from Objective-C<br><span class="jpstr">
+スウィフトをObjective-Cから使う
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Once you import your Swift code into Objective-C, use regular Objective-C syntax for working with Swift classes.
+<br><span class="jpstr">
+一旦あなたがObjective-Cにあなたのスウィフトコードをインポートするならば、一般的なObjective-C構文をスウィフトクラスを扱うために使ってください。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Objective-C">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="n">MySwiftClass</span> <span class="o">*</span><span class="n">swiftObject</span> <span class="o">=</span> <span class="p">[[</span><span class="n">MySwiftClass</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+</code></li>
+            <li><code class="code-voice"><span class="p">[</span><span class="n">swiftObject</span> <span class="n">swiftMethod</span><span class="p">];</span>
+</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  A Swift class must be a descendant of an Objective-C class to be accessible and usable in Objective-C. For more information about what you can access from Objective-C and how the Swift interface is imported, see <span class="x-name"><a href="InteractingWithObjective-CAPIs.html#//apple_ref/doc/uid/TP40014216-CH4-ID53" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH4-ID53">Swift Type Compatibility</a></span>.
+<br><span class="jpstr">
+スウィフトクラスは、Objective-Cにおいてアクセス可能および利用可能であるためにはObjective-Cクラスの子孫でなければなりません。あなたがObjective-Cからアクセスできることとスウィフトインタへフェイスがインポートされる方法についての更なる情報として、<span class="x-name"><a href="InteractingWithObjective-CAPIs.html#//apple_ref/doc/uid/TP40014216-CH4-ID53" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH4-ID53">スウィフト型互換性</a></span>を見てください。
+</span><!--end_jpstr-->
+</p>
+  <section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH10-ID158"></a>
+  <h3 class="section-name" tabindex="0">Referencing a Swift Class or Protocol in an Objective-C Header<br><span class="jpstr">
+スウィフトのクラスやプロトコルをObjective-Cヘッダにおいて参照する
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  When your code refers to a Swift class or protocol that comes from a different module, you import the Swift module into your Objective-C header using <code class="code-voice">@import</code>. However, to avoid cyclical references, don’t import Swift code from within the <em>same</em> module into an Objective-C header (<code class="code-voice">.h</code>) file. Instead, you can forward declare a Swift class or protocol to reference it in an Objective-C interface.
+<br><span class="jpstr">
+あなたのコードが異なるモジュールから来るスウィフトクラスやプロトコルを参照する場合、あなたはスウィフトモジュールをあなたのObjective-Cヘッダへと<code class="code-voice">@import</code>を使ってインポートします。しかしながら、循環参照を防ぐために、スウィフトコードを<em>同じ</em>モジュール内部からObjective-Cヘッダ（<code class="code-voice">.h</code>）ファイルへとインポートしないでください。その代わりに、あなたはスウィフトのクラスやプロトコルを先に宣言して、Objective-Cインターフェイスにおいてそれを参照することができます。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Objective-C">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="c1">// MyObjcClass.h</span>
+</code></li>
+            <li><code class="code-voice"><span class="k">@class</span> <span class="nc">MySwiftClass</span>;
+</code></li>
+            <li><code class="code-voice"><span class="k">@protocol</span> <span class="nc">MySwiftProtocol</span>;
+</code></li>
+            <li><code class="code-voice"> 
+</code></li>
+            <li><code class="code-voice"><span class="k">@interface</span> <span class="nc">MyObjcClass</span> : <span class="nc">NSObject</span>
+</code></li>
+            <li><code class="code-voice"><span class="o">-</span> <span class="p">(</span><span class="n">MySwiftClass</span> <span class="o">*</span><span class="p">)</span><span class="n">returnSwiftClassInstance</span><span class="p">;</span>
+</code></li>
+            <li><code class="code-voice"><span class="o">-</span> <span class="p">(</span><span class="kt">id</span> <span class="o">&lt;</span><span class="n">MySwiftProtocol</span><span class="o">&gt;</span><span class="p">)</span><span class="n">returnInstanceAdoptingSwiftProtocol</span><span class="p">;</span>
+</code></li>
+            <li><code class="code-voice"><span class="c1">// ...</span>
+</code></li>
+            <li><code class="code-voice"><span class="k">@end</span>
+</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Forward declarations of Swift classes and protocols can only be used as types for method and property declarations.
+<br><span class="jpstr">
+スウィフトのクラスとプロトコルの前方宣言は、ただメソッドおよびプロパティ宣言の型として使われることができるだけです。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH10-ID204"></a>
+  <h3 class="section-name" tabindex="0">Declaring a Swift Protocol That Can Be Adopted by an Objective-C Class<br><span class="jpstr">
+Objective-Cクラスによって採用されることができるスウィフトプロトコルを宣言する
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  To create a Swift protocol that can be adopted by an Objective-C class, mark the <code class="code-voice">protocol</code> declaration with the <code class="code-voice">@objc</code> attribute.
+<br><span class="jpstr">
+Objective-Cクラスによって採用されることができるスウィフトプロトコルを宣言するには、<code class="code-voice">protocol</code>宣言を<code class="code-voice">@objc</code>属性で印してください。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">@objc</span> <span class="kt">public</span> <span class="kt">protocol</span> <span class="vc">MySwiftProtocol</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">requiredMethod</span>()</code></li>
+            <li><code class="code-voice">    </code></li>
+            <li><code class="code-voice">    <span class="kt">@objc</span> <span class="kt">optional</span> <span class="kt">func</span> <span class="vc">optionalMethod</span>()</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  A protocol declares all initializers, properties, subscripts, and methods that an Objective-C class must implement in order to conform to the protocol. Any optional protocol requirements must be marked with the <code class="code-voice">@objc</code> attribute and have the <code class="code-voice">optional</code> modifier.
+<br><span class="jpstr">
+プロトコルは、Objective-Cクラスがそのプロトコルに準拠するために実装しなければならない全てのイニシャライザ、プロパティ、添え字、そしてメソッドを宣言します。なんであれオプショナルのプロトコル要件は、<code class="code-voice">@objc</code>属性で印されて<code class="code-voice">optional</code>修飾子を持たなければなりません。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH10-ID159"></a>
+  <h3 class="section-name" tabindex="0">Adopting a Swift Protocol in an Objective-C Implementation<br><span class="jpstr">
+スウィフトプロトコルをObjective-C実装において採用する
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  An Objective-C class can adopt a Swift protocol in its implementation (<code class="code-voice">.m</code>) file by importing the Xcode-generated header for Swift code and using a class extension.
+<br><span class="jpstr">
+Objective-Cクラスは、その実装（<code class="code-voice">.m</code>）ファイルにおいてスウィフトプロトコルを採用することが、スウィフトコードのためのXcode生成ヘッダをインポートすることとクラス拡張を使うことでできます。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Objective-C">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="c1">// MyObjcClass.m</span>
+</code></li>
+            <li><code class="code-voice"><span class="cp">#import &quot;ProductModuleName-Swift.h&quot;</span>
+</code></li>
+            <li><code class="code-voice"> 
+</code></li>
+            <li><code class="code-voice"><span class="k">@interface</span> <span class="nc">MyObjcClass</span> <span class="p">()</span> <span class="o">&lt;</span><span class="n">MySwiftProtocol</span><span class="o">&gt;</span>
+</code></li>
+            <li><code class="code-voice"><span class="c1">// ...</span>
+</code></li>
+            <li><code class="code-voice"><span class="k">@end</span>
+</code></li>
+            <li><code class="code-voice"> 
+</code></li>
+            <li><code class="code-voice"><span class="k">@implementation</span> <span class="nc">MyObjcClass</span>
+</code></li>
+            <li><code class="code-voice"><span class="c1">// ...</span>
+</code></li>
+            <li><code class="code-voice"><span class="k">@end</span>
+</code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH10-ID214"></a>
+  <h3 class="section-name" tabindex="0">Declaring a Swift Error Type That Can Be Used from Objective-C<br><span class="jpstr">
+Objective-Cから利用されることができるスウィフトエラー型を宣言する
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Swift enumerations conforming to the <code class="code-voice">Error</code> protocol and declared with the <code class="code-voice">@objc</code> attribute produce an <code class="code-voice">NS_ENUM</code> declaration, as well as an <code class="code-voice">NSString</code> constant for the corresponding error domain in the generated header. For example, given the following Swift enumeration declaration:
+<br><span class="jpstr">
+<code class="code-voice">Error</code>プロトコルに準拠していて<code class="code-voice">@objc</code>属性で印されるスウィフト列挙は、生成ヘッダにおいて<code class="code-voice">NS_ENUM</code>宣言、それだけでなく対応するエラードメインに対する<code class="code-voice">NSString</code>定数を生み出します。例えば、以下のスウィフト列挙宣言を与えられたとして：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">@objc</span> <span class="kt">public</span> <span class="kt">enum</span> <span class="vc">CustomError</span>: <span class="n"><! -- a href="" -->Int<! -- /a --></span>, <span class="n"><! -- a href="" -->Error<! -- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">case</span> <span class="vc">a</span>, <span class="vc">b</span>, <span class="vc">c</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Here’s the corresponding Objective-C declaration in the generated header:
+<br><span class="jpstr">
+ここに生成ヘッダにおける対応するObjective-C宣言があります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Objective-C">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="c1">// Project-Swift.h</span>
+</code></li>
+            <li><code class="code-voice"><span class="k">typedef</span> <span class="nf">SWIFT_ENUM</span><span class="p">(</span><span class="n">NSInteger</span><span class="p">,</span> <span class="n">CustomError</span><span class="p">)</span> <span class="p">{</span>
+</code></li>
+            <li><code class="code-voice">  <span class="n">CustomErrorA</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+</code></li>
+            <li><code class="code-voice">  <span class="n">CustomErrorB</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+</code></li>
+            <li><code class="code-voice">  <span class="n">CustomErrorC</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+</code></li>
+            <li><code class="code-voice"><span class="p">};</span>
+</code></li>
+            <li><code class="code-voice"><span class="k">static</span> <span class="n">NSString</span> <span class="o">*</span> <span class="k">const</span> <span class="n">CustomErrorDomain</span> <span class="o">=</span> <span class="s">@&quot;Project.CustomError&quot;</span><span class="p">;</span>
+</code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH10-ID162"></a>
+  <h3 class="section-name" tabindex="0">Overriding Swift Names for Objective-C Interfaces<br><span class="jpstr">
+Objective-Cインターフェイスのためのスウィフト名のオーバーライド
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  The Swift compiler automatically imports Objective-C code as conventional Swift code. It imports Objective-C class factory methods as Swift initializers, and Objective-C enumeration cases truncated names.
+<br><span class="jpstr">
+スウィフトコンパイラは、自動的にObjective-Cコードを普通の意味でのスウィフトコードとしてインポートします。それはObjective-Cファクトリメソッドをスウィフトイニシャライザとして、そして名前の先端を切ったObjective-C列挙をインポートします。
+</span><!--end_jpstr-->
+</p><p class="para">
+  There may be edge cases in your code that are not automatically handled. If you need to change the name imported by Swift of an Objective-C method, enumeration case, or option set value, you can use the <code class="code-voice">NS_SWIFT_NAME</code> macro to customize how a declaration is imported.
+<br><span class="jpstr">
+自動的に処理されることが際どい場合があなたのコードであるかもしれません。あなたがObjective-Cメソッド、列挙ケース節、またはオプションセット値のスウィフトによってインポートされた名前を変更する必要があるならば、あなたは<code class="code-voice">NS_SWIFT_NAME</code>マクロを使ってどのようにある宣言がインポートされるかをカスタマイズすることができます。
+</span><!--end_jpstr-->
+</p>
+  <section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH10-ID167"></a>
+  <h3 class="section-name" tabindex="0">Class Factory Methods<br><span class="jpstr">
+クラスファクトリメソッド
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  If the Swift compiler fails to identify a class factory method, you can use the <code class="code-voice">NS_SWIFT_NAME</code> macro, passing the Swift signature of the initializer to have it imported correctly. For example:
+<br><span class="jpstr">
+スウィフトコンパイラがクラスファクトリメソッドを識別するのを失敗したならば、あなたは<code class="code-voice">NS_SWIFT_NAME</code>マクロを使うことができ、イニシャライザのスウィフトシグネチャを渡すことでそれは正しくインポートします。例えば：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Objective-C">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="o">+</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="nl">recordWithRPM:</span><span class="p">(</span><span class="n">NSUInteger</span><span class="p">)</span><span class="n">RPM</span> <span class="n">NS_SWIFT_NAME</span><span class="p">(</span><span class="n">init</span><span class="p">(</span><span class="nl">rpm:</span><span class="p">));</span>
+</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  If the Swift compiler mistakenly identifies a method as a class factory method, you can use the <code class="code-voice">NS_SWIFT_NAME</code> macro, passing the Swift signature of the method to have it imported correctly. For example:
+<br><span class="jpstr">
+スウィフトコンパイラが間違ってあるメソッドをクラスファクトリメソッドと識別するならば、あなたは<code class="code-voice">NS_SWIFT_NAME</code>マクロを使うことができ、そのメソッドのスウィフトシグネチャを渡すことでそれは正しくインポートします。例えば：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Objective-C">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="o">+</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nl">recordWithQuality:</span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="n">quality</span> <span class="n">NS_SWIFT_NAME</span><span class="p">(</span><span class="n">record</span><span class="p">(</span><span class="nl">quality:</span><span class="p">));</span>
+</code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH10-ID168"></a>
+  <h3 class="section-name" tabindex="0">Enumerations<br><span class="jpstr">
+列挙
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  By default, Swift imports enumerations by truncating enumeration value name prefixes. To customize the name of an enumeration case, you can use the <code class="code-voice">NS_SWIFT_NAME</code> macro, passing the Swift enumeration case name. For example:
+<br><span class="jpstr">
+特に何もしなくとも、スウィフトは列挙値名接頭辞を切り取ることによってを列挙インポートします。列挙ケース節の名前をカスタマイズするために、あなたはスウィフト列挙ケース節名を渡して、<code class="code-voice">NS_SWIFT_NAME</code>マクロを使うことができます。例えば：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Objective-C">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="k">typedef</span> <span class="nf">NS_ENUM</span><span class="p">(</span><span class="n">NSInteger</span><span class="p">,</span> <span class="n">ABCRecordSide</span><span class="p">)</span> <span class="p">{</span>
+</code></li>
+            <li><code class="code-voice">  <span class="n">ABCRecordSideA</span><span class="p">,</span>
+</code></li>
+            <li><code class="code-voice">  <span class="n">ABCRecordSideB</span> <span class="n">NS_SWIFT_NAME</span><span class="p">(</span><span class="n">flipSide</span><span class="p">),</span>
+</code></li>
+            <li><code class="code-voice"><span class="p">};</span>
+</code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH10-ID188"></a>
+  <h3 class="section-name" tabindex="0">Refining Objective-C Declarations<br><span class="jpstr">
+Objective-C宣言を改良する
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  You can use the <code class="code-voice">NS_REFINED_FOR_SWIFT</code> macro on an Objective-C method declaration to provide a refined Swift interface in an extension, while keeping the original implementation available to be called from the refined interface. For instance, an Objective-C method that takes one or more pointer arguments could be refined in Swift to return a tuple of values.
+<br><span class="jpstr">
+あなたは、<code class="code-voice">NS_REFINED_FOR_SWIFT</code>マクロをObjective-Cメソッド宣言上で使って、ある拡張において改良スウィフトインターフェイスを提供して、オリジナル実装を利用可能に保ったまま、その改良インターフェイスから呼び出されるようにできます。例えば、１つ以上のポインタ引数を取るObjective-Cメソッドが改良されてスウィフトにおいてタプル値を返すようにできます。
+</span><!--end_jpstr-->
+</p><ul class="list-bullet">
+  <li class="item"><p class="para">
+  Initializer methods are imported by Swift with double underscores (<code class="code-voice">__</code>) prepended to their first argument labels.
+<br><span class="jpstr">
+イニシャライザメソッドは、二重アンダースコア（<code class="code-voice">__</code>）をそれの最初の引数ラベルの前に付けられてスウィフトによってインポートされます。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  Object subscripting methods are imported by Swift as methods with double underscores (<code class="code-voice">__</code>) prepended to their base names, rather than as a Swift subscript, if either the getter or setter method is marked as <code class="code-voice">NS_REFINED_FOR_SWIFT</code>.
+<br><span class="jpstr">
+オブジェクト添え字メソッドは、二重アンダースコア（<code class="code-voice">__</code>）をそれのベース名の前に付けられてスウィフトによってメソッドとしてインポートされます、スウィフト添え字としてではなく、もしゲッターとセッターメソッドの両方が<code class="code-voice">NS_REFINED_FOR_SWIFT</code>と印付けされるならば。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  Other methods are imported with double underscores (<code class="code-voice">__</code>) prepended to their base names.
+<br><span class="jpstr">
+他のメソッドは、二重アンダースコア（<code class="code-voice">__</code>）をそれのベース名の前に付けられてインポートされます。
+</span><!--end_jpstr-->
+</p>
+</li>
+</ul><p class="para">
+  Given the following Objective-C declarations:
+<br><span class="jpstr">
+以下のObjective-C宣言を与えられたとして：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Objective-C">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="k">@interface</span> <span class="nc">Color</span> : <span class="nc">NSObject</span>
+</code></li>
+            <li><code class="code-voice"> 
+</code></li>
+            <li><code class="code-voice"><span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nl">getRed:</span><span class="p">(</span><span class="n">nullable</span> <span class="n">CGFloat</span> <span class="o">*</span><span class="p">)</span><span class="n">red</span>
+</code></li>
+            <li><code class="code-voice">         <span class="nl">green:</span><span class="p">(</span><span class="n">nullable</span> <span class="n">CGFloat</span> <span class="o">*</span><span class="p">)</span><span class="n">green</span>
+</code></li>
+            <li><code class="code-voice">          <span class="nl">blue:</span><span class="p">(</span><span class="n">nullable</span> <span class="n">CGFloat</span> <span class="o">*</span><span class="p">)</span><span class="n">blue</span>
+</code></li>
+            <li><code class="code-voice">         <span class="nl">alpha:</span><span class="p">(</span><span class="n">nullable</span> <span class="n">CGFloat</span> <span class="o">*</span><span class="p">)</span><span class="n">alpha</span> <span class="n">NS_REFINED_FOR_SWIFT</span><span class="p">;</span>
+</code></li>
+            <li><code class="code-voice"> 
+</code></li>
+            <li><code class="code-voice"><span class="k">@end</span>
+</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  You can provide a refined Swift interface in an extension like this:
+<br><span class="jpstr">
+あなたは、改良スウィフトインターフェイスをある拡張においてこのように提供することができます：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">extension</span> <span class="n"><! -- a href="" -->Color<! -- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">RGBA</span>: (<span class="vc">red</span>: <span class="n"><! -- a href="" -->CGFloat<! -- /a --></span>, <span class="vc">green</span>: <span class="n"><! -- a href="" -->CGFloat<! -- /a --></span>, <span class="vc">blue</span>: <span class="n"><! -- a href="" -->CGFloat<! -- /a --></span>, <span class="vc">alpha</span>: <span class="n"><! -- a href="" -->CGFloat<! -- /a --></span>) {</code></li>
+            <li><code class="code-voice">        <span class="kt">var</span> <span class="vc">r</span>: <span class="n"><! -- a href="" -->CGFloat<! -- /a --></span> = <span class="m">0.0</span></code></li>
+            <li><code class="code-voice">        <span class="kt">var</span> <span class="vc">g</span>: <span class="n"><! -- a href="" -->CGFloat<! -- /a --></span> = <span class="m">0.0</span></code></li>
+            <li><code class="code-voice">        <span class="kt">var</span> <span class="vc">b</span>: <span class="n"><! -- a href="" -->CGFloat<! -- /a --></span> = <span class="m">0.0</span></code></li>
+            <li><code class="code-voice">        <span class="kt">var</span> <span class="vc">a</span>: <span class="n"><! -- a href="" -->CGFloat<! -- /a --></span> = <span class="m">0.0</span></code></li>
+            <li><code class="code-voice">        <span class="vc">__getRed</span>(<span class="vc">red</span>: &amp;<span class="vc">r</span>, <span class="vc">green</span>: &amp;<span class="vc">g</span>, <span class="vc">blue</span>: &amp;<span class="vc">b</span>, <span class="vc">alpha</span>: &amp;<span class="vc">a</span>)</code></li>
+            <li><code class="code-voice">        <span class="kt">return</span> (<span class="vc">red</span>: <span class="vc">r</span>, <span class="vc">green</span>: <span class="vc">g</span>, <span class="vc">blue</span>: <span class="vc">b</span>, <span class="vc">alpha</span>: <span class="vc">a</span>)</code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH10-ID178"></a>
+  <h3 class="section-name" tabindex="0">Making Objective-C Interfaces Unavailable in Swift<br><span class="jpstr">
+Objective-Cインターフェイスをスウィフトで利用できなくする
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  Some Objective-C interfaces may not be suitable or necessary to be exposed as Swift interfaces. To prevent an Objective-C declaration from being imported by Swift, use the <code class="code-voice">NS_SWIFT_UNAVAILABLE</code> macro, passing a message directing API consumers to any alternatives that may exist.
+<br><span class="jpstr">
+いくつかのObjective-Cインターフェイスは、スウィフトインターフェイスとして露出されるのにふさわしくないもしくは必要でない可能性があります。あるObjective-C宣言がスウィフトによってインポートされるのを防止するために、<code class="code-voice">NS_SWIFT_UNAVAILABLE</code>マクロを使って、API消費者に存在するであろう何らかの代替手段を指示するメッセージを渡してください。
+</span><!--end_jpstr-->
+</p><p class="para">
+  For example, an Objective-C class providing a convenience initializer that takes variadic arguments for keys-value pairs may advise a Swift consumer to use a dictionary literal instead:
+<br><span class="jpstr">
+例えば、あるObjective-Cクラスは便利なイニシャライザを提供していて、それは可変長引数をキー-値ペアに対して取るもので、スウィフト消費者に勧めるのは代わりに1つの辞書を使うことです：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Objective-C">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="o">+</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="nl">collectionWithValues:</span><span class="p">(</span><span class="n">NSArray</span> <span class="o">*</span><span class="p">)</span><span class="n">values</span> <span class="nl">forKeys:</span><span class="p">(</span><span class="n">NSArray</span><span class="o">&lt;</span><span class="n">NSCopying</span><span class="o">&gt;</span> <span class="o">*</span><span class="p">)</span><span class="n">keys</span> <span class="n">NS_SWIFT_UNAVAILABLE</span><span class="p">(</span><span class="s">&quot;Use a dictionary literal instead&quot;</span><span class="p">);</span>
+</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Attempting to call the <code class="code-voice">+collectionWithValues:forKeys:</code> method from Swift code will result in a compiler error.
+<br><span class="jpstr">
+<code class="code-voice">+collectionWithValues:forKeys:</code>メソッドをスウィフトコードから呼び出す試みは、コンパイラエラーの結果になるでしょう。
+</span><!--end_jpstr-->
+</p><p class="para">
+  To make an Objective-C declaration unavailable at compile time in both Swift and Objective-C, use the <code class="code-voice">NS_UNAVAILABLE</code> macro. The macro behaves just like the <code class="code-voice">NS_SWIFT_UNAVAILABLE</code> macro except that it omits the customizable error message and it restricts compile-time access to the declaration in Objective-C code.
+<br><span class="jpstr">
+Objective-C宣言をコンパイル時にSwiftとObjective-Cの両方で利用できなくするには、<code class="code-voice">NS_UNAVAILABLE</code>マクロを使ってください。このマクロはちょうど<code class="code-voice">NS_SWIFT_UNAVAILABLE</code>マクロのように振舞います、しかしそれがカスタマイズ可能なエラーメッセージを省略することと、それがコンパイル時アクセスをObjective-Cコードの中の宣言に制限することを除きます。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH10-ID224"></a>
+  <h3 class="section-name" tabindex="0">Adding Availability Information to Objective-C APIs<br><span class="jpstr">
+利用可能性情報をObjective-C APIに加える
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  In Swift, you use the <code class="code-voice">@available</code> attribute to control whether a declaration is available to use when building an app for a particular target platform. Similarly, you use the availability condition <code class="code-voice">#available</code> to execute code conditionally based on required platform and version conditions.
+<br><span class="jpstr">
+スウィフトでは、あなたは<code class="code-voice">@available</code>属性を使うことで、ある宣言が利用可能であるかどうかを制御して、特定の対象プラットホームのためにアプリをビルドするときに使うようにします。同様に、あなたは利用可能性条件<code class="code-voice">#available</code>を使うことで、必要なプラットホームおよびバージョン条件に基づいて、条件付きでコードを実行します。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Both kinds of availability specifier are available in Objective-C using the corresponding syntax shown in the following examples.
+<br><span class="jpstr">
+両方の種類の利用可能性指定子は、以下の例で示される対応する構文を使ってObjective-Cで利用可能です。
+</span><!--end_jpstr-->
+</p><p class="para">
+  This example shows availability information used on a declaration in Swift:
+<br><span class="jpstr">
+この例は、スウィフトでのある宣言で使われる利用可能性情報を示します：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">@available</span>(<span class="kt">iOS</span> <span class="m">11</span>, <span class="vc">macOS</span> <span class="m">10.13</span>, *)</code></li>
+            <li><code class="code-voice"><span class="kt">func</span> <span class="vc">newMethod</span>() {</code></li>
+            <li><code class="code-voice">    <span class="c">// Use iOS 11 APIs.</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  And here’s how you add the same availability information in Objective-C:
+<br><span class="jpstr">
+そしてここにあなたが同じ利用可能性情報をObjective-Cにおいて加える方法があります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Objective-C">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="k">@interface</span> <span class="nc">MyViewController</span> : <span class="nc">UIViewController</span>
+</code></li>
+            <li><code class="code-voice"><span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">newMethod</span> <span class="n">API_AVAILABLE</span><span class="p">(</span><span class="n">ios</span><span class="p">(</span><span class="mi">11</span><span class="p">),</span> <span class="n">macosx</span><span class="p">(</span><span class="mf">10.13</span><span class="p">));</span>
+</code></li>
+            <li><code class="code-voice"><span class="k">@end</span>
+</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  The example below shows availability information used in a conditional statement in Swift:
+<br><span class="jpstr">
+下の例は、スウィフトでの条件文で使われる利用可能性情報を示します：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">if</span> <span class="kt">#available</span>(<span class="kt">iOS</span> <span class="m">11</span>, *) {</code></li>
+            <li><code class="code-voice">    <span class="c">// Use iOS 11 APIs.</span></code></li>
+            <li><code class="code-voice">} <span class="kt">else</span> {</code></li>
+            <li><code class="code-voice">    <span class="c">// Alternative code for earlier versions of iOS.</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  And here’s how you use the same availability information in Objective-C:
+<br><span class="jpstr">
+そしてここにはあなたが同じ利用可能性情報をObjective-Cで使う方法があります：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Objective-C">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="k">if</span> <span class="p">(</span><span class="err">@</span><span class="n">available</span><span class="p">(</span><span class="n">iOS</span> <span class="mi">11</span><span class="p">,</span> <span class="o">*</span><span class="p">))</span> <span class="p">{</span>
+</code></li>
+            <li><code class="code-voice">    <span class="c1">// Use iOS 11 APIs.</span>
+</code></li>
+            <li><code class="code-voice"><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</code></li>
+            <li><code class="code-voice">    <span class="c1">// Alternative code for earlier versions of iOS.</span>
+</code></li>
+            <li><code class="code-voice"><span class="p">}</span>
+</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  For more information about specifiying platform availability, see <a href="../Swift_Programming_Language/Attributes.html#//apple_ref/doc/uid/TP40014097-CH35-ID348" data-renderer-version="2" target="_self">Declaration Attributes</a> in <em class="u-book"><a href="../Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097" data-renderer-version="2" target="_self">The Swift Programming Language (Swift 4.0.3)</a></em>.
+<br><span class="jpstr">
+プラットホーム利用可能性を指定することについての更なる情報として、<a href="../Swift_Programming_Language/Attributes.html#//apple_ref/doc/uid/TP40014097-CH35-ID348" data-renderer-version="2" target="_self">宣言属性</a>を<em class="u-book"><a href="../Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097" data-renderer-version="2" target="_self">The Swift Programming Language (Swift 4.0.3)</a></em>で見てください。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH10-ID138"></a>
+  <h3 class="section-name" tabindex="0">Naming Your Product Module<br><span class="jpstr">
+あなたの製品モジュールに名前をつける
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  The name of the Xcode-generated header for Swift code, and the name of the Objective-C bridging header that Xcode creates for you, are generated from your product module name. By default, your product module name is the same as your product name. However, if your product name has any nonalphanumeric characters, such as a period (<code class="code-voice">.</code>), they are replaced with an underscore (<code class="code-voice">_</code>) in your product module name. If the name begins with a number, the first number is replaced with an underscore.
+<br><span class="jpstr">
+スウィフトコードのためのXcode生成のヘッダの名前、そしてXcodeがあなたの代わりにつくるObjective-C橋渡しヘッダのの名前は、あなたの製品モジュール名から生成されます。特に何もしなければ、あなたの製品モジュール名は、あなたの製品名と同じものです。しかし、あなたの製品名がアルファベットでない文字、例えばピリオド（<code class="code-voice">.</code>）を持つならば、それらはあなたの製品モジュール名においてアンダーライン（<code class="code-voice">_</code>）と取り替えられます。名前が数で始まるならば、最初の数はアンダーラインと取り替えられます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  You can also provide a custom name for the product module name and Xcode will use this when naming the bridging and generated headers. To do this, change the Product Module Name build setting.
+<br><span class="jpstr">
+あなたはまた、あつらえの名前を製品モジュール名のために用意することができます、そしてXcodeはこれを橋渡しおよび生成ヘッダに名前をつけるとき使います。これをするために、「Product Module Name」ビルド設定を変更してください。
+</span><!--end_jpstr-->
+</p><div class="note">
+  <a name="//apple_ref/doc/uid/TP40014216-CH10-NoLink_34"></a>
+  <aside class="aside">
+    <p class="aside-title">Note
+    <br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+    	<p class="para">You cannot override the product module name of a framework.
+    	<br><span class="jpstr">
+あなたは、フレームワークの製品モジュール名をオーバーライドすることができません。
+</span><!--end_jpstr-->
+</p>
+    
+  </aside>
+</div>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH10-ID140"></a>
+  <h3 class="section-name" tabindex="0">Troubleshooting Tips and Reminders<br><span class="jpstr">
+問題解決の秘訣と注意
+</span><!--end_jpstr-->
+</h3>
+  <ul class="list-bullet">
+  <li class="item"><p class="para">
+  Treat your Swift and Objective-C files as the same collection of code, and watch out for naming collisions.
+<br><span class="jpstr">
+あなたのスウィフトとObjective-Cファイルを同じコードのコレクションとみなしてください、そして名前衝突に気をつけてください。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  If you’re working with frameworks, make sure the Defines Module (<code class="code-voice">DEFINES_MODULE</code>) build setting under Packaging is set to “Yes”.
+<br><span class="jpstr">
+あなたがフレームワークを扱ってならば、「Packaging」の下の「Defines Module（<code class="code-voice">DEFINES_MODULE</code>）」ビルド設定が「Yes」に設定されることを確認してください。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  If you’re working with the Objective-C bridging header, make sure the Objective-C Bridging Header (<code class="code-voice">SWIFT_OBJC_BRIDGING_HEADER</code>) build setting under Swift Compiler - Code Generation is set to a path to the bridging header file relative to your project (for example, “MyApp/MyApp-Bridging-Header.h”).
+<br><span class="jpstr">
+あなたがObjective-C橋渡しヘッダを扱っているならば、「Swift Compiler - Code Generation」下の「Objective-C Bridging Header（<code class="code-voice">SWIFT_OBJC_BRIDGING_HEADER</code>）」ビルド設定が、あなたのプロジェクトに関連する橋渡しヘッダファイルへのパスを持つことを確認してください（例えば、「MyApp/MyApp-Bridging-Header.h」）。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  Xcode uses your product module name (<code class="code-voice">PRODUCT_MODULE_NAME</code>)—not your target name (<code class="code-voice">TARGET_NAME</code>)—when naming the Objective-C bridging header and the generated header for your Swift code. For information on product module naming, see <span class="x-name"><a href="#//apple_ref/doc/uid/TP40014216-CH10-ID138" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH10-ID138">Naming Your Product Module</a></span>.
+<br><span class="jpstr">
+Xcodeは、あなたのスウィフトコードのためのObjective-C橋渡しヘッダと生成ヘッダに名前をつける時、あなたの製品モジュール名（<code class="code-voice">PRODUCT_MODULE_NAME</code>）を使います ― あなたのターゲット名（<code class="code-voice">TARGET_NAME</code>）でなく。製品モジュールに名前をつけることに関する情報のために、<span class="x-name"><a href="#//apple_ref/doc/uid/TP40014216-CH10-ID138" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH10-ID138">あなたの製品モジュールに名をつける</a></span>を見てください。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  To be accessible and usable in Objective-C, a Swift class must be a descendant of an Objective-C class or it must be marked <code class="code-voice">@objc</code>.
+<br><span class="jpstr">
+Objective-Cでアクセス可能にされて利用可能にされるために、スウィフトクラスはObjective-Cクラスの子孫でなければなりません、あるいは、それは<code class="code-voice">@objc</code>で印されなければなりません。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  When you bring Swift code into Objective-C, remember that Objective-C won’t be able to translate certain features that are specific to Swift. For a list, see <span class="x-name"><a href="#//apple_ref/doc/uid/TP40014216-CH10-ID136" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH10-ID136">Using Swift from Objective-C</a></span>.
+<br><span class="jpstr">
+あなたがObjective-Cにスウィフトコードを連れて来るとき、Objective-Cがスウィフトに特有である特定の特徴を翻訳することができないのを思い出してください。その一覧のために、<span class="x-name"><a href="#//apple_ref/doc/uid/TP40014216-CH10-ID136" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH10-ID136">スウィフトをObjective-Cから使う</a></span>を見てください。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  If you use your own Objective-C types in your Swift code, make sure to import the Objective-C headers for those types before importing the Swift generated header into the Objective-C <code class="code-voice">.m</code> file you want to use your Swift code from.
+<br><span class="jpstr">
+あなたがあなたのスウィフトコードにおいてあなた独自のObjective-C型を使うならば、スウィフト生成のヘッダをあなたがそれからスウィフトコードにアクセスすることを望むObjective-C <code class="code-voice">.m</code>ファイルにインポートする前に、必ずそれらの型のためのObjective-Cヘッダをインポートするようにするようにしてください。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  Swift declarations marked with the <code class="code-voice">private</code> or <code class="code-voice">fileprivate</code> modifier do not appear in the generated header. Private declarations are not exposed to Objective-C unless they are explicitly marked with <code class="code-voice">@IBAction</code>, <code class="code-voice">@IBOutlet</code>, or <code class="code-voice">@objc</code>.
+<br><span class="jpstr">
+<code class="code-voice">private</code>または<code class="code-voice">fileprivate</code>修飾子で印される宣言は、生成されたヘッダの中に現れません。プライベートな宣言はObjective-Cにさらされません、それらが明示的に<code class="code-voice">@IBAction</code>、<code class="code-voice">@IBOutlet</code>、または<code class="code-voice">@objc</code>で印されない限りは。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  For app targets, declarations marked with the <code class="code-voice">internal</code> modifier appear in the generated header if the app target has an Objective-C bridging header.
+<br><span class="jpstr">
+アプリターゲットでは、<code class="code-voice">internal</code>修飾子で印される宣言は、そのアプリターゲットがObjective-C橋渡しヘッダを持つならば、生成ヘッダの中に現れます。
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  For framework targets, only declarations with the <code class="code-voice">public</code> or <code class="code-voice">open</code> modifier appear in the generated header. You can still use Swift methods and properties that are marked with the <code class="code-voice">internal</code> modifier from within the Objective-C part of your framework, as long they are declared within a class that inherits from an Objective-C class. For more information on access-level modifiers, see <a href="../Swift_Programming_Language/AccessControl.html#//apple_ref/doc/uid/TP40014097-CH41" data-renderer-version="2" target="_self">Access Control</a> in <em class="u-book"><a href="../Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097" data-renderer-version="2" target="_self">The Swift Programming Language (Swift 4.0.3)</a></em>.
+<br><span class="jpstr">
+フレームワークターゲットでは、<code class="code-voice">public</code>または<code class="code-voice">open</code>修飾子を持つ宣言だけが生成ヘッダの中に現れます。あなたは依然として<code class="code-voice">internal</code>修飾子で印されるスウィフトのメソッドとプロパティをあなたのフレームワークのObjecctive-C部分の内部から使うことができます、それらがObjective-Cクラスから継承するクラスの内部で宣言される限りは。アクセス水準修飾子に関する更なる情報のために、<a href="../Swift_Programming_Language/AccessControl.html#//apple_ref/doc/uid/TP40014097-CH41" data-renderer-version="2" target="_self">アクセス制御</a>を<em class="u-book"><a href="../Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097" data-renderer-version="2" target="_self">スウィフトプログラミング言語（Swift 4.0.3）</a></em>で見てください。
+</span><!--end_jpstr-->
+</p>
+</li>
+</ul>
+  
+</section>
+
+  	
+ 	<section id="next_previous" class="">
+    		<p class="previous-link"><a href="InteractingWithCAPIs.html#//apple_ref/doc/uid/TP40014216-CH8-ID17" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH8-ID17">Interacting with C APIs<br><span class="jpstr">
+C APIとの相互作用
+</span><!--end_jpstr-->
+</a></p>
+  			<p class="next-link"><a href="Migration.html#//apple_ref/doc/uid/TP40014216-CH12-ID108" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH12-ID108">Migrating Your Objective-C Code to Swift<br><span class="jpstr">
+あなたのObjective-Cコードのスウィフトへの移行
+</span><!--end_jpstr-->
+</a></p>
+
+    <p class="copyright">Copyright &#x00a9; 2017 Apple Inc. All rights reserved. 
+  <a class="link" href="http://www.apple.com/legal/terms/site.html" target="_blank" rel="external">Terms of Use</a> | 
+  <a class="link" href="http://www.apple.com/privacy/" target="_blank" rel="external">Privacy Policy</a> | 
+  Updated: 2017-12-04
+</p>
+  </section>
+</article>
+
+    </div>
+    <div id='big_button'></div>
+    <footer id="footer">
+  <div class="content-wrapper">
+  	<div id="leave_feedback" class="button" role="button" tabindex="0">Feedback</div>
+  </div>
+  <script src="../../../../Resources/1274/JavaScript/devpubs-1.6.3.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../../../Resources/1274/JavaScript/feedback-1.6.3.js" type="text/javascript" charset="utf-8"></script>
+  <div id="_omniture_top">
+<!-- SiteCatalyst code version: H.8. Copyright 1997-2006 Omniture, Inc. -->
+<script type="text/javascript">
+/* RSID: */
+var s_account="appleglobal,appleusdeveloper,dappdeveloperlib"
+</script>
+
+<!-- <script type="text/javascript" src="https://www.apple.com/metrics/scripts/s_code_h.js"></script> -->
+<script type="text/javascript">
+s.pageName=AC.Tracking.pageName();
+s.channel="www.us.developer"
+
+/************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+var s_code=s.t();if(s_code)document.write(s_code)</script>
+<!-- End SiteCatalyst code version: H.8. -->
+</div>
+
+</footer>
+
+    
+  </body>
+    <div id="blackout">
+    <div id="preload"></div>
+</div>
+<div id="modal" aria-hidden="true">
+    <div id="closebox" tabindex="0" aria-label="Close feedback form" role="button"></div>
+    <div id="sending" class="hidden">
+        <h2 tabindex="0">Sending feedback&hellip;</h2>
+        <div id="sending_img"></div>
+    </div>
+    <div id="error" class="hidden">
+        <h2 tabindex="0">We&rsquo;re sorry, an error has occurred.</h2>
+        <p>Please try submitting your feedback later.</p>
+        <div id="error_icon"></div>
+    </div>
+    <div id="success" class="hidden">
+        <h2 tabindex="0">Thank you for providing feedback!</h2>
+        <p>Your input helps improve our developer documentation.</p>
+        <div id="thank_you_icon"></div>
+    </div>
+    
+    <form id="feedback" action="#" method="post">
+        <div class="left-leaf">
+            <h2 id="helpful_title" data-asterisk="a1" tabindex="0">How helpful is this document?</h2>     
+            <sup id="a1" class="asterisk" aria-hidden="true">*</sup>
+
+            <div id="star_group" role="radiogroup" aria-required="true">
+                <label> 
+                    <input class="radio" type="radio" name="helped" value="1" /> 
+                    Very helpful
+                </label>
+                <label> 
+                    <input class="radio" type="radio" name="helped" value="2" /> 
+                    Somewhat helpful
+                </label>
+                <label>
+                    <input class="radio" type="radio" name="helped" value="3" /> 
+                    Not helpful
+                </label>
+            </div>
+        </div>
+        <div class="right-leaf">
+            <h2>How can we improve this document?</h2>
+            <div id="improve" class="checkboxes">
+                <label>
+                    <input type="checkbox" name="typo" /> 
+                    Fix typos or links
+                </label>
+                <label>
+                    <input type="checkbox" name="infoIncorrect" /> 
+                    Fix incorrect information
+                </label>
+                <label>
+                    <input type="checkbox" name="needs_examples" /> 
+                    Add or update code samples
+                </label>
+                <label>
+                    <input type="checkbox" name="needs_art" /> 
+                    Add or update illustrations
+                </label>
+                <label>
+                    <input type="checkbox" name="missingInfo" /> 
+                    Add information about...
+                </label>
+            </div>
+        </div>
+
+        <textarea id="comment" name="problem" cols="70" rows="8" placeholder="Please tell us more about your experience with this document" data-asterisk="a2" required></textarea>
+        <sup id="a2" class="asterisk" aria-hidden="true">*</sup>
+
+        <p class="fineprint">
+            <em aria-hidden="true"><span>*</span> Required information</em>
+        </p> 
+
+        <input id="submit" type="button" value="Send" />
+
+        <section id="legal">
+            <p>
+                To submit a product bug or enhancement request, please visit the 
+                <a href="https://developer.apple.com/bugreporter/" target="_blank">Bug Reporter</a> 
+                page.
+            </p>
+            <p>
+                Please read <a href="http://www.apple.com/legal/policies/ideas.html" target="_blank">Apple's Unsolicited Idea Submission Policy</a> 
+                before you send us your feedback.
+            </p> 
+        </section>
+    </form>
+</div>
+
+</div>
+</html>
