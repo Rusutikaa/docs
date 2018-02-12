@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>  
-  <title>The Swift Programming Language (Swift 4.0.3): Generics</title>
-  <link rel="stylesheet" type="text/css" href="../../../../Resources/1274/CSS/style-1.6.3.css" />
-  <link rel="stylesheet" type="text/css" href="../../../../Resources/1274/CSS/feedback-1.6.3.css" />
+  <title>The Swift Programming Language (Swift 4.1): Generics</title>
+  <link rel="stylesheet" type="text/css" href="../../../../Resources/1277/CSS/style-1.6.3.css" />
+  <link rel="stylesheet" type="text/css" href="../../../../Resources/1277/CSS/feedback-1.6.3.css" />
   <meta charset='utf-8'> 
 <meta id="j-version" name="j-version" content="" />
-<meta id="build" name="build" content="3b40de4ca2af51e302b3b9b9306b0a3e" />
-<meta id="document-version" name="document-version" content="10.2.9" />
+<meta id="build" name="build" content="f99ee3d3b1b0baba635224fe02964519" />
+<meta id="document-version" name="document-version" content="10.3.2" />
 <meta id="book-assignments" name="book-assignments" content="{Type/Guide}, {Topic/Swift}" />
 <meta scheme="apple_ref" id="identifier" name="identifier" content="//apple_ref/doc/uid/TP40014097" />
 <meta id="chapterId" name="chapterId" content="TP40014097-CH26">
-<meta id="book-title" name="book-title" content="The Swift Programming Language (Swift 4.0.3)" />
+<meta id="book-title" name="book-title" content="The Swift Programming Language (Swift 4.1)" />
 <meta id="book-resource-type" name="book-resource-type" content="Guide" />
 <meta id="book-root" name="book-root" content="./" />
 <meta id="book-json" name="book-json" content="book.json">
-<meta id="date" name="date" content="2017-12-04" />
+<meta id="date" name="date" content="2018-02-06" />
 <meta id="description" name="description" content="The definitive guide to Swift, Apple’s programming language for building iOS, macOS, watchOS, and tvOS apps." />
 <meta id="IndexTitle" name="IndexTitle" content="" />
-<meta id="resources-uri" name="resources-uri" content="../../../../Resources/1274">
+<meta id="resources-uri" name="resources-uri" content="../../../../Resources/1277">
 <link id="book-index-page" rel="Start" title="" type="text/html" href="./index.html">
 <!-- , next_chapter: next_chapter, previous_chapter: previous_chapter -->
 <link id="next-page" rel="Next" type="text/html" href="">
@@ -41,14 +41,14 @@
     	<a href="../../../../navigation/index.html">Guides and Sample Code
  		</a>
  </p>
-    <p id="wwdr"><img id="apple_logo" src="../../../../Resources/1274/Images/apple2.png" height="14px" width="12px" aria-hidden="true" /><a href="https://developer.apple.com">Developer</a></p>
+    <p id="wwdr"><img id="apple_logo" src="../../../../Resources/1277/Images/apple2.png" height="14px" width="12px" aria-hidden="true" /><a href="https://developer.apple.com">Developer</a></p>
   </div>
 </header>
 
     <section id="valence">
   <div class="content-wrapper">
     <p id="hierarchial_navigation">
-      <span id="book_title">The Swift Programming Language (Swift 4.0.3)</span>
+      <span id="book_title">The Swift Programming Language (Swift 4.1)</span>
     </p>
     <form id="search" class="hideInXcode" method="get" action="/search/index.php" accept-charset="utf-8" autocomplete="off">
   <input type="search" id="ssi_SearchField" placeholder="Search Guides and Sample Code" name="q" autocomplete="off" tabindex="2" />
@@ -67,7 +67,7 @@
 
     
 
-    <img id="shortstack" src="../../../../Resources/1274/Images/shortstack_2x.png"/>
+    <img id="shortstack" src="../../../../Resources/1277/Images/shortstack_2x.png"/>
   </div>
 </section>
     <div class="content-wrapper">
@@ -1432,6 +1432,92 @@
 </p>
   
 </section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH26-ID575"></a>
+  <h3 class="section-name" tabindex="0">Using a Protocol in Its Associated Type’s Constraints<br><span class="jpstr">
+あるプロトコルをそれの関連型のもつ制約において使用する
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  A protocol can appear as part of its own requirements. For example, here’s a protocol that refines the <code class="code-voice">Container</code> protocol, adding the requirement of a <code class="code-voice">suffix(_:)</code> method. The <code class="code-voice">suffix(_:)</code> method returns a given number of elements from the end of the container, storing them in an instance of the <code class="code-voice">Suffix</code> type.
+<br><span class="jpstr">
+あるプロトコルは、それ自身の要件の一部として現れることができます。例えば、ここに<code class="code-voice">Container</code>プロトコルを改良したプロトコルがあり、<code class="code-voice">suffix(_:)</code>メソッドという要件を追加しています。<code class="code-voice">suffix(_:)</code>メソッドは、コンテナの終わりから指定の数の要素を、それらを<code class="code-voice">Suffix</code>型のインスタンスの中に格納して、返します。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">protocol</span> <span class="vc">SuffixableContainer</span>: <span class="n"><! -- a href="" -->Container<! -- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">associatedtype</span> <span class="vc">Suffix</span>: <span class="n"><! -- a href="" -->SuffixableContainer<! -- /a --></span> <span class="kt">where</span> <span class="n"><! -- a href="" -->Suffix<! -- /a --></span>.<span class="n"><! -- a href="" -->Item<! -- /a --></span> == <span class="n"><! -- a href="" -->Item<! -- /a --></span></code></li>
+            <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">suffix</span>(<span class="kt">_</span> <span class="vc">size</span>: <span class="n"><! -- a href="" -->Int<! -- /a --></span>) -&gt; <span class="n"><! -- a href="" -->Suffix<! -- /a --></span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  In this protocol, <code class="code-voice">Suffix</code> is an associated type, like the <code class="code-voice">Item</code> type in the <code class="code-voice">Container</code> example above. <code class="code-voice">Suffix</code> has two constraints: It must conform to the <code class="code-voice">SuffixableContainer</code> protocol (the protocol currently being defined), and its <code class="code-voice">Item</code> type must be the same as the container’s <code class="code-voice">Item</code> type. The constraint on <code class="code-voice">Item</code> is a generic <code class="code-voice">where</code> clause, which is discussed in <span class="x-name"><a href="#//apple_ref/doc/uid/TP40014097-CH26-ID557" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH26-ID557">Associated Types with a Generic Where Clause</a></span> below.
+<br><span class="jpstr">
+このプロトコルにおいて、<code class="code-voice">Suffix</code>は関連型です、上の<code class="code-voice">Container</code>例での<code class="code-voice">Item</code>型のように。<code class="code-voice">Suffix</code>は、２つの制約を持ちます：それは<code class="code-voice">SuffixableContainer</code>プロトコル（そのプロトコルはいま定義されるところです）に準拠しなければなりません、そしてそれの<code class="code-voice">Item</code>型はコンテナのもつ<code class="code-voice">Item</code>型と同じでなければなりません。<code class="code-voice">Item</code>での制約は総称体<code class="code-voice">where</code>です、それは下の<span class="x-name"><a href="#//apple_ref/doc/uid/TP40014097-CH26-ID557" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH26-ID557">where節を持つ関連型</a></span>において議論されます。
+</span><!--end_jpstr-->
+</p><p class="para">
+  Here’s an extension of the <code class="code-voice">Stack</code> type from earlier that adds conformance to the <code class="code-voice">SuffixableContainer</code> protocol:
+<br><span class="jpstr">
+ここに、以前の<code class="code-voice">Stack</code>型の拡張があります、それは<code class="code-voice">SuffixableContainer</code>プロトコルへの準拠を加えます。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">extension</span> <span class="n"><! -- a href="" -->Stack<! -- /a --></span>: <span class="n"><! -- a href="" -->SuffixableContainer<! -- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">suffix</span>(<span class="kt">_</span> <span class="vc">size</span>: <span class="n"><! -- a href="" -->Int<! -- /a --></span>) -&gt; <span class="n"><! -- a href="" -->Stack<! -- /a --></span> {</code></li>
+            <li><code class="code-voice">        <span class="kt">var</span> <span class="vc">result</span> = <span class="vc">Stack</span>()</code></li>
+            <li><code class="code-voice">        <span class="kt">for</span> <span class="vc">index</span> <span class="kt">in</span> (<span class="vc">count</span>-<span class="vc">size</span>)..&lt;<span class="vc">count</span> {</code></li>
+            <li><code class="code-voice">            <span class="vc">result</span>.<span class="vc">append</span>(<span class="kt">self</span>[<span class="vc">index</span>])</code></li>
+            <li><code class="code-voice">        }</code></li>
+            <li><code class="code-voice">        <span class="kt">return</span> <span class="vc">result</span></code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">    <span class="c">// Inferred that Suffix is Stack.&nbsp;<span class="jpstr">（SuffixはStackであると推論される）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"><span class="kt">var</span> <span class="vc">stackOfInts</span> = <span class="vc">Stack</span>&lt;<span class="n"><! -- a href="" -->Int<! -- /a --></span>&gt;()</code></li>
+            <li><code class="code-voice"><span class="vc">stackOfInts</span>.<span class="vc">append</span>(<span class="m">10</span>)</code></li>
+            <li><code class="code-voice"><span class="vc">stackOfInts</span>.<span class="vc">append</span>(<span class="m">20</span>)</code></li>
+            <li><code class="code-voice"><span class="vc">stackOfInts</span>.<span class="vc">append</span>(<span class="m">30</span>)</code></li>
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">suffix</span> = <span class="vc">stackOfInts</span>.<span class="vc">suffix</span>(<span class="m">2</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// suffix contains 20 and 30&nbsp;<span class="jpstr">（suffix は 20 と 30を含む）</span><!--end_jpstr-->
+</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  In the example above, the <code class="code-voice">Suffix</code> associated type for <code class="code-voice">Stack</code> is also <code class="code-voice">Stack</code>, so the suffix operation on <code class="code-voice">Stack</code> returns another <code class="code-voice">Stack</code>. Alternatively, a type that conforms to <code class="code-voice">SuffixableContainer</code> can have a <code class="code-voice">Suffix</code> type that’s different from itself—meaning the suffix operation can return a different type. For example, here’s an extension to the nongeneric <code class="code-voice">IntStack</code> type that adds <code class="code-voice">SuffixableContainer</code> conformance, using <code class="code-voice">Stack&lt;Int&gt;</code> as its suffix type instead of <code class="code-voice">IntStack</code>:
+<br><span class="jpstr">
+上の例において、<code class="code-voice">Stack</code>のための<code class="code-voice">Suffix</code>関連型もまた<code class="code-voice">Stack</code>です、それで<code class="code-voice">Stack</code>上のsuffix演算は別の<code class="code-voice">Stack</code>を返します。あるいはまた、<code class="code-voice">SuffixableContainer</code>に準拠する型は、それ自身とは異なる<code class="code-voice">Suffix</code>型を持つことができます—suffix演算は異なる型を返すことができることになります。例えば、ここに非総称体<code class="code-voice">IntStack</code>型に対する拡張があります、それは<code class="code-voice">SuffixableContainer</code>準拠を、<code class="code-voice">Stack&lt;Int&gt;</code>をそれのsuffix型として<code class="code-voice">IntStack</code>の代わりに使って追加します：
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">extension</span> <span class="n"><! -- a href="" -->IntStack<! -- /a --></span>: <span class="n"><! -- a href="" -->SuffixableContainer<! -- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">suffix</span>(<span class="kt">_</span> <span class="vc">size</span>: <span class="n"><! -- a href="" -->Int<! -- /a --></span>) -&gt; <span class="n"><! -- a href="" -->Stack<! -- /a --></span>&lt;<span class="n"><! -- a href="" -->Int<! -- /a --></span>&gt; {</code></li>
+            <li><code class="code-voice">        <span class="kt">var</span> <span class="vc">result</span> = <span class="vc">Stack</span>&lt;<span class="n"><! -- a href="" -->Int<! -- /a --></span>&gt;()</code></li>
+            <li><code class="code-voice">        <span class="kt">for</span> <span class="vc">index</span> <span class="kt">in</span> (<span class="vc">count</span>-<span class="vc">size</span>)..&lt;<span class="vc">count</span> {</code></li>
+            <li><code class="code-voice">            <span class="vc">result</span>.<span class="vc">append</span>(<span class="kt">self</span>[<span class="vc">index</span>])</code></li>
+            <li><code class="code-voice">        }</code></li>
+            <li><code class="code-voice">        <span class="kt">return</span> <span class="vc">result</span></code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">    <span class="c">// Inferred that Suffix is Stack&lt;Int&gt;.&nbsp;<span class="jpstr">（Suffix は Stack&lt;Int&gt;であると推論される）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice">}</code></li>
+        </ol>
+      </div>
+  </div>
+</section>
+  
+</section>
 
 </section>
 <section class="section">
@@ -1889,10 +1975,10 @@
 </span><!--end_jpstr-->
 </a></p>
 
-    <p class="copyright">Copyright &#x00a9; 2017 Apple Inc. All rights reserved. 
+    <p class="copyright">Copyright &#x00a9; 2018 Apple Inc. All rights reserved. 
   <a class="link" href="http://www.apple.com/legal/terms/site.html" target="_blank" rel="external">Terms of Use</a> | 
   <a class="link" href="http://www.apple.com/privacy/" target="_blank" rel="external">Privacy Policy</a> | 
-  Updated: 2017-12-04
+  Updated: 2018-02-06
 </p>
   </section>
 </article>
@@ -1903,8 +1989,8 @@
   <div class="content-wrapper">
   	<div id="leave_feedback" class="button" role="button" tabindex="0">Feedback</div>
   </div>
-  <script src="../../../../Resources/1274/JavaScript/devpubs-1.6.3.js" type="text/javascript" charset="utf-8"></script>
-  <script src="../../../../Resources/1274/JavaScript/feedback-1.6.3.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../../../Resources/1277/JavaScript/devpubs-1.6.3.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../../../Resources/1277/JavaScript/feedback-1.6.3.js" type="text/javascript" charset="utf-8"></script>
   <div id="_omniture_top">
 <!-- SiteCatalyst code version: H.8. Copyright 1997-2006 Omniture, Inc. -->
 <script type="text/javascript">

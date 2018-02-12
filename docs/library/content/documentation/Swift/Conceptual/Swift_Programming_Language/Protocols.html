@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>  
-  <title>The Swift Programming Language (Swift 4.0.3): Protocols</title>
-  <link rel="stylesheet" type="text/css" href="../../../../Resources/1274/CSS/style-1.6.3.css" />
-  <link rel="stylesheet" type="text/css" href="../../../../Resources/1274/CSS/feedback-1.6.3.css" />
+  <title>The Swift Programming Language (Swift 4.1): Protocols</title>
+  <link rel="stylesheet" type="text/css" href="../../../../Resources/1277/CSS/style-1.6.3.css" />
+  <link rel="stylesheet" type="text/css" href="../../../../Resources/1277/CSS/feedback-1.6.3.css" />
   <meta charset='utf-8'> 
 <meta id="j-version" name="j-version" content="" />
-<meta id="build" name="build" content="3b40de4ca2af51e302b3b9b9306b0a3e" />
-<meta id="document-version" name="document-version" content="10.2.9" />
+<meta id="build" name="build" content="f99ee3d3b1b0baba635224fe02964519" />
+<meta id="document-version" name="document-version" content="10.3.2" />
 <meta id="book-assignments" name="book-assignments" content="{Type/Guide}, {Topic/Swift}" />
 <meta scheme="apple_ref" id="identifier" name="identifier" content="//apple_ref/doc/uid/TP40014097" />
 <meta id="chapterId" name="chapterId" content="TP40014097-CH25">
-<meta id="book-title" name="book-title" content="The Swift Programming Language (Swift 4.0.3)" />
+<meta id="book-title" name="book-title" content="The Swift Programming Language (Swift 4.1)" />
 <meta id="book-resource-type" name="book-resource-type" content="Guide" />
 <meta id="book-root" name="book-root" content="./" />
 <meta id="book-json" name="book-json" content="book.json">
-<meta id="date" name="date" content="2017-12-04" />
+<meta id="date" name="date" content="2018-02-06" />
 <meta id="description" name="description" content="The definitive guide to Swift, Apple’s programming language for building iOS, macOS, watchOS, and tvOS apps." />
 <meta id="IndexTitle" name="IndexTitle" content="" />
-<meta id="resources-uri" name="resources-uri" content="../../../../Resources/1274">
+<meta id="resources-uri" name="resources-uri" content="../../../../Resources/1277">
 <link id="book-index-page" rel="Start" title="" type="text/html" href="./index.html">
 <!-- , next_chapter: next_chapter, previous_chapter: previous_chapter -->
 <link id="next-page" rel="Next" type="text/html" href="">
@@ -41,14 +41,14 @@
     	<a href="../../../../navigation/index.html">Guides and Sample Code
  		</a>
  </p>
-    <p id="wwdr"><img id="apple_logo" src="../../../../Resources/1274/Images/apple2.png" height="14px" width="12px" aria-hidden="true" /><a href="https://developer.apple.com">Developer</a></p>
+    <p id="wwdr"><img id="apple_logo" src="../../../../Resources/1277/Images/apple2.png" height="14px" width="12px" aria-hidden="true" /><a href="https://developer.apple.com">Developer</a></p>
   </div>
 </header>
 
     <section id="valence">
   <div class="content-wrapper">
     <p id="hierarchial_navigation">
-      <span id="book_title">The Swift Programming Language (Swift 4.0.3)</span>
+      <span id="book_title">The Swift Programming Language (Swift 4.1)</span>
     </p>
     <form id="search" class="hideInXcode" method="get" action="/search/index.php" accept-charset="utf-8" autocomplete="off">
   <input type="search" id="ssi_SearchField" placeholder="Search Guides and Sample Code" name="q" autocomplete="off" tabindex="2" />
@@ -67,7 +67,7 @@
 
     
 
-    <img id="shortstack" src="../../../../Resources/1274/Images/shortstack_2x.png"/>
+    <img id="shortstack" src="../../../../Resources/1277/Images/shortstack_2x.png"/>
   </div>
 </section>
     <div class="content-wrapper">
@@ -1133,7 +1133,7 @@
             <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">dice</span>: <span class="n"><! -- a href="" -->Dice<! -- /a --></span> { <span class="kt">get</span> }</code></li>
             <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">play</span>()</code></li>
             <li><code class="code-voice">}</code></li>
-            <li><code class="code-voice"><span class="kt">protocol</span> <span class="vc">DiceGameDelegate</span> {</code></li>
+            <li><code class="code-voice"><span class="kt">protocol</span> <span class="vc">DiceGameDelegate</span>: <span class="n"><! -- a href="" -->AnyObject<! -- /a --></span> {</code></li>
             <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">gameDidStart</span>(<span class="kt">_</span> <span class="vc">game</span>: <span class="n"><! -- a href="" -->DiceGame<! -- /a --></span>)</code></li>
             <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">game</span>(<span class="kt">_</span> <span class="vc">game</span>: <span class="n"><! -- a href="" -->DiceGame<! -- /a --></span>, <span class="vc">didStartNewTurnWithDiceRoll</span> <span class="vc">diceRoll</span>: <span class="n"><! -- a href="" -->Int<! -- /a --></span>)</code></li>
             <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">gameDidEnd</span>(<span class="kt">_</span> <span class="vc">game</span>: <span class="n"><! -- a href="" -->DiceGame<! -- /a --></span>)</code></li>
@@ -1142,9 +1142,14 @@
       </div>
   </div>
 </section><p class="para">
-  The <code class="code-voice">DiceGame</code> protocol is a protocol that can be adopted by any game that involves dice. The <code class="code-voice">DiceGameDelegate</code> protocol can be adopted by any type to track the progress of a <code class="code-voice">DiceGame</code>.
+  The <code class="code-voice">DiceGame</code> protocol is a protocol that can be adopted by any game that involves dice.
 <br><span class="jpstr">
-<code class="code-voice">DiceGame</code>プロトコルは、さいころが関わるどんなゲームによってでも採用されることができるプロトコルです。<code class="code-voice">DiceGameDelegate</code>プロトコルは、どんな型によってでも採用されることができて、ある<code class="code-voice">DiceGame</code>の進歩を追いかけます。
+<code class="code-voice">DiceGame</code>プロトコルは、さいころが関わるどんなゲームによってでも採用されることができるプロトコルです。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The <code class="code-voice">DiceGameDelegate</code> protocol can be adopted to track the progress of a <code class="code-voice">DiceGame</code>. To prevent strong reference cycles, delegates should be declared as weak references. For more information about weak references, see <span class="x-name"><a href="AutomaticReferenceCounting.html#//apple_ref/doc/uid/TP40014097-CH20-ID51" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH20-ID51">Strong Reference Cycles Between Class Instances</a></span>. Marking the protocol as class-only will later allow you to declare that the delegate must use a weak reference. You mark a protocol as being class-only by inheriting from <code class="code-voice">AnyObject</code>, as discussed in <span class="x-name"><a href="#//apple_ref/doc/uid/TP40014097-CH25-ID281" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH25-ID281">Class-Only Protocols</a></span>.
+<br><span class="jpstr">
+<code class="code-voice">DiceGameDelegate</code>プロトコルが採用されることで、<code class="code-voice">DiceGame</code>の進捗を追いかけることができます。強い参照循環を防ぐために、委任先は弱い参照として宣言されなければなりません。弱い参照についての詳細は、<span class="x-name"><a href="AutomaticReferenceCounting.html#//apple_ref/doc/uid/TP40014097-CH20-ID51" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH20-ID51">クラスインスタンス間の強い参照循環</a></span>を見てください。プロトコルをクラス専用とすることは、委任先が弱い参照を使わなければならないことを後であなたに宣言させます。あなたは、あるプロトコルをクラス専用であると、<code class="code-voice">AnyObject</code>から継承することで印します、<span class="x-name"><a href="#//apple_ref/doc/uid/TP40014097-CH25-ID281" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH25-ID281">クラス専用プロトコル</a></span>で議論されるように。
 </span><!--end_jpstr-->
 </p><p class="para">
   Here’s a version of the <em>Snakes and Ladders</em> game originally introduced in <span class="x-name"><a href="ControlFlow.html#//apple_ref/doc/uid/TP40014097-CH9-ID120" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH9-ID120">Control Flow</a></span>. This version is adapted to use a <code class="code-voice">Dice</code> instance for its dice-rolls; to adopt the <code class="code-voice">DiceGame</code> protocol; and to notify a <code class="code-voice">DiceGameDelegate</code> about its progress:
@@ -1166,7 +1171,7 @@
             <li><code class="code-voice">        <span class="vc">board</span>[<span class="m">03</span>] = +<span class="m">08</span>; <span class="vc">board</span>[<span class="m">06</span>] = +<span class="m">11</span>; <span class="vc">board</span>[<span class="m">09</span>] = +<span class="m">09</span>; <span class="vc">board</span>[<span class="m">10</span>] = +<span class="m">02</span></code></li>
             <li><code class="code-voice">        <span class="vc">board</span>[<span class="m">14</span>] = <span class="m">-10</span>; <span class="vc">board</span>[<span class="m">19</span>] = <span class="m">-11</span>; <span class="vc">board</span>[<span class="m">22</span>] = <span class="m">-02</span>; <span class="vc">board</span>[<span class="m">24</span>] = <span class="m">-08</span></code></li>
             <li><code class="code-voice">    }</code></li>
-            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">delegate</span>: <span class="n"><! -- a href="" -->DiceGameDelegate<! -- /a --></span>?</code></li>
+            <li><code class="code-voice">    <span class="kt">weak</span> <span class="kt">var</span> <span class="vc">delegate</span>: <span class="n"><! -- a href="" -->DiceGameDelegate<! -- /a --></span>?</code></li>
             <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">play</span>() {</code></li>
             <li><code class="code-voice">        <span class="vc">square</span> = <span class="m">0</span></code></li>
             <li><code class="code-voice">        <span class="vc">delegate</span>?.<span class="vc">gameDidStart</span>(<span class="kt">self</span>)</code></li>
@@ -1205,9 +1210,9 @@
 <em>ヘビとはしご</em>ゲーム盤設定は、このクラスの<code class="code-voice">init()</code>イニシャライザ内で行われます。全てのゲーム論理は、プロトコルの<code class="code-voice">play</code>メソッドに引っ越します、それは、プロトコルの要求する<code class="code-voice">dice</code>プロパティを使ってそれのさいころ振りの値を提供します。
 </span><!--end_jpstr-->
 </p><p class="para">
-  Note that the <code class="code-voice">delegate</code> property is defined as an <em>optional</em> <code class="code-voice">DiceGameDelegate</code>, because a delegate isn’t required in order to play the game. Because it’s of an optional type, the <code class="code-voice">delegate</code> property is automatically set to an initial value of <code class="code-voice">nil</code>. Thereafter, the game instantiator has the option to set the property to a suitable delegate.
+  Note that the <code class="code-voice">delegate</code> property is defined as an <em>optional</em> <code class="code-voice">DiceGameDelegate</code>, because a delegate isn’t required in order to play the game. Because it’s of an optional type, the <code class="code-voice">delegate</code> property is automatically set to an initial value of <code class="code-voice">nil</code>. Thereafter, the game instantiator has the option to set the property to a suitable delegate. Because the <code class="code-voice">DiceGameDelegate</code> protocol is class-only, you can declare the delegate to be <code class="code-voice">weak</code> to prevent reference cycles.
 <br><span class="jpstr">
-<code class="code-voice">delegate</code>プロパティが、<em>オプショナル</em>の<code class="code-voice">DiceGameDelegate</code>として定義される点に注意してください、delegateがゲームをプレイするために必須でないからです。それがオプショナル型であるので、<code class="code-voice">delegate</code>プロパティは自動的に初期値の<code class="code-voice">nilに</code>設定されます。その後は、このゲームのイニシャライザは、このプロパティを適当な委任先に設定する選択肢を持ちます。
+<code class="code-voice">delegate</code>プロパティが、<em>オプショナル</em>の<code class="code-voice">DiceGameDelegate</code>として定義される点に注意してください、delegateがゲームをプレイするために必須でないからです。それがオプショナル型であるので、<code class="code-voice">delegate</code>プロパティは自動的に初期値の<code class="code-voice">nilに</code>設定されます。その後は、このゲームのイニシャライザは、このプロパティを適当な委任先に設定する選択肢を持ちます。<code class="code-voice">DiceGameDelegate</code>プロトコルがクラス専用であることから、あなたは委任先を<code class="code-voice">weak</code>であると宣言して参照循環を防ぐことができます。
 </span><!--end_jpstr-->
 </p><p class="para">
   <code class="code-voice">DiceGameDelegate</code> provides three methods for tracking the progress of a game. These three methods have been incorporated into the game logic within the <code class="code-voice">play()</code> method above, and are called when a new game starts, a new turn begins, or the game ends.
@@ -1403,6 +1408,42 @@
   </div>
 </section>
   <section class="section">
+  <a name="//apple_ref/doc/uid/TP40014097-CH25-ID574"></a>
+  <h3 class="section-name" tabindex="0">Conditionally Conforming to a Protocol<br><span class="jpstr">
+あるプロトコルに条件付きで準拠する
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  A generic type may be able to satisfy the requirements of a protocol only under certain conditions, such as when the type’s generic parameter conforms to the protocol. You can make a generic type conditionally conform to a protocol by listing constraints when extending the type. Write these constraints after the name of the protocol you’re adopting using a generic <code class="code-voice">where</code> clause, as described in <span class="x-name"><a href="Generics.html#//apple_ref/doc/uid/TP40014097-CH26-ID192" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH26-ID192">Generic Where Clauses</a></span>.
+<br><span class="jpstr">
+総称体型は、あるプロトコルの要件を満たすことが一定の条件の下でのみ可能でしょう、例えばその型のもつ総称体パラメータがそのプロトコルに準拠する場合など。あなたは、ある総称体型を条件付きでプロトコルに準拠させることが、その型を拡張する時に制約を列記することによって可能です。それらの制約を、あなたが総称体<code class="code-voice">where</code>節を使って採用しているプロトコルの名前の後に書いてください、<span class="x-name"><a href="Generics.html#//apple_ref/doc/uid/TP40014097-CH26-ID192" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH26-ID192">総称体where節</a></span>で議論されるように。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">extension</span> <span class="n"><! -- a href="" -->Array<! -- /a --></span>: <span class="n"><! -- a href="" -->TextRepresentable<! -- /a --></span> <span class="kt">where</span> <span class="vc">Element</span>: <span class="vc">TextRepresentable</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">textualDescription</span>: <span class="n"><! -- a href="" -->String<! -- /a --></span> {</code></li>
+            <li><code class="code-voice">        <span class="kt">let</span> <span class="vc">itemsAsText</span> = <span class="kt">self</span>.<span class="vc">map</span> { <span class="vc">$0</span>.<span class="vc">textualDescription</span> }</code></li>
+            <li><code class="code-voice">        <span class="kt">return</span> <span class="s">&quot;[&quot;</span> + <span class="vc">itemsAsText</span>.<span class="vc">joined</span>(<span class="vc">separator</span>: <span class="s">&quot;, &quot;</span>) + <span class="s">&quot;]&quot;</span></code></li>
+            <li><code class="code-voice">    }</code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">myDice</span> = [<span class="vc">d6</span>, <span class="vc">d12</span>]</code></li>
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="vc">myDice</span>.<span class="vc">textualDescription</span>)</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;[A 6-sided dice, A 12-sided dice]&quot;</span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  With this extension, <code class="code-voice">Array</code> instances conform to the <code class="code-voice">TextRepresentable</code> protocol whenever they store elements of a type that conforms to <code class="code-voice">TextRepresentable</code>.
+<br><span class="jpstr">
+この拡張で、<code class="code-voice">Array</code>インスタンスは<code class="code-voice">TextRepresentable</code>プロトコルに準拠することを、それが<code class="code-voice">TextRepresentable</code>に準拠する型の要素を格納する時は必ず行います。
+</span><!--end_jpstr-->
+</p>
+  
+</section>
+<section class="section">
   <a name="//apple_ref/doc/uid/TP40014097-CH25-ID278"></a>
   <h3 class="section-name" tabindex="0">Declaring Protocol Adoption with an Extension<br><span class="jpstr">
 拡張を使ってプロトコル採用を宣言する
@@ -2162,9 +2203,9 @@
 </span><!--end_jpstr-->
 </h3>
   <p class="para">
-  Protocols can be extended to provide method and property implementations to conforming types. This allows you to define behavior on protocols themselves, rather than in each type’s individual conformance or in a global function.
+  Protocols can be extended to provide method, initializer, subscript, and computed property implementations to conforming types. This allows you to define behavior on protocols themselves, rather than in each type’s individual conformance or in a global function.
 <br><span class="jpstr">
-プロトコルは拡張されることが可能です、それによって準拠している型にメソッドとプロパティの実装を提供できます。これはあなたに、それぞれの型の個々の準拠においてまたはグローバル関数においてではなく、プロトコルそれ自体に振る舞いを定義することを可能にします。
+プロトコルは拡張されることによって、準拠している型にメソッド、イニシャライザ、添え字、そして計算プロパティの実装を提供できます。これはあなたに、それぞれの型の個々の準拠においてまたはグローバル関数においてではなく、プロトコルそれ自体に振る舞いを定義することを可能にします。
 </span><!--end_jpstr-->
 </p><p class="para">
   For example, the <code class="code-voice">RandomNumberGenerator</code> protocol can be extended to provide a <code class="code-voice">randomBool()</code> method, which uses the result of the required <code class="code-voice">random()</code> method to return a random <code class="code-voice">Bool</code> value:
@@ -2204,7 +2245,12 @@
         </ol>
       </div>
   </div>
-</section>
+</section><p class="para">
+  Protocol extensions can add implementations to conforming types but can’t make a protocol extend or inherit from another protocol. Protocol inheritance is always specified in the protocol declaration itself.
+<br><span class="jpstr">
+プロトコル拡張は、実装を加えることによって型に準拠が可能です、しかしあるプロトコルを別のプロトコルから拡張したり継承したりはできません。プロトコル継承は、常にプロトコル宣言それ自体の中で指定されます。
+</span><!--end_jpstr-->
+</p>
   <section class="section">
   <a name="//apple_ref/doc/uid/TP40014097-CH25-ID529"></a>
   <h3 class="section-name" tabindex="0">Providing Default Implementations<br><span class="jpstr">
@@ -2264,58 +2310,63 @@
 あなたがプロトコル拡張を定義するとき、あなたは準拠している型がその拡張のメソッドやプロパティが利用可能になる前に満たさなければならない制約を指定することができます。あなたは、これらの制約をあなたが拡張しているプロトコルの名前の後に、<span class="x-name"><a href="Generics.html#//apple_ref/doc/uid/TP40014097-CH26-ID192" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH26-ID192">総称体where節</a></span>で記述される総称体<code class="code-voice">where</code>節を使って書きます。
 </span><!--end_jpstr-->
 </p><p class="para">
-  For instance, you can define an extension to the <code class="code-voice">Collection</code> protocol that applies to any collection whose elements conform to the <code class="code-voice">TextRepresentable</code> protocol from the example above.
+  For instance, you can define an extension to the <code class="code-voice">Collection</code> protocol that applies to any collection whose elements conform to the <code class="code-voice">Equatable</code> protocol. By constraining a collection’s elements to the <code class="code-voice">Equatable</code> protocol, a part of the standard library, you can use the <code class="code-voice">==</code> and <code class="code-voice">!=</code> operators to check for equality and inequality between two elements.
 <br><span class="jpstr">
-例えば、あなたはある拡張を<code class="code-voice">Collection</code>プロトコルに対して定義することができます、それはその要素が上の例の<code class="code-voice">TextRepresentable</code>プロトコルに準拠するあらゆるコレクションに適用するものです。
+例えば、あなたは、それの要素が<code class="code-voice">Equatable</code>プロトコルに準拠するあらゆるコレクションに適用する<code class="code-voice">Collection</code>プロトコルに対して、ある拡張を定義できます。あるコレクションの持つ要素を<code class="code-voice">Equatable</code>プロトコル、標準ライブラリの１つ、に制約することで、あなたは<code class="code-voice">==</code>と<code class="code-voice">!=</code>演算子を使って同等性と同一性を２つの要素間で確認できます。
 </span><!--end_jpstr-->
 </p><section class="code-listing">
   
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="kt">extension</span> <span class="n"><! -- a href="" -->Collection<! -- /a --></span> <span class="kt">where</span> <span class="vc">Iterator</span>.<span class="vc">Element</span>: <span class="vc">TextRepresentable</span> {</code></li>
-            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">textualDescription</span>: <span class="n"><! -- a href="" -->String<! -- /a --></span> {</code></li>
-            <li><code class="code-voice">        <span class="kt">let</span> <span class="vc">itemsAsText</span> = <span class="kt">self</span>.<span class="vc">map</span> { <span class="vc">$0</span>.<span class="vc">textualDescription</span> }</code></li>
-            <li><code class="code-voice">        <span class="kt">return</span> <span class="s">&quot;[&quot;</span> + <span class="vc">itemsAsText</span>.<span class="vc">joined</span>(<span class="vc">separator</span>: <span class="s">&quot;, &quot;</span>) + <span class="s">&quot;]&quot;</span></code></li>
+            <li><code class="code-voice"><span class="kt">extension</span> <span class="n"><! -- a href="" -->Collection<! -- /a --></span> <span class="kt">where</span> <span class="vc">Element</span>: <span class="vc">Equatable</span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">func</span> <span class="vc">allEqual</span>() -&gt; <span class="n"><! -- a href="" -->Bool<! -- /a --></span> {</code></li>
+            <li><code class="code-voice">        <span class="kt">for</span> <span class="vc">element</span> <span class="kt">in</span> <span class="kt">self</span> {</code></li>
+            <li><code class="code-voice">            <span class="kt">if</span> <span class="vc">element</span> != <span class="kt">self</span>.<span class="vc">first</span> {</code></li>
+            <li><code class="code-voice">                <span class="kt">return</span> <span class="kt">false</span></code></li>
+            <li><code class="code-voice">            }</code></li>
+            <li><code class="code-voice">        }</code></li>
+            <li><code class="code-voice">        <span class="kt">return</span> <span class="kt">true</span></code></li>
             <li><code class="code-voice">    }</code></li>
             <li><code class="code-voice">}</code></li>
         </ol>
       </div>
   </div>
 </section><p class="para">
-  The <code class="code-voice">textualDescription</code> property returns the textual description of the entire collection by concatenating the textual representation of each element in the collection into a comma-separated list, enclosed in brackets.
+  The <code class="code-voice">allEqual()</code> method returns <code class="code-voice">true</code> only if all the elements in the collection are equal.
 <br><span class="jpstr">
-<code class="code-voice">textualDescription</code>プロパティは、コレクション全体の解説テキストを、コレクションの中の各要素のテキスト表現をコンマ区切りのリストへと連結して、角括弧に囲むことによって返します。
+<code class="code-voice">allEqual()</code>メソッドが<code class="code-voice">true</code>を返すのは、そのコレクションの中の要素すべてが同等である場合のみです。
 </span><!--end_jpstr-->
 </p><p class="para">
-  Consider the <code class="code-voice">Hamster</code> structure from before, which conforms to the <code class="code-voice">TextRepresentable</code> protocol, and an array of <code class="code-voice">Hamster</code> values:
+  Consider two arrays of integers, one where all the elements are the same, and one where they aren’t:
 <br><span class="jpstr">
-前の<code class="code-voice">Hamster</code>構造体を考えてください、それは<code class="code-voice">TextRepresentable</code>プロトコルに準拠します、そして<code class="code-voice">Hamster</code>値の配列です：
+いくつかの整数からなる２つの配列を考えてください、すべての要素が同じであるもの、そしてそうではないもの：
 </span><!--end_jpstr-->
 </p><section class="code-listing">
   
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">murrayTheHamster</span> = <span class="vc">Hamster</span>(<span class="vc">name</span>: <span class="s">&quot;Murray&quot;</span>)</code></li>
-            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">morganTheHamster</span> = <span class="vc">Hamster</span>(<span class="vc">name</span>: <span class="s">&quot;Morgan&quot;</span>)</code></li>
-            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">mauriceTheHamster</span> = <span class="vc">Hamster</span>(<span class="vc">name</span>: <span class="s">&quot;Maurice&quot;</span>)</code></li>
-            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">hamsters</span> = [<span class="vc">murrayTheHamster</span>, <span class="vc">morganTheHamster</span>, <span class="vc">mauriceTheHamster</span>]</code></li>
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">equalNumbers</span> = [<span class="m">100</span>, <span class="m">100</span>, <span class="m">100</span>, <span class="m">100</span>, <span class="m">100</span>]</code></li>
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">differentNumbers</span> = [<span class="m">100</span>, <span class="m">100</span>, <span class="m">200</span>, <span class="m">100</span>, <span class="m">200</span>]</code></li>
         </ol>
       </div>
   </div>
 </section><p class="para">
-  Because <code class="code-voice">Array</code> conforms to <code class="code-voice">Collection</code> and the array’s elements conform to the <code class="code-voice">TextRepresentable</code> protocol, the array can use the <code class="code-voice">textualDescription</code> property to get a textual representation of its contents:
+  Because arrays conform to <code class="code-voice">Collection</code> and integers conform to <code class="code-voice">Equatable</code>, <code class="code-voice">equalNumbers</code> and <code class="code-voice">differentNumbers</code> can use the <code class="code-voice">allEqual()</code> method:
 <br><span class="jpstr">
-<code class="code-voice">Array</code>が<code class="code-voice">Collection</code>に準拠して配列要素が<code class="code-voice">TextRepresentable</code>プロトコルに準拠することから、この配列は<code class="code-voice">textualDescription</code>プロパティを使ってそれの内容のテキスト表現を取得することができます：
+それら配列は<code class="code-voice">Collection</code>に準拠し、それら整数は<code class="code-voice">Equatable</code>に準拠することから、<code class="code-voice">equalNumbers</code>と<code class="code-voice">differentNumbers</code>は<code class="code-voice">allEqual()</code>メソッドを使うことができます：
 </span><!--end_jpstr-->
 </p><section class="code-listing">
   
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="vc">print</span>(<span class="vc">hamsters</span>.<span class="vc">textualDescription</span>)</code></li>
-            <li><code class="code-voice"><span class="c">// Prints &quot;[A hamster named Murray, A hamster named Morgan, A hamster named Maurice]&quot;&nbsp;<span class="jpstr">（「[マーレイという名のハムスター, モーガンという名のハムスター, モーリスという名のハムスター]」を出力します）</span><!--end_jpstr-->
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="vc">equalNumbers</span>.<span class="vc">allEqual</span>())</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;true&quot;&nbsp;<span class="jpstr">（「true」を出力します）</span><!--end_jpstr-->
+</span></code></li>
+            <li><code class="code-voice"><span class="vc">print</span>(<span class="vc">differentNumbers</span>.<span class="vc">allEqual</span>())</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;false&quot;&nbsp;<span class="jpstr">（「false」を出力します）</span><!--end_jpstr-->
 </span></code></li>
         </ol>
       </div>
@@ -2328,9 +2379,9 @@
 注意
 </span><!--end_jpstr-->
 </p>
-    	<p class="para">If a conforming type satisfies the requirements for multiple constrained extensions that provide implementations for the same method or property, Swift will use the implementation corresponding to the most specialized constraints.
+    	<p class="para">If a conforming type satisfies the requirements for multiple constrained extensions that provide implementations for the same method or property, Swift uses the implementation corresponding to the most specialized constraints.
     	<br><span class="jpstr">
-ある準拠型が同じメソッドやプロパティに対する実装を提供する複数の制約付き拡張の要件を満たすならば、スウィフトは最も特殊化した制約と一致している実装を使います。
+c複数の制約拡張のそれら要件で、同じメソッドやプロパティに対する実装を提供するそれらを、ある準拠型が満たすならば、スウィフトは最も特殊化した制約と一致する実装を使います。
 </span><!--end_jpstr-->
 </p>
     
@@ -2352,10 +2403,10 @@
 </span><!--end_jpstr-->
 </a></p>
 
-    <p class="copyright">Copyright &#x00a9; 2017 Apple Inc. All rights reserved. 
+    <p class="copyright">Copyright &#x00a9; 2018 Apple Inc. All rights reserved. 
   <a class="link" href="http://www.apple.com/legal/terms/site.html" target="_blank" rel="external">Terms of Use</a> | 
   <a class="link" href="http://www.apple.com/privacy/" target="_blank" rel="external">Privacy Policy</a> | 
-  Updated: 2017-12-04
+  Updated: 2018-02-06
 </p>
   </section>
 </article>
@@ -2366,8 +2417,8 @@
   <div class="content-wrapper">
   	<div id="leave_feedback" class="button" role="button" tabindex="0">Feedback</div>
   </div>
-  <script src="../../../../Resources/1274/JavaScript/devpubs-1.6.3.js" type="text/javascript" charset="utf-8"></script>
-  <script src="../../../../Resources/1274/JavaScript/feedback-1.6.3.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../../../Resources/1277/JavaScript/devpubs-1.6.3.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../../../Resources/1277/JavaScript/feedback-1.6.3.js" type="text/javascript" charset="utf-8"></script>
   <div id="_omniture_top">
 <!-- SiteCatalyst code version: H.8. Copyright 1997-2006 Omniture, Inc. -->
 <script type="text/javascript">
