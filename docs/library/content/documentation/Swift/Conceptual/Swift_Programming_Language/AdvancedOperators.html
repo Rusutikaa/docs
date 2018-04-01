@@ -6,8 +6,8 @@
   <link rel="stylesheet" type="text/css" href="../../../../Resources/1277/CSS/feedback-1.6.3.css" />
   <meta charset='utf-8'> 
 <meta id="j-version" name="j-version" content="" />
-<meta id="build" name="build" content="f99ee3d3b1b0baba635224fe02964519" />
-<meta id="document-version" name="document-version" content="10.3.2" />
+<meta id="build" name="build" content="bbf957d6bf6f65bc842fc73872c54ed4" />
+<meta id="document-version" name="document-version" content="10.3.4" />
 <meta id="book-assignments" name="book-assignments" content="{Type/Guide}, {Topic/Swift}" />
 <meta scheme="apple_ref" id="identifier" name="identifier" content="//apple_ref/doc/uid/TP40014097" />
 <meta id="chapterId" name="chapterId" content="TP40014097-CH27">
@@ -15,7 +15,7 @@
 <meta id="book-resource-type" name="book-resource-type" content="Guide" />
 <meta id="book-root" name="book-root" content="./" />
 <meta id="book-json" name="book-json" content="book.json">
-<meta id="date" name="date" content="2018-02-06" />
+<meta id="date" name="date" content="2018-03-29" />
 <meta id="description" name="description" content="The definitive guide to Swift, Apple’s programming language for building iOS, macOS, watchOS, and tvOS apps." />
 <meta id="IndexTitle" name="IndexTitle" content="" />
 <meta id="resources-uri" name="resources-uri" content="../../../../Resources/1277">
@@ -62,7 +62,7 @@
 
 
     <span class="download-text hideInXcode">
-      <a href="https://itunes.apple.com/us/book/the-swift-programming-language/id1002622538?mt=11">iBooks</a>
+      <a href="https://itunes.apple.com/us/book/the-swift-programming-language/id881256329?mt=11">iBooks</a>
     </span>
 
     
@@ -1100,7 +1100,7 @@ Cでの算術演算子と違って、スウィフトの算術演算子は、初�
 スウィフト標準ライブラリによって提供される演算子についての情報として、演算子優先順位と結合性の設定の完全なリストを含めて、<a href="https://developer.apple.com/documentation/swift/operator_declarations">演算子宣言</a>を見てください。
 </span><!--end_jpstr-->
 </p><div class="note">
-  <a name="//apple_ref/doc/uid/TP40014097-CH27-NoLink_206"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH27-NoLink_205"></a>
   <aside class="aside">
     <p class="aside-title">Note
     <br><span class="jpstr">
@@ -1298,7 +1298,7 @@ Cでの算術演算子と違って、スウィフトの算術演算子は、初�
       </div>
   </div>
 </section><div class="note">
-  <a name="//apple_ref/doc/uid/TP40014097-CH27-NoLink_207"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH27-NoLink_206"></a>
   <aside class="aside">
     <p class="aside-title">Note
     <br><span class="jpstr">
@@ -1322,35 +1322,32 @@ Cでの算術演算子と違って、スウィフトの算術演算子は、初�
 </span><!--end_jpstr-->
 </h3>
   <p class="para">
-  Custom classes and structures do not receive a default implementation of the <em>equivalence operators</em>, known as the “equal to” operator (<code class="code-voice">==</code>) and “not equal to” operator (<code class="code-voice">!=</code>). It is not possible for Swift to guess what would qualify as “equal” for your own custom types, because the meaning of “equal” depends on the roles that those types play in your code.
+  By default, custom classes and structures do not receive a default implementation of the <em>equivalence operators</em>, known as the “equal to” operator (<code class="code-voice">==</code>) and “not equal to” operator (<code class="code-voice">!=</code>).
 <br><span class="jpstr">
-あつらえのクラスと構造体は、「同等」演算子（<code class="code-voice">==</code>）そして「不等」演算子（<code class="code-voice">!=</code>）として知られる、<em>同等演算子</em>たちの省略時の実装を受け取りません。スウィフトには何があなたのあつらえの型にとって「等しい」と認められるべきか推測することは不可能です、なぜなら「等しい」の意味することはそれらの型があなたのコードで演じる役割に依存するからです。
+初期状態では、あつらえのクラスと構造体は、「同等」演算子（<code class="code-voice">==</code>）そして「不等」演算子（<code class="code-voice">!=</code>）として知られる、<em>同等演算子</em>の省略時の実装を受け取りません。
 </span><!--end_jpstr-->
 </p><p class="para">
-  To use the equivalence operators to check for equivalence of your own custom type, provide an implementation of the operators in the same way as for other infix operators:
+  To use the equivalence operators to check for equivalence of your own custom type, provide an implementation of the “equal to” operator in the same way as for other infix operators, and add conformance to the standard library’s <code class="code-voice">Equatable</code> protocol:
 <br><span class="jpstr">
-あなた独自のあつらえの型の同等について調べるために同等演算子を使用するには、他の接中辞演算子と同じやり方でこれらの演算子の実装を提供してください：
+あなた独自のあつらえの型の同等について調べるために同等演算子を使用するには、「同等」演算子の実装を他の接中辞演算子と同じやり方で提供してください、そして標準ライブラリの<code class="code-voice">Equatable</code>プロトコルに対する準拠を加えてください：
 </span><!--end_jpstr-->
 </p><section class="code-listing">
   
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><span class="kt">extension</span> <span class="n"><! -- a href="" -->Vector2D<! -- /a --></span> {</code></li>
+            <li><code class="code-voice"><span class="kt">extension</span> <span class="n"><! -- a href="" -->Vector2D<! -- /a --></span>: <span class="n"><! -- a href="" -->Equatable<! -- /a --></span> {</code></li>
             <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">func</span> == (<span class="vc">left</span>: <span class="n"><! -- a href="" -->Vector2D<! -- /a --></span>, <span class="vc">right</span>: <span class="n"><! -- a href="" -->Vector2D<! -- /a --></span>) -&gt; <span class="n"><! -- a href="" -->Bool<! -- /a --></span> {</code></li>
             <li><code class="code-voice">        <span class="kt">return</span> (<span class="vc">left</span>.<span class="vc">x</span> == <span class="vc">right</span>.<span class="vc">x</span>) &amp;&amp; (<span class="vc">left</span>.<span class="vc">y</span> == <span class="vc">right</span>.<span class="vc">y</span>)</code></li>
-            <li><code class="code-voice">    }</code></li>
-            <li><code class="code-voice">    <span class="kt">static</span> <span class="kt">func</span> != (<span class="vc">left</span>: <span class="n"><! -- a href="" -->Vector2D<! -- /a --></span>, <span class="vc">right</span>: <span class="n"><! -- a href="" -->Vector2D<! -- /a --></span>) -&gt; <span class="n"><! -- a href="" -->Bool<! -- /a --></span> {</code></li>
-            <li><code class="code-voice">        <span class="kt">return</span> !(<span class="vc">left</span> == <span class="vc">right</span>)</code></li>
             <li><code class="code-voice">    }</code></li>
             <li><code class="code-voice">}</code></li>
         </ol>
       </div>
   </div>
 </section><p class="para">
-  The above example implements an “equal to” operator (<code class="code-voice">==</code>) to check if two <code class="code-voice">Vector2D</code> instances have equivalent values. In the context of <code class="code-voice">Vector2D</code>, it makes sense to consider “equal” as meaning “both instances have the same <code class="code-voice">x</code> values and <code class="code-voice">y</code> values”, and so this is the logic used by the operator implementation. The example also implements the “not equal to” operator (<code class="code-voice">!=</code>), which simply returns the inverse of the result of the “equal to” operator.
+  The above example implements an “equal to” operator (<code class="code-voice">==</code>) to check if two <code class="code-voice">Vector2D</code> instances have equivalent values. In the context of <code class="code-voice">Vector2D</code>, it makes sense to consider “equal” as meaning “both instances have the same <code class="code-voice">x</code> values and <code class="code-voice">y</code> values”, and so this is the logic used by the operator implementation. The standard library provides a default implementation of the “not equal to” operator (<code class="code-voice">!=</code>), which simply returns the inverse of the result of the “equal to” operator.
 <br><span class="jpstr">
-上記の例は、ある「同等」演算子（<code class="code-voice">==</code>）を実装して、２つの<code class="code-voice">Vector2D</code>インスタンスが同じ値を持つかどうか調べます。<code class="code-voice">Vector2D</code>の文脈では、「同等」を「両方のインスタンスが同じ<code class="code-voice">x</code>値と<code class="code-voice">y</code>値を持つ」ことを意味すると考えるのが道理にかなっています、なのでそれが演算子実装によって使われる論理です。この例は、また「不等」演算子（<code class="code-voice">!=</code>）も実装します、それは、単純に「同等」演算子の結果の逆を返します。
+上記の例は、ある「同等」演算子（<code class="code-voice">==</code>）を実装して、２つの<code class="code-voice">Vector2D</code>インスタンスが同じ値を持つかどうか調べます。<code class="code-voice">Vector2D</code>の文脈では、「同等」を「両方のインスタンスが同じ<code class="code-voice">x</code>値と<code class="code-voice">y</code>値を持つ」ことを意味すると考えるのが道理にかなっています、なのでそれが演算子実装によって使われる論理です。標準ライブラリは、「不等」演算子（<code class="code-voice">!=</code>）の省略時の実装を提供します、それは単に「同等」演算子の結果の反対を返します。
 </span><!--end_jpstr-->
 </p><p class="para">
   You can now use these operators to check whether two <code class="code-voice">Vector2D</code> instances are equivalent:
@@ -1369,6 +1366,59 @@ Cでの算術演算子と違って、スウィフトの算術演算子は、初�
             <li><code class="code-voice">}</code></li>
             <li><code class="code-voice"><span class="c">// Prints &quot;These two vectors are equivalent.&quot;&nbsp;<span class="jpstr">（「これらの２つのベクトルは等しいです。」を出力します）</span><!--end_jpstr-->
 </span></code></li>
+        </ol>
+      </div>
+  </div>
+</section><p class="para">
+  Swift provides synthesized implementations of the equivalence operators for the following kinds of custom types:
+<br><span class="jpstr">
+スウィフトは、同等演算子の合成実装を以下の種類のあつらえの型に対して提供します：
+</span><!--end_jpstr-->
+</p><ul class="list-bullet">
+  <li class="item"><p class="para">
+  Structures that have only stored properties that conform to the <code class="code-voice">Equatable</code> protocol
+<br><span class="jpstr">
+<code class="code-voice">Equatable</code>プロトコルに準拠する格納プロパティだけを持つ構造体
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  Enumerations that have only associated types that conform to the <code class="code-voice">Equatable</code> protocol
+<br><span class="jpstr">
+<code class="code-voice">Equatable</code>プロトコルに準拠する関連型だけを持つ列挙
+</span><!--end_jpstr-->
+</p>
+</li><li class="item"><p class="para">
+  Enumerations that have no associated types
+<br><span class="jpstr">
+関連型を持たない列挙
+</span><!--end_jpstr-->
+</p>
+</li>
+</ul><p class="para">
+  Declare <code class="code-voice">Equatable</code> conformance as part of the type’s original declaration to receive these default implementations.
+<br><span class="jpstr">
+<code class="code-voice">Equatable</code>準拠をその型の持つ元の宣言の一部として宣言して、それら省略時の実装を受け取ってください。
+</span><!--end_jpstr-->
+</p><p class="para">
+  The example below defines a <code class="code-voice">Vector3D</code> structure for a three-dimensional position vector <code class="code-voice">(x, y, z)</code>, similar to the <code class="code-voice">Vector2D</code> structure. Because the <code class="code-voice">x</code>, <code class="code-voice">y</code>, and <code class="code-voice">z</code> properties are all of an <code class="code-voice">Equatable</code> type, <code class="code-voice">Vector3D</code> receives default implementations of the equivalence operators.
+<br><span class="jpstr">
+下の例は、<code class="code-voice">Vector3D</code>構造体を３次元の位置ベクトル<code class="code-voice">(x, y, z)</code>に対して定義します、<code class="code-voice">Vector2D</code>構造体に似たものです。<code class="code-voice">x</code>、<code class="code-voice">y</code>、そして<code class="code-voice">z</code>プロパティはまったくの<code class="code-voice">Equatable</code>型なので、<code class="code-voice">Vector3D</code>は同等演算子の省略時の実装いろいろを受け取ります。
+</span><!--end_jpstr-->
+</p><section class="code-listing">
+  
+  <div class="code-sample">
+      <div class="Swift">
+        <ol class="code-lines">
+            <li><code class="code-voice"><span class="kt">struct</span> <span class="vc">Vector3D</span>: <span class="n"><! -- a href="" -->Equatable<! -- /a --></span> {</code></li>
+            <li><code class="code-voice">    <span class="kt">var</span> <span class="vc">x</span> = <span class="m">0.0</span>, <span class="vc">y</span> = <span class="m">0.0</span>, <span class="vc">z</span> = <span class="m">0.0</span></code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"> </code></li>
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">twoThreeFour</span> = <span class="vc">Vector3D</span>(<span class="vc">x</span>: <span class="m">2.0</span>, <span class="vc">y</span>: <span class="m">3.0</span>, <span class="vc">z</span>: <span class="m">4.0</span>)</code></li>
+            <li><code class="code-voice"><span class="kt">let</span> <span class="vc">anotherTwoThreeFour</span> = <span class="vc">Vector3D</span>(<span class="vc">x</span>: <span class="m">2.0</span>, <span class="vc">y</span>: <span class="m">3.0</span>, <span class="vc">z</span>: <span class="m">4.0</span>)</code></li>
+            <li><code class="code-voice"><span class="kt">if</span> <span class="vc">twoThreeFour</span> == <span class="vc">anotherTwoThreeFour</span> {</code></li>
+            <li><code class="code-voice">    <span class="vc">print</span>(<span class="s">&quot;These two vectors are also equivalent.&quot;</span>)</code></li>
+            <li><code class="code-voice">}</code></li>
+            <li><code class="code-voice"><span class="c">// Prints &quot;These two vectors are also equivalent.&quot;</span></code></li>
         </ol>
       </div>
   </div>
@@ -1475,7 +1525,7 @@ Cでの算術演算子と違って、スウィフトの算術演算子は、初�
 この演算子は、２つのベクトルの<code class="code-voice">x</code>値を一緒に加えて、第二のベクトルの<code class="code-voice">y</code>値を最初のものから減じます。それは本質的には「加法的な」演算子であるので、それは<code class="code-voice">+</code>や<code class="code-voice">-</code>といった加法的な接中辞演算子と同じ優先順位グループを与えられています。スウィフト標準ライブラリによって提供される演算子についての情報として、演算子優先順位と結合性の設定の完全なリストを含めて、<a href="https://developer.apple.com/documentation/swift/operator_declarations">演算子宣言</a>を見てください。優先順位グループについてのさらなる情報として、そしてあなた独自の演算子と優先順位グループを定義するための構文を見るには、<span class="x-name"><a href="Declarations.html#//apple_ref/doc/uid/TP40014097-CH34-ID380" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014097-CH34-ID380">演算子宣言</a></span>を見てください。
 </span><!--end_jpstr-->
 </p><div class="note">
-  <a name="//apple_ref/doc/uid/TP40014097-CH27-NoLink_208"></a>
+  <a name="//apple_ref/doc/uid/TP40014097-CH27-NoLink_207"></a>
   <aside class="aside">
     <p class="aside-title">Note
     <br><span class="jpstr">
@@ -1509,7 +1559,7 @@ Cでの算術演算子と違って、スウィフトの算術演算子は、初�
     <p class="copyright">Copyright &#x00a9; 2018 Apple Inc. All rights reserved. 
   <a class="link" href="http://www.apple.com/legal/terms/site.html" target="_blank" rel="external">Terms of Use</a> | 
   <a class="link" href="http://www.apple.com/privacy/" target="_blank" rel="external">Privacy Policy</a> | 
-  Updated: 2018-02-06
+  Updated: 2018-03-29
 </p>
   </section>
 </article>

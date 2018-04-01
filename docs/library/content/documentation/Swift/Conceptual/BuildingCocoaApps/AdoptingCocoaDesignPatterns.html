@@ -6,8 +6,8 @@
   <link rel="stylesheet" type="text/css" href="../../../../Resources/1277/CSS/feedback-1.6.3.css" />
   <meta charset='utf-8'> 
 <meta id="j-version" name="j-version" content="" />
-<meta id="build" name="build" content="f99ee3d3b1b0baba635224fe02964519" />
-<meta id="document-version" name="document-version" content="9.2.4" />
+<meta id="build" name="build" content="bbf957d6bf6f65bc842fc73872c54ed4" />
+<meta id="document-version" name="document-version" content="9.2.7" />
 <meta id="book-assignments" name="book-assignments" content="{Type/Guide}, {Topic/Swift}" />
 <meta scheme="apple_ref" id="identifier" name="identifier" content="//apple_ref/doc/uid/TP40014216" />
 <meta id="chapterId" name="chapterId" content="TP40014216-CH7">
@@ -15,7 +15,7 @@
 <meta id="book-resource-type" name="book-resource-type" content="Guide" />
 <meta id="book-root" name="book-root" content="./" />
 <meta id="book-json" name="book-json" content="book.json">
-<meta id="date" name="date" content="2018-02-06" />
+<meta id="date" name="date" content="2018-03-29" />
 <meta id="description" name="description" content="Describes various aspects of Swift&#39;s compatibility with the Objective-C language and Cocoa/Cocoa Touch frameworks." />
 <meta id="IndexTitle" name="IndexTitle" content="" />
 <meta id="resources-uri" name="resources-uri" content="../../../../Resources/1277">
@@ -62,7 +62,7 @@
 
 
     <span class="download-text hideInXcode">
-      <a href="https://itunes.apple.com/us/book/using-swift-cocoa-objective/id1002624212?mt=11">iBooks</a>
+      <a href="https://itunes.apple.com/us/book/using-swift-cocoa-objective/id888894773?mt=11">iBooks</a>
     </span>
 
     
@@ -789,22 +789,31 @@ Objective-Cコードがエラーをスローするスウィフトメソッドを
 <br><span class="jpstr">
 Objective-Cでは、エラー処理はオプトインです、それはメソッドを呼び出すことで生成されたエラーはあなたがエラーポインターを提供しない限りは無視されるということを意味しています。スウィフトでは、スローするメソッドを呼び出すことは明確にエラー処理することを必要とします。
 </span><!--end_jpstr-->
-</p><div class="note">
-  <a name="//apple_ref/doc/uid/TP40014216-CH7-NoLink_20"></a>
-  <aside class="aside">
-    <p class="aside-title">Note
-    <br><span class="jpstr">
-注意
+</p>
+  
+</section>
+<section class="section">
+  <a name="//apple_ref/doc/uid/TP40014216-CH7-ID225"></a>
+  <h3 class="section-name" tabindex="0">Handling Exceptions<br><span class="jpstr">
+例外を取り扱う
+</span><!--end_jpstr-->
+</h3>
+  <p class="para">
+  In Objective-C, exceptions are distinct from errors. Objective-C exception handling uses the <code class="code-voice">@try</code>, <code class="code-voice">@catch</code>, and <code class="code-voice">@throw</code> syntax to indicate unrecoverable programmer errors. This is distinct from a common Cocoa pattern that uses a trailing <code class="code-voice">NSError</code> parameter to indicate recoverable errors that you plan for during development.
+<br><span class="jpstr">
+Objective-Cにおいて、例外はエラーとは別個のものです。Objective-C例外処理は、<code class="code-voice">@try</code>、<code class="code-voice">@catch</code>、そして<code class="code-voice">@throw</code>構文を使って回復不可能なプログラマエラーを指し示します。これは、後に続く<code class="code-voice">NSError</code>パラメータを使うことで回復不可能なエラーを指し示す通常のCocoaパターンとは異なります、それはあなたが開発の間に備えるものです。
+</span><!--end_jpstr-->
+</p><p class="para">
+  In Swift, you can recover from errors passed using Cocoa’s error pattern, as described in <span class="x-name"><a href="#//apple_ref/doc/uid/TP40014216-CH7-ID10" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH7-ID10">Error Handling</a></span>. However, there’s no safe way to recover from Objective-C exceptions in Swift. To handle Objective-C exceptions, write Objective-C code that catches exceptions before they reach any Swift code.
+<br><span class="jpstr">
+スウィフトでは、あなたはCocoaの持つエラーパターンを使用して渡されるエラーから復旧することができます、<span class="x-name"><a href="#//apple_ref/doc/uid/TP40014216-CH7-ID10" data-renderer-version="2" data-id="//apple_ref/doc/uid/TP40014216-CH7-ID10">エラーの処理</a></span>において議論されるように。しかしながら、スウィフトにはObjective-C例外から回復する安全な方法はありません。Objective-C例外を取り扱うには、それら例外をそれらが何らかのスウィフトコードに届く前に捕まえるObjective-Cコードを書いてください。
+</span><!--end_jpstr-->
+</p><p class="para">
+  For more information about Objective-C exceptions, see <em class="u-book"><a href="../../../Cocoa/Conceptual/Exceptions/Exceptions.html#//apple_ref/doc/uid/10000012i" data-renderer-version="1" target="_self">Exception Programming Topics</a></em>.
+<br><span class="jpstr">
+Objective-C例外についての詳細として、<em class="u-book"><a href="../../../Cocoa/Conceptual/Exceptions/Exceptions.html#//apple_ref/doc/uid/10000012i" data-renderer-version="1" target="_self">Exception Programming Topics</a></em>を見てください。
 </span><!--end_jpstr-->
 </p>
-    	<p class="para">Although Swift error handling resembles exception handling in Objective-C, it is entirely separate functionality. If an Objective-C method throws an exception during runtime, Swift triggers a runtime error. There is no way to recover from Objective-C exceptions directly in Swift. Any exception handling behavior must be implemented in Objective-C code used by Swift.
-    	<br><span class="jpstr">
-スウィフトエラー処理はObjective-Cでの例外処理に似ていますが、それは完全に関係のない機能です。Objective-Cメソッドが実行時に例外をスローするならば、スウィフトは実行時エラーの引き金を引きます。スウィフトには直接にObjective-C例外から回復する方法はありません。どのような例外処理挙動もスウィフトによって使用されるObjective-Cコードの中で実装されなければなりません。
-</span><!--end_jpstr-->
-</p>
-    
-  </aside>
-</div>
   
 </section>
 <section class="section">
@@ -977,7 +986,7 @@ Objective-Cフレームワークは、カスタムエラードメインと列挙
 </p><p class="para">
   In Objective-C, you can ensure that only one instance of a singleton object is created by wrapping its initialization in a call the <code class="code-voice">dispatch_once</code> function, which executes a block once and only once for the lifetime of an app:
 <br><span class="jpstr">
-Objective-Cでは、あなたはあるシングルトンオブジェクトにただ１つのインスタンスが作成されることを、それの初期化を、あるプロックをあるアプリのライフタイムに対していっぺんこっきり実行する<code class="code-voice">dispatch_once</code>関数呼び出しの中にラップする（包む）ことによって確実にできます：
+Objective-Cでは、あなたはあるシングルトンオブジェクトにただ１つのインスタンスが作成されることを、それの初期化を、あるブロックをあるアプリのライフタイムに対していっぺんこっきり実行する<code class="code-voice">dispatch_once</code>関数呼び出しの中にラップする（包む）ことによって確実にできます：
 </span><!--end_jpstr-->
 </p><section class="code-listing">
   
@@ -1501,7 +1510,7 @@ Cocoa APIの全ては、有効性情報を提供します、それであなた�
       </div>
   </div>
 </section><div class="note">
-  <a name="//apple_ref/doc/uid/TP40014216-CH7-NoLink_21"></a>
+  <a name="//apple_ref/doc/uid/TP40014216-CH7-NoLink_20"></a>
   <aside class="aside">
     <p class="aside-title">Note
     <br><span class="jpstr">
@@ -1563,16 +1572,16 @@ macOSでは、あなたは通常はアプリをそれのアイコンをDockま�
 <code class="code-voice">CommandLine.arguments</code>の中の最初の項目は、常に実行ファイルへのパスです。起動時に指定される何らかのコマンドライン引数は、<code class="code-voice">CommandLine.arguments[1]</code>で始まります。
 </span><!--end_jpstr-->
 </p><div class="note">
-  <a name="//apple_ref/doc/uid/TP40014216-CH7-NoLink_22"></a>
+  <a name="//apple_ref/doc/uid/TP40014216-CH7-NoLink_21"></a>
   <aside class="aside">
     <p class="aside-title">Note
     <br><span class="jpstr">
 注意
 </span><!--end_jpstr-->
 </p>
-    	<p class="para">Accessing arguments using <code class="code-voice">CommandLine.arguments</code> is equivalent to accessing the <code class="code-voice u-api"><a href="https://developer.apple.com/documentation/foundation/processinfo/1415596-arguments" class="urlLink">arguments</a></code> property on <code class="code-voice">ProcessInfo.processInfo</code>.
+    	<p class="para">Accessing arguments using <code class="code-voice">CommandLine.arguments</code> is equivalent to accessing the <code class="code-voice u-api"><a href="https://developer.apple.com/documentation/foundation/nsprocessinfo/1415596-arguments" class="urlLink">arguments</a></code> property on <code class="code-voice">ProcessInfo.processInfo</code>.
     	<br><span class="jpstr">
-<code class="code-voice">CommandLine.arguments</code>を使って引数にアクセスすることは、<code class="code-voice u-api"><a href="https://developer.apple.com/documentation/foundation/processinfo/1415596-arguments" class="urlLink">arguments</a></code>プロパティに<code class="code-voice">ProcessInfo.processInfo</code>上でアクセスすることと等価です。
+<code class="code-voice">CommandLine.arguments</code>を使って引数にアクセスすることは、<code class="code-voice u-api"><a href="https://developer.apple.com/documentation/foundation/nsprocessinfo/1415596-arguments" class="urlLink">arguments</a></code>プロパティに<code class="code-voice">ProcessInfo.processInfo</code>上でアクセスすることと等価です。
 </span><!--end_jpstr-->
 </p>
     
@@ -1595,7 +1604,7 @@ C APIとの相互作用
     <p class="copyright">Copyright &#x00a9; 2018 Apple Inc. All rights reserved. 
   <a class="link" href="http://www.apple.com/legal/terms/site.html" target="_blank" rel="external">Terms of Use</a> | 
   <a class="link" href="http://www.apple.com/privacy/" target="_blank" rel="external">Privacy Policy</a> | 
-  Updated: 2018-02-06
+  Updated: 2018-03-29
 </p>
   </section>
 </article>
