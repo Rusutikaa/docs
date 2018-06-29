@@ -1,0 +1,337 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>Choosing Between Structures and Classes | Apple Developer Documentation</title><!-- link href="https://www.apple.com/wss/fonts?families=SF+Pro,v1|SF+Mono,v1|SF+Pro+Icons,v1" media="all" rel="stylesheet" type="text/css"/ --><meta content="width=device-width, initial-scale=1 viewport-fit=cover" name="viewport"/><meta data-pid="183535"/><link href="../../documentation/assets/application-3df9866a.css" media="all" rel="stylesheet" type="text/css"/><link rel="mask-icon" href="../../documentation/assets/apple-logo.svg" color="#000"/><link rel="shortcut icon" href="../../documentation/assets/favicon.ico"/><script src="../../documentation/assets/shared-3368bd70.js"></script></head><body><div id="_omniture_top">
+      <script type="text/javascript">
+        var s_account="appleglobal,appleusdeveloper,dappdeveloperlib"
+      </script><!-- script type="text/javascript" src="file://www.apple.com/metrics/scripts/s_code_h.js" -->
+      </script>
+      <script type="text/javascript">
+        s.pageName=AC.Tracking.pageName();
+        s.channel="www.us.developer"
+
+        var s_code=s.t();if(s_code)document.write(s_code)
+      </script>
+    </div><div id="app"><div><a href="#main" id="skip-localnav" class="showonfocus hidden">Skip Navigation</a><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"/><nav id="ac-globalnav" class="no-js" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US"><div class="ac-gn-content">
+        <ul class="ac-gn-header">
+          <li class="ac-gn-item ac-gn-menuicon">
+            <label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true">
+              <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top">
+                <span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span>
+              </span>
+              <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom">
+                <span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span>
+              </span>
+            </label>
+            <a href="#ac-gn-menustate" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open"> <span class="ac-gn-menuanchor-label">Open Menu</span> </a>
+            <a href="#" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close"> <span class="ac-gn-menuanchor-label">Close Menu</span> </a>
+          </li>
+          <li class="ac-gn-item ac-gn-apple">
+            <a class="ac-gn-link ac-gn-link-apple" href="/" id="ac-gn-firstfocus-small"> <span class="ac-gn-link-text">Apple Developer</span> </a>
+          </li>
+          <li class="ac-gn-item ac-gn-bag ac-gn-bag-small" id="ac-gn-bag-small">
+            <a class="ac-gn-link ac-gn-link-bag" href="/account/"> <span class="ac-gn-link-text">Account</span> <span class="ac-gn-bag-badge"></span> </a> <span class="ac-gn-bagview-caret ac-gn-bagview-caret-large"></span> </li>
+        </ul>
+        <ul class="ac-gn-list">
+          <li class="ac-gn-item ac-gn-apple">
+            <a class="ac-gn-link ac-gn-link-apple" href="/" id="ac-gn-firstfocus"> <span class="ac-gn-link-text">Apple Developer</span> </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-discover">
+            <a class="ac-gn-link" href="/discover/"> <span>Discover</span> </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-design">
+            <a class="ac-gn-link" href="/design/"> <span>Design</span> </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-develop">
+            <a class="ac-gn-link" href="/develop/"> <span>Develop</span> </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-distribute">
+            <a class="ac-gn-link" href="/distribute/"> <span>Distribute</span> </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-support">
+            <a class="ac-gn-link" href="/support/"> <span>Support</span> </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-account">
+            <a class="ac-gn-link" href="/account/"> <span>Account</span> </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search">
+            <a id="ac-gn-search-button" class="ac-gn-link ac-gn-link-search" href="/search/" aria-label="Search developer.apple.com"> <span class="ac-gn-search-placeholder" aria-hidden="true">Search</span> </a>
+          </li>
+        </ul>
+        <aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search">
+          <div class="ac-gn-searchview-content">
+            <form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get">
+              <div class="ac-gn-searchform-wrapper">
+                <input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" placeholder="Search" data-placeholder-long="Search for documentation, videos, and more" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" />
+                <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit"></button>
+                <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search"></button>
+              </div>
+            </form>
+            <aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults="Hit enter to search.">
+            </aside>
+          </div>
+          <button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Close Search">
+            <span class="ac-gn-searchview-close-wrapper">
+                <span class="ac-gn-searchview-close-left"></span>
+            <span class="ac-gn-searchview-close-right"></span>
+            </span>
+          </button>
+        </aside>
+      </div></nav><div id="ac-gn-curtain" class="ac-gn-curtain"></div><div id="ac-gn-placeholder" class="ac-nav-placeholder"></div><input type="checkbox" id="localnav-menustate" class="localnav-menustate" aria-hidden="true"/><nav id="localnav" class="localnav localnav-dark theme-dark localnav-scrim localnav-noborder" role="navigation" aria-label="API Reference" data-sticky="true"><div class="localnav-wrapper"><div class="referencenav"><div class="localnav-background"></div><div class="localnav-content"><a href="../../index.html" class="localnav-title">Documentation</a><div class="localnav-menu"><a href="#localnav-menustate" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span class="localnav-menucta-anchor-label" aria-hidden="true">Open Menu</span></a><a href="#" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span class="localnav-menucta-anchor-label" aria-hidden="true">Close Menu</span></a><div class="localnav-menu-tray"><ul aria-label="Breadcrumbs" class="localnav-menu-items localnav-menu-breadcrumbs"><li class="localnav-menu-item localnav-menu-breadcrumb-item"><a class="localnav-menu-link" href="../../documentation/swift.html">Swift</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item"><div class="localnav-menu-breadcrumb-current-container localnav-menu-link current"><span aria-current="page" class="localnav-menu-breadcrumb-current"><!--span class="enstr"-->Choosing Between Structures and Classes<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+構造体とクラスから選ぶ
+</span><!--end_jpstr-->
+</span></div></li></ul><ul class="localnav-menu-items localnav-menu-settings" data-breadcrumbs-count="2"><li class="localnav-menu-setting language-container"><span class="localnav-menu-setting-label">Language:</span><span class="localnav-menu-toggle-none current-language" aria-current="page">Swift</span></li><li class="localnav-menu-setting"><span class="localnav-menu-setting-label">API Changes:</span><span class="changes-toggle">None</span></li></ul></div><div class="localnav-actions"><div class="localnav-action localnav-action-menucta" aria-hidden="true"><label for="localnav-menustate" class="localnav-menucta"><span class="localnav-menucta-chevron"></span></label></div></div></div></div></div></div></nav><label for="localnav-menustate" id="localnav-curtain" aria-hidden="true"></label><main role="main" id="main" class="main" tabindex="0"><div class="topic-title"><span class="eyebrow">Article</span><h1 class="topic-heading"><span><!--span class="enstr"-->Choosing Between Structures and Classes<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+構造体とクラスから選ぶ
+</span><!--end_jpstr-->
+</span></h1></div><div class="topic-container section-content row"><div class="topic-description column large-9 medium-9 small-12"><div class="topic-abstract abstract formatted-content"><div><p><!--span class="enstr"-->Decide how to store data and model behavior.<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+どのようにデータを格納して挙動をモデル化するか決定を下します。
+</span><!--end_jpstr-->
+</p></div></div></div><div class="topic-summary column large-3 medium-3 small-12"><div class="topic-summary-section frameworks" role="complementary" aria-label="Framework"><p class="topic-summary-section-label subsection-label"><!--span class="enstr"-->Framework<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+フレームワーク
+</span><!--end_jpstr-->
+</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item"><span><!--span class="enstr"-->Swift Standard Library<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+Swift標準ライブラリ
+</span><!--end_jpstr-->
+</span></li></ul></div><div class="topic-summary-section onthispage"><nav class="onthispage-nav" aria-labelledby="onthispage-title"><p id="onthispage-title" class="topic-summary-section-label subsection-label"><!--span class="enstr"-->On This Page<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+この項には
+</span><!--end_jpstr-->
+</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item"><a href="#overview" class="icon icon-after icon-chevrondowncircle"><!--span class="enstr"-->Overview<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+概要
+</span><!--end_jpstr-->
+</a></li><li class="topic-summary-section-item"><a href="#see-also" class="icon icon-after icon-chevrondowncircle"><!--span class="enstr"-->See Also<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+参照
+</span><!--end_jpstr-->
+</a></li></ul></nav></div></div><div class="topic-content column large-9 medium-9 small-12" id="topic-content"><section id="overview" class="section"><h2><!--span class="enstr"-->Overview<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+概要
+</span><!--end_jpstr-->
+</h2><div class="formatted-content"><div><p><!--span class="enstr"-->Structures and classes are good choices for storing data and modeling behavior in your apps, but their similarities can make it difficult to choose one over the other.<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+構造体とクラスは、あなたのアプリにおけるデータ格納と挙動モデル化のための良い選択です、しかしそれらの類似点は他方より一方を選ぶのを難しくするかもしれません。
+</span><!--end_jpstr-->
+</p><p><!--span class="enstr"-->Consider the following recommendations to help choose which option makes sense when adding a new data type to your app.<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+以下の忠告を考慮して、どちらの選択が道理にかなっているか、新しいデータ型をあなたのアプリに追加する時に選択する助けにしてください。
+</span><!--end_jpstr-->
+</p><ul><li><p><!--span class="enstr"-->Use structures by default.<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+構造体を、通常は使ってください。
+</span><!--end_jpstr-->
+</p></li><li><p><!--span class="enstr"-->Use classes when you need Objective-C interoperability.<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+クラスを、あなたがObjective-C互換性を必要とする場合に使ってください。
+</span><!--end_jpstr-->
+</p></li><li><p><!--span class="enstr"-->Use classes when you need to control the identity of the data you're modeling.<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+クラスを、あなたがモデル化しているデータの同一性を制御する必要がある場合に使ってください。
+</span><!--end_jpstr-->
+</p></li><li><p><!--span class="enstr"-->Use structures along with protocols to adopt behavior by sharing implementations.<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+構造体をそれだけでなくプロトコルと一緒に使うことで、実装を共有することによる挙動を取り入れてください。
+</span><!--end_jpstr-->
+</p></li></ul></div><h3 id="2992601"><!--span class="enstr"-->Choose Structures by Default<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+構造体を通常は使ってください
+</span><!--end_jpstr-->
+</h3><div><p><!--span class="enstr"-->Use structures to represent common kinds of data.Structures in Swift include many features that are limited to classes in other languages: They can include stored properties, computed properties, and methods.Moreover, Swift structures can adopt protocols to gain behavior through default implementations.The Swift standard library and Foundation use structures for types you use frequently, such as numbers, strings, arrays, and dictionaries.<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+構造体を使って、通常の種類のデータを表してください。Swiftでのさまざまな構造体は、他の言語ではクラスに限られる多くの機能を含みます：それらは格納プロパティ、計算プロパティ、そしてメソッドを含むことができます。その上さらに、Swift構造体はプロトコルを採用することで、省略時の実装を通して挙動を獲得できます。Swift標準ライブラリとFoundationは、あなたが頻繁に使う型、例えば数、文字列、配列、そして辞書などに対して構造体を使います。
+</span><!--end_jpstr-->
+</p><p><!--span class="enstr"-->Using structures makes it easier to reason about a portion of your code without needing to consider the whole state of your app.Because structures are value types—unlike classes—local changes to a structure aren't visible to the rest of your app unless you intentionally communicate those changes as part of the flow of your app.As a result, you can look at a section of code and be more confident that changes to instances in that section will be made explicitly, rather than being made invisibly from a tangentially related function call.<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+構造体を使うことは、あなたのアプリの全体の状態を考える必要なしに、あなたのコードの一部について結論を下すことを簡単にします。構造体が値型であることから — クラスとは違い — 構造体への局所的変更はあなたのアプリの残りには不可視です、あなたが意図的にそれら変更をあなたのアプリのフローの一部として伝達しない限りは。結果として、あなたはコードのある区画を調べて、その区画のインスタンスに対する変更が明確だということを、ほとんど無関係な関連する関数呼び出しから不可視に行われるよりむしろずっと自信を持てます。
+</span><!--end_jpstr-->
+</p></div><h3 id="2992594"><!--span class="enstr"-->Use Classes When You Need Objective-C Interoperability<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+クラスをあなたがObjective-C互換性を必要とする場合に使ってください
+</span><!--end_jpstr-->
+</h3><div><p><!--span class="enstr"-->If you use an Objective-C API that needs to process your data, or you need to fit your data model into an existing class hierarchy defined in an Objective-C framework, you might need to use classes and class inheritance to model your data.For example, many Objective-C frameworks expose classes that you are expected to subclass.<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+あなたのデータを処理するのに必要であるObjective-C APIをあなたが使う、またはあなたのデータモデルをObjective-Cフレームワークにおいて定義される既存のクラス階層へと適合させる必要があるならば、あなたはクラスとクラス階層を使ってあなたのデータをモデル化する必要があるかもしれません。例えば、多くのObjective-Cフレームワークは、あなたがサブクラスを作るべき様々なクラスを公開します。
+</span><!--end_jpstr-->
+</p></div><h3 id="2992600"><!--span class="enstr"-->Use Classes When You Need to Control Identity<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+あなたが同一性を制御する必要がある場合はクラスを使ってください
+</span><!--end_jpstr-->
+</h3><div><p><!--span class="enstr"-->Classes in Swift come with a built-in notion of identity because they're reference types.This means that when two different class instances have the same value for each of their stored properties, they're still considered to be different by the identity operator (<code class="code-voice"><span>===</span></code>).It also means that when you share a class instance across your app, changes you make to that instance are visible to every part of your code that holds a reference to that instance.Use classes when you need your instances to have this kind of identity.Common use cases are file handles, network connections, and shared hardware intermediaries like <a class="symbol-name" href="https://developer.apple.com/documentation/corebluetooth/cbcentralmanager"><code><span>CBCentral<wbr/>Manager</span></code></a>.<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+Swiftでのクラスそれらは、組み込みの同一性の概念を備えています、なぜならそれらが参照型だからです。これは、２つの異なるクラスインスタンスが同じ値をそれらの格納プロパティの各々に対して持つ場合に、それらはまだ異なっていると同一性演算子（<code class="code-voice"><span>===</span></code>）によってみなされることを意味します。それはまた、あなたがあるクラスインスタンスをあなたのアプリの至る所で共有する場合、あなたがそのインスタンスになす変更は、そのインスタンスに対する参照を保持するあなたのコードのあらゆる部分で見ることができます。あなたのインスタンスがその種の同一性を持つことをあなたが必要とする場合は、クラスを使ってください。一般的な利用事例は、ファイルハンドル、ネットワーク通信、そして<a class="symbol-name" href="https://developer.apple.com/documentation/corebluetooth/cbcentralmanager"><code><span>CBCentral<wbr/>Manager</span></code></a>のような共有ハードウェア仲介です。
+</span><!--end_jpstr-->
+ </p><p><!--span class="enstr"-->For example, if you have a type that represents a local database connection, the code that manages access to that database needs full control over the state of the database as viewed from your app.It's appropriate to use a class in this case, but be sure to limit which parts of your app get access to the shared database object.<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+例えば、あなたがローカルデータベース接続を表す肩を持ちならば、そのデータベースへのアクセスを管理するコードは、データベースの状態すべてわたって完全な制御をあなたのアプリから眺められる際に必要とします。この場合にはクラスを使うのが適切です、しかしあなたのアプリのどの部分が共有データベースオブジェクトに対するアクセスを手に入れるかに限界を設けることを確実にしてください。
+</span><!--end_jpstr-->
+</p><aside class="aside aside-important" aria-label="important"><p class="aside-name"><!--span class="enstr"-->Important<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+重要
+</span><!--end_jpstr-->
+</p><p><!--span class="enstr"-->Treat identity with care.Sharing class instances pervasively throughout an app makes logic errors more likely.You might not anticipate the consequences of changing a heavily shared instance, so it's more work to write such code correctly.<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+同一性を注意して取り扱ってください。アプリの隅々まで行き渡る共有クラスインスタンスは、論理エラーをより招きやすくします。あなたは、重く共有されるインスタンスの変更の帰着を見越して備えられないかもしれません、それでそのようなコードを正しく書くためにさらに仕事が増えます。
+</span><!--end_jpstr-->
+</p></aside><p></p></div><h3 id="2992595"><!--span class="enstr"-->Use Structures When You Don't Control Identity<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+あなたが同一性を制御しない場合は構造体を使ってください
+</span><!--end_jpstr-->
+</h3><div><p><!--span class="enstr"-->Use structures when you're modeling data that contains information about an entity with an identity that you don't control.<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+あなたが制御を行わない同一性をもつある存在についての情報を含むデータをあなたがモデル化する場合は、構造体を使ってください。
+</span><!--end_jpstr-->
+</p><p><!--span class="enstr"-->In an app that consults a remote database, for example, an instance's identity may be fully owned by an external entity and communicated by an identifier.If the consistency of an app's models is stored on a server, you can model records as structures with identifiers.In the example below, <code class="code-voice"><span>json<wbr/>Response</span></code> contains an encoded <code class="code-voice"><span>Pen<wbr/>Pal<wbr/>Record</span></code> instance from a server:<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+例えば、リモートデータベースに助言を求めるアプリでは、あるインスタンスの持つ同一性は、外部存在によって完全に所有され、そしてある識別子によって伝えられるかもしれません。あるアプリの持つモデルの一貫性がサーバ上に格納されるならば、あなたはレコードを、識別子を使って構造体としてモデル化できます。下の例において、<code class="code-voice"><span>json<wbr/>Response</span></code>は、あるサーバからのエンコード済み<code class="code-voice"><span>Pen<wbr/>Pal<wbr/>Record</span></code>インスタンスを含みます。
+</span><!--end_jpstr-->
+</p><figure id="2992599"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>struct PenPalRecord {
+    let myID: Int
+    var myNickname: String
+    var recommendedPenPalID: Int
+}
+
+var myRecord = try JSONDecoder().decode(PenPalRecord.self, from: jsonResponse)
+</code></pre></div></div></figure><p><!--span class="enstr"-->Local changes to model types like <code class="code-voice"><span>Pen<wbr/>Pal<wbr/>Record</span></code> are useful.For example, an app might recommend multiple different penpals in response to user feedback.Because the <code class="code-voice"><span>Pen<wbr/>Pal<wbr/>Record</span></code> structure doesn't control the identity of the underlying database records, there's no risk that the changes made to local <code class="code-voice"><span>Pen<wbr/>Pal<wbr/>Record</span></code> instances accidentally change values in the database.<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+<code class="code-voice"><span>Pen<wbr/>Pal<wbr/>Record</span></code>のようなモデル型に対するローカルな変更は、役に立ちます。例えば、あるアプリはユーザのフィードバックに答えて複数の異なる文通友達を勧めるかもしれません。<code class="code-voice"><span>Pen<wbr/>Pal<wbr/>Record</span></code>構造体が基礎をなすデータベースレコードの同一性を制御しないことから、ローカルの<code class="code-voice"><span>Pen<wbr/>Pal<wbr/>Record</span></code>インスタンスになされる変更が誤って値をデータベースにおいて変更する危険はありません。
+</span><!--end_jpstr-->
+</p><p><!--span class="enstr"-->If another part of the app changes <code class="code-voice"><span>my<wbr/>Nickname</span></code> and submits a change request back to the server, the most recently rejected penpal recommendation won't be mistakenly picked up by the change.Because the <code class="code-voice"><span>my<wbr/>ID</span></code> property is declared as a constant, it can't change locally.As a result, requests to the database won't accidentally change the wrong record.<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+アプリの別の部分が<code class="code-voice"><span>my<wbr/>Nickname</span></code>を変更するそして変更要請をサーバに提出するとしても、最近拒否した文通友達推薦が、その変更によって間違って拾い上げられることはないでしょう。なぜなら<code class="code-voice"><span>my<wbr/>ID</span></code>プロパティは定数として宣言されるからです、それはローカルに変更できません。結果として、データベースに対する要請は誤って相応しくないレコードを変更することはありません。
+</span><!--end_jpstr-->
+</p></div><h3 id="2992596"><!--span class="enstr"-->Use Structures and Protocols to Model Inheritance and Share Behavior<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+構造体とプロトコルを使って挙動の継承と共有をモデル化してください
+</span><!--end_jpstr-->
+</h3><div><p><!--span class="enstr"-->Structures and classes both support a form of inheritance.Structures and protocols can only adopt protocols; they can't inherit from classes.However, the kinds of inheritance hierarchies you can build with class inheritance can be also modeled using protocol inheritance and structures.<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+構造体とクラスは両方とも継承の形式をサポートします。構造体とプロトコルは、プロトコルの採用だけが可能です；それらはクラスから継承できません。しかしながら、あなたがクラス継承で構築できる種類の継承階層はまた、プロトコル継承と構造体を使ってモデル化できます。
+</span><!--end_jpstr-->
+ </p><p><!--span class="enstr"-->If you're building an inheritance relationship from scratch, prefer protocol inheritance.Protocols permit classes, structures, and enumerations to participate in inheritance, while class inheritance is only compatible with other classes.When you're choosing how to model your data, try building the hierarchy of data types using protocol inheritance first, then adopt those protocols in your structures.<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+あなたが継承関係をゼロから構築するならば、プロトコル継承を選んでください。プロトコルは、クラス、構造体、そして列挙に対して継承に参加することを許可します、一方でクラス継承は他のクラスと互換性があるだけです。あなたのデータをモデル化する方法をあなたが選ぶ時、データ型の階層の構築を最初にプロトコル継承を使って試みてください、それからそれらのプロトコルをあなたの構造体において採用してください。
+</span><!--end_jpstr-->
+</p><p></p></div></div></section></div></div><section id="see-also" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><!--span class="enstr"-->See Also<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+参照
+</span><!--end_jpstr-->
+</h2><section id="2984804" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><!--span class="enstr"-->Data Modeling<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+データモデリング
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../documentation/swift/adopting_common_protocols.html"><svg xmlns="http://www.w3.org/2000/svg" height="15" viewBox="0 0 22 30" class="svg-icon symbol-name-icon" aria-hidden="true"><title>Article</title><g id="Article" class="svg-icon-small"><path d="M12.87,0H0V2H0V28H0v2H22V9.13ZM20,28H2V2h9V12h9Zm0-18H13V3l7,7Z"></path></g></svg><span><!--span class="enstr"-->Adopting Common Protocols<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+一般的なプロトコルを採用する
+</span><!--end_jpstr-->
+</span></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><!--span class="enstr"-->Make your custom types easier to use by ensuring that they conform to Swift protocols.<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+あなたのカスタム型を、それらがSwiftプロトコルに準拠するのを確実にすることで、より簡単に使えるようにします。
+</span><!--end_jpstr-->
+</p></div></div></div></div></div></div></div></section></div></div></section></main><section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo">
+        <nav class="footer-breadory">
+          <a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a>
+          <section class="breadcrumbs">
+            <ol class="breadcrumbs-list">
+              <li><a href=/documentation>Documentation</a></li>
+            </ol>
+          </section>
+          <div id="directorynav" class="directorynav">
+            <div id="dn-cola" class="column">
+              <h3><a href="/discover/">Discover</a></h3>
+              <ul>
+                <li><a href="/macos/">macOS</a></li>
+                <li><a href="/ios/">iOS</a></li>
+                <li><a href="/watchos/">watchOS</a></li>
+                <li><a href="/tvos/">tvOS</a></li>
+                <li><a href="/safari/">Safari and Web</a></li>
+                <li><a href="/games/">Games</a></li>
+                <li><a href="/enterprise/">Enterprise</a></li>
+                <li><a href="/education/">Education</a></li>
+                <li><a href="/wwdc/">WWDC</a></li>
+              </ul>
+            </div>
+            <div id="dn-colb" class="column">
+              <h3><a href="/design/">Design</a></h3>
+              <ul>
+                <li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
+                <li><a href="/design/resources/"><!--span class="enstr"-->Resources<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+リソース
+</span><!--end_jpstr-->
+</a></li>
+                <li><a href="/videos/design/">Videos</a></li>
+                <li><a href="/design/awards/">Apple Design Awards</a></li>
+                <li><a href="/accessibility/">Accessibility</a></li>
+                <li><a href="/internationalization/"><!--span class="enstr"-->Internationalization<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+国際化
+</span><!--end_jpstr-->
+</a></li>
+                <li><a href="/accessories/">Accessories</a></li>
+              </ul>
+            </div>
+            <div id="dn-colc" class="column">
+              <h3><a href="/develop/">Develop</a></h3>
+              <ul>
+                <li><a href="/xcode/">Xcode</a></li>
+                <li><a href="/swift/">Swift</a></li>
+                <li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
+                <li><a href="/testflight/">TestFlight</a></li>
+                <li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
+                <li><a href="/videos/">Videos</a></li>
+                <li><a href="/download/">Downloads</a></li>
+              </ul>
+            </div>
+            <div id="dn-cold" class="column">
+              <h3><a href="/distribute/">Distribute</a></h3>
+              <ul>
+                <li><a href="/app-store/">App Store</a></li>
+                <li><a href="/macos/distribution/">Mac Software</a></li>
+                <li><a href="/app-store/review/">App Review</a></li>
+                <li><a href="/programs/volume/">Volume Purchase Program</a></li>
+                <li><a href="/programs/volume/b2b/">Custom B2B Apps</a></li>
+                <li><a href="/enterprise/distribute/">Enterprise Apps</a></li>
+                <li><a href="/safari/extensions/">Safari Extensions</a></li>
+                <li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
+                <li><a href="/softwarelicensing/">Trademark Licensing</a></li>
+              </ul>
+            </div>
+            <div id="dn-cole" class="column">
+              <h3><a href="/support/">Support</a></h3>
+              <ul>
+                <li><a href="https://forums.developer.apple.com">Developer Forums</a></li>
+                <li><a href="/bug-reporting/">Bug Reporting</a></li>
+                <li><a href="/terms/">License Agreements</a></li>
+                <li><a href="/system-status/">System Status</a></li>
+                <li><a href="/contact/">Contact Us</a></li>
+                <br />
+                <h3><a href="/account/">Account</a></h3>
+                <ul>
+                  <li><a href="/programs/">Developer Program</a></li>
+                  <li><a href="/account/ios/certificate/">Certificates, IDs &amp; Profiles</a></li>
+                  <li><a href="https://itunesconnect.apple.com/">iTunes Connect</a></li>
+                </ul>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="ac-gf-footer-legal">
+          <div class="ac-gf-footer-news"> To receive the latest developer news, visit and subscribe to our <a href="/news/">News and Updates</a>.
+          </div>
+          <div class="ac-gf-footer-legal-copyright">Copyright © 2018 Apple Inc. All rights reserved.</div>
+          <div class="ac-gf-footer-legal-links">
+            <a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a>
+            <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+            <a href="/bug-reporting/">Report Bugs</a>
+            <a href="/contact/submit/?subject=website-feedback">Feedback</a>
+          </div>
+          <div class="ac-gf-footer-language-links">
+            <a href="/cn/" class="first">简体中文</a>
+            <a href="/jp/">日本語</a>
+            <a href="/kr/">한국어</a>
+          </div>
+        </div>
+      </footer></section></div></div><script id="bootstrap-data" type="application/json">{"id":2992597,"title":{"content":"Choosing Between Structures and Classes"},"discussion":"<div><p>Structures and classes are good choices for storing data and modeling behavior in your apps, but their similarities can make it difficult to choose one over the other.<\/p><p>Consider the following recommendations to help choose which option makes sense when adding a new data type to your app.<\/p><ul><li><p>Use structures by default.<\/p><\/li><li><p>Use classes when you need Objective-C interoperability.<\/p><\/li><li><p>Use classes when you need to control the identity of the data you&#x27;re modeling.<\/p><\/li><li><p>Use structures along with protocols to adopt behavior by sharing implementations.<\/p><\/li><\/ul><\/div><h3 id=\"2992601\">Choose Structures by Default<\/h3><div><p>Use structures to represent common kinds of data. Structures in Swift include many features that are limited to classes in other languages: They can include stored properties, computed properties, and methods. Moreover, Swift structures can adopt protocols to gain behavior through default implementations. The Swift standard library and Foundation use structures for types you use frequently, such as numbers, strings, arrays, and dictionaries.<\/p><p>Using structures makes it easier to reason about a portion of your code without needing to consider the whole state of your app. Because structures are value types—unlike classes—local changes to a structure aren&#x27;t visible to the rest of your app unless you intentionally communicate those changes as part of the flow of your app. As a result, you can look at a section of code and be more confident that changes to instances in that section will be made explicitly, rather than being made invisibly from a tangentially related function call.<\/p><\/div><h3 id=\"2992594\">Use Classes When You Need Objective-C Interoperability<\/h3><div><p>If you use an Objective-C API that needs to process your data, or you need to fit your data model into an existing class hierarchy defined in an Objective-C framework, you might need to use classes and class inheritance to model your data. For example, many Objective-C frameworks expose classes that you are expected to subclass.<\/p><\/div><h3 id=\"2992600\">Use Classes When You Need to Control Identity<\/h3><div><p>Classes in Swift come with a built-in notion of identity because they&#x27;re reference types. This means that when two different class instances have the same value for each of their stored properties, they&#x27;re still considered to be different by the identity operator (<code class=\"code-voice\"><span>===<\/span><\/code>). It also means that when you share a class instance across your app, changes you make to that instance are visible to every part of your code that holds a reference to that instance. Use classes when you need your instances to have this kind of identity. Common use cases are file handles, network connections, and shared hardware intermediaries like <a class=\"symbol-name\" href=\"\/documentation\/corebluetooth\/cbcentralmanager\"><code><span>CBCentral<wbr\/>Manager<\/span><\/code><\/a>. <\/p><p>For example, if you have a type that represents a local database connection, the code that manages access to that database needs full control over the state of the database as viewed from your app. It&#x27;s appropriate to use a class in this case, but be sure to limit which parts of your app get access to the shared database object.<\/p><aside class=\"aside aside-important\" aria-label=\"important\"><p class=\"aside-name\">Important<\/p><p>Treat identity with care. Sharing class instances pervasively throughout an app makes logic errors more likely. You might not anticipate the consequences of changing a heavily shared instance, so it&#x27;s more work to write such code correctly.<\/p><\/aside><p><\/p><\/div><h3 id=\"2992595\">Use Structures When You Don't Control Identity<\/h3><div><p>Use structures when you&#x27;re modeling data that contains information about an entity with an identity that you don&#x27;t control.<\/p><p>In an app that consults a remote database, for example, an instance&#x27;s identity may be fully owned by an external entity and communicated by an identifier. If the consistency of an app&#x27;s models is stored on a server, you can model records as structures with identifiers. In the example below, <code class=\"code-voice\"><span>json<wbr\/>Response<\/span><\/code> contains an encoded <code class=\"code-voice\"><span>Pen<wbr\/>Pal<wbr\/>Record<\/span><\/code> instance from a server:<\/p><figure id=\"2992599\"><div class=\"formatted-content\"><div class=\"code-listing\"><pre class=\"code-source\" data-language=\"swift\"><code>struct PenPalRecord {\n    let myID: Int\n    var myNickname: String\n    var recommendedPenPalID: Int\n}\n\nvar myRecord = try JSONDecoder().decode(PenPalRecord.self, from: jsonResponse)\n<\/code><\/pre><\/div><\/div><\/figure><p>Local changes to model types like <code class=\"code-voice\"><span>Pen<wbr\/>Pal<wbr\/>Record<\/span><\/code> are useful. For example, an app might recommend multiple different penpals in response to user feedback. Because the <code class=\"code-voice\"><span>Pen<wbr\/>Pal<wbr\/>Record<\/span><\/code> structure doesn&#x27;t control the identity of the underlying database records, there&#x27;s no risk that the changes made to local <code class=\"code-voice\"><span>Pen<wbr\/>Pal<wbr\/>Record<\/span><\/code> instances accidentally change values in the database.<\/p><p>If another part of the app changes <code class=\"code-voice\"><span>my<wbr\/>Nickname<\/span><\/code> and submits a change request back to the server, the most recently rejected penpal recommendation won&#x27;t be mistakenly picked up by the change. Because the <code class=\"code-voice\"><span>my<wbr\/>ID<\/span><\/code> property is declared as a constant, it can&#x27;t change locally. As a result, requests to the database won&#x27;t accidentally change the wrong record.<\/p><\/div><h3 id=\"2992596\">Use Structures and Protocols to Model Inheritance and Share Behavior<\/h3><div><p>Structures and classes both support a form of inheritance. Structures and protocols can only adopt protocols; they can&#x27;t inherit from classes. However, the kinds of inheritance hierarchies you can build with class inheritance can be also modeled using protocol inheritance and structures. <\/p><p>If you&#x27;re building an inheritance relationship from scratch, prefer protocol inheritance. Protocols permit classes, structures, and enumerations to participate in inheritance, while class inheritance is only compatible with other classes. When you&#x27;re choosing how to model your data, try building the hierarchy of data types using protocol inheritance first, then adopt those protocols in your structures.<\/p><p><\/p><\/div>","abstract":"<div><p>Decide how to store data and model behavior.<\/p><\/div>","containingGroup":[{"id":2984804,"role":"task","paths":[],"symbols":[{"id":2992597,"role":"article","paths":["documentation\/swift\/choosing_between_structures_and_classes"],"abstract":"<div><p>Decide how to store data and model behavior.<\/p><\/div>","title":{"content":"Choosing Between Structures and Classes"}},{"id":2991125,"role":"article","paths":["documentation\/swift\/adopting_common_protocols"],"abstract":"<div><p>Make your custom types easier to use by ensuring that they conform to Swift protocols.<\/p><\/div>","title":{"content":"Adopting Common Protocols"}}],"title":{"content":"Data Modeling"}}],"modules":[{"title":{"content":"Swift Standard Library"},"paths":["documentation\/swift"],"importStatement":"<import xml:space=\"preserve\"><keyWord>import<\/keyWord> Swift<\/import>","availability":[{"platform":"macOS","introduced":"10.10"},{"platform":"watchOS","introduced":"2.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"iOS","introduced":"8.0"}]}],"languages":["swift"],"variants":{"swift":{"paths":["documentation\/swift\/choosing_between_structures_and_classes"]}},"pid":183535,"role":"article","language":"swift","paths":["documentation\/swift\/choosing_between_structures_and_classes"],"hierarchy":[[{"id":3000738,"role":"collection","title":{"content":"Swift"},"paths":["documentation\/swift"]}]],"legalNotices":{"copyright":"Copyright &copy; 2018 Apple Inc. All rights reserved.","termsOfUse":"https:\/\/www.apple.com\/legal\/internet-services\/terms\/site.html","privacyPolicy":"https:\/\/www.apple.com\/privacy\/privacy-policy"}}</script></body></html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>Using Delegates to Customize Object Behavior | Apple Developer Documentation</title><!-- link href="https://www.apple.com/wss/fonts?families=SF+Pro,v1|SF+Mono,v1|SF+Pro+Icons,v1" media="all" rel="stylesheet" type="text/css"/ --><meta content="width=device-width, initial-scale=1 viewport-fit=cover" name="viewport"/><meta data-pid="183535"/><link href="../../../documentation/assets/application-3df9866a.css" media="all" rel="stylesheet" type="text/css"/><link rel="mask-icon" href="../../../documentation/assets/apple-logo.svg" color="#000"/><link rel="shortcut icon" href="../../../documentation/assets/favicon.ico"/><script src="../../../documentation/assets/shared-3368bd70.js"></script></head><body><div id="_omniture_top">
+      <script type="text/javascript">
+        var s_account="appleglobal,appleusdeveloper,dappdeveloperlib"
+      </script><!-- script type="text/javascript" src="file://www.apple.com/metrics/scripts/s_code_h.js" -->
+      </script>
+      <script type="text/javascript">
+        s.pageName=AC.Tracking.pageName();
+        s.channel="www.us.developer"
+
+        var s_code=s.t();if(s_code)document.write(s_code)
+      </script>
+    </div><div id="app"><div><a href="#main" id="skip-localnav" class="showonfocus hidden">Skip Navigation</a><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"/><nav id="ac-globalnav" class="no-js" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US"><div class="ac-gn-content">
+        <ul class="ac-gn-header">
+          <li class="ac-gn-item ac-gn-menuicon">
+            <label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true">
+              <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top">
+                <span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span>
+              </span>
+              <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom">
+                <span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span>
+              </span>
+            </label>
+            <a href="#ac-gn-menustate" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open"> <span class="ac-gn-menuanchor-label">Open Menu</span> </a>
+            <a href="#" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close"> <span class="ac-gn-menuanchor-label">Close Menu</span> </a>
+          </li>
+          <li class="ac-gn-item ac-gn-apple">
+            <a class="ac-gn-link ac-gn-link-apple" href="/" id="ac-gn-firstfocus-small"> <span class="ac-gn-link-text">Apple Developer</span> </a>
+          </li>
+          <li class="ac-gn-item ac-gn-bag ac-gn-bag-small" id="ac-gn-bag-small">
+            <a class="ac-gn-link ac-gn-link-bag" href="/account/"> <span class="ac-gn-link-text">Account</span> <span class="ac-gn-bag-badge"></span> </a> <span class="ac-gn-bagview-caret ac-gn-bagview-caret-large"></span> </li>
+        </ul>
+        <ul class="ac-gn-list">
+          <li class="ac-gn-item ac-gn-apple">
+            <a class="ac-gn-link ac-gn-link-apple" href="/" id="ac-gn-firstfocus"> <span class="ac-gn-link-text">Apple Developer</span> </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-discover">
+            <a class="ac-gn-link" href="/discover/"> <span>Discover</span> </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-design">
+            <a class="ac-gn-link" href="/design/"> <span>Design</span> </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-develop">
+            <a class="ac-gn-link" href="/develop/"> <span>Develop</span> </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-distribute">
+            <a class="ac-gn-link" href="/distribute/"> <span>Distribute</span> </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-support">
+            <a class="ac-gn-link" href="/support/"> <span>Support</span> </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-account">
+            <a class="ac-gn-link" href="/account/"> <span>Account</span> </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search">
+            <a id="ac-gn-search-button" class="ac-gn-link ac-gn-link-search" href="/search/" aria-label="Search developer.apple.com"> <span class="ac-gn-search-placeholder" aria-hidden="true">Search</span> </a>
+          </li>
+        </ul>
+        <aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search">
+          <div class="ac-gn-searchview-content">
+            <form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get">
+              <div class="ac-gn-searchform-wrapper">
+                <input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" placeholder="Search" data-placeholder-long="Search for documentation, videos, and more" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" />
+                <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit"></button>
+                <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search"></button>
+              </div>
+            </form>
+            <aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults="Hit enter to search.">
+            </aside>
+          </div>
+          <button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Close Search">
+            <span class="ac-gn-searchview-close-wrapper">
+                <span class="ac-gn-searchview-close-left"></span>
+            <span class="ac-gn-searchview-close-right"></span>
+            </span>
+          </button>
+        </aside>
+      </div></nav><div id="ac-gn-curtain" class="ac-gn-curtain"></div><div id="ac-gn-placeholder" class="ac-nav-placeholder"></div><input type="checkbox" id="localnav-menustate" class="localnav-menustate" aria-hidden="true"/><nav id="localnav" class="localnav localnav-dark theme-dark localnav-scrim localnav-noborder" role="navigation" aria-label="API Reference" data-sticky="true"><div class="localnav-wrapper"><div class="referencenav"><div class="localnav-background"></div><div class="localnav-content"><a href="../../../index.html" class="localnav-title">Documentation</a><div class="localnav-menu"><a href="#localnav-menustate" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span class="localnav-menucta-anchor-label" aria-hidden="true">Open Menu</span></a><a href="#" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span class="localnav-menucta-anchor-label" aria-hidden="true">Close Menu</span></a><div class="localnav-menu-tray"><ul aria-label="Breadcrumbs" class="localnav-menu-items localnav-menu-breadcrumbs"><li class="localnav-menu-item localnav-menu-breadcrumb-item"><a class="localnav-menu-link" href="../../../documentation/swift.html">Swift</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item"><a class="localnav-menu-link" href="../../../documentation/swift/cocoa_design_patterns.html"><!--span class="enstr"-->Cocoa Design Patterns<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+Cocoaデザインパターン
+</span><!--end_jpstr-->
+</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item"><div class="localnav-menu-breadcrumb-current-container localnav-menu-link current"><span aria-current="page" class="localnav-menu-breadcrumb-current"><!--span class="enstr"-->Using Delegates to Customize Object Behavior<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+委任先を使ってオブジェクト挙動をカスタマイズする
+</span><!--end_jpstr-->
+</span></div></li></ul><ul class="localnav-menu-items localnav-menu-settings" data-breadcrumbs-count="3"><li class="localnav-menu-setting language-container"><span class="localnav-menu-setting-label">Language:</span><span class="localnav-menu-toggle-none current-language" aria-current="page">Swift</span></li><li class="localnav-menu-setting"><span class="localnav-menu-setting-label">API Changes:</span><span class="changes-toggle">None</span></li></ul></div><div class="localnav-actions"><div class="localnav-action localnav-action-menucta" aria-hidden="true"><label for="localnav-menustate" class="localnav-menucta"><span class="localnav-menucta-chevron"></span></label></div></div></div></div></div></div></nav><label for="localnav-menustate" id="localnav-curtain" aria-hidden="true"></label><main role="main" id="main" class="main" tabindex="0"><div class="topic-title"><span class="eyebrow">Article</span><h1 class="topic-heading"><span><!--span class="enstr"-->Using Delegates to Customize Object Behavior<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+委任先を使ってオブジェクト挙動をカスタマイズする
+</span><!--end_jpstr-->
+</span></h1></div><div class="topic-container section-content row"><div class="topic-description column large-9 medium-9 small-12"><div class="topic-abstract abstract formatted-content"><div><p><!--span class="enstr"-->Respond to events on behalf of a delegator.<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+委任元に代わってイベントに応答します。
+</span><!--end_jpstr-->
+</p></div></div></div><div class="topic-summary column large-3 medium-3 small-12"><div class="topic-summary-section frameworks" role="complementary" aria-label="Framework"><p class="topic-summary-section-label subsection-label"><!--span class="enstr"-->Framework<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+フレームワーク
+</span><!--end_jpstr-->
+</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item"><span><!--span class="enstr"-->Swift Standard Library<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+Swift標準ライブラリ
+</span><!--end_jpstr-->
+</span></li></ul></div><div class="topic-summary-section onthispage"><nav class="onthispage-nav" aria-labelledby="onthispage-title"><p id="onthispage-title" class="topic-summary-section-label subsection-label"><!--span class="enstr"-->On This Page<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+この項には
+</span><!--end_jpstr-->
+</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item"><a href="#overview" class="icon icon-after icon-chevrondowncircle"><!--span class="enstr"-->Overview<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+概要
+</span><!--end_jpstr-->
+</a></li><li class="topic-summary-section-item"><a href="#see-also" class="icon icon-after icon-chevrondowncircle"><!--span class="enstr"-->See Also<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+参照
+</span><!--end_jpstr-->
+</a></li></ul></nav></div></div><div class="topic-content column large-9 medium-9 small-12" id="topic-content"><section id="overview" class="section"><h2><!--span class="enstr"-->Overview<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+概要
+</span><!--end_jpstr-->
+</h2><div class="formatted-content"><div><p><!--span class="enstr"-->You use delegates to interact with Cocoa objects that inform you of events in an app.<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+あなたは委任を使って、あるアプリの中のイベントについてあなたに告知するCocoaオブジェクトと相互作用します。
+</span><!--end_jpstr-->
+ </p></div><h3 id="2993748"><!--span class="enstr"-->Adopt a Delegate Protocol<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+委任プロトコルを採用する
+</span><!--end_jpstr-->
+</h3><div><p><!--span class="enstr"-->Cocoa APIs often provide protocols that include delegate methods.When an event occurs—such as a user resizing a window—a class that's a delegator will detect the event and call delegate methods on the class you specify as the delegate.Delegate methods can customize how an app responds to an event.<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+Cocoa APIは、しばしば委任メソッドを含むプロトコルを提供します。イベントが発生する場合 — 例えばユーザがウインドウをリサイズするなど — 委任元であるクラスはイベントを検出します、そしてあなたが委任先として指定するクラス上で委任メソッドを呼び出します。委任メソッドは、どのようにアプリがイベントに応答するかをカスタマイズできます。
+</span><!--end_jpstr-->
+</p><p><!--span class="enstr"-->The example below adopts the <a class="symbol-name" href="https://developer.apple.com/documentation/appkit/nswindowdelegate"><code><span>NSWindow<wbr/>Delegate</span></code></a> protocol and implements its <a class="symbol-name" href="https://developer.apple.com/documentation/appkit/nswindowdelegate/1419282-window"><code><span>window(_:<wbr/>will<wbr/>Use<wbr/>Full<wbr/>Screen<wbr/>Content<wbr/>Size:)</span></code></a> method:<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+下の例は、<a class="symbol-name" href="https://developer.apple.com/documentation/appkit/nswindowdelegate"><code><span>NSWindow<wbr/>Delegate</span></code></a>プロトコルを採用します、そしてそれの<a class="symbol-name" href="https://developer.apple.com/documentation/appkit/nswindowdelegate/1419282-window"><code><span>window(_:<wbr/>will<wbr/>Use<wbr/>Full<wbr/>Screen<wbr/>Content<wbr/>Size:)</span></code></a>メソッドを実装します：
+</span><!--end_jpstr-->
+</p><figure id="2993744"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>class MyDelegate: NSObject, NSWindowDelegate {
+    func window(_ window: NSWindow, willUseFullScreenContentSize proposedSize: NSSize) -&gt; NSSize {
+        return proposedSize
+    }
+}
+</code></pre></div></div></figure><p></p></div><h3 id="2993745"><!--span class="enstr"-->Check That Delegates Exist<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+その委任先が存在するか確認する
+</span><!--end_jpstr-->
+</h3><div><p><!--span class="enstr"-->The Cocoa delegation pattern doesn't require that delegates are instantiated.If you don't need to respond to events, you don't need to create a delegate.Before you call a method on an object's delegate, make sure that the delegate isn't <code class="code-voice"><span>nil</span></code>.<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+Cocoa委任パターンは、委任先がインスタンス化されることを要求しません。あなたがイベントに応答することを必要としないならば、あなたは委任先を作成する必要はありません。あなたがメソッドをオブジェクトの持つ委任先で呼び出す前に、委任先が<code class="code-voice"><span>nil</span></code>でないことを確実にしてください。
+</span><!--end_jpstr-->
+</p><p><!--span class="enstr"-->The example below creates an <a class="symbol-name" href="https://developer.apple.com/documentation/appkit/nswindow"><code><span>NSWindow</span></code></a> and uses optional chaining to check that the window's delegate exists before sending a message to the delegate.<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+下の例は、<a class="symbol-name" href="https://developer.apple.com/documentation/appkit/nswindow"><code><span>NSWindow</span></code></a>を作成して、オプショナル連鎖を使うことで、ウインドウの持つ委任先が存在することを、メッセージをその委任先に送る前に確認します。
+</span><!--end_jpstr-->
+</p><figure id="2993746"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>let myWindow = NSWindow(
+    contentRect: NSRect(x: 0, y: 0, width: 5120, height: 2880),
+    styleMask: .fullScreen,
+    backing: .buffered,
+    defer: false
+)
+
+myWindow.delegate = MyDelegate()
+if let fullScreenSize = myWindow.delegate?.window(myWindow, willUseFullScreenContentSize: mySize) {
+    print(NSStringFromSize(fullScreenSize))
+}
+</code></pre></div></div></figure><p></p></div></div></section></div></div><section id="see-also" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><!--span class="enstr"-->See Also<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+参照
+</span><!--end_jpstr-->
+</h2><section id="2993722" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><!--span class="enstr"-->Common Patterns<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+共通パターン
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../../documentation/swift/cocoa_design_patterns/using_key_value_observing_in_swift.html"><svg xmlns="http://www.w3.org/2000/svg" height="15" viewBox="0 0 22 30" class="svg-icon symbol-name-icon" aria-hidden="true"><title>Article</title><g id="Article" class="svg-icon-small"><path d="M12.87,0H0V2H0V28H0v2H22V9.13ZM20,28H2V2h9V12h9Zm0-18H13V3l7,7Z"></path></g></svg><span><!--span class="enstr"-->Using Key-Value Observing in Swift<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+Swiftにおいてキー値監視を使用する
+</span><!--end_jpstr-->
+</span></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><!--span class="enstr"-->Notify objects about changes to the properties of other objects.<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+他のオブジェクトのプロパティに対する変更についてオブジェクトに通知します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../../documentation/swift/cocoa_design_patterns/managing_a_shared_resource_using_a_singleton.html"><svg xmlns="http://www.w3.org/2000/svg" height="15" viewBox="0 0 22 30" class="svg-icon symbol-name-icon" aria-hidden="true"><title>Article</title><g id="Article" class="svg-icon-small"><path d="M12.87,0H0V2H0V28H0v2H22V9.13ZM20,28H2V2h9V12h9Zm0-18H13V3l7,7Z"></path></g></svg><span><!--span class="enstr"-->Managing a Shared Resource Using a Singleton<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+共有されるリソースをシングルトンを使って管理する
+</span><!--end_jpstr-->
+</span></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><!--span class="enstr"-->Provide access to a shared resource using a single, shared class instance.<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+共有リソースへのアクセスを単一の、共有クラスインスタンスを使って提供します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../../documentation/swift/cocoa_design_patterns/about_imported_cocoa_error_parameters.html"><svg xmlns="http://www.w3.org/2000/svg" height="15" viewBox="0 0 22 30" class="svg-icon symbol-name-icon" aria-hidden="true"><title>Article</title><g id="Article" class="svg-icon-small"><path d="M12.87,0H0V2H0V28H0v2H22V9.13ZM20,28H2V2h9V12h9Zm0-18H13V3l7,7Z"></path></g></svg><span><!--span class="enstr"-->About Imported Cocoa Error Parameters<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+インポートされるCocoaエラーパラメータについて
+</span><!--end_jpstr-->
+</span></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><!--span class="enstr"-->Learn how Cocoa error parameters are converted to Swift throwing methods.<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+CocoaエラーパラメータがSwiftスローメソッドに変換される方法を学んでください。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../../documentation/swift/cocoa_design_patterns/handling_cocoa_errors_in_swift.html"><svg xmlns="http://www.w3.org/2000/svg" height="15" viewBox="0 0 22 30" class="svg-icon symbol-name-icon" aria-hidden="true"><title>Article</title><g id="Article" class="svg-icon-small"><path d="M12.87,0H0V2H0V28H0v2H22V9.13ZM20,28H2V2h9V12h9Zm0-18H13V3l7,7Z"></path></g></svg><span><!--span class="enstr"-->Handling Cocoa Errors in Swift<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+CocoaエラーをSwiftにおいて処理する
+</span><!--end_jpstr-->
+</span></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><!--span class="enstr"-->Throw and catch errors that use Cocoa's error types.<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+Cocoaのエラー型を使うエラーをスローおよびキャッチします。
+</span><!--end_jpstr-->
+</p></div></div></div></div></div></div></div></section></div></div></section></main><section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo">
+        <nav class="footer-breadory">
+          <a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a>
+          <section class="breadcrumbs">
+            <ol class="breadcrumbs-list">
+              <li><a href=/documentation>Documentation</a></li>
+            </ol>
+          </section>
+          <div id="directorynav" class="directorynav">
+            <div id="dn-cola" class="column">
+              <h3><a href="/discover/">Discover</a></h3>
+              <ul>
+                <li><a href="/macos/">macOS</a></li>
+                <li><a href="/ios/">iOS</a></li>
+                <li><a href="/watchos/">watchOS</a></li>
+                <li><a href="/tvos/">tvOS</a></li>
+                <li><a href="/safari/">Safari and Web</a></li>
+                <li><a href="/games/">Games</a></li>
+                <li><a href="/enterprise/">Enterprise</a></li>
+                <li><a href="/education/">Education</a></li>
+                <li><a href="/wwdc/">WWDC</a></li>
+              </ul>
+            </div>
+            <div id="dn-colb" class="column">
+              <h3><a href="/design/">Design</a></h3>
+              <ul>
+                <li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
+                <li><a href="/design/resources/"><!--span class="enstr"-->Resources<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+リソース
+</span><!--end_jpstr-->
+</a></li>
+                <li><a href="/videos/design/">Videos</a></li>
+                <li><a href="/design/awards/">Apple Design Awards</a></li>
+                <li><a href="/accessibility/">Accessibility</a></li>
+                <li><a href="/internationalization/"><!--span class="enstr"-->Internationalization<!--/span--><!--end_enstr-->
+<br><span class="jpstr">
+国際化
+</span><!--end_jpstr-->
+</a></li>
+                <li><a href="/accessories/">Accessories</a></li>
+              </ul>
+            </div>
+            <div id="dn-colc" class="column">
+              <h3><a href="/develop/">Develop</a></h3>
+              <ul>
+                <li><a href="/xcode/">Xcode</a></li>
+                <li><a href="/swift/">Swift</a></li>
+                <li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
+                <li><a href="/testflight/">TestFlight</a></li>
+                <li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
+                <li><a href="/videos/">Videos</a></li>
+                <li><a href="/download/">Downloads</a></li>
+              </ul>
+            </div>
+            <div id="dn-cold" class="column">
+              <h3><a href="/distribute/">Distribute</a></h3>
+              <ul>
+                <li><a href="/app-store/">App Store</a></li>
+                <li><a href="/macos/distribution/">Mac Software</a></li>
+                <li><a href="/app-store/review/">App Review</a></li>
+                <li><a href="/programs/volume/">Volume Purchase Program</a></li>
+                <li><a href="/programs/volume/b2b/">Custom B2B Apps</a></li>
+                <li><a href="/enterprise/distribute/">Enterprise Apps</a></li>
+                <li><a href="/safari/extensions/">Safari Extensions</a></li>
+                <li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
+                <li><a href="/softwarelicensing/">Trademark Licensing</a></li>
+              </ul>
+            </div>
+            <div id="dn-cole" class="column">
+              <h3><a href="/support/">Support</a></h3>
+              <ul>
+                <li><a href="https://forums.developer.apple.com">Developer Forums</a></li>
+                <li><a href="/bug-reporting/">Bug Reporting</a></li>
+                <li><a href="/terms/">License Agreements</a></li>
+                <li><a href="/system-status/">System Status</a></li>
+                <li><a href="/contact/">Contact Us</a></li>
+                <br />
+                <h3><a href="/account/">Account</a></h3>
+                <ul>
+                  <li><a href="/programs/">Developer Program</a></li>
+                  <li><a href="/account/ios/certificate/">Certificates, IDs &amp; Profiles</a></li>
+                  <li><a href="https://itunesconnect.apple.com/">iTunes Connect</a></li>
+                </ul>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="ac-gf-footer-legal">
+          <div class="ac-gf-footer-news"> To receive the latest developer news, visit and subscribe to our <a href="/news/">News and Updates</a>.
+          </div>
+          <div class="ac-gf-footer-legal-copyright">Copyright © 2018 Apple Inc. All rights reserved.</div>
+          <div class="ac-gf-footer-legal-links">
+            <a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a>
+            <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+            <a href="/bug-reporting/">Report Bugs</a>
+            <a href="/contact/submit/?subject=website-feedback">Feedback</a>
+          </div>
+          <div class="ac-gf-footer-language-links">
+            <a href="/cn/" class="first">简体中文</a>
+            <a href="/jp/">日本語</a>
+            <a href="/kr/">한국어</a>
+          </div>
+        </div>
+      </footer></section></div></div><script id="bootstrap-data" type="application/json">{"id":2993747,"abstract":"<div><p>Respond to events on behalf of a delegator.<\/p><\/div>","title":{"content":"Using Delegates to Customize Object Behavior"},"discussion":"<div><p>You use delegates to interact with Cocoa objects that inform you of events in an app. <\/p><\/div><h3 id=\"2993748\">Adopt a Delegate Protocol<\/h3><div><p>Cocoa APIs often provide protocols that include delegate methods. When an event occurs—such as a user resizing a window—a class that&#x27;s a delegator will detect the event and call delegate methods on the class you specify as the delegate. Delegate methods can customize how an app responds to an event.<\/p><p>The example below adopts the <a class=\"symbol-name\" href=\"\/documentation\/appkit\/nswindowdelegate\"><code><span>NSWindow<wbr\/>Delegate<\/span><\/code><\/a> protocol and implements its <a class=\"symbol-name\" href=\"\/documentation\/appkit\/nswindowdelegate\/1419282-window\"><code><span>window(_:<wbr\/>will<wbr\/>Use<wbr\/>Full<wbr\/>Screen<wbr\/>Content<wbr\/>Size:)<\/span><\/code><\/a> method:<\/p><figure id=\"2993744\"><div class=\"formatted-content\"><div class=\"code-listing\"><pre class=\"code-source\" data-language=\"swift\"><code>class MyDelegate: NSObject, NSWindowDelegate {\n    func window(_ window: NSWindow, willUseFullScreenContentSize proposedSize: NSSize) -&gt; NSSize {\n        return proposedSize\n    }\n}\n<\/code><\/pre><\/div><\/div><\/figure><p><\/p><\/div><h3 id=\"2993745\">Check That Delegates Exist<\/h3><div><p>The Cocoa delegation pattern doesn&#x27;t require that delegates are instantiated. If you don&#x27;t need to respond to events, you don&#x27;t need to create a delegate. Before you call a method on an object&#x27;s delegate, make sure that the delegate isn&#x27;t <code class=\"code-voice\"><span>nil<\/span><\/code>.<\/p><p>The example below creates an <a class=\"symbol-name\" href=\"\/documentation\/appkit\/nswindow\"><code><span>NSWindow<\/span><\/code><\/a> and uses optional chaining to check that the window&#x27;s delegate exists before sending a message to the delegate.<\/p><figure id=\"2993746\"><div class=\"formatted-content\"><div class=\"code-listing\"><pre class=\"code-source\" data-language=\"swift\"><code>let myWindow = NSWindow(\n    contentRect: NSRect(x: 0, y: 0, width: 5120, height: 2880),\n    styleMask: .fullScreen,\n    backing: .buffered,\n    defer: false\n)\n\nmyWindow.delegate = MyDelegate()\nif let fullScreenSize = myWindow.delegate?.window(myWindow, willUseFullScreenContentSize: mySize) {\n    print(NSStringFromSize(fullScreenSize))\n}\n<\/code><\/pre><\/div><\/div><\/figure><p><\/p><\/div>","containingGroup":[{"id":2993722,"role":"task","paths":[],"symbols":[{"id":2990172,"role":"article","paths":["documentation\/swift\/cocoa_design_patterns\/using_key_value_observing_in_swift"],"abstract":"<div><p>Notify objects about changes to the properties of other objects.<\/p><\/div>","title":{"content":"Using Key-Value Observing in Swift"}},{"id":2993747,"role":"article","paths":["documentation\/swift\/cocoa_design_patterns\/using_delegates_to_customize_object_behavior"],"abstract":"<div><p>Respond to events on behalf of a delegator.<\/p><\/div>","title":{"content":"Using Delegates to Customize Object Behavior"}},{"id":2993743,"role":"article","paths":["documentation\/swift\/cocoa_design_patterns\/managing_a_shared_resource_using_a_singleton"],"abstract":"<div><p>Provide access to a shared resource using a single, shared class instance.<\/p><\/div>","title":{"content":"Managing a Shared Resource Using a Singleton"}},{"id":2993729,"role":"article","paths":["documentation\/swift\/cocoa_design_patterns\/about_imported_cocoa_error_parameters"],"abstract":"<div><p>Learn how Cocoa error parameters are converted to Swift throwing methods.<\/p><\/div>","title":{"content":"About Imported Cocoa Error Parameters"}},{"id":2993725,"role":"article","paths":["documentation\/swift\/cocoa_design_patterns\/handling_cocoa_errors_in_swift"],"abstract":"<div><p>Throw and catch errors that use Cocoa&#x27;s error types.<\/p><\/div>","title":{"content":"Handling Cocoa Errors in Swift"}}],"title":{"content":"Common Patterns"}}],"modules":[{"title":{"content":"Swift Standard Library"},"paths":["documentation\/swift"],"importStatement":"<import xml:space=\"preserve\"><keyWord>import<\/keyWord> Swift<\/import>","availability":[{"platform":"macOS","introduced":"10.10"},{"platform":"watchOS","introduced":"2.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"iOS","introduced":"8.0"}]}],"languages":["swift"],"variants":{"swift":{"paths":["documentation\/swift\/cocoa_design_patterns\/using_delegates_to_customize_object_behavior"]}},"pid":183535,"role":"article","language":"swift","paths":["documentation\/swift\/cocoa_design_patterns\/using_delegates_to_customize_object_behavior"],"hierarchy":[[{"id":3000738,"role":"collection","title":{"content":"Swift"},"paths":["documentation\/swift"]},{"id":2993726,"role":"collectionGroup","title":{"content":"Cocoa Design Patterns"},"paths":["documentation\/swift\/cocoa_design_patterns"]}]],"legalNotices":{"copyright":"Copyright &copy; 2018 Apple Inc. All rights reserved.","termsOfUse":"https:\/\/www.apple.com\/legal\/internet-services\/terms\/site.html","privacyPolicy":"https:\/\/www.apple.com\/privacy\/privacy-policy"}}</script></body></html>
