@@ -1,4 +1,3 @@
-﻿
 ﻿* [Framework Swift 2018.6.27 日本語訳](https://rusutikaa.github.io/developer.apple.com/documentation/swift.html)
 
 * [The Swift Programming Language 2018.3.29 日本語訳](https://rusutikaa.github.io/developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/index.html)
