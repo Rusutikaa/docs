@@ -12,8 +12,8 @@
     <title>Initialization &mdash; The Swift Programming Language (Swift 4.2)</title>
     
     <link rel="license" href="/LICENSE.txt" />
-    <link rel="stylesheet" media="all" href="../_static/stylesheets/application.css" />
-    <link rel="stylesheet" media="all" href="../_static/stylesheets/tspl.css" />
+    <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
+    <link rel="stylesheet" media="all" href="../static/stylesheets/tspl.css" />
     <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
@@ -896,7 +896,7 @@ init!失敗できるイニシャライザ
 これらの規則は、下の図で説明されます：
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/initializerDelegation01_2x.png" class="align-center" src="../_images/initializerDelegation01_2x.png" style="width: 448px;" />
+<img alt="../_images/initializerDelegation01_2x.png" class="align-center" src="../images/initializerDelegation01_2x.png" style="width: 448px;" />
 <p>Here, the superclass has a single designated initializer and two convenience initializers. One convenience initializer calls another convenience initializer, which in turn calls the single designated initializer. This satisfies rules 2 and 3 from above. The superclass does not itself have a further superclass, and so rule 1 does not apply.<br><span class="jpstr">
 ここでは、スーパークラスは一つの指定イニシャライザと２つの便宜イニシャライザを持ちます。１つの便宜イニシャライザは、別の便宜イニシャライザを呼びます、それは、今度は一つだけある指定イニシャライザを呼びます。これは、上記の規則２と３を満たします。このスーパークラスにはそれ自身には更にスーパークラスをもちません、なので規則１は適用されません。
 </span><!--end_jpstr-->
@@ -919,7 +919,7 @@ init!失敗できるイニシャライザ
 下の図は、４つのクラスのためのより複雑なクラス階層を示します。それは、この階層の中の指定イニシャライザが、どのようにクラス初期化のために「漏斗」地点の働きをして、この連鎖におけるクラス間の相互関係を単純化しているかを図示します：
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/initializerDelegation02_2x.png" class="align-center" src="../_images/initializerDelegation02_2x.png" style="width: 448px;" />
+<img alt="../_images/initializerDelegation02_2x.png" class="align-center" src="../images/initializerDelegation02_2x.png" style="width: 448px;" />
 </div>
 <div class="section" id="ID220">
 <h3>Two-Phase Initialization<a class="headerlink" href="#ID220" title="Permalink to this headline">¶</a><br><span class="jpstr">
@@ -1044,7 +1044,7 @@ init!失敗できるイニシャライザ
 第１段階がある仮定のサブクラスとスーパークラスのための初期化呼び出しを捜す方法がここにあります：
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/twoPhaseInitialization01_2x.png" class="align-center" src="../_images/twoPhaseInitialization01_2x.png" style="width: 448px;" />
+<img alt="../_images/twoPhaseInitialization01_2x.png" class="align-center" src="../images/twoPhaseInitialization01_2x.png" style="width: 448px;" />
 <p>In this example, initialization begins with a call to a convenience initializer on the subclass. This convenience initializer cannot yet modify any properties. It delegates across to a designated initializer from the same class.<br><span class="jpstr">
 この例では、初期化はサブクラス上での便宜イニシャライザへの呼び出しから始まります。この便宜イニシャライザは、まだどのプロパティも修正することはできません。それは、横の同じクラスの指定イニシャライザに向かって委任します。
 </span><!--end_jpstr-->
@@ -1065,7 +1065,7 @@ init!失敗できるイニシャライザ
 第２段階が同じ初期化呼び出しを捜す方法は、ここにあります：
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/twoPhaseInitialization02_2x.png" class="align-center" src="../_images/twoPhaseInitialization02_2x.png" style="width: 448px;" />
+<img alt="../_images/twoPhaseInitialization02_2x.png" class="align-center" src="../images/twoPhaseInitialization02_2x.png" style="width: 448px;" />
 <p>The superclass’s designated initializer now has an opportunity to customize the instance further (although it does not have to).<br><span class="jpstr">
 スーパークラスの指定イニシャライザは、現在、さらにインスタンスを好みに合わせて作り返る機会があります（しかしながら、それはそうしなければならない訳ではない）。
 </span><!--end_jpstr-->
@@ -1285,7 +1285,7 @@ Objective-Cでのサブクラスとは異なり、スウィフトのサブクラ
 下の図は、<code class="docutils literal notranslate"><span class="pre">Food</span></code>クラスのためのイニシャライザ連鎖を示します：
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/initializersExample01_2x.png" class="align-center" src="../_images/initializersExample01_2x.png" style="width: 482px;" />
+<img alt="../_images/initializersExample01_2x.png" class="align-center" src="../images/initializersExample01_2x.png" style="width: 482px;" />
 <p>Classes do not have a default memberwise initializer, and so the <code class="docutils literal notranslate"><span class="pre">Food</span></code> class provides a designated initializer that takes a single argument called <code class="docutils literal notranslate"><span class="pre">name</span></code>. This initializer can be used to create a new <code class="docutils literal notranslate"><span class="pre">Food</span></code> instance with a specific name:<br><span class="jpstr">
 これらのクラスには省略時のメンバー関連イニシャライザがありません、なので、<code class="docutils literal notranslate"><span class="pre">Food</span></code>クラスは<code class="docutils literal notranslate"><span class="pre">name</span></code>と呼ばれる１つの引数をとる指定イニシャライザを提供します。このイニシャライザが、ある特定の名前を使って新しい<code class="docutils literal notranslate"><span class="pre">Food</span></code>インスタンスをつくるために使われることができます：
 </span><!--end_jpstr-->
@@ -1325,7 +1325,7 @@ Objective-Cでのサブクラスとは異なり、スウィフトのサブクラ
 下の図は、<code class="docutils literal notranslate"><span class="pre">RecipeIngredient</span></code>クラスのためのイニシャライザ連鎖を示します：
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/initializersExample02_2x.png" class="align-center" src="../_images/initializersExample02_2x.png" style="width: 482px;" />
+<img alt="../_images/initializersExample02_2x.png" class="align-center" src="../images/initializersExample02_2x.png" style="width: 482px;" />
 <p>The <code class="docutils literal notranslate"><span class="pre">RecipeIngredient</span></code> class has a single designated initializer, <code class="docutils literal notranslate"><span class="pre">init(name:</span> <span class="pre">String,</span> <span class="pre">quantity:</span> <span class="pre">Int)</span></code>, which can be used to populate all of the properties of a new <code class="docutils literal notranslate"><span class="pre">RecipeIngredient</span></code> instance. This initializer starts by assigning the passed <code class="docutils literal notranslate"><span class="pre">quantity</span></code> argument to the <code class="docutils literal notranslate"><span class="pre">quantity</span></code> property, which is the only new property introduced by <code class="docutils literal notranslate"><span class="pre">RecipeIngredient</span></code>. After doing so, the initializer delegates up to the <code class="docutils literal notranslate"><span class="pre">init(name:</span> <span class="pre">String)</span></code> initializer of the <code class="docutils literal notranslate"><span class="pre">Food</span></code> class. This process satisfies safety check 1 from <a class="reference internal" href="#ID220"><span class="std std-ref">Two-Phase Initialization</span></a> above.<br><span class="jpstr">
 <code class="docutils literal notranslate"><span class="pre">RecipeIngredient</span></code>クラスは、一つの指定イニシャライザ、<code class="docutils literal notranslate"><span class="pre">init(name:</span> <span class="pre">String,</span> <span class="pre">quantity:</span> <span class="pre">Int)</span></code>を持ちます、それは、新しい<code class="docutils literal notranslate"><span class="pre">RecipeIngredient</span></code>インスタンスのプロパティの全てに何か入れるために使われることができます。このイニシャライザは、渡された<code class="docutils literal notranslate"><span class="pre">quantity</span></code>引数を<code class="docutils literal notranslate"><span class="pre">quantity</span></code>プロパティに代入することによって始めます、それは、<code class="docutils literal notranslate"><span class="pre">RecipeIngredient</span></code>によって導入される唯一の新しいプロパティです。そうした後に、イニシャライザは上って<code class="docutils literal notranslate"><span class="pre">Food</span></code>クラスの<code class="docutils literal notranslate"><span class="pre">init(name:</span> <span class="pre">String)</span></code>イニシャライザに委任します。この過程は、上記の<a class="reference internal" href="#ID220"><span class="std std-ref">２段階初期化</span></a>の安全点検１を満たします。
 </span><!--end_jpstr-->
@@ -1389,7 +1389,7 @@ Objective-Cでのサブクラスとは異なり、スウィフトのサブクラ
 下の図は、３つのクラス全てのために全体的なイニシャライザ連鎖を示します：
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/initializersExample03_2x.png" class="align-center" src="../_images/initializersExample03_2x.png" style="width: 482px;" />
+<img alt="../_images/initializersExample03_2x.png" class="align-center" src="../images/initializersExample03_2x.png" style="width: 482px;" />
 <p>You can use all three of the inherited initializers to create a new <code class="docutils literal notranslate"><span class="pre">ShoppingListItem</span></code> instance:<br><span class="jpstr">
 あなたは、継承されたイニシャライザの３つ全てを新しい<code class="docutils literal notranslate"><span class="pre">ShoppingListItem</span></code>インスタンスをつくるために使うことができます：
 </span><!--end_jpstr-->
@@ -1860,7 +1860,7 @@ init!失敗できるイニシャライザ<a class="headerlink" href="#ID230" tit
 下の例は<code class="docutils literal notranslate"><span class="pre">Chessboard</span></code>と呼ばれる構造体を定義します、それは、「チェス」ゲーム用の盤をモデル化します。チェスは、黒と白の正方形を互い違いに持つ、８×８マスの盤上で行われます。
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/chessBoard_2x.png" class="align-center" src="../_images/chessBoard_2x.png" style="width: 230px;" />
+<img alt="../_images/chessBoard_2x.png" class="align-center" src="../images/chessBoard_2x.png" style="width: 230px;" />
 <p>To represent this game board, the <code class="docutils literal notranslate"><span class="pre">Chessboard</span></code> structure has a single property called <code class="docutils literal notranslate"><span class="pre">boardColors</span></code>, which is an array of 64 <code class="docutils literal notranslate"><span class="pre">Bool</span></code> values. A value of <code class="docutils literal notranslate"><span class="pre">true</span></code> in the array represents a black square and a value of <code class="docutils literal notranslate"><span class="pre">false</span></code> represents a white square. The first item in the array represents the top left square on the board and the last item in the array represents the bottom right square on the board.<br><span class="jpstr">
 このゲーム板を表すために、<code class="docutils literal notranslate"><span class="pre">Chessboard</span></code>構造体は<code class="docutils literal notranslate"><span class="pre">boardColors</span></code>と呼ばれる１つのプロパティだけを持ちます、それは64個の<code class="docutils literal notranslate"><span class="pre">Bool</span></code>値の配列です。この配列の中の<code class="docutils literal notranslate"><span class="pre">true</span></code>の値は黒の正方形を表します、そして<code class="docutils literal notranslate"><span class="pre">false</span></code>の値は白い正方形を表します。配列の最初の項目は盤上の一番左上の正方形を表わします、そして配列の最後の項目は盤上の一番右下の正方形を表します。
 </span><!--end_jpstr-->
