@@ -1,0 +1,1345 @@
+
+
+<!DOCTYPE html>
+
+
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Apple Inc." />
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    
+    <title>Generics &mdash; The Swift Programming Language (Swift 4.2)</title>
+    
+    <link rel="license" href="/LICENSE.txt" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/application.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/tspl.css" />
+    <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
+    <link rel="mask-icon" href="/assets/images/icon-swift.svg" color="#F05339" /> 
+  </head>
+  <body>
+
+
+<nav role="navigation">
+    <header role="banner">
+      <h1 id="logo">
+        <a href="https://swift.org/" title="Swift.org" role="img" aria-label="Swift.org">
+          Swift.org
+        </a>
+      </h1>
+    </header>
+
+    <div id="menu-toggle" class="menu-toggle open"></div>
+
+    <h2>The Swift Programming Language<div>Swift 4.2</div></h2>
+
+    <ul>
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to Swift<br><span class="jpstr">
+スウィフトにようこそ
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="TheBasics.html">Language Guide<br><span class="jpstr">
+言語ガイド
+</span><!--end_jpstr-->
+</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="TheBasics.html">The Basics<br><span class="jpstr">
+基本
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BasicOperators.html">Basic Operators<br><span class="jpstr">
+基本の演算子
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="StringsAndCharacters.html">Strings and Characters<br><span class="jpstr">
+文字列と文字
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CollectionTypes.html">Collection Types<br><span class="jpstr">
+コレクション型
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ControlFlow.html">Control Flow<br><span class="jpstr">
+制御の流れ
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Functions.html">Functions<br><span class="jpstr">
+関数
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Closures.html">Closures<br><span class="jpstr">
+クロージャ
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Enumerations.html">Enumerations<br><span class="jpstr">
+列挙
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ClassesAndStructures.html">Structures and Classes<br><span class="jpstr">
+構造体とクラス
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Properties.html">Properties<br><span class="jpstr">
+プロパティ
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Methods.html">Methods<br><span class="jpstr">
+メソッド
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Subscripts.html">Subscripts<br><span class="jpstr">
+添え字
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Inheritance.html">Inheritance<br><span class="jpstr">
+継承
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Initialization.html">Initialization<br><span class="jpstr">
+初期化
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Deinitialization.html">Deinitialization<br><span class="jpstr">
+デイニシャライズ
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OptionalChaining.html">Optional Chaining<br><span class="jpstr">
+オプショナル連鎖
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ErrorHandling.html">Error Handling<br><span class="jpstr">
+エラーの処理
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TypeCasting.html">Type Casting<br><span class="jpstr">
+型キャスト
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NestedTypes.html">Nested Types<br><span class="jpstr">
+入れ子にされた型
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Extensions.html">Extensions<br><span class="jpstr">
+拡張
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Protocols.html">Protocols<br><span class="jpstr">
+プロトコル
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Generics<br><span class="jpstr">
+総称体
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AutomaticReferenceCounting.html">Automatic Reference Counting<br><span class="jpstr">
+自動参照カウント
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MemorySafety.html">Memory Safety<br><span class="jpstr">
+メモリ安全
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AccessControl.html">Access Control<br><span class="jpstr">
+アクセス制御
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AdvancedOperators.html">Advanced Operators<br><span class="jpstr">
+先進の演算子
+</span><!--end_jpstr-->
+</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ReferenceManual/AboutTheLanguageReference.html">Language Reference<br><span class="jpstr">
+言語リファレンス
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RevisionHistory/RevisionHistory.html">Revision History<br><span class="jpstr">
+改訂履歴
+</span><!--end_jpstr-->
+</a></li>
+</ul>
+
+    <li class="toctree-l1 return"><a class="reference internal" href="https://swift.org/">← Return to Swift.org</a></li>
+    </ul>
+</nav>
+
+
+
+
+<main role="main">
+    <article class="page">
+        <menu id="bashful" type="toolbar">
+          <div class="inner">
+            <menuitem id="jump_to" class="menu-bar-item closed">
+            <span id="jump_to_toggle">On This Page</span>
+            <div class="chevron">
+                <div class="chevy chevron-left"></div>
+                <div class="chevy chevron-right"></div>
+            </div>
+            <menu type="list" class="details">
+                <ul>
+<li><a class="reference internal" href="#">Generics<br><span class="jpstr">
+総称体
+</span><!--end_jpstr-->
+</a><ul>
+<li><a class="reference internal" href="#ID180">The Problem That Generics Solve<br><span class="jpstr">
+総称体が解決する問題
+</span><!--end_jpstr-->
+</a></li>
+<li><a class="reference internal" href="#ID181">Generic Functions<br><span class="jpstr">
+総称体関数
+</span><!--end_jpstr-->
+</a></li>
+<li><a class="reference internal" href="#ID182">Type Parameters<br><span class="jpstr">
+型パラメータ
+</span><!--end_jpstr-->
+</a></li>
+<li><a class="reference internal" href="#ID183">Naming Type Parameters<br><span class="jpstr">
+型パラメータに名をつける
+</span><!--end_jpstr-->
+</a></li>
+<li><a class="reference internal" href="#ID184">Generic Types<br><span class="jpstr">
+総称体型
+</span><!--end_jpstr-->
+</a></li>
+<li><a class="reference internal" href="#ID185">Extending a Generic Type<br><span class="jpstr">
+総称体型を拡張する
+</span><!--end_jpstr-->
+</a></li>
+<li><a class="reference internal" href="#ID186">Type Constraints<br><span class="jpstr">
+型制約
+</span><!--end_jpstr-->
+</a><ul>
+<li><a class="reference internal" href="#ID187">Type Constraint Syntax<br><span class="jpstr">
+型制約構文
+</span><!--end_jpstr-->
+</a></li>
+<li><a class="reference internal" href="#ID188">Type Constraints in Action<br><span class="jpstr">
+型制約の動作
+</span><!--end_jpstr-->
+</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ID189">Associated Types<br><span class="jpstr">
+関連型
+</span><!--end_jpstr-->
+</a><ul>
+<li><a class="reference internal" href="#ID190">Associated Types in Action<br><span class="jpstr">
+関連型の動作
+</span><!--end_jpstr-->
+</a></li>
+<li><a class="reference internal" href="#ID191">Extending an Existing Type to Specify an Associated Type<br><span class="jpstr">
+既存の型を拡張して関連型を指定する
+</span><!--end_jpstr-->
+</a></li>
+<li><a class="reference internal" href="#ID560">Adding Constraints to an Associated Type<br><span class="jpstr">
+関連型に制約を加える
+</span><!--end_jpstr-->
+</a></li>
+<li><a class="reference internal" href="#ID575">Using a Protocol in Its Associated Type’s Constraints<br><span class="jpstr">
+あるプロトコルをそれの関連型のもつ制約において使用する
+</span><!--end_jpstr-->
+</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ID192">Generic Where Clauses<br><span class="jpstr">
+総称体where節
+</span><!--end_jpstr-->
+</a></li>
+<li><a class="reference internal" href="#ID553">Extensions with a Generic Where Clause<br><span class="jpstr">
+総称体where節を持つ拡張
+</span><!--end_jpstr-->
+</a></li>
+<li><a class="reference internal" href="#ID557">Associated Types with a Generic Where Clause<br><span class="jpstr">
+総称体where節を持つ関連型
+</span><!--end_jpstr-->
+</a></li>
+<li><a class="reference internal" href="#ID558">Generic Subscripts<br><span class="jpstr">
+総称体添え字
+</span><!--end_jpstr-->
+</a></li>
+</ul>
+</li>
+</ul>
+
+            </menu>
+            </menuitem>
+          </div>
+        </menu>
+
+        
+  <div class="section" id="generics">
+<h1>Generics<a class="headerlink" href="#generics" title="Permalink to this headline">¶</a><br><span class="jpstr">
+総称体<a class="headerlink" href="#generics" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h1>
+<p><em>Generic code</em> enables you to write flexible, reusable functions and types that can work with any type, subject to requirements that you define. You can write code that avoids duplication and expresses its intent in a clear, abstracted manner.<br><span class="jpstr">
+<em>総称体コード</em>は、あなたに柔軟な、再使用できる関数と型を書くことを可能にします、それは、あなたが定義する要件を満たした場合に限り、あらゆる型を扱うことができます。あなたは、重複を避けて、明快な、抽象化された手法で、その意図を表すコードを書くことができます。
+</span><!--end_jpstr-->
+</p>
+<p>Generics are one of the most powerful features of Swift, and much of the Swift standard library is built with generic code. In fact, you’ve been using generics throughout the <em>Language Guide</em>, even if you didn’t realize it. For example, Swift’s <code class="docutils literal notranslate"><span class="pre">Array</span></code> and <code class="docutils literal notranslate"><span class="pre">Dictionary</span></code> types are both generic collections. You can create an array that holds <code class="docutils literal notranslate"><span class="pre">Int</span></code> values, or an array that holds <code class="docutils literal notranslate"><span class="pre">String</span></code> values, or indeed an array for any other type that can be created in Swift. Similarly, you can create a dictionary to store values of any specified type, and there are no limitations on what that type can be.<br><span class="jpstr">
+総称体は、スウィフトの最も強力な特徴のうちの１つです、そして、多くのスウィフト標準ライブラリは総称体コードで組み立てられます。実際、たとえあなたがそれを実感しなかったとしても、あなたはこの<em>言語ガイド</em>を通して総称体を使用していました。例えば、スウィフトの<code class="docutils literal notranslate"><span class="pre">Array</span></code>と<code class="docutils literal notranslate"><span class="pre">Dictionary</span></code>型は、両方とも総称体コレクションです。あなたは、<code class="docutils literal notranslate"><span class="pre">Int</span></code>値を保持する配列、または<code class="docutils literal notranslate"><span class="pre">String</span></code>値を保持する配列、またはそれどころかスウィフトで作成可能なあらゆる他の型のためにも配列をつくることができます。同じように、あなたはどんな指定された型の値たちでも保管する辞書を作成することができます、そしてその型が何であることができるか制限がありません。
+</span><!--end_jpstr-->
+</p>
+<div class="section" id="ID180">
+<h2>The Problem That Generics Solve<a class="headerlink" href="#ID180" title="Permalink to this headline">¶</a><br><span class="jpstr">
+総称体が解決する問題<a class="headerlink" href="#ID180" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h2>
+<p>Here’s a standard, nongeneric function called <code class="docutils literal notranslate"><span class="pre">swapTwoInts(_:_:)</span></code>, which swaps two <code class="docutils literal notranslate"><span class="pre">Int</span></code> values:<br><span class="jpstr">
+ここに、通常の、非総称体の<code class="docutils literal notranslate"><span class="pre">swapTwoInts(_:_:)</span></code>と呼ばれる関数があります、それは、２つの<code class="docutils literal notranslate"><span class="pre">Int</span></code>値を交換します：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">func</span> <span class="nv">swapTwoInts</span>(<span class="k">_</span> <span class="nv">a</span>: <span class="k">inout</span> <span class="nc">Int</span>, <span class="k">_</span> <span class="nv">b</span>: <span class="k">inout</span> <span class="nc">Int</span>) {
+</li><li>    <span class="k">let</span> <span class="nv">temporaryA</span> = <span class="nv">a</span>
+</li><li>    <span class="nv">a</span> = <span class="nv">b</span>
+</li><li>    <span class="nv">b</span> = <span class="nv">temporaryA</span>
+</li><li>}
+</li></ol></div></div></div>
+<p>This function makes use of in-out parameters to swap the values of <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code>, as described in <a class="reference internal" href="Functions.html#ID173"><span class="std std-ref">In-Out Parameters</span></a>.<br><span class="jpstr">
+この関数は、値<code class="docutils literal notranslate"><span class="pre">a</span></code>と<code class="docutils literal notranslate"><span class="pre">b</span></code>を交換するためにin-outパラメータの利用を行います、<a class="reference internal" href="Functions.html#ID173"><span class="std std-ref">In-Outパラメータ</span></a>で記述されるように。
+</span><!--end_jpstr-->
+</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">swapTwoInts(_:_:)</span></code> function swaps the original value of <code class="docutils literal notranslate"><span class="pre">b</span></code> into <code class="docutils literal notranslate"><span class="pre">a</span></code>, and the original value of <code class="docutils literal notranslate"><span class="pre">a</span></code> into <code class="docutils literal notranslate"><span class="pre">b</span></code>. You can call this function to swap the values in two <code class="docutils literal notranslate"><span class="pre">Int</span></code> variables:<br><span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">swapTwoInts(_:_:)</span></code>関数は、<code class="docutils literal notranslate"><span class="pre">b</span></code>の元々の値を<code class="docutils literal notranslate"><span class="pre">a</span></code>の中へ、そして<code class="docutils literal notranslate"><span class="pre">a</span></code>の元々の値を<code class="docutils literal notranslate"><span class="pre">b</span></code>の中へと交換します、そして、最初の値のにb。あなたは、２つの<code class="docutils literal notranslate"><span class="pre">Int</span></code>変数の値を交換するためにこの関数を呼ぶことができます：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">var</span> <span class="nv">someInt</span> = <span class="m">3</span>
+</li><li><span class="k">var</span> <span class="nv">anotherInt</span> = <span class="m">107</span>
+</li><li><span class="nv">swapTwoInts</span>(&amp;<span class="nv">someInt</span>, &amp;<span class="nv">anotherInt</span>)
+</li><li><span class="nv">print</span>(<span class="s">&quot;someInt is now </span>\<span class="p">(</span><span class="nv">someInt</span><span class="p">)</span><span class="s">, and anotherInt is now </span>\<span class="p">(</span><span class="nv">anotherInt</span><span class="p">)</span><span class="s">&quot;</span>)
+</li><li><span class="c">// Prints &quot;someInt is now 107, and anotherInt is now 3&quot;&nbsp;<span class="jpstr">（「someIntは今は107、anotherIntは今は３です」を出力します）</span><!--end_jpstr-->
+</span>
+</li></ol></div></div></div>
+<p>The <code class="docutils literal notranslate"><span class="pre">swapTwoInts(_:_:)</span></code> function is useful, but it can only be used with <code class="docutils literal notranslate"><span class="pre">Int</span></code> values. If you want to swap two <code class="docutils literal notranslate"><span class="pre">String</span></code> values, or two <code class="docutils literal notranslate"><span class="pre">Double</span></code> values, you have to write more functions, such as the <code class="docutils literal notranslate"><span class="pre">swapTwoStrings(_:_:)</span></code> and <code class="docutils literal notranslate"><span class="pre">swapTwoDoubles(_:_:)</span></code> functions shown below:<br><span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">swapTwoInts(_:_:)</span></code>関数は役に立ちます、しかし、それは<code class="docutils literal notranslate"><span class="pre">Int</span></code>値で使われることができるだけです。あなたが２つの<code class="docutils literal notranslate"><span class="pre">String</span></code>値、または２つの<code class="docutils literal notranslate"><span class="pre">Double</span></code>の値を交換したいならば、あなたはより多くの関数を書かなければなりません、例えば以下で示される<code class="docutils literal notranslate"><span class="pre">swapTwoStrings(_:_:)</span></code>と<code class="docutils literal notranslate"><span class="pre">swapTwoDoubles(_:_:)</span></code>関数のように：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">func</span> <span class="nv">swapTwoStrings</span>(<span class="k">_</span> <span class="nv">a</span>: <span class="k">inout</span> <span class="nc">String</span>, <span class="k">_</span> <span class="nv">b</span>: <span class="k">inout</span> <span class="nc">String</span>) {
+</li><li>    <span class="k">let</span> <span class="nv">temporaryA</span> = <span class="nv">a</span>
+</li><li>    <span class="nv">a</span> = <span class="nv">b</span>
+</li><li>    <span class="nv">b</span> = <span class="nv">temporaryA</span>
+</li><li>}
+</li><li>
+</li><li><span class="k">func</span> <span class="nv">swapTwoDoubles</span>(<span class="k">_</span> <span class="nv">a</span>: <span class="k">inout</span> <span class="nc">Double</span>, <span class="k">_</span> <span class="nv">b</span>: <span class="k">inout</span> <span class="nc">Double</span>) {
+</li><li>    <span class="k">let</span> <span class="nv">temporaryA</span> = <span class="nv">a</span>
+</li><li>    <span class="nv">a</span> = <span class="nv">b</span>
+</li><li>    <span class="nv">b</span> = <span class="nv">temporaryA</span>
+</li><li>}
+</li></ol></div></div></div>
+<p>You may have noticed that the bodies of the <code class="docutils literal notranslate"><span class="pre">swapTwoInts(_:_:)</span></code>, <code class="docutils literal notranslate"><span class="pre">swapTwoStrings(_:_:)</span></code>, and <code class="docutils literal notranslate"><span class="pre">swapTwoDoubles(_:_:)</span></code> functions are identical. The only difference is the type of the values that they accept (<code class="docutils literal notranslate"><span class="pre">Int</span></code>, <code class="docutils literal notranslate"><span class="pre">String</span></code>, and <code class="docutils literal notranslate"><span class="pre">Double</span></code>).<br><span class="jpstr">
+あなたは、<code class="docutils literal notranslate"><span class="pre">swapTwoInts(_:_:)</span></code>、<code class="docutils literal notranslate"><span class="pre">swapTwoStrings(_:_:)</span></code>、そして<code class="docutils literal notranslate"><span class="pre">swapTwoDoubles(_:_:)</span></code>関数の本文が同一であると気がついたかもしれません。唯一の違いは、それらが受け入れる値の型（<code class="docutils literal notranslate"><span class="pre">Int</span></code>、<code class="docutils literal notranslate"><span class="pre">String</span></code>、そして<code class="docutils literal notranslate"><span class="pre">Double</span></code>）です。
+</span><!--end_jpstr-->
+</p>
+<p>It’s more useful, and considerably more flexible, to write a single function that swaps two values of <em>any</em> type. Generic code enables you to write such a function. (A generic version of these functions is defined below.)<br><span class="jpstr">
+さらに役に立ち、そしてよりずっと柔軟であるのは、<em>あらゆる</em>型の２つの値を交換できるただ１つの関数を書くことです。総称体コードは、あなたにこのような関数を書くことを可能にします。（これらの関数の総称体版は、下で定義されます）。
+</span><!--end_jpstr-->
+</p>
+<div class="admonition note">
+<p class="first admonition-title">Note<br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+<p class="last">In all three functions, the types of <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> must be the same. If <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> aren’t of the same type, it isn’t possible to swap their values. Swift is a type-safe language, and doesn’t allow (for example) a variable of type <code class="docutils literal notranslate"><span class="pre">String</span></code> and a variable of type <code class="docutils literal notranslate"><span class="pre">Double</span></code> to swap values with each other. Attempting to do so results in a compile-time error.<br><span class="jpstr">
+３つの関数すべてにおいて、<code class="docutils literal notranslate"><span class="pre">a</span></code>と<code class="docutils literal notranslate"><span class="pre">b</span></code>の型は同じでなければなりません。<code class="docutils literal notranslate"><span class="pre">a</span></code>と<code class="docutils literal notranslate"><span class="pre">b</span></code>が同じ型でないならば、それらの値を交換することは可能ではありません。スウィフトは型安全な言語です、それで（例えば）型<code class="docutils literal notranslate"><span class="pre">String</span></code>の変数と型<code class="docutils literal notranslate"><span class="pre">Double</span></code>の変数にお互いに値を交換させることをしません。そうしようとすることは、それでコンパイル時エラーという結果となります。
+</span><!--end_jpstr-->
+</p>
+</div>
+</div>
+<div class="section" id="ID181">
+<h2>Generic Functions<a class="headerlink" href="#ID181" title="Permalink to this headline">¶</a><br><span class="jpstr">
+総称体関数<a class="headerlink" href="#ID181" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h2>
+<p><em>Generic functions</em> can work with any type. Here’s a generic version of the <code class="docutils literal notranslate"><span class="pre">swapTwoInts(_:_:)</span></code> function from above, called <code class="docutils literal notranslate"><span class="pre">swapTwoValues(_:_:)</span></code>:<br><span class="jpstr">
+<em>総称体関数</em>は、どんな型でも扱うことができます。ここに、上記の<code class="docutils literal notranslate"><span class="pre">swapTwoInts(_:_:)</span></code>関数の総称体版があります、それは<code class="docutils literal notranslate"><span class="pre">swapTwoValues(_:_:)</span></code>と呼ばれます：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">func</span> <span class="nv">swapTwoValues</span>&lt;<span class="nv">T</span>&gt;(<span class="k">_</span> <span class="nv">a</span>: <span class="k">inout</span> <span class="nc">T</span>, <span class="k">_</span> <span class="nv">b</span>: <span class="k">inout</span> <span class="nc">T</span>) {
+</li><li>    <span class="k">let</span> <span class="nv">temporaryA</span> = <span class="nv">a</span>
+</li><li>    <span class="nv">a</span> = <span class="nv">b</span>
+</li><li>    <span class="nv">b</span> = <span class="nv">temporaryA</span>
+</li><li>}
+</li></ol></div></div></div>
+<p>The body of the <code class="docutils literal notranslate"><span class="pre">swapTwoValues(_:_:)</span></code> function is identical to the body of the <code class="docutils literal notranslate"><span class="pre">swapTwoInts(_:_:)</span></code> function. However, the first line of <code class="docutils literal notranslate"><span class="pre">swapTwoValues(_:_:)</span></code> is slightly different from <code class="docutils literal notranslate"><span class="pre">swapTwoInts(_:_:)</span></code>. Here’s how the first lines compare:<br><span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">swapTwoValues(_:_:)</span></code>関数の本文は、<code class="docutils literal notranslate"><span class="pre">swapTwoInts(_:_:)</span></code>関数の本文と同一です。しかし、<code class="docutils literal notranslate"><span class="pre">swapTwoValues(_:_:)</span></code>の最初の行は、わずかに<code class="docutils literal notranslate"><span class="pre">swapTwoInts(_:_:)</span></code>と異なります。最初の行がどのくらい似ているかが、ここにあります：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">func</span> <span class="nv">swapTwoInts</span>(<span class="k">_</span> <span class="nv">a</span>: <span class="k">inout</span> <span class="nc">Int</span>, <span class="k">_</span> <span class="nv">b</span>: <span class="k">inout</span> <span class="nc">Int</span>)
+</li><li><span class="k">func</span> <span class="nv">swapTwoValues</span>&lt;<span class="nv">T</span>&gt;(<span class="k">_</span> <span class="nv">a</span>: <span class="k">inout</span> <span class="nc">T</span>, <span class="k">_</span> <span class="nv">b</span>: <span class="k">inout</span> <span class="nc">T</span>)
+</li></ol></div></div></div>
+<p>The generic version of the function uses a <em>placeholder</em> type name (called <code class="docutils literal notranslate"><span class="pre">T</span></code>, in this case) instead of an <em>actual</em> type name (such as <code class="docutils literal notranslate"><span class="pre">Int</span></code>, <code class="docutils literal notranslate"><span class="pre">String</span></code>, or <code class="docutils literal notranslate"><span class="pre">Double</span></code>). The placeholder type name doesn’t say anything about what <code class="docutils literal notranslate"><span class="pre">T</span></code> must be, but it <em>does</em> say that both <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> must be of the same type <code class="docutils literal notranslate"><span class="pre">T</span></code>, whatever <code class="docutils literal notranslate"><span class="pre">T</span></code> represents. The actual type to use in place of <code class="docutils literal notranslate"><span class="pre">T</span></code> is determined each time the <code class="docutils literal notranslate"><span class="pre">swapTwoValues(_:_:)</span></code> function is called.<br><span class="jpstr">
+この関数の総称体版は、<em>プレースホルダ</em>型名（この場合、<code class="docutils literal notranslate"><span class="pre">T</span></code>と呼ばれるもの）を<em>実際の</em>型名（例えば<code class="docutils literal notranslate"><span class="pre">Int</span></code>、<code class="docutils literal notranslate"><span class="pre">String</span></code>、または<code class="docutils literal notranslate"><span class="pre">Double</span></code>）の代わりに使用します。プレースホルダ型名は<code class="docutils literal notranslate"><span class="pre">T</span></code>が何でなければならないかについて何も言いません、しかし、<code class="docutils literal notranslate"><span class="pre">a</span></code>と<code class="docutils literal notranslate"><span class="pre">b</span></code>の両方ともが同じ型<code class="docutils literal notranslate"><span class="pre">T</span></code>でなければならないと<em>述べます</em>、<code class="docutils literal notranslate"><span class="pre">T</span></code>が表わすものが何であれ。<code class="docutils literal notranslate"><span class="pre">T</span></code>の代わりに実際に使われる型は、<code class="docutils literal notranslate"><span class="pre">swapTwoValues(_:_:)</span></code>関数が呼ばれるたびに決定されます。
+</span><!--end_jpstr-->
+</p>
+<p>The other difference between a generic function and a nongeneric function is that the generic function’s name (<code class="docutils literal notranslate"><span class="pre">swapTwoValues(_:_:)</span></code>) is followed by the placeholder type name (<code class="docutils literal notranslate"><span class="pre">T</span></code>) inside angle brackets (<code class="docutils literal notranslate"><span class="pre">&lt;T&gt;</span></code>). The brackets tell Swift that <code class="docutils literal notranslate"><span class="pre">T</span></code> is a placeholder type name within the <code class="docutils literal notranslate"><span class="pre">swapTwoValues(_:_:)</span></code> function definition. Because <code class="docutils literal notranslate"><span class="pre">T</span></code> is a placeholder, Swift doesn’t look for an actual type called <code class="docutils literal notranslate"><span class="pre">T</span></code>.<br><span class="jpstr">
+総称体関数と非総称体関数の間の他の違いは、総称体関数の名前（<code class="docutils literal notranslate"><span class="pre">swapTwoValues(_:_:)</span></code>）は、後ろにプレースホルダ型名（<code class="docutils literal notranslate"><span class="pre">T</span></code>）が山形括弧内部（<code class="docutils literal notranslate"><span class="pre">&lt;T&gt;</span></code>）で続くということです。この括弧は、<code class="docutils literal notranslate"><span class="pre">T</span></code>が<code class="docutils literal notranslate"><span class="pre">swapTwoValues(_:_:)</span></code>関数定義内のプレースホルダ型名であるとスウィフトに教えます。<code class="docutils literal notranslate"><span class="pre">T</span></code>がプレースホルダであるので、スウィフトは<code class="docutils literal notranslate"><span class="pre">T</span></code>と呼ばれる実際の型を捜しません。
+</span><!--end_jpstr-->
+</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">swapTwoValues(_:_:)</span></code> function can now be called in the same way as <code class="docutils literal notranslate"><span class="pre">swapTwoInts</span></code>, except that it can be passed two values of <em>any</em> type, as long as both of those values are of the same type as each other. Each time <code class="docutils literal notranslate"><span class="pre">swapTwoValues(_:_:)</span></code> is called, the type to use for <code class="docutils literal notranslate"><span class="pre">T</span></code> is inferred from the types of values passed to the function.<br><span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">swapTwoValues(_:_:)</span></code>関数は現在<code class="docutils literal notranslate"><span class="pre">swapTwoInts</span></code>と同じやり方で呼ばれることができます、しかしそれが<em>あらゆる</em>型の２つの値を渡されることが、それらの値の両方が互いに同じ型である限り可能であるのを除きます。<code class="docutils literal notranslate"><span class="pre">swapTwoValues(_:_:)</span></code>が呼ばれるたびに、<code class="docutils literal notranslate"><span class="pre">T</span></code>のために使われる型は関数に渡される値の型から推論されます。
+</span><!--end_jpstr-->
+</p>
+<p>In the two examples below, <code class="docutils literal notranslate"><span class="pre">T</span></code> is inferred to be <code class="docutils literal notranslate"><span class="pre">Int</span></code> and <code class="docutils literal notranslate"><span class="pre">String</span></code> respectively:<br><span class="jpstr">
+下の２つの例で、<code class="docutils literal notranslate"><span class="pre">T</span></code>はそれぞれ<code class="docutils literal notranslate"><span class="pre">Int</span></code>と<code class="docutils literal notranslate"><span class="pre">Stringで</span></code>あると推測されます：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">var</span> <span class="nv">someInt</span> = <span class="m">3</span>
+</li><li><span class="k">var</span> <span class="nv">anotherInt</span> = <span class="m">107</span>
+</li><li><span class="nv">swapTwoValues</span>(&amp;<span class="nv">someInt</span>, &amp;<span class="nv">anotherInt</span>)
+</li><li><span class="c">// someInt is now 107, and anotherInt is now 3&nbsp;<span class="jpstr">（someIntは今は107、anotherIntは今は３です）</span><!--end_jpstr-->
+</span>
+</li><li>
+</li><li><span class="k">var</span> <span class="nv">someString</span> = <span class="s">&quot;hello&quot;</span>
+</li><li><span class="k">var</span> <span class="nv">anotherString</span> = <span class="s">&quot;world&quot;</span>
+</li><li><span class="nv">swapTwoValues</span>(&amp;<span class="nv">someString</span>, &amp;<span class="nv">anotherString</span>)
+</li><li><span class="c">// someString is now &quot;world&quot;, and anotherString is now &quot;hello&quot;&nbsp;<span class="jpstr">（someStringは今は「world」、anotherStringは今は「hello」です）</span><!--end_jpstr-->
+</span>
+</li></ol></div></div></div>
+<div class="admonition note">
+<p class="first admonition-title">Note<br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+<p class="last">The <code class="docutils literal notranslate"><span class="pre">swapTwoValues(_:_:)</span></code> function defined above is inspired by a generic function called <code class="docutils literal notranslate"><span class="pre">swap</span></code>, which is part of the Swift standard library, and is automatically made available for you to use in your apps. If you need the behavior of the <code class="docutils literal notranslate"><span class="pre">swapTwoValues(_:_:)</span></code> function in your own code, you can use Swift’s existing <code class="docutils literal notranslate"><span class="pre">swap(_:_:)</span></code> function rather than providing your own implementation.<br><span class="jpstr">
+上で定義される<code class="docutils literal notranslate"><span class="pre">swapTwoValues(_:_:)</span></code>関数は<code class="docutils literal notranslate"><span class="pre">swap</span></code>と呼ばれる総称体関数に着想を得たものです、それは、スウィフト標準ライブラリの一部であって、あなたのアプリにおいて自動的にあなたが使うことが可能にされます。あなたがあなた自身のコードにおいて<code class="docutils literal notranslate"><span class="pre">swapTwoValues(_:_:)</span></code>関数の挙動を必要とするならば、あなたはあなた自身の実施を提供するのではなくスウィフトの既存の<code class="docutils literal notranslate"><span class="pre">swap(_:_:)</span></code>関数を使用することができます。
+</span><!--end_jpstr-->
+</p>
+</div>
+</div>
+<div class="section" id="ID182">
+<h2>Type Parameters<a class="headerlink" href="#ID182" title="Permalink to this headline">¶</a><br><span class="jpstr">
+型パラメータ<a class="headerlink" href="#ID182" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h2>
+<p>In the <code class="docutils literal notranslate"><span class="pre">swapTwoValues(_:_:)</span></code> example above, the placeholder type <code class="docutils literal notranslate"><span class="pre">T</span></code> is an example of a <em>type parameter</em>. Type parameters specify and name a placeholder type, and are written immediately after the function’s name, between a pair of matching angle brackets (such as <code class="docutils literal notranslate"><span class="pre">&lt;T&gt;</span></code>).<br><span class="jpstr">
+上の<code class="docutils literal notranslate"><span class="pre">swapTwoValues(_:_:)</span></code>例で、プレースホルダ型<code class="docutils literal notranslate"><span class="pre">T</span></code>は<em>型パラメータ</em>の一例です。型パラメータは、プレースホルダ型を指定して命名します、そして関数の名前の直後に一対の山形括弧の間で書かれます（例えば<code class="docutils literal notranslate"><span class="pre">&lt;T&gt;</span></code>）。
+</span><!--end_jpstr-->
+</p>
+<p>Once you specify a type parameter, you can use it to define the type of a function’s parameters (such as the <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> parameters of the <code class="docutils literal notranslate"><span class="pre">swapTwoValues(_:_:)</span></code> function), or as the function’s return type, or as a type annotation within the body of the function. In each case, the type parameter is replaced with an <em>actual</em> type whenever the function is called. (In the <code class="docutils literal notranslate"><span class="pre">swapTwoValues(_:_:)</span></code> example above, <code class="docutils literal notranslate"><span class="pre">T</span></code> was replaced with <code class="docutils literal notranslate"><span class="pre">Int</span></code> the first time the function was called, and was replaced with <code class="docutils literal notranslate"><span class="pre">String</span></code> the second time it was called.)<br><span class="jpstr">
+一旦あなたが型パラメータを指定するならば、あなたはそれを、関数のパラメータの型を定義するために（例えば、 <code class="docutils literal notranslate"><span class="pre">swapTwoValues(_:_:)</span></code>関数の<code class="docutils literal notranslate"><span class="pre">a</span></code>と<code class="docutils literal notranslate"><span class="pre">b</span></code>パラメータのように）、または関数の戻り型として、あるいは関数の本文内の型注釈として使用することができます。それぞれの場合において、型パラメータは、その関数が呼ばれるときはいつでも<em>実際の</em>型と取り替えられます。（上の<code class="docutils literal notranslate"><span class="pre">swapTwoValues(_:_:)</span></code>の例では、<code class="docutils literal notranslate"><span class="pre">T</span></code>は関数が呼ばれた最初の時に<code class="docutils literal notranslate"><span class="pre">Int</span></code>と取り替えられて、それが呼ばれた２番目の時に<code class="docutils literal notranslate"><span class="pre">String</span></code>と取り替えられました）。
+</span><!--end_jpstr-->
+</p>
+<p>You can provide more than one type parameter by writing multiple type parameter names within the angle brackets, separated by commas.<br><span class="jpstr">
+あなたは、山形括弧内に複数の型パラメータ名をコンマで区切って書くことによって、複数の型パラメータを提供することができます。
+</span><!--end_jpstr-->
+</p>
+</div>
+<div class="section" id="ID183">
+<h2>Naming Type Parameters<a class="headerlink" href="#ID183" title="Permalink to this headline">¶</a><br><span class="jpstr">
+型パラメータに名をつける<a class="headerlink" href="#ID183" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h2>
+<p>In most cases, type parameters have descriptive names, such as <code class="docutils literal notranslate"><span class="pre">Key</span></code> and <code class="docutils literal notranslate"><span class="pre">Value</span></code> in <code class="docutils literal notranslate"><span class="pre">Dictionary&lt;Key,</span> <span class="pre">Value&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">Element</span></code> in <code class="docutils literal notranslate"><span class="pre">Array&lt;Element&gt;</span></code>, which tells the reader about the relationship between the type parameter and the generic type or function it’s used in. However, when there isn’t a meaningful relationship between them, it’s traditional to name them using single letters such as <code class="docutils literal notranslate"><span class="pre">T</span></code>, <code class="docutils literal notranslate"><span class="pre">U</span></code>, and <code class="docutils literal notranslate"><span class="pre">V</span></code>, such as <code class="docutils literal notranslate"><span class="pre">T</span></code> in the <code class="docutils literal notranslate"><span class="pre">swapTwoValues(_:_:)</span></code> function above.<br><span class="jpstr">
+ほとんどの場合には、型パラメータは描写的な名前を持ちます、たとえば<code class="docutils literal notranslate"><span class="pre">Dictionary&lt;Key,</span> <span class="pre">Value&gt;</span></code>における<code class="docutils literal notranslate"><span class="pre">Key</span></code>と<code class="docutils literal notranslate"><span class="pre">Value</span></code>および<code class="docutils literal notranslate"><span class="pre">Array&lt;Element&gt;</span></code>における<code class="docutils literal notranslate"><span class="pre">Element</span></code>など、それは読み手に型パラメータとそれがその中で使われる総称体型や関数との関係について語ります。しかしながら、意味がある関係がそれらの間に無かった時、<code class="docutils literal notranslate"><span class="pre">T</span></code>、<code class="docutils literal notranslate"><span class="pre">U</span></code>、そして<code class="docutils literal notranslate"><span class="pre">V</span></code>などの一文字を使ってそれらに名前をつけるのが伝統的です、例えば上の<code class="docutils literal notranslate"><span class="pre">swapTwoValues(_:_:)</span></code>関数における<code class="docutils literal notranslate"><span class="pre">T</span></code>のように。
+</span><!--end_jpstr-->
+</p>
+<div class="admonition note">
+<p class="first admonition-title">Note<br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+<p class="last">Always give type parameters upper camel case names (such as <code class="docutils literal notranslate"><span class="pre">T</span></code> and <code class="docutils literal notranslate"><span class="pre">MyTypeParameter</span></code>) to indicate that they’re a placeholder for a <em>type</em>, not a value.<br><span class="jpstr">
+それらが、値ではなく、<em>型</em>のためのプレースホルダであることを示すために、型パラメータに常にアッパーキャメルケース名（例えば<code class="docutils literal notranslate"><span class="pre">T</span></code>や<code class="docutils literal notranslate"><span class="pre">MyTypeParameter</span></code>など）を与えてください。
+</span><!--end_jpstr-->
+</p>
+</div>
+</div>
+<div class="section" id="ID184">
+<h2>Generic Types<a class="headerlink" href="#ID184" title="Permalink to this headline">¶</a><br><span class="jpstr">
+総称体型<a class="headerlink" href="#ID184" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h2>
+<p>In addition to generic functions, Swift enables you to define your own <em>generic types</em>. These are custom classes, structures, and enumerations that can work with <em>any</em> type, in a similar way to <code class="docutils literal notranslate"><span class="pre">Array</span></code> and <code class="docutils literal notranslate"><span class="pre">Dictionary</span></code>.<br><span class="jpstr">
+総称体関数に加えて、スウィフトはあなたに独自の<em>総称体型</em>を定義することを可能にします。これらは、<em>Array</em>と<code class="docutils literal notranslate"><span class="pre">Dictionary</span></code>に類似した方法で、<code class="docutils literal notranslate"><span class="pre">あらゆる</span></code>型で扱うことができる特注のクラス、構造体、そして列挙があります。
+</span><!--end_jpstr-->
+</p>
+<p>This section shows you how to write a generic collection type called <code class="docutils literal notranslate"><span class="pre">Stack</span></code>. A stack is an ordered set of values, similar to an array, but with a more restricted set of operations than Swift’s <code class="docutils literal notranslate"><span class="pre">Array</span></code> type. An array allows new items to be inserted and removed at any location in the array. A stack, however, allows new items to be appended only to the end of the collection (known as <em>pushing</em> a new value on to the stack). Similarly, a stack allows items to be removed only from the end of the collection (known as <em>popping</em> a value off the stack).<br><span class="jpstr">
+この節は、あなたに<code class="docutils literal notranslate"><span class="pre">Stack</span></code>と呼ばれる総称体コレクション型を書く方法を示します。スタックは、順序付けられたいくつかの値の集合であり、配列に似ています、しかしスウィフトの<code class="docutils literal notranslate"><span class="pre">Array</span></code>型より制限された操作具合を持つものです。配列は、新しい項目を差し込まれたり取り外除かれることがその配列のどんな場所においても許されます。スタックは、しかし、新しい項目をコレクション終わりにのみ追加されることが許されます（新しい値をスタックに<em>プッシュ</em>するとして知られます）。同じように、スタックは項目をコレクションの終わりからだけ取り除かれることが許されます（値をスタックから<em>ポップ</em>するとして知られます）。
+</span><!--end_jpstr-->
+</p>
+<div class="admonition note">
+<p class="first admonition-title">Note<br><span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+<p class="last">The concept of a stack is used by the <code class="docutils literal notranslate"><span class="pre">UINavigationController</span></code> class to model the view controllers in its navigation hierarchy. You call the <code class="docutils literal notranslate"><span class="pre">UINavigationController</span></code> class <code class="docutils literal notranslate"><span class="pre">pushViewController(_:animated:)</span></code> method to add (or push) a view controller on to the navigation stack, and its <code class="docutils literal notranslate"><span class="pre">popViewControllerAnimated(_:)</span></code> method to remove (or pop) a view controller from the navigation stack. A stack is a useful collection model whenever you need a strict “last in, first out” approach to managing a collection.<br><span class="jpstr">
+スタックの概念は、<code class="docutils literal notranslate"><span class="pre">UINavigationController</span></code>クラスで使用されて、そのナビゲーション階層においてビュー・コントローラをモデル化します。あなたは<code class="docutils literal notranslate"><span class="pre">UINavigationController</span></code>クラスの<code class="docutils literal notranslate"><span class="pre">pushViewController(_:animated:)</span></code>メソッドをナビゲーション・スタックにビュー・コントローラを加える（またはプッシュする）ために、そしてそれの<code class="docutils literal notranslate"><span class="pre">popViewControllerAnimated(_:)</span></code>メソッドをナビゲーション・スタックからビュー・コントローラを取り除くために呼びます。スタックは、厳格に「最後に入れたものが、最初に取り出される」取り組みをコレクションを管理するために必要とするときはいつでも、役に立つコレクション・モデルです。
+</span><!--end_jpstr-->
+</p>
+</div>
+<p>The illustration below shows the push and pop behavior for a stack:<br><span class="jpstr">
+下のイラストは、あるスタックのプッシュおよびポップ挙動を示します：
+</span><!--end_jpstr-->
+</p>
+<img alt="../_images/stackPushPop_2x.png" class="align-center" src="../_images/stackPushPop_2x.png" style="width: 664px;" />
+<ol class="arabic simple">
+<li>There are currently three values on the stack.<br><span class="jpstr">
+現在は３つの値がこのスタックにはあります。
+</span><!--end_jpstr-->
+</li>
+<li>A fourth value is pushed onto the top of the stack.<br><span class="jpstr">
+第４の値がスタックのてっぺんに押し込まれ（プッシュされ）ます。
+</span><!--end_jpstr-->
+</li>
+<li>The stack now holds four values, with the most recent one at the top.<br><span class="jpstr">
+スタックは現在は４つの値を持ちます、最も最近のものは一番上にあります。
+</span><!--end_jpstr-->
+</li>
+<li>The top item in the stack is popped.<br><span class="jpstr">
+スタックでの一番上の項目がポンと取り出され（ポップされ）ます。
+</span><!--end_jpstr-->
+</li>
+<li>After popping a value, the stack once again holds three values.<br><span class="jpstr">
+値をポップした後では、スタックは再び３つの値を持ちます。
+</span><!--end_jpstr-->
+</li>
+</ol>
+<p>Here’s how to write a nongeneric version of a stack, in this case for a stack of <code class="docutils literal notranslate"><span class="pre">Int</span></code> values:<br><span class="jpstr">
+スタックの非総称体版を書く方法がここにあります、これは<code class="docutils literal notranslate"><span class="pre">Int</span></code>値のスタックの場合です：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">struct</span> <span class="nv">IntStack</span> {
+</li><li>    <span class="k">var</span> <span class="nv">items</span> = [<span class="nv">Int</span>]()
+</li><li>    <span class="k">mutating</span> <span class="k">func</span> <span class="nv">push</span>(<span class="k">_</span> <span class="nv">item</span>: <span class="nc">Int</span>) {
+</li><li>        <span class="nv">items</span>.<span class="nv">append</span>(<span class="nv">item</span>)
+</li><li>    }
+</li><li>    <span class="k">mutating</span> <span class="k">func</span> <span class="nv">pop</span>() -&gt; <span class="nc">Int</span> {
+</li><li>        <span class="k">return</span> <span class="nv">items</span>.<span class="nv">removeLast</span>()
+</li><li>    }
+</li><li>}
+</li></ol></div></div></div>
+<p>This structure uses an <code class="docutils literal notranslate"><span class="pre">Array</span></code> property called <code class="docutils literal notranslate"><span class="pre">items</span></code> to store the values in the stack. <code class="docutils literal notranslate"><span class="pre">Stack</span></code> provides two methods, <code class="docutils literal notranslate"><span class="pre">push</span></code> and <code class="docutils literal notranslate"><span class="pre">pop</span></code>, to push and pop values on and off the stack. These methods are marked as <code class="docutils literal notranslate"><span class="pre">mutating</span></code>, because they need to modify (or <em>mutate</em>) the structure’s <code class="docutils literal notranslate"><span class="pre">items</span></code> array.<br><span class="jpstr">
+この構造体は、<code class="docutils literal notranslate"><span class="pre">items</span></code>と呼ばれる<code class="docutils literal notranslate"><span class="pre">Array</span></code>プロパティを使って値をスタックに格納します。<code class="docutils literal notranslate"><span class="pre">Stack</span></code>は２つのメソッド、<code class="docutils literal notranslate"><span class="pre">push</span></code>と<code class="docutils literal notranslate"><span class="pre">pop</span></code>を提供します、それでスタック上に値を押し込んだり飛び出させたりします。これらのメソッドは<code class="docutils literal notranslate"><span class="pre">mutating</span></code>として印されます、なぜなら、それらが構造体の<code class="docutils literal notranslate"><span class="pre">items</span></code>配列を修正する（または<em>変化させる</em>）必要があるためです。
+</span><!--end_jpstr-->
+</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">IntStack</span></code> type shown above can only be used with <code class="docutils literal notranslate"><span class="pre">Int</span></code> values, however. It would be much more useful to define a <em>generic</em> <code class="docutils literal notranslate"><span class="pre">Stack</span></code> class, that can manage a stack of <em>any</em> type of value.<br><span class="jpstr">
+しかし、上で示される<code class="docutils literal notranslate"><span class="pre">IntStack</span></code>型は、<code class="docutils literal notranslate"><span class="pre">Int</span></code>値で使われることができるだけです。それをもっと役に立つようにするには、<em>総称体</em><code class="docutils literal notranslate"><span class="pre">Stack</span></code>クラスを定義することです、それは<em>あらゆる</em>型の値のスタックを管理することができるものです。
+</span><!--end_jpstr-->
+</p>
+<p>Here’s a generic version of the same code:<br><span class="jpstr">
+同じコードの総称体版は、ここにあります：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">struct</span> <span class="nv">Stack</span>&lt;<span class="nv">Element</span>&gt; {
+</li><li>    <span class="k">var</span> <span class="nv">items</span> = [<span class="nv">Element</span>]()
+</li><li>    <span class="k">mutating</span> <span class="k">func</span> <span class="nv">push</span>(<span class="k">_</span> <span class="nv">item</span>: <span class="nc">Element</span>) {
+</li><li>        <span class="nv">items</span>.<span class="nv">append</span>(<span class="nv">item</span>)
+</li><li>    }
+</li><li>    <span class="k">mutating</span> <span class="k">func</span> <span class="nv">pop</span>() -&gt; <span class="nc">Element</span> {
+</li><li>        <span class="k">return</span> <span class="nv">items</span>.<span class="nv">removeLast</span>()
+</li><li>    }
+</li><li>}
+</li></ol></div></div></div>
+<p>Note how the generic version of <code class="docutils literal notranslate"><span class="pre">Stack</span></code> is essentially the same as the nongeneric version, but with a type parameter called <code class="docutils literal notranslate"><span class="pre">Element</span></code> instead of an actual type of <code class="docutils literal notranslate"><span class="pre">Int</span></code>. This type parameter is written within a pair of angle brackets (<code class="docutils literal notranslate"><span class="pre">&lt;Element&gt;</span></code>) immediately after the structure’s name.<br><span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">Stack</span></code>の総称体版が、本質的にどれほど非総称体版と同じものであるかに注意してください、しかし<code class="docutils literal notranslate"><span class="pre">Element</span></code>と呼ばれる型パラメータを実際の型<code class="docutils literal notranslate"><span class="pre">Int</span></code>の代わりに持つことは除きます。この型パラメータは、構造体の名前の直後に一対の山形括弧の内部で（<code class="docutils literal notranslate"><span class="pre">&lt;Element&gt;</span></code>）書かれます。
+</span><!--end_jpstr-->
+</p>
+<p><code class="docutils literal notranslate"><span class="pre">Element</span></code> defines a placeholder name for a type to be provided later. This future type can be referred to as <code class="docutils literal notranslate"><span class="pre">Element</span></code> anywhere within the structure’s definition. In this case, <code class="docutils literal notranslate"><span class="pre">Element</span></code> is used as a placeholder in three places:<br><span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">Element</span></code>は、プレースホルダ名を、後で提供されることになるある型に対して定義します。この将来の型は、構造体の定義の範囲内のどこででも「<code class="docutils literal notranslate"><span class="pre">Element</span></code>」として参照されることができます。この場合、<code class="docutils literal notranslate"><span class="pre">Element</span></code>はプレースホルダとして３つの場所で使われます：
+</span><!--end_jpstr-->
+</p>
+<ul class="simple">
+<li>To create a property called <code class="docutils literal notranslate"><span class="pre">items</span></code>, which is initialized with an empty array of values of type <code class="docutils literal notranslate"><span class="pre">Element</span></code><br><span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">items</span></code>と呼ばれるプロパティをつくる所で、それは、型<code class="docutils literal notranslate"><span class="pre">Element</span></code>の値が入る空の配列で初期化されます
+</span><!--end_jpstr-->
+</li>
+<li>To specify that the <code class="docutils literal notranslate"><span class="pre">push(_:)</span></code> method has a single parameter called <code class="docutils literal notranslate"><span class="pre">item</span></code>, which must be of type <code class="docutils literal notranslate"><span class="pre">Element</span></code><br><span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">push(_:)</span></code>メソッドが一つのパラメータ、<code class="docutils literal notranslate"><span class="pre">item</span></code>と呼ばれるものを持つことを指定する所で、それは、型<code class="docutils literal notranslate"><span class="pre">Element</span></code>でなければなりません
+</span><!--end_jpstr-->
+</li>
+<li>To specify that the value returned by the <code class="docutils literal notranslate"><span class="pre">pop()</span></code> method will be a value of type <code class="docutils literal notranslate"><span class="pre">Element</span></code><br><span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">pop()</span></code>メソッドによって返される値が型<code class="docutils literal notranslate"><span class="pre">Element</span></code>の値であることを示す所で
+</span><!--end_jpstr-->
+</li>
+</ul>
+<p>Because it’s a generic type, <code class="docutils literal notranslate"><span class="pre">Stack</span></code> can be used to create a stack of <em>any</em> valid type in Swift, in a similar manner to <code class="docutils literal notranslate"><span class="pre">Array</span></code> and <code class="docutils literal notranslate"><span class="pre">Dictionary</span></code>.<br><span class="jpstr">
+それが総称体型であるので、<code class="docutils literal notranslate"><span class="pre">Stack</span></code>は、<code class="docutils literal notranslate"><span class="pre">Array</span></code>と<code class="docutils literal notranslate"><span class="pre">Dictionary</span></code>に類似したやり方で、スウィフトにおける<em>あらゆる</em>有効な型のスタックを作るために使われることができます。
+</span><!--end_jpstr-->
+</p>
+<p>You create a new <code class="docutils literal notranslate"><span class="pre">Stack</span></code> instance by writing the type to be stored in the stack within angle brackets. For example, to create a new stack of strings, you write <code class="docutils literal notranslate"><span class="pre">Stack&lt;String&gt;()</span></code>:<br><span class="jpstr">
+あなたは、新しい<code class="docutils literal notranslate"><span class="pre">Stack</span></code>インスタンスを、角括弧の内側にそのスタックの中に格納される型を書くことによって作成します。例えば、新しく文字列のスタックを作成するために、あなたは<code class="docutils literal notranslate"><span class="pre">Stack&lt;String&gt;()</span></code>を書きます：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">var</span> <span class="nv">stackOfStrings</span> = <span class="nv">Stack</span>&lt;<span class="nc">String</span>&gt;()
+</li><li><span class="nv">stackOfStrings</span>.<span class="nv">push</span>(<span class="s">&quot;uno&quot;</span>)
+</li><li><span class="nv">stackOfStrings</span>.<span class="nv">push</span>(<span class="s">&quot;dos&quot;</span>)
+</li><li><span class="nv">stackOfStrings</span>.<span class="nv">push</span>(<span class="s">&quot;tres&quot;</span>)
+</li><li><span class="nv">stackOfStrings</span>.<span class="nv">push</span>(<span class="s">&quot;cuatro&quot;</span>)
+</li><li><span class="c">// the stack now contains 4 strings&nbsp;<span class="jpstr">（スタックは、現在４つの文字列を含みます）</span><!--end_jpstr-->
+</span>
+</li></ol></div></div></div>
+<p>Here’s how <code class="docutils literal notranslate"><span class="pre">stackOfStrings</span></code> looks after pushing these four values on to the stack:<br><span class="jpstr">
+これらの４つの値をそのスタックにプッシュした後で<code class="docutils literal notranslate"><span class="pre">stackOfStrings</span></code>がどのように見えるかは、ここにあります：
+</span><!--end_jpstr-->
+</p>
+<img alt="../_images/stackPushedFourStrings_2x.png" class="align-center" src="../_images/stackPushedFourStrings_2x.png" style="width: 664px;" />
+<p>Popping a value from the stack removes and returns the top value, <code class="docutils literal notranslate"><span class="pre">&quot;cuatro&quot;</span></code>:<br><span class="jpstr">
+このスタックから値をボップすることは、一番上の値、<code class="docutils literal notranslate"><span class="pre">"cuatro"</span></code>を削除して、返します：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">let</span> <span class="nv">fromTheTop</span> = <span class="nv">stackOfStrings</span>.<span class="nv">pop</span>()
+</li><li><span class="c">// fromTheTop is equal to &quot;cuatro&quot;, and the stack now contains 3 strings&nbsp;<span class="jpstr">（fromTheTopは「cuatro」と等しいです、そしてスタックは現在は３つの文字列を含みます）</span><!--end_jpstr-->
+</span>
+</li></ol></div></div></div>
+<p>Here’s how the stack looks after popping its top value:<br><span class="jpstr">
+スタックがその一番上の値をポップした後にどう見えるかは、ここにあります：
+</span><!--end_jpstr-->
+</p>
+<img alt="../_images/stackPoppedOneString_2x.png" class="align-center" src="../_images/stackPoppedOneString_2x.png" style="width: 405px;" />
+</div>
+<div class="section" id="ID185">
+<h2>Extending a Generic Type<a class="headerlink" href="#ID185" title="Permalink to this headline">¶</a><br><span class="jpstr">
+総称体型を拡張する<a class="headerlink" href="#ID185" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h2>
+<p>When you extend a generic type, you don’t provide a type parameter list as part of the extension’s definition. Instead, the type parameter list from the <em>original</em> type definition is available within the body of the extension, and the original type parameter names are used to refer to the type parameters from the original definition.<br><span class="jpstr">
+あなたがある総称体型を拡張する時、あなたは型パラメーターリストを拡張の定義の一部として提供しません。そうしなくても、<em>元々の</em>型定義からの型パラメーターリストは、その拡張の本文内で利用可能です、そして元々の型パラメーター名は、元々の定義からの型パラメーターを参照するために使われます。
+</span><!--end_jpstr-->
+</p>
+<p>The following example extends the generic <code class="docutils literal notranslate"><span class="pre">Stack</span></code> type to add a read-only computed property called <code class="docutils literal notranslate"><span class="pre">topItem</span></code>, which returns the top item on the stack without popping it from the stack:<br><span class="jpstr">
+以下の例は総称体<code class="docutils literal notranslate"><span class="pre">Stack</span></code>型を拡張して、<code class="docutils literal notranslate"><span class="pre">topItem</span></code>と呼ばれる読み出し専用の計算プロパティを加えます、それは、スタックの一番上の項目をスタックからそれをポップすることなく返します：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">extension</span> <span class="nc">Stack</span> {
+</li><li>    <span class="k">var</span> <span class="nv">topItem</span>: <span class="nc">Element</span>? {
+</li><li>        <span class="k">return</span> <span class="nv">items</span>.<span class="nv">isEmpty</span> ? <span class="k">nil</span> : <span class="nv">items</span>[<span class="nv">items</span>.<span class="nv">count</span> - <span class="m">1</span>]
+</li><li>    }
+</li><li>}
+</li></ol></div></div></div>
+<p>The <code class="docutils literal notranslate"><span class="pre">topItem</span></code> property returns an optional value of type <code class="docutils literal notranslate"><span class="pre">Element</span></code>. If the stack is empty, <code class="docutils literal notranslate"><span class="pre">topItem</span></code> returns <code class="docutils literal notranslate"><span class="pre">nil</span></code>; if the stack isn’t empty, <code class="docutils literal notranslate"><span class="pre">topItem</span></code> returns the final item in the <code class="docutils literal notranslate"><span class="pre">items</span></code> array.<br><span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">topItem</span></code>プロパティは型<code class="docutils literal notranslate"><span class="pre">Element</span></code>のオプショナルの値を返します。スタックが空ならば、<code class="docutils literal notranslate"><span class="pre">topItem</span></code>は<code class="docutils literal notranslate"><span class="pre">nil</span></code>を返します；スタックが空でないならば、<code class="docutils literal notranslate"><span class="pre">topItem</span></code>は<code class="docutils literal notranslate"><span class="pre">items</span></code>配列の最後の項目を返します。
+</span><!--end_jpstr-->
+</p>
+<p>Note that this extension doesn’t define a type parameter list. Instead, the <code class="docutils literal notranslate"><span class="pre">Stack</span></code> type’s existing type parameter name, <code class="docutils literal notranslate"><span class="pre">Element</span></code>, is used within the extension to indicate the optional type of the <code class="docutils literal notranslate"><span class="pre">topItem</span></code> computed property.<br><span class="jpstr">
+この拡張は型パラメーターリストを定義しないことに注意してください。そうしなくても、<code class="docutils literal notranslate"><span class="pre">Stack</span></code>型の既存の型パラメーター名、<code class="docutils literal notranslate"><span class="pre">Element</span></code>は、拡張の内部で<code class="docutils literal notranslate"><span class="pre">topItem</span></code>計算プロパティの元々の型を指し示すために使われることができます。
+</span><!--end_jpstr-->
+</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">topItem</span></code> computed property can now be used with any <code class="docutils literal notranslate"><span class="pre">Stack</span></code> instance to access and query its top item without removing it.<br><span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">topItem</span></code>計算プロパティは、今やあらゆる<code class="docutils literal notranslate"><span class="pre">Stack</span></code>インスタンスで、それの一番上の項目にそれを取り除くことなくアクセスおよび問い合わせるために使われることができます。
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">if</span> <span class="k">let</span> <span class="nv">topItem</span> = <span class="nv">stackOfStrings</span>.<span class="nv">topItem</span> {
+</li><li>    <span class="nv">print</span>(<span class="s">&quot;The top item on the stack is </span>\<span class="p">(</span><span class="nv">topItem</span><span class="p">)</span><span class="s">.&quot;</span>)
+</li><li>}
+</li><li><span class="c">// Prints &quot;The top item on the stack is tres.&quot;&nbsp;<span class="jpstr">（「このスタックの一番上の項目はtresです」を出力します）</span><!--end_jpstr-->
+</span>
+</li></ol></div></div></div>
+<p>Extensions of a generic type can also include requirements that instances of the extended type must satisfy in order to gain the new functionality, as discussed in <a class="reference internal" href="#ID553"><span class="std std-ref">Extensions with a Generic Where Clause</span></a> below.<br><span class="jpstr">
+ある総称体型のそれぞれの拡張はまた、拡張された型のインスタンスが新しい機能性を獲得する手段として満たさなければならない要件を含むことができます、下の<a class="reference internal" href="#ID553"><span class="std std-ref">総称体where節を持つ拡張</span></a>で議論されるように。
+</span><!--end_jpstr-->
+</p>
+</div>
+<div class="section" id="ID186">
+<h2>Type Constraints<a class="headerlink" href="#ID186" title="Permalink to this headline">¶</a><br><span class="jpstr">
+型制約<a class="headerlink" href="#ID186" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">swapTwoValues(_:_:)</span></code> function and the <code class="docutils literal notranslate"><span class="pre">Stack</span></code> type can work with any type. However, it’s sometimes useful to enforce certain <em>type constraints</em> on the types that can be used with generic functions and generic types. Type constraints specify that a type parameter must inherit from a specific class, or conform to a particular protocol or protocol composition.<br><span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">swapTwoValues(_:_:)</span></code>関数と<code class="docutils literal notranslate"><span class="pre">Stack</span></code>型は、どんな型でも扱うことができます。しかし、総称体関数と総称体型で使われることができる型に、特定の<em>型制約</em>を強制することは、時々役に立ちます。型制約は、型パラメータが特定のクラスから継承しなければならない、もしくはある特定のプロトコルまたはプロトコル合成に準拠しなければならないことを指定します。
+</span><!--end_jpstr-->
+</p>
+<p>For example, Swift’s <code class="docutils literal notranslate"><span class="pre">Dictionary</span></code> type places a limitation on the types that can be used as keys for a dictionary. As described in <a class="reference internal" href="CollectionTypes.html#ID113"><span class="std std-ref">Dictionaries</span></a>, the type of a dictionary’s keys must be <em>hashable</em>. That is, it must provide a way to make itself uniquely representable. <code class="docutils literal notranslate"><span class="pre">Dictionary</span></code> needs its keys to be hashable so that it can check whether it already contains a value for a particular key. Without this requirement, <code class="docutils literal notranslate"><span class="pre">Dictionary</span></code> could not tell whether it should insert or replace a value for a particular key, nor would it be able to find a value for a given key that is already in the dictionary.<br><span class="jpstr">
+例えば、スウィフトの<code class="docutils literal notranslate"><span class="pre">Dictionary</span></code>型は、辞書のキーとして使われることができる型に制限を置きます。<a class="reference internal" href="CollectionTypes.html#ID113"><span class="std std-ref">辞書</span></a>で記述されるように、辞書のキーの型は、<em>ハッシュ化</em>できなければなりません。すなわち、それはそれ自身を特有に表わすことを可能にする方法を提供しなければなりません。<code class="docutils literal notranslate"><span class="pre">Dictionary</span></code>は、それが特定のキーのためにすでに値を含むかどうか確認できるように、そのキーにハッシュ化できることを必要とします。この要件なしでは、<code class="docutils literal notranslate"><span class="pre">Dictionary</span></code>はそれが特定のキーのために値を差し込んだり取り替えたりするべきかどうか伝えることができませんし、それはすでに辞書の中にある指定されたキーに対する値を見つけることもできません。
+</span><!--end_jpstr-->
+</p>
+<p>This requirement is enforced by a type constraint on the key type for <code class="docutils literal notranslate"><span class="pre">Dictionary</span></code>, which specifies that the key type must conform to the <code class="docutils literal notranslate"><span class="pre">Hashable</span></code> protocol, a special protocol defined in the Swift standard library. All of Swift’s basic types (such as <code class="docutils literal notranslate"><span class="pre">String</span></code>, <code class="docutils literal notranslate"><span class="pre">Int</span></code>, <code class="docutils literal notranslate"><span class="pre">Double</span></code>, and <code class="docutils literal notranslate"><span class="pre">Bool</span></code>) are hashable by default.<br><span class="jpstr">
+この要件は、<code class="docutils literal notranslate"><span class="pre">Dictionary</span></code>のためのキー型に関する型制約によって強制されます、それは、キー型がスウィフト標準ライブラリで定義される特別なプロトコル、<code class="docutils literal notranslate"><span class="pre">Hashable</span></code>プロトコルに準拠しなければならないことを示します。スウィフトの基本の型（例えば<code class="docutils literal notranslate"><span class="pre">String</span></code>、<code class="docutils literal notranslate"><span class="pre">Int</span></code>、<code class="docutils literal notranslate"><span class="pre">Double</span></code>、そして<code class="docutils literal notranslate"><span class="pre">Bool</span></code>）の全ては、初期状態でハッシュ化されます。
+</span><!--end_jpstr-->
+</p>
+<p>You can define your own type constraints when creating custom generic types, and these constraints provide much of the power of generic programming. Abstract concepts like <code class="docutils literal notranslate"><span class="pre">Hashable</span></code> characterize types in terms of their conceptual characteristics, rather than their concrete type.<br><span class="jpstr">
+あなたは、独自の型制約をあつらえの総称体型を作成する時に定義することができます、そして、それらの制約は総称体プログラミングの力の多くを提供します。<code class="docutils literal notranslate"><span class="pre">Hashable</span></code>のような抽象的な概念たちは、それらの概念上の特徴の観点から型を特徴づけます、その具象型そのものではなく。
+</span><!--end_jpstr-->
+</p>
+<div class="section" id="ID187">
+<h3>Type Constraint Syntax<a class="headerlink" href="#ID187" title="Permalink to this headline">¶</a><br><span class="jpstr">
+型制約構文<a class="headerlink" href="#ID187" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h3>
+<p>You write type constraints by placing a single class or protocol constraint after a type parameter’s name, separated by a colon, as part of the type parameter list. The basic syntax for type constraints on a generic function is shown below (although the syntax is the same for generic types):<br><span class="jpstr">
+あなたは、型パラメーターリストの一部として、型パラメータの名前の後にコロンで区切って一つのクラスまたはプロトコル制約を置くことによって、型制約を書きます。総称体関数に関する型制約のための基本の構文は、下で示されます（とはいえ構文は総称体型と同じものです）：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">func</span> <span class="nv">someFunction</span>&lt;<span class="nv">T</span>: <span class="nc">SomeClass</span>, <span class="nv">U</span>: <span class="nc">SomeProtocol</span>&gt;(<span class="nv">someT</span>: <span class="nc">T</span>, <span class="nv">someU</span>: <span class="nc">U</span>) {
+</li><li>    <span class="c">// function body goes here&nbsp;<span class="jpstr">（関数本文が、ここにきます）</span><!--end_jpstr-->
+</span>
+</li><li>}
+</li></ol></div></div></div>
+<p>The hypothetical function above has two type parameters. The first type parameter, <code class="docutils literal notranslate"><span class="pre">T</span></code>, has a type constraint that requires <code class="docutils literal notranslate"><span class="pre">T</span></code> to be a subclass of <code class="docutils literal notranslate"><span class="pre">SomeClass</span></code>. The second type parameter, <code class="docutils literal notranslate"><span class="pre">U</span></code>, has a type constraint that requires <code class="docutils literal notranslate"><span class="pre">U</span></code> to conform to the protocol <code class="docutils literal notranslate"><span class="pre">SomeProtocol</span></code>.<br><span class="jpstr">
+上の仮定の関数は、２つの型パラメータを持ちます。最初の型パラメータ<code class="docutils literal notranslate"><span class="pre">T</span></code>は、<code class="docutils literal notranslate"><span class="pre">T</span></code>に<code class="docutils literal notranslate"><span class="pre">SomeClass</span></code>のサブクラスであることを要求する型制約を持ちます。２番目の型パラメータ<code class="docutils literal notranslate"><span class="pre">U</span></code>は、<code class="docutils literal notranslate"><span class="pre">U</span></code>にプロトコル<code class="docutils literal notranslate"><span class="pre">SomeProtocol</span></code>に準拠することを要求する型制約を持ちます。
+</span><!--end_jpstr-->
+</p>
+</div>
+<div class="section" id="ID188">
+<h3>Type Constraints in Action<a class="headerlink" href="#ID188" title="Permalink to this headline">¶</a><br><span class="jpstr">
+型制約の動作<a class="headerlink" href="#ID188" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h3>
+<p>Here’s a nongeneric function called <code class="docutils literal notranslate"><span class="pre">findIndex(ofString:in:)</span></code>, which is given a <code class="docutils literal notranslate"><span class="pre">String</span></code> value to find and an array of <code class="docutils literal notranslate"><span class="pre">String</span></code> values within which to find it. The <code class="docutils literal notranslate"><span class="pre">findIndex(ofString:in:)</span></code> function returns an optional <code class="docutils literal notranslate"><span class="pre">Int</span></code> value, which will be the index of the first matching string in the array if it’s found, or <code class="docutils literal notranslate"><span class="pre">nil</span></code> if the string can’t be found:<br><span class="jpstr">
+ここに<code class="docutils literal notranslate"><span class="pre">findIndex(ofString:in:)</span></code>と呼ばれる非総称体関数があります、それは、見つける<code class="docutils literal notranslate"><span class="pre">String</span></code>値と、そこにおいてそれを捜す<code class="docutils literal notranslate"><span class="pre">String</span></code>値からなる配列を与えられます。<code class="docutils literal notranslate"><span class="pre">findIndex(ofString:in:)</span></code>関数は、オプショナルの<code class="docutils literal notranslate"><span class="pre">Int</span></code>値を返します、それは、それが見つけられるならば配列での最初の合致している文字列のインデックスです、または文字列が見つけられることができないならば<code class="docutils literal notranslate"><span class="pre">nil</span></code>です：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">func</span> <span class="nv">findIndex</span>(<span class="nv">ofString</span> <span class="nv">valueToFind</span>: <span class="nc">String</span>, <span class="nv">in</span> <span class="nv">array</span>: [<span class="nc">String</span>]) -&gt; <span class="nc">Int</span>? {
+</li><li>    <span class="k">for</span> (<span class="nv">index</span>, <span class="nv">value</span>) <span class="k">in</span> <span class="nv">array</span>.<span class="nv">enumerated</span>() {
+</li><li>        <span class="k">if</span> <span class="nv">value</span> == <span class="nv">valueToFind</span> {
+</li><li>            <span class="k">return</span> <span class="nv">index</span>
+</li><li>        }
+</li><li>    }
+</li><li>    <span class="k">return</span> <span class="k">nil</span>
+</li><li>}
+</li></ol></div></div></div>
+<p>The <code class="docutils literal notranslate"><span class="pre">findIndex(ofString:in:)</span></code> function can be used to find a string value in an array of strings:<br><span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">findIndex(ofString:in:)</span></code>関数は、文字列の配列の中をある文字列値がないか捜すために使われることができます：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">let</span> <span class="nv">strings</span> = [<span class="s">&quot;cat&quot;</span>, <span class="s">&quot;dog&quot;</span>, <span class="s">&quot;llama&quot;</span>, <span class="s">&quot;parakeet&quot;</span>, <span class="s">&quot;terrapin&quot;</span>]
+</li><li><span class="k">if</span> <span class="k">let</span> <span class="nv">foundIndex</span> = <span class="nv">findIndex</span>(<span class="nv">ofString</span>: <span class="s">&quot;llama&quot;</span>, <span class="nv">in</span>: <span class="nv">strings</span>) {
+</li><li>    <span class="nv">print</span>(<span class="s">&quot;The index of llama is </span>\<span class="p">(</span><span class="nv">foundIndex</span><span class="p">)</span><span class="s">&quot;</span>)
+</li><li>}
+</li><li><span class="c">// Prints &quot;The index of llama is 2&quot;&nbsp;<span class="jpstr">（「ラマのインデックスは、２です」を出力します）</span><!--end_jpstr-->
+</span>
+</li></ol></div></div></div>
+<p>The principle of finding the index of a value in an array isn’t useful only for strings, however. You can write the same functionality as a generic function by replacing any mention of strings with values of some type <code class="docutils literal notranslate"><span class="pre">T</span></code> instead.<br><span class="jpstr">
+しかし、配列の中の値のインデックスを見つける原理は、文字列のためにだけ役立つわけではありません。あなたは同じ機能性を総称体関数として書くことが、何であれ文字列への言及部分をその代わりにある何らかの型<code class="docutils literal notranslate"><span class="pre">T</span></code>の値で置き換えることで行えます。
+</span><!--end_jpstr-->
+</p>
+<p>Here’s how you might expect a generic version of <code class="docutils literal notranslate"><span class="pre">findIndex(ofString:in:)</span></code>, called <code class="docutils literal notranslate"><span class="pre">findIndex(of:in:)</span></code>, to be written. Note that the return type of this function is still <code class="docutils literal notranslate"><span class="pre">Int?</span></code>, because the function returns an optional index number, not an optional value from the array. Be warned, though—this function doesn’t compile, for reasons explained after the example:<br><span class="jpstr">
+あなたが予想する<code class="docutils literal notranslate"><span class="pre">findIndex(ofString:in:)</span></code>の総称体版、<code class="docutils literal notranslate"><span class="pre">findIndex(of:in:)</span></code>と呼ばれるものが書かれる方法はここにあります。この関数の戻り型が以前として<code class="docutils literal notranslate"><span class="pre">Int?</span></code>であるという点に注意してください、なぜなら、この関数がオプショナルのインデックス番号（配列からのオプショナルの値でない）を返すからです。注意するように、とは言うものの ― この関数はコンパイルしません、この例の後に説明される理由のために：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">func</span> <span class="nv">findIndex</span>&lt;<span class="nv">T</span>&gt;(<span class="nv">of</span> <span class="nv">valueToFind</span>: <span class="nc">T</span>, <span class="nv">in</span> <span class="nv">array</span>:[<span class="nc">T</span>]) -&gt; <span class="nc">Int</span>? {
+</li><li>    <span class="k">for</span> (<span class="nv">index</span>, <span class="nv">value</span>) <span class="k">in</span> <span class="nv">array</span>.<span class="nv">enumerated</span>() {
+</li><li>        <span class="k">if</span> <span class="nv">value</span> == <span class="nv">valueToFind</span> {
+</li><li>            <span class="k">return</span> <span class="nv">index</span>
+</li><li>        }
+</li><li>    }
+</li><li>    <span class="k">return</span> <span class="k">nil</span>
+</li><li>}
+</li></ol></div></div></div>
+<p>This function doesn’t compile as written above. The problem lies with the equality check, “<code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">value</span> <span class="pre">==</span> <span class="pre">valueToFind</span></code>”. Not every type in Swift can be compared with the equal to operator (<code class="docutils literal notranslate"><span class="pre">==</span></code>). If you create your own class or structure to represent a complex data model, for example, then the meaning of “equal to” for that class or structure isn’t something that Swift can guess for you. Because of this, it isn’t possible to guarantee that this code will work for <em>every</em> possible type <code class="docutils literal notranslate"><span class="pre">T</span></code>, and an appropriate error is reported when you try to compile the code.<br><span class="jpstr">
+この関数は、上記のように書かれるとしてもコンパイルしません。問題は、同等性検査<code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">value</span> <span class="pre">==</span> <span class="pre">valueToFind</span></code>に横たわります。スウィフトの中のすべての型が、同等演算子（<code class="docutils literal notranslate"><span class="pre">==</span></code>）で比較されることができるというわけでありません。あなたが例えば独自のクラスまたは構造体を作成してある複合データモデルを表すならば、そのときそのクラスまたは構造体のための「同等」の意味することはスウィフトがあなたのために推測することができる何かではありません。このため、このコードが<em>すべての</em>可能な型<code class="docutils literal notranslate"><span class="pre">T</span></code>のために機能することを保証することは可能ではありません、それであなたがこのコードをコンパイルしようとする場合は該当するエラーが報告されます。
+</span><!--end_jpstr-->
+</p>
+<p>All is not lost, however. The Swift standard library defines a protocol called <code class="docutils literal notranslate"><span class="pre">Equatable</span></code>, which requires any conforming type to implement the equal to operator (<code class="docutils literal notranslate"><span class="pre">==</span></code>) and the not equal to operator (<code class="docutils literal notranslate"><span class="pre">!=</span></code>) to compare any two values of that type. All of Swift’s standard types automatically support the <code class="docutils literal notranslate"><span class="pre">Equatable</span></code> protocol.<br><span class="jpstr">
+しかし、道がないわけではありません。スウィフト標準ライブラリは、<code class="docutils literal notranslate"><span class="pre">Equatable</span></code>と呼ばれるプロトコルを定義します、それは、それに準拠している全ての型に対してその型のあらゆる２つの値を比較するために同等演算子（<code class="docutils literal notranslate"><span class="pre">==</span></code>）と不等演算子（<code class="docutils literal notranslate"><span class="pre">!=</span></code>）を実装することを要求します。スウィフトの標準の型の全ては、自動的に<code class="docutils literal notranslate"><span class="pre">Equatable</span></code>プロトコルをサポートします。
+</span><!--end_jpstr-->
+</p>
+<p>Any type that is <code class="docutils literal notranslate"><span class="pre">Equatable</span></code> can be used safely with the <code class="docutils literal notranslate"><span class="pre">findIndex(of:in:)</span></code> function, because it’s guaranteed to support the equal to operator. To express this fact, you write a type constraint of <code class="docutils literal notranslate"><span class="pre">Equatable</span></code> as part of the type parameter’s definition when you define the function:<br><span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">Equatable</span></code>であるどんな型でも<code class="docutils literal notranslate"><span class="pre">findIndex(of:in:)</span></code>関数で問題なく使われることができます、なぜなら、それが同等演算子をサポートすると保証されるからです。この事実を表すために、あなたは<code class="docutils literal notranslate"><span class="pre">Equatable</span></code>の型制約を型パラメータの定義の一部として、あなたが関数を定義する時に書きます：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">func</span> <span class="nv">findIndex</span>&lt;<span class="nv">T</span>: <span class="nc">Equatable</span>&gt;(<span class="nv">of</span> <span class="nv">valueToFind</span>: <span class="nc">T</span>, <span class="nv">in</span> <span class="nv">array</span>:[<span class="nc">T</span>]) -&gt; <span class="nc">Int</span>? {
+</li><li>    <span class="k">for</span> (<span class="nv">index</span>, <span class="nv">value</span>) <span class="k">in</span> <span class="nv">array</span>.<span class="nv">enumerated</span>() {
+</li><li>        <span class="k">if</span> <span class="nv">value</span> == <span class="nv">valueToFind</span> {
+</li><li>            <span class="k">return</span> <span class="nv">index</span>
+</li><li>        }
+</li><li>    }
+</li><li>    <span class="k">return</span> <span class="k">nil</span>
+</li><li>}
+</li></ol></div></div></div>
+<p>The single type parameter for <code class="docutils literal notranslate"><span class="pre">findIndex(of:in:)</span></code> is written as <code class="docutils literal notranslate"><span class="pre">T:</span> <span class="pre">Equatable</span></code>, which means “any type <code class="docutils literal notranslate"><span class="pre">T</span></code> that conforms to the <code class="docutils literal notranslate"><span class="pre">Equatable</span></code> protocol.”<br><span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">findIndex(of:in:)</span></code>のただ一つの型パラメータは、<code class="docutils literal notranslate"><span class="pre">T:</span> <span class="pre">Equatable</span></code>として書かれます、それは、「何らかの型<code class="docutils literal notranslate"><span class="pre">T</span></code>で<code class="docutils literal notranslate"><span class="pre">Equatable</span></code>プロトコルに準拠するもの」を意味します。
+</span><!--end_jpstr-->
+</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">findIndex(of:in:)</span></code> function now compiles successfully and can be used with any type that is <code class="docutils literal notranslate"><span class="pre">Equatable</span></code>, such as <code class="docutils literal notranslate"><span class="pre">Double</span></code> or <code class="docutils literal notranslate"><span class="pre">String</span></code>:<br><span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">findIndex(of:in:)</span></code>関数は、今やうまくコンパイルして、<code class="docutils literal notranslate"><span class="pre">Equatable</span></code>であるどんな型とでも使われることができます、例えば<code class="docutils literal notranslate"><span class="pre">Double</span></code>や<code class="docutils literal notranslate"><span class="pre">String</span></code>など：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">let</span> <span class="nv">doubleIndex</span> = <span class="nv">findIndex</span>(<span class="nv">of</span>: <span class="m">9.3</span>, <span class="nv">in</span>: [<span class="m">3.14159</span>, <span class="m">0.1</span>, <span class="m">0.25</span>])
+</li><li><span class="c">// doubleIndex is an optional Int with no value, because 9.3 isn&#39;t in the array&nbsp;<span class="jpstr">（9.3がこの配列の中にははないので、doubleIndexは値のないオプショナルのIntです）</span><!--end_jpstr-->
+</span>
+</li><li><span class="k">let</span> <span class="nv">stringIndex</span> = <span class="nv">findIndex</span>(<span class="nv">of</span>: <span class="s">&quot;Andrea&quot;</span>, <span class="nv">in</span>: [<span class="s">&quot;Mike&quot;</span>, <span class="s">&quot;Malcolm&quot;</span>, <span class="s">&quot;Andrea&quot;</span>])
+</li><li><span class="c">// stringIndex is an optional Int containing a value of 2&nbsp;<span class="jpstr">（stringIndexは、オプショナルのIntで値２を含んでいます）</span><!--end_jpstr-->
+</span>
+</li></ol></div></div></div>
+</div>
+</div>
+<div class="section" id="ID189">
+<h2>Associated Types<a class="headerlink" href="#ID189" title="Permalink to this headline">¶</a><br><span class="jpstr">
+関連型<a class="headerlink" href="#ID189" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h2>
+<p>When defining a protocol, it’s sometimes useful to declare one or more associated types as part of the protocol’s definition. An <em>associated type</em> gives a placeholder name to a type that is used as part of the protocol. The actual type to use for that associated type isn’t specified until the protocol is adopted. Associated types are specified with the <code class="docutils literal notranslate"><span class="pre">associatedtype</span></code> keyword.<br><span class="jpstr">
+プロトコルを定義するとき、時々役に立つのは、プロトコルの定義の一部として一つ以上の関連型を宣言することです。<em>関連型</em>は、プロトコルの一部として使われる型にプレースホルダ名を与えます。その関連型のために使われる実際の型は、プロトコルが採用されるまでは指定されません。関連型は、<code class="docutils literal notranslate"><span class="pre">associatedtype</span></code>キーワードで指定されます。
+</span><!--end_jpstr-->
+</p>
+<div class="section" id="ID190">
+<h3>Associated Types in Action<a class="headerlink" href="#ID190" title="Permalink to this headline">¶</a><br><span class="jpstr">
+関連型の動作<a class="headerlink" href="#ID190" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h3>
+<p>Here’s an example of a protocol called <code class="docutils literal notranslate"><span class="pre">Container</span></code>, which declares an associated type called <code class="docutils literal notranslate"><span class="pre">Item</span></code>:<br><span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">Container</span></code>と呼ばれるプロトコルの例がここにあります、それは<code class="docutils literal notranslate"><span class="pre">Item</span></code>と呼ばれる関連型を宣言します：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">protocol</span> <span class="nv">Container</span> {
+</li><li>    <span class="k">associatedtype</span> <span class="nv">Item</span>
+</li><li>    <span class="k">mutating</span> <span class="k">func</span> <span class="nv">append</span>(<span class="k">_</span> <span class="nv">item</span>: <span class="nc">Item</span>)
+</li><li>    <span class="k">var</span> <span class="nv">count</span>: <span class="nc">Int</span> { <span class="k">get</span> }
+</li><li>    <span class="k">subscript</span>(<span class="nv">i</span>: <span class="nc">Int</span>) -&gt; <span class="nc">Item</span> { <span class="k">get</span> }
+</li><li>}
+</li></ol></div></div></div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Container</span></code> protocol defines three required capabilities that any container must provide:<br><span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">Container</span></code>プロトコルは、あらゆるコンテナ（容れ物）が提供しなければならない３つの必須の能力を定義します：
+</span><!--end_jpstr-->
+</p>
+<ul class="simple">
+<li>It must be possible to add a new item to the container with an <code class="docutils literal notranslate"><span class="pre">append(_:)</span></code> method.<br><span class="jpstr">
+新しい項目をコンテナに加えることが<code class="docutils literal notranslate"><span class="pre">append(_:)</span></code>メソッドで可能でなければなりません。
+</span><!--end_jpstr-->
+</li>
+<li>It must be possible to access a count of the items in the container through a <code class="docutils literal notranslate"><span class="pre">count</span></code> property that returns an <code class="docutils literal notranslate"><span class="pre">Int</span></code> value.<br><span class="jpstr">
+コンテナの中の項目の総数にアクセスすることが<code class="docutils literal notranslate"><span class="pre">Int</span></code>値を返す<code class="docutils literal notranslate"><span class="pre">count</span></code>プロパティを通して可能でなければなりません。
+</span><!--end_jpstr-->
+</li>
+<li>It must be possible to retrieve each item in the container with a subscript that takes an <code class="docutils literal notranslate"><span class="pre">Int</span></code> index value.<br><span class="jpstr">
+コンテナの中の各項目を取り出すことが<code class="docutils literal notranslate"><span class="pre">Int</span></code>インデックス値をとる添え字で可能でなければなりません。
+</span><!--end_jpstr-->
+</li>
+</ul>
+<p>This protocol doesn’t specify how the items in the container should be stored or what type they’re allowed to be. The protocol only specifies the three bits of functionality that any type must provide in order to be considered a <code class="docutils literal notranslate"><span class="pre">Container</span></code>. A conforming type can provide additional functionality, as long as it satisfies these three requirements.<br><span class="jpstr">
+このプロトコルは、コンテナの中の項目が格納されなければならない方法やそれらが許される型が何であるかを指定しません。プロトコルは、どんな型でも<code class="docutils literal notranslate"><span class="pre">Container</span></code>とみなされるためには提供しなければならない小さな３つの機能性を指定するだけです。それに準拠している型は、それがこれらの３つの要件を満たす限り、追加の機能性を提供することができます。
+</span><!--end_jpstr-->
+</p>
+<p>Any type that conforms to the <code class="docutils literal notranslate"><span class="pre">Container</span></code> protocol must be able to specify the type of values it stores. Specifically, it must ensure that only items of the right type are added to the container, and it must be clear about the type of the items returned by its subscript.<br><span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">Container</span></code>プロトコルに準拠するあらゆる型は、それが格納する値の型を指定することができなければなりません。具体的には、それは正しい型の項目だけがコンテナに加えられることを確実にしなければなりません、そして、それはそれの添え字によって返される項目の型についてはっきりわかっていなければなりません。
+</span><!--end_jpstr-->
+</p>
+<p>To define these requirements, the <code class="docutils literal notranslate"><span class="pre">Container</span></code> protocol needs a way to refer to the type of the elements that a container will hold, without knowing what that type is for a specific container. The <code class="docutils literal notranslate"><span class="pre">Container</span></code> protocol needs to specify that any value passed to the <code class="docutils literal notranslate"><span class="pre">append(_:)</span></code> method must have the same type as the container’s element type, and that the value returned by the container’s subscript will be of the same type as the container’s element type.<br><span class="jpstr">
+これらの要件を定義するために、<code class="docutils literal notranslate"><span class="pre">Container</span></code>プロトコルは、あるコンテナが保持することになる要素の型を参照する方法を必要とします、その型がどんなコンテナのためのものか知ることなしにです。<code class="docutils literal notranslate"><span class="pre">Container</span></code>プロトコルは、<code class="docutils literal notranslate"><span class="pre">append(_:)</span></code>メソッドに渡されるあらゆる値がそのコンテナの要素の型と同じ型を持たなければならないこと、そしてコンテナの添え字によって返される値がコンテナの要素型と同じ型のものになることを指定する必要があります。
+</span><!--end_jpstr-->
+</p>
+<p>To achieve this, the <code class="docutils literal notranslate"><span class="pre">Container</span></code> protocol declares an associated type called <code class="docutils literal notranslate"><span class="pre">Item</span></code>, written as <code class="docutils literal notranslate"><span class="pre">associatedtype</span> <span class="pre">Item</span></code>. The protocol doesn’t define what <code class="docutils literal notranslate"><span class="pre">Item</span></code> is—that information is left for any conforming type to provide. Nonetheless, the <code class="docutils literal notranslate"><span class="pre">Item</span></code> alias provides a way to refer to the type of the items in a <code class="docutils literal notranslate"><span class="pre">Container</span></code>, and to define a type for use with the <code class="docutils literal notranslate"><span class="pre">append(_:)</span></code> method and subscript, to ensure that the expected behavior of any <code class="docutils literal notranslate"><span class="pre">Container</span></code> is enforced.<br><span class="jpstr">
+これを達成するために、<code class="docutils literal notranslate"><span class="pre">Container</span></code>プロトコルは<code class="docutils literal notranslate"><span class="pre">Item</span></code>と呼ばれる関連型を宣言します、それは<code class="docutils literal notranslate"><span class="pre">associatedtype</span> <span class="pre">Item</span></code>のように書かれます。このプロトコルは、<code class="docutils literal notranslate"><span class="pre">Item</span></code>が何であるかを定義しません ― その情報は、何であれそれに準拠する型が提供するようにそのままにされます。それでもなお、<code class="docutils literal notranslate"><span class="pre">Item</span></code>エイリアスは、<code class="docutils literal notranslate"><span class="pre">Container</span></code>の中の項目の型に言及するための、そして<code class="docutils literal notranslate"><span class="pre">append(_:)</span></code>メソッドと添え字で使うための型を定義するための、ひとつの方法を提供します、それによってあらゆる<code class="docutils literal notranslate"><span class="pre">Container</span></code>が期待される挙動を強制されることを確実にします。
+</span><!--end_jpstr-->
+</p>
+<p>Here’s a version of the nongeneric <code class="docutils literal notranslate"><span class="pre">IntStack</span></code> type from <a class="reference internal" href="#ID184"><span class="std std-ref">Generic Types</span></a> above, adapted to conform to the <code class="docutils literal notranslate"><span class="pre">Container</span></code> protocol:<br><span class="jpstr">
+ここに、上の<a class="reference internal" href="#ID184"><span class="std std-ref">総称体型</span></a>からの非総称体<code class="docutils literal notranslate"><span class="pre">IntStack</span></code>型の改作、<code class="docutils literal notranslate"><span class="pre">Container</span></code>プロトコルに準拠するために適応させたものがあります：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">struct</span> <span class="nv">IntStack</span>: <span class="nc">Container</span> {
+</li><li>    <span class="c">// original IntStack implementation&nbsp;<span class="jpstr">（元々のIntStack実施）</span><!--end_jpstr-->
+</span>
+</li><li>    <span class="k">var</span> <span class="nv">items</span> = [<span class="nv">Int</span>]()
+</li><li>    <span class="k">mutating</span> <span class="k">func</span> <span class="nv">push</span>(<span class="k">_</span> <span class="nv">item</span>: <span class="nc">Int</span>) {
+</li><li>        <span class="nv">items</span>.<span class="nv">append</span>(<span class="nv">item</span>)
+</li><li>    }
+</li><li>    <span class="k">mutating</span> <span class="k">func</span> <span class="nv">pop</span>() -&gt; <span class="nc">Int</span> {
+</li><li>        <span class="k">return</span> <span class="nv">items</span>.<span class="nv">removeLast</span>()
+</li><li>    }
+</li><li>    <span class="c">// conformance to the Container protocol&nbsp;<span class="jpstr">（Containerプロトコルに準拠）</span><!--end_jpstr-->
+</span>
+</li><li>    <span class="k">typealias</span> <span class="nv">Item</span> = <span class="nc">Int</span>
+</li><li>    <span class="k">mutating</span> <span class="k">func</span> <span class="nv">append</span>(<span class="k">_</span> <span class="nv">item</span>: <span class="nc">Int</span>) {
+</li><li>        <span class="k">self</span>.<span class="nv">push</span>(<span class="nv">item</span>)
+</li><li>    }
+</li><li>    <span class="k">var</span> <span class="nv">count</span>: <span class="nc">Int</span> {
+</li><li>        <span class="k">return</span> <span class="nv">items</span>.<span class="nv">count</span>
+</li><li>    }
+</li><li>    <span class="k">subscript</span>(<span class="nv">i</span>: <span class="nc">Int</span>) -&gt; <span class="nc">Int</span> {
+</li><li>        <span class="k">return</span> <span class="nv">items</span>[<span class="nv">i</span>]
+</li><li>    }
+</li><li>}
+</li></ol></div></div></div>
+<p>The <code class="docutils literal notranslate"><span class="pre">IntStack</span></code> type implements all three of the <code class="docutils literal notranslate"><span class="pre">Container</span></code> protocol’s requirements, and in each case wraps part of the <code class="docutils literal notranslate"><span class="pre">IntStack</span></code> type’s existing functionality to satisfy these requirements.<br><span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">IntStack</span></code>型は、<code class="docutils literal notranslate"><span class="pre">Container</span></code>プロトコルの要件の３つすべてを実装します、そしてそれぞれの場合において、これらの要件を満たすために<code class="docutils literal notranslate"><span class="pre">IntStack</span></code>型がもつ既存の機能性の一部をラップしています（内部で利用して外側を包む）。
+</span><!--end_jpstr-->
+</p>
+<p>Moreover, <code class="docutils literal notranslate"><span class="pre">IntStack</span></code> specifies that for this implementation of <code class="docutils literal notranslate"><span class="pre">Container</span></code>, the appropriate <code class="docutils literal notranslate"><span class="pre">Item</span></code> to use is a type of <code class="docutils literal notranslate"><span class="pre">Int</span></code>. The definition of <code class="docutils literal notranslate"><span class="pre">typealias</span> <span class="pre">Item</span> <span class="pre">=</span> <span class="pre">Int</span></code> turns the abstract type of <code class="docutils literal notranslate"><span class="pre">Item</span></code> into a concrete type of <code class="docutils literal notranslate"><span class="pre">Int</span></code> for this implementation of the <code class="docutils literal notranslate"><span class="pre">Container</span></code> protocol.<br><span class="jpstr">
+さらに、<code class="docutils literal notranslate"><span class="pre">IntStack</span></code>は、<code class="docutils literal notranslate"><span class="pre">Container</span></code>のこの実施のために、適切な<code class="docutils literal notranslate"><span class="pre">Item</span></code>として使用するのは<code class="docutils literal notranslate"><span class="pre">Int</span></code>型であることを示します。定義<code class="docutils literal notranslate"><span class="pre">typealias</span> <span class="pre">Item</span> <span class="pre">=</span> <span class="pre">Int</span></code>は、抽象型<code class="docutils literal notranslate"><span class="pre">Item</span></code>を具象型<code class="docutils literal notranslate"><span class="pre">Int</span></code>へと、<code class="docutils literal notranslate"><span class="pre">Container</span></code>プロトコルのこの実装のために転向します。
+</span><!--end_jpstr-->
+</p>
+<p>Thanks to Swift’s type inference, you don’t actually need to declare a concrete <code class="docutils literal notranslate"><span class="pre">Item</span></code> of <code class="docutils literal notranslate"><span class="pre">Int</span></code> as part of the definition of <code class="docutils literal notranslate"><span class="pre">IntStack</span></code>. Because <code class="docutils literal notranslate"><span class="pre">IntStack</span></code> conforms to all of the requirements of the <code class="docutils literal notranslate"><span class="pre">Container</span></code> protocol, Swift can infer the appropriate <code class="docutils literal notranslate"><span class="pre">Item</span></code> to use, simply by looking at the type of the <code class="docutils literal notranslate"><span class="pre">append(_:)</span></code> method’s <code class="docutils literal notranslate"><span class="pre">item</span></code> parameter and the return type of the subscript. Indeed, if you delete the <code class="docutils literal notranslate"><span class="pre">typealias</span> <span class="pre">Item</span> <span class="pre">=</span> <span class="pre">Int</span></code> line from the code above, everything still works, because it’s clear what type should be used for <code class="docutils literal notranslate"><span class="pre">Item</span></code>.<br><span class="jpstr">
+スウィフトの型推論のおかげで、あなたは実際には<code class="docutils literal notranslate"><span class="pre">Int</span></code>である具体的な<code class="docutils literal notranslate"><span class="pre">Item</span></code>を<code class="docutils literal notranslate"><span class="pre">IntStack</span></code>の定義の一部として宣言する必要がありません。<code class="docutils literal notranslate"><span class="pre">IntStack</span></code>が<code class="docutils literal notranslate"><span class="pre">Container</span></code>プロトコルの要件の全てに準拠するので、スウィフトは、単に<code class="docutils literal notranslate"><span class="pre">append(_:)</span></code>メソッドの<code class="docutils literal notranslate"><span class="pre">item</span></code>パラメータの型、そして、添え字の戻り型を見ることによって、使用するのに適切な<code class="docutils literal notranslate"><span class="pre">item</span></code>を推論することができます。本当に、あなたが上のコードから行<code class="docutils literal notranslate"><span class="pre">typealias</span> <span class="pre">Item</span> <span class="pre">=</span> <span class="pre">Int</span></code>を削除するならば、すべては依然として働きます、なぜなら、どんな型が<code class="docutils literal notranslate"><span class="pre">Item</span></code>のために使われなければならないかは明白であるからです。
+</span><!--end_jpstr-->
+</p>
+<p>You can also make the generic <code class="docutils literal notranslate"><span class="pre">Stack</span></code> type conform to the <code class="docutils literal notranslate"><span class="pre">Container</span></code> protocol:<br><span class="jpstr">
+あなたは、また、総称体<code class="docutils literal notranslate"><span class="pre">Stack</span></code>型を<code class="docutils literal notranslate"><span class="pre">Container</span></code>プロトコルに準拠させることができます：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">struct</span> <span class="nv">Stack</span>&lt;<span class="nv">Element</span>&gt;: <span class="nc">Container</span> {
+</li><li>    <span class="c">// original Stack&lt;Element&gt; implementation&nbsp;<span class="jpstr">（元々のStack&lt;Element&gt;実装）</span><!--end_jpstr-->
+</span>
+</li><li>    <span class="k">var</span> <span class="nv">items</span> = [<span class="nv">Element</span>]()
+</li><li>    <span class="k">mutating</span> <span class="k">func</span> <span class="nv">push</span>(<span class="k">_</span> <span class="nv">item</span>: <span class="nc">Element</span>) {
+</li><li>        <span class="nv">items</span>.<span class="nv">append</span>(<span class="nv">item</span>)
+</li><li>    }
+</li><li>    <span class="k">mutating</span> <span class="k">func</span> <span class="nv">pop</span>() -&gt; <span class="nc">Element</span> {
+</li><li>        <span class="k">return</span> <span class="nv">items</span>.<span class="nv">removeLast</span>()
+</li><li>    }
+</li><li>    <span class="c">// conformance to the Container protocol&nbsp;<span class="jpstr">（Containerプロトコルに準拠）</span><!--end_jpstr-->
+</span>
+</li><li>    <span class="k">mutating</span> <span class="k">func</span> <span class="nv">append</span>(<span class="k">_</span> <span class="nv">item</span>: <span class="nc">Element</span>) {
+</li><li>        <span class="k">self</span>.<span class="nv">push</span>(<span class="nv">item</span>)
+</li><li>    }
+</li><li>    <span class="k">var</span> <span class="nv">count</span>: <span class="nc">Int</span> {
+</li><li>        <span class="k">return</span> <span class="nv">items</span>.<span class="nv">count</span>
+</li><li>    }
+</li><li>    <span class="k">subscript</span>(<span class="nv">i</span>: <span class="nc">Int</span>) -&gt; <span class="nc">Element</span> {
+</li><li>        <span class="k">return</span> <span class="nv">items</span>[<span class="nv">i</span>]
+</li><li>    }
+</li><li>}
+</li></ol></div></div></div>
+<p>This time, the type parameter <code class="docutils literal notranslate"><span class="pre">Element</span></code> is used as the type of the <code class="docutils literal notranslate"><span class="pre">append(_:)</span></code> method’s <code class="docutils literal notranslate"><span class="pre">item</span></code> parameter and the return type of the subscript. Swift can therefore infer that <code class="docutils literal notranslate"><span class="pre">Element</span></code> is the appropriate type to use as the <code class="docutils literal notranslate"><span class="pre">Item</span></code> for this particular container.<br><span class="jpstr">
+今度は、型パラメータ<code class="docutils literal notranslate"><span class="pre">Element</span></code>が、<code class="docutils literal notranslate"><span class="pre">append(_:)</span></code>メソッドの<code class="docutils literal notranslate"><span class="pre">item</span></code>パラメータの型および添え字の戻り型として使われます。スウィフトは、したがって<code class="docutils literal notranslate"><span class="pre">Element</span></code>が、この特定のコンテナのための<code class="docutils literal notranslate"><span class="pre">Item</span></code>として使うのに適当な型であると推測することができます。
+</span><!--end_jpstr-->
+</p>
+</div>
+<div class="section" id="ID191">
+<h3>Extending an Existing Type to Specify an Associated Type<a class="headerlink" href="#ID191" title="Permalink to this headline">¶</a><br><span class="jpstr">
+既存の型を拡張して関連型を指定する<a class="headerlink" href="#ID191" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h3>
+<p>You can extend an existing type to add conformance to a protocol, as described in <a class="reference internal" href="Protocols.html#ID277"><span class="std std-ref">Adding Protocol Conformance with an Extension</span></a>. This includes a protocol with an associated type.<br><span class="jpstr">
+あなたは、<a class="reference internal" href="Protocols.html#ID277"><span class="std std-ref">拡張を使ってプロトコル準拠を加える</span></a>で記述されるように、既存の型を拡張することでプロトコルへの準拠を加えることができます。これは、関連型を使うプロトコルを含みます。
+</span><!--end_jpstr-->
+</p>
+<p>Swift’s <code class="docutils literal notranslate"><span class="pre">Array</span></code> type already provides an <code class="docutils literal notranslate"><span class="pre">append(_:)</span></code> method, a <code class="docutils literal notranslate"><span class="pre">count</span></code> property, and a subscript with an <code class="docutils literal notranslate"><span class="pre">Int</span></code> index to retrieve its elements. These three capabilities match the requirements of the <code class="docutils literal notranslate"><span class="pre">Container</span></code> protocol. This means that you can extend <code class="docutils literal notranslate"><span class="pre">Array</span></code> to conform to the <code class="docutils literal notranslate"><span class="pre">Container</span></code> protocol simply by declaring that <code class="docutils literal notranslate"><span class="pre">Array</span></code> adopts the protocol. You do this with an empty extension, as described in <a class="reference internal" href="Protocols.html#ID278"><span class="std std-ref">Declaring Protocol Adoption with an Extension</span></a>:<br><span class="jpstr">
+スウィフトの<code class="docutils literal notranslate"><span class="pre">Array</span></code>型は、すでに<code class="docutils literal notranslate"><span class="pre">append(_:)</span></code>メソッド、<code class="docutils literal notranslate"><span class="pre">count</span></code>プロパティ、そしてその要素を取り出すために<code class="docutils literal notranslate"><span class="pre">Int</span></code>インデックスを使う添え字を提供します。これらの３つの能力は、<code class="docutils literal notranslate"><span class="pre">Container</span></code>プロトコルの要件に合致します。これは、あなたが<code class="docutils literal notranslate"><span class="pre">Array</span></code>を拡張して<code class="docutils literal notranslate"><span class="pre">Container</span></code>プロトコルに準拠することが、<code class="docutils literal notranslate"><span class="pre">Array</span></code>がそのプロトコルを採用すると宣言することによって可能であることを意味します。<a class="reference internal" href="Protocols.html#ID278"><span class="std std-ref">拡張を使ってプロトコル採用を宣言する</span></a>で記述されるように、あなたは空の拡張でこれを行います
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">extension</span> <span class="nc">Array</span>: <span class="nc">Container</span> {}
+</li></ol></div></div></div>
+<p>Array’s existing <code class="docutils literal notranslate"><span class="pre">append(_:)</span></code> method and subscript enable Swift to infer the appropriate type to use for <code class="docutils literal notranslate"><span class="pre">Item</span></code>, just as for the generic <code class="docutils literal notranslate"><span class="pre">Stack</span></code> type above. After defining this extension, you can use any <code class="docutils literal notranslate"><span class="pre">Array</span></code> as a <code class="docutils literal notranslate"><span class="pre">Container</span></code>.<br><span class="jpstr">
+配列の既存の<code class="docutils literal notranslate"><span class="pre">append(_:)</span></code>メソッドと添え字は、スウィフトに、ちょうど上の総称体<code class="docutils literal notranslate"><span class="pre">Stack</span></code>型と同じように、<code class="docutils literal notranslate"><span class="pre">Item</span></code>に使うのに適当な型を推論するのを可能にします。この拡張を定義した後に、あなたはどんな<code class="docutils literal notranslate"><span class="pre">Array</span></code>でも<code class="docutils literal notranslate"><span class="pre">Container</span></code>として使うことができます。
+</span><!--end_jpstr-->
+</p>
+</div>
+<div class="section" id="ID560">
+<h3>Adding Constraints to an Associated Type<a class="headerlink" href="#ID560" title="Permalink to this headline">¶</a><br><span class="jpstr">
+関連型に制約を加える<a class="headerlink" href="#ID560" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h3>
+<p>You can add type constraints to an associated type in a protocol to require that conforming types satisfy those constraints. For example, the following code defines a version of <code class="docutils literal notranslate"><span class="pre">Container</span></code> that requires the items in the container to be equatable.<br><span class="jpstr">
+あなたは、型制約を関連型へとプロトコルの中で加えることで、準拠する型がそれら制約を満たすことを要求できます。例えば、以下のコードは<code class="docutils literal notranslate"><span class="pre">Container</span></code>のあるバージョンを定義します、それはコンテナの中の項目に同等評価可能であることを要求するものです。
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">protocol</span> <span class="nv">Container</span> {
+</li><li>    <span class="k">associatedtype</span> <span class="nv">Item</span>: <span class="nc">Equatable</span>
+</li><li>    <span class="k">mutating</span> <span class="k">func</span> <span class="nv">append</span>(<span class="k">_</span> <span class="nv">item</span>: <span class="nc">Item</span>)
+</li><li>    <span class="k">var</span> <span class="nv">count</span>: <span class="nc">Int</span> { <span class="k">get</span> }
+</li><li>    <span class="k">subscript</span>(<span class="nv">i</span>: <span class="nc">Int</span>) -&gt; <span class="nc">Item</span> { <span class="k">get</span> }
+</li><li>}
+</li></ol></div></div></div>
+<p>To conform to this version of <code class="docutils literal notranslate"><span class="pre">Container</span></code>, the container’s <code class="docutils literal notranslate"><span class="pre">Item</span></code> type has to conform to the <code class="docutils literal notranslate"><span class="pre">Equatable</span></code> protocol.<br><span class="jpstr">
+このバージョンの<code class="docutils literal notranslate"><span class="pre">Container</span></code>に準拠するには、コンテナのもつ<code class="docutils literal notranslate"><span class="pre">Item</span></code>型は<code class="docutils literal notranslate"><span class="pre">Equatable</span></code>プロトコルに準拠しなければなりません。
+</span><!--end_jpstr-->
+</p>
+</div>
+<div class="section" id="ID575">
+<h3>Using a Protocol in Its Associated Type’s Constraints<a class="headerlink" href="#ID575" title="Permalink to this headline">¶</a><br><span class="jpstr">
+あるプロトコルをそれの関連型のもつ制約において使用する<a class="headerlink" href="#ID575" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h3>
+<p>A protocol can appear as part of its own requirements. For example, here’s a protocol that refines the <code class="docutils literal notranslate"><span class="pre">Container</span></code> protocol, adding the requirement of a <code class="docutils literal notranslate"><span class="pre">suffix(_:)</span></code> method. The <code class="docutils literal notranslate"><span class="pre">suffix(_:)</span></code> method returns a given number of elements from the end of the container, storing them in an instance of the <code class="docutils literal notranslate"><span class="pre">Suffix</span></code> type.<br><span class="jpstr">
+あるプロトコルは、それ自身の要件の一部として現れることができます。例えば、ここに<code class="docutils literal notranslate"><span class="pre">Container</span></code>プロトコルを改良したプロトコルがあり、<code class="docutils literal notranslate"><span class="pre">suffix(_:)</span></code>メソッドという要件を追加しています。<code class="docutils literal notranslate"><span class="pre">suffix(_:)</span></code>メソッドは、コンテナの終わりから指定の数の要素を、それらを<code class="docutils literal notranslate"><span class="pre">Suffix</span></code>型のインスタンスの中に格納して、返します。
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">protocol</span> <span class="nv">SuffixableContainer</span>: <span class="nc">Container</span> {
+</li><li>    <span class="k">associatedtype</span> <span class="nv">Suffix</span>: <span class="nc">SuffixableContainer</span> <span class="k">where</span> <span class="nc">Suffix</span>.<span class="nc">Item</span> == <span class="nc">Item</span>
+</li><li>    <span class="k">func</span> <span class="nv">suffix</span>(<span class="k">_</span> <span class="nv">size</span>: <span class="nc">Int</span>) -&gt; <span class="nc">Suffix</span>
+</li><li>}
+</li></ol></div></div></div>
+<p>In this protocol, <code class="docutils literal notranslate"><span class="pre">Suffix</span></code> is an associated type, like the <code class="docutils literal notranslate"><span class="pre">Item</span></code> type in the <code class="docutils literal notranslate"><span class="pre">Container</span></code> example above. <code class="docutils literal notranslate"><span class="pre">Suffix</span></code> has two constraints: It must conform to the <code class="docutils literal notranslate"><span class="pre">SuffixableContainer</span></code> protocol (the protocol currently being defined), and its <code class="docutils literal notranslate"><span class="pre">Item</span></code> type must be the same as the container’s <code class="docutils literal notranslate"><span class="pre">Item</span></code> type. The constraint on <code class="docutils literal notranslate"><span class="pre">Item</span></code> is a generic <code class="docutils literal notranslate"><span class="pre">where</span></code> clause, which is discussed in <a class="reference internal" href="#ID557"><span class="std std-ref">Associated Types with a Generic Where Clause</span></a> below.<br><span class="jpstr">
+このプロトコルにおいて、<code class="docutils literal notranslate"><span class="pre">Suffix</span></code>は関連型です、上の<code class="docutils literal notranslate"><span class="pre">Container</span></code>例での<code class="docutils literal notranslate"><span class="pre">Item</span></code>型のように。<code class="docutils literal notranslate"><span class="pre">Suffix</span></code>は、２つの制約を持ちます：それは<code class="docutils literal notranslate"><span class="pre">SuffixableContainer</span></code>プロトコル（そのプロトコルはいま定義されるところです）に準拠しなければなりません、そしてそれの<code class="docutils literal notranslate"><span class="pre">Item</span></code>型はコンテナのもつ<code class="docutils literal notranslate"><span class="pre">Item</span></code>型と同じでなければなりません。<code class="docutils literal notranslate"><span class="pre">Item</span></code>での制約は総称体<code class="docutils literal notranslate"><span class="pre">where</span></code>です、それは下の<a class="reference internal" href="#ID557"><span class="std std-ref">where節を持つ関連型</span></a>において議論されます。
+</span><!--end_jpstr-->
+</p>
+<p>Here’s an extension of the <code class="docutils literal notranslate"><span class="pre">Stack</span></code> type from <a class="reference internal" href="AutomaticReferenceCounting.html#ID56"><span class="std std-ref">Strong Reference Cycles for Closures</span></a> above that adds conformance to the <code class="docutils literal notranslate"><span class="pre">SuffixableContainer</span></code> protocol:<br><span class="jpstr">
+ここに、<code class="docutils literal notranslate"><span class="pre">Stack</span></code>型の拡張、上の<a class="reference internal" href="AutomaticReferenceCounting.html#ID56"><span class="std std-ref">クロージャのための強い参照循環</span></a>からのもの、があります、それは<code class="docutils literal notranslate"><span class="pre">SuffixableContainer</span></code>プロトコルへの準拠を加えます。
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">extension</span> <span class="nc">Stack</span>: <span class="nc">SuffixableContainer</span> {
+</li><li>    <span class="k">func</span> <span class="nv">suffix</span>(<span class="k">_</span> <span class="nv">size</span>: <span class="nc">Int</span>) -&gt; <span class="nc">Stack</span> {
+</li><li>        <span class="k">var</span> <span class="nv">result</span> = <span class="nv">Stack</span>()
+</li><li>        <span class="k">for</span> <span class="nv">index</span> <span class="k">in</span> (<span class="nv">count</span>-<span class="nv">size</span>)..&lt;<span class="nv">count</span> {
+</li><li>            <span class="nv">result</span>.<span class="nv">append</span>(<span class="k">self</span>[<span class="nv">index</span>])
+</li><li>        }
+</li><li>        <span class="k">return</span> <span class="nv">result</span>
+</li><li>    }
+</li><li>    <span class="c">// Inferred that Suffix is Stack.&nbsp;<span class="jpstr">（SuffixはStackであると推論される）</span><!--end_jpstr-->
+</span>
+</li><li>}
+</li><li><span class="k">var</span> <span class="nv">stackOfInts</span> = <span class="nv">Stack</span>&lt;<span class="nc">Int</span>&gt;()
+</li><li><span class="nv">stackOfInts</span>.<span class="nv">append</span>(<span class="m">10</span>)
+</li><li><span class="nv">stackOfInts</span>.<span class="nv">append</span>(<span class="m">20</span>)
+</li><li><span class="nv">stackOfInts</span>.<span class="nv">append</span>(<span class="m">30</span>)
+</li><li><span class="k">let</span> <span class="nv">suffix</span> = <span class="nv">stackOfInts</span>.<span class="nv">suffix</span>(<span class="m">2</span>)
+</li><li><span class="c">// suffix contains 20 and 30&nbsp;<span class="jpstr">（suffix は 20 と 30を含む）</span><!--end_jpstr-->
+</span>
+</li></ol></div></div></div>
+<p>In the example above, the <code class="docutils literal notranslate"><span class="pre">Suffix</span></code> associated type for <code class="docutils literal notranslate"><span class="pre">Stack</span></code> is also <code class="docutils literal notranslate"><span class="pre">Stack</span></code>, so the suffix operation on <code class="docutils literal notranslate"><span class="pre">Stack</span></code> returns another <code class="docutils literal notranslate"><span class="pre">Stack</span></code>. Alternatively, a type that conforms to <code class="docutils literal notranslate"><span class="pre">SuffixableContainer</span></code> can have a <code class="docutils literal notranslate"><span class="pre">Suffix</span></code> type that’s different from itself—meaning the suffix operation can return a different type. For example, here’s an extension to the nongeneric <code class="docutils literal notranslate"><span class="pre">IntStack</span></code> type that adds <code class="docutils literal notranslate"><span class="pre">SuffixableContainer</span></code> conformance, using <code class="docutils literal notranslate"><span class="pre">Stack&lt;Int&gt;</span></code> as its suffix type instead of <code class="docutils literal notranslate"><span class="pre">IntStack</span></code>:<br><span class="jpstr">
+上の例において、<code class="docutils literal notranslate"><span class="pre">Stack</span></code>のための<code class="docutils literal notranslate"><span class="pre">Suffix</span></code>関連型もまた<code class="docutils literal notranslate"><span class="pre">Stack</span></code>です、それで<code class="docutils literal notranslate"><span class="pre">Stack</span></code>上のsuffix演算は別の<code class="docutils literal notranslate"><span class="pre">Stack</span></code>を返します。あるいはまた、<code class="docutils literal notranslate"><span class="pre">SuffixableContainer</span></code>に準拠する型は、それ自身とは異なる<code class="docutils literal notranslate"><span class="pre">Suffix</span></code>型を持つことができます—suffix演算は異なる型を返すことができることになります。例えば、ここに非総称体<code class="docutils literal notranslate"><span class="pre">IntStack</span></code>型に対する拡張があります、それは<code class="docutils literal notranslate"><span class="pre">SuffixableContainer</span></code>準拠を、<code class="docutils literal notranslate"><span class="pre">Stack&lt;Int&gt;</span></code>をそれのsuffix型として<code class="docutils literal notranslate"><span class="pre">IntStack</span></code>の代わりに使って追加します：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">extension</span> <span class="nc">IntStack</span>: <span class="nc">SuffixableContainer</span> {
+</li><li>    <span class="k">func</span> <span class="nv">suffix</span>(<span class="k">_</span> <span class="nv">size</span>: <span class="nc">Int</span>) -&gt; <span class="nc">Stack</span>&lt;<span class="nc">Int</span>&gt; {
+</li><li>        <span class="k">var</span> <span class="nv">result</span> = <span class="nv">Stack</span>&lt;<span class="nc">Int</span>&gt;()
+</li><li>        <span class="k">for</span> <span class="nv">index</span> <span class="k">in</span> (<span class="nv">count</span>-<span class="nv">size</span>)..&lt;<span class="nv">count</span> {
+</li><li>            <span class="nv">result</span>.<span class="nv">append</span>(<span class="k">self</span>[<span class="nv">index</span>])
+</li><li>        }
+</li><li>        <span class="k">return</span> <span class="nv">result</span>
+</li><li>    }
+</li><li>    <span class="c">// Inferred that Suffix is Stack&lt;Int&gt;.&nbsp;<span class="jpstr">（Suffix は Stack&lt;Int&gt;であると推論される）</span><!--end_jpstr-->
+</span>
+</li><li>}
+</li></ol></div></div></div>
+</div>
+</div>
+<div class="section" id="ID192">
+<h2>Generic Where Clauses<a class="headerlink" href="#ID192" title="Permalink to this headline">¶</a><br><span class="jpstr">
+総称体where節<a class="headerlink" href="#ID192" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h2>
+<p>Type constraints, as described in <a class="reference internal" href="#ID186"><span class="std std-ref">Type Constraints</span></a>, enable you to define requirements on the type parameters associated with a generic function, subscript, or type.<br><span class="jpstr">
+型制約は、「<a class="reference internal" href="#ID186"><span class="std std-ref">型制約</span></a>」で記述されるように、総称体の関数、添え字、または型と関連した型パラメータに要件を定義することをあなたに可能にします。
+</span><!--end_jpstr-->
+</p>
+<p>It can also be useful to define requirements for associated types. You do this by defining a <em>generic where clause</em>. A generic <code class="docutils literal notranslate"><span class="pre">where</span></code> clause enables you to require that an associated type must conform to a certain protocol, or that certain type parameters and associated types must be the same. A generic <code class="docutils literal notranslate"><span class="pre">where</span></code> clause starts with the <code class="docutils literal notranslate"><span class="pre">where</span></code> keyword, followed by constraints for associated types or equality relationships between types and associated types. You write a generic <code class="docutils literal notranslate"><span class="pre">where</span></code> clause right before the opening curly brace of a type or function’s body.<br><span class="jpstr">
+関連型のために要件を定義することは、また同様に役に立ちます。あなたはこれを<em>総称体where節</em>を定義する事によって行います。総称体<code class="docutils literal notranslate"><span class="pre">where</span></code>節は、ある関連型が特定のプロトコルに準拠しなければならないこと、または特定の型パラメータおよび関連型が同じでなければならないことをあなたが要求できるようにします。総称体<code class="docutils literal notranslate"><span class="pre">where</span></code>節は、<code class="docutils literal notranslate"><span class="pre">where</span></code>キーワードで始まり、関連型に対する制約がいくつか、または型と関連型の間の同等関係性がいくつか続きます。あなたは、総称体<code class="docutils literal notranslate"><span class="pre">where</span></code>節を、型や関数のもつ本文の開き波括弧のまさに前に記述します。
+</span><!--end_jpstr-->
+</p>
+<p>The example below defines a generic function called <code class="docutils literal notranslate"><span class="pre">allItemsMatch</span></code>, which checks to see if two <code class="docutils literal notranslate"><span class="pre">Container</span></code> instances contain the same items in the same order. The function returns a Boolean value of <code class="docutils literal notranslate"><span class="pre">true</span></code> if all items match and a value of <code class="docutils literal notranslate"><span class="pre">false</span></code> if they don’t.<br><span class="jpstr">
+下の例は<code class="docutils literal notranslate"><span class="pre">allItemsMatch</span></code>と呼ばれる総称体関数を定義します、それは、２つの<code class="docutils literal notranslate"><span class="pre">Container</span></code>インスタンスが同じ順序で同じ項目を含むかどうか見るために調べます。この関数は全ての項目が合致するならばブール値の<code class="docutils literal notranslate"><span class="pre">true</span></code>を、それらがそうしないならば<code class="docutils literal notranslate"><span class="pre">false</span></code>の値を返します。
+</span><!--end_jpstr-->
+</p>
+<p>The two containers to be checked don’t have to be the same type of container (although they can be), but they do have to hold the same type of items. This requirement is expressed through a combination of type constraints and a generic <code class="docutils literal notranslate"><span class="pre">where</span></code> clause:<br><span class="jpstr">
+調べられる２つのコンテナは、同じ型のコンテナである必要はありません（とは言えそうでもよい）、しかしそれらは同じ型の項目を持たなければなりません。この要件は、型制約と総称体<code class="docutils literal notranslate"><span class="pre">where</span></code>節の組合せによって表されます：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">func</span> <span class="nv">allItemsMatch</span>&lt;<span class="nv">C1</span>: <span class="nc">Container</span>, <span class="nv">C2</span>: <span class="nc">Container</span>&gt;
+</li><li>    (<span class="k">_</span> <span class="nv">someContainer</span>: <span class="nc">C1</span>, <span class="k">_</span> <span class="nv">anotherContainer</span>: <span class="nc">C2</span>) -&gt; <span class="nc">Bool</span>
+</li><li>    <span class="k">where</span> <span class="nc">C1</span>.<span class="nc">Item</span> == <span class="nc">C2</span>.<span class="nc">Item</span>, <span class="nc">C1</span>.<span class="nc">Item</span>: <span class="nc">Equatable</span> {
+</li><li>
+</li><li>        <span class="c">// Check that both containers contain the same number of items.&nbsp;<span class="jpstr">（両方のコンテナが同じ数の項目を含むことを確認する）</span><!--end_jpstr-->
+</span>
+</li><li>        <span class="k">if</span> <span class="nv">someContainer</span>.<span class="nv">count</span> != <span class="nv">anotherContainer</span>.<span class="nv">count</span> {
+</li><li>            <span class="k">return</span> <span class="k">false</span>
+</li><li>        }
+</li><li>
+</li><li>        <span class="c">// Check each pair of items to see if they&#39;re equivalent.&nbsp;<span class="jpstr">（各項目の対をそれらが等しいかどうか見るため調べる）</span><!--end_jpstr-->
+</span>
+</li><li>        <span class="k">for</span> <span class="nv">i</span> <span class="k">in</span> <span class="m">0</span>..&lt;<span class="nv">someContainer</span>.<span class="nv">count</span> {
+</li><li>            <span class="k">if</span> <span class="nv">someContainer</span>[<span class="nv">i</span>] != <span class="nv">anotherContainer</span>[<span class="nv">i</span>] {
+</li><li>                <span class="k">return</span> <span class="k">false</span>
+</li><li>            }
+</li><li>        }
+</li><li>
+</li><li>        <span class="c">// All items match, so return true.&nbsp;<span class="jpstr">（全ての項目が合致、なのでtrueを返す）</span><!--end_jpstr-->
+</span>
+</li><li>        <span class="k">return</span> <span class="k">true</span>
+</li><li>}
+</li></ol></div></div></div>
+<p>This function takes two arguments called <code class="docutils literal notranslate"><span class="pre">someContainer</span></code> and <code class="docutils literal notranslate"><span class="pre">anotherContainer</span></code>. The <code class="docutils literal notranslate"><span class="pre">someContainer</span></code> argument is of type <code class="docutils literal notranslate"><span class="pre">C1</span></code>, and the <code class="docutils literal notranslate"><span class="pre">anotherContainer</span></code> argument is of type <code class="docutils literal notranslate"><span class="pre">C2</span></code>. Both <code class="docutils literal notranslate"><span class="pre">C1</span></code> and <code class="docutils literal notranslate"><span class="pre">C2</span></code> are type parameters for two container types to be determined when the function is called.<br><span class="jpstr">
+この関数は、<code class="docutils literal notranslate"><span class="pre">someContainer</span></code>と<code class="docutils literal notranslate"><span class="pre">anotherContainer</span></code>と呼ばれる２つの引数をとります。<code class="docutils literal notranslate"><span class="pre">someContainer</span></code>引数は型<code class="docutils literal notranslate"><span class="pre">C1</span></code>です、そして<code class="docutils literal notranslate"><span class="pre">anotherContainer</span></code>引数は型<code class="docutils literal notranslate"><span class="pre">C2</span></code>です。<code class="docutils literal notranslate"><span class="pre">C1</span></code>と<code class="docutils literal notranslate"><span class="pre">C2</span></code>の両方は、２つのコンテナ型のための型パラメータで、関数が呼ばれるときに決定されます。
+</span><!--end_jpstr-->
+</p>
+<p>The following requirements are placed on the function’s two type parameters:<br><span class="jpstr">
+以下の要件は、この関数の持つ２つの型パラメータ上に置かれます：
+</span><!--end_jpstr-->
+</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">C1</span></code> must conform to the <code class="docutils literal notranslate"><span class="pre">Container</span></code> protocol (written as <code class="docutils literal notranslate"><span class="pre">C1:</span> <span class="pre">Container</span></code>).<br><span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">C1</span></code>は、<code class="docutils literal notranslate"><span class="pre">Container</span></code>プロトコルに準拠しなければなりません（<code class="docutils literal notranslate"><span class="pre">C1:</span> <span class="pre">Container</span></code>のように書かれます）。
+</span><!--end_jpstr-->
+</li>
+<li><code class="docutils literal notranslate"><span class="pre">C2</span></code> must also conform to the <code class="docutils literal notranslate"><span class="pre">Container</span></code> protocol (written as <code class="docutils literal notranslate"><span class="pre">C2:</span> <span class="pre">Container</span></code>).<br><span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">C2</span></code>もまた、<code class="docutils literal notranslate"><span class="pre">Container</span></code>プロトコルに準拠しなければなりません（<code class="docutils literal notranslate"><span class="pre">C2:</span> <span class="pre">Container</span></code>のように書かれます）。
+</span><!--end_jpstr-->
+</li>
+<li>The <code class="docutils literal notranslate"><span class="pre">Item</span></code> for <code class="docutils literal notranslate"><span class="pre">C1</span></code> must be the same as the <code class="docutils literal notranslate"><span class="pre">Item</span></code> for <code class="docutils literal notranslate"><span class="pre">C2</span></code> (written as <code class="docutils literal notranslate"><span class="pre">C1.Item</span> <span class="pre">==</span> <span class="pre">C2.Item</span></code>).<br><span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">C1</span></code>のための<code class="docutils literal notranslate"><span class="pre">Item</span></code>は、<code class="docutils literal notranslate"><span class="pre">C2</span></code>のための<code class="docutils literal notranslate"><span class="pre">Item</span></code>と同じものでなければなりません（<code class="docutils literal notranslate"><span class="pre">C1.Item</span> <span class="pre">==</span> <span class="pre">C2.Item</span></code>のように書かれます）。
+</span><!--end_jpstr-->
+</li>
+<li>The <code class="docutils literal notranslate"><span class="pre">Item</span></code> for <code class="docutils literal notranslate"><span class="pre">C1</span></code> must conform to the <code class="docutils literal notranslate"><span class="pre">Equatable</span></code> protocol (written as <code class="docutils literal notranslate"><span class="pre">C1.Item:</span> <span class="pre">Equatable</span></code>).<br><span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">C1</span></code>のための<code class="docutils literal notranslate"><span class="pre">Item</span></code>は、<code class="docutils literal notranslate"><span class="pre">Equatable</span></code>プロトコルに準拠しなければなりません（<code class="docutils literal notranslate"><span class="pre">C1.Item:</span> <span class="pre">Equatable</span></code>のように書かれます）。
+</span><!--end_jpstr-->
+</li>
+</ul>
+<p>The first and second requirements are defined in the function’s type parameter list, and the third and fourth requirements are defined in the function’s generic <code class="docutils literal notranslate"><span class="pre">where</span></code> clause.<br><span class="jpstr">
+最初と２番目の要件は関数のもつ型パラメータリストにおいて定義されます、そして３番目と４番目の要件は関数のもつ総称体<code class="docutils literal notranslate"><span class="pre">where</span></code>節において定義されます。
+</span><!--end_jpstr-->
+</p>
+<p>These requirements mean:<br><span class="jpstr">
+これらの要件が意味するのは：
+</span><!--end_jpstr-->
+</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">someContainer</span></code> is a container of type <code class="docutils literal notranslate"><span class="pre">C1</span></code>.<br><span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">someContainer</span></code>は、型<code class="docutils literal notranslate"><span class="pre">C1</span></code>のコンテナです。
+</span><!--end_jpstr-->
+</li>
+<li><code class="docutils literal notranslate"><span class="pre">anotherContainer</span></code> is a container of type <code class="docutils literal notranslate"><span class="pre">C2</span></code>.<br><span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">anotherContainer</span></code>は、型<code class="docutils literal notranslate"><span class="pre">C2</span></code>のコンテナです。
+</span><!--end_jpstr-->
+</li>
+<li><code class="docutils literal notranslate"><span class="pre">someContainer</span></code> and <code class="docutils literal notranslate"><span class="pre">anotherContainer</span></code> contain the same type of items.<br><span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">someContainer</span></code>と<code class="docutils literal notranslate"><span class="pre">anotherContainer</span></code>は、同じ型の項目を含みます。
+</span><!--end_jpstr-->
+</li>
+<li>The items in <code class="docutils literal notranslate"><span class="pre">someContainer</span></code> can be checked with the not equal operator (<code class="docutils literal notranslate"><span class="pre">!=</span></code>) to see if they’re different from each other.<br><span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">someContainer</span></code>の中の項目は、それらがお互いと異なるかどうか見るために不等演算子（<code class="docutils literal notranslate"><span class="pre">!=</span></code>）を使って確認されることができます。
+</span><!--end_jpstr-->
+</li>
+</ul>
+<p>The third and fourth requirements combine to mean that the items in <code class="docutils literal notranslate"><span class="pre">anotherContainer</span></code> can <em>also</em> be checked with the <code class="docutils literal notranslate"><span class="pre">!=</span></code> operator, because they’re exactly the same type as the items in <code class="docutils literal notranslate"><span class="pre">someContainer</span></code>.<br><span class="jpstr">
+３番目と４番目の要件は組み合わされて、<code class="docutils literal notranslate"><span class="pre">anotherContainer</span></code>の中の項目が<code class="docutils literal notranslate"><span class="pre">!=</span></code>演算子を使って確認されることが<em>同様に</em>可能なことを意味します、なぜなら、それらは<code class="docutils literal notranslate"><span class="pre">someContainer</span></code>の中の項目と同じ正確に型であるからです。
+</span><!--end_jpstr-->
+</p>
+<p>These requirements enable the <code class="docutils literal notranslate"><span class="pre">allItemsMatch(_:_:)</span></code> function to compare the two containers, even if they’re of a different container type.<br><span class="jpstr">
+これらの要件は、<code class="docutils literal notranslate"><span class="pre">allItemsMatch(_:_:)</span></code>関数に２つのコンテナを比較するのを可能にします、たとえそれらが異なるコンテナ型であるとしてもです。
+</span><!--end_jpstr-->
+</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">allItemsMatch(_:_:)</span></code> function starts by checking that both containers contain the same number of items. If they contain a different number of items, there’s no way that they can match, and the function returns <code class="docutils literal notranslate"><span class="pre">false</span></code>.<br><span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">allItemsMatch(_:_:)</span></code>関数は、両方のコンテナが同じ数の項目を含むことを確認することによって始まります。それらが異なる数の項目を含むならば、それらが合致することができる術はありません、そして関数は<code class="docutils literal notranslate"><span class="pre">false</span></code>を返します。
+</span><!--end_jpstr-->
+</p>
+<p>After making this check, the function iterates over all of the items in <code class="docutils literal notranslate"><span class="pre">someContainer</span></code> with a <code class="docutils literal notranslate"><span class="pre">for</span></code>-<code class="docutils literal notranslate"><span class="pre">in</span></code> loop and the half-open range operator (<code class="docutils literal notranslate"><span class="pre">..&lt;</span></code>). For each item, the function checks whether the item from <code class="docutils literal notranslate"><span class="pre">someContainer</span></code> isn’t equal to the corresponding item in <code class="docutils literal notranslate"><span class="pre">anotherContainer</span></code>. If the two items aren’t equal, then the two containers don’t match, and the function returns <code class="docutils literal notranslate"><span class="pre">false</span></code>.<br><span class="jpstr">
+この確認の後、関数は<code class="docutils literal notranslate"><span class="pre">someContainer</span></code>の項目の全てに渡って<code class="docutils literal notranslate"><span class="pre">for</span></code>-<code class="docutils literal notranslate"><span class="pre">in</span></code>ループと半開範囲演算子（<code class="docutils literal notranslate"><span class="pre">..&lt;</span></code>）を使って繰り返します。各項目のために、関数は<code class="docutils literal notranslate"><span class="pre">someContainer</span></code>からの項目が<code class="docutils literal notranslate"><span class="pre">anotherContainer</span></code>での対応する項目と同等でないかどうか確認します。２つの項目が等しくないならば、２つのコンテナは合致しません、そして関数は<code class="docutils literal notranslate"><span class="pre">false</span></code>を返します。
+</span><!--end_jpstr-->
+</p>
+<p>If the loop finishes without finding a mismatch, the two containers match, and the function returns <code class="docutils literal notranslate"><span class="pre">true</span></code>.<br><span class="jpstr">
+ループが一致しない組合せを見つけることなく終わるならば、２つのコンテナは合致します、そして関数は<code class="docutils literal notranslate"><span class="pre">true</span></code>を返します。
+</span><!--end_jpstr-->
+</p>
+<p>Here’s how the <code class="docutils literal notranslate"><span class="pre">allItemsMatch(_:_:)</span></code> function looks in action:<br><span class="jpstr">
+動作中の<code class="docutils literal notranslate"><span class="pre">allItemsMatch(_:_:)</span></code>関数がどのように見えるかが、ここにあります：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">var</span> <span class="nv">stackOfStrings</span> = <span class="nv">Stack</span>&lt;<span class="nc">String</span>&gt;()
+</li><li><span class="nv">stackOfStrings</span>.<span class="nv">push</span>(<span class="s">&quot;uno&quot;</span>)
+</li><li><span class="nv">stackOfStrings</span>.<span class="nv">push</span>(<span class="s">&quot;dos&quot;</span>)
+</li><li><span class="nv">stackOfStrings</span>.<span class="nv">push</span>(<span class="s">&quot;tres&quot;</span>)
+</li><li>
+</li><li><span class="k">var</span> <span class="nv">arrayOfStrings</span> = [<span class="s">&quot;uno&quot;</span>, <span class="s">&quot;dos&quot;</span>, <span class="s">&quot;tres&quot;</span>]
+</li><li>
+</li><li><span class="k">if</span> <span class="nv">allItemsMatch</span>(<span class="nv">stackOfStrings</span>, <span class="nv">arrayOfStrings</span>) {
+</li><li>    <span class="nv">print</span>(<span class="s">&quot;All items match.&quot;</span>)
+</li><li>} <span class="k">else</span> {
+</li><li>    <span class="nv">print</span>(<span class="s">&quot;Not all items match.&quot;</span>)
+</li><li>}
+</li><li><span class="c">// Prints &quot;All items match.&quot;&nbsp;<span class="jpstr">（「全ての項目が一致する」を出力します）</span><!--end_jpstr-->
+</span>
+</li></ol></div></div></div>
+<p>The example above creates a <code class="docutils literal notranslate"><span class="pre">Stack</span></code> instance to store <code class="docutils literal notranslate"><span class="pre">String</span></code> values, and pushes three strings onto the stack. The example also creates an <code class="docutils literal notranslate"><span class="pre">Array</span></code> instance initialized with an array literal containing the same three strings as the stack. Even though the stack and the array are of a different type, they both conform to the <code class="docutils literal notranslate"><span class="pre">Container</span></code> protocol, and both contain the same type of values. You can therefore call the <code class="docutils literal notranslate"><span class="pre">allItemsMatch(_:_:)</span></code> function with these two containers as its arguments. In the example above, the <code class="docutils literal notranslate"><span class="pre">allItemsMatch(_:_:)</span></code> function correctly reports that all of the items in the two containers match.<br><span class="jpstr">
+上の例は、<code class="docutils literal notranslate"><span class="pre">Stack</span></code>インスタンスをつくって<code class="docutils literal notranslate"><span class="pre">String</span></code>値を格納します、そしてスタック上へ３つの文字列をプッシュします。この例はまた、このスタックと同じ３つの文字列を含む配列リテラルで初期化される<code class="docutils literal notranslate"><span class="pre">Array</span></code>インスタンスをつくります。たとえスタックと配列が異なる型であるとしても、それらは両方とも<code class="docutils literal notranslate"><span class="pre">Container</span></code>プロトコルに準拠して、両方とも同じ型の値を含みます。あなたは、したがって、<code class="docutils literal notranslate"><span class="pre">allItemsMatch(_:_:)</span></code>関数をその引数としてこれらの２つのコンテナを使って呼ぶことができます。上の例で、<code class="docutils literal notranslate"><span class="pre">allItemsMatch(_:_:)</span></code>関数は、２つのコンテナの中の項目の全てが一致すると正しく報告します。
+</span><!--end_jpstr-->
+</p>
+</div>
+<div class="section" id="ID553">
+<h2>Extensions with a Generic Where Clause<a class="headerlink" href="#ID553" title="Permalink to this headline">¶</a><br><span class="jpstr">
+総称体where節を持つ拡張<a class="headerlink" href="#ID553" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h2>
+<p>You can also use a generic <code class="docutils literal notranslate"><span class="pre">where</span></code> clause as part of an extension. The example below extends the generic <code class="docutils literal notranslate"><span class="pre">Stack</span></code> structure from the previous examples to add an <code class="docutils literal notranslate"><span class="pre">isTop(_:)</span></code> method.<br><span class="jpstr">
+あなたまた、総称体<code class="docutils literal notranslate"><span class="pre">where</span></code>節を拡張の一部として使うことができます。下の例は、以前の例の総称体<code class="docutils literal notranslate"><span class="pre">Stack</span></code>構造体を拡張して、<code class="docutils literal notranslate"><span class="pre">isTop(_:)</span></code>メソッドを加えます。
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">extension</span> <span class="nc">Stack</span> <span class="k">where</span> <span class="nc">Element</span>: <span class="nc">Equatable</span> {
+</li><li>    <span class="k">func</span> <span class="nv">isTop</span>(<span class="k">_</span> <span class="nv">item</span>: <span class="nc">Element</span>) -&gt; <span class="nc">Bool</span> {
+</li><li>        <span class="k">guard</span> <span class="k">let</span> <span class="nv">topItem</span> = <span class="nv">items</span>.<span class="nv">last</span> <span class="k">else</span> {
+</li><li>            <span class="k">return</span> <span class="k">false</span>
+</li><li>        }
+</li><li>        <span class="k">return</span> <span class="nv">topItem</span> == <span class="nv">item</span>
+</li><li>    }
+</li><li>}
+</li></ol></div></div></div>
+<p>This new <code class="docutils literal notranslate"><span class="pre">isTop(_:)</span></code> method first checks that the stack isn’t empty, and then compares the given item against the stack’s topmost item. If you tried to do this without a generic <code class="docutils literal notranslate"><span class="pre">where</span></code> clause, you would have a problem: The implementation of <code class="docutils literal notranslate"><span class="pre">isTop(_:)</span></code> uses the <code class="docutils literal notranslate"><span class="pre">==</span></code> operator, but the definition of <code class="docutils literal notranslate"><span class="pre">Stack</span></code> doesn’t require its items to be equatable, so using the <code class="docutils literal notranslate"><span class="pre">==</span></code> operator results in a compile-time error. Using a generic <code class="docutils literal notranslate"><span class="pre">where</span></code> clause lets you add a new requirement to the extension, so that the extension adds the <code class="docutils literal notranslate"><span class="pre">isTop(_:)</span></code> method only when the items in the stack are equatable.<br><span class="jpstr">
+この新しい<code class="docutils literal notranslate"><span class="pre">isTop(_:)</span></code>メソッドは、まずスタックが空でないことを確認します、それから与えられた項目をスタックの持つ最も上の項目と比較します。あなたが総称体<code class="docutils literal notranslate"><span class="pre">where</span></code>節なしにこれをしようとするならば、あなたは問題を抱えることになるでしょう：<code class="docutils literal notranslate"><span class="pre">isTop(_:)</span></code>の実装は<code class="docutils literal notranslate"><span class="pre">==</span></code>演算子を使います、しかし<code class="docutils literal notranslate"><span class="pre">Stack</span></code>の定義はそれの項目に同等評価可能であることを要求しません、それで<code class="docutils literal notranslate"><span class="pre">==</span></code>演算子の使用はコンパイル時エラーという結果になります。総称体<code class="docutils literal notranslate"><span class="pre">where</span></code>節を使うことは、あなたに新しい要件をその拡張に追加させます、それで拡張は<code class="docutils literal notranslate"><span class="pre">isTop(_:)</span></code>メソッドをスタックの中の項目が同等評価可能なものである時のみ加えます。
+</span><!--end_jpstr-->
+</p>
+<p>Here’s how the <code class="docutils literal notranslate"><span class="pre">isTop(_:)</span></code> method looks in action:<br><span class="jpstr">
+動作中の<code class="docutils literal notranslate"><span class="pre">isTop(_:)</span></code>メソッドがどのように見えるかが、ここにあります：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">if</span> <span class="nv">stackOfStrings</span>.<span class="nv">isTop</span>(<span class="s">&quot;tres&quot;</span>) {
+</li><li>    <span class="nv">print</span>(<span class="s">&quot;Top element is tres.&quot;</span>)
+</li><li>} <span class="k">else</span> {
+</li><li>    <span class="nv">print</span>(<span class="s">&quot;Top element is something else.&quot;</span>)
+</li><li>}
+</li><li><span class="c">// Prints &quot;Top element is tres.&quot;</span>
+</li></ol></div></div></div>
+<p>If you try to call the <code class="docutils literal notranslate"><span class="pre">isTop(_:)</span></code> method on a stack whose elements aren’t equatable, you’ll get a compile-time error.<br><span class="jpstr">
+あなたが<code class="docutils literal notranslate"><span class="pre">isTop(_:)</span></code>メソッドを、それの持つ要素が同等評価可能でないスタック上で呼び出そうとするならば、あなたはコンパイル時エラーを得るでしょう。
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">struct</span> <span class="nv">NotEquatable</span> { }
+</li><li><span class="k">var</span> <span class="nv">notEquatableStack</span> = <span class="nv">Stack</span>&lt;<span class="nc">NotEquatable</span>&gt;()
+</li><li><span class="k">let</span> <span class="nv">notEquatableValue</span> = <span class="nv">NotEquatable</span>()
+</li><li><span class="nv">notEquatableStack</span>.<span class="nv">push</span>(<span class="nv">notEquatableValue</span>)
+</li><li><span class="nv">notEquatableStack</span>.<span class="nv">isTop</span>(<span class="nv">notEquatableValue</span>)  <span class="c">// Error</span>
+</li></ol></div></div></div>
+<p>You can use a generic <code class="docutils literal notranslate"><span class="pre">where</span></code> clause with extensions to a protocol. The example below extends the <code class="docutils literal notranslate"><span class="pre">Container</span></code> protocol from the previous examples to add a <code class="docutils literal notranslate"><span class="pre">startsWith(_:)</span></code> method.<br><span class="jpstr">
+あなたは、総称体<code class="docutils literal notranslate"><span class="pre">where</span></code>節をプロトコルに対する拡張で使うことができます。下の例は、以前の例の<code class="docutils literal notranslate"><span class="pre">Container</span></code>プロトコルを拡張して、<code class="docutils literal notranslate"><span class="pre">startsWith(_:)</span></code>メソッドを追加します。
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">extension</span> <span class="nc">Container</span> <span class="k">where</span> <span class="nc">Item</span>: <span class="nc">Equatable</span> {
+</li><li>    <span class="k">func</span> <span class="nv">startsWith</span>(<span class="k">_</span> <span class="nv">item</span>: <span class="nc">Item</span>) -&gt; <span class="nc">Bool</span> {
+</li><li>        <span class="k">return</span> <span class="nv">count</span> &gt;= <span class="m">1</span> &amp;&amp; <span class="k">self</span>[<span class="m">0</span>] == <span class="nv">item</span>
+</li><li>    }
+</li><li>}
+</li></ol></div></div></div>
+<p>The <code class="docutils literal notranslate"><span class="pre">startsWith(_:)</span></code> method first makes sure that the container has at least one item, and then it checks whether the first item in the container matches the given item. This new <code class="docutils literal notranslate"><span class="pre">startsWith(_:)</span></code> method can be used with any type that conforms to the <code class="docutils literal notranslate"><span class="pre">Container</span></code> protocol, including the stacks and arrays used above, as long as the container’s items are equatable.<br><span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">startsWith(_:)</span></code>メソッドはまず、コンテナが少なくとも１つの項目を持つことを確かめます、それからそれはそのコンテナの最初の項目が与えられた項目と合致するかどうか調べます。この新しい<code class="docutils literal notranslate"><span class="pre">startsWith(_:)</span></code>メソッドは<code class="docutils literal notranslate"><span class="pre">Container</span></code>プロトコルに準拠するあらゆる型で使われることができます、上で使われるスタックと配列を含めて、コンテナの持つ項目が同等評価可能である限りは。
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">if</span> [<span class="m">9</span>, <span class="m">9</span>, <span class="m">9</span>].<span class="nv">startsWith</span>(<span class="m">42</span>) {
+</li><li>    <span class="nv">print</span>(<span class="s">&quot;Starts with 42.&quot;</span>)
+</li><li>} <span class="k">else</span> {
+</li><li>    <span class="nv">print</span>(<span class="s">&quot;Starts with something else.&quot;</span>)
+</li><li>}
+</li><li><span class="c">// Prints &quot;Starts with something else.&quot;</span>
+</li></ol></div></div></div>
+<p>The generic <code class="docutils literal notranslate"><span class="pre">where</span></code> clause in the example above requires <code class="docutils literal notranslate"><span class="pre">Item</span></code> to conform to a protocol, but you can also write a generic <code class="docutils literal notranslate"><span class="pre">where</span></code> clauses that require <code class="docutils literal notranslate"><span class="pre">Item</span></code> to be a specific type. For example:<br><span class="jpstr">
+上の例の総称体<code class="docutils literal notranslate"><span class="pre">where</span></code>節は、<code class="docutils literal notranslate"><span class="pre">Item</span></code>に要求してあるプロトコルに準拠させます、しかしあなたはまた<code class="docutils literal notranslate"><span class="pre">Item</span></code>に特定の型であることを要求する総称体<code class="docutils literal notranslate"><span class="pre">where</span></code>節を書くことができます。例えば：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">extension</span> <span class="nc">Container</span> <span class="k">where</span> <span class="nc">Item</span> == <span class="nc">Double</span> {
+</li><li>    <span class="k">func</span> <span class="nv">average</span>() -&gt; <span class="nc">Double</span> {
+</li><li>        <span class="k">var</span> <span class="nv">sum</span> = <span class="m">0.0</span>
+</li><li>        <span class="k">for</span> <span class="nv">index</span> <span class="k">in</span> <span class="m">0</span>..&lt;<span class="nv">count</span> {
+</li><li>            <span class="nv">sum</span> += <span class="k">self</span>[<span class="nv">index</span>]
+</li><li>        }
+</li><li>        <span class="k">return</span> <span class="nv">sum</span> / <span class="nv">Double</span>(<span class="nv">count</span>)
+</li><li>    }
+</li><li>}
+</li><li><span class="nv">print</span>([<span class="m">1260.0</span>, <span class="m">1200.0</span>, <span class="m">98.6</span>, <span class="m">37.0</span>].<span class="nv">average</span>())
+</li><li><span class="c">// Prints &quot;648.9&quot;</span>
+</li></ol></div></div></div>
+<p>This example adds an <code class="docutils literal notranslate"><span class="pre">average()</span></code> method to containers whose <code class="docutils literal notranslate"><span class="pre">Item</span></code> type is <code class="docutils literal notranslate"><span class="pre">Double</span></code>. It iterates over the items in the container to add them up, and divides by the container’s count to compute the average. It explicitly converts the count from <code class="docutils literal notranslate"><span class="pre">Int</span></code> to <code class="docutils literal notranslate"><span class="pre">Double</span></code> to be able to do floating-point division.<br><span class="jpstr">
+この例は、<code class="docutils literal notranslate"><span class="pre">average()</span></code>メソッドを、<code class="docutils literal notranslate"><span class="pre">Item</span></code>型が<code class="docutils literal notranslate"><span class="pre">Double</span></code>であるコンテナに追加します。それは、コンテナの中の項目すべてにわたって繰り返していき、それらを合計します、そしてコンテナの総数で除算することで平均を計算します。それは、明示的に総数を<code class="docutils literal notranslate"><span class="pre">Int</span></code>から<code class="docutils literal notranslate"><span class="pre">Double</span></code>へ変換して、浮動小数点除算ができるようにします。
+</span><!--end_jpstr-->
+</p>
+<p>You can include multiple requirements in a generic <code class="docutils literal notranslate"><span class="pre">where</span></code> clause that is part of an extension, just like you can for a generic <code class="docutils literal notranslate"><span class="pre">where</span></code> clause that you write elsewhere. Separate each requirement in the list with a comma.<br><span class="jpstr">
+あなたは、複数の要件を拡張の一部であるひとつの<code class="docutils literal notranslate"><span class="pre">where</span></code>節の中に含めることができます、ちょうどあなたがどこか他で書く総称体<code class="docutils literal notranslate"><span class="pre">where</span></code>節に対してできるように。リストの中の各要件をコンマで区切ってください。
+</span><!--end_jpstr-->
+</p>
+</div>
+<div class="section" id="ID557">
+<h2>Associated Types with a Generic Where Clause<a class="headerlink" href="#ID557" title="Permalink to this headline">¶</a><br><span class="jpstr">
+総称体where節を持つ関連型<a class="headerlink" href="#ID557" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h2>
+<p>You can include a generic <code class="docutils literal notranslate"><span class="pre">where</span></code> clause on an associated type. For example, suppose you want to make a version of <code class="docutils literal notranslate"><span class="pre">Container</span></code> that includes an iterator, like what the <code class="docutils literal notranslate"><span class="pre">Sequence</span></code> protocol uses in the standard library. Here’s how you write that:<br><span class="jpstr">
+あなたは、総称体<code class="docutils literal notranslate"><span class="pre">where</span></code>節を関連型に関して含めることができます。例えば、あなたが<code class="docutils literal notranslate"><span class="pre">Container</span></code>のあるバージョンを作りたいと仮定してください、それはあるイテレータ、標準ライブラリで使われている<code class="docutils literal notranslate"><span class="pre">Sequence</span></code>プロトコルのようなものを含みます。あなたがそれをどう書くかここにあります：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">protocol</span> <span class="nv">Container</span> {
+</li><li>    <span class="k">associatedtype</span> <span class="nv">Item</span>
+</li><li>    <span class="k">mutating</span> <span class="k">func</span> <span class="nv">append</span>(<span class="k">_</span> <span class="nv">item</span>: <span class="nc">Item</span>)
+</li><li>    <span class="k">var</span> <span class="nv">count</span>: <span class="nc">Int</span> { <span class="k">get</span> }
+</li><li>    <span class="k">subscript</span>(<span class="nv">i</span>: <span class="nc">Int</span>) -&gt; <span class="nc">Item</span> { <span class="k">get</span> }
+</li><li>
+</li><li>    <span class="k">associatedtype</span> <span class="nv">Iterator</span>: <span class="nc">IteratorProtocol</span> <span class="k">where</span> <span class="nc">Iterator</span>.<span class="nc">Element</span> == <span class="nc">Item</span>
+</li><li>    <span class="k">func</span> <span class="nv">makeIterator</span>() -&gt; <span class="nc">Iterator</span>
+</li><li>}
+</li></ol></div></div></div>
+<p>The generic <code class="docutils literal notranslate"><span class="pre">where</span></code> clause on <code class="docutils literal notranslate"><span class="pre">Iterator</span></code> requires that the iterator must traverse over elements of the same item type as the container’s items, regardless of the iterator’s type. The <code class="docutils literal notranslate"><span class="pre">makeIterator()</span></code> function provides access to a container’s iterator.<br><span class="jpstr">
+この総称体<code class="docutils literal notranslate"><span class="pre">where</span></code>節が<code class="docutils literal notranslate"><span class="pre">Iterator</span></code>上で要求するのは、そのイテレータがコンテナのもつ要素と同じ項目型の要素に対して見ていくことです、そのイテレータの持つ型に関係なく。<code class="docutils literal notranslate"><span class="pre">makeIterator()</span></code>関数は、コンテナの持つイテレータに対するアクセスを提供します。
+</span><!--end_jpstr-->
+</p>
+<p>For a protocol that inherits from another protocol, you add a constraint to an inherited associated type by including the generic <code class="docutils literal notranslate"><span class="pre">where</span></code> clause in the protocol declaration. For example, the following code declares a <code class="docutils literal notranslate"><span class="pre">ComparableContainer</span></code> protocol that requires <code class="docutils literal notranslate"><span class="pre">Item</span></code> to conform to <code class="docutils literal notranslate"><span class="pre">Comparable</span></code>:<br><span class="jpstr">
+別のプロトコルから継承するプロトコルに対して、あなたは継承された関連型への制約の追加を、総称体<code class="docutils literal notranslate"><span class="pre">where</span></code>節をそのプロトコル宣言の中で含めることによって行います。例えば、以下のコードは<code class="docutils literal notranslate"><span class="pre">ComparableContainer</span></code>プロトコルを宣言します、それは<code class="docutils literal notranslate"><span class="pre">Item</span></code>が<code class="docutils literal notranslate"><span class="pre">Comparable</span></code>に準拠することを要求します：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">protocol</span> <span class="nv">ComparableContainer</span>: <span class="nc">Container</span> <span class="k">where</span> <span class="nc">Item</span>: <span class="nc">Comparable</span> { }
+</li></ol></div></div></div>
+</div>
+<div class="section" id="ID558">
+<h2>Generic Subscripts<a class="headerlink" href="#ID558" title="Permalink to this headline">¶</a><br><span class="jpstr">
+総称体添え字<a class="headerlink" href="#ID558" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h2>
+<p>Subscripts can be generic, and they can include generic <code class="docutils literal notranslate"><span class="pre">where</span></code> clauses. You write the placeholder type name inside angle brackets after <code class="docutils literal notranslate"><span class="pre">subscript</span></code>, and you write a generic <code class="docutils literal notranslate"><span class="pre">where</span></code> clause right before the opening curly brace of the subscript’s body. For example:<br><span class="jpstr">
+添え字は総称体であることができます、そしてそれらは総称体<code class="docutils literal notranslate"><span class="pre">where</span></code>節を含むことができます。あなたは、プレースホルダ型名を山括弧の内部に<code class="docutils literal notranslate"><span class="pre">subscript</span></code>の後に書きます、そしてあなたは総称体<code class="docutils literal notranslate"><span class="pre">where</span></code>節を添え字本文の開き波括弧の直前に書きます。例えば：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">extension</span> <span class="nc">Container</span> {
+</li><li>    <span class="k">subscript</span>&lt;<span class="nv">Indices</span>: <span class="nc">Sequence</span>&gt;(<span class="nv">indices</span>: <span class="nc">Indices</span>) -&gt; [<span class="nc">Item</span>]
+</li><li>        <span class="k">where</span> <span class="nc">Indices</span>.<span class="nc">Iterator</span>.<span class="nc">Element</span> == <span class="nc">Int</span> {
+</li><li>            <span class="k">var</span> <span class="nv">result</span> = [<span class="nv">Item</span>]()
+</li><li>            <span class="k">for</span> <span class="nv">index</span> <span class="k">in</span> <span class="nv">indices</span> {
+</li><li>                <span class="nv">result</span>.<span class="nv">append</span>(<span class="k">self</span>[<span class="nv">index</span>])
+</li><li>            }
+</li><li>            <span class="k">return</span> <span class="nv">result</span>
+</li><li>    }
+</li><li>}
+</li></ol></div></div></div>
+<p>This extension to the <code class="docutils literal notranslate"><span class="pre">Container</span></code> protocol adds a subscript that takes a sequence of indices and returns an array containing the items at each given index. This generic subscript is constrained as follows:<br><span class="jpstr">
+この<code class="docutils literal notranslate"><span class="pre">Container</span></code>プロトコルに対する拡張は、ある添え字を追加します、それはインデックスのシーケンスをとって、与えられたインデックスそれぞれでの項目を含んでいる配列を返します。この総称体添え字は、以下のように制約されます：
+</span><!--end_jpstr-->
+</p>
+<ul class="simple">
+<li>The generic parameter <code class="docutils literal notranslate"><span class="pre">Indices</span></code> in angle brackets has to be a type that conforms to the <code class="docutils literal notranslate"><span class="pre">Sequence</span></code> protocol from the standard library.<br><span class="jpstr">
+山括弧の中の総称体パラメータ<code class="docutils literal notranslate"><span class="pre">Indices</span></code>は、それは標準ライブラリからの<code class="docutils literal notranslate"><span class="pre">Sequence</span></code>プロトコルに準拠する型でなければなりません。
+</span><!--end_jpstr-->
+</li>
+<li>The subscript takes a single parameter, <code class="docutils literal notranslate"><span class="pre">indices</span></code>, which is an instance of that <code class="docutils literal notranslate"><span class="pre">Indices</span></code> type.<br><span class="jpstr">
+この添え字は、ただ１つだけのパラメータ、<code class="docutils literal notranslate"><span class="pre">indices</span></code>をとります、それは<code class="docutils literal notranslate"><span class="pre">Indices</span></code>型のインスタンスです。
+</span><!--end_jpstr-->
+</li>
+<li>The generic <code class="docutils literal notranslate"><span class="pre">where</span></code> clause requires that the iterator for the sequence must traverse over elements of type <code class="docutils literal notranslate"><span class="pre">Int</span></code>. This ensures that the indices in the sequence are the same type as the indices used for a container.<br><span class="jpstr">
+この総称体<code class="docutils literal notranslate"><span class="pre">where</span></code>節が要求するのは、このシーケンスのためのイテレータが型<code class="docutils literal notranslate"><span class="pre">Int</span></code>の要素について見ていかなければなければならないことです。これは、このシーケンスのインデックスがコンテナに対して使われるインデックスと同じ型であるのを保証することになります。
+</span><!--end_jpstr-->
+</li>
+</ul>
+<p>Taken together, these constraints mean that the value passed for the <code class="docutils literal notranslate"><span class="pre">indices</span></code> parameter is a sequence of integers.<br><span class="jpstr">
+総合すると、これらの制約が意味するのは、<code class="docutils literal notranslate"><span class="pre">indices</span></code>パラメータに対して渡される値は整数からなるシーケンスであるということです。
+</span><!--end_jpstr-->
+</p>
+</div>
+</div>
+
+
+    </article>
+    <div class="next_previous">
+        <p class="previous"><a href="Protocols.html">Protocols<br><span class="jpstr">
+プロトコル
+</span><!--end_jpstr-->
+</a></p>
+        <p class="next"><a href="AutomaticReferenceCounting.html">Automatic Reference Counting<br><span class="jpstr">
+自動参照カウント
+</span><!--end_jpstr-->
+</a></p>
+    </div>
+
+    <div class="admonition-beta admonition">
+        <p class="first admonition-title">Beta Software</p>
+        <p>
+          This documentation contains preliminary information about an API or technology in development.
+          This information is subject to change, and software implemented according to this documentation should be tested with final operating system software.
+        <br><span class="jpstr">
+この文書は、開発でのテクノロジーまたはAPIのための事前の情報を含んでいます。
+          この情報は変更される場合があり、この文書に沿って実装されるソフトウェアは最終的なオペレーティングシステム・ソフトウェアでテストされなければなりません。
+</span><!--end_jpstr-->
+</p>
+        <p class="last"><a class="reference external" href="https://developer.apple.com/support/beta-software/">Learn more about using Apple's beta software</a></p>
+    </div>
+</main>
+
+
+<footer role="contentinfo">
+  <aside>
+    <a href="//swift.org/atom.xml" title="Subscribe to Site Updates"><i class="feed">Subscribe</i></a>
+    <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter">Twitter</i></a>
+  </aside>
+
+  <p class="copyright">Copyright &copy; 2018 Apple Inc. All rights reserved.</p>
+  <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
+  <p class="privacy">
+    <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+    <a href="//www.apple.com/legal/privacy/en-ww/cookies/">Cookies</a>
+  </p>
+</footer>
+<div id="jump_to_overlay"></div>
+<script src="../_static/javascripts/application.js"></script>
+  </body>
+</html>

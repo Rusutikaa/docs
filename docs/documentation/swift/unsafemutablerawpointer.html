@@ -186,18 +186,10 @@ Swift標準ライブラリ
 </p><figure id="2950104"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>let bytesPointer = UnsafeMutableRawPointer.allocate(byteCount: 4, alignment: 1)
 bytesPointer.storeBytes(of: 0xFFFF_FFFF, as: UInt32.self)
 
-/<!--span class="enstr"-->/ Load a value from the memory referenced by 'bytesPointer'<!--/span--><!--end_enstr-->
-<br><span class="jpstr">
-/ 'bytesPointer' によって参照されるメモリから値をロードする
-</span><!--end_jpstr-->
-
+//<!--span class="enstr"--> Load a value from the memory referenced by 'bytesPointer'<!--/span--><!--end_enstr--><span class="jpstr">（ 'bytesPointer' によって参照されるメモリから値をロードする）</span><!--end_jpstr-->
 let x = bytesPointer.load(as: UInt8.self)       // 255
 
-/<!--span class="enstr"-->/ Load a value from the last two allocated bytes<!--/span--><!--end_enstr-->
-<br><span class="jpstr">
-/ 最後の２つのアロケート済みバイトから値をロードする
-</span><!--end_jpstr-->
-
+//<!--span class="enstr"--> Load a value from the last two allocated bytes<!--/span--><!--end_enstr--><span class="jpstr">（ 最後の２つのアロケート済みバイトから値をロードする）</span><!--end_jpstr-->
 let offsetPointer = bytesPointer + 2
 let y = offsetPointer.load(as: UInt16.self)     // 65535
 </code></pre></div></div></figure><p><!--span class="enstr"-->The code above stores the value <code class="code-voice"><span>0x<wbr/>FFFF<wbr/>_FFFF</span></code> into the four newly allocated bytes, and then loads the first byte as a <code class="code-voice"><span>UInt8</span></code> instance and the third and fourth bytes as a <code class="code-voice"><span>UInt16</span></code> instance.<!--/span--><!--end_enstr-->
@@ -229,11 +221,7 @@ let y = offsetPointer.load(as: UInt16.self)     // 65535
 <br><span class="jpstr">
 Swiftでは普通であるように、あなたは<code class="code-voice"><span>print(address:<wbr/>as:)</span></code>関数を<code class="code-voice"><span>Unsafe<wbr/>Mutable<wbr/>Raw<wbr/>Pointer</span></code>インスタンスとともに呼び出せます。この例は、<code class="code-voice"><span>raw<wbr/>Pointer</span></code>を最初のパラメータとして渡します。
 </span><!--end_jpstr-->
-</p><figure id="2845378"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>/<!--span class="enstr"-->/ 'rawPointer' points to memory initialized with `Int` values.<!--/span--><!--end_enstr-->
-<br><span class="jpstr">
-/ 'rawPointer' は `Int` 値で初期化されるメモリを指し示します。
-</span><!--end_jpstr-->
-
+</p><figure id="2845378"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>//<!--span class="enstr"--> 'rawPointer' points to memory initialized with `Int` values.<!--/span--><!--end_enstr--><span class="jpstr">（ 'rawPointer' は `Int` 値で初期化されるメモリを指し示します。）</span><!--end_jpstr-->
 let rawPointer: UnsafeMutableRawPointer = ...
 print(address: rawPointer, as: Int.self)
 // Prints "42"
@@ -268,11 +256,7 @@ print(address: &amp;numbers, as: Int.self)
 </span><!--end_jpstr-->
 </p><figure id="2845382"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>var number = 5
 let numberPointer = UnsafeMutableRawPointer(&amp;number)
-/<!--span class="enstr"-->/ Accessing 'numberPointer' is undefined behavior.<!--/span--><!--end_enstr-->
-<br><span class="jpstr">
-/ 'numberPointer' へのアクセスは未定義挙動となります。
-</span><!--end_jpstr-->
-
+//<!--span class="enstr"--> Accessing 'numberPointer' is undefined behavior.<!--/span--><!--end_enstr--><span class="jpstr">（ 'numberPointer' へのアクセスは未定義挙動となります。）</span><!--end_jpstr-->
 </code></pre></div></div></figure></aside></div></div></section></div></div><section id="topics" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><!--span class="enstr"-->Topics<!--/span--><!--end_enstr-->
 <br><span class="jpstr">
 話題

@@ -156,36 +156,16 @@ func later(_ closure: @escaping () -&gt; Void) {
 クロージャ呼び出しはあなたのアプリのローカルおよびグローバルな状態を変える可能性があることから、クロージャを渡す後の行であなたが書くコードは、<em>いつ</em>そのクロージャが呼び出されるか注意深く考えて書かれる必要があります。一連の文字を印字するような単純なことでさえ、クロージャ呼び出しの時機によって影響される可能性があります：
 </span><!--end_jpstr-->
 </p><figure id="2994026"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>later {
-    print("A") /<!--span class="enstr"-->/ Eventually prints "A"<!--/span--><!--end_enstr-->
-<br><span class="jpstr">
-/ そのうち "A" を印字
-</span><!--end_jpstr-->
-
+    print("A") //<!--span class="enstr"--> Eventually prints "A"<!--/span--><!--end_enstr--><span class="jpstr">（ そのうち "A" を印字）</span><!--end_jpstr-->
 }
-print("B") /<!--span class="enstr"-->/ Immediately prints "B"<!--/span--><!--end_enstr-->
-<br><span class="jpstr">
-/ すぐに "B" を印字
-</span><!--end_jpstr-->
-
+print("B") //<!--span class="enstr"--> Immediately prints "B"<!--/span--><!--end_enstr--><span class="jpstr">（ すぐに "B" を印字）</span><!--end_jpstr-->
 
 now {
-    print("C") /<!--span class="enstr"-->/ Immediately prints "C"<!--/span--><!--end_enstr-->
-<br><span class="jpstr">
-/ すぐに "C" を印字
-</span><!--end_jpstr-->
-
+    print("C") //<!--span class="enstr"--> Immediately prints "C"<!--/span--><!--end_enstr--><span class="jpstr">（ すぐに "C" を印字）</span><!--end_jpstr-->
 }
-print("D") /<!--span class="enstr"-->/ Immedately prints "D"<!--/span--><!--end_enstr-->
-<br><span class="jpstr">
-/ すぐに "D" を印字
-</span><!--end_jpstr-->
+print("D") //<!--span class="enstr"--> Immedately prints "D"<!--/span--><!--end_enstr--><span class="jpstr">（ すぐに "D" を印字）</span><!--end_jpstr-->
 
-
-/<!--span class="enstr"-->/ Prevent the program from exiting immediately if you're running this code in Terminal.<!--/span--><!--end_enstr-->
-<br><span class="jpstr">
-/ あなたがこのコードをTerminalで実行するならば、プログラムがすぐに終了するのを防ぎます。
-</span><!--end_jpstr-->
-
+//<!--span class="enstr"--> Prevent the program from exiting immediately if you're running this code in Terminal.<!--/span--><!--end_enstr--><span class="jpstr">（ あなたがこのコードをTerminalで実行するならば、プログラムがすぐに終了するのを防ぎます。）</span><!--end_jpstr-->
 let semaphore = DispatchSemaphore(value: 0).wait(timeout: .now() + 10)
 </code></pre></div></div></figure><p><!--span class="enstr"-->Running the code in the example above usually prints the letters in the order <code class="code-voice"><span>B</span></code> → <code class="code-voice"><span>C</span></code> → <code class="code-voice"><span>D</span></code> → <code class="code-voice"><span>A</span></code>.Even though the line that prints <code class="code-voice"><span>A</span></code> is first in the code, it's ordered later in the output.The ordering difference happens due to the way the <code class="code-voice"><span>now(_:)</span></code> and <code class="code-voice"><span>later(_:)</span></code> functions are defined.You need to know how each function calls its closure if you write code that relies on a specific execution order.<!--/span--><!--end_enstr-->
 <br><span class="jpstr">
@@ -288,11 +268,7 @@ Lottery.lotteryWinHandler = {
     payBills()
 }
 
-/<!--span class="enstr"-->/ You get 10 chances at winning.<!--/span--><!--end_enstr-->
-<br><span class="jpstr">
-/ あなたは当選する10回の機会があります。
-</span><!--end_jpstr-->
-
+//<!--span class="enstr"--> You get 10 chances at winning.<!--/span--><!--end_enstr--><span class="jpstr">（ あなたは当選する10回の機会があります。）</span><!--end_jpstr-->
 for _ in 1..10 {
     Lottery.pickWinner(guess: myLuckyNumber)
 }
@@ -301,11 +277,7 @@ if amountOwed &gt; 0 {
     fatalError("You need to pay your bills before proceeding.")
 }
 
-/<!--span class="enstr"-->/ Code placed below this line runs only if the lottery was won.<!--/span--><!--end_enstr-->
-<br><span class="jpstr">
-/ この行より下に置かれるコードは、宝くじが当たった後にのみ実行されます。
-</span><!--end_jpstr-->
-
+//<!--span class="enstr"--> Code placed below this line runs only if the lottery was won.<!--/span--><!--end_enstr--><span class="jpstr">（ この行より下に置かれるコードは、宝くじが当たった後にのみ実行されます。）</span><!--end_jpstr-->
 </code></pre></div></div></figure><p></p></div></div></section></div></div><section id="see-also" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><!--span class="enstr"-->See Also<!--/span--><!--end_enstr-->
 <br><span class="jpstr">
 参照

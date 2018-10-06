@@ -149,32 +149,16 @@ Swift標準ライブラリ
 新しい遅延シーケンス操作を加えるために、このプロトコルを、それら自身が<code class="code-voice"><span>Lazy<wbr/>Sequence<wbr/>Protocol</span></code>である遅延ラッパーを返すメソッドらで拡張してください。例えば、以下のように定義される即時<code class="code-voice"><span>scan</span></code>メソッドを与えられて
 </span><!--end_jpstr-->
 </p><figure id="2906108"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>extension Sequence {
-  //<!--span class="enstr"-->/ Returns an array containing the results of<!--/span--><!--end_enstr-->
-<br><span class="jpstr">
-/ 以下の結果を含んでいる配列を返します
-</span><!--end_jpstr-->
-
+  ///<!--span class="enstr"--> Returns an array containing the results of<!--/span--><!--end_enstr--><span class="jpstr">（ 以下の結果を含んでいる配列を返します）</span><!--end_jpstr-->
   ///
   ///   p.reduce(initial, nextPartialResult)
   ///
-  //<!--span class="enstr"-->/ for each prefix `p` of `self`, in order from shortest to<!--/span--><!--end_enstr-->
-<br><span class="jpstr">
-/ これは「self」の各接頭辞「p」に対して、順番を最短から
-</span><!--end_jpstr-->
-
-  //<!--span class="enstr"-->/ longest.  For example:<!--/span--><!--end_enstr-->
-<br><span class="jpstr">
-/ 最長へです。例えば：
-</span><!--end_jpstr-->
-
+  ///<!--span class="enstr"--> for each prefix `p` of `self`, in order from shortest to<!--/span--><!--end_enstr--><span class="jpstr">（ これは「self」の各接頭辞「p」に対して、順番を最短から）</span><!--end_jpstr-->
+  ///<!--span class="enstr"--> longest.  For example:<!--/span--><!--end_enstr--><span class="jpstr">（ 最長へです。例えば：）</span><!--end_jpstr-->
   ///
   ///     (1..&lt;6).scan(0, +) // [0, 1, 3, 6, 10, 15]
   ///
-  //<!--span class="enstr"-->/ - Complexity: O(n)<!--/span--><!--end_enstr-->
-<br><span class="jpstr">
-/ - 計算量: O(n)
-</span><!--end_jpstr-->
-
+  ///<!--span class="enstr"--> - Complexity: O(n)<!--/span--><!--end_enstr--><span class="jpstr">（ - 計算量: O(n)）</span><!--end_jpstr-->
   func scan&lt;ResultElement&gt;(
     _ initial: ResultElement,
     _ nextPartialResult: (ResultElement, Element) -&gt; ResultElement
@@ -198,25 +182,13 @@ Swift標準ライブラリ
       return result
     }
   }
-  private var nextElement: ResultElement?/<!--span class="enstr"-->/ The next result of next().<!--/span--><!--end_enstr-->
-<br><span class="jpstr">
-/ next() の次の結果。
-</span><!--end_jpstr-->
-
-  private var base: Base                  /<!--span class="enstr"-->/ The underlying iterator.<!--/span--><!--end_enstr-->
-<br><span class="jpstr">
-/ 基底イテレータ。
-</span><!--end_jpstr-->
-
+  private var nextElement: ResultElement?//<!--span class="enstr"--> The next result of next().<!--/span--><!--end_enstr--><span class="jpstr">（ next() の次の結果。）</span><!--end_jpstr-->
+  private var base: Base                  //<!--span class="enstr"--> The underlying iterator.<!--/span--><!--end_enstr--><span class="jpstr">（ 基底イテレータ。）</span><!--end_jpstr-->
   private let nextPartialResult: (ResultElement, Base.Element) -&gt; ResultElement
 }
 
 struct LazyScanSequence&lt;Base: Sequence, ResultElement&gt;
-  : LazySequenceProtocol /<!--span class="enstr"-->/ Chained operations on self are lazy, too<!--/span--><!--end_enstr-->
-<br><span class="jpstr">
-/ さらに、self に鎖状に繋がれた演算も遅延です
-</span><!--end_jpstr-->
-
+  : LazySequenceProtocol //<!--span class="enstr"--> Chained operations on self are lazy, too<!--/span--><!--end_enstr--><span class="jpstr">（ さらに、self に鎖状に繋がれた演算も遅延です）</span><!--end_jpstr-->
 {
   func makeIterator() -&gt; LazyScanIterator&lt;Base.Iterator, ResultElement&gt; {
     return LazyScanIterator(
@@ -232,24 +204,12 @@ struct LazyScanSequence&lt;Base: Sequence, ResultElement&gt;
 そして最終的に、私たちは全ての遅延シーケンスを遅延<code class="code-voice"><span>scan</span></code>メソッドに渡すことができます：
 </span><!--end_jpstr-->
 </p><figure id="2906110"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>extension LazySequenceProtocol {
-  //<!--span class="enstr"-->/ Returns a sequence containing the results of<!--/span--><!--end_enstr-->
-<br><span class="jpstr">
-/ 次の結果を含んでいるシーケンスを返してください
-</span><!--end_jpstr-->
-
+  ///<!--span class="enstr"--> Returns a sequence containing the results of<!--/span--><!--end_enstr--><span class="jpstr">（ 次の結果を含んでいるシーケンスを返してください）</span><!--end_jpstr-->
   ///
   ///   p.reduce(initial, nextPartialResult)
   ///
-  //<!--span class="enstr"-->/ for each prefix `p` of `self`, in order from shortest to<!--/span--><!--end_enstr-->
-<br><span class="jpstr">
-/ これは「self」の各接頭辞「p」に対して、順番を最短から
-</span><!--end_jpstr-->
-
-  //<!--span class="enstr"-->/ longest.  For example:<!--/span--><!--end_enstr-->
-<br><span class="jpstr">
-/ 最長へです。例えば：
-</span><!--end_jpstr-->
-
+  ///<!--span class="enstr"--> for each prefix `p` of `self`, in order from shortest to<!--/span--><!--end_enstr--><span class="jpstr">（ これは「self」の各接頭辞「p」に対して、順番を最短から）</span><!--end_jpstr-->
+  ///<!--span class="enstr"--> longest.  For example:<!--/span--><!--end_enstr--><span class="jpstr">（ 最長へです。例えば：）</span><!--end_jpstr-->
   ///
   ///     Array((1..&lt;6).lazy.scan(0, +)) // [0, 1, 3, 6, 10, 15]
   ///

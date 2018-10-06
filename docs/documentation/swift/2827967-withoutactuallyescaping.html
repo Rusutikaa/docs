@@ -159,11 +159,7 @@ Swift標準ライブラリ
 </p><figure id="2889736"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>func allValues(in array: [Int], match predicate: (Int) -&gt; Bool) -&gt; Bool {
     return array.lazy.filter { !predicate($0) }.isEmpty
 }
-/<!--span class="enstr"-->/ error: closure use of non-escaping parameter 'predicate'...<!--/span--><!--end_enstr-->
-<br><span class="jpstr">
-/ エラー: 非脱出パラメータ 'predicate' のクロージャ使用 ...
-</span><!--end_jpstr-->
-
+//<!--span class="enstr"--> error: closure use of non-escaping parameter 'predicate'...<!--/span--><!--end_enstr--><span class="jpstr">（ エラー: 非脱出パラメータ 'predicate' のクロージャ使用 ...）</span><!--end_jpstr-->
 </code></pre></div></div></figure><p><!--span class="enstr"--><code class="code-voice"><span>without<wbr/>Actually<wbr/>Escaping(_:<wbr/>do:)</span></code> provides a temporarily escapable copy of <code class="code-voice"><span>predicate</span></code> that <em>can</em> be used in a call to the lazy view’s <code class="code-voice"><span>filter(_:)</span></code> method.The second version of <code class="code-voice"><span>all<wbr/>Values(in:<wbr/>match:)</span></code> compiles without error, with the compiler guaranteeing that the <code class="code-voice"><span>escapable<wbr/>Predicate</span></code> closure doesn’t last beyond the call to <code class="code-voice"><span>without<wbr/>Actually<wbr/>Escaping(_:<wbr/>do:)</span></code>.<!--/span--><!--end_enstr-->
 <br><span class="jpstr">
 <code class="code-voice"><span>without<wbr/>Actually<wbr/>Escaping(_:<wbr/>do:)</span></code>は、<code class="code-voice"><span>predicate</span></code>の一時的な脱出可能コピーを提供します、それは遅延ビューのもつ<code class="code-voice"><span>filter(_:)</span></code>メソッドに対する呼び出しにおいて使用<em>できます</em>。２番目のバージョンの<code class="code-voice"><span>all<wbr/>Values(in:<wbr/>match:)</span></code>は、<code class="code-voice"><span>escapable<wbr/>Predicate</span></code>クロージャが<code class="code-voice"><span>without<wbr/>Actually<wbr/>Escaping(_:<wbr/>do:)</span></code>の呼び出しを越えて持ちこたえないことをコンパイラが保証して、エラーなしでコンパイルします。
@@ -183,16 +179,8 @@ Swift標準ライブラリ
     queue.async(execute: g)
     queue.sync(flags: .barrier) {}
 }
-/<!--span class="enstr"-->/ error: passing non-escaping parameter 'f'...<!--/span--><!--end_enstr-->
-<br><span class="jpstr">
-/ エラー: 非脱出パラメータ 'f' を渡している...
-</span><!--end_jpstr-->
-
-/<!--span class="enstr"-->/ error: passing non-escaping parameter 'g'...<!--/span--><!--end_enstr-->
-<br><span class="jpstr">
-/ エラー: 非脱出パラメータ 'g' を渡している...
-</span><!--end_jpstr-->
-
+//<!--span class="enstr"--> error: passing non-escaping parameter 'f'...<!--/span--><!--end_enstr--><span class="jpstr">（ エラー: 非脱出パラメータ 'f' を渡している...）</span><!--end_jpstr-->
+//<!--span class="enstr"--> error: passing non-escaping parameter 'g'...<!--/span--><!--end_enstr--><span class="jpstr">（ エラー: 非脱出パラメータ 'g' を渡している...）</span><!--end_jpstr-->
 </code></pre></div></div></figure><p><!--span class="enstr"-->The <code class="code-voice"><span>perform(_:<wbr/>simultaneously<wbr/>With:)</span></code> function ends with a call to the <code class="code-voice"><span>sync(flags:<wbr/>execute:)</span></code> method using the <code class="code-voice"><span>.barrier</span></code> flag, which forces the function to wait until both closures have completed running before returning.Even though the barrier guarantees that neither closure will escape the function, the <code class="code-voice"><span>async(execute:)</span></code> method still requires that the closures passed be marked as <code class="code-voice"><span>@escaping</span></code>, so the first version of the function does not compile.To resolve these errors, you can use <code class="code-voice"><span>without<wbr/>Actually<wbr/>Escaping(_:<wbr/>do:)</span></code> to get copies of <code class="code-voice"><span>f</span></code> and <code class="code-voice"><span>g</span></code> that can be passed to <code class="code-voice"><span>async(execute:)</span></code>.<!--/span--><!--end_enstr-->
 <br><span class="jpstr">
 <code class="code-voice"><span>perform(_:<wbr/>simultaneously<wbr/>With:)</span></code>関数は、<code class="code-voice"><span>sync(flags:<wbr/>execute:)</span></code>メソッドへの <code class="code-voice"><span>.barrier</span></code>フラグを使った呼び出しで終わります、それはその関数に返る前に両方のクロージャが実行を完了し終わるまで待つことを強要します。たとえこの障壁がどちらのクロージャも関数を脱出しないことを保証するとしても、<code class="code-voice"><span>async(execute:)</span></code>メソッドは依然としてこれらの渡されるクロージャが<code class="code-voice"><span>@escaping</span></code>として印されることを要求します、それで最初のバージョンの関数はコンパイルしません。これらのエラーを解決するために、あなたは<code class="code-voice"><span>without<wbr/>Actually<wbr/>Escaping(_:<wbr/>do:)</span></code>を使って、<code class="code-voice"><span>f</span></code>と<code class="code-voice"><span>g</span></code>のコピーを取得します、それは<code class="code-voice"><span>async(execute:)</span></code>に渡すことができます。
