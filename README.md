@@ -2,7 +2,7 @@
 
 * [The Swift Programming Language 2018.9.28 日本語訳](https://rusutikaa.github.io/docs/docs.swift.org/swift-book/index.html)
 
-* 以下は更新されない
+以下は更新されない
 
 * [The Swift Programming Language 2018.3.29 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/index.html)
 
