@@ -1,0 +1,225 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>Importing Swift into Objective-C | Apple Developer Documentation</title><!-- link href="https://www.apple.com/wss/fonts?families=SF+Pro,v1|SF+Mono,v1|SF+Pro+Icons,v1" media="all" rel="stylesheet" type="text/css"/ --><meta content="width=device-width, initial-scale=1 viewport-fit=cover" name="viewport"/><meta data-pid="219449"/><link href="../../../documentation/assets/application-ddf2ac84.css" media="all" rel="stylesheet" type="text/css"/><noscript><link href="../../../documentation/assets/nojs-c6be9131.css" media="all" rel="stylesheet" type="text/css"/></noscript><link rel="mask-icon" href="../../../documentation/assets/apple-logo.svg" color="#000"/><link rel="shortcut icon" href="../../../documentation/assets/favicon.ico"/><script src="../../../documentation/assets/shared-8d50366b.js"></script></head><body><div id="_omniture_top">
+      <script>
+        var s_account="appleglobal, awdappledeveloper"
+      </script><!-- script src="https://developer.apple.com/assets/metrics/scripts/analytics.js" -->
+      </script>
+      <script>
+        s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
+        s.channel="www.documentation.developer"
+
+        var s_code=s.t();if(s_code)document.write(s_code)
+      </script>
+    </div><div id="app"><div><a href="#main" id="skip-localnav" class="showonfocus hidden">Skip Navigation</a><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"/><nav id="ac-globalnav" class="no-js" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US"><div class="ac-gn-content">
+        <ul class="ac-gn-header">
+          <li class="ac-gn-item ac-gn-menuicon">
+            <label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true">
+              <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top">
+                <span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span>
+              </span>
+              <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom">
+                <span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span>
+              </span>
+            </label>
+            <a href="#ac-gn-menustate" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open"> <span class="ac-gn-menuanchor-label">Open Menu</span> </a>
+            <a href="#" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close"> <span class="ac-gn-menuanchor-label">Close Menu</span> </a>
+          </li>
+          <li class="ac-gn-item ac-gn-apple">
+            <a class="ac-gn-link ac-gn-link-apple" href="/" id="ac-gn-firstfocus-small"> <span class="ac-gn-link-text">Apple Developer</span> </a>
+          </li>
+          <li class="ac-gn-item ac-gn-bag ac-gn-bag-small" id="ac-gn-bag-small">
+            <a class="ac-gn-link ac-gn-link-bag" href="/account/"> <span class="ac-gn-link-text">Account</span> <span class="ac-gn-bag-badge"></span> </a> <span class="ac-gn-bagview-caret ac-gn-bagview-caret-large"></span> </li>
+        </ul>
+        <ul class="ac-gn-list">
+          <li class="ac-gn-item ac-gn-apple">
+            <a class="ac-gn-link ac-gn-link-apple" href="/" id="ac-gn-firstfocus"> <span class="ac-gn-link-text">Apple Developer</span> </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-discover">
+            <a class="ac-gn-link" href="/discover/"> <span>Discover</span> </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-design">
+            <a class="ac-gn-link" href="/design/"> <span>Design</span> </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-develop">
+            <a class="ac-gn-link" href="/develop/"> <span>Develop</span> </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-distribute">
+            <a class="ac-gn-link" href="/distribute/"> <span>Distribute</span> </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-support">
+            <a class="ac-gn-link" href="/support/"> <span>Support</span> </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-account">
+            <a class="ac-gn-link" href="/account/"> <span>Account</span> </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search">
+            <a id="ac-gn-search-button" class="ac-gn-link ac-gn-link-search" href="/search/" aria-label="Search developer.apple.com"> <span class="ac-gn-search-placeholder" aria-hidden="true">Search</span> </a>
+          </li>
+        </ul>
+        <aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search">
+          <div class="ac-gn-searchview-content">
+            <form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get">
+              <div class="ac-gn-searchform-wrapper">
+                <input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" placeholder="Search" data-placeholder-long="Search for documentation, videos, and more" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" />
+                <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit"></button>
+                <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search"></button>
+              </div>
+            </form>
+            <aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults="Hit enter to search.">
+            </aside>
+          </div>
+          <button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Close Search">
+            <span class="ac-gn-searchview-close-wrapper">
+                <span class="ac-gn-searchview-close-left"></span>
+            <span class="ac-gn-searchview-close-right"></span>
+            </span>
+          </button>
+        </aside>
+      </div></nav><div id="ac-gn-curtain" class="ac-gn-curtain"></div><div id="ac-gn-placeholder" class="ac-nav-placeholder"></div><input type="checkbox" id="localnav-menustate" class="localnav-menustate" aria-hidden="true"/><nav id="localnav" class="localnav localnav-dark theme-dark localnav-scrim localnav-noborder" role="navigation" aria-label="API Reference" data-sticky="true"><div class="localnav-wrapper"><div class="referencenav"><div class="localnav-background"></div><div class="localnav-content"><a href="../../../index.html" class="localnav-title">Documentation</a><div class="localnav-menu"><a href="#localnav-menustate" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span class="localnav-menucta-anchor-label" aria-hidden="true">Open Menu</span></a><a href="#" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span class="localnav-menucta-anchor-label" aria-hidden="true">Close Menu</span></a><div class="localnav-menu-tray"><ul aria-label="Breadcrumbs" class="localnav-menu-items localnav-menu-breadcrumbs"><li class="localnav-menu-item localnav-menu-breadcrumb-item"><a class="localnav-menu-link" href="../../../documentation/swift.html">Swift</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item"><a class="localnav-menu-link" href="../../../documentation/swift/imported_c_and_objective-c_apis.html"><span class="enstr">Imported C and Objective-C APIs</span><!--end_enstr-->
+<span class="jpstr">
+インポートされたCおよびObjective-C API
+</span><!--end_jpstr-->
+</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item"><div class="localnav-menu-breadcrumb-current-container localnav-menu-link current"><span aria-current="page" class="localnav-menu-breadcrumb-current">Importing Swift into Objective-C</span></div></li></ul><ul class="localnav-menu-items localnav-menu-settings" data-breadcrumbs-count="3"><li class="localnav-menu-setting language-container"><span class="localnav-menu-setting-label">Language:</span><span class="localnav-menu-toggle-none current-language" aria-current="page">Swift</span></li><li class="localnav-menu-setting"><span class="localnav-menu-setting-label">API Changes:</span><span class="changes-toggle">None</span></li></ul></div><div class="localnav-actions"><div class="localnav-action localnav-action-menucta" aria-hidden="true"><label for="localnav-menustate" class="localnav-menucta"><span class="localnav-menucta-chevron"></span></label></div></div></div></div></div></div></nav><label for="localnav-menustate" id="localnav-curtain" aria-hidden="true"></label><main role="main" id="main" class="main" tabindex="0"><div class="topic-title"><span class="eyebrow">Article</span><h1 class="topic-heading"><span>Importing Swift into Objective-C</span></h1></div><div class="topic-container section-content row"><div class="topic-description column large-9 medium-9 small-12"><div class="topic-abstract abstract formatted-content"><div><p>Access Swift types and declarations from within your Objective-C codebase.</p></div></div></div><div class="topic-summary column large-3 medium-3 small-12"><div class="topic-summary-section frameworks" role="complementary" aria-label="Framework"><p class="topic-summary-section-label subsection-label"><span class="enstr">Framework</span><!--end_enstr-->
+<span class="jpstr">
+フレームワーク
+</span><!--end_jpstr-->
+</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item"><span><span class="enstr">Swift Standard Library</span><!--end_enstr-->
+<span class="jpstr">
+Swift標準ライブラリ
+</span><!--end_jpstr-->
+</span></li></ul></div><div class="topic-summary-section onthispage"><nav class="onthispage-nav" aria-labelledby="onthispage-title"><p id="onthispage-title" class="topic-summary-section-label subsection-label"><span class="enstr">On This Page</span><!--end_enstr-->
+<span class="jpstr">
+この項には
+</span><!--end_jpstr-->
+</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item"><a href="#overview" class="icon icon-after icon-chevrondowncircle"><span class="enstr">Overview</span><!--end_enstr-->
+<span class="jpstr">
+概要
+</span><!--end_jpstr-->
+</a></li><li class="topic-summary-section-item"><a href="#see-also" class="icon icon-after icon-chevrondowncircle"><span class="enstr">See Also</span><!--end_enstr-->
+<span class="jpstr">
+参照
+</span><!--end_jpstr-->
+</a></li></ul></nav></div></div><div class="topic-content column large-9 medium-9 small-12" id="topic-content"><section id="overview" class="section"><h2><span class="enstr">Overview</span><!--end_enstr-->
+<span class="jpstr">
+概要
+</span><!--end_jpstr-->
+</h2><div class="formatted-content"><div><p>You can work with types declared in Swift from within the Objective-C code in your project by importing an Xcode-generated header file. This file is an Objective-C header that declares the Swift interfaces in your target, and you can think of it as an umbrella header for your Swift code. You don’t need to do anything special to create the generated header—just import it to use its contents in your Objective-C code.</p><p>The header's name is generated from your product module name, followed by <code class="code-voice"><span>"-Swift<wbr/>.h"</span></code>. By default, this name is the same as your product name, with any nonalphanumeric characters replaced with an underscore (<code class="code-voice"><span>_</span></code>). If the name begins with a number, the first digit is replaced with an underscore.</p><!-- img class="centered-block" src="../../../../docs-assets.developer.apple.com/published/15bb0c3f78/fd9cb730-e33c-43e0-b518-a990c745d57d.png" srcset="../../../../docs-assets.developer.apple.com/published/15bb0c3f78/fd9cb730-e33c-43e0-b518-a990c745d57d.png 2x" alt="Diagram showing the steps to import Swift declarations into Objective-C code. Use forward declarations to declare Swift classes used in an Objective-C header file, and #import statements to import the Xcode-generated header into Objective-C .m files." width="492" height="auto"/ --><figure id="3029312"></figure><p>The process for importing Swift declarations into Objective-C code differs slightly depending on whether you’re writing an app or a framework. Both processes are described below.</p></div><h3 id="3024315">Import Code Within an App Target</h3><div><p>When you're building an app target, you can import your Swift code into any Objective-C <code class="code-voice"><span>.m</span></code> file within that same target using this syntax and substituting the appropriate name:</p><figure id="3029183"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="occ"><code>#import "ProductModuleName-Swift.h"
+</code></pre></div></div></figure><p>By default, the generated header contains interfaces for Swift declarations marked with the <code class="code-voice"><span>public</span></code> or <code class="code-voice"><span>open</span></code> modifier. If your app target has an Objective-C bridging header, the generated header also includes interfaces marked with the <code class="code-voice"><span>internal</span></code> modifier. Declarations marked with the <code class="code-voice"><span>private</span></code> or <code class="code-voice"><span>fileprivate</span></code> modifier don't appear in the generated header, and aren't exposed to the Objective-C runtime unless they are explicitly marked with a <code class="code-voice"><span>@IBAction</span></code>, <code class="code-voice"><span>@IBOutlet</span></code>, or <code class="code-voice"><span>@objc</span></code> attribute. Inside unit test targets, you can access imported internal declarations as if they were public by prepending <code class="code-voice"><span>@testable</span></code> to the product module import statement.</p><p>The Swift interfaces in the generated header include references to all of the Objective-C types used in them, so make sure to import the Objective-C headers for those types first.</p><p>When building an app target, you can provide a custom name for the product module by changing the Product Module Name build setting. Xcode uses this name when naming the generated header file.</p></div><h3 id="3024308">Import Code Within a Framework Target</h3><div><p>To import a set of Swift files in the same framework target as your Objective-C code, import the Xcode-generated header for your Swift code into any Objective-C <code class="code-voice"><span>.m</span></code> file where you want to use your Swift code.</p><p>Because the generated header is part of the framework’s public interface, only declarations marked with the <code class="code-voice"><span>public</span></code> or <code class="code-voice"><span>open</span></code> modifier appear in the generated header for a framework target. Methods and properties that are marked with the <code class="code-voice"><span>internal</span></code> modifier and declared within a class that inherits from an Objective-C class are accessible to the Objective-C runtime. However, they're inaccessible at compile time and don't appear in the generated header for a framework target.</p><p>Import Swift code into Objective-C within the same framework:</p><ol><li><p>Under Build Settings, in Packaging, make sure the Defines Module setting for that framework target is set to Yes.</p></li><li><p>Import the Swift code from that framework target into any Objective-C <code class="code-voice"><span>.m</span></code> file within that target using this syntax and substituting the appropriate names:</p></li></ol><figure id="3025092"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="occ"><code>#import &lt;ProductName/ProductModuleName-Swift.h&gt;
+</code></pre></div></div></figure><p></p></div><h3 id="3029180">Include Swift Classes in Objective-C Headers Using Forward Declarations</h3><div><p>When declarations in an Objective-C header file refer to a Swift class or protocol that comes from the same target, importing the generated header creates a cyclical reference. To avoid this, use a forward declaration of the Swift class or protocol to reference it in an Objective-C interface.</p><figure id="3029182"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="occ"><code>// MyObjcClass.h
+@class MySwiftClass;
+@protocol MySwiftProtocol;
+
+@interface MyObjcClass : NSObject
+- (MySwiftClass *)returnSwiftClassInstance;
+- (id &lt;MySwiftProtocol&gt;)returnInstanceAdoptingSwiftProtocol;
+// ...
+@end
+</code></pre></div></div></figure><p>Forward declarations of Swift classes and protocols can be used only as types for method and property declarations.</p></div></div></section></div></div><section id="see-also" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><span class="enstr">See Also</span><!--end_enstr-->
+<span class="jpstr">
+参照
+</span><!--end_jpstr-->
+</h2><section id="3022208" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title">Swift and Objective-C in the Same Project</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../../documentation/swift/imported_c_and_objective-c_apis/importing_objective-c_into_swift.html"><svg xmlns="http://www.w3.org/2000/svg" height="15" viewBox="0 0 22 30" class="svg-icon symbol-name-icon" aria-hidden="true"><title>Article</title><g id="Article" class="svg-icon-small"><path d="M12.87,0H0V2H0V28H0v2H22V9.13ZM20,28H2V2h9V12h9Zm0-18H13V3l7,7Z"></path></g></svg><span>Importing Objective-C into Swift</span></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p>Access classes and other declarations from your Objective-C code in Swift.</p></div></div></div></div></div></div></div></section></div></div></section></main><section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo">
+        <nav class="footer-breadory">
+          <a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a>
+          <section class="breadcrumbs">
+            <ol class="breadcrumbs-list">
+              <li><a href=/documentation>Documentation</a></li>
+            </ol>
+          </section>
+          <div id="directorynav" class="directorynav">
+            <div id="dn-cola" class="column">
+              <h3><a href="/discover/">Discover</a></h3>
+              <ul>
+                <li><a href="/macos/">macOS</a></li>
+                <li><a href="/ios/">iOS</a></li>
+                <li><a href="/watchos/">watchOS</a></li>
+                <li><a href="/tvos/">tvOS</a></li>
+                <li><a href="/safari/">Safari and Web</a></li>
+                <li><a href="/games/">Games</a></li>
+                <li><a href="/enterprise/">Enterprise</a></li>
+                <li><a href="/education/">Education</a></li>
+                <li><a href="/wwdc/">WWDC</a></li>
+              </ul>
+            </div>
+            <div id="dn-colb" class="column">
+              <h3><a href="/design/">Design</a></h3>
+              <ul>
+                <li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
+                <li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
+<span class="jpstr">
+リソース
+</span><!--end_jpstr-->
+</a></li>
+                <li><a href="/videos/design/">Videos</a></li>
+                <li><a href="/design/awards/">Apple Design Awards</a></li>
+                <li><a href="/accessibility/">Accessibility</a></li>
+                <li><a href="/internationalization/"><span class="enstr">Internationalization</span><!--end_enstr-->
+<span class="jpstr">
+国際化
+</span><!--end_jpstr-->
+</a></li>
+                <li><a href="/accessories/">Accessories</a></li>
+              </ul>
+            </div>
+            <div id="dn-colc" class="column">
+              <h3><a href="/develop/">Develop</a></h3>
+              <ul>
+                <li><a href="/xcode/">Xcode</a></li>
+                <li><a href="/swift/">Swift</a></li>
+                <li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
+                <li><a href="/testflight/">TestFlight</a></li>
+                <li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
+                <li><a href="/videos/">Videos</a></li>
+                <li><a href="/download/">Downloads</a></li>
+              </ul>
+            </div>
+            <div id="dn-cold" class="column">
+              <h3><a href="/distribute/">Distribute</a></h3>
+              <ul>
+                <li><a href="/app-store/">App Store</a></li>
+                <li><a href="/macos/distribution/">Mac Software</a></li>
+                <li><a href="/app-store/review/">App Review</a></li>
+                <li><a href="/programs/volume/">Volume Purchase Program</a></li>
+                <li><a href="/programs/volume/b2b/">Custom B2B Apps</a></li>
+                <li><a href="/enterprise/distribute/">Enterprise Apps</a></li>
+                <li><a href="/safari/extensions/">Safari Extensions</a></li>
+                <li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
+                <li><a href="/softwarelicensing/">Trademark Licensing</a></li>
+              </ul>
+            </div>
+            <div id="dn-cole" class="column">
+              <h3><a href="/support/">Support</a></h3>
+              <ul>
+                <li><a href="https://forums.developer.apple.com">Developer Forums</a></li>
+                <li><a href="/bug-reporting/">Bug Reporting</a></li>
+                <li><a href="/terms/">License Agreements</a></li>
+                <li><a href="/system-status/">System Status</a></li>
+                <li><a href="/contact/">Contact Us</a></li>
+                <br />
+                <h3><a href="/account/">Account</a></h3>
+                <ul>
+                  <li><a href="/programs/">Developer Program</a></li>
+                  <li><a href="/account/ios/certificate/">Certificates, IDs &amp; Profiles</a></li>
+                  <li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
+                </ul>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="ac-gf-footer-legal">
+          <div class="ac-gf-footer-news"> To receive the latest developer news, visit and subscribe to our <a href="/news/">News and Updates</a>.
+          </div>
+          <div class="ac-gf-footer-legal-copyright">Copyright © 2018 Apple Inc. All rights reserved.</div>
+          <div class="ac-gf-footer-legal-links">
+            <a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a>
+            <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+            <a href="/bug-reporting/">Report Bugs</a>
+            <a href="/contact/submit/?subject=website-feedback">Feedback</a>
+          </div>
+          <div class="ac-gf-footer-language-links">
+            <a href="/cn/" class="first">简体中文</a>
+            <a href="/jp/">日本語</a>
+            <a href="/kr/">한국어</a>
+          </div>
+        </div>
+      </footer></section></div></div><script id="bootstrap-data" type="application/json">{"id":3022216,"title":{"content":"Importing Swift into Objective-C"},"abstract":"<div><p>Access Swift types and declarations from within your Objective-C codebase.<\/p><\/div>","discussion":"<div><p>You can work with types declared in Swift from within the Objective-C code in your project by importing an Xcode-generated header file. This file is an Objective-C header that declares the Swift interfaces in your target, and you can think of it as an umbrella header for your Swift code. You don’t need to do anything special to create the generated header—just import it to use its contents in your Objective-C code.<\/p><p>The header&#x27;s name is generated from your product module name, followed by <code class=\"code-voice\"><span>&quot;-Swift<wbr\/>.h&quot;<\/span><\/code>. By default, this name is the same as your product name, with any nonalphanumeric characters replaced with an underscore (<code class=\"code-voice\"><span>_<\/span><\/code>). If the name begins with a number, the first digit is replaced with an underscore.<\/p><figure id=\"3029312\"><img class=\"centered-block\" src=\"https:\/\/docs-assets.developer.apple.com\/published\/15bb0c3f78\/fd9cb730-e33c-43e0-b518-a990c745d57d.png\" srcset=\"https:\/\/docs-assets.developer.apple.com\/published\/15bb0c3f78\/fd9cb730-e33c-43e0-b518-a990c745d57d.png 2x\" alt=\"Diagram showing the steps to import Swift declarations into Objective-C code. Use forward declarations to declare Swift classes used in an Objective-C header file, and #import statements to import the Xcode-generated header into Objective-C .m files.\" width=\"492\" height=\"auto\"\/><\/figure><p>The process for importing Swift declarations into Objective-C code differs slightly depending on whether you’re writing an app or a framework. Both processes are described below.<\/p><\/div><h3 id=\"3024315\">Import Code Within an App Target<\/h3><div><p>When you&#x27;re building an app target, you can import your Swift code into any Objective-C <code class=\"code-voice\"><span>.m<\/span><\/code> file within that same target using this syntax and substituting the appropriate name:<\/p><figure id=\"3029183\"><div class=\"formatted-content\"><div class=\"code-listing\"><pre class=\"code-source\" data-language=\"occ\"><code>#import &quot;ProductModuleName-Swift.h&quot;\n<\/code><\/pre><\/div><\/div><\/figure><p>By default, the generated header contains interfaces for Swift declarations marked with the <code class=\"code-voice\"><span>public<\/span><\/code> or <code class=\"code-voice\"><span>open<\/span><\/code> modifier. If your app target has an Objective-C bridging header, the generated header also includes interfaces marked with the <code class=\"code-voice\"><span>internal<\/span><\/code> modifier. Declarations marked with the <code class=\"code-voice\"><span>private<\/span><\/code> or <code class=\"code-voice\"><span>fileprivate<\/span><\/code> modifier don&#x27;t appear in the generated header, and aren&#x27;t exposed to the Objective-C runtime unless they are explicitly marked with a <code class=\"code-voice\"><span>@IBAction<\/span><\/code>, <code class=\"code-voice\"><span>@IBOutlet<\/span><\/code>, or <code class=\"code-voice\"><span>@objc<\/span><\/code> attribute. Inside unit test targets, you can access imported internal declarations as if they were public by prepending <code class=\"code-voice\"><span>@testable<\/span><\/code> to the product module import statement.<\/p><p>The Swift interfaces in the generated header include references to all of the Objective-C types used in them, so make sure to import the Objective-C headers for those types first.<\/p><p>When building an app target, you can provide a custom name for the product module by changing the Product Module Name build setting. Xcode uses this name when naming the generated header file.<\/p><\/div><h3 id=\"3024308\">Import Code Within a Framework Target<\/h3><div><p>To import a set of Swift files in the same framework target as your Objective-C code, import the Xcode-generated header for your Swift code into any Objective-C <code class=\"code-voice\"><span>.m<\/span><\/code> file where you want to use your Swift code.<\/p><p>Because the generated header is part of the framework’s public interface, only declarations marked with the <code class=\"code-voice\"><span>public<\/span><\/code> or <code class=\"code-voice\"><span>open<\/span><\/code> modifier appear in the generated header for a framework target. Methods and properties that are marked with the <code class=\"code-voice\"><span>internal<\/span><\/code> modifier and declared within a class that inherits from an Objective-C class are accessible to the Objective-C runtime. However, they&#x27;re inaccessible at compile time and don&#x27;t appear in the generated header for a framework target.<\/p><p>Import Swift code into Objective-C within the same framework:<\/p><ol><li><p>Under Build Settings, in Packaging, make sure the Defines Module setting for that framework target is set to Yes.<\/p><\/li><li><p>Import the Swift code from that framework target into any Objective-C <code class=\"code-voice\"><span>.m<\/span><\/code> file within that target using this syntax and substituting the appropriate names:<\/p><\/li><\/ol><figure id=\"3025092\"><div class=\"formatted-content\"><div class=\"code-listing\"><pre class=\"code-source\" data-language=\"occ\"><code>#import &lt;ProductName\/ProductModuleName-Swift.h&gt;\n<\/code><\/pre><\/div><\/div><\/figure><p><\/p><\/div><h3 id=\"3029180\">Include Swift Classes in Objective-C Headers Using Forward Declarations<\/h3><div><p>When declarations in an Objective-C header file refer to a Swift class or protocol that comes from the same target, importing the generated header creates a cyclical reference. To avoid this, use a forward declaration of the Swift class or protocol to reference it in an Objective-C interface.<\/p><figure id=\"3029182\"><div class=\"formatted-content\"><div class=\"code-listing\"><pre class=\"code-source\" data-language=\"occ\"><code>\/\/ MyObjcClass.h\n@class MySwiftClass;\n@protocol MySwiftProtocol;\n\n@interface MyObjcClass : NSObject\n- (MySwiftClass *)returnSwiftClassInstance;\n- (id &lt;MySwiftProtocol&gt;)returnInstanceAdoptingSwiftProtocol;\n\/\/ ...\n@end\n<\/code><\/pre><\/div><\/div><\/figure><p>Forward declarations of Swift classes and protocols can be used only as types for method and property declarations.<\/p><\/div>","containingGroup":[{"id":3022208,"role":"task","paths":[],"symbols":[{"id":3022211,"role":"article","paths":["documentation\/swift\/imported_c_and_objective-c_apis\/importing_objective-c_into_swift"],"abstract":"<div><p>Access classes and other declarations from your Objective-C code in Swift.<\/p><\/div>","title":{"content":"Importing Objective-C into Swift"}},{"id":3022216,"role":"article","paths":["documentation\/swift\/imported_c_and_objective-c_apis\/importing_swift_into_objective-c"],"abstract":"<div><p>Access Swift types and declarations from within your Objective-C codebase.<\/p><\/div>","title":{"content":"Importing Swift into Objective-C"}}],"abstract":"<div><p>Access your Swift code from within your Objective-C codebase, and your Objective-C code from Swift.<\/p><\/div>","title":{"content":"Swift and Objective-C in the Same Project"}}],"modules":[{"title":{"content":"Swift Standard Library"},"paths":["documentation\/swift"],"importStatement":"<import xml:space=\"preserve\"><keyWord>import<\/keyWord> Swift<\/import>","availability":[{"platform":"watchOS","introduced":"2.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"macOS","introduced":"10.10"},{"platform":"iOS","introduced":"8.0"}]}],"languages":["swift"],"variants":{"swift":{"paths":["documentation\/swift\/imported_c_and_objective-c_apis\/importing_swift_into_objective-c"]}},"pid":219449,"role":"article","language":"swift","paths":["documentation\/swift\/imported_c_and_objective-c_apis\/importing_swift_into_objective-c"],"hierarchy":[[{"id":3000738,"role":"collection","title":{"content":"Swift"},"paths":["documentation\/swift"]},{"id":2994160,"role":"collectionGroup","title":{"content":"Imported C and Objective-C APIs"},"paths":["documentation\/swift\/imported_c_and_objective-c_apis"]}]],"legalNotices":{"copyright":"Copyright &copy; 2018 Apple Inc. All rights reserved.","termsOfUse":"https:\/\/www.apple.com\/legal\/internet-services\/terms\/site.html","privacyPolicy":"https:\/\/www.apple.com\/privacy\/privacy-policy"}}</script></body></html>
