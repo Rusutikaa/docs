@@ -270,7 +270,15 @@ if visitedPositions.contains(currentPosition) {
 <span class="jpstr">
 常に同じプロパティをあなたの<code class="code-voice"><span>==</span></code>および<code class="code-voice"><span>hash(into:)</span></code>メソッドの両方において使ってください。異なるプロパティのグループを２つのメソッドにおいて使うことは、あなたのカスタム型を集合および辞書で使う場合に、予期しない挙動または性能に導きます。
 </span><!--end_jpstr-->
-</p></aside><p></p></div><h3 id="3024319">Customize NSObject Subclass Behavior</h3><div><p><code class="code-voice"><span>NSObject</span></code> subclasses inherit conformance to the <code class="code-voice"><span>Equatable</span></code> and <code class="code-voice"><span>Hashable</span></code> protocols, with equality based on instance identity. If you need to customize this behavior, override the <a class="symbol-name" href="https://developer.apple.com/documentation/objectivec/nsobjectprotocol/1418795-isequal"><code><span>is<wbr/>Equal(_:)</span></code></a> method and <a class="symbol-name" href="https://developer.apple.com/documentation/objectivec/nsobjectprotocol/1418859-hash"><code><span>hash</span></code></a> property instead of the <code class="code-voice"><span>==</span></code> operator method and <code class="code-voice"><span>hash<wbr/>Value</span></code> property.</p><figure id="3024307"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>extension MyNSObjectSubclass {
+</p></aside><p></p></div><h3 id="3024319"><span class="enstr">Customize NSObject Subclass Behavior</span><!--end_enstr-->
+<span class="jpstr">
+NSObjectサブクラス挙動をカスタマイズする
+</span><!--end_jpstr-->
+</h3><div><p><span class="enstr"><code class="code-voice"><span>NSObject</span></code> subclasses inherit conformance to the <code class="code-voice"><span>Equatable</span></code> and <code class="code-voice"><span>Hashable</span></code> protocols, with equality based on instance identity.If you need to customize this behavior, override the <a class="symbol-name" href="https://developer.apple.com/documentation/objectivec/nsobjectprotocol/1418795-isequal"><code><span>is<wbr/>Equal(_:)</span></code></a> method and <a class="symbol-name" href="https://developer.apple.com/documentation/objectivec/nsobjectprotocol/1418859-hash"><code><span>hash</span></code></a> property instead of the <code class="code-voice"><span>==</span></code> operator method and <code class="code-voice"><span>hash<wbr/>Value</span></code> property.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="code-voice"><span>NSObject</span></code>サブクラスは、<code class="code-voice"><span>Equatable</span></code>と<code class="code-voice"><span>Hashable</span></code>プロトコルへの準拠を継承します、インスタンス同一性に基づく同等性を使います。あなたがこの挙動をカスタマイズする必要があるならば、<a class="symbol-name" href="https://developer.apple.com/documentation/objectivec/nsobjectprotocol/1418795-isequal"><code><span>is<wbr/>Equal(_:)</span></code></a>メソッドと<a class="symbol-name" href="https://developer.apple.com/documentation/objectivec/nsobjectprotocol/1418859-hash"><code><span>hash</span></code></a>プロトコルをオーバーライドしてください、<code class="code-voice"><span>==</span></code>演算子メソッドと<code class="code-voice"><span>hash<wbr/>Value</span></code>プロパティではなく。
+</span><!--end_jpstr-->
+</p><figure id="3024307"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>extension MyNSObjectSubclass {
     override func isEqual(_ object: Any?) -&gt; Bool {
         guard let other = object as?MyNSObjectSubclass
             else { return false }
@@ -285,7 +293,11 @@ if visitedPositions.contains(currentPosition) {
         return hasher.finalize()
     }
 }
-</code></pre></div></div></figure><p>As noted in the previous section, two instances that are considered equal must have the same hash value. If you override one of these declarations, you must also override the other to maintain that guarantee.</p></div></div></section></div></div><section id="see-also" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><span class="enstr">See Also</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">As noted in the previous section, two instances that are considered equal must have the same hash value.If you override one of these declarations, you must also override the other to maintain that guarantee.</span><!--end_enstr-->
+<span class="jpstr">
+前の節で注記されるように、等しいとみなされる２つのインスタンスは、同じハッシュ値を持たなければなりません。あなたがそれら宣言の一方をオーバーライドするならば、あなたはまた他方もオーバーライドしてその保証を維持してください。
+</span><!--end_jpstr-->
+</p></div></div></section></div></div><section id="see-also" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><span class="enstr">See Also</span><!--end_enstr-->
 <span class="jpstr">
 参照
 </span><!--end_jpstr-->

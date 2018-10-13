@@ -79,7 +79,19 @@
 <span class="jpstr">
 Objective-CとCコードのカスタム化
 </span><!--end_jpstr-->
-</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item"><div class="localnav-menu-breadcrumb-current-container localnav-menu-link current"><span aria-current="page" class="localnav-menu-breadcrumb-current">Designating Nullability in Objective-C APIs</span></div></li></ul><ul class="localnav-menu-items localnav-menu-settings" data-breadcrumbs-count="3"><li class="localnav-menu-setting language-container"><span class="localnav-menu-setting-label">Language:</span><span class="localnav-menu-toggle-none current-language" aria-current="page">Swift</span></li><li class="localnav-menu-setting"><span class="localnav-menu-setting-label">API Changes:</span><span class="changes-toggle">None</span></li></ul></div><div class="localnav-actions"><div class="localnav-action localnav-action-menucta" aria-hidden="true"><label for="localnav-menustate" class="localnav-menucta"><span class="localnav-menucta-chevron"></span></label></div></div></div></div></div></div></nav><label for="localnav-menustate" id="localnav-curtain" aria-hidden="true"></label><main role="main" id="main" class="main" tabindex="0"><div class="topic-title"><span class="eyebrow">Article</span><h1 class="topic-heading"><span>Designating Nullability in Objective-C APIs</span></h1></div><div class="topic-container section-content row"><div class="topic-description column large-9 medium-9 small-12"><div class="topic-abstract abstract formatted-content"><div><p>Use nullability annotations or mark regions as annotated to control how Objective-C declarations are imported into Swift.</p></div></div></div><div class="topic-summary column large-3 medium-3 small-12"><div class="topic-summary-section frameworks" role="complementary" aria-label="Framework"><p class="topic-summary-section-label subsection-label"><span class="enstr">Framework</span><!--end_enstr-->
+</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item"><div class="localnav-menu-breadcrumb-current-container localnav-menu-link current"><span aria-current="page" class="localnav-menu-breadcrumb-current"><span class="enstr">Designating Nullability in Objective-C APIs</span><!--end_enstr-->
+<span class="jpstr">
+Objective-C APIにおいてヌル可能性を指定する
+</span><!--end_jpstr-->
+</span></div></li></ul><ul class="localnav-menu-items localnav-menu-settings" data-breadcrumbs-count="3"><li class="localnav-menu-setting language-container"><span class="localnav-menu-setting-label">Language:</span><span class="localnav-menu-toggle-none current-language" aria-current="page">Swift</span></li><li class="localnav-menu-setting"><span class="localnav-menu-setting-label">API Changes:</span><span class="changes-toggle">None</span></li></ul></div><div class="localnav-actions"><div class="localnav-action localnav-action-menucta" aria-hidden="true"><label for="localnav-menustate" class="localnav-menucta"><span class="localnav-menucta-chevron"></span></label></div></div></div></div></div></div></nav><label for="localnav-menustate" id="localnav-curtain" aria-hidden="true"></label><main role="main" id="main" class="main" tabindex="0"><div class="topic-title"><span class="eyebrow">Article</span><h1 class="topic-heading"><span><span class="enstr">Designating Nullability in Objective-C APIs</span><!--end_enstr-->
+<span class="jpstr">
+Objective-C APIにおいてヌル可能性を指定する
+</span><!--end_jpstr-->
+</span></h1></div><div class="topic-container section-content row"><div class="topic-description column large-9 medium-9 small-12"><div class="topic-abstract abstract formatted-content"><div><p><span class="enstr">Use nullability annotations or mark regions as annotated to control how Objective-C declarations are imported into Swift.</span><!--end_enstr-->
+<span class="jpstr">
+ヌル可能性注釈を使うかまたは領域が注釈されると印することで、どのようにObjective-C宣言がSwiftへとインポートされるかを制御してください。
+</span><!--end_jpstr-->
+</p></div></div></div><div class="topic-summary column large-3 medium-3 small-12"><div class="topic-summary-section frameworks" role="complementary" aria-label="Framework"><p class="topic-summary-section-label subsection-label"><span class="enstr">Framework</span><!--end_enstr-->
 <span class="jpstr">
 フレームワーク
 </span><!--end_jpstr-->
@@ -103,27 +115,87 @@ Swift標準ライブラリ
 <span class="jpstr">
 概要
 </span><!--end_jpstr-->
-</h2><div class="formatted-content"><div><p>In Objective-C, you work with references to objects by using pointers that can be null, called <code class="code-voice"><span>nil</span></code> in Objective-C. In Swift, all values — including object instances — are guaranteed to be non-null. Instead, you represent a value that could be missing as wrapped in an optional type. When you need to indicate that a value is missing, you use the value <code class="code-voice"><span>nil</span></code>. </p><p>You can annotate declarations in your Objective-C code to indicate whether an instance can have a null or <code class="code-voice"><span>nil</span></code> value. Those annotations change how Swift imports your declarations. For an example of how Swift imports unannotated declarations, consider the following code:</p><figure id="3024317"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="occ"><code>@interface MyList : NSObject
+</h2><div class="formatted-content"><div><p><span class="enstr">In Objective-C, you work with references to objects by using pointers that can be null, called <code class="code-voice"><span>nil</span></code> in Objective-C.In Swift, all values — including object instances — are guaranteed to be non-null.Instead, you represent a value that could be missing as wrapped in an optional type.When you need to indicate that a value is missing, you use the value <code class="code-voice"><span>nil</span></code>.</span><!--end_enstr-->
+<span class="jpstr">
+Objective-Cでは、あなたはオブジェクトへの参照をヌル、Objective-Cにおいて<code class="code-voice"><span>nil</span></code>と呼ばれるもの、であることが可能なポインタを使用して扱います。Swiftでは、すべての値は — オブジェクトインスタンスを含めて — 非ヌルであることが保証されます。代わりに、あなたは見つからないかもしれない値をオプショナル型でラップすることで表します。あなたはその値が見つからないことを指し示す必要がある場合、値<code class="code-voice"><span>nil</span></code>を使います。
+</span><!--end_jpstr-->
+ </p><p><span class="enstr">You can annotate declarations in your Objective-C code to indicate whether an instance can have a null or <code class="code-voice"><span>nil</span></code> value.Those annotations change how Swift imports your declarations.For an example of how Swift imports unannotated declarations, consider the following code:</span><!--end_enstr-->
+<span class="jpstr">
+あなたは、あなたのObjective-Cコードの中の宣言に注釈をつけることで、あるインスタンスがヌルまたは<code class="code-voice"><span>nil</span></code>値を持つことが可能かどうかを指し示せます。それら注釈は、どのようにSwiftがあなたの宣言をインポートするかを変更します。どのようにSwiftが注釈を付けられない宣言をインポートするかの例として、以下のコードを考慮してください：
+</span><!--end_jpstr-->
+</p><figure id="3024317"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="occ"><code>@interface MyList : NSObject
 - (MyListItem *)itemWithName:(NSString *)name;
 - (NSString *)nameForItem:(MyListItem *)item;
 @property (copy) NSArray&lt;MyListItem *&gt; *allItems;
 @end
-</code></pre></div></div></figure><p>Swift imports each object instance parameter, return value, and property as an implicitly wrapped optional:</p><figure id="3024318"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>class MyList: NSObject {
+</code></pre></div></div></figure><p><span class="enstr">Swift imports each object instance parameter, return value, and property as an implicitly wrapped optional:</span><!--end_enstr-->
+<span class="jpstr">
+Swiftは、オブジェクトインスタンスパラメータ、戻り値、そしてプロパティそれぞれを暗黙的にラップされたオプショナルとしてインポートします：
+</span><!--end_jpstr-->
+</p><figure id="3024318"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>class MyList: NSObject {
     func item(withName name: String!) -&gt; MyListItem!
     func name(for item: MyListItem!) -&gt; String!
     var allItems: [MyListItem]!
 }
-</code></pre></div></div></figure><p></p></div><h3 id="3024310">Annotate Nullability of Individual Declarations</h3><div><p>You can use nullability annotations in your Objective-C code to designate whether a parameter type, property type, or return type is nullable. Annotate property declarations, parameter types, and return types that are simple objects or block pointers using the <code class="code-voice"><span>nullable</span></code>, <code class="code-voice"><span>nonnull</span></code>, and <code class="code-voice"><span>null<wbr/>_resettable</span></code> property attributes. If no nullability information is provided for a type, Swift doesn't distinguish between optional and nonoptional references, and imports the type as an implicitly unwrapped optional.</p><p>This list describes how Swift imports types with different nullability annotations:</p><ul><li><p>Nonnullable—Imported as nonoptionals, whether annotated directly or by inclusion in an annotated region</p></li><li><p>Nullable—Imported as optionals</p></li><li><p>Without a nullability annotation or with a null_resettable annotation—Imported as implicitly unwrapped optionals</p></li></ul><p>The following code shows the <code class="code-voice"><span>My<wbr/>List</span></code> type after annotation. The return types of the two methods are annotated as <code class="code-voice"><span>nullable</span></code>, because the methods return <code class="code-voice"><span>nil</span></code> if the list doesn't contain the given list item or name. All other object instances are annotated as <code class="code-voice"><span>nonnull</span></code>.</p><figure id="3024313"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="occ"><code>@interface MyList : NSObject
+</code></pre></div></div></figure><p></p></div><h3 id="3024310"><span class="enstr">Annotate Nullability of Individual Declarations</span><!--end_enstr-->
+<span class="jpstr">
+個々の宣言のヌル可能性に注釈を付ける
+</span><!--end_jpstr-->
+</h3><div><p><span class="enstr">You can use nullability annotations in your Objective-C code to designate whether a parameter type, property type, or return type is nullable.Annotate property declarations, parameter types, and return types that are simple objects or block pointers using the <code class="code-voice"><span>nullable</span></code>, <code class="code-voice"><span>nonnull</span></code>, and <code class="code-voice"><span>null<wbr/>_resettable</span></code> property attributes.If no nullability information is provided for a type, Swift doesn't distinguish between optional and nonoptional references, and imports the type as an implicitly unwrapped optional.</span><!--end_enstr-->
+<span class="jpstr">
+あなたは、ヌル可能性注釈をあなたのObjective-Cコードにおいて使用して、パラメータ型、プロパティ型、または戻り値がヌル可能性であるかどうかを指定します。プロパティ宣言、パラメータ型、そして戻り値で、<code class="code-voice"><span>nullable</span></code>、<code class="code-voice"><span>nonnull</span></code>、そして<code class="code-voice"><span>null<wbr/>_resettable</span></code>プロパティ属性を使っている単純なオブジェクトまたはブロックパラメータであるものに注釈を付けてください。ヌル可能性情報がある型に提供されないならば、Swiftはオプショナルと非オプショナル参照の間の区別をしません、そしてその型をある暗黙的にアンラップされるオプショナルとしてインポートしてください。
+</span><!--end_jpstr-->
+</p><p><span class="enstr">This list describes how Swift imports types with different nullability annotations:</span><!--end_enstr-->
+<span class="jpstr">
+このリストは、どのようにSwiftが異なるヌル可能性注釈で型をインポートするかを記述します：
+</span><!--end_jpstr-->
+</p><ul><li><p><span class="enstr">Nonnullable—Imported as nonoptionals, whether annotated directly or by inclusion in an annotated region</span><!--end_enstr-->
+<span class="jpstr">
+非ヌル可能性 — 非オプショナルとしてインポートされます、直接に注釈を付けられようとまたは注釈を付けられた領域の中に包含されようと
+</span><!--end_jpstr-->
+</p></li><li><p><span class="enstr">Nullable—Imported as optionals</span><!--end_enstr-->
+<span class="jpstr">
+ヌル可能性 — オプショナルとしてインポートされます
+</span><!--end_jpstr-->
+</p></li><li><p><span class="enstr">Without a nullability annotation or with a null_resettable annotation—Imported as implicitly unwrapped optionals</span><!--end_enstr-->
+<span class="jpstr">
+ヌル可能性注釈なしまたはnull_resettable注釈あり — 暗黙的にアンラップされるオプショナルとしてインポートされます
+</span><!--end_jpstr-->
+</p></li></ul><p><span class="enstr">The following code shows the <code class="code-voice"><span>My<wbr/>List</span></code> type after annotation.The return types of the two methods are annotated as <code class="code-voice"><span>nullable</span></code>, because the methods return <code class="code-voice"><span>nil</span></code> if the list doesn't contain the given list item or name.</span><!--end_enstr-->
+<span class="jpstr">
+以下のコードは、注釈の後の<code class="code-voice"><span>My<wbr/>List</span></code>型を示します。２つのメソッドの戻り型は<code class="code-voice"><span>nullable</span></code>として注釈を付けられます、なぜならこれらメソッドは<code class="code-voice"><span>nil</span></code>を、そのリストが与えられたリスト項目または名前を含まないならば返すからです。
+</span><!--end_jpstr-->
+All other object instances are annotated as <code class="code-voice"><span>nonnull</span></code>.</p><figure id="3024313"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="occ"><code>@interface MyList : NSObject
 - (nullable MyListItem *)itemWithName:(nonnull NSString *)name;
 - (nullable NSString *)nameForItem:(nonnull MyListItem *)item;
 @property (copy, nonnull) NSArray&lt;MyListItem *&gt; *allItems;
 @end
-</code></pre></div></div></figure><p>With these annotations, Swift imports the <code class="code-voice"><span>My<wbr/>List</span></code> type without using any implicitly wrapped optionals:</p><figure id="3024311"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>class MyList: NSObject {
+</code></pre></div></div></figure><p><span class="enstr">With these annotations, Swift imports the <code class="code-voice"><span>My<wbr/>List</span></code> type without using any implicitly wrapped optionals:</span><!--end_enstr-->
+<span class="jpstr">
+これら注釈で、Swiftは<code class="code-voice"><span>My<wbr/>List</span></code>型を何らかの暗黙的にラップされるオプショナルを使うことなしにインポートします。
+</span><!--end_jpstr-->
+</p><figure id="3024311"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>class MyList: NSObject {
     func item(withName name: String) -&gt; MyListItem?
     func name(for item: MyListItem) -&gt; String?
     var allItems: [MyListItem]
 }
-</code></pre></div></div></figure><p>The <code class="code-voice"><span>nullable</span></code> and <code class="code-voice"><span>nonnull</span></code> annotations are simplified forms of the <code class="code-voice"><span>_Nullable</span></code> and <code class="code-voice"><span>_Nonnull</span></code> annotations, which you can use in almost any context that you would use the <code class="code-voice"><span>const</span></code> keyword with a pointer type. Complex pointer types, such as <code class="code-voice"><span>id *</span></code>, must be explicitly annotated using these annotations. For example, to specify a nonnullable pointer to a nullable object reference, use <code class="code-voice"><span>_Nullable id * _Nonnull</span></code>.</p></div><h3 id="3024309">Annototate Regions as Nonnullable</h3><div><p>You can simplify the process of annotating your Objective-C code by marking entire regions as audited for nullability. Within a section of code demarcated by the <code class="code-voice"><span>NS<wbr/>_ASSUME<wbr/>_NONNULL<wbr/>_BEGIN</span></code> and <code class="code-voice"><span>NS<wbr/>_ASSUME<wbr/>_NONNULL<wbr/>_END</span></code> macros, you only need to annotate the nullable type declarations. Unannotated declarations within the audited region are treated as nonnullable.</p><p>Marking the <code class="code-voice"><span>My<wbr/>List</span></code> declaration as audited for nullability reduces the number of annotations that are required. Swift imports the type the same way as in the previous section.</p><figure id="3024314"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="occ"><code>NS_ASSUME_NONNULL_BEGIN
+</code></pre></div></div></figure><p><span class="enstr">The <code class="code-voice"><span>nullable</span></code> and <code class="code-voice"><span>nonnull</span></code> annotations are simplified forms of the <code class="code-voice"><span>_Nullable</span></code> and <code class="code-voice"><span>_Nonnull</span></code> annotations, which you can use in almost any context that you would use the <code class="code-voice"><span>const</span></code> keyword with a pointer type.Complex pointer types, such as <code class="code-voice"><span>id *</span></code>, must be explicitly annotated using these annotations.For example, to specify a nonnullable pointer to a nullable object reference, use <code class="code-voice"><span>_Nullable id * _Nonnull</span></code>.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="code-voice"><span>nullable</span></code>と<code class="code-voice"><span>nonnull</span></code>注釈は、<code class="code-voice"><span>_Nullable</span></code>と<code class="code-voice"><span>_Nonnull</span></code>注釈の簡素化された形式です、それはあなたが<code class="code-voice"><span>const</span></code>キーワードをポインタ型とともに使うであろう、ほとんどあらゆる文脈で使用できます。複雑なポインタ型、例えば<code class="code-voice"><span>id *</span></code>などは、これら注釈を使って、明示的に注釈を付けられなければなりません。例えば、ヌル可能性オブジェクト参照への非ヌル可能性ポインタを指定するには、<code class="code-voice"><span>_Nullable id * _Nonnull</span></code>を使ってください。
+</span><!--end_jpstr-->
+</p></div><h3 id="3024309"><span class="enstr">Annototate Regions as Nonnullable</span><!--end_enstr-->
+<span class="jpstr">
+領域に非ヌル可能性として注釈を付ける
+</span><!--end_jpstr-->
+</h3><div><p><span class="enstr">You can simplify the process of annotating your Objective-C code by marking entire regions as audited for nullability.Within a section of code demarcated by the <code class="code-voice"><span>NS<wbr/>_ASSUME<wbr/>_NONNULL<wbr/>_BEGIN</span></code> and <code class="code-voice"><span>NS<wbr/>_ASSUME<wbr/>_NONNULL<wbr/>_END</span></code> macros, you only need to annotate the nullable type declarations.Unannotated declarations within the audited region are treated as nonnullable.</span><!--end_enstr-->
+<span class="jpstr">
+あなたは、あなたのObjective-Cコードに注釈を付ける行程を領域全体をヌル可能性について監査されると印することによって簡素化できます。<code class="code-voice"><span>NS<wbr/>_ASSUME<wbr/>_NONNULL<wbr/>_BEGIN</span></code>と<code class="code-voice"><span>NS<wbr/>_ASSUME<wbr/>_NONNULL<wbr/>_END</span></code>マクロによって境界線を引かれるコード区画内で、あなたはヌル可能性宣言に注釈を付ける必要だけがあります。監査された領域内部の注釈を付けられない宣言は、非ヌル可能性として取り扱われます。
+</span><!--end_jpstr-->
+</p><p><span class="enstr">Marking the <code class="code-voice"><span>My<wbr/>List</span></code> declaration as audited for nullability reduces the number of annotations that are required.Swift imports the type the same way as in the previous section.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="code-voice"><span>My<wbr/>List</span></code>宣言をヌル可能性について監査済みと印することは、必要とされる注釈の数を減らします。Swiftは、その型を以前の節と同じ方法でインポートします。
+</span><!--end_jpstr-->
+</p><figure id="3024314"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="occ"><code>NS_ASSUME_NONNULL_BEGIN
 
 @interface MyList : NSObject
 - (nullable MyListItem *)itemWithName:(NSString *)name;
@@ -132,7 +204,11 @@ Swift標準ライブラリ
 @end
 
 NS_ASSUME_NONNULL_END
-</code></pre></div></div></figure><p>Note that <code class="code-voice"><span>typedef</span></code> types aren't assumed to be nonnull, even within audited regions, because they aren't inherently nullable.</p></div></div></section></div></div><section id="see-also" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><span class="enstr">See Also</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">Note that <code class="code-voice"><span>typedef</span></code> types aren't assumed to be nonnull, even within audited regions, because they aren't inherently nullable.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="code-voice"><span>typedef</span></code>型は非ヌルであると仮定されません、監査済み領域内でさえもです、なぜならそれらはそもそもヌル可能でないからです。
+</span><!--end_jpstr-->
+</p></div></div></section></div></div><section id="see-also" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><span class="enstr">See Also</span><!--end_enstr-->
 <span class="jpstr">
 参照
 </span><!--end_jpstr-->
@@ -164,7 +240,15 @@ Objective-C API宣言をSwift用に改める
 <span class="jpstr">
 マクロをあなたのObjective-C型に加えて、それらの値をSwiftにおいてグループにまとめます。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../../documentation/swift/objective-c_and_c_code_customization/marking_api_availability_in_objective-c.html"><svg xmlns="http://www.w3.org/2000/svg" height="15" viewBox="0 0 22 30" class="svg-icon symbol-name-icon" aria-hidden="true"><title>Article</title><g id="Article" class="svg-icon-small"><path d="M12.87,0H0V2H0V28H0v2H22V9.13ZM20,28H2V2h9V12h9Zm0-18H13V3l7,7Z"></path></g></svg><span>Marking API Availability in Objective-C</span></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p>Use <code class="code-voice"><span>a</span></code> macro to denote the availability of an Objective-C API.</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../../documentation/swift/objective-c_and_c_code_customization/making_objective-c_apis_unavailable_in_swift.html"><svg xmlns="http://www.w3.org/2000/svg" height="15" viewBox="0 0 22 30" class="svg-icon symbol-name-icon" aria-hidden="true"><title>Article</title><g id="Article" class="svg-icon-small"><path d="M12.87,0H0V2H0V28H0v2H22V9.13ZM20,28H2V2h9V12h9Zm0-18H13V3l7,7Z"></path></g></svg><span><span class="enstr">Making Objective-C APIs Unavailable in Swift</span><!--end_enstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../../documentation/swift/objective-c_and_c_code_customization/marking_api_availability_in_objective-c.html"><svg xmlns="http://www.w3.org/2000/svg" height="15" viewBox="0 0 22 30" class="svg-icon symbol-name-icon" aria-hidden="true"><title>Article</title><g id="Article" class="svg-icon-small"><path d="M12.87,0H0V2H0V28H0v2H22V9.13ZM20,28H2V2h9V12h9Zm0-18H13V3l7,7Z"></path></g></svg><span><span class="enstr">Marking API Availability in Objective-C</span><!--end_enstr-->
+<span class="jpstr">
+API利用可能性をObjective-Cにおいて印する
+</span><!--end_jpstr-->
+</span></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Use <code class="code-voice"><span>a</span></code> macro to denote the availability of an Objective-C API.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="code-voice"><span>a</span></code>マクロを使って、Objective-C APIの利用可能性を示してください。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../../documentation/swift/objective-c_and_c_code_customization/making_objective-c_apis_unavailable_in_swift.html"><svg xmlns="http://www.w3.org/2000/svg" height="15" viewBox="0 0 22 30" class="svg-icon symbol-name-icon" aria-hidden="true"><title>Article</title><g id="Article" class="svg-icon-small"><path d="M12.87,0H0V2H0V28H0v2H22V9.13ZM20,28H2V2h9V12h9Zm0-18H13V3l7,7Z"></path></g></svg><span><span class="enstr">Making Objective-C APIs Unavailable in Swift</span><!--end_enstr-->
 <span class="jpstr">
 Objective-C APIをSwiftにおいて利用できなくする
 </span><!--end_jpstr-->

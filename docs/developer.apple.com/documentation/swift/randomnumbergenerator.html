@@ -123,13 +123,13 @@ Swift標準ライブラリ
 <span class="jpstr">
 概要
 </span><!--end_jpstr-->
-</h2><div class="formatted-content"><div><p><span class="enstr">When you call methods that use random data, such as creating new random values or shuffling a collection, you can pass a <code class="code-voice"><span>Random<wbr/>Number<wbr/>Generator</span></code> type to be used as the source for randomness.</span><!--end_enstr-->
+</h2><div class="formatted-content"><div><p><span class="enstr">When you call methods that use random data, such as creating new random values or shuffling a collection, you can pass a <code class="code-voice"><span>Random<wbr/>Number<wbr/>Generator</span></code> type to be used as the source for randomness.When you don’t pass a generator, the default <code class="code-voice"><span>System<wbr/>Random<wbr/>Number<wbr/>Generator</span></code> type is used.</span><!--end_enstr-->
 <span class="jpstr">
-あなたが無作為データを使うメソッドを呼び出す場合、例えば新しい無作為値を作成するまたはコレクションをシャッフルするなど、あなたは<code class="code-voice"><span>Random<wbr/>Number<wbr/>Generator</span></code>型を渡して、無作為さの出典として使われるようにできます。
+あなたが無作為データを使うメソッドを呼び出す場合、例えば新しい無作為値を作成するまたはコレクションをシャッフルするなど、あなたは<code class="code-voice"><span>Random<wbr/>Number<wbr/>Generator</span></code>型を渡して、無作為さの出典として使われるようにできます。あなたが生成子を渡さない場合、省略時の<code class="code-voice"><span>System<wbr/>Random<wbr/>Number<wbr/>Generator</span></code>型が使用されます。
 </span><!--end_jpstr-->
-When you don’t pass a generator, the default <code class="code-voice"><span>System<wbr/>Random<wbr/>Number<wbr/>Generator</span></code> type is used.</p><p>When providing new APIs that use randomness, provide a version that accepts a generator conforming to the <code class="code-voice"><span>Random<wbr/>Number<wbr/>Generator</span></code> protocol as well as a version that uses the default system generator. <span class="enstr">For example, this <code class="code-voice"><span>Weekday</span></code> enumeration provides static methods that return a random day of the week:</span><!--end_enstr-->
+</p><p><span class="enstr">When providing new APIs that use randomness, provide a version that accepts a generator conforming to the <code class="code-voice"><span>Random<wbr/>Number<wbr/>Generator</span></code> protocol as well as a version that uses the default system generator.For example, this <code class="code-voice"><span>Weekday</span></code> enumeration provides static methods that return a random day of the week:</span><!--end_enstr-->
 <span class="jpstr">
-例えば、この<code class="code-voice"><span>Weekday</span></code>列挙は、無作為な曜日を返す静的メソッドを提供します：
+無作為さを使う新しいAPIを提供する場合、<code class="code-voice"><span>Random<wbr/>Number<wbr/>Generator</span></code>プロトコルに準拠する生成子を受け取るバージョンを、それだけでなく省略時のシステム生成子を使うバージョンも提供してください。例えば、この<code class="code-voice"><span>Weekday</span></code>列挙は、無作為な曜日を返す静的メソッドを提供します：
 </span><!--end_jpstr-->
 </p><figure id="3028659"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>enum Weekday: CaseIterable {
     case sunday, monday, tuesday, wednesday, thursday, friday, saturday
@@ -147,7 +147,11 @@ When you don’t pass a generator, the default <code class="code-voice"><span>Sy
 <span class="jpstr">
 RandomNumberGeneratorプロトコルに準拠する
 </span><!--end_jpstr-->
-</h3><div><p>A custom <code class="code-voice"><span>Random<wbr/>Number<wbr/>Generator</span></code> type can have different characteristics than the default <code class="code-voice"><span>System<wbr/>Random<wbr/>Number<wbr/>Generator</span></code> type. For example, a seedable generator can be used to generate a repeatable sequence of random values for testing purposes.</p><p><span class="enstr">To make a custom type conform to the <code class="code-voice"><span>Random<wbr/>Number<wbr/>Generator</span></code> protocol, implement the required <code class="code-voice"><span>next()</span></code> method.Each call to <code class="code-voice"><span>next()</span></code> must produce a uniform and independent random value.</span><!--end_enstr-->
+</h3><div><p><span class="enstr">A custom <code class="code-voice"><span>Random<wbr/>Number<wbr/>Generator</span></code> type can have different characteristics than the default <code class="code-voice"><span>System<wbr/>Random<wbr/>Number<wbr/>Generator</span></code> type.For example, a seedable generator can be used to generate a repeatable sequence of random values for testing purposes.</span><!--end_enstr-->
+<span class="jpstr">
+あつらえの<code class="code-voice"><span>Random<wbr/>Number<wbr/>Generator</span></code>型は、省略時の<code class="code-voice"><span>System<wbr/>Random<wbr/>Number<wbr/>Generator</span></code>型とは異なる特徴を持つことができます。例えば、シード可能生成子は、繰り返し可能な一連の無作為値を、テスト目的で生成するために使用できます。
+</span><!--end_jpstr-->
+</p><p><span class="enstr">To make a custom type conform to the <code class="code-voice"><span>Random<wbr/>Number<wbr/>Generator</span></code> protocol, implement the required <code class="code-voice"><span>next()</span></code> method.Each call to <code class="code-voice"><span>next()</span></code> must produce a uniform and independent random value.</span><!--end_enstr-->
 <span class="jpstr">
 あなたのあつらえのクラスを<code class="code-voice"><span>Random<wbr/>Number<wbr/>Generator</span></code>プロトコルに準拠させるには、必須<code class="code-voice"><span>next()</span></code>メソッドを実装してください。<code class="code-voice"><span>next()</span></code>への各呼び出しは、一様で独立した無作為値を生成しなければなりません。
 </span><!--end_jpstr-->
@@ -159,7 +163,11 @@ RandomNumberGeneratorプロトコルに準拠する
 <span class="jpstr">
 話題
 </span><!--end_jpstr-->
-</h2><section id="3024341" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title">Generating Random Binary Data</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/swift/randomnumbergenerator/2996532-next.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">next</span><span class="decorator">() -&gt; UInt64</span></code></a><div class="task-topic-abstract task-topic-data abstract-wrapper topic-required"><div class="abstract formatted-content"><div><p><span class="enstr">Returns a value from a uniform, independent distribution of binary data.</span><!--end_enstr-->
+</h2><section id="3024341" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Generating Random Binary Data</span><!--end_enstr-->
+<span class="jpstr">
+無作為なバイナリデータを生成する
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/swift/randomnumbergenerator/2996532-next.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">next</span><span class="decorator">() -&gt; UInt64</span></code></a><div class="task-topic-abstract task-topic-data abstract-wrapper topic-required"><div class="abstract formatted-content"><div><p><span class="enstr">Returns a value from a uniform, independent distribution of binary data.</span><!--end_enstr-->
 <span class="jpstr">
 バイナリデータの一様な、独立分布からの値を返します。
 </span><!--end_jpstr-->
@@ -187,7 +195,11 @@ RandomNumberGeneratorプロトコルに準拠する
 <span class="jpstr">
 無作為数生成子
 </span><!--end_jpstr-->
-</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/swift/systemrandomnumbergenerator.html"><code class="display-name"><span class="decorator">struct </span><span class="identifier">System<wbr/>Random<wbr/>Number<wbr/>Generator</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p>The system’s default source of random data.</p></div></div></div></div></div></div></div></section></div></div></section></main><section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo">
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/swift/systemrandomnumbergenerator.html"><code class="display-name"><span class="decorator">struct </span><span class="identifier">System<wbr/>Random<wbr/>Number<wbr/>Generator</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The system’s default source of random data.</span><!--end_enstr-->
+<span class="jpstr">
+システムの持つ省略時の無作為データのソース。
+</span><!--end_jpstr-->
+</p></div></div></div></div></div></div></div></section></div></div></section></main><section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo">
         <nav class="footer-breadory">
           <a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a>
           <section class="breadcrumbs">

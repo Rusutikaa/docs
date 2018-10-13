@@ -156,11 +156,7 @@ let y = Int16(x)
 // y == 500
 
 let z = Int8(x)
-/<span class="enstr">/ Error: Not enough bits to represent...</span><!--end_enstr-->
-<span class="jpstr">
-/ エラー: 表すのにビットが足りない...
-</span><!--end_jpstr-->
-
+//<span class="enstr"> Error: Not enough bits to represent...</span><!--end_enstr--><span class="jpstr">（ エラー: 表すのにビットが足りない...）</span><!--end_jpstr-->
 </code></pre></div></div></figure><p><span class="enstr">When you create a binary integer from a floating-point value using the default initializer, the value is rounded toward zero before the range is checked.In the following example, the value <code class="code-voice"><span>127<wbr/>.75</span></code> is rounded to <code class="code-voice"><span>127</span></code>, which is representable by the <code class="code-voice"><span>Int8</span></code> type.<code class="code-voice"><span>128<wbr/>.25</span></code> is rounded to <code class="code-voice"><span>128</span></code>, which is not representable as an <code class="code-voice"><span>Int8</span></code> instance, triggering a runtime error.</span><!--end_enstr-->
 <span class="jpstr">
 あなたがバイナリ整数をある浮動小数点力省略時のイニシャライザを使って作成するとき、その値は範囲が検査される前にゼロへの丸めをされます。続く例において、値<code class="code-voice"><span>127<wbr/>.75</span></code>は<code class="code-voice"><span>127</span></code>へ丸められます、それは<code class="code-voice"><span>Int8</span></code>型によって表現可能です。<code class="code-voice"><span>128<wbr/>.25</span></code>は、<code class="code-voice"><span>128</span></code>へ丸められます、それは<code class="code-voice"><span>Int8</span></code>インスタンスによって表現可能ではなく、実行時エラーを引き起こします。
@@ -169,11 +165,7 @@ let z = Int8(x)
 // e == 127
 
 let f = Int8(128.25)
-/<span class="enstr">/ Error: Double value cannot be converted...</span><!--end_enstr-->
-<span class="jpstr">
-/ エラー: Double値が変換できない...
-</span><!--end_jpstr-->
-
+//<span class="enstr"> Error: Double value cannot be converted...</span><!--end_enstr--><span class="jpstr">（ エラー: Double値が変換できない...）</span><!--end_jpstr-->
 </code></pre></div></div></figure></div><h4 id="2888905"><span class="enstr">Exact Conversion</span><!--end_enstr-->
 <span class="jpstr">
 厳密変換
@@ -191,25 +183,13 @@ let y = Int8(exactly: 500)
 <span class="jpstr">
 浮動小数点値を変換するとき、<code class="code-voice"><span>init?(exact:)</span></code>イニシャライザは、渡された値が小数部を持たないこと、そしてその値が結果となる型の中に表現可能であることの両方を検査します。
 </span><!--end_jpstr-->
-</p><figure id="2905853"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>let e = Int8(exactly: 23.0)       /<span class="enstr">/ integral value, representable</span><!--end_enstr-->
-<span class="jpstr">
-/ 整数値、表現可能
-</span><!--end_jpstr-->
-
+</p><figure id="2905853"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>let e = Int8(exactly: 23.0)       //<span class="enstr"> integral value, representable</span><!--end_enstr--><span class="jpstr">（ 整数値、表現可能）</span><!--end_jpstr-->
 // e == Optional(23)
 
-let f = Int8(exactly: 23.75)      /<span class="enstr">/ fractional value, representable</span><!--end_enstr-->
-<span class="jpstr">
-/ 小数値、表現可能
-</span><!--end_jpstr-->
-
+let f = Int8(exactly: 23.75)      //<span class="enstr"> fractional value, representable</span><!--end_enstr--><span class="jpstr">（ 小数値、表現可能）</span><!--end_jpstr-->
 // f == nil
 
-let g = Int8(exactly: 500.0)      /<span class="enstr">/ integral value, nonrepresentable</span><!--end_enstr-->
-<span class="jpstr">
-/ 整数値、表現不可能
-</span><!--end_jpstr-->
-
+let g = Int8(exactly: 500.0)      //<span class="enstr"> integral value, nonrepresentable</span><!--end_enstr--><span class="jpstr">（ 整数値、表現不可能）</span><!--end_jpstr-->
 // g == nil
 </code></pre></div></div></figure></div><h4 id="2888908"><span class="enstr">Clamping Conversion</span><!--end_enstr-->
 <span class="jpstr">
@@ -238,19 +218,11 @@ let z = UInt8(clamping: -500)
 </p><figure id="2950934"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>let q: Int16 = 850
 // q == 0b00000011_01010010
 
-let r = Int8(truncatingIfNeeded: q)      /<span class="enstr">/ truncate 'q' to fit in 8 bits</span><!--end_enstr-->
-<span class="jpstr">
-/ 'q' を 8ビットに合うように切り詰めます
-</span><!--end_jpstr-->
-
+let r = Int8(truncatingIfNeeded: q)      //<span class="enstr"> truncate 'q' to fit in 8 bits</span><!--end_enstr--><span class="jpstr">（ 'q' を 8ビットに合うように切り詰めます）</span><!--end_jpstr-->
 // r == 82
 //   == 0b01010010
 
-let s = Int16(truncatingIfNeeded: r)     /<span class="enstr">/ extend 'r' to fill 16 bits</span><!--end_enstr-->
-<span class="jpstr">
-/ 'r' を 16ビットを満たすように拡張します
-</span><!--end_jpstr-->
-
+let s = Int16(truncatingIfNeeded: r)     //<span class="enstr"> extend 'r' to fill 16 bits</span><!--end_enstr--><span class="jpstr">（ 'r' を 16ビットを満たすように拡張します）</span><!--end_jpstr-->
 // s == 82
 //   == 0b00000000_01010010
 </code></pre></div></div></figure><p><span class="enstr">Any padding is performed by <em>sign-extending</em> the passed value.When nonnegative integers are extended, the result is padded with zeroes.When negative integers are extended, the result is padded with ones.This example shows several extending conversions of a negative value—note that negative values are sign-extended even when converting to an unsigned type.</span><!--end_enstr-->

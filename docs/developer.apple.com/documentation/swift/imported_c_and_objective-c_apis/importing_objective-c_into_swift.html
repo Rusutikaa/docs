@@ -79,7 +79,19 @@
 <span class="jpstr">
 インポートされたCおよびObjective-C API
 </span><!--end_jpstr-->
-</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item"><div class="localnav-menu-breadcrumb-current-container localnav-menu-link current"><span aria-current="page" class="localnav-menu-breadcrumb-current">Importing Objective-C into Swift</span></div></li></ul><ul class="localnav-menu-items localnav-menu-settings" data-breadcrumbs-count="3"><li class="localnav-menu-setting language-container"><span class="localnav-menu-setting-label">Language:</span><span class="localnav-menu-toggle-none current-language" aria-current="page">Swift</span></li><li class="localnav-menu-setting"><span class="localnav-menu-setting-label">API Changes:</span><span class="changes-toggle">None</span></li></ul></div><div class="localnav-actions"><div class="localnav-action localnav-action-menucta" aria-hidden="true"><label for="localnav-menustate" class="localnav-menucta"><span class="localnav-menucta-chevron"></span></label></div></div></div></div></div></div></nav><label for="localnav-menustate" id="localnav-curtain" aria-hidden="true"></label><main role="main" id="main" class="main" tabindex="0"><div class="topic-title"><span class="eyebrow">Article</span><h1 class="topic-heading"><span>Importing Objective-C into Swift</span></h1></div><div class="topic-container section-content row"><div class="topic-description column large-9 medium-9 small-12"><div class="topic-abstract abstract formatted-content"><div><p>Access classes and other declarations from your Objective-C code in Swift.</p></div></div></div><div class="topic-summary column large-3 medium-3 small-12"><div class="topic-summary-section frameworks" role="complementary" aria-label="Framework"><p class="topic-summary-section-label subsection-label"><span class="enstr">Framework</span><!--end_enstr-->
+</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item"><div class="localnav-menu-breadcrumb-current-container localnav-menu-link current"><span aria-current="page" class="localnav-menu-breadcrumb-current"><span class="enstr">Importing Objective-C into Swift</span><!--end_enstr-->
+<span class="jpstr">
+Objective-CをSwiftにインポートする
+</span><!--end_jpstr-->
+</span></div></li></ul><ul class="localnav-menu-items localnav-menu-settings" data-breadcrumbs-count="3"><li class="localnav-menu-setting language-container"><span class="localnav-menu-setting-label">Language:</span><span class="localnav-menu-toggle-none current-language" aria-current="page">Swift</span></li><li class="localnav-menu-setting"><span class="localnav-menu-setting-label">API Changes:</span><span class="changes-toggle">None</span></li></ul></div><div class="localnav-actions"><div class="localnav-action localnav-action-menucta" aria-hidden="true"><label for="localnav-menustate" class="localnav-menucta"><span class="localnav-menucta-chevron"></span></label></div></div></div></div></div></div></nav><label for="localnav-menustate" id="localnav-curtain" aria-hidden="true"></label><main role="main" id="main" class="main" tabindex="0"><div class="topic-title"><span class="eyebrow">Article</span><h1 class="topic-heading"><span><span class="enstr">Importing Objective-C into Swift</span><!--end_enstr-->
+<span class="jpstr">
+Objective-CをSwiftにインポートする
+</span><!--end_jpstr-->
+</span></h1></div><div class="topic-container section-content row"><div class="topic-description column large-9 medium-9 small-12"><div class="topic-abstract abstract formatted-content"><div><p><span class="enstr">Access classes and other declarations from your Objective-C code in Swift.</span><!--end_enstr-->
+<span class="jpstr">
+SwiftにおいてあなたのObjective-Cコード由来のクラスおよび他の宣言にアクセスします。
+</span><!--end_jpstr-->
+</p></div></div></div><div class="topic-summary column large-3 medium-3 small-12"><div class="topic-summary-section frameworks" role="complementary" aria-label="Framework"><p class="topic-summary-section-label subsection-label"><span class="enstr">Framework</span><!--end_enstr-->
 <span class="jpstr">
 フレームワーク
 </span><!--end_jpstr-->
@@ -103,11 +115,87 @@ Swift標準ライブラリ
 <span class="jpstr">
 概要
 </span><!--end_jpstr-->
-</h2><div class="formatted-content"><div><p>You can use Objective-C and Swift files together in a single project, no matter which language the project used originally. This makes creating mixed-language app and framework targets as straightforward as creating an app or framework target written in a single language.</p><figure id="3029311"><img class="centered-block" src="../../../../docs-assets.developer.apple.com/published/ac0dfb7915/96b6ab28-845f-4546-be71-16e5298b244c.png" srcset="../../../../docs-assets.developer.apple.com/published/ac0dfb7915/96b6ab28-845f-4546-be71-16e5298b244c.png 2x" alt="Diagram showing the steps to import Objective-C declarations into Swift code. Import your Objective-C headers into an Objective-C bridging header file to expose the declarations to all your Swift files." width="516" height="auto"/></figure><p>The process for using your Objective-C declarations from your Swift code within mixed-language targets differs slightly depending on whether you’re writing an app or a framework. Both processes are described below.</p></div><h3 id="3024312">Import Code Within an App Target</h3><div><p>To import a set of Objective-C files into Swift code within the same app target, you rely on an Objective-C bridging header file to expose those files to Swift. Xcode offers to create this header when you add a Swift file to an existing Objective-C app, or an Objective-C file to an existing Swift app.</p><figure id="3027120"><img class="centered-block" src="../../../../docs-assets.developer.apple.com/published/3727e75e69/cb940381-c62f-4c74-b317-d6b28d9f331e.png" srcset="../../../../docs-assets.developer.apple.com/published/3727e75e69/cb940381-c62f-4c74-b317-d6b28d9f331e.png 2x" alt="Screenshot of the Xcode prompt to configure an Objective-C bridging header." width="616" height="auto"/></figure><p>If you accept, Xcode creates the bridging header file along with the file you were creating, and names it by using your product module name followed by <code class="code-voice"><span>"-Bridging-Header<wbr/>.h"</span></code>. Alternatively, you can create a bridging header yourself by choosing File &gt; New &gt; File &gt; [<em>operating system</em>] &gt; Source &gt; Header File.</p><p>Edit the bridging header to expose your Objective-C code to your Swift code:</p><ol><li><p>In your Objective-C bridging header, import every Objective-C header you want to expose to Swift.</p></li><li><p>In Build Settings, in Swift Compiler - Code Generation, make sure the Objective-C Bridging Header build setting has a path to the bridging header file. The path should be relative to your project, similar to the way your <code class="code-voice"><span>Info<wbr/>.plist</span></code> path is specified in Build Settings. In most cases, you won't need to modify this setting.</p></li></ol><p>Any public Objective-C headers listed in the bridging header are visible to Swift. The Objective-C declarations are automatically available from any Swift file within that target, with no import statements. Use classes and other declarations from your custom Objective-C code with the same Swift syntax you use for system classes.</p></div><h3 id="3024316">Import Code Within a Framework Target</h3><div><p>To use the Objective-C declarations in files in the same framework target as your Swift code, you’ll need to import those files into the Objective-C umbrella header—the master header for your framework. Import your Objective-C files by configuring the umbrella header:</p><ol><li><p>Under Build Settings, in Packaging, make sure the Defines Module setting for the framework target is set to Yes.</p></li><li><p>In the umbrella header, import every Objective-C header you want to expose to Swift.</p></li></ol><p>Swift sees every header you expose publicly in your umbrella header. The contents of the Objective-C files in that framework are automatically available from any Swift file within that framework target, with no import statements. Use classes and other declarations from your Objective-C code with the same Swift syntax you use for system classes.</p></div></div></section></div></div><section id="see-also" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><span class="enstr">See Also</span><!--end_enstr-->
+</h2><div class="formatted-content"><div><p><span class="enstr">You can use Objective-C and Swift files together in a single project, no matter which language the project used originally.This makes creating mixed-language app and framework targets as straightforward as creating an app or framework target written in a single language.</span><!--end_enstr-->
+<span class="jpstr">
+あなたはObjective-CおよびSwiftファイルを一緒にしてある単一のプロジェクトの中で使うことができます、どちらの言語をそのプロジェクトが最初に使用しようとも。これは、混合言語のアプリとフレームワーク・ターゲットを作成することを、単一の言語で書かれるアプリまたはフレームワーク・ターゲットをつくるのと同じくらいわかりやすいものにします。
+</span><!--end_jpstr-->
+</p><figure id="3029311"><img class="centered-block" src="../../../../docs-assets.developer.apple.com/published/ac0dfb7915/96b6ab28-845f-4546-be71-16e5298b244c.png" srcset="../../../../docs-assets.developer.apple.com/published/ac0dfb7915/96b6ab28-845f-4546-be71-16e5298b244c.png 2x" alt="<span class="enstr">Diagram showing the steps to import Objective-C declarations into Swift code.Import your Objective-C headers into an Objective-C bridging header file to expose the declarations to all your Swift files.</span><!--end_enstr-->
+<span class="jpstr">
+図はObjective-C宣言をSwiftコードにインポートする行程を示します。あなたのObjective-CヘッダをObjective-Cブリッジヘッダファイルにインポートして、それら宣言をあなたのSwiftファイルすべてに露出してください。
+</span><!--end_jpstr-->
+" width="516" height="auto"/></figure><p><span class="enstr">The process for using your Objective-C declarations from your Swift code within mixed-language targets differs slightly depending on whether you’re writing an app or a framework.Both processes are described below.</span><!--end_enstr-->
+<span class="jpstr">
+あなたのObjective-C宣言をあなたのSwiftコードから混合言語ターゲット内部において使うことに対する行程は、あなたがアプリをまたはフレームワークを書くかによって少しばかり異なります。双方の行程は下で記述されます。
+</span><!--end_jpstr-->
+</p></div><h3 id="3024312"><span class="enstr">Import Code Within an App Target</span><!--end_enstr-->
+<span class="jpstr">
+アプリターゲット内部でコードをインポートする
+</span><!--end_jpstr-->
+</h3><div><p><span class="enstr">To import a set of Objective-C files into Swift code within the same app target, you rely on an Objective-C bridging header file to expose those files to Swift.Xcode offers to create this header when you add a Swift file to an existing Objective-C app, or an Objective-C file to an existing Swift app.</span><!--end_enstr-->
+<span class="jpstr">
+一揃いのObjective-CファイルをSwiftコードへと同じアプリターゲット内でインポートするには、あなたはObjective-Cブリッジヘッダファイルを頼ることで、それらファイルをSwiftへと露出してください。Xcodeは、このヘッダファイルを作成することをあなたがSwiftファイルを既存のObjective-Cアプリに、またはObjective-Cファイルを既存のSwiftアプリに加える場合に提案します。
+</span><!--end_jpstr-->
+</p><figure id="3027120"><img class="centered-block" src="../../../../docs-assets.developer.apple.com/published/3727e75e69/cb940381-c62f-4c74-b317-d6b28d9f331e.png" srcset="../../../../docs-assets.developer.apple.com/published/3727e75e69/cb940381-c62f-4c74-b317-d6b28d9f331e.png 2x" alt="<span class="enstr">Screenshot of the Xcode prompt to configure an Objective-C bridging header.</span><!--end_enstr-->
+<span class="jpstr">
+Xcodeのスクリーンショットは、Objective-Cブリッジヘッダを構成設定するよう促します。
+</span><!--end_jpstr-->
+" width="616" height="auto"/></figure><p><span class="enstr">If you accept, Xcode creates the bridging header file along with the file you were creating, and names it by using your product module name followed by <code class="code-voice"><span>"-Bridging-Header<wbr/>.h"</span></code>.Alternatively, you can create a bridging header yourself by choosing File &gt; New &gt; File &gt; [<em>operating system</em>] &gt; Source &gt; Header File.</span><!--end_enstr-->
+<span class="jpstr">
+あなたが承諾するならば、Xcodeはブリッジヘッダファイルをあなたが作成していたファイルに加えて作成します、そしてあなたのプロダクトモジュール名に<code class="code-voice"><span>"-Bridging-Header<wbr/>.h"</span></code>を続けることでそれに名前をつけます。あるいはまた、あなたはブリッジヘッダを、File &gt; New &gt; File &gt; [<em>オペレーションシステム</em>] &gt; Source &gt; Header File を選択することであなた自身で作成できます。
+</span><!--end_jpstr-->
+</p><p><span class="enstr">Edit the bridging header to expose your Objective-C code to your Swift code:</span><!--end_enstr-->
+<span class="jpstr">
+ブリッジヘッダを編集して、あなたのObjective-CコードをあなたのSwiftコードに露出してください：
+</span><!--end_jpstr-->
+</p><ol><li><p><span class="enstr">In your Objective-C bridging header, import every Objective-C header you want to expose to Swift.</span><!--end_enstr-->
+<span class="jpstr">
+あなたのObjective-Cブリッジヘッダにおいて、あなたが露出したいあらゆるObjective-CヘッダをSwiftにインポートしてください。
+</span><!--end_jpstr-->
+</p></li><li><p><span class="enstr">In Build Settings, in Swift Compiler - Code Generation, make sure the Objective-C Bridging Header build setting has a path to the bridging header file.The path should be relative to your project, similar to the way your <code class="code-voice"><span>Info<wbr/>.plist</span></code> path is specified in Build Settings.In most cases, you won't need to modify this setting.</span><!--end_enstr-->
+<span class="jpstr">
+Build Settingsにおいて、Swift Compiler - Code Generationで、Objective-C Bridging Header ビルド設定がブリッジヘッダファイルに対するパスを持つことを確実にしてください。パスは、あなたの<code class="code-voice"><span>Info<wbr/>.plist</span></code>パスがBuild Settingsにおいて指定される方法と同様に、あなたのプロジェクトに対して相対的であるべきです。ほとんどの場合では、あなたはこの設定を修正する必要はないでしょう。
+</span><!--end_jpstr-->
+</p></li></ol><p><span class="enstr">Any public Objective-C headers listed in the bridging header are visible to Swift.The Objective-C declarations are automatically available from any Swift file within that target, with no import statements.Use classes and other declarations from your custom Objective-C code with the same Swift syntax you use for system classes.</span><!--end_enstr-->
+<span class="jpstr">
+ブリッジヘッダにおいて列記されるあらゆるパブリックObjective-Cヘッダは、Swiftにとって見ることが可能です。Objective-C宣言は、自動的にあらゆるSwiftファイルからそのターゲット内部で、インポート文なしで利用可能です。クラスと他の宣言をあなたのあつらえのObjective-Cコードからあなたがシステムクラスに使うのと同じSwift構文で使ってください。
+</span><!--end_jpstr-->
+</p></div><h3 id="3024316"><span class="enstr">Import Code Within a Framework Target</span><!--end_enstr-->
+<span class="jpstr">
+フレームワークターゲット内部でコードをインポートする
+</span><!--end_jpstr-->
+</h3><div><p><span class="enstr">To use the Objective-C declarations in files in the same framework target as your Swift code, you’ll need to import those files into the Objective-C umbrella header—the master header for your framework.Import your Objective-C files by configuring the umbrella header:</span><!--end_enstr-->
+<span class="jpstr">
+あなたのSwiftコードと同じフレームワークターゲットの中のファイルそれらの中のObjective-C宣言を使うには、あなたはそれらファイルをObjective-Cアンブレラヘッダ — あなたのフレームワークのマスターヘッダにインポートする必要があるでしょう。あなたのObjective-Cファイルをアンプレラヘッダを構成設定することによってインポートしてください：
+</span><!--end_jpstr-->
+</p><ol><li><p><span class="enstr">Under Build Settings, in Packaging, make sure the Defines Module setting for the framework target is set to Yes.</span><!--end_enstr-->
+<span class="jpstr">
+Build Settingsの下、Packagingにおいて、フレームワークターゲットに対するDefines Module設定がYesに設定されることを確実にしてください。
+</span><!--end_jpstr-->
+</p></li><li><p><span class="enstr">In the umbrella header, import every Objective-C header you want to expose to Swift.</span><!--end_enstr-->
+<span class="jpstr">
+アンブレラヘッダにおいて、あなたが望むあらゆるObjective-CヘッダをインポートすることでSwiftに露出してください。
+</span><!--end_jpstr-->
+</p></li></ol><p><span class="enstr">Swift sees every header you expose publicly in your umbrella header.The contents of the Objective-C files in that framework are automatically available from any Swift file within that framework target, with no import statements.Use classes and other declarations from your Objective-C code with the same Swift syntax you use for system classes.</span><!--end_enstr-->
+<span class="jpstr">
+Swiftは、あなたがパブリックにあなたのアンブレラヘッダにおいて露出するすべてのヘッダを見ます。そのフレームワークの中のObjective-Cファイルの内容は、自動的にそのフレームワークターゲット内のあらゆるSwiftファイルから、インポート文なしで利用可能です。クラスと他の宣言をあなたのObjective-Cコードからあなたがシステムクラスに使うのと同じSwift構文で使ってください。
+</span><!--end_jpstr-->
+</p></div></div></section></div></div><section id="see-also" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><span class="enstr">See Also</span><!--end_enstr-->
 <span class="jpstr">
 参照
 </span><!--end_jpstr-->
-</h2><section id="3022208" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title">Swift and Objective-C in the Same Project</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../../documentation/swift/imported_c_and_objective-c_apis/importing_swift_into_objective-c.html"><svg xmlns="http://www.w3.org/2000/svg" height="15" viewBox="0 0 22 30" class="svg-icon symbol-name-icon" aria-hidden="true"><title>Article</title><g id="Article" class="svg-icon-small"><path d="M12.87,0H0V2H0V28H0v2H22V9.13ZM20,28H2V2h9V12h9Zm0-18H13V3l7,7Z"></path></g></svg><span>Importing Swift into Objective-C</span></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p>Access Swift types and declarations from within your Objective-C codebase.</p></div></div></div></div></div></div></div></section></div></div></section></main><section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo">
+</h2><section id="3022208" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Swift and Objective-C in the Same Project</span><!--end_enstr-->
+<span class="jpstr">
+同じプロジェクトの中のSwiftとObjective-C
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../../documentation/swift/imported_c_and_objective-c_apis/importing_swift_into_objective-c.html"><svg xmlns="http://www.w3.org/2000/svg" height="15" viewBox="0 0 22 30" class="svg-icon symbol-name-icon" aria-hidden="true"><title>Article</title><g id="Article" class="svg-icon-small"><path d="M12.87,0H0V2H0V28H0v2H22V9.13ZM20,28H2V2h9V12h9Zm0-18H13V3l7,7Z"></path></g></svg><span><span class="enstr">Importing Swift into Objective-C</span><!--end_enstr-->
+<span class="jpstr">
+SwiftをObjective-Cにインポートする
+</span><!--end_jpstr-->
+</span></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Access Swift types and declarations from within your Objective-C codebase.</span><!--end_enstr-->
+<span class="jpstr">
+Swift型と宣言にあなたのObjective-Cコードベース内からアクセスします。
+</span><!--end_jpstr-->
+</p></div></div></div></div></div></div></div></section></div></div></section></main><section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo">
         <nav class="footer-breadory">
           <a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a>
           <section class="breadcrumbs">

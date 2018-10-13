@@ -115,9 +115,9 @@ Swift標準ライブラリ
 <span class="jpstr">
 概要
 </span><!--end_jpstr-->
-</h2><div class="formatted-content"><div><p>You can use <code class="code-voice"><span>Memory<wbr/>Layout</span></code> as a source of information about a type when allocating or binding memory using raw pointers. <span class="enstr">The following example declares a <code class="code-voice"><span>Point</span></code> type with <code class="code-voice"><span>x</span></code> and <code class="code-voice"><span>y</span></code> coordinates and a Boolean <code class="code-voice"><span>is<wbr/>Filled</span></code> property.</span><!--end_enstr-->
+</h2><div class="formatted-content"><div><p><span class="enstr">You can use <code class="code-voice"><span>Memory<wbr/>Layout</span></code> as a source of information about a type when allocating or binding memory using raw pointers.The following example declares a <code class="code-voice"><span>Point</span></code> type with <code class="code-voice"><span>x</span></code> and <code class="code-voice"><span>y</span></code> coordinates and a Boolean <code class="code-voice"><span>is<wbr/>Filled</span></code> property.</span><!--end_enstr-->
 <span class="jpstr">
-以下の例は、<code class="code-voice"><span>Point</span></code>型を<code class="code-voice"><span>x</span></code>および<code class="code-voice"><span>y</span></code>座標、そしてブールの<code class="code-voice"><span>is<wbr/>Filled</span></code>プロパティで宣言します。
+あなたは、<code class="code-voice"><span>Memory<wbr/>Layout</span></code>をある型についての情報源として使うことが、生のポインタを使ってメモリをアロケートまたはバインドする時に可能です。以下の例は、<code class="code-voice"><span>Point</span></code>型を<code class="code-voice"><span>x</span></code>および<code class="code-voice"><span>y</span></code>座標、そしてブールの<code class="code-voice"><span>is<wbr/>Filled</span></code>プロパティで宣言します。
 </span><!--end_jpstr-->
 </p><figure id="2846561"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>struct Point {
     let x: Double
@@ -131,11 +131,11 @@ Swift標準ライブラリ
 </p><figure id="2846562"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>// MemoryLayout&lt;Point&gt;.size == 17
 // MemoryLayout&lt;Point&gt;.stride == 24
 // MemoryLayout&lt;Point&gt;.alignment == 8
-</code></pre></div></div></figure><p><span class="enstr">Always use a multiple of a type’s <code class="code-voice"><span>stride</span></code> instead of its <code class="code-voice"><span>size</span></code> when allocating memory or accounting for the distance between instances in memory.</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">Always use a multiple of a type’s <code class="code-voice"><span>stride</span></code> instead of its <code class="code-voice"><span>size</span></code> when allocating memory or accounting for the distance between instances in memory.This example allocates uninitialized raw memory with space for four instances of <code class="code-voice"><span>Point</span></code>.</span><!--end_enstr-->
 <span class="jpstr">
-メモリをアロケートするまたはメモリ中のインスタンス間の隔たりを計上する場合には、常にある型の持つ<code class="code-voice"><span>stride</span></code>の倍数を使ってください、それの<code class="code-voice"><span>size</span></code>ではなく。
+メモリをアロケートするまたはメモリ中のインスタンス間の隔たりを計上する場合には、常にある型の持つ<code class="code-voice"><span>stride</span></code>の倍数を使ってください、それの<code class="code-voice"><span>size</span></code>ではなく。この例は、未初期化の生のメモリを<code class="code-voice"><span>Point</span></code>の４つのインスタンス用の空間でアロケートします。
 </span><!--end_jpstr-->
-This example allocates uninitialized raw memory with space for four instances of <code class="code-voice"><span>Point</span></code>.</p><figure id="2846563"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>let count = 4
+</p><figure id="2846563"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>let count = 4
 let pointPointer = UnsafeMutableRawPointer.allocate(
         bytes: count * MemoryLayout&lt;Point&gt;.stride,
         alignedTo: MemoryLayout&lt;Point&gt;.alignment)
@@ -143,7 +143,15 @@ let pointPointer = UnsafeMutableRawPointer.allocate(
 <span class="jpstr">
 話題
 </span><!--end_jpstr-->
-</h2><section id="3024344" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title">Accessing the Layout of a Type</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="contenttable-section-content-abstract formatted-content"><div><p>Use these static properties to access a type's layout. For example, the size of a <code class="code-voice"><span>Double</span></code> instance is <code class="code-voice"><span>Memory<wbr/>Layout&lt;Double&gt;.size</span></code>.</p></div></div><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/swift/memorylayout/2432227-size.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">size</span><span class="decorator">: Int</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The contiguous memory footprint of <code class="code-voice"><span>T</span></code>, in bytes.</span><!--end_enstr-->
+</h2><section id="3024344" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Accessing the Layout of a Type</span><!--end_enstr-->
+<span class="jpstr">
+ある型のレイアウトにアクセスする
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="contenttable-section-content-abstract formatted-content"><div><p><span class="enstr">Use these static properties to access a type's layout.For example, the size of a <code class="code-voice"><span>Double</span></code> instance is <code class="code-voice"><span>Memory<wbr/>Layout&lt;Double&gt;.size</span></code>.</span><!--end_enstr-->
+<span class="jpstr">
+これらの静的プロパティを使ってある型の持つレイアウトにアクセスしてください。例えば、<code class="code-voice"><span>Double</span></code>インスタンスのサイズは、<code class="code-voice"><span>Memory<wbr/>Layout&lt;Double&gt;.size</span></code>です。
+</span><!--end_jpstr-->
+</p></div></div><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/swift/memorylayout/2432227-size.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">size</span><span class="decorator">: Int</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The contiguous memory footprint of <code class="code-voice"><span>T</span></code>, in bytes.</span><!--end_enstr-->
 <span class="jpstr">
 <code class="code-voice"><span>T</span></code>の隣接メモリフットプリント、バイトで。
 </span><!--end_jpstr-->
@@ -175,7 +183,15 @@ let pointPointer = UnsafeMutableRawPointer.allocate(
 <span class="jpstr">
 <code class="code-voice"><span>T</span></code>の省略時のメモリアライメントを返します。
 </span><!--end_jpstr-->
-</p></div></div></div></div></div></div></div></section><section id="3024342" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title">Querying Type Properties</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/swift/memorylayout/2996397-offset.html"><code class="display-name"><span class="decorator">static func </span><span class="identifier">offset</span><span class="decorator">(</span><span class="identifier">of</span><span class="decorator">: Partial<wbr/>Key<wbr/>Path&lt;T&gt;) -&gt; Int?</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p>Returns the offset of an inline stored property within a type’s in-memory representation.</p></div></div></div></div></div></div></div></section></div></div></section></main><section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo">
+</p></div></div></div></div></div></div></div></section><section id="3024342" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Querying Type Properties</span><!--end_enstr-->
+<span class="jpstr">
+型プロパティに問い合わせる
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/swift/memorylayout/2996397-offset.html"><code class="display-name"><span class="decorator">static func </span><span class="identifier">offset</span><span class="decorator">(</span><span class="identifier">of</span><span class="decorator">: Partial<wbr/>Key<wbr/>Path&lt;T&gt;) -&gt; Int?</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns the offset of an inline stored property within a type’s in-memory representation.</span><!--end_enstr-->
+<span class="jpstr">
+インライン格納プロパティの、ある型のインメモリ表現内部でのオフセットを返します。
+</span><!--end_jpstr-->
+</p></div></div></div></div></div></div></div></section></div></div></section></main><section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo">
         <nav class="footer-breadory">
           <a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a>
           <section class="breadcrumbs">

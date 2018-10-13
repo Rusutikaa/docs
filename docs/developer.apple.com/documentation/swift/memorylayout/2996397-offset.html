@@ -95,7 +95,11 @@ Swift標準ライブラリ
 <span class="jpstr">
 型メソッド
 </span><!--end_jpstr-->
-</span><h1 class="topic-heading"><span>offset(of:)</span></h1></div><div class="topic-container section-content row"><div class="topic-description column large-9 medium-9 small-12"><div class="topic-abstract abstract formatted-content"><div><p>Returns the offset of an inline stored property within a type’s in-memory representation.</p></div></div></div><div class="topic-summary column large-3 medium-3 small-12"><div class="topic-summary-section sdks" role="complementary" aria-label="SDK"><p class="topic-summary-section-label subsection-label">SDK</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item sdk"><span aria-label="Xcode 10.0+, Available on Xcode 10.0 and later" role="text" title="Available on Xcode 10.0 and later">Xcode 10.0+</span></li></ul></div><div class="topic-summary-section frameworks" role="complementary" aria-label="Framework"><p class="topic-summary-section-label subsection-label"><span class="enstr">Framework</span><!--end_enstr-->
+</span><h1 class="topic-heading"><span>offset(of:)</span></h1></div><div class="topic-container section-content row"><div class="topic-description column large-9 medium-9 small-12"><div class="topic-abstract abstract formatted-content"><div><p><span class="enstr">Returns the offset of an inline stored property within a type’s in-memory representation.</span><!--end_enstr-->
+<span class="jpstr">
+インライン格納プロパティの、ある型のインメモリ表現内部でのオフセットを返します。
+</span><!--end_jpstr-->
+</p></div></div></div><div class="topic-summary column large-3 medium-3 small-12"><div class="topic-summary-section sdks" role="complementary" aria-label="SDK"><p class="topic-summary-section-label subsection-label">SDK</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item sdk"><span aria-label="Xcode 10.0+, Available on Xcode 10.0 and later" role="text" title="Available on Xcode 10.0 and later">Xcode 10.0+</span></li></ul></div><div class="topic-summary-section frameworks" role="complementary" aria-label="Framework"><p class="topic-summary-section-label subsection-label"><span class="enstr">Framework</span><!--end_enstr-->
 <span class="jpstr">
 フレームワーク
 </span><!--end_jpstr-->
@@ -140,18 +144,26 @@ Swift標準ライブラリ
 <span class="jpstr">
 戻り値
 </span><!--end_jpstr-->
-</h2><div class="formatted-content"><div><p>The offset in bytes from a pointer to a value of type <code class="code-voice"><span>T</span></code> to a pointer to the storage referenced by <code class="code-voice"><span>key</span></code>, or <code class="code-voice"><span>nil</span></code> if no such offset is available for the storage referenced by <code class="code-voice"><span>key</span></code>. If the value is <code class="code-voice"><span>nil</span></code>, it can be because <code class="code-voice"><span>key</span></code> is computed, has observers, requires reabstraction, or overlaps storage with other properties.</p></div></div></section><section id="discussion" class="section"><h2><span class="enstr">Discussion</span><!--end_enstr-->
+</h2><div class="formatted-content"><div><p><span class="enstr">The offset in bytes from a pointer to a value of type <code class="code-voice"><span>T</span></code> to a pointer to the storage referenced by <code class="code-voice"><span>key</span></code>, or <code class="code-voice"><span>nil</span></code> if no such offset is available for the storage referenced by <code class="code-voice"><span>key</span></code>.If the value is <code class="code-voice"><span>nil</span></code>, it can be because <code class="code-voice"><span>key</span></code> is computed, has observers, requires reabstraction, or overlaps storage with other properties.</span><!--end_enstr-->
+<span class="jpstr">
+型<code class="code-voice"><span>T</span></code>の値へのポインタから、<code class="code-voice"><span>key</span></code>によって参照されるストレージへのポインタまでのバイトでのオフセット、または<code class="code-voice"><span>nil</span></code>、もしそのようなオフセットが<code class="code-voice"><span>key</span></code>によって参照されるストレージに利用可能でないならば。値が<code class="code-voice"><span>nil</span></code>の場合、それが可能なのは<code class="code-voice"><span>key</span></code>が計算される、オブザーバを持つ、再抽象化を要求する、またはストレージを他のプロパティでオーバーラップするからです。
+</span><!--end_jpstr-->
+</p></div></div></section><section id="discussion" class="section"><h2><span class="enstr">Discussion</span><!--end_enstr-->
 <span class="jpstr">
 解説
 </span><!--end_jpstr-->
-</h2><div class="formatted-content"><div><p>You can use this method to find the distance in bytes that can be added to a pointer of type <code class="code-voice"><span>T</span></code> to get a pointer to the property referenced by <code class="code-voice"><span>key</span></code>. The offset is available only if the given key refers to inline, directly addressable storage within the in-memory representation of <code class="code-voice"><span>T</span></code>.</p><p><span class="enstr">If the return value of this method is non-<code class="code-voice"><span>nil</span></code>, then accessing the value by key path or by an offset pointer are equivalent.</span><!--end_enstr-->
+</h2><div class="formatted-content"><div><p><span class="enstr">You can use this method to find the distance in bytes that can be added to a pointer of type <code class="code-voice"><span>T</span></code> to get a pointer to the property referenced by <code class="code-voice"><span>key</span></code>.The offset is available only if the given key refers to inline, directly addressable storage within the in-memory representation of <code class="code-voice"><span>T</span></code>.</span><!--end_enstr-->
 <span class="jpstr">
-このメソッドの戻り値が非<code class="code-voice"><span>nil</span></code>ならば、その時その値にキーパスによってまたはあるオフセットポインタによってアクセスすることは、等価です。
+あなたはこのメソッドを使ってバイトでの隔たりを見つけることができます、それは型<code class="code-voice"><span>T</span></code>のポインタに加えることで、<code class="code-voice"><span>key</span></code>によって参照されるプロパティへのポインタを得ることができるものです。このオフセットは与えられたキーがインラインの、直接にアドレス指定可能なストレージを<code class="code-voice"><span>T</span></code>のインメモリ表現内で参照する場合にのみ利用可能です。
 </span><!--end_jpstr-->
-For example, for a variable <code class="code-voice"><span>root</span></code> of type <code class="code-voice"><span>T</span></code>, a key path <code class="code-voice"><span>key</span></code> of type <code class="code-voice"><span>Writable<wbr/>Key<wbr/>Path&lt;T, U&gt;</span></code>, and a <code class="code-voice"><span>value</span></code> of type <code class="code-voice"><span>U</span></code>:</p><figure id="3028658"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>// Mutation through the key path
+</p><p><span class="enstr">If the return value of this method is non-<code class="code-voice"><span>nil</span></code>, then accessing the value by key path or by an offset pointer are equivalent.For example, for a variable <code class="code-voice"><span>root</span></code> of type <code class="code-voice"><span>T</span></code>, a key path <code class="code-voice"><span>key</span></code> of type <code class="code-voice"><span>Writable<wbr/>Key<wbr/>Path&lt;T, U&gt;</span></code>, and a <code class="code-voice"><span>value</span></code> of type <code class="code-voice"><span>U</span></code>:</span><!--end_enstr-->
+<span class="jpstr">
+このメソッドの戻り値が非<code class="code-voice"><span>nil</span></code>ならば、その時その値にキーパスによってまたはあるオフセットポインタによってアクセスすることは、等価です。例えば、変数<code class="code-voice"><span>root</span></code>で型<code class="code-voice"><span>T</span></code>、キーパス<code class="code-voice"><span>key</span></code>で型<code class="code-voice"><span>Writable<wbr/>Key<wbr/>Path&lt;T, U&gt;</span></code>、そして<code class="code-voice"><span>value</span></code>で型<code class="code-voice"><span>U</span></code>に対して：
+</span><!--end_jpstr-->
+</p><figure id="3028658"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>//<span class="enstr"> Mutation through the key path</span><!--end_enstr--><span class="jpstr">（ キーパスを通した変化）</span><!--end_jpstr-->
 root[keyPath: key] = value
 
-// Mutation through the offset pointer
+//<span class="enstr"> Mutation through the offset pointer</span><!--end_enstr--><span class="jpstr">（ オフセットポインタを通した変化）</span><!--end_jpstr-->
 withUnsafeMutableBytes(of: &amp;root) { bytes in
     let offset = MemoryLayout&lt;T&gt;.offset(of: key)!
     let rawPointerToValue = bytes.baseAddress! + offset
@@ -168,43 +180,23 @@ withUnsafeMutableBytes(of: &amp;root) { bytes in
 </span><!--end_jpstr-->
 </p><figure id="3003491"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>struct ProductCategory {
     struct Identifier {
-        var name: String              /<span class="enstr">/ addressable</span><!--end_enstr-->
-<span class="jpstr">
-/ アドレス指定可能
-</span><!--end_jpstr-->
-
+        var name: String              //<span class="enstr"> addressable</span><!--end_enstr--><span class="jpstr">（ アドレス指定可能）</span><!--end_jpstr-->
     }
 
-    var identifier: Identifier        /<span class="enstr">/ addressable</span><!--end_enstr-->
-<span class="jpstr">
-/ アドレス指定可能
-</span><!--end_jpstr-->
-
-    var updateCounter: Int            /<span class="enstr">/ addressable</span><!--end_enstr-->
-<span class="jpstr">
-/ アドレス指定可能
-</span><!--end_jpstr-->
-
-    var products: [Product] {         /<span class="enstr">/ not addressable: didSet handler</span><!--end_enstr-->
-<span class="jpstr">
-/ アドレス指定可能でない：didSetハンドラ
-</span><!--end_jpstr-->
-
+    var identifier: Identifier        //<span class="enstr"> addressable</span><!--end_enstr--><span class="jpstr">（ アドレス指定可能）</span><!--end_jpstr-->
+    var updateCounter: Int            //<span class="enstr"> addressable</span><!--end_enstr--><span class="jpstr">（ アドレス指定可能）</span><!--end_jpstr-->
+    var products: [Product] {         //<span class="enstr"> not addressable: didSet handler</span><!--end_enstr--><span class="jpstr">（ アドレス指定可能でない：didSetハンドラ）</span><!--end_jpstr-->
         didSet { updateCounter += 1 }
     }
-    var productCount: Int {           /<span class="enstr">/ not addressable: computed property</span><!--end_enstr-->
-<span class="jpstr">
-/ アドレス指定可能でない：計算プロパティ
-</span><!--end_jpstr-->
-
+    var productCount: Int {           //<span class="enstr"> not addressable: computed property</span><!--end_enstr--><span class="jpstr">（ アドレス指定可能でない：計算プロパティ）</span><!--end_jpstr-->
         return products.count
     }
 }
-</code></pre></div></div></figure><p><span class="enstr">When using <code class="code-voice"><span>offset(of:)</span></code> with a type imported from a library, don’t assume that future versions of the library will have the same behavior.If a property is converted from a stored property to a computed property, the result of <code class="code-voice"><span>offset(of:)</span></code> changes to <code class="code-voice"><span>nil</span></code>.</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">When using <code class="code-voice"><span>offset(of:)</span></code> with a type imported from a library, don’t assume that future versions of the library will have the same behavior.If a property is converted from a stored property to a computed property, the result of <code class="code-voice"><span>offset(of:)</span></code> changes to <code class="code-voice"><span>nil</span></code>.That kind of conversion is nonbreaking in other contexts, but would trigger a runtime error if the result of <code class="code-voice"><span>offset(of:)</span></code> is force-unwrapped.</span><!--end_enstr-->
 <span class="jpstr">
-<code class="code-voice"><span>offset(of:)</span></code>をあるライブラリからインポートされる型で使う場合、そのライブラリの将来のバージョンが同じ挙動を持つと決めてかからないでください。プロパティが格納プロパティから計算プロパティに変換されるならば、<code class="code-voice"><span>offset(of:)</span></code>の結果は<code class="code-voice"><span>nil</span></code>に変わります。
+<code class="code-voice"><span>offset(of:)</span></code>をあるライブラリからインポートされる型で使う場合、そのライブラリの将来のバージョンが同じ挙動を持つと決めてかからないでください。プロパティが格納プロパティから計算プロパティに変換されるならば、<code class="code-voice"><span>offset(of:)</span></code>の結果は<code class="code-voice"><span>nil</span></code>に変わります。その種の変換は、他の文脈においては非破壊です、しかし<code class="code-voice"><span>offset(of:)</span></code>の結果が強制アンラップされるならば実行時エラーの引き金となります。
 </span><!--end_jpstr-->
-That kind of conversion is nonbreaking in other contexts, but would trigger a runtime error if the result of <code class="code-voice"><span>offset(of:)</span></code> is force-unwrapped.</p></div></div></section></div></div></main><section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo">
+</p></div></div></section></div></div></main><section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo">
         <nav class="footer-breadory">
           <a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a>
           <section class="breadcrumbs">

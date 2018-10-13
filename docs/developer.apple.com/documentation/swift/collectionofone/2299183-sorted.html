@@ -188,26 +188,14 @@ Swift標準ライブラリ
 let responses: [HTTPResponse] = [.error(500), .ok, .ok, .error(404), .error(403)]
 let sortedResponses = responses.sorted {
     switch ($0, $1) {
-    /<span class="enstr">/ Order errors by code</span><!--end_enstr-->
-<span class="jpstr">
-/ エラーをコードによって並べる
-</span><!--end_jpstr-->
-
+    //<span class="enstr"> Order errors by code</span><!--end_enstr--><span class="jpstr">（ エラーをコードによって並べる）</span><!--end_jpstr-->
     case let (.error(aCode), .error(bCode)):
         return aCode &lt; bCode
 
-    /<span class="enstr">/ All successes are equivalent, so none is before any other</span><!--end_enstr-->
-<span class="jpstr">
-/ すべての成功は等しい、なので何か他の前に来るものはありません
-</span><!--end_jpstr-->
-
+    //<span class="enstr"> All successes are equivalent, so none is before any other</span><!--end_enstr--><span class="jpstr">（ すべての成功は等しい、なので何か他の前に来るものはありません）</span><!--end_jpstr-->
     case (.ok, .ok): return false
 
-    /<span class="enstr">/ Order errors before successes</span><!--end_enstr-->
-<span class="jpstr">
-/ 成功の前にエラーを並べる
-</span><!--end_jpstr-->
-
+    //<span class="enstr"> Order errors before successes</span><!--end_enstr--><span class="jpstr">（ 成功の前にエラーを並べる）</span><!--end_jpstr-->
     case (.error, .ok): return true
     case (.ok, .error): return false
     }
