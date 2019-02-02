@@ -127,7 +127,7 @@ Swift標準ライブラリ
 <span class="jpstr">
 概要
 </span><!--end_jpstr-->
-</h2><div class="formatted-content"><div><p><span class="enstr">A slice stores a base collection and the start and end indices of the view.It does not copy the elements from the collection into separate storage.Thus, creating a slice has O(1) complexity.</span><!--end_enstr-->
+</h2><div class="formatted-content"><div><p><span class="enstr">A slice stores a base collection and the start and end indices of the view. It does not copy the elements from the collection into separate storage. Thus, creating a slice has O(1) complexity.</span><!--end_enstr-->
 <span class="jpstr">
 あるスライス（切り取り）は、基盤コレクションおよびビューの始まりと終わりのインデックスを格納します。それは、要素をそのコレクションから別個のストレージへとコピーしません。したがって、ある切り取り（スライス）の作成はO(1)の計算量を持ちます。
 </span><!--end_jpstr-->
@@ -135,7 +135,7 @@ Swift標準ライブラリ
 <span class="jpstr">
 スライスはインデックスを共有します
 </span><!--end_jpstr-->
-</h3><div><p><span class="enstr">Indices of a slice can be used interchangeably with indices of the base collection.An element of a slice is located under the same index in the slice and in the base collection, as long as neither the collection nor the slice has been mutated since the slice was created.</span><!--end_enstr-->
+</h3><div><p><span class="enstr">Indices of a slice can be used interchangeably with indices of the base collection. An element of a slice is located under the same index in the slice and in the base collection, as long as neither the collection nor the slice has been mutated since the slice was created.</span><!--end_enstr-->
 <span class="jpstr">
 あるスライスのインデックスは、基盤コレクションのインデックスと交換可能に使われることができます。スライスの要素は、スライスにおいてそして基盤コレクションにおいて同じインデックス下に位置します、コレクションもスライスもスライスが作成されてから変化させられない限りは。
 </span><!--end_jpstr-->
@@ -144,7 +144,7 @@ Swift標準ライブラリ
 例えば、あなたがある学期（２学期制）の各クラスの欠席者数が入った配列を持つと考えてください。
 </span><!--end_jpstr-->
 </p><figure id="2846685"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>var absences = [0, 2, 0, 4, 0, 3, 1, 0]
-</code></pre></div></div></figure><p><span class="enstr">You’re tasked with finding the day with the most absences in the second half of the session.To find the index of the day in question, follow these setps:</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">You’re tasked with finding the day with the most absences in the second half of the session. To find the index of the day in question, follow these setps:</span><!--end_enstr-->
 <span class="jpstr">
 あなたはこの学期の後半において最も多く欠席者がいる日付を見つける任務を負います。当該の日付のインデックスを見つけるには、これらの手順を踏んでください：
 </span><!--end_jpstr-->
@@ -173,7 +173,7 @@ if let i = secondHalf.indices.max(by: { secondHalf[$0] &lt; secondHalf[$1] }) {
 <span class="jpstr">
 スライスは意味論を継承します
 </span><!--end_jpstr-->
-</h3><div><p><span class="enstr">A slice inherits the value or reference semantics of its base collection.That is, if a <code class="code-voice"><span>Slice</span></code> instance is wrapped around a mutable collection that has value semantics, such as an array, mutating the original collection would trigger a copy of that collection, and not affect the base collection stored inside of the slice.</span><!--end_enstr-->
+</h3><div><p><span class="enstr">A slice inherits the value or reference semantics of its base collection. That is, if a <code class="code-voice"><span>Slice</span></code> instance is wrapped around a mutable collection that has value semantics, such as an array, mutating the original collection would trigger a copy of that collection, and not affect the base collection stored inside of the slice.</span><!--end_enstr-->
 <span class="jpstr">
 スライスは、それの基盤コレクションのもつ値意味論もしくは参照意味論を継承します。すなわち、<code class="code-voice"><span>Slice</span></code>インスタンスが値意味論を持つ可変コレクション、例えば配列などの周りにラップされる場合、オリジナルのコレクションを変化させることはそのコレクションのコピーを誘発します、それでスライス内部に格納される基盤コレクションには影響を及ぼしません。
 </span><!--end_jpstr-->
@@ -186,7 +186,7 @@ print(absences)
 // Prints "[0, 2, 0, 4, 0, 3, 1, 2]"
 print(secondHalf)
 // Prints "[0, 3, 1, 0]"
-</code></pre></div></div></figure><p><span class="enstr">Use slices only for transient computation.A slice may hold a reference to the entire storage of a larger collection, not just to the portion it presents, even after the base collection’s lifetime ends.Long-term storage of a slice may therefore prolong the lifetime of elements that are no longer otherwise accessible, which can erroneously appear to be memory leakage.</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">Use slices only for transient computation. A slice may hold a reference to the entire storage of a larger collection, not just to the portion it presents, even after the base collection’s lifetime ends. Long-term storage of a slice may therefore prolong the lifetime of elements that are no longer otherwise accessible, which can erroneously appear to be memory leakage.</span><!--end_enstr-->
 <span class="jpstr">
 スライスを一時的な計算のためだけに使ってください。あるスライスは、単にそれが提示する一部分に対してではなく、より大きなコレクションのストレージ全体への参照を保持します、元のコレクションの寿命が終わった後でさえも。あるスライスの長期ストレージは、もはやそれ以外ではアクセス可能ではない要素の寿命を延長し、それはメモリの漏洩であるように見ることができます。
 </span><!--end_jpstr-->
@@ -194,7 +194,7 @@ print(secondHalf)
 <span class="jpstr">
 注意
 </span><!--end_jpstr-->
-</p><p><span class="enstr">Using a <code class="code-voice"><span>Slice</span></code> instance with a mutable collection requires that the base collection’s <code class="code-voice"><span>subscript(_: Index)</span></code> setter does not invalidate indices.If mutations need to invalidate indices in your custom collection type, don’t use <code class="code-voice"><span>Slice</span></code> as its subsequence type.Instead, define your own subsequence type that takes your index invalidation requirements into account.</span><!--end_enstr-->
+</p><p><span class="enstr">Using a <code class="code-voice"><span>Slice</span></code> instance with a mutable collection requires that the base collection’s <code class="code-voice"><span>subscript(_: Index)</span></code> setter does not invalidate indices. If mutations need to invalidate indices in your custom collection type, don’t use <code class="code-voice"><span>Slice</span></code> as its subsequence type. Instead, define your own subsequence type that takes your index invalidation requirements into account.</span><!--end_enstr-->
 <span class="jpstr">
 <code class="code-voice"><span>Slice</span></code>インスタンスを可変コレクションで使うことは、基底コレクションのもつ<code class="code-voice"><span>subscript(_: Index)</span></code>セッターがインデックスを無効にしないことを必要とします。変異体がインデックスを無効にすることがあなたのあつらえのコレクション型において必要ならば、<code class="code-voice"><span>Slice</span></code>をそれの下位シーケンス型として使わないでください。その代わりに、あなたのインデックス無効化要件を考慮に入れるあなた自身の下位シーケンス型を定義してください。
 </span><!--end_jpstr-->
@@ -430,11 +430,11 @@ print(secondHalf)
 <span class="jpstr">
 コレクションの要素すべてを対象としたイテレータを返します。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/swift/slice/2965613-map.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">map</span><span class="decorator">&lt;U&gt;((Base<wbr/>.Element) -&gt; U) -&gt; Lazy<wbr/>Map<wbr/>Sequence&lt;Slice&lt;Base&gt;, U&gt;</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns a <code class="code-voice"><span>Lazy<wbr/>Map<wbr/>Sequence</span></code> over this <code class="code-voice"><span>Sequence</span></code>.The elements of the result are computed lazily, each time they are read, by calling <code class="code-voice"><span>transform</span></code> function on a base element.</span><!--end_enstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/swift/slice/2965613-map.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">map</span><span class="decorator">&lt;U&gt;((Base<wbr/>.Element) -&gt; U) -&gt; Lazy<wbr/>Map<wbr/>Sequence&lt;Slice&lt;Base&gt;, U&gt;</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns a <code class="code-voice"><span>Lazy<wbr/>Map<wbr/>Sequence</span></code> over this <code class="code-voice"><span>Sequence</span></code>. The elements of the result are computed lazily, each time they are read, by calling <code class="code-voice"><span>transform</span></code> function on a base element.</span><!--end_enstr-->
 <span class="jpstr">
 この<code class="code-voice"><span>Sequence</span></code>を覆う<code class="code-voice"><span>Lazy<wbr/>Map<wbr/>Sequence</span></code>を返します。結果のそれぞれの要素は遅延に計算されます、毎回それらは、基盤となる要素上で<code class="code-voice"><span>transform</span></code>関数を呼び出すことによって読み出されます。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/swift/slice/2965614-map.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">map</span><span class="decorator">&lt;U&gt;((Base<wbr/>.Element) -&gt; U) -&gt; Lazy<wbr/>Map<wbr/>Collection&lt;Slice&lt;Base&gt;, U&gt;</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns a <code class="code-voice"><span>Lazy<wbr/>Map<wbr/>Collection</span></code> over this <code class="code-voice"><span>Collection</span></code>.The elements of the result are computed lazily, each time they are read, by calling <code class="code-voice"><span>transform</span></code> function on a base element.</span><!--end_enstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/swift/slice/2965614-map.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">map</span><span class="decorator">&lt;U&gt;((Base<wbr/>.Element) -&gt; U) -&gt; Lazy<wbr/>Map<wbr/>Collection&lt;Slice&lt;Base&gt;, U&gt;</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns a <code class="code-voice"><span>Lazy<wbr/>Map<wbr/>Collection</span></code> over this <code class="code-voice"><span>Collection</span></code>. The elements of the result are computed lazily, each time they are read, by calling <code class="code-voice"><span>transform</span></code> function on a base element.</span><!--end_enstr-->
 <span class="jpstr">
 この<code class="code-voice"><span>Collection</span></code>を覆う<code class="code-voice"><span>Lazy<wbr/>Map<wbr/>Collection</span></code>を返します。結果のそれぞれの要素は遅延に計算されます、毎回それらは、基盤となる要素上で<code class="code-voice"><span>transform</span></code>関数を呼び出すことによって読み出されます。
 </span><!--end_jpstr-->

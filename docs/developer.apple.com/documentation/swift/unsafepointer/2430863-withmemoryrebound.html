@@ -136,7 +136,7 @@ Swift標準ライブラリ
 <span class="jpstr">
 パラメータ
 </span><!--end_jpstr-->
-</h2><dl class="datalist"><dt class="datalist-term"><code>type</code></dt><dd class="datalist-description"><div class="formatted-content"><div><p><span class="enstr">The type to temporarily bind the memory referenced by this pointer.The type <code class="code-voice"><span>T</span></code> must be the same size and be layout compatible with the pointer’s <code class="code-voice"><span>Pointee</span></code> type.</span><!--end_enstr-->
+</h2><dl class="datalist"><dt class="datalist-term"><code>type</code></dt><dd class="datalist-description"><div class="formatted-content"><div><p><span class="enstr">The type to temporarily bind the memory referenced by this pointer. The type <code class="code-voice"><span>T</span></code> must be the same size and be layout compatible with the pointer’s <code class="code-voice"><span>Pointee</span></code> type.</span><!--end_enstr-->
 <span class="jpstr">
 このポインタによって参照されるメモリを一時的に束縛する型。型 <code class="code-voice"><span>T</span></code>は、ポインタのもつ<code class="code-voice"><span>Pointee</span></code>型と同じサイズで、互換性のあるレイアウトでなければなりません。
 </span><!--end_jpstr-->
@@ -144,7 +144,7 @@ Swift標準ライブラリ
 <span class="jpstr">
 <code class="code-voice"><span>Pointee</span></code>のインスタンスの数、<code class="code-voice"><span>type</span></code>に束縛されることになります。
 </span><!--end_jpstr-->
-</p></div></div></dd><dt class="datalist-term"><code>body</code></dt><dd class="datalist-description"><div class="formatted-content"><div><p><span class="enstr">A closure that takes a  typed pointer to the same memory as this pointer, only bound to type <code class="code-voice"><span>T</span></code>.The closure’s pointer argument is valid only for the duration of the closure’s execution.If <code class="code-voice"><span>body</span></code> has a return value, that value is also used as the return value for the <code class="code-voice"><span>with<wbr/>Memory<wbr/>Rebound(to:<wbr/>capacity:<wbr/>_:)</span></code> method.</span><!--end_enstr-->
+</p></div></div></dd><dt class="datalist-term"><code>body</code></dt><dd class="datalist-description"><div class="formatted-content"><div><p><span class="enstr">A closure that takes a  typed pointer to the same memory as this pointer, only bound to type <code class="code-voice"><span>T</span></code>. The closure’s pointer argument is valid only for the duration of the closure’s execution. If <code class="code-voice"><span>body</span></code> has a return value, that value is also used as the return value for the <code class="code-voice"><span>with<wbr/>Memory<wbr/>Rebound(to:<wbr/>capacity:<wbr/>_:)</span></code> method.</span><!--end_enstr-->
 <span class="jpstr">
 あるクロージャ、それは、型<code class="code-voice"><span>T</span></code>に束縛しただけの、このポインタと同じメモリへの型付ポインタをとります。クロージャのもつポインタ引数は、このクロージャの実行の間に対してだけ有効です。<code class="code-voice"><span>body</span></code>が戻り値を持つならば、その値はまた<code class="code-voice"><span>with<wbr/>Memory<wbr/>Rebound(to:<wbr/>capacity:<wbr/>_:)</span></code>メソッドの戻り値としても使われます。
 </span><!--end_jpstr-->
@@ -160,7 +160,7 @@ Swift標準ライブラリ
 <span class="jpstr">
 解説
 </span><!--end_jpstr-->
-</h2><div class="formatted-content"><div><p><span class="enstr">Use this method when you have a pointer to memory bound to one type and you need to access that memory as instances of another type.Accessing memory as a type <code class="code-voice"><span>T</span></code> requires that the memory be bound to that type.A memory location may only be bound to one type at a time, so accessing the same memory as an unrelated type without first rebinding the memory is undefined.</span><!--end_enstr-->
+</h2><div class="formatted-content"><div><p><span class="enstr">Use this method when you have a pointer to memory bound to one type and you need to access that memory as instances of another type. Accessing memory as a type <code class="code-voice"><span>T</span></code> requires that the memory be bound to that type. A memory location may only be bound to one type at a time, so accessing the same memory as an unrelated type without first rebinding the memory is undefined.</span><!--end_enstr-->
 <span class="jpstr">
 このメソッドを、あなたがある型に束縛されたメモリへのポインタを持つ、そしてあなたがそのメモリに別の型のインスタンスとしてアクセスする必要がある場合に使ってください。メモリにある型<code class="code-voice"><span>T</span></code>としてアクセスすることは、メモリがその型に束縛されることを必要とします。あるメモリ位置は１度に１つの型へとバインド（束縛）されるだけでしょう、なので同じメモリに関連のない型として最初にメモリ再バインドすることなしにアクセスすることは、未定義となります。
 </span><!--end_jpstr-->
@@ -176,7 +176,7 @@ Swift標準ライブラリ
 let isNegative = uint64Pointer.withMemoryRebound(to: Int64.self) { ptr in
     return ptr.pointee &lt; 0
 }
-</code></pre></div></div></figure><p><span class="enstr">Because this pointer’s memory is no longer bound to its <code class="code-voice"><span>Pointee</span></code> type while the <code class="code-voice"><span>body</span></code> closure executes, do not access memory using the original pointer from within <code class="code-voice"><span>body</span></code>.Instead, use the <code class="code-voice"><span>body</span></code> closure’s pointer argument to access the values in memory as instances of type <code class="code-voice"><span>T</span></code>.</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">Because this pointer’s memory is no longer bound to its <code class="code-voice"><span>Pointee</span></code> type while the <code class="code-voice"><span>body</span></code> closure executes, do not access memory using the original pointer from within <code class="code-voice"><span>body</span></code>. Instead, use the <code class="code-voice"><span>body</span></code> closure’s pointer argument to access the values in memory as instances of type <code class="code-voice"><span>T</span></code>.</span><!--end_enstr-->
 <span class="jpstr">
 このポインタのメモリがそれの<code class="code-voice"><span>Pointee</span></code>型には<code class="code-voice"><span>body</span></code>クロージャの実行の間はもはや束縛されないことから、メモリにオリジナルのポインタを使って<code class="code-voice"><span>body</span></code>内からアクセスしないでください。代わりに、<code class="code-voice"><span>body</span></code>クロージャのもつポインタ引数を使うことで、メモリの中の値に型<code class="code-voice"><span>T</span></code>のインスタンスとしてアクセスしてください。
 </span><!--end_jpstr-->
@@ -188,7 +188,7 @@ let isNegative = uint64Pointer.withMemoryRebound(to: Int64.self) { ptr in
 <span class="jpstr">
 注意
 </span><!--end_jpstr-->
-</p><p><span class="enstr">Only use this method to rebind the pointer’s memory to a type with the same size and stride as the currently bound <code class="code-voice"><span>Pointee</span></code> type.To bind a region of memory to a type that is a different size, convert the pointer to a raw pointer and use the <code class="code-voice"><span>bind<wbr/>Memory(to:<wbr/>capacity:)</span></code> method.</span><!--end_enstr-->
+</p><p><span class="enstr">Only use this method to rebind the pointer’s memory to a type with the same size and stride as the currently bound <code class="code-voice"><span>Pointee</span></code> type. To bind a region of memory to a type that is a different size, convert the pointer to a raw pointer and use the <code class="code-voice"><span>bind<wbr/>Memory(to:<wbr/>capacity:)</span></code> method.</span><!--end_enstr-->
 <span class="jpstr">
 ポインタのもつメモリを現在バインドされる<code class="code-voice"><span>Pointee</span></code>型と同じサイズおよびストライドを持つある型に再バインドするためにだけこのメソッドを使ってください。メモリのある領域を異なるサイズである型にバインドするには、ポインタを生のポインタに変換して、<code class="code-voice"><span>bind<wbr/>Memory(to:<wbr/>capacity:)</span></code>メソッドを使ってください。
 </span><!--end_jpstr-->

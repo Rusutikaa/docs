@@ -123,11 +123,11 @@ Swift標準ライブラリ
 <span class="jpstr">
 概要
 </span><!--end_jpstr-->
-</h2><div class="formatted-content"><div><p><span class="enstr">You use instances of the <code class="code-voice"><span>Unsafe<wbr/>Pointer</span></code> type to access data of a specific type in memory.The type of data that a pointer can access is the pointer’s <code class="code-voice"><span>Pointee</span></code> type.<code class="code-voice"><span>Unsafe<wbr/>Pointer</span></code> provides no automated memory management or alignment guarantees.You are responsible for handling the life cycle of any memory you work with through unsafe pointers to avoid leaks or undefined behavior.</span><!--end_enstr-->
+</h2><div class="formatted-content"><div><p><span class="enstr">You use instances of the <code class="code-voice"><span>Unsafe<wbr/>Pointer</span></code> type to access data of a specific type in memory. The type of data that a pointer can access is the pointer’s <code class="code-voice"><span>Pointee</span></code> type. <code class="code-voice"><span>Unsafe<wbr/>Pointer</span></code> provides no automated memory management or alignment guarantees. You are responsible for handling the life cycle of any memory you work with through unsafe pointers to avoid leaks or undefined behavior.</span><!--end_enstr-->
 <span class="jpstr">
 あなたは、<code class="code-voice"><span>Unsafe<wbr/>Pointer</span></code>型のインスタンスを使うことで、メモリにおいて特定の型のデータにアクセスします。ポインタがアクセス可能なデータの型は、ポインタのもつ<code class="code-voice"><span>Pointee</span></code>型です。<code class="code-voice"><span>Unsafe<wbr/>Pointer</span></code>は、自動メモリ管理またはアラインメント保証を提供しません。あなたはリークや未定義挙動を避けるために、あなたが安全でないポインタを通して扱うあらゆるメモリの生涯の処理に責任があります。
 </span><!--end_jpstr-->
-</p><p><span class="enstr">Memory that you manually manage can be either <em>untyped</em> or <em>bound</em> to a specific type.You use the <code class="code-voice"><span>Unsafe<wbr/>Pointer</span></code> type to access and manage memory that has been bound to a specific type.</span><!--end_enstr-->
+</p><p><span class="enstr">Memory that you manually manage can be either <em>untyped</em> or <em>bound</em> to a specific type. You use the <code class="code-voice"><span>Unsafe<wbr/>Pointer</span></code> type to access and manage memory that has been bound to a specific type.</span><!--end_enstr-->
 <span class="jpstr">
 あなたが手動で管理するメモリは、特定の型に対して<em>型付けされない</em>または<em>束縛される</em>のいずれかが可能です。あなたは、<code class="code-voice"><span>Unsafe<wbr/>Pointer</span></code>型を使うことで、特定の型に束縛されているメモリへのアクセスおよび管理を行います。
 </span><!--end_jpstr-->
@@ -135,7 +135,7 @@ Swift標準ライブラリ
 <span class="jpstr">
 あるポインタのメモリ状態を理解する
 </span><!--end_jpstr-->
-</h3><div><p><span class="enstr">The memory referenced by an <code class="code-voice"><span>Unsafe<wbr/>Pointer</span></code> instance can be in one of several states.Many pointer operations must only be applied to pointers with memory in a specific state—you must keep track of the state of the memory you are working with and understand the changes to that state that different operations perform.Memory can be untyped and uninitialized, bound to a type and uninitialized, or bound to a type and initialized to a value.Finally, memory that was allocated previously may have been deallocated, leaving existing pointers referencing unallocated memory.</span><!--end_enstr-->
+</h3><div><p><span class="enstr">The memory referenced by an <code class="code-voice"><span>Unsafe<wbr/>Pointer</span></code> instance can be in one of several states. Many pointer operations must only be applied to pointers with memory in a specific state—you must keep track of the state of the memory you are working with and understand the changes to that state that different operations perform. Memory can be untyped and uninitialized, bound to a type and uninitialized, or bound to a type and initialized to a value. Finally, memory that was allocated previously may have been deallocated, leaving existing pointers referencing unallocated memory.</span><!--end_enstr-->
 <span class="jpstr">
 <code class="code-voice"><span>Unsafe<wbr/>Pointer</span></code>インスタンスによって参照されるメモリは、幾つかの状態のうち１つであるはずです。多くのポインタ演算はある特定の状態のメモリを持つポインタに適用されるだけであるべきです — あなたは、あなたが作業しているメモリの状態を見失わないようにして、異なる演算が実行するその状態の変更を理解していなければなりません。メモリは、型無しで未初期化、ある型に束縛されて未初期化、またはある型に束縛されてある値に初期化される可能性があります。結局、以前にアロケートされたメモリはデアロケートされるかもしれません、アロケートされないメモリを参照している既存のポインタはそのままです。
 </span><!--end_jpstr-->
@@ -143,7 +143,7 @@ Swift標準ライブラリ
 <span class="jpstr">
 未初期化メモリ
 </span><!--end_jpstr-->
-</h4><div><p><span class="enstr">Memory that has just been allocated through a typed pointer or has been deinitialized is in an <em>uninitialized</em> state.Uninitialized memory must be initialized before it can be accessed for reading.</span><!--end_enstr-->
+</h4><div><p><span class="enstr">Memory that has just been allocated through a typed pointer or has been deinitialized is in an <em>uninitialized</em> state. Uninitialized memory must be initialized before it can be accessed for reading.</span><!--end_enstr-->
 <span class="jpstr">
 型付ポインタを通して今しがたアロケートされる、または<em>未初期化</em>状態にデイニシャライズされるメモリ。未初期化メモリは、それが読み出しのためアクセスされる前に初期化される必要があります。
 </span><!--end_jpstr-->
@@ -151,7 +151,7 @@ Swift標準ライブラリ
 <span class="jpstr">
 初期化済みメモリ
 </span><!--end_jpstr-->
-</h4><div><p><span class="enstr"><em>Initialized</em> memory has a value that can be read using a pointer’s <code class="code-voice"><span>pointee</span></code> property or through subscript notation.In the following example, <code class="code-voice"><span>ptr</span></code> is a pointer to memory initialized with a value of <code class="code-voice"><span>23</span></code>:</span><!--end_enstr-->
+</h4><div><p><span class="enstr"><em>Initialized</em> memory has a value that can be read using a pointer’s <code class="code-voice"><span>pointee</span></code> property or through subscript notation. In the following example, <code class="code-voice"><span>ptr</span></code> is a pointer to memory initialized with a value of <code class="code-voice"><span>23</span></code>:</span><!--end_enstr-->
 <span class="jpstr">
 <em>初期化済</em>メモリは、<code class="code-voice"><span>pointee</span></code>プロパティまたは添え字表記法を使って読み出し可能な値を持ちます。以下の例において、<code class="code-voice"><span>ptr</span></code>は<code class="code-voice"><span>23</span></code>の値で初期化されるメモリに対するポインタです。
 </span><!--end_jpstr-->
@@ -162,7 +162,7 @@ Swift標準ライブラリ
 <span class="jpstr">
 ポインタのもつメモリに異なる型としてアクセスする
 </span><!--end_jpstr-->
-</h3><div><p><span class="enstr">When you access memory through an <code class="code-voice"><span>Unsafe<wbr/>Pointer</span></code> instance, the <code class="code-voice"><span>Pointee</span></code> type must be consistent with the bound type of the memory.If you do need to access memory that is bound to one type as a different type, Swift’s pointer types provide type-safe ways to temporarily or permanently change the bound type of the memory, or to load typed instances directly from raw memory.</span><!--end_enstr-->
+</h3><div><p><span class="enstr">When you access memory through an <code class="code-voice"><span>Unsafe<wbr/>Pointer</span></code> instance, the <code class="code-voice"><span>Pointee</span></code> type must be consistent with the bound type of the memory. If you do need to access memory that is bound to one type as a different type, Swift’s pointer types provide type-safe ways to temporarily or permanently change the bound type of the memory, or to load typed instances directly from raw memory.</span><!--end_enstr-->
 <span class="jpstr">
 あなたがメモリに<code class="code-voice"><span>Unsafe<wbr/>Pointer</span></code>インスタンスを通してアクセスする時、<code class="code-voice"><span>Pointee</span></code> 型はそのメモリの束縛される型と一致しなければなりません。あなたがある型に束縛されるメモリに異なる型としてアクセスする必要があるならば、Swiftのポインタ型は型安全な方法を提供することで、一時的にまたは永続的にメモリの束縛される型を変更します、または型付インスタンスを直接に生のメモリからロードします。
 </span><!--end_jpstr-->
@@ -171,7 +171,7 @@ Swift標準ライブラリ
 8バイトのメモリデアロケートされる<code class="code-voice"><span>Unsafe<wbr/>Pointer&lt;UInt8&gt;</span></code>インスタンス、<code class="code-voice"><span>uint8Pointer</span></code>は、下の例で使われます。
 </span><!--end_jpstr-->
 </p><figure id="2848258"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>let uint8Pointer: UnsafePointer&lt;UInt8&gt; = fetchEightBytes()
-</code></pre></div></div></figure><p><span class="enstr">When you only need to temporarily access a pointer’s memory as a different type, use the <code class="code-voice"><span>with<wbr/>Memory<wbr/>Rebound(to:<wbr/>capacity:)</span></code> method.For example, you can use this method to call an API that expects a pointer to a different type that is layout compatible with your pointer’s <code class="code-voice"><span>Pointee</span></code>.The following code temporarily rebinds the memory that <code class="code-voice"><span>uint8Pointer</span></code> references from <code class="code-voice"><span>UInt8</span></code> to <code class="code-voice"><span>Int8</span></code> to call the imported C <code class="code-voice"><span>strlen</span></code> function.</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">When you only need to temporarily access a pointer’s memory as a different type, use the <code class="code-voice"><span>with<wbr/>Memory<wbr/>Rebound(to:<wbr/>capacity:)</span></code> method. For example, you can use this method to call an API that expects a pointer to a different type that is layout compatible with your pointer’s <code class="code-voice"><span>Pointee</span></code>. The following code temporarily rebinds the memory that <code class="code-voice"><span>uint8Pointer</span></code> references from <code class="code-voice"><span>UInt8</span></code> to <code class="code-voice"><span>Int8</span></code> to call the imported C <code class="code-voice"><span>strlen</span></code> function.</span><!--end_enstr-->
 <span class="jpstr">
 あなたがポインタのもつメモリに異なる型として一時的にアクセスする必要があるだけならば、<code class="code-voice"><span>with<wbr/>Memory<wbr/>Rebound(to:<wbr/>capacity:)</span></code>メソッドを使ってください。例えば、あなたはこのメソッドを使うことで、異なる型へのポインタを期待するもので、あなたのポインタのもつ<code class="code-voice"><span>Pointee</span></code>と互換のレイアウトである、あるAPIを呼び出すことができます。以下のコードは、一時的に<code class="code-voice"><span>uint8Pointer</span></code>が参照するメモリを<code class="code-voice"><span>UInt8</span></code>から<code class="code-voice"><span>Int8</span></code>へと再束縛することで、インポートされたC <code class="code-voice"><span>strlen</span></code>関数を呼び出します。
 </span><!--end_jpstr-->
@@ -182,7 +182,7 @@ let length = uint8Pointer.withMemoryRebound(to: Int8.self, capacity: 8) {
     return strlen($0)
 }
 // length == 7
-</code></pre></div></div></figure><p><span class="enstr">When you need to permanently rebind memory to a different type, first obtain a raw pointer to the memory and then call the <code class="code-voice"><span>bind<wbr/>Memory(to:<wbr/>capacity:)</span></code> method on the raw pointer.The following example binds the memory referenced by <code class="code-voice"><span>uint8Pointer</span></code> to one instance of the <code class="code-voice"><span>UInt64</span></code> type:</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">When you need to permanently rebind memory to a different type, first obtain a raw pointer to the memory and then call the <code class="code-voice"><span>bind<wbr/>Memory(to:<wbr/>capacity:)</span></code> method on the raw pointer. The following example binds the memory referenced by <code class="code-voice"><span>uint8Pointer</span></code> to one instance of the <code class="code-voice"><span>UInt64</span></code> type:</span><!--end_enstr-->
 <span class="jpstr">
 あなたが永続的にメモリを異なる型へ再束縛する必要があるならば、まずメモリに対する生のポインタを取得して、それから<code class="code-voice"><span>bind<wbr/>Memory(to:<wbr/>capacity:)</span></code>メソッドを生のポインタ上で呼び出してください。以下の例は、<code class="code-voice"><span>uint8Pointer</span></code>によって参照されるメモリを<code class="code-voice"><span>UInt64</span></code>型のあるインスタンスに束縛します：
 </span><!--end_jpstr-->
@@ -194,7 +194,7 @@ let length = uint8Pointer.withMemoryRebound(to: Int8.self, capacity: 8) {
 </span><!--end_jpstr-->
 </p><figure id="2848261"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>var fullInteger = uint64Pointer.pointee          // OK
 var firstByte = uint8Pointer.pointee             // undefined
-</code></pre></div></div></figure><p><span class="enstr">Alternatively, you can access the same memory as a different type without rebinding through untyped memory access, so long as the bound type and the destination type are trivial types.Convert your pointer to an <code class="code-voice"><span>Unsafe<wbr/>Raw<wbr/>Pointer</span></code> instance and then use the raw pointer’s <code class="code-voice"><span>load(from<wbr/>Byte<wbr/>Offset:<wbr/>as:)</span></code> method to read values.</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">Alternatively, you can access the same memory as a different type without rebinding through untyped memory access, so long as the bound type and the destination type are trivial types. Convert your pointer to an <code class="code-voice"><span>Unsafe<wbr/>Raw<wbr/>Pointer</span></code> instance and then use the raw pointer’s <code class="code-voice"><span>load(from<wbr/>Byte<wbr/>Offset:<wbr/>as:)</span></code> method to read values.</span><!--end_enstr-->
 <span class="jpstr">
 その代わりに、あなたは同じメモリに異なる型として再束縛することなしにアクセスすることが型なしメモリアクセスを通して可能です、束縛される型と行き先の型が自明型である限りは。あなたのポインタを<code class="code-voice"><span>Unsafe<wbr/>Raw<wbr/>Pointer</span></code>インスタンスに変換して、それから生のポインタのもつ<code class="code-voice"><span>load(from<wbr/>Byte<wbr/>Offset:<wbr/>as:)</span></code>メソッドを使って値を読みだしてください。
 </span><!--end_jpstr-->
@@ -205,7 +205,7 @@ firstByte = rawPointer.load(as: UInt8.self)      // OK
 <span class="jpstr">
 型付ポインタ算術を実行する
 </span><!--end_jpstr-->
-</h3><div><p><span class="enstr">Pointer arithmetic with a typed pointer is counted in strides of the pointer’s <code class="code-voice"><span>Pointee</span></code> type.When you add to or subtract from an <code class="code-voice"><span>Unsafe<wbr/>Pointer</span></code> instance, the result is a new pointer of the same type, offset by that number of instances of the <code class="code-voice"><span>Pointee</span></code> type.</span><!--end_enstr-->
+</h3><div><p><span class="enstr">Pointer arithmetic with a typed pointer is counted in strides of the pointer’s <code class="code-voice"><span>Pointee</span></code> type. When you add to or subtract from an <code class="code-voice"><span>Unsafe<wbr/>Pointer</span></code> instance, the result is a new pointer of the same type, offset by that number of instances of the <code class="code-voice"><span>Pointee</span></code> type.</span><!--end_enstr-->
 <span class="jpstr">
 型付ポインタでのポインタ算術は、ポインタのもつ<code class="code-voice"><span>Pointee</span></code>型のストライドで勘定されます。あなたが<code class="code-voice"><span>Unsafe<wbr/>Pointer</span></code>インスタンスに加えたりそれから引いたりする場合、結果は同じ型の新しいポインタです、<code class="code-voice"><span>Pointee</span></code>型のインスタンスの数によってオフセットします。
 </span><!--end_jpstr-->
@@ -241,7 +241,7 @@ let y = offsetPointer.pointee
 </p><figure id="2848267"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>func printInt(atAddress p: UnsafePointer&lt;Int&gt;) {
     print(p.pointee)
 }
-</code></pre></div></div></figure><p><span class="enstr">As is typical in Swift, you can call the <code class="code-voice"><span>print<wbr/>Int(at<wbr/>Address:)</span></code> function with an <code class="code-voice"><span>Unsafe<wbr/>Pointer</span></code> instance.This example passes <code class="code-voice"><span>int<wbr/>Pointer</span></code>, a pointer to an <code class="code-voice"><span>Int</span></code> value, to <code class="code-voice"><span>print(address:)</span></code>.</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">As is typical in Swift, you can call the <code class="code-voice"><span>print<wbr/>Int(at<wbr/>Address:)</span></code> function with an <code class="code-voice"><span>Unsafe<wbr/>Pointer</span></code> instance. This example passes <code class="code-voice"><span>int<wbr/>Pointer</span></code>, a pointer to an <code class="code-voice"><span>Int</span></code> value, to <code class="code-voice"><span>print(address:)</span></code>.</span><!--end_enstr-->
 <span class="jpstr">
 Swiftでは普通であるように、あなたは<code class="code-voice"><span>print<wbr/>Int(at<wbr/>Address:)</span></code>関数を<code class="code-voice"><span>Unsafe<wbr/>Pointer</span></code>インスタンスとともに呼び出せます。この例は<code class="code-voice"><span>int<wbr/>Pointer</span></code>、<code class="code-voice"><span>Int</span></code>値へのポインタを<code class="code-voice"><span>print(address:)</span></code>に渡します。
 </span><!--end_jpstr-->
@@ -254,21 +254,21 @@ Swiftでは普通であるように、あなたは<code class="code-voice"><span
 </p><figure id="2848269"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>let mutableIntPointer = UnsafeMutablePointer(mutating: intPointer)
 printInt(atAddress: mutableIntPointer)
 // Prints "42"
-</code></pre></div></div></figure><p><span class="enstr">Alternatively, you can use Swift’s <em>implicit bridging</em> to pass a pointer to an instance or to the elements of an array.The following example passes a pointer to the <code class="code-voice"><span>value</span></code> variable by using inout syntax:</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">Alternatively, you can use Swift’s <em>implicit bridging</em> to pass a pointer to an instance or to the elements of an array. The following example passes a pointer to the <code class="code-voice"><span>value</span></code> variable by using inout syntax:</span><!--end_enstr-->
 <span class="jpstr">
 あるいはまた、あなたはSwiftの<em>暗黙的ブリッジ</em>を使ってポインタをインスタンスへまたは配列の要素へと渡せます。以下の例は、<code class="code-voice"><span>value</span></code>変数へのポインタをinout構文を使って渡します：
 </span><!--end_jpstr-->
 </p><figure id="2848270"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>var value: Int = 23
 printInt(atAddress: &amp;value)
 // Prints "23"
-</code></pre></div></div></figure><p><span class="enstr">An immutable pointer to the elements of an array is implicitly created when you pass the array as an argument.This example uses implicit bridging to pass a pointer to the elements of <code class="code-voice"><span>numbers</span></code> when calling <code class="code-voice"><span>print<wbr/>Int(at<wbr/>Address:)</span></code>.</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">An immutable pointer to the elements of an array is implicitly created when you pass the array as an argument. This example uses implicit bridging to pass a pointer to the elements of <code class="code-voice"><span>numbers</span></code> when calling <code class="code-voice"><span>print<wbr/>Int(at<wbr/>Address:)</span></code>.</span><!--end_enstr-->
 <span class="jpstr">
 配列の要素への不変ポインタは、あなたが配列を引数として渡す時に暗黙的に作成されます。この例は、暗黙的ブリッジを使ってポインタを<code class="code-voice"><span>numbers</span></code>の要素へと、<code class="code-voice"><span>print<wbr/>Int(at<wbr/>Address:)</span></code>を呼び出す時に渡します。
 </span><!--end_jpstr-->
 </p><figure id="2848271"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>let numbers = [5, 10, 15, 20]
 printInt(atAddress: numbers)
 // Prints "5"
-</code></pre></div></div></figure><p><span class="enstr">You can also use inout syntax to pass a mutable pointer to the elements of an array.Because <code class="code-voice"><span>print<wbr/>Int(at<wbr/>Address:)</span></code> requires an immutable pointer, although this is syntactically valid, it isn’t necessary.</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">You can also use inout syntax to pass a mutable pointer to the elements of an array. Because <code class="code-voice"><span>print<wbr/>Int(at<wbr/>Address:)</span></code> requires an immutable pointer, although this is syntactically valid, it isn’t necessary.</span><!--end_enstr-->
 <span class="jpstr">
 あなたはまた、インアウト構文を使って、可変ポインタを配列の要素へ渡せます。<code class="code-voice"><span>print<wbr/>Int(at<wbr/>Address:)</span></code>が不変ポインタを要求することから、これは構文的には有効ですが、必要ではありません。
 </span><!--end_jpstr-->
@@ -282,7 +282,7 @@ printInt(atAddress: &amp;mutableNumbers)
 <span class="jpstr">
 重要
 </span><!--end_jpstr-->
-</p><p><span class="enstr">The pointer created through implicit bridging of an instance or of an array’s elements is only valid during the execution of the called function.Escaping the pointer to use after the execution of the function is undefined behavior.In particular, do not use implicit bridging when calling an <code class="code-voice"><span>Unsafe<wbr/>Pointer</span></code> initializer.</span><!--end_enstr-->
+</p><p><span class="enstr">The pointer created through implicit bridging of an instance or of an array’s elements is only valid during the execution of the called function. Escaping the pointer to use after the execution of the function is undefined behavior. In particular, do not use implicit bridging when calling an <code class="code-voice"><span>Unsafe<wbr/>Pointer</span></code> initializer.</span><!--end_enstr-->
 <span class="jpstr">
 インスタンスのまたは配列の要素の暗黙的ブリッジを通して作成されるポインタは、呼び出された関数の実行の間に有効であるだけです。関数の実行の後に使うためにポインタを脱出させることは、未定義の挙動となります。とりわけ、暗黙的ブリッジを<code class="code-voice"><span>Unsafe<wbr/>Pointer</span></code>イニシャライザを呼ぶ時に使わないでください。
 </span><!--end_jpstr-->

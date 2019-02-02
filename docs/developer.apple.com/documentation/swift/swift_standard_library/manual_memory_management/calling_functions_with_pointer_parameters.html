@@ -127,7 +127,7 @@ Swift標準ライブラリ
 <span class="jpstr">
 <code class="code-voice"><span>Unsafe<wbr/>Pointer&lt;Type&gt;</span></code>, <code class="code-voice"><span>Unsafe<wbr/>Mutable<wbr/>Pointer&lt;Type&gt;</span></code>, または <code class="code-voice"><span>Autoreleasing<wbr/>Unsafe<wbr/>Mutable<wbr/>Pointer&lt;Type&gt;</span></code>値、それは暗黙的に<code class="code-voice"><span>Unsafe<wbr/>Pointer&lt;Type&gt;</span></code>へと必要に応じてキャストされます。
 </span><!--end_jpstr-->
-</p></li><li><p><span class="enstr">A <code class="code-voice"><span>String</span></code> value, if <code class="code-voice"><span>Type</span></code> is <code class="code-voice"><span>Int8</span></code> or <code class="code-voice"><span>UInt8</span></code>.The string is automatically converted to UTF8 in a zero-terminated buffer, and a pointer to that buffer is passed to the function.</span><!--end_enstr-->
+</p></li><li><p><span class="enstr">A <code class="code-voice"><span>String</span></code> value, if <code class="code-voice"><span>Type</span></code> is <code class="code-voice"><span>Int8</span></code> or <code class="code-voice"><span>UInt8</span></code>. The string is automatically converted to UTF8 in a zero-terminated buffer, and a pointer to that buffer is passed to the function.</span><!--end_enstr-->
 <span class="jpstr">
 <code class="code-voice"><span>String</span></code>値、もし<code class="code-voice"><span>Type</span></code>が<code class="code-voice"><span>Int8</span></code>または<code class="code-voice"><span>UInt8</span></code>ならば。文字列は、自動的にゼロ終端バッファの中のUTF8に変換されます、そしてそのバッファに対するポインタが関数に渡されます。
 </span><!--end_jpstr-->
@@ -139,7 +139,7 @@ Swift標準ライブラリ
 <span class="jpstr">
 <code class="code-voice"><span>[Type]</span></code>値、それは配列の始まりへのポインタとして渡されます。
 </span><!--end_jpstr-->
-</p></li></ul><p><span class="enstr">The pointer you pass to the function is guaranteed to be valid only for the duration of the function call.Do not persist the pointer and access it after the function has returned.</span><!--end_enstr-->
+</p></li></ul><p><span class="enstr">The pointer you pass to the function is guaranteed to be valid only for the duration of the function call. Do not persist the pointer and access it after the function has returned.</span><!--end_enstr-->
 <span class="jpstr">
 あなたが関数に渡すポインタは、関数呼び出しの間に対してのみ有効であることを保証されます。そのポインタに固執すること、そして関数が帰った後でそれにアクセスしないでください。
 </span><!--end_jpstr-->
@@ -235,7 +235,7 @@ takesAMutableRawPointer(&amp;b)
 <span class="jpstr">
 <code class="code-voice"><span>Autoreleasing<wbr/>Unsafe<wbr/>Mutable<wbr/>Pointer&lt;Type&gt;</span></code>値。
 </span><!--end_jpstr-->
-</p></li><li><p><span class="enstr">An in-out expression that contains a mutable variable, property, or subscript reference of type <code class="code-voice"><span>Type</span></code>.The value of the operand is copied bitwise into a temporary nonowning buffer.The address of that buffer is passed to the callee, and on return, the value in the buffer is loaded, retained, and reassigned into the operand.</span><!--end_enstr-->
+</p></li><li><p><span class="enstr">An in-out expression that contains a mutable variable, property, or subscript reference of type <code class="code-voice"><span>Type</span></code>. The value of the operand is copied bitwise into a temporary nonowning buffer. The address of that buffer is passed to the callee, and on return, the value in the buffer is loaded, retained, and reassigned into the operand.</span><!--end_enstr-->
 <span class="jpstr">
 型<code class="code-voice"><span>Type</span></code>の可変変数、プロパティ、または添え字参照を含むインアウト式。演算数の値は、コピーされます。一時的な非所有バッファにビット単位でコピーされるものです。そのバッファのアドレスは呼び出される側に渡されます、そして戻る時に、バッファの値はロードされ、保持され、演算数に再割り当てされます。
 </span><!--end_jpstr-->
@@ -247,11 +247,11 @@ takesAMutableRawPointer(&amp;b)
 <span class="jpstr">
 関数ポインタをパラメータとして渡す
 </span><!--end_jpstr-->
-</h3><div><p><span class="enstr">When calling a function that takes a C function pointer argument, you can pass a top-level Swift function, a closure literal, a closure declared with the <code class="code-voice"><span>@convention(c)</span></code> attribute, or <code class="code-voice"><span>nil</span></code>.You can also pass a closure property of a generic type or a generic method as long as no generic type parameters are referenced in the closure’s argument list or body.</span><!--end_enstr-->
+</h3><div><p><span class="enstr">When calling a function that takes a C function pointer argument, you can pass a top-level Swift function, a closure literal, a closure declared with the <code class="code-voice"><span>@convention(c)</span></code> attribute, or <code class="code-voice"><span>nil</span></code>. You can also pass a closure property of a generic type or a generic method as long as no generic type parameters are referenced in the closure’s argument list or body.</span><!--end_enstr-->
 <span class="jpstr">
 C関数ポインタ引数を取る関数を呼び出す場合、あなたはトップレベルスウィフト関数、クロージャリテラル、<code class="code-voice"><span>@convention(c)</span></code>属性で宣言されるクロージャ、または<code class="code-voice"><span>nil</span></code>を渡すことができます。あなたはまた、ひとつの総称体型のクロージャプロパティまたは総称体メソッドを渡すことが、いくつかの総称体型パラメータがクロージャの引数リストまたは本文において参照されるのでない限りは可能です。
 </span><!--end_jpstr-->
- </p><p><span class="enstr">For example, consider Core Foundation’s <code class="code-voice"><span>CFArray<wbr/>Create<wbr/>Mutable(_:<wbr/>_:<wbr/>_:)</span></code> function.The <code class="code-voice"><span>CFArray<wbr/>Create<wbr/>Mutable(_:<wbr/>_:<wbr/>_:)</span></code> function takes a <code class="code-voice"><span>CFArray<wbr/>Call<wbr/>Backs</span></code> structure, which is initialized with function pointer callbacks:</span><!--end_enstr-->
+ </p><p><span class="enstr">For example, consider Core Foundation’s <code class="code-voice"><span>CFArray<wbr/>Create<wbr/>Mutable(_:<wbr/>_:<wbr/>_:)</span></code> function. The <code class="code-voice"><span>CFArray<wbr/>Create<wbr/>Mutable(_:<wbr/>_:<wbr/>_:)</span></code> function takes a <code class="code-voice"><span>CFArray<wbr/>Call<wbr/>Backs</span></code> structure, which is initialized with function pointer callbacks:</span><!--end_enstr-->
 <span class="jpstr">
 例えば、Core Foundationの<code class="code-voice"><span>CFArray<wbr/>Create<wbr/>Mutable(_:<wbr/>_:<wbr/>_:)</span></code>関数を考えてみてください。<code class="code-voice"><span>CFArray<wbr/>Create<wbr/>Mutable(_:<wbr/>_:<wbr/>_:)</span></code>関数は、ひとつの<code class="code-voice"><span>CFArray<wbr/>Call<wbr/>Backs</span></code>構造体を取ります、それは関数ポインタコールバックで初期化されます：
 </span><!--end_jpstr-->
@@ -277,7 +277,7 @@ var mutableArray = CFArrayCreateMutable(nil, 0, &amp;callbacks)
 <span class="jpstr">
 注意
 </span><!--end_jpstr-->
-</p><p><span class="enstr">Only Swift function types with C function reference calling convention may be used for function pointer arguments.Like a C function pointer, a Swift function type with the <code class="code-voice"><span>@convention(c)</span></code> attribute does not capture the context of its surrounding scope.</span><!--end_enstr-->
+</p><p><span class="enstr">Only Swift function types with C function reference calling convention may be used for function pointer arguments. Like a C function pointer, a Swift function type with the <code class="code-voice"><span>@convention(c)</span></code> attribute does not capture the context of its surrounding scope.</span><!--end_enstr-->
 <span class="jpstr">
 C関数参照呼出手法を持つスウィフト関数型だけが、関数ポインタ引数のために使われます。C関数ポインタのように、<code class="code-voice"><span>@convention(c)</span></code>属性を持つスウィフト関数型は、それを取り囲んでいるスコープのコンテキストをキャプチャしません。
 </span><!--end_jpstr-->

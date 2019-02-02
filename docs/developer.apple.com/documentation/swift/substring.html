@@ -111,7 +111,7 @@ Swift標準ライブラリ
 <span class="jpstr">
 概要
 </span><!--end_jpstr-->
-</h2><div class="formatted-content"><div><p><span class="enstr">When you create a slice of a string, a <code class="code-voice"><span>Substring</span></code> instance is the result.Operating on substrings is fast and efficient because a substring shares its storage with the original string.The <code class="code-voice"><span>Substring</span></code> type presents the same interface as <code class="code-voice"><span>String</span></code>, so you can avoid or defer any copying of the string’s contents.</span><!--end_enstr-->
+</h2><div class="formatted-content"><div><p><span class="enstr">When you create a slice of a string, a <code class="code-voice"><span>Substring</span></code> instance is the result. Operating on substrings is fast and efficient because a substring shares its storage with the original string. The <code class="code-voice"><span>Substring</span></code> type presents the same interface as <code class="code-voice"><span>String</span></code>, so you can avoid or defer any copying of the string’s contents.</span><!--end_enstr-->
 <span class="jpstr">
 あなたがある文字列のスライスを作成している場合、<code class="code-voice"><span>Substring</span></code>インスタンスが結果です。下位文字列での演算は高速で効率的です、なぜなら下位文字列はそれのストレージを本来の文字列と共有するからです。<code class="code-voice"><span>Substring</span></code>型は、<code class="code-voice"><span>String</span></code>と同じインターフェイスを提供します、それであなたは文字列の内容の何らかのコピーを避けるまたは延期できます。
 </span><!--end_jpstr-->
@@ -123,7 +123,7 @@ Swift標準ライブラリ
 let endOfSentence = greeting.firstIndex(of: "!")!
 let firstSentence = greeting[...endOfSentence]
 // firstSentence == "Hi there!"
-</code></pre></div></div></figure><p><span class="enstr">You can perform many string operations on a substring.Here, we find the length of the first sentence and create an uppercase version.</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">You can perform many string operations on a substring. Here, we find the length of the first sentence and create an uppercase version.</span><!--end_enstr-->
 <span class="jpstr">
 あなたは、多くの文字列演算を買い文字列上で行えます。ここで、私たちは最初の文の長さを見つけます、そして大文字バージョンを作成します。
 </span><!--end_jpstr-->
@@ -143,7 +143,7 @@ SubstringをStringに変換する
 </p><figure id="2906290"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>let rawInput = "126 a.b 22219 zzzzzz"
 let numericPrefix = rawInput.prefix(while: { "0"..."9" ~= $0 })
 // numericPrefix is the substring "126"
-</code></pre></div></div></figure><p><span class="enstr">When you need to store a substring or pass it to a function that requires a <code class="code-voice"><span>String</span></code> instance, you can convert it to a <code class="code-voice"><span>String</span></code> by using the <code class="code-voice"><span>String(_:)</span></code> initializer.Calling this initializer copies the contents of the substring to a new string.</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">When you need to store a substring or pass it to a function that requires a <code class="code-voice"><span>String</span></code> instance, you can convert it to a <code class="code-voice"><span>String</span></code> by using the <code class="code-voice"><span>String(_:)</span></code> initializer. Calling this initializer copies the contents of the substring to a new string.</span><!--end_enstr-->
 <span class="jpstr">
 あなたが下位文字列を格納するまたは<code class="code-voice"><span>String</span></code>インスタンスを要求する関数にそれを渡す必要がある場合、あなたはそれを<code class="code-voice"><span>String</span></code>へと<code class="code-voice"><span>String(_:)</span></code>イニシャライザを使って変換できます。このイニシャライザを呼ぶことは、下位文字列の内容を新しい文字列にコピーします。
 </span><!--end_jpstr-->
@@ -154,7 +154,7 @@ _ = parseAndAddOne(numericPrefix)
 // error: cannot convert value...
 let incrementedPrefix = parseAndAddOne(String(numericPrefix))
 // incrementedPrefix == 127
-</code></pre></div></div></figure><p><span class="enstr">Alternatively, you can convert the function that takes a <code class="code-voice"><span>String</span></code> to one that is generic over the <code class="code-voice"><span>String<wbr/>Protocol</span></code> protocol.The following code declares a generic version of the <code class="code-voice"><span>parse<wbr/>And<wbr/>Add<wbr/>One(_:)</span></code> function:</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">Alternatively, you can convert the function that takes a <code class="code-voice"><span>String</span></code> to one that is generic over the <code class="code-voice"><span>String<wbr/>Protocol</span></code> protocol. The following code declares a generic version of the <code class="code-voice"><span>parse<wbr/>And<wbr/>Add<wbr/>One(_:)</span></code> function:</span><!--end_enstr-->
 <span class="jpstr">
 あるいは、あなたは<code class="code-voice"><span>String</span></code>をとる関数を<code class="code-voice"><span>String<wbr/>Protocol</span></code>プロトコルを越えて総称体であるものに変換できます。以下のコードは、<code class="code-voice"><span>parse<wbr/>And<wbr/>Add<wbr/>One(_:)</span></code>関数のひとつの総称体版を宣言します：
 </span><!--end_jpstr-->
@@ -171,7 +171,7 @@ let genericallyIncremented = genericParseAndAddOne(numericPrefix)
 <span class="jpstr">
 重要
 </span><!--end_jpstr-->
-</p><p><span class="enstr">Don’t store substrings longer than you need them to perform a specific operation.A substring holds a reference to the entire storage of the string it comes from, not just to the portion it presents, even when there is no other reference to the original string.Storing substrings may, therefore, prolong the lifetime of string data that is no longer otherwise accessible, which can appear to be memory leakage.</span><!--end_enstr-->
+</p><p><span class="enstr">Don’t store substrings longer than you need them to perform a specific operation. A substring holds a reference to the entire storage of the string it comes from, not just to the portion it presents, even when there is no other reference to the original string. Storing substrings may, therefore, prolong the lifetime of string data that is no longer otherwise accessible, which can appear to be memory leakage.</span><!--end_enstr-->
 <span class="jpstr">
 下位文字列を、あなたが特定の演算の実行にそれらを必要とするより長く、貯蔵しておかないでください。下位文字列はそれが由来する文字列のストレージ全体への参照を保持します、それが存在する部分に対してだけではなく、たとえ本来の文字列への他の参照が存在しないときでさえも。下位文字列の格納は、したがって、それ以外ではもはやアクセスできない文字列データのライフサイクルを延長するでしょう、それはメモリリークとして現れかねません。
 </span><!--end_jpstr-->

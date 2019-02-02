@@ -1,6 +1,6 @@
 ﻿* [Framework Swift 2018.9.28 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com/documentation/swift.html)
 
-* [The Swift Programming Language 2018.9.28 日本語訳](https://rusutikaa.github.io/docs/docs.swift.org/swift-book/index.html)
+* [The Swift Programming Language 2019.1.24 日本語訳](https://rusutikaa.github.io/docs/docs.swift.org/swift-book/index.html)
 
 以下は更新されない
 

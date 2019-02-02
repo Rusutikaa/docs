@@ -136,11 +136,11 @@ Swift標準ライブラリ
 <span class="jpstr">
 パラメータ
 </span><!--end_jpstr-->
-</h2><dl class="datalist"><dt class="datalist-term"><code>type</code></dt><dd class="datalist-description"><div class="formatted-content"><div><p><span class="enstr">The type to temporarily bind the memory referenced by this buffer.The type <code class="code-voice"><span>T</span></code> must have the same size and be layout compatible with the pointer’s <code class="code-voice"><span>Element</span></code> type.</span><!--end_enstr-->
+</h2><dl class="datalist"><dt class="datalist-term"><code>type</code></dt><dd class="datalist-description"><div class="formatted-content"><div><p><span class="enstr">The type to temporarily bind the memory referenced by this buffer. The type <code class="code-voice"><span>T</span></code> must have the same size and be layout compatible with the pointer’s <code class="code-voice"><span>Element</span></code> type.</span><!--end_enstr-->
 <span class="jpstr">
 このバッファによって参照されるメモリを一時的に束縛する型。型 <code class="code-voice"><span>T</span></code>は、ポインタのもつ<code class="code-voice"><span>Element</span></code>型と同じサイズで、互換性のあるレイアウトでなければなりません。
 </span><!--end_jpstr-->
-</p></div></div></dd><dt class="datalist-term"><code>body</code></dt><dd class="datalist-description"><div class="formatted-content"><div><p><span class="enstr">A closure that takes a  typed buffer to the same memory as this buffer, only bound to type <code class="code-voice"><span>T</span></code>.The buffer argument contains the same number of complete instances of <code class="code-voice"><span>T</span></code> as the original&lt;br/&gt;buffer’s <code class="code-voice"><span>count</span></code>.The closure’s buffer argument is valid only for the duration of the closure’s execution.If <code class="code-voice"><span>body</span></code> has a return value, that value is also used as the return value for the <code class="code-voice"><span>with<wbr/>Memory<wbr/>Rebound(to:<wbr/>_:)</span></code> method.</span><!--end_enstr-->
+</p></div></div></dd><dt class="datalist-term"><code>body</code></dt><dd class="datalist-description"><div class="formatted-content"><div><p><span class="enstr">A closure that takes a  typed buffer to the same memory as this buffer, only bound to type <code class="code-voice"><span>T</span></code>. The buffer argument contains the same number of complete instances of <code class="code-voice"><span>T</span></code> as the original&lt;br/&gt;buffer’s <code class="code-voice"><span>count</span></code>. The closure’s buffer argument is valid only for the duration of the closure’s execution. If <code class="code-voice"><span>body</span></code> has a return value, that value is also used as the return value for the <code class="code-voice"><span>with<wbr/>Memory<wbr/>Rebound(to:<wbr/>_:)</span></code> method.</span><!--end_enstr-->
 <span class="jpstr">
 あるクロージャ、それは、型<code class="code-voice"><span>T</span></code>に束縛しただけの、このバッファと同じメモリに対する型付バッファをとります。バッファ引数は、オリジナルの&lt;br/&gt;バッファのもつ<code class="code-voice"><span>count</span></code>と同じ数の完全な<code class="code-voice"><span>T</span></code>のインスタンスを含まなければなりません。クロージャのもつバッファ引数は、このクロージャの実行の間に対してだけ有効です。<code class="code-voice"><span>body</span></code>が戻り値を持つならば、その値はまた<code class="code-voice"><span>with<wbr/>Memory<wbr/>Rebound(to:<wbr/>_:)</span></code>メソッドの戻り値としても使われます。
 </span><!--end_jpstr-->
@@ -156,7 +156,7 @@ Swift標準ライブラリ
 <span class="jpstr">
 解説
 </span><!--end_jpstr-->
-</h2><div class="formatted-content"><div><p><span class="enstr">Use this method when you have a buffer of memory bound to one type and you need to access that memory as a buffer of another type.Accessing memory as type <code class="code-voice"><span>T</span></code> requires that the memory be bound to that type.A memory location may only be bound to one type at a time, so accessing the same memory as an unrelated type without first rebinding the memory is undefined.</span><!--end_enstr-->
+</h2><div class="formatted-content"><div><p><span class="enstr">Use this method when you have a buffer of memory bound to one type and you need to access that memory as a buffer of another type. Accessing memory as type <code class="code-voice"><span>T</span></code> requires that the memory be bound to that type. A memory location may only be bound to one type at a time, so accessing the same memory as an unrelated type without first rebinding the memory is undefined.</span><!--end_enstr-->
 <span class="jpstr">
 このメソッドを使うのは、あなたがある型に束縛されるメモリのバッファを持つ、そしてあなたがそのメモリに別の型のバッファとしてアクセスする必要がある場合です。メモリに型<code class="code-voice"><span>T</span></code>としてアクセスすることは、メモリがその型に束縛されることを必要とします。あるメモリ位置は１度に１つの型へとバインド（束縛）されるだけでしょう、なので同じメモリに関連のない型として最初にメモリ再バインドすることなしにアクセスすることは、未定義となります。
 </span><!--end_jpstr-->
@@ -164,7 +164,7 @@ Swift標準ライブラリ
 <span class="jpstr">
 このバッファによって参照されるメモリの全領域は、初期化されなければなりません。
 </span><!--end_jpstr-->
-</p><p><span class="enstr">Because this buffer’s memory is no longer bound to its <code class="code-voice"><span>Element</span></code> type while the <code class="code-voice"><span>body</span></code> closure executes, do not access memory using the original buffer from within <code class="code-voice"><span>body</span></code>.Instead, use the <code class="code-voice"><span>body</span></code> closure’s buffer argument to access the values in memory as instances of type <code class="code-voice"><span>T</span></code>.</span><!--end_enstr-->
+</p><p><span class="enstr">Because this buffer’s memory is no longer bound to its <code class="code-voice"><span>Element</span></code> type while the <code class="code-voice"><span>body</span></code> closure executes, do not access memory using the original buffer from within <code class="code-voice"><span>body</span></code>. Instead, use the <code class="code-voice"><span>body</span></code> closure’s buffer argument to access the values in memory as instances of type <code class="code-voice"><span>T</span></code>.</span><!--end_enstr-->
 <span class="jpstr">
 このバッファのもつメモリがそれの<code class="code-voice"><span>Element</span></code>型には<code class="code-voice"><span>body</span></code>クロージャの実行の間はもはや束縛されないことから、メモリにオリジナルのバッファを使って<code class="code-voice"><span>body</span></code>内からアクセスしないでください。代わりに、<code class="code-voice"><span>body</span></code>クロージャの持つバッファ引数を使ってメモリ中の値に型<code class="code-voice"><span>T</span></code>のインスタンスとしてアクセスしてください。
 </span><!--end_jpstr-->
@@ -176,7 +176,7 @@ Swift標準ライブラリ
 <span class="jpstr">
 注意
 </span><!--end_jpstr-->
-</p><p><span class="enstr">Only use this method to rebind the buffer’s memory to a type with the same size and stride as the currently bound <code class="code-voice"><span>Element</span></code> type.To bind a region of memory to a type that is a different size, convert the buffer to a raw buffer and use the <code class="code-voice"><span>bind<wbr/>Memory(to:)</span></code> method.</span><!--end_enstr-->
+</p><p><span class="enstr">Only use this method to rebind the buffer’s memory to a type with the same size and stride as the currently bound <code class="code-voice"><span>Element</span></code> type. To bind a region of memory to a type that is a different size, convert the buffer to a raw buffer and use the <code class="code-voice"><span>bind<wbr/>Memory(to:)</span></code> method.</span><!--end_enstr-->
 <span class="jpstr">
 バッファのもつメモリを現在バインドされる<code class="code-voice"><span>Element</span></code>型と同じサイズおよびストライドを持つある型に再バインドするためにだけこのメソッドを使ってください。あるメモリ領域を異なるサイズの型に束縛するには、そのバッファを新しい生のバッファに変換して、<code class="code-voice"><span>bind<wbr/>Memory(to:)</span></code>メソッドを使ってください。
 </span><!--end_jpstr-->

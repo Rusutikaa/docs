@@ -132,7 +132,7 @@ Swift標準ライブラリ
 <span class="jpstr">
 解説
 </span><!--end_jpstr-->
-</h2><div class="formatted-content"><div><p><span class="enstr">If you are adding a known number of elements to an array, use this method to avoid multiple reallocations.This method ensures that the array has unique, mutable, contiguous storage, with space allocated for at least the requested number of elements.</span><!--end_enstr-->
+</h2><div class="formatted-content"><div><p><span class="enstr">If you are adding a known number of elements to an array, use this method to avoid multiple reallocations. This method ensures that the array has unique, mutable, contiguous storage, with space allocated for at least the requested number of elements.</span><!--end_enstr-->
 <span class="jpstr">
 あなたが数のわかった要素を配列に加えているならば、このメソッドを使って複数の再割り当てを避けてください。このメソッドは、配列が、少なくとも要請された数の要素に割り当てられた空間とともに、固有な、可変の、隣接するストレージを持つことを保証します。
 </span><!--end_jpstr-->
@@ -140,7 +140,7 @@ Swift標準ライブラリ
 <span class="jpstr">
 <code class="code-voice"><span>reserve<wbr/>Capacity(_:)</span></code>メソッドをブリッジされたストレージを持つ配列で呼び出すことは、隣接ストレージへのコピーを引き起こします、たとえ既存のストレージに<code class="code-voice"><span>minimum<wbr/>Capacity</span></code>要素を格納する余地があるとしてもです。
 </span><!--end_jpstr-->
-</p><p><span class="enstr">For performance reasons, the size of the newly allocated storage might be greater than the requested capacity.Use the array’s <code class="code-voice"><span>capacity</span></code> property to determine the size of the new storage.</span><!--end_enstr-->
+</p><p><span class="enstr">For performance reasons, the size of the newly allocated storage might be greater than the requested capacity. Use the array’s <code class="code-voice"><span>capacity</span></code> property to determine the size of the new storage.</span><!--end_enstr-->
 <span class="jpstr">
 性能上の理由から、新しく割り当てられたストレージは要請された容量より大きいかもしれません。配列の<code class="code-voice"><span>capacity</span></code>プロパティを使って新しいストレージの大きさを特定してください。
 </span><!--end_jpstr-->
@@ -148,7 +148,7 @@ Swift標準ライブラリ
 <span class="jpstr">
 配列の幾何数級的増大戦略を守る
 </span><!--end_jpstr-->
-</h3><div><p><span class="enstr">If you implement a custom data structure backed by an array that grows dynamically, naively calling the <code class="code-voice"><span>reserve<wbr/>Capacity(_:)</span></code> method can lead to worse than expected performance.Arrays need to follow a geometric allocation pattern for appending elements to achieve amortized constant-time performance.The <code class="code-voice"><span>Array</span></code> type’s <code class="code-voice"><span>append(_:)</span></code> and <code class="code-voice"><span>append(contents<wbr/>Of:)</span></code> methods take care of this detail for you, but <code class="code-voice"><span>reserve<wbr/>Capacity(_:)</span></code> allocates only as much space as you tell it to (padded to a round value), and no more.This avoids over-allocation, but can result in insertion not having amortized constant-time performance.</span><!--end_enstr-->
+</h3><div><p><span class="enstr">If you implement a custom data structure backed by an array that grows dynamically, naively calling the <code class="code-voice"><span>reserve<wbr/>Capacity(_:)</span></code> method can lead to worse than expected performance. Arrays need to follow a geometric allocation pattern for appending elements to achieve amortized constant-time performance. The <code class="code-voice"><span>Array</span></code> type’s <code class="code-voice"><span>append(_:)</span></code> and <code class="code-voice"><span>append(contents<wbr/>Of:)</span></code> methods take care of this detail for you, but <code class="code-voice"><span>reserve<wbr/>Capacity(_:)</span></code> allocates only as much space as you tell it to (padded to a round value), and no more. This avoids over-allocation, but can result in insertion not having amortized constant-time performance.</span><!--end_enstr-->
 <span class="jpstr">
 あなたが動的に増大する配列によって裏打ちされる誂えのデータ構造を実装するならば、無邪気に<code class="code-voice"><span>reserve<wbr/>Capacity(_:)</span></code>メソッドを呼び出すと予想される性能よりずっと悪くなります。ならし定数時間性能を達成するために、配列は要素を追加するのにある幾何数級的なアロケートパターンに従う必要があります。<code class="code-voice"><span>Array</span></code>型の<code class="code-voice"><span>append(_:)</span></code>と<code class="code-voice"><span>append(contents<wbr/>Of:)</span></code>メソッドは、この詳細をあなたの代わりに面倒を見ます、しかし<code class="code-voice"><span>reserve<wbr/>Capacity(_:)</span></code>はあなたがそれに伝える（ある丸め値に詰め込まれた）のと同じ程度の空間だけをアロケートして、それ以上は何もしません。これは過度のアロケーションを防ぎます、しかし挿入においてならし定数時間性能を持たない結果になります。
 </span><!--end_jpstr-->
@@ -166,7 +166,7 @@ Swift標準ライブラリ
           values.append(n)
       }
   }
-</code></pre></div></div></figure><p><span class="enstr">The call to <code class="code-voice"><span>reserve<wbr/>Capacity(_:)</span></code> increases the <code class="code-voice"><span>values</span></code> array’s capacity by exactly 10 elements on each pass through <code class="code-voice"><span>add<wbr/>Ten<wbr/>Quadratic()</span></code>, which is linear growth.Instead of having constant time when averaged over many calls, the function may decay to performance that is linear in <code class="code-voice"><span>values<wbr/>.count</span></code>.This is almost certainly not what you want.</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">The call to <code class="code-voice"><span>reserve<wbr/>Capacity(_:)</span></code> increases the <code class="code-voice"><span>values</span></code> array’s capacity by exactly 10 elements on each pass through <code class="code-voice"><span>add<wbr/>Ten<wbr/>Quadratic()</span></code>, which is linear growth. Instead of having constant time when averaged over many calls, the function may decay to performance that is linear in <code class="code-voice"><span>values<wbr/>.count</span></code>. This is almost certainly not what you want.</span><!--end_enstr-->
 <span class="jpstr">
 <code class="code-voice"><span>reserve<wbr/>Capacity(_:)</span></code>を呼び出すことは、<code class="code-voice"><span>values</span></code>配列の容量を正確に10要素ずつ<code class="code-voice"><span>add<wbr/>Ten<wbr/>Quadratic()</span></code>が行われる各々で漸増します、それは線形成長です。多くの呼出しの全体を平均したとき定数時を持つのではなく、<code class="code-voice"><span>values<wbr/>.count</span></code>において線形である性能を関数が衰えさせるかもしれません。これはほとんど疑いなくあなたが望むことではありません。
 </span><!--end_jpstr-->

@@ -140,11 +140,11 @@ Swift標準ライブラリ
 <span class="jpstr">
 このメモリに束縛することになる型。
 </span><!--end_jpstr-->
-</p></div></div></dd><dt class="datalist-term"><code>index</code></dt><dd class="datalist-description"><div class="formatted-content"><div><p><span class="enstr">The offset from this pointer to the region of memory to be initialized with <code class="code-voice"><span>value</span></code>, in the stride of type <code class="code-voice"><span>T</span></code>.<code class="code-voice"><span>index</span></code> must not be negative.The default is zero.</span><!--end_enstr-->
+</p></div></div></dd><dt class="datalist-term"><code>index</code></dt><dd class="datalist-description"><div class="formatted-content"><div><p><span class="enstr">The offset from this pointer to the region of memory to be initialized with <code class="code-voice"><span>value</span></code>, in the stride of type <code class="code-voice"><span>T</span></code>. <code class="code-voice"><span>index</span></code> must not be negative. The default is zero.</span><!--end_enstr-->
 <span class="jpstr">
 このポインタから<code class="code-voice"><span>value</span></code>で初期化されることになるメモリの領域へのオフセット、型<code class="code-voice"><span>T</span></code>のストライドで。<code class="code-voice"><span>index</span></code>は、負数であってはいけません。初期状態はゼロです。
 </span><!--end_jpstr-->
-</p></div></div></dd><dt class="datalist-term"><code>count</code></dt><dd class="datalist-description"><div class="formatted-content"><div><p><span class="enstr">The number of copies of <code class="code-voice"><span>value</span></code> to copy into memory.<code class="code-voice"><span>count</span></code> must not be negative.The default is <code class="code-voice"><span>1</span></code>.</span><!--end_enstr-->
+</p></div></div></dd><dt class="datalist-term"><code>count</code></dt><dd class="datalist-description"><div class="formatted-content"><div><p><span class="enstr">The number of copies of <code class="code-voice"><span>value</span></code> to copy into memory. <code class="code-voice"><span>count</span></code> must not be negative. The default is <code class="code-voice"><span>1</span></code>.</span><!--end_enstr-->
 <span class="jpstr">
 メモリにコピーすることになる<code class="code-voice"><span>value</span></code>のコピー数。<code class="code-voice"><span>count</span></code>は負数であってはいけません。省略時は<code class="code-voice"><span>1</span></code>です。
 </span><!--end_jpstr-->
@@ -181,7 +181,7 @@ let int8Pointer = myBytes.initializeMemory(
 
 // After using 'int8Pointer':
 int8Pointer.deallocate(count)
-</code></pre></div></div></figure><p><span class="enstr">After calling this method on a raw pointer <code class="code-voice"><span>p</span></code>, the region starting at <code class="code-voice"><span>p + index * Memory<wbr/>Layout&lt;T&gt;.stride</span></code> and continuing up to <code class="code-voice"><span>p + (index + count) * Memory<wbr/>Layout&lt;T&gt;.stride</span></code> is bound to type <code class="code-voice"><span>T</span></code> and initialized.If <code class="code-voice"><span>T</span></code> is a nontrivial type, you must eventually deinitialize or move from the values in this region to avoid leaks.</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">After calling this method on a raw pointer <code class="code-voice"><span>p</span></code>, the region starting at <code class="code-voice"><span>p + index * Memory<wbr/>Layout&lt;T&gt;.stride</span></code> and continuing up to <code class="code-voice"><span>p + (index + count) * Memory<wbr/>Layout&lt;T&gt;.stride</span></code> is bound to type <code class="code-voice"><span>T</span></code> and initialized. If <code class="code-voice"><span>T</span></code> is a nontrivial type, you must eventually deinitialize or move from the values in this region to avoid leaks.</span><!--end_enstr-->
 <span class="jpstr">
 このメソッドを生のボインタ<code class="code-voice"><span>p</span></code>で呼び出した後、<code class="code-voice"><span>p + index * Memory<wbr/>Layout&lt;T&gt;.stride</span></code>で始まって<code class="code-voice"><span>p + (index + count) * Memory<wbr/>Layout&lt;T&gt;.stride</span></code>まで続く領域は、型<code class="code-voice"><span>T</span></code>に束縛されて初期化されます。<code class="code-voice"><span>T</span></code>が非自明型ならば、あなたはゆくゆくはデイニシャライズするかまたはこの領域の値から移動してリークを防がなければなりません。
 </span><!--end_jpstr-->

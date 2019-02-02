@@ -131,20 +131,20 @@ Swift標準ライブラリ
 <span class="jpstr">
 概要
 </span><!--end_jpstr-->
-</h2><div class="formatted-content"><div><p><span class="enstr">Lazy sequences can be used to avoid needless storage allocation and computation, because they use an underlying sequence for storage and compute their elements on demand.For example,</span><!--end_enstr-->
+</h2><div class="formatted-content"><div><p><span class="enstr">Lazy sequences can be used to avoid needless storage allocation and computation, because they use an underlying sequence for storage and compute their elements on demand. For example,</span><!--end_enstr-->
 <span class="jpstr">
 遅延シーケンスは、不必要なストレージの割り当てと計算を防止するために使われることができます。例えば、
 </span><!--end_jpstr-->
 </p><figure id="2846894"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>[1, 2, 3].lazy.map { $0 * 2 }
-</code></pre></div></div></figure><p><span class="enstr">is a sequence containing { <code class="code-voice"><span>2</span></code>, <code class="code-voice"><span>4</span></code>, <code class="code-voice"><span>6</span></code> }.Each time an element of the lazy sequence is accessed, an element of the underlying array is accessed and transformed by the closure.</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">is a sequence containing { <code class="code-voice"><span>2</span></code>, <code class="code-voice"><span>4</span></code>, <code class="code-voice"><span>6</span></code> }. Each time an element of the lazy sequence is accessed, an element of the underlying array is accessed and transformed by the closure.</span><!--end_enstr-->
 <span class="jpstr">
 これは、{ <code class="code-voice"><span>2</span></code>, <code class="code-voice"><span>4</span></code>, <code class="code-voice"><span>6</span></code> }を含んでいるシーケンスです。遅延シーケンスの中のある要素がアクセスされるたびに、基礎をなす配列の中のある要素がアクセスされてクロージャによって変換されます。
 </span><!--end_jpstr-->
-</p><p><span class="enstr">Sequence operations taking closure arguments, such as <code class="code-voice"><span>map</span></code> and <code class="code-voice"><span>filter</span></code>, are normally eager: they use the closure immediately and return a new array.Using the <code class="code-voice"><span>lazy</span></code> property gives the standard library explicit permission to store the closure and the sequence in the result, and defer computation until it is needed.</span><!--end_enstr-->
+</p><p><span class="enstr">Sequence operations taking closure arguments, such as <code class="code-voice"><span>map</span></code> and <code class="code-voice"><span>filter</span></code>, are normally eager: they use the closure immediately and return a new array. Using the <code class="code-voice"><span>lazy</span></code> property gives the standard library explicit permission to store the closure and the sequence in the result, and defer computation until it is needed.</span><!--end_enstr-->
 <span class="jpstr">
 クロージャ引数を取るシーケンス操作、例えば<code class="code-voice"><span>map</span></code>と<code class="code-voice"><span>filter</span></code>は、普通は先行処理です：これらはクロージャを即座に使用します、そしてある新しい配列を返します。<code class="code-voice"><span>lazy</span></code>プロパティを使うことは、標準ライブラリにクロージャと結果のシーケンスを保管する明示的な許可を与えます、そして計算をそれが必要とされるまで遅らせます。
 </span><!--end_jpstr-->
-</p><p><span class="enstr">To add new lazy sequence operations, extend this protocol with methods that return lazy wrappers that are themselves <code class="code-voice"><span>Lazy<wbr/>Sequence<wbr/>Protocol</span></code>s.For example, given an eager <code class="code-voice"><span>scan</span></code> method defined as follows</span><!--end_enstr-->
+</p><p><span class="enstr">To add new lazy sequence operations, extend this protocol with methods that return lazy wrappers that are themselves <code class="code-voice"><span>Lazy<wbr/>Sequence<wbr/>Protocol</span></code>s. For example, given an eager <code class="code-voice"><span>scan</span></code> method defined as follows</span><!--end_enstr-->
 <span class="jpstr">
 新しい遅延シーケンス操作を加えるために、このプロトコルを、それら自身が<code class="code-voice"><span>Lazy<wbr/>Sequence<wbr/>Protocol</span></code>である遅延ラッパーを返すメソッドらで拡張してください。例えば、以下のように定義される即時<code class="code-voice"><span>scan</span></code>メソッドを与えられて
 </span><!--end_jpstr-->
@@ -226,7 +226,7 @@ struct LazyScanSequence&lt;Base: Sequence, ResultElement&gt;
 <span class="jpstr">
 注意
 </span><!--end_jpstr-->
-</p><p><span class="enstr">The explicit permission to implement further operations lazily applies only in contexts where the sequence is statically known to conform to <code class="code-voice"><span>Lazy<wbr/>Sequence<wbr/>Protocol</span></code>.Thus, side-effects such as the accumulation of <code class="code-voice"><span>result</span></code> below are never unexpectedly dropped or deferred:</span><!--end_enstr-->
+</p><p><span class="enstr">The explicit permission to implement further operations lazily applies only in contexts where the sequence is statically known to conform to <code class="code-voice"><span>Lazy<wbr/>Sequence<wbr/>Protocol</span></code>. Thus, side-effects such as the accumulation of <code class="code-voice"><span>result</span></code> below are never unexpectedly dropped or deferred:</span><!--end_enstr-->
 <span class="jpstr">
 もっと遅延に演算を実施する明示的な許可は、そこにおいてシーケンスは静的に<code class="code-voice"><span>Lazy<wbr/>Sequence<wbr/>Protocol</span></code>に準拠することを見分けられる文脈においてのみ適用されます。したがって、副作用、例えば下の<code class="code-voice"><span>result</span></code>の集積などは、決して突然に投下されたり延期されたりしません：
 </span><!--end_jpstr-->
@@ -237,7 +237,7 @@ struct LazyScanSequence&lt;Base: Sequence, ResultElement&gt;
     return result
   }
 }
-</code></pre></div></div></figure><p><span class="enstr">[We don’t recommend that you use <code class="code-voice"><span>map</span></code> this way, because it creates and discards an array.<code class="code-voice"><span>sum</span></code> would be better implemented using <code class="code-voice"><span>reduce</span></code>].</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">[We don’t recommend that you use <code class="code-voice"><span>map</span></code> this way, because it creates and discards an array. <code class="code-voice"><span>sum</span></code> would be better implemented using <code class="code-voice"><span>reduce</span></code>].</span><!--end_enstr-->
 <span class="jpstr">
 ［私たちは、あなたが<code class="code-voice"><span>map</span></code>をこのやり方で使うのを推奨しません、なぜならそれは１つの配列を作成し破棄するからです。<code class="code-voice"><span>sum</span></code>は、<code class="code-voice"><span>reduce</span></code>を使ってもっとよく実装されるでしょう。］
 </span><!--end_jpstr-->

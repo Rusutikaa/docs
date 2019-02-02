@@ -123,11 +123,11 @@ Swift標準ライブラリ
 <span class="jpstr">
 概要
 </span><!--end_jpstr-->
-</h2><div class="formatted-content"><div><p><span class="enstr">The <code class="code-voice"><span>Unsafe<wbr/>Mutable<wbr/>Raw<wbr/>Pointer</span></code> type provides no automated memory management, no type safety, and no alignment guarantees.You are responsible for handling the life cycle of any memory you work with through unsafe pointers, to avoid leaks or undefined behavior.</span><!--end_enstr-->
+</h2><div class="formatted-content"><div><p><span class="enstr">The <code class="code-voice"><span>Unsafe<wbr/>Mutable<wbr/>Raw<wbr/>Pointer</span></code> type provides no automated memory management, no type safety, and no alignment guarantees. You are responsible for handling the life cycle of any memory you work with through unsafe pointers, to avoid leaks or undefined behavior.</span><!--end_enstr-->
 <span class="jpstr">
 <code class="code-voice"><span>Unsafe<wbr/>Mutable<wbr/>Raw<wbr/>Pointer</span></code>型は、自動メモリ管理、型安全、そしてアライメント保証を提供しません。あなたは、リークや未定義挙動を避けるために、あなたが安全でないポインタを通して扱うあらゆるメモリの生涯の処理に責任があります。
 </span><!--end_jpstr-->
-</p><p><span class="enstr">Memory that you manually manage can be either <em>untyped</em> or <em>bound</em> to a specific type.You use the <code class="code-voice"><span>Unsafe<wbr/>Mutable<wbr/>Raw<wbr/>Pointer</span></code> type to access and manage raw bytes in memory, whether or not that memory has been bound to a specific type.</span><!--end_enstr-->
+</p><p><span class="enstr">Memory that you manually manage can be either <em>untyped</em> or <em>bound</em> to a specific type. You use the <code class="code-voice"><span>Unsafe<wbr/>Mutable<wbr/>Raw<wbr/>Pointer</span></code> type to access and manage raw bytes in memory, whether or not that memory has been bound to a specific type.</span><!--end_enstr-->
 <span class="jpstr">
 あなたが手動で管理するメモリは、特定の型に対して<em>型付けされない</em>または<em>束縛される</em>のいずれかが可能です。あなたは、<code class="code-voice"><span>Unsafe<wbr/>Mutable<wbr/>Raw<wbr/>Pointer</span></code>型を使ってメモリ中の生のバイトにアクセスおよび管理を、そのメモリが特定の型に束縛されているかどうかにかかわらず行います。
 </span><!--end_jpstr-->
@@ -135,7 +135,7 @@ Swift標準ライブラリ
 <span class="jpstr">
 あるポインタのメモリ状態を理解する
 </span><!--end_jpstr-->
-</h3><div><p><span class="enstr">The memory referenced by an <code class="code-voice"><span>Unsafe<wbr/>Mutable<wbr/>Raw<wbr/>Pointer</span></code> instance can be in one of several states.Many pointer operations must only be applied to pointers with memory in a specific state—you must keep track of the state of the memory you are working with and understand the changes to that state that different operations perform.Memory can be untyped and uninitialized, bound to a type and uninitialized, or bound to a type and initialized to a value.Finally, memory that was allocated previously may have been deallocated, leaving existing pointers referencing unallocated memory.</span><!--end_enstr-->
+</h3><div><p><span class="enstr">The memory referenced by an <code class="code-voice"><span>Unsafe<wbr/>Mutable<wbr/>Raw<wbr/>Pointer</span></code> instance can be in one of several states. Many pointer operations must only be applied to pointers with memory in a specific state—you must keep track of the state of the memory you are working with and understand the changes to that state that different operations perform. Memory can be untyped and uninitialized, bound to a type and uninitialized, or bound to a type and initialized to a value. Finally, memory that was allocated previously may have been deallocated, leaving existing pointers referencing unallocated memory.</span><!--end_enstr-->
 <span class="jpstr">
 <code class="code-voice"><span>Unsafe<wbr/>Mutable<wbr/>Raw<wbr/>Pointer</span></code>インスタンスによって参照されるメモリは、いくつかの状態の１つであることが可能です。多くのポインタ演算はある特定の状態のメモリを持つポインタに適用されるだけであるべきです — あなたは、あなたが作業しているメモリの状態を見失わないようにして、異なる演算が実行するその状態の変更を理解していなければなりません。メモリは、型無しで未初期化、ある型に束縛されて未初期化、またはある型に束縛されてある値に初期化される可能性があります。結局、以前にアロケートされたメモリはデアロケートされるかもしれません、アロケートされないメモリを参照している既存のポインタはそのままです。
 </span><!--end_jpstr-->
@@ -143,11 +143,11 @@ Swift標準ライブラリ
 <span class="jpstr">
 生の、初期化されないメモリ
 </span><!--end_jpstr-->
-</h4><div><p><span class="enstr">Raw memory that has just been allocated is in an <em>uninitialized, untyped</em> state.Uninitialized memory must be initialized with values of a type before it can be used with any typed operations.</span><!--end_enstr-->
+</h4><div><p><span class="enstr">Raw memory that has just been allocated is in an <em>uninitialized, untyped</em> state. Uninitialized memory must be initialized with values of a type before it can be used with any typed operations.</span><!--end_enstr-->
 <span class="jpstr">
 アロケートされてすぐの生のメモリは、<em>uninitialized, untyped</em>状態にあります。未初期化メモリは、それが何らかの型付き演算で使用される前にある型の値で初期化されなければなりません。
 </span><!--end_jpstr-->
-</p><p><span class="enstr">You can use methods like <code class="code-voice"><span>initialize<wbr/>Memory(as:<wbr/>from:)</span></code> and <code class="code-voice"><span>move<wbr/>Initialize<wbr/>Memory(as:<wbr/>from:<wbr/>count:)</span></code> to bind raw memory to a type and initialize it with a value or series of values.To bind uninitialized memory to a type without initializing it, use the <code class="code-voice"><span>bind<wbr/>Memory(to:<wbr/>count:)</span></code> method.These methods all return typed pointers for further typed access to the memory.</span><!--end_enstr-->
+</p><p><span class="enstr">You can use methods like <code class="code-voice"><span>initialize<wbr/>Memory(as:<wbr/>from:)</span></code> and <code class="code-voice"><span>move<wbr/>Initialize<wbr/>Memory(as:<wbr/>from:<wbr/>count:)</span></code> to bind raw memory to a type and initialize it with a value or series of values. To bind uninitialized memory to a type without initializing it, use the <code class="code-voice"><span>bind<wbr/>Memory(to:<wbr/>count:)</span></code> method. These methods all return typed pointers for further typed access to the memory.</span><!--end_enstr-->
 <span class="jpstr">
 あなたは、<code class="code-voice"><span>initialize<wbr/>Memory(as:<wbr/>from:)</span></code>と<code class="code-voice"><span>move<wbr/>Initialize<wbr/>Memory(as:<wbr/>from:<wbr/>count:)</span></code>のようなメソッドを使うことで、生のメモリをある型に束縛して、それをある値または一連の値で初期化します。未初期化メモリをそれを初期化することなくある型に束縛するには、<code class="code-voice"><span>bind<wbr/>Memory(to:<wbr/>count:)</span></code>メソッドを使用してください。これらのメソッドは、この後で型付アクセスをこのメモリにするために型付ポインタを返します。
 </span><!--end_jpstr-->
@@ -155,11 +155,11 @@ Swift標準ライブラリ
 <span class="jpstr">
 型付メモリ
 </span><!--end_jpstr-->
-</h4><div><p><span class="enstr">Memory that has been bound to a type, whether it is initialized or uninitialized, is typically accessed using typed pointers—instances of <code class="code-voice"><span>Unsafe<wbr/>Pointer</span></code> and <code class="code-voice"><span>Unsafe<wbr/>Mutable<wbr/>Pointer</span></code>.Initialization, assignment, and deinitialization can be performed using <code class="code-voice"><span>Unsafe<wbr/>Mutable<wbr/>Pointer</span></code> methods.</span><!--end_enstr-->
+</h4><div><p><span class="enstr">Memory that has been bound to a type, whether it is initialized or uninitialized, is typically accessed using typed pointers—instances of <code class="code-voice"><span>Unsafe<wbr/>Pointer</span></code> and <code class="code-voice"><span>Unsafe<wbr/>Mutable<wbr/>Pointer</span></code>. Initialization, assignment, and deinitialization can be performed using <code class="code-voice"><span>Unsafe<wbr/>Mutable<wbr/>Pointer</span></code> methods.</span><!--end_enstr-->
 <span class="jpstr">
 ある型に束縛されているメモリは、それが初期化済みか未初期化かにかかわらず、一般的に型付ポインタを使ってアクセスされます — <code class="code-voice"><span>Unsafe<wbr/>Pointer</span></code>および<code class="code-voice"><span>Unsafe<wbr/>Mutable<wbr/>Pointer</span></code>ではなくて。初期化、代入、そしてデイニシャライズは、<code class="code-voice"><span>Unsafe<wbr/>Mutable<wbr/>Pointer</span></code>メソッドを使って実行されます。
 </span><!--end_jpstr-->
-</p><p><span class="enstr">Memory that has been bound to a type can be rebound to a different type only after it has been deinitialized or if the bound type is a <em>trivial type</em>.Deinitializing typed memory does not unbind that memory’s type.The deinitialized memory can be reinitialized with values of the same type, bound to a new type, or deallocated.</span><!--end_enstr-->
+</p><p><span class="enstr">Memory that has been bound to a type can be rebound to a different type only after it has been deinitialized or if the bound type is a <em>trivial type</em>. Deinitializing typed memory does not unbind that memory’s type. The deinitialized memory can be reinitialized with values of the same type, bound to a new type, or deallocated.</span><!--end_enstr-->
 <span class="jpstr">
 ある型に束縛されているメモリは、それがデイニシャライズされた後にまたは束縛型が<em>trivial type</em>である場合にのみ、異なる型に再束縛が可能です。型付メモリのデイニシャライズは、そのメモリの型を束縛解除しません。デイニシャライズされたメモリは、同じ型の値で再初期化する、新しい型に束縛する、またはデアロケートできます。
 </span><!--end_jpstr-->
@@ -167,11 +167,11 @@ Swift標準ライブラリ
 <span class="jpstr">
 注意
 </span><!--end_jpstr-->
-</p><p><span class="enstr">A trivial type can be copied bit for bit with no indirection or reference-counting operations.Generally, native Swift types that do not contain strong or weak references or other forms of indirection are trivial, as are imported C structs and enumerations.</span><!--end_enstr-->
+</p><p><span class="enstr">A trivial type can be copied bit for bit with no indirection or reference-counting operations. Generally, native Swift types that do not contain strong or weak references or other forms of indirection are trivial, as are imported C structs and enumerations.</span><!--end_enstr-->
 <span class="jpstr">
 自明な型は、ビット対ビットでコピーされることが、何らかの間接参照または参照カウント操作なしで可能です。一般に、生粋のSwift型で強いまたは弱い参照または他形式の間接参照を含まないものは自明です、インポートされたCの構造体と列挙のように。
 </span><!--end_jpstr-->
-</p></aside><p><span class="enstr">When reading from or writing to  memory as raw bytes when that memory is bound to a type, you must ensure that you satisfy any alignment requirements.Writing to typed memory as raw bytes must only be performed when the bound type is a trivial type.</span><!--end_enstr-->
+</p></aside><p><span class="enstr">When reading from or writing to  memory as raw bytes when that memory is bound to a type, you must ensure that you satisfy any alignment requirements. Writing to typed memory as raw bytes must only be performed when the bound type is a trivial type.</span><!--end_enstr-->
 <span class="jpstr">
 メモリから読みだしや書き込みをそのメモリがある型に束縛される時に生のバイトとして行う場合、あなたがあらゆるアライメント要件を満たすことを確実にしなければなりません。型付メモリに生のバイトとして書き込むことは、その束縛型が自明型である場合にのみ実行されるべきです。
 </span><!--end_jpstr-->
@@ -179,7 +179,7 @@ Swift標準ライブラリ
 <span class="jpstr">
 生のポインタ算術
 </span><!--end_jpstr-->
-</h3><div><p><span class="enstr">Pointer arithmetic with raw pointers is performed at the byte level.When you add to or subtract from a raw pointer, the result is a new raw pointer offset by that number of bytes.The following example allocates four bytes of memory and stores <code class="code-voice"><span>0x<wbr/>FF</span></code> in all four bytes:</span><!--end_enstr-->
+</h3><div><p><span class="enstr">Pointer arithmetic with raw pointers is performed at the byte level. When you add to or subtract from a raw pointer, the result is a new raw pointer offset by that number of bytes. The following example allocates four bytes of memory and stores <code class="code-voice"><span>0x<wbr/>FF</span></code> in all four bytes:</span><!--end_enstr-->
 <span class="jpstr">
 生のポインタを使うポインタ算術は、バイト水準で実行されます。あなたが生のポインタに加算または減算する時、結果はそのバイト数をオフセットした（補った、埋め合わせた）新しい生のポインタです。以下の例は、４バイトのメモリをアロケートして<code class="code-voice"><span>0x<wbr/>FF</span></code>を４バイトすべての中に格納します：
 </span><!--end_jpstr-->
@@ -217,7 +217,7 @@ let y = offsetPointer.load(as: UInt16.self)     // 65535
     let value = p.load(as: type)
     print(value)
 }
-</code></pre></div></div></figure><p><span class="enstr">As is typical in Swift, you can call the <code class="code-voice"><span>print(address:<wbr/>as:)</span></code> function with an <code class="code-voice"><span>Unsafe<wbr/>Mutable<wbr/>Raw<wbr/>Pointer</span></code> instance.This example passes <code class="code-voice"><span>raw<wbr/>Pointer</span></code> as the initial parameter.</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">As is typical in Swift, you can call the <code class="code-voice"><span>print(address:<wbr/>as:)</span></code> function with an <code class="code-voice"><span>Unsafe<wbr/>Mutable<wbr/>Raw<wbr/>Pointer</span></code> instance. This example passes <code class="code-voice"><span>raw<wbr/>Pointer</span></code> as the initial parameter.</span><!--end_enstr-->
 <span class="jpstr">
 Swiftでは普通であるように、あなたは<code class="code-voice"><span>print(address:<wbr/>as:)</span></code>関数を<code class="code-voice"><span>Unsafe<wbr/>Mutable<wbr/>Raw<wbr/>Pointer</span></code>インスタンスとともに呼び出せます。この例は、<code class="code-voice"><span>raw<wbr/>Pointer</span></code>を最初のパラメータとして渡します。
 </span><!--end_jpstr-->
@@ -232,14 +232,14 @@ print(address: rawPointer, as: Int.self)
 </p><figure id="2845379"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>let intPointer: UnsafeMutablePointer&lt;Int&gt; = ...
 print(address: intPointer, as: Int.self)
 // Prints "42"
-</code></pre></div></div></figure><p><span class="enstr">Alternatively, you can use Swift’s <em>implicit bridging</em> to pass a pointer to an instance or to the elements of an array.Use inout syntax to implicitly create a pointer to an instance of any type.The following example uses implicit bridging to pass a pointer to <code class="code-voice"><span>value</span></code> when calling <code class="code-voice"><span>print(address:<wbr/>as:)</span></code>:</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">Alternatively, you can use Swift’s <em>implicit bridging</em> to pass a pointer to an instance or to the elements of an array. Use inout syntax to implicitly create a pointer to an instance of any type. The following example uses implicit bridging to pass a pointer to <code class="code-voice"><span>value</span></code> when calling <code class="code-voice"><span>print(address:<wbr/>as:)</span></code>:</span><!--end_enstr-->
 <span class="jpstr">
 あるいはまた、あなたはSwiftの<em>暗黙的ブリッジ</em>を使ってポインタをインスタンスへまたは配列の要素へと渡せます。インアウト構文を使って、任意の型のインスタンスへのポインタを暗黙的に作成してください。以下の例は、<code class="code-voice"><span>print(address:<wbr/>as:)</span></code>を呼び出すとき、暗黙的ブリッジを使ってポインタを<code class="code-voice"><span>value</span></code>へと渡します：
 </span><!--end_jpstr-->
 </p><figure id="2845380"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>var value: Int = 23
 print(address: &amp;value, as: Int.self)
 // Prints "23"
-</code></pre></div></div></figure><p><span class="enstr">A mutable pointer to the elements of an array is implicitly created when you pass the array using inout syntax.This example uses implicit bridging to pass a pointer to the elements of <code class="code-voice"><span>numbers</span></code> when calling <code class="code-voice"><span>print(address:<wbr/>as:)</span></code>.</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">A mutable pointer to the elements of an array is implicitly created when you pass the array using inout syntax. This example uses implicit bridging to pass a pointer to the elements of <code class="code-voice"><span>numbers</span></code> when calling <code class="code-voice"><span>print(address:<wbr/>as:)</span></code>.</span><!--end_enstr-->
 <span class="jpstr">
 配列の要素への可変ポインタは、あなたが配列をinout構文を使って渡す時に暗黙的に作成されます。この例は、<code class="code-voice"><span>print(address:<wbr/>as:)</span></code>を呼び出すとき、暗黙的ブリッジを使ってポインタを<code class="code-voice"><span>numbers</span></code>の要素へと渡します。
 </span><!--end_jpstr-->
@@ -250,7 +250,7 @@ print(address: &amp;numbers, as: Int.self)
 <span class="jpstr">
 重要
 </span><!--end_jpstr-->
-</p><p><span class="enstr">The pointer created through implicit bridging of an instance or of an array’s elements is only valid during the execution of the called function.Escaping the pointer to use after the execution of the function is undefined behavior.In particular, do not use implicit bridging when calling an <code class="code-voice"><span>Unsafe<wbr/>Mutable<wbr/>Raw<wbr/>Pointer</span></code> initializer.</span><!--end_enstr-->
+</p><p><span class="enstr">The pointer created through implicit bridging of an instance or of an array’s elements is only valid during the execution of the called function. Escaping the pointer to use after the execution of the function is undefined behavior. In particular, do not use implicit bridging when calling an <code class="code-voice"><span>Unsafe<wbr/>Mutable<wbr/>Raw<wbr/>Pointer</span></code> initializer.</span><!--end_enstr-->
 <span class="jpstr">
 インスタンスのまたは配列の要素の暗黙的ブリッジを通して作成されるポインタは、呼び出された関数の実行の間に有効であるだけです。関数の実行の後に使うためにポインタを脱出させることは、未定義の挙動となります。とりわけ、暗黙的ブリッジを<code class="code-voice"><span>Unsafe<wbr/>Mutable<wbr/>Raw<wbr/>Pointer</span></code>イニシャライザを呼ぶ時に使わないでください。
 </span><!--end_jpstr-->

@@ -124,7 +124,7 @@ Swift標準ライブラリ
 <span class="jpstr">
 解説
 </span><!--end_jpstr-->
-</h2><div class="formatted-content"><div><p><span class="enstr">You use <code class="code-voice"><span>Any<wbr/>Object</span></code> when you need the flexibility of an untyped object or when you use bridged Objective-C methods and properties that return an untyped result.<code class="code-voice"><span>Any<wbr/>Object</span></code> can be used as the concrete type for an instance of any class, class type, or class-only protocol.For example:</span><!--end_enstr-->
+</h2><div class="formatted-content"><div><p><span class="enstr">You use <code class="code-voice"><span>Any<wbr/>Object</span></code> when you need the flexibility of an untyped object or when you use bridged Objective-C methods and properties that return an untyped result. <code class="code-voice"><span>Any<wbr/>Object</span></code> can be used as the concrete type for an instance of any class, class type, or class-only protocol. For example:</span><!--end_enstr-->
 <span class="jpstr">
 あなたが型付けされないオブジェクトの柔軟性を必要とするとき、または型付けされない結果を返すブリッジされたObjective-Cメソッドやプロパティを使用するとき、あなたは<code class="code-voice"><span>Any<wbr/>Object</span></code>を使います。<code class="code-voice"><span>Any<wbr/>Object</span></code>は、あらゆるクラス、クラス型、またはクラス専用プロパティのインスタンスに対する具象型として使われることができます。例えば：
 </span><!--end_jpstr-->
@@ -138,7 +138,7 @@ Swift標準ライブラリ
 let x = FloatRef(2.3)
 let y: AnyObject = x
 let z: AnyObject = FloatRef.self
-</code></pre></div></div></figure><p><span class="enstr"><code class="code-voice"><span>Any<wbr/>Object</span></code> can also be used as the concrete type for an instance of a type that bridges to an Objective-C class.Many value types in Swift bridge to Objective-C counterparts, like <code class="code-voice"><span>String</span></code> and <code class="code-voice"><span>Int</span></code>.</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr"><code class="code-voice"><span>Any<wbr/>Object</span></code> can also be used as the concrete type for an instance of a type that bridges to an Objective-C class. Many value types in Swift bridge to Objective-C counterparts, like <code class="code-voice"><span>String</span></code> and <code class="code-voice"><span>Int</span></code>.</span><!--end_enstr-->
 <span class="jpstr">
 <code class="code-voice"><span>Any<wbr/>Object</span></code>はまた、Objective-Cクラスへとブリッジするある型のインスタンスに対する具象型として使われることができます。Swiftでの多くの値型は、Objective-Cの相当物へとブリッジします、<code class="code-voice"><span>String</span></code>や<code class="code-voice"><span>Int</span></code>のように。
 </span><!--end_jpstr-->
@@ -149,7 +149,7 @@ print(s is NSString)
 let v: AnyObject = 100 as NSNumber
 print(type(of: v))
 // Prints "__NSCFNumber"
-</code></pre></div></div></figure><p><span class="enstr">The flexible behavior of the <code class="code-voice"><span>Any<wbr/>Object</span></code> protocol is similar to Objective-C’s <code class="code-voice"><span>id</span></code> type.For this reason, imported Objective-C types frequently use <code class="code-voice"><span>Any<wbr/>Object</span></code> as the type for properties, method parameters, and return values.</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">The flexible behavior of the <code class="code-voice"><span>Any<wbr/>Object</span></code> protocol is similar to Objective-C’s <code class="code-voice"><span>id</span></code> type. For this reason, imported Objective-C types frequently use <code class="code-voice"><span>Any<wbr/>Object</span></code> as the type for properties, method parameters, and return values.</span><!--end_enstr-->
 <span class="jpstr">
 <code class="code-voice"><span>Any<wbr/>Object</span></code>プロトコルの柔軟な挙動は、Objective-Cのもつ<code class="code-voice"><span>id</span></code>型に似ています。この理由から、インポートされたObjective-C型はしばしば<code class="code-voice"><span>Any<wbr/>Object</span></code>をプロパティ、メソッドパラメータ、そして戻り値の型として使います。
 </span><!--end_jpstr-->
@@ -169,7 +169,7 @@ AnyObjectインスタンスを既知の型へキャストする
     print("Successful cast to String: \(message)")
 }
 // Prints "Successful cast to String: This is a bridged string."
-</code></pre></div></div></figure><p><span class="enstr">If you have prior knowledge that an <code class="code-voice"><span>Any<wbr/>Object</span></code> instance has a particular type, you can use the unconditional downcast operator (<code class="code-voice"><span>as!</span></code>).Performing an invalid cast triggers a runtime error.</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">If you have prior knowledge that an <code class="code-voice"><span>Any<wbr/>Object</span></code> instance has a particular type, you can use the unconditional downcast operator (<code class="code-voice"><span>as!</span></code>). Performing an invalid cast triggers a runtime error.</span><!--end_enstr-->
 <span class="jpstr">
 あなたが<code class="code-voice"><span>Any<wbr/>Object</span></code>インスタンスがある特定の型を持つという事前の知識を持つならば、無条件のダウンキャスト演算子（<code class="code-voice"><span>as!</span></code>）を使うことも可能です。不正なキャストを行うことは実行時エラーの引き金になります。
 </span><!--end_jpstr-->
@@ -198,7 +198,7 @@ for object in mixedArray {
 <span class="jpstr">
 Objective-Cのメソッドやプロパティへのアクセス
 </span><!--end_jpstr-->
-</h3><div><p><span class="enstr">When you use <code class="code-voice"><span>Any<wbr/>Object</span></code> as a concrete type, you have at your disposal every <code class="code-voice"><span>@objc</span></code> method and property—that is, methods and properties imported from Objective-C or marked with the <code class="code-voice"><span>@objc</span></code> attribute.Because Swift can’t guarantee at compile time that these methods and properties are actually available on an <code class="code-voice"><span>Any<wbr/>Object</span></code> instance’s underlying type, these <code class="code-voice"><span>@objc</span></code> symbols are available as implicitly unwrapped optional methods and properties, respectively.</span><!--end_enstr-->
+</h3><div><p><span class="enstr">When you use <code class="code-voice"><span>Any<wbr/>Object</span></code> as a concrete type, you have at your disposal every <code class="code-voice"><span>@objc</span></code> method and property—that is, methods and properties imported from Objective-C or marked with the <code class="code-voice"><span>@objc</span></code> attribute. Because Swift can’t guarantee at compile time that these methods and properties are actually available on an <code class="code-voice"><span>Any<wbr/>Object</span></code> instance’s underlying type, these <code class="code-voice"><span>@objc</span></code> symbols are available as implicitly unwrapped optional methods and properties, respectively.</span><!--end_enstr-->
 <span class="jpstr">
 あなたが<code class="code-voice"><span>Any<wbr/>Object</span></code>を具体的な型として使うとき、すべての<code class="code-voice"><span>@objc</span></code>メソッドやプロパティ — すなわち、Objective-Cからインポートされるか、<code class="code-voice"><span>@objc</span></code>属性で印されるメソッドとプロパティ — があなたの自由になります。Swiftはそれらのメソッドやプロパティが<code class="code-voice"><span>Any<wbr/>Object</span></code>インスタンスの下に横たわる型で実際に利用可能であるとコンパイル時に保証しないため、これら<code class="code-voice"><span>@objc</span></code>シンボルは暗黙的にアンラップされるオプショナルのメソッドやプロパティとしてそれぞれ利用可能です。
 </span><!--end_jpstr-->
@@ -222,7 +222,7 @@ func getObject() -&gt; AnyObject {
 }
 
 let obj: AnyObject = getObject()
-</code></pre></div></div></figure><p><span class="enstr">In the example, <code class="code-voice"><span>obj</span></code> has a static type of <code class="code-voice"><span>Any<wbr/>Object</span></code> and a dynamic type of <code class="code-voice"><span>Integer<wbr/>Ref</span></code>.You can use optional chaining to call the <code class="code-voice"><span>@objc</span></code> method <code class="code-voice"><span>get<wbr/>Integer<wbr/>Value()</span></code> on <code class="code-voice"><span>obj</span></code> safely.If you’re sure of the dynamic type of <code class="code-voice"><span>obj</span></code>, you can call <code class="code-voice"><span>get<wbr/>Integer<wbr/>Value()</span></code> directly.</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">In the example, <code class="code-voice"><span>obj</span></code> has a static type of <code class="code-voice"><span>Any<wbr/>Object</span></code> and a dynamic type of <code class="code-voice"><span>Integer<wbr/>Ref</span></code>. You can use optional chaining to call the <code class="code-voice"><span>@objc</span></code> method <code class="code-voice"><span>get<wbr/>Integer<wbr/>Value()</span></code> on <code class="code-voice"><span>obj</span></code> safely. If you’re sure of the dynamic type of <code class="code-voice"><span>obj</span></code>, you can call <code class="code-voice"><span>get<wbr/>Integer<wbr/>Value()</span></code> directly.</span><!--end_enstr-->
 <span class="jpstr">
 例において、<code class="code-voice"><span>obj</span></code>は<code class="code-voice"><span>Any<wbr/>Object</span></code>の静的型と<code class="code-voice"><span>Integer<wbr/>Ref</span></code>の動的型を持ちます。あなたは、オプショナル連鎖を使って、<code class="code-voice"><span>@objc</span></code>メソッド<code class="code-voice"><span>get<wbr/>Integer<wbr/>Value()</span></code>を<code class="code-voice"><span>obj</span></code>上で安全に呼び出すことができます。あなたが<code class="code-voice"><span>obj</span></code>の動的型に確信を持つならば、あなたは<code class="code-voice"><span>get<wbr/>Integer<wbr/>Value()</span></code>を直接に呼び出すこともできます。
 </span><!--end_jpstr-->

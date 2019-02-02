@@ -111,7 +111,7 @@ Swift標準ライブラリ
 <span class="jpstr">
 概要
 </span><!--end_jpstr-->
-</h2><div class="formatted-content"><div><p><span class="enstr">The <code class="code-voice"><span>Array<wbr/>Slice</span></code> type makes it fast and efficient for you to perform operations on sections of a larger array.Instead of copying over the elements of a slice to new storage, an <code class="code-voice"><span>Array<wbr/>Slice</span></code> instance presents a view onto the storage of a larger array.And because <code class="code-voice"><span>Array<wbr/>Slice</span></code> presents the same interface as <code class="code-voice"><span>Array</span></code>, you can generally perform the same operations on a slice as you could on the original array.</span><!--end_enstr-->
+</h2><div class="formatted-content"><div><p><span class="enstr">The <code class="code-voice"><span>Array<wbr/>Slice</span></code> type makes it fast and efficient for you to perform operations on sections of a larger array. Instead of copying over the elements of a slice to new storage, an <code class="code-voice"><span>Array<wbr/>Slice</span></code> instance presents a view onto the storage of a larger array. And because <code class="code-voice"><span>Array<wbr/>Slice</span></code> presents the same interface as <code class="code-voice"><span>Array</span></code>, you can generally perform the same operations on a slice as you could on the original array.</span><!--end_enstr-->
 <span class="jpstr">
 <code class="code-voice"><span>Array<wbr/>Slice</span></code>型は、ある大きな配列の各部分上で演算を実行することをあなたの代わりにより速くより効率的にします。ある断片部分（スライス）の要素をすっかり新しいストレージにコピーする代わりに、<code class="code-voice"><span>Array<wbr/>Slice</span></code>インスタンスはある大きな配列に関するある見方（ビュー）を提示します。そして<code class="code-voice"><span>Array<wbr/>Slice</span></code>は<code class="code-voice"><span>Array</span></code>と同じインターフェイスを提供するので、あなたは一般的にあなたが元の配列上でできるのと同じ操作をスライス上で実行できます。
 </span><!--end_jpstr-->
@@ -128,7 +128,7 @@ Swift標準ライブラリ
 例えば、あなたがある学期（２学期制）の各クラスの欠席者数が入った配列を持つと考えてください。
 </span><!--end_jpstr-->
 </p><figure id="2848107"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>let absences = [0, 2, 0, 4, 0, 3, 1, 0]
-</code></pre></div></div></figure><p><span class="enstr">You want to compare the absences in the first half of the session with those in the second half.To do so, start by creating two slices of the <code class="code-voice"><span>absences</span></code> array.</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">You want to compare the absences in the first half of the session with those in the second half. To do so, start by creating two slices of the <code class="code-voice"><span>absences</span></code> array.</span><!--end_enstr-->
 <span class="jpstr">
 あなたは、前学期の欠席者を後半のそれと比較したいと思います。それをするには、<code class="code-voice"><span>absences</span></code>配列の２つのスライスを作成することで始めます。
 </span><!--end_jpstr-->
@@ -136,11 +136,11 @@ Swift標準ライブラリ
 
 let firstHalf = absences[..&lt;midpoint]
 let secondHalf = absences[midpoint...]
-</code></pre></div></div></figure><p><span class="enstr">Neither the <code class="code-voice"><span>first<wbr/>Half</span></code> nor <code class="code-voice"><span>second<wbr/>Half</span></code> slices allocate any new storage of their own.Instead, each presents a view onto the storage of the <code class="code-voice"><span>absences</span></code> array.</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">Neither the <code class="code-voice"><span>first<wbr/>Half</span></code> nor <code class="code-voice"><span>second<wbr/>Half</span></code> slices allocate any new storage of their own. Instead, each presents a view onto the storage of the <code class="code-voice"><span>absences</span></code> array.</span><!--end_enstr-->
 <span class="jpstr">
 <code class="code-voice"><span>first<wbr/>Half</span></code>および<code class="code-voice"><span>second<wbr/>Half</span></code>スライスのどちらも、なんらそれら独自の新規ストレージを割り当てません。代わりに、<code class="code-voice"><span>absences</span></code>配列のストレージ上でのひとつのビューをそれぞれが提示します。
 </span><!--end_jpstr-->
-</p><p><span class="enstr">You can call any method on the slices that you might have called on the <code class="code-voice"><span>absences</span></code> array.To learn which half had more absences, use the <code class="code-voice"><span>reduce(_:<wbr/>_:)</span></code> method to calculate each sum.</span><!--end_enstr-->
+</p><p><span class="enstr">You can call any method on the slices that you might have called on the <code class="code-voice"><span>absences</span></code> array. To learn which half had more absences, use the <code class="code-voice"><span>reduce(_:<wbr/>_:)</span></code> method to calculate each sum.</span><!--end_enstr-->
 <span class="jpstr">
 あなたはどんなメソッドでもそれらスライス上で呼び出すことができます、それはあなたが<code class="code-voice"><span>absences</span></code>配列上で呼び出すであろうものです。前半後半のどちらがより多くの欠席者がいるか突き止めるには、<code class="code-voice"><span>reduce(_:<wbr/>_:)</span></code>メソッドを使ってそれぞれ総計を計算します。
 </span><!--end_jpstr-->
@@ -157,7 +157,7 @@ if firstHalfSum &gt; secondHalfSum {
 <span class="jpstr">
 重要
 </span><!--end_jpstr-->
-</p><p><span class="enstr">Long-term storage of <code class="code-voice"><span>Array<wbr/>Slice</span></code> instances is discouraged.A slice holds a reference to the entire storage of a larger array, not just to the portion it presents, even after the original array’s lifetime ends.Long-term storage of a slice may therefore prolong the lifetime of elements that are no longer otherwise accessible, which can appear to be memory and object leakage.</span><!--end_enstr-->
+</p><p><span class="enstr">Long-term storage of <code class="code-voice"><span>Array<wbr/>Slice</span></code> instances is discouraged. A slice holds a reference to the entire storage of a larger array, not just to the portion it presents, even after the original array’s lifetime ends. Long-term storage of a slice may therefore prolong the lifetime of elements that are no longer otherwise accessible, which can appear to be memory and object leakage.</span><!--end_enstr-->
 <span class="jpstr">
 <code class="code-voice"><span>Array<wbr/>Slice</span></code>インスタンスの長期ストレージは推奨されません。あるスライスは、単にそれが提示する一部分に対してではなく、より大きな配列のストレージ全体への参照を保持します、元の配列の寿命が終わった後でさえも。あるスライスの長期ストレージは、もはやそれ以外ではアクセス可能ではない要素の寿命を延長し、それはメモリとオブジェクトの漏洩であるように見ることができます。
 </span><!--end_jpstr-->
@@ -165,11 +165,11 @@ if firstHalfSum &gt; secondHalfSum {
 <span class="jpstr">
 スライスはインデックスを維持します
 </span><!--end_jpstr-->
-</h3><div><p><span class="enstr">Unlike <code class="code-voice"><span>Array</span></code> and <code class="code-voice"><span>Contiguous<wbr/>Array</span></code>, the starting index for an <code class="code-voice"><span>Array<wbr/>Slice</span></code> instance isn’t always zero.Slices maintain the same indices of the larger array for the same elements, so the starting index of a slice depends on how it was created, letting you perform index-based operations on either a full array or a slice.</span><!--end_enstr-->
+</h3><div><p><span class="enstr">Unlike <code class="code-voice"><span>Array</span></code> and <code class="code-voice"><span>Contiguous<wbr/>Array</span></code>, the starting index for an <code class="code-voice"><span>Array<wbr/>Slice</span></code> instance isn’t always zero. Slices maintain the same indices of the larger array for the same elements, so the starting index of a slice depends on how it was created, letting you perform index-based operations on either a full array or a slice.</span><!--end_enstr-->
 <span class="jpstr">
 <code class="code-voice"><span>Array</span></code>および<code class="code-voice"><span>Contiguous<wbr/>Array</span></code>とは違い、<code class="code-voice"><span>Array<wbr/>Slice</span></code>インスタンスのインデックスの始まりは必ずしもゼロではありません。スライスはより大きな配列と同じインデックスを同じ要素に対して維持します、そのためスライスの開始インデックスはそれがどう作成されたかによって決まり、あなたにインデックスに基づく演算を完全な配列またはスライスのどちらでも実行させます。
 </span><!--end_jpstr-->
-</p><p><span class="enstr">Sharing indices between collections and their subsequences is an important part of the design of Swift’s collection algorithms.Suppose you are tasked with finding the first two days with absences in the session.To find the indices of the two days in question, follow these steps:</span><!--end_enstr-->
+</p><p><span class="enstr">Sharing indices between collections and their subsequences is an important part of the design of Swift’s collection algorithms. Suppose you are tasked with finding the first two days with absences in the session. To find the indices of the two days in question, follow these steps:</span><!--end_enstr-->
 <span class="jpstr">
 コレクションとそれらの下位シーケンスとの間のインデックスの共有は、Swiftのコレクションアルゴリズム設計の重要な部分のひとつです。あなたがこの学期において欠席者のある最初の２つの日付を見つける任務を負うと考えてください。当該の２つの日付のインデックスを見つけるには、これらの手順を踏んでください：
 </span><!--end_jpstr-->

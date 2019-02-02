@@ -111,7 +111,7 @@ Swift標準ライブラリ
 <span class="jpstr">
 概要
 </span><!--end_jpstr-->
-</h2><div class="formatted-content"><div><p><span class="enstr">Effectively managing state, the bits of data that keep track of how the app is being used at the moment, is an important part of a developing your app.Because enumerations define a finite number of states, and can bundle associated values with each individual state, you can use them to model the state of your app and its internal processes.</span><!--end_enstr-->
+</h2><div class="formatted-content"><div><p><span class="enstr">Effectively managing state, the bits of data that keep track of how the app is being used at the moment, is an important part of a developing your app. Because enumerations define a finite number of states, and can bundle associated values with each individual state, you can use them to model the state of your app and its internal processes.</span><!--end_enstr-->
 <span class="jpstr">
 効果的に状態、どのようにその時アプリが使われるかの情報を得る少量のデータ、を管理することは、あなたのアプリの開発の重要な部分です。列挙がある有限の数の状態を定義する、そして個々の状態それぞれに関連値を束ねることから、あなたはそれらを使ってあなたのアプリの状態とそれの内部処理をモデル化できます。
 </span><!--end_jpstr-->
@@ -119,11 +119,11 @@ Swift標準ライブラリ
 <span class="jpstr">
 列挙を使って状態をキャプチャしてください
 </span><!--end_jpstr-->
-</h3><div><p><span class="enstr">Consider an app that requires a user to log into an account.When the app is first opened, the user is unknown, so the state of the app could be called <em>unregistered</em>.After the user has registered or logged into an account, the state is <em>logged in</em>.After some time of inactivity, the user’s session may expire, leaving the app in a <em>session expired</em> state.</span><!--end_enstr-->
+</h3><div><p><span class="enstr">Consider an app that requires a user to log into an account. When the app is first opened, the user is unknown, so the state of the app could be called <em>unregistered</em>. After the user has registered or logged into an account, the state is <em>logged in</em>. After some time of inactivity, the user’s session may expire, leaving the app in a <em>session expired</em> state.</span><!--end_enstr-->
 <span class="jpstr">
 ユーザがアカウントにログインするように要求するアプリを考えください。アプリが最初に開かれた時、ユーザは誰か分かりません、それでアプリの状態は<em>無登録</em>と呼ぶことができるでしょう。ユーザがアカウントに登録またはログインした後は、状態は<em>ログイン済み</em>です。しばらく活動がない後に、ユーザのセッションは期限切れになるかもしれません、アプリを<em>期限切れセッション</em>の状態のままにします。
 </span><!--end_jpstr-->
-</p><p><span class="enstr">You can use an enumeration to specify the exact states needed for your app.This approach defines an <code class="code-voice"><span>App</span></code> class with a nested <code class="code-voice"><span>State</span></code> enumeration that includes only the specific states you need:</span><!--end_enstr-->
+</p><p><span class="enstr">You can use an enumeration to specify the exact states needed for your app. This approach defines an <code class="code-voice"><span>App</span></code> class with a nested <code class="code-voice"><span>State</span></code> enumeration that includes only the specific states you need:</span><!--end_enstr-->
 <span class="jpstr">
 あなたは列挙を使って、あなたのアプリに必要とされる正確な状態を指定できます。この取り組みは、<code class="code-voice"><span>App</span></code>クラスを、あなたが必要とする特定の状態のみを含む<code class="code-voice"><span>State</span></code>列挙とともに定義します：
 </span><!--end_jpstr-->
@@ -138,7 +138,7 @@ Swift標準ライブラリ
   
     // ...
 }
-</code></pre></div></div></figure><p><span class="enstr">In this model, each state is represented by a case with a matching name.The <code class="code-voice"><span>logged<wbr/>In</span></code> and <code class="code-voice"><span>session<wbr/>Expired</span></code> cases include the user as an associated value, while the <code class="code-voice"><span>unregistered</span></code> case doesn't include an associated value.When you update your app's state, there's a single variable, <code class="code-voice"><span>state</span></code>, to modify, no matter what the transition.</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">In this model, each state is represented by a case with a matching name. The <code class="code-voice"><span>logged<wbr/>In</span></code> and <code class="code-voice"><span>session<wbr/>Expired</span></code> cases include the user as an associated value, while the <code class="code-voice"><span>unregistered</span></code> case doesn't include an associated value. When you update your app's state, there's a single variable, <code class="code-voice"><span>state</span></code>, to modify, no matter what the transition.</span><!--end_enstr-->
 <span class="jpstr">
 このモデルにおいて、各状態は合致する名前を持つケース節によって表されます。<code class="code-voice"><span>logged<wbr/>In</span></code>と<code class="code-voice"><span>session<wbr/>Expired</span></code>ケース節はユーザを関連値として含みます、一方で<code class="code-voice"><span>unregistered</span></code>ケース節は関連値を含みません。あなたのアプリの持つ状態をあなたが更新する場合、修正するただ１つの変数、<code class="code-voice"><span>state</span></code>があるだけです、推移が何であろうと。
 </span><!--end_jpstr-->
@@ -150,7 +150,7 @@ Swift標準ライブラリ
 <span class="jpstr">
 アプリの持つ状態を、状態と必要データを保持するよう組み合わせた独立した幾つかの変数を使ってモデル化することもまた可能です、それは推奨されません。
 </span><!--end_jpstr-->
-</p><p><span class="enstr">In this model, the app defines two variables: an optional <code class="code-voice"><span>user</span></code> that stores user information, and a Boolean value named <code class="code-voice"><span>session<wbr/>Expired</span></code>.The <code class="code-voice"><span>user</span></code> variable is <code class="code-voice"><span>nil</span></code> when the user not logged in and has a value once the user logs in.The <code class="code-voice"><span>session<wbr/>Expired</span></code> variable begins as <code class="code-voice"><span>false</span></code> and is set to <code class="code-voice"><span>true</span></code> if the session expires.The three states are captured by different combinations of the two variables.</span><!--end_enstr-->
+</p><p><span class="enstr">In this model, the app defines two variables: an optional <code class="code-voice"><span>user</span></code> that stores user information, and a Boolean value named <code class="code-voice"><span>session<wbr/>Expired</span></code>. The <code class="code-voice"><span>user</span></code> variable is <code class="code-voice"><span>nil</span></code> when the user not logged in and has a value once the user logs in. The <code class="code-voice"><span>session<wbr/>Expired</span></code> variable begins as <code class="code-voice"><span>false</span></code> and is set to <code class="code-voice"><span>true</span></code> if the session expires. The three states are captured by different combinations of the two variables.</span><!--end_enstr-->
 <span class="jpstr">
 このモデルでは、アプリは２つの変数を定義します：ユーザ情報を格納するオプショナルの<code class="code-voice"><span>user</span></code>、そして<code class="code-voice"><span>session<wbr/>Expired</span></code>と名前をつけられるブール値。<code class="code-voice"><span>user</span></code>変数は、ユーザがログインしていない場合<code class="code-voice"><span>nil</span></code>です、そして一旦ユーザがログインするならばある値を持ちます。<code class="code-voice"><span>session<wbr/>Expired</span></code>変数は、<code class="code-voice"><span>false</span></code>で始まります、そしてセッションが期限切れになるならば<code class="code-voice"><span>true</span></code>に設定されます。３つの状態は、２つの変数の異なる組み合わせによって捕えられます。
 </span><!--end_jpstr-->

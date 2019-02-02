@@ -111,7 +111,7 @@ Swift標準ライブラリ
 <span class="jpstr">
 概要
 </span><!--end_jpstr-->
-</h2><div class="formatted-content"><div><p><span class="enstr">Many of the APIs you use in Swift take a closure—or a function passed as an instance—as a parameter.Because closures can contain code that interacts with multiple parts of an app, it's important to understand the different ways closures can be called by the APIs you pass them to.Closures you pass to APIs can be called synchronously (immediately) or asynchronously (sometime later).They may be called once, many times, or never.</span><!--end_enstr-->
+</h2><div class="formatted-content"><div><p><span class="enstr">Many of the APIs you use in Swift take a closure—or a function passed as an instance—as a parameter. Because closures can contain code that interacts with multiple parts of an app, it's important to understand the different ways closures can be called by the APIs you pass them to. Closures you pass to APIs can be called synchronously (immediately) or asynchronously (sometime later). They may be called once, many times, or never.</span><!--end_enstr-->
 <span class="jpstr">
 あなたがSwiftで使うAPIの多くは、クロージャ — またはインスタンスとして渡される関数 — をパラメータとして取ります。クロージャはアプリの複数の部分と相互作用するコードを含むことが可能なため、クロージャが、あなたがそれを渡す相手であるAPIによって呼び出される様々に異なる方法を理解するのは重要です。あなたがAPIに渡すクロージャは、同期的に（直ちに）または非同期的に（いつか後で）呼び出されることができます。それらが呼び出されるのは、一度だけ、何度も、または決してないかもしれません。
 </span><!--end_jpstr-->
@@ -127,11 +127,11 @@ Swift標準ライブラリ
 <span class="jpstr">
 同期および非同期呼び出しの結果を理解する
 </span><!--end_jpstr-->
-</h3><div><p><span class="enstr">When you pass a closure to an API, consider <em>when</em> that closure will be called relative to the other code in your app.In synchronous APIs, the result of calling the closure will be available immediately after you pass the closure.In asynchronous APIs, the result won't be available until sometime later; this difference affects how you write code both <em>in</em> your closure as well as the code <em>following</em> your closure.</span><!--end_enstr-->
+</h3><div><p><span class="enstr">When you pass a closure to an API, consider <em>when</em> that closure will be called relative to the other code in your app. In synchronous APIs, the result of calling the closure will be available immediately after you pass the closure. In asynchronous APIs, the result won't be available until sometime later; this difference affects how you write code both <em>in</em> your closure as well as the code <em>following</em> your closure.</span><!--end_enstr-->
 <span class="jpstr">
 あなたがクロージャをAPIに渡す場合、クロージャが呼び出されるのはあなたのアプリの他のコードと比較して<em>いつか</em>を考えてください。同期APIでは、クロージャ呼び出しの結果は、あなたがクロージャを渡した直後に利用可能になります。非同期APIでは、結果はいつか後まで利用可能でないでしょう；この違いは、あなたがコードを書く方法に、あなたのクロージャ<em>において</em>それだけでなくあなたのクロージャ<em>の後の</em>コードの両方で影響します。
 </span><!--end_jpstr-->
-</p><p><span class="enstr">The example below defines two functions, <code class="code-voice"><span>now(_:)</span></code> and <code class="code-voice"><span>later(_:)</span></code>.You can call both functions the same way: with a trailing closure and no other arguments.Both <code class="code-voice"><span>now(_:)</span></code> and <code class="code-voice"><span>later(_:)</span></code> accept a closure and call it, but <code class="code-voice"><span>later(_:)</span></code> waits a couple seconds before calling its closure.</span><!--end_enstr-->
+</p><p><span class="enstr">The example below defines two functions, <code class="code-voice"><span>now(_:)</span></code> and <code class="code-voice"><span>later(_:)</span></code>. You can call both functions the same way: with a trailing closure and no other arguments. Both <code class="code-voice"><span>now(_:)</span></code> and <code class="code-voice"><span>later(_:)</span></code> accept a closure and call it, but <code class="code-voice"><span>later(_:)</span></code> waits a couple seconds before calling its closure.</span><!--end_enstr-->
 <span class="jpstr">
 下の例は、２つの関数、<code class="code-voice"><span>now(_:)</span></code>と<code class="code-voice"><span>later(_:)</span></code>を定義します。あなたは、両方の関数を同じ方法で呼び出せます：後付クロージャとともにそして他の引数なしで。<code class="code-voice"><span>now(_:)</span></code>と<code class="code-voice"><span>later(_:)</span></code>の両方ともクロージャを受け取りそれを呼び出します、しかし<code class="code-voice"><span>later(_:)</span></code>はそれのクロージャを呼び出す前に２秒ほど待ちます。
 </span><!--end_jpstr-->
@@ -151,7 +151,7 @@ func later(_ closure: @escaping () -&gt; Void) {
 <span class="jpstr">
 <code class="code-voice"><span>now(_:)</span></code>と<code class="code-voice"><span>later(_:)</span></code>関数は、クロージャを取るアプリフレームワーク由来のメソッドにおいてあなたが出くわす、２つの最も一般的なAPIのカテゴリを表します：<code class="code-voice"><span>now(_:)</span></code>のような同期的API、そして<code class="code-voice"><span>later(_:)</span></code>のような非同期的API。
 </span><!--end_jpstr-->
-</p><p><span class="enstr">Because calling a closure can change the local and global state of your app, the code you write on the lines after passing a closure needs to be written with a careful consideration of <em>when</em> that closure is called.Even something as simple as printing a sequence of letters can be affected by the timing of a closure call:</span><!--end_enstr-->
+</p><p><span class="enstr">Because calling a closure can change the local and global state of your app, the code you write on the lines after passing a closure needs to be written with a careful consideration of <em>when</em> that closure is called. Even something as simple as printing a sequence of letters can be affected by the timing of a closure call:</span><!--end_enstr-->
 <span class="jpstr">
 クロージャ呼び出しはあなたのアプリのローカルおよびグローバルな状態を変える可能性があることから、クロージャを渡す後の行であなたが書くコードは、<em>いつ</em>そのクロージャが呼び出されるか注意深く考えて書かれる必要があります。一連の文字を印字するような単純なことでさえ、クロージャ呼び出しの時機によって影響される可能性があります：
 </span><!--end_jpstr-->
@@ -167,7 +167,7 @@ print("D") //<span class="enstr"> Immedately prints "D"</span><!--end_enstr--><s
 
 //<span class="enstr"> Prevent the program from exiting immediately if you're running this code in Terminal.</span><!--end_enstr--><span class="jpstr">（ あなたがこのコードをTerminalで実行するならば、プログラムがすぐに終了するのを防ぎます。）</span><!--end_jpstr-->
 let semaphore = DispatchSemaphore(value: 0).wait(timeout: .now() + 10)
-</code></pre></div></div></figure><p><span class="enstr">Running the code in the example above usually prints the letters in the order <code class="code-voice"><span>B</span></code> → <code class="code-voice"><span>C</span></code> → <code class="code-voice"><span>D</span></code> → <code class="code-voice"><span>A</span></code>.Even though the line that prints <code class="code-voice"><span>A</span></code> is first in the code, it's ordered later in the output.The ordering difference happens due to the way the <code class="code-voice"><span>now(_:)</span></code> and <code class="code-voice"><span>later(_:)</span></code> functions are defined.You need to know how each function calls its closure if you write code that relies on a specific execution order.</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">Running the code in the example above usually prints the letters in the order <code class="code-voice"><span>B</span></code> → <code class="code-voice"><span>C</span></code> → <code class="code-voice"><span>D</span></code> → <code class="code-voice"><span>A</span></code>. Even though the line that prints <code class="code-voice"><span>A</span></code> is first in the code, it's ordered later in the output. The ordering difference happens due to the way the <code class="code-voice"><span>now(_:)</span></code> and <code class="code-voice"><span>later(_:)</span></code> functions are defined. You need to know how each function calls its closure if you write code that relies on a specific execution order.</span><!--end_enstr-->
 <span class="jpstr">
 上の例のコードを実行することは、通常は文字をこの順番で出力します、<code class="code-voice"><span>B</span></code> → <code class="code-voice"><span>C</span></code> → <code class="code-voice"><span>D</span></code> → <code class="code-voice"><span>A</span></code>。たとえ<code class="code-voice"><span>A</span></code>を印字する行がコードにおいて最初であっても、それは出力においてもっと後の順番にされます。順番の違いは、<code class="code-voice"><span>now(_:)</span></code> and <code class="code-voice"><span>later(_:)</span></code>関数が定義される方法のために起こります。あなたは、各関数がそれのクロージャを呼び出す方法を知る必要があります、もしあなたがある明確な実行順序を当てにするコードを書くならば。
 </span><!--end_jpstr-->
@@ -175,15 +175,15 @@ let semaphore = DispatchSemaphore(value: 0).wait(timeout: .now() + 10)
 <span class="jpstr">
 注意
 </span><!--end_jpstr-->
-</p><p><span class="enstr">The order in which <code class="code-voice"><span>A</span></code> is printed relative to the other letters isn't guaranteed.Under typical system conditions, it's usually printed last, but you shouldn't write code that relies on the order of an asychronous call relative to synchronous code without performing more careful synchronization between threads.</span><!--end_enstr-->
+</p><p><span class="enstr">The order in which <code class="code-voice"><span>A</span></code> is printed relative to the other letters isn't guaranteed. Under typical system conditions, it's usually printed last, but you shouldn't write code that relies on the order of an asychronous call relative to synchronous code without performing more careful synchronization between threads.</span><!--end_enstr-->
 <span class="jpstr">
 <code class="code-voice"><span>A</span></code>が他の文字に関連して印字される順番は、保証されません。典型的なシステム条件の下、それはふつうは最後に印字されます、しかしあなたは、スレッド間でより注意深い同期を実行することなく、同期コードに関連して非同期呼び出しの順番を頼るコードを書くべきではありません。
 </span><!--end_jpstr-->
-</p></aside><p><span class="enstr">You'll need to consider this kind of time-based execution problem frequently when using APIs that take closures.In many cases, only one sequence of calls is correct for your app, so it's important to think through what the state of your app will be, given the APIs you're using.Use API names and parameter names along with documentation to determine whether an API is synchronous or asynchronous.</span><!--end_enstr-->
+</p></aside><p><span class="enstr">You'll need to consider this kind of time-based execution problem frequently when using APIs that take closures. In many cases, only one sequence of calls is correct for your app, so it's important to think through what the state of your app will be, given the APIs you're using. Use API names and parameter names along with documentation to determine whether an API is synchronous or asynchronous.</span><!--end_enstr-->
 <span class="jpstr">
 あなたは、クロージャを取るAPIを使う場合に、この種の時間基盤の実行問題をしばしば考える必要があるでしょう。多くの場合に、ただ１つの呼び出し順番だけがあなたのアプリにとって正しいです、それで重要なのは、あなたが使うAPIを与えられて、あなたのアプリの状態がどうなるのか考え抜くことです。API名とパラメータ名を、加えてAPIが同期的または非同期的かを明らかにする文書とともに使ってください。
 </span><!--end_jpstr-->
- </p><p><span class="enstr">A common timing mistake is expecting the results of an asynchronous call to be available within the calling synchronous code.For example, the <code class="code-voice"><span>later(_:)</span></code> method above is comparable to the <a class="symbol-name" href="https://developer.apple.com/documentation/foundation/urlsession"><code><span>URLSession</span></code></a> class's <a class="symbol-name" href="https://developer.apple.com/documentation/foundation/urlsession/1410330-datatask"><code><span>data<wbr/>Task(with:<wbr/>completion<wbr/>Handler:)</span></code></a> method, which is also asynchronous.A timing scenario you should avoid is calling the <code class="code-voice"><span>data<wbr/>Task(with:<wbr/>completion<wbr/>Handler:)</span></code> method within your app's <a class="symbol-name" href="https://developer.apple.com/documentation/uikit/uiviewcontroller/1621495-viewdidload"><code><span>view<wbr/>Did<wbr/>Load()</span></code></a> method and attempting to use the results outside of the closure you pass as the completion handler.</span><!--end_enstr-->
+ </p><p><span class="enstr">A common timing mistake is expecting the results of an asynchronous call to be available within the calling synchronous code. For example, the <code class="code-voice"><span>later(_:)</span></code> method above is comparable to the <a class="symbol-name" href="https://developer.apple.com/documentation/foundation/urlsession"><code><span>URLSession</span></code></a> class's <a class="symbol-name" href="https://developer.apple.com/documentation/foundation/urlsession/1410330-datatask"><code><span>data<wbr/>Task(with:<wbr/>completion<wbr/>Handler:)</span></code></a> method, which is also asynchronous. A timing scenario you should avoid is calling the <code class="code-voice"><span>data<wbr/>Task(with:<wbr/>completion<wbr/>Handler:)</span></code> method within your app's <a class="symbol-name" href="https://developer.apple.com/documentation/uikit/uiviewcontroller/1621495-viewdidload"><code><span>view<wbr/>Did<wbr/>Load()</span></code></a> method and attempting to use the results outside of the closure you pass as the completion handler.</span><!--end_enstr-->
 <span class="jpstr">
 よくあるタイミング間違いは、非同期呼び出しの結果が、呼び出している同期的コード内部で利用可能であると予想することです。例えば、上の<code class="code-voice"><span>later(_:)</span></code>メソッドは、<a class="symbol-name" href="https://developer.apple.com/documentation/foundation/urlsession"><code><span>URLSession</span></code></a>クラスの<a class="symbol-name" href="https://developer.apple.com/documentation/foundation/urlsession/1410330-datatask"><code><span>data<wbr/>Task(with:<wbr/>completion<wbr/>Handler:)</span></code></a>メソッドと似ています。あなたが避けるべきタイミングシナリオは、<code class="code-voice"><span>data<wbr/>Task(with:<wbr/>completion<wbr/>Handler:)</span></code>メソッドをあなたのアプリの<a class="symbol-name" href="https://developer.apple.com/documentation/uikit/uiviewcontroller/1621495-viewdidload"><code><span>view<wbr/>Did<wbr/>Load()</span></code></a>メソッド内部で呼び出す、そして結果をあなたが完了ハンドラとして渡したクロージャの外部で使うのを試みることです。
 </span><!--end_jpstr-->
@@ -210,7 +210,7 @@ let lines = ["x,y", "1,1", "2,4", "3,9", "4,16"]
 </p><figure id="2994080"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>lines.forEach { line in
     file.write("\(line)\n".data(using: .utf8)!)
 }
-</code></pre></div></div></figure><p><span class="enstr">When you're finished using a <code class="code-voice"><span>File<wbr/>Handle</span></code>, close it using <a class="symbol-name" href="https://developer.apple.com/documentation/foundation/filehandle/1413393-closefile"><code><span>close<wbr/>File()</span></code></a>.The correct placement of the call to <code class="code-voice"><span>close<wbr/>File()</span></code> is outside of the closure:</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">When you're finished using a <code class="code-voice"><span>File<wbr/>Handle</span></code>, close it using <a class="symbol-name" href="https://developer.apple.com/documentation/foundation/filehandle/1413393-closefile"><code><span>close<wbr/>File()</span></code></a>. The correct placement of the call to <code class="code-voice"><span>close<wbr/>File()</span></code> is outside of the closure:</span><!--end_enstr-->
 <span class="jpstr">
 あなたが<code class="code-voice"><span>File<wbr/>Handle</span></code>の使用を完了した場合、それを<a class="symbol-name" href="https://developer.apple.com/documentation/foundation/filehandle/1413393-closefile"><code><span>close<wbr/>File()</span></code></a>を使って閉じてください。<code class="code-voice"><span>close<wbr/>File()</span></code>への呼び出しの正しい配置は、クロージャの外側です：
 </span><!--end_jpstr-->
@@ -219,7 +219,7 @@ let lines = ["x,y", "1,1", "2,4", "3,9", "4,16"]
 }
 
 file.closeFile()
-</code></pre></div></div></figure><p><span class="enstr">If you misunderstand the requirements of <a class="symbol-name" href="https://developer.apple.com/documentation/foundation/filehandle/1413393-closefile"><code><span>close<wbr/>File()</span></code></a>, you might place the call inside the closure.Doing so crashes your app:</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">If you misunderstand the requirements of <a class="symbol-name" href="https://developer.apple.com/documentation/foundation/filehandle/1413393-closefile"><code><span>close<wbr/>File()</span></code></a>, you might place the call inside the closure. Doing so crashes your app:</span><!--end_enstr-->
 <span class="jpstr">
 あなたが<a class="symbol-name" href="https://developer.apple.com/documentation/foundation/filehandle/1413393-closefile"><code><span>close<wbr/>File()</span></code></a>の必要条件を取り違えるならば、あなたは呼び出しをクロージャの内側に置くかもしれません。そうすることはあなたのアプリをクラッシュさせます：
 </span><!--end_jpstr-->
@@ -252,7 +252,7 @@ file.closeFile()
         return false
     }
 }
-</code></pre></div></div></figure><p><span class="enstr">Writing code that depends on the completion handler being called is dangerous.There's no guarantee that the random guess will be correct, so important actions like paying bills—scheduled for after you win the lottery—might never happen.</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">Writing code that depends on the completion handler being called is dangerous. There's no guarantee that the random guess will be correct, so important actions like paying bills—scheduled for after you win the lottery—might never happen.</span><!--end_enstr-->
 <span class="jpstr">
 呼び出される完了ハンドラに頼るコードを書くことは危険です。ランダムな推測が正しくなる保証はありません、それで請求書を払うような — あなたが宝くじに当たった後に予定される — 重要な行為は決して起こらないかもしれません。
 </span><!--end_jpstr-->
