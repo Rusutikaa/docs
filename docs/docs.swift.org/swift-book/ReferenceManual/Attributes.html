@@ -414,7 +414,7 @@
 あなたは動的callable型のインスタンスを、まるでそれがいくらかの数の引数を取る関数であるかのように呼び出せます。
 </span><!--end_jpstr-->
 </p>
-<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li>@<span class="nv">dynamicCallable</span>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">@dynamicCallable</span>
 </li><li><span class="k">struct</span> <span class="nv">TelephoneExchange</span> {
 </li><li>    <span class="k">func</span> <span class="nv">dynamicallyCall</span>(<span class="nv">withArguments</span> <span class="nv">phoneNumber</span>: [<span class="nc">Int</span>]) {
 </li><li>        <span class="k">if</span> <span class="nv">phoneNumber</span> == [<span class="m">4</span>, <span class="m">1</span>, <span class="m">1</span>] {
@@ -437,9 +437,9 @@
 </li><li><span class="c">// Call the underlying method directly.</span>
 </li><li><span class="nv">dial</span>.<span class="nv">dynamicallyCall</span>(<span class="nv">withArguments</span>: [<span class="m">4</span>, <span class="m">1</span>, <span class="m">1</span>])
 </li></ol></div></div></div>
-<p><span class="enstr">The declaration of the <code class="docutils literal notranslate"><span class="pre">dynamicallyCall(withArguments:)</span></code> method must have a single parameter that conforms to the <a class="reference external" href="https://developer.apple.com/documentation/swift/expressiblebyarrayliteral"><code class="docutils literal notranslate"><span class="pre">ExpressibleByArrayLiteral</span></code></a> protocol—like <code class="docutils literal notranslate"><span class="pre">[Int]</span></code> in the example above—and the return type can be any type.</span><!--end_enstr-->
+<p><span class="enstr">The declaration of the <code class="docutils literal notranslate"><span class="pre">dynamicallyCall(withArguments:)</span></code> method must have a single parameter that conforms to the <a class="reference external" href="https://developer.apple.com/documentation/swift/expressiblebyarrayliteral"><code class="docutils literal notranslate"><span class="pre">ExpressibleByArrayLiteral</span></code></a> protocol—like <code class="docutils literal notranslate"><span class="pre">[Int]</span></code> in the example above. The return type can be any type.</span><!--end_enstr-->
 <span class="jpstr">
-<code class="docutils literal notranslate"><span class="pre">dynamicallyCall(withArguments:)</span></code>メソッドの宣言は、ある単一のパラメータを持たなければなりません、それは<a class="reference external" href="../../../developer.apple.com/documentation/swift/expressiblebyarrayliteral.html"><code class="docutils literal notranslate"><span class="pre">ExpressibleByArrayLiteral</span></code></a>プロトコルに準拠するものです — 上の例での<code class="docutils literal notranslate"><span class="pre">[Int]</span></code>のように — そして戻り型はどんな型でも構いません。
+<code class="docutils literal notranslate"><span class="pre">dynamicallyCall(withArguments:)</span></code>メソッドの宣言は、<a class="reference external" href="https://developer.apple.com/documentation/swift/expressiblebyarrayliteral"><code class="docutils literal notranslate"><span class="pre">ExpressibleByArrayLiteral</span></code></a>プロトコルに準拠する単一のパラメータを持たなければいけません — 上の例の<code class="docutils literal notranslate"><span class="pre">[Int]</span></code>のように。戻りの型は任意の型であることができます。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">You can include labels in a dynamic method call if you implement the <code class="docutils literal notranslate"><span class="pre">dynamicallyCall(withKeywordArguments:)</span></code> method.</span><!--end_enstr-->
@@ -447,7 +447,7 @@
 あなたは、いくつかのラベルを動的メソッド呼び出しに含めることができます、もしあなたが<code class="docutils literal notranslate"><span class="pre">dynamicallyCall(withKeywordArguments:)</span></code>メソッドを実装するならば。
 </span><!--end_jpstr-->
 </p>
-<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li>@<span class="nv">dynamicCallable</span>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">@dynamicCallable</span>
 </li><li><span class="k">struct</span> <span class="nv">Repeater</span> {
 </li><li>    <span class="k">func</span> <span class="nv">dynamicallyCall</span>(<span class="nv">withKeywordArguments</span> <span class="nv">pairs</span>: <span class="nc">KeyValuePairs</span>&lt;<span class="nc">String</span>, <span class="nc">Int</span>&gt;) -&gt; <span class="nc">String</span> {
 </li><li>        <span class="k">return</span> <span class="nv">pairs</span>
@@ -466,14 +466,14 @@
 </li><li><span class="c">// b b</span>
 </li><li><span class="c">// a</span>
 </li></ol></div></div></div>
-<p><span class="enstr">The declaration of the <code class="docutils literal notranslate"><span class="pre">dynamicallyCall(withKeywordArguments:)</span></code> method must have a single parameter that conforms to the <a class="reference external" href="https://developer.apple.com/documentation/swift/expressiblebydictionaryliteral"><code class="docutils literal notranslate"><span class="pre">ExpressibleByDictionaryLiteral</span></code></a> protocol, and the return type can be any type. The parameter’s <a class="reference external" href="https://developer.apple.com/documentation/swift/expressiblebydictionaryliteral/2294108-key"><code class="docutils literal notranslate"><span class="pre">Key</span></code></a> must be <a class="reference external" href="https://developer.apple.com/documentation/swift/caseiterable"><code class="docutils literal notranslate"><span class="pre">ExpressibleByStringLiteral</span></code></a>. The previous example uses <a class="reference external" href="https://developer.apple.com/documentation/swift/keyvaluepairs"><code class="docutils literal notranslate"><span class="pre">KeyValuePairs</span></code></a> as the parameter type so that callers can include duplicate parameter labels—<code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> are used multiple times in the call to <code class="docutils literal notranslate"><span class="pre">repeat</span></code>.</span><!--end_enstr-->
+<p><span class="enstr">The declaration of the <code class="docutils literal notranslate"><span class="pre">dynamicallyCall(withKeywordArguments:)</span></code> method must have a single parameter that conforms to the <a class="reference external" href="https://developer.apple.com/documentation/swift/expressiblebydictionaryliteral"><code class="docutils literal notranslate"><span class="pre">ExpressibleByDictionaryLiteral</span></code></a> protocol, and the return type can be any type. The parameter’s <a class="reference external" href="https://developer.apple.com/documentation/swift/expressiblebydictionaryliteral/2294108-key"><code class="docutils literal notranslate"><span class="pre">Key</span></code></a> must be <a class="reference external" href="https://developer.apple.com/documentation/swift/expressiblebystringliteral"><code class="docutils literal notranslate"><span class="pre">ExpressibleByStringLiteral</span></code></a>. The previous example uses <a class="reference external" href="https://developer.apple.com/documentation/swift/keyvaluepairs"><code class="docutils literal notranslate"><span class="pre">KeyValuePairs</span></code></a> as the parameter type so that callers can include duplicate parameter labels—<code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> appear multiple times in the call to <code class="docutils literal notranslate"><span class="pre">repeat</span></code>.</span><!--end_enstr-->
 <span class="jpstr">
-<code class="docutils literal notranslate"><span class="pre">dynamicallyCall(withKeywordArguments:)</span></code>メソッドの宣言は、ある単一のパラメータを持たなければなりません、それは<a class="reference external" href="../../../developer.apple.com/documentation/swift/expressiblebydictionaryliteral.html"><code class="docutils literal notranslate"><span class="pre">ExpressibleByDictionaryLiteral</span></code></a>プロトコルに準拠するものです、そして戻り型はどんな型でも構いません。パラメータの<a class="reference external" href="../../../developer.apple.com/documentation/swift/expressiblebydictionaryliteral/2294108-key.html"><code class="docutils literal notranslate"><span class="pre">Key</span></code></a>は、<a class="reference external" href="https://developer.apple.com/documentation/swift/caseiterable"><code class="docutils literal notranslate"><span class="pre">ExpressibleByStringLiteral</span></code></a>でなければなりません。前の例は、<a class="reference external" href="https://developer.apple.com/documentation/swift/keyvaluepairs"><code class="docutils literal notranslate"><span class="pre">KeyValuePairs</span></code></a>をパラメータ型として使います、それで呼び出し側は重複するパラメータラベルを含むことができます — <code class="docutils literal notranslate"><span class="pre">a</span></code>と<code class="docutils literal notranslate"><span class="pre">b</span></code>は<code class="docutils literal notranslate"><span class="pre">repeat</span></code>への呼び出しにおいて複数回使われます。
+<code class="docutils literal notranslate"><span class="pre">dynamicallyCall(withKeywordArguments:)</span></code>メソッドの宣言は、ある単一のパラメータを持たなければなりません、それは<a class="reference external" href="https://developer.apple.com/documentation/swift/expressiblebydictionaryliteral"><code class="docutils literal notranslate"><span class="pre">ExpressibleByDictionaryLiteral</span></code></a>プロトコルに準拠するものです、そして戻り型はどんな型でも構いません。パラメータの<a class="reference external" href="https://developer.apple.com/documentation/swift/expressiblebydictionaryliteral/2294108-key"><code class="docutils literal notranslate"><span class="pre">Key</span></code></a>は、<a class="reference external" href="https://developer.apple.com/documentation/swift/expressiblebystringliteral"><code class="docutils literal notranslate"><span class="pre">ExpressibleByStringLiteral</span></code></a>でなければなりません。前の例は、<a class="reference external" href="https://developer.apple.com/documentation/swift/keyvaluepairs"><code class="docutils literal notranslate"><span class="pre">KeyValuePairs</span></code></a>をパラメータ型として使います、それで呼び出し側は重複するパラメータラベルを含むことができます — <code class="docutils literal notranslate"><span class="pre">a</span></code>と<code class="docutils literal notranslate"><span class="pre">b</span></code>は複数回<code class="docutils literal notranslate"><span class="pre">repeat</span></code>の呼び出しにおいて現れます。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">If you implement both <code class="docutils literal notranslate"><span class="pre">dynamicallyCall</span></code> methods, <code class="docutils literal notranslate"><span class="pre">dynamicallyCall(withKeywordArguments:)</span></code> is called when the method call includes keyword arguments. Otherwise, the <code class="docutils literal notranslate"><span class="pre">dynamicallyCall(withArguments:)</span></code> method is called.</span><!--end_enstr-->
+<p><span class="enstr">If you implement both <code class="docutils literal notranslate"><span class="pre">dynamicallyCall</span></code> methods, <code class="docutils literal notranslate"><span class="pre">dynamicallyCall(withKeywordArguments:)</span></code> is called when the method call includes keyword arguments. In all other cases, <code class="docutils literal notranslate"><span class="pre">dynamicallyCall(withArguments:)</span></code> is called.</span><!--end_enstr-->
 <span class="jpstr">
-あなたが両方の<code class="docutils literal notranslate"><span class="pre">dynamicallyCall</span></code>メソッドを実装するならば、<code class="docutils literal notranslate"><span class="pre">dynamicallyCall(withKeywordArguments:)</span></code>が呼び出されるのは、メソッド呼び出しがキーワード引数を含む時です。そうでなければ、<code class="docutils literal notranslate"><span class="pre">dynamicallyCall(withArguments:)</span></code>メソッドが呼び出されます。
+あなたが両方の<code class="docutils literal notranslate"><span class="pre">dynamicallyCall</span></code>メソッドを実装するならば、<code class="docutils literal notranslate"><span class="pre">dynamicallyCall(withKeywordArguments:)</span></code>が呼び出されるのは、メソッド呼び出しがキーワード引数を含む時です。全ての他の場合には、<code class="docutils literal notranslate"><span class="pre">dynamicallyCall(withArguments:)</span></code>が呼び出されます。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">You can only call a dynamically callable instance with arguments and a return value that match the types you specify in one of your <code class="docutils literal notranslate"><span class="pre">dynamicallyCall</span></code> method implementations. The call in the following example doesn’t compile because there isn’t an implementation of <code class="docutils literal notranslate"><span class="pre">dynamicallyCall(withArguments:)</span></code> that takes <code class="docutils literal notranslate"><span class="pre">KeyValuePairs&lt;String,</span> <span class="pre">String&gt;</span></code>.</span><!--end_enstr-->
@@ -730,7 +730,7 @@
 </p>
 <p><span class="enstr">For example, the Swift standard library includes both a top-level <a class="reference external" href="https://developer.apple.com/documentation/swift/1538339-min/"><code class="docutils literal notranslate"><span class="pre">min(_:_:)</span></code></a> function and a <a class="reference external" href="https://developer.apple.com/documentation/swift/sequence/1641174-min"><code class="docutils literal notranslate"><span class="pre">min()</span></code></a> method for sequences with comparable elements. The sequence method is declared with the <code class="docutils literal notranslate"><span class="pre">warn_unqualified_access</span></code> attribute to help reduce confusion when attempting to use one or the other from within a <code class="docutils literal notranslate"><span class="pre">Sequence</span></code> extension.</span><!--end_enstr-->
 <span class="jpstr">
-例えば、Swift標準ライブラリはトップレベルの<a class="reference external" href="../../../developer.apple.com/documentation/swift/1538339-min.html"><code class="docutils literal notranslate"><span class="pre">min(_:_:)</span></code></a>関数と比較可能要素を持つシーケンスに対する<a class="reference external" href="../../../developer.apple.com/documentation/swift/sequence/1641174-min.html"><code class="docutils literal notranslate"><span class="pre">min()</span></code></a>メソッドの両方を持ちます。シーケンスメソッドは、<code class="docutils literal notranslate"><span class="pre">warn_unqualified_access</span></code>属性で宣言されることで、一方または他方を使うことをある<code class="docutils literal notranslate"><span class="pre">Sequence</span></code>拡張内から試みる時に混乱を減らすのを助けます。
+例えば、Swift標準ライブラリはトップレベルの<a class="reference external" href="https://developer.apple.com/documentation/swift/1538339-min/"><code class="docutils literal notranslate"><span class="pre">min(_:_:)</span></code></a>関数と比較可能要素を持つシーケンスに対する<a class="reference external" href="https://developer.apple.com/documentation/swift/sequence/1641174-min"><code class="docutils literal notranslate"><span class="pre">min()</span></code></a>メソッドの両方を持ちます。シーケンスメソッドは、<code class="docutils literal notranslate"><span class="pre">warn_unqualified_access</span></code>属性で宣言されることで、一方または他方を使うことをある<code class="docutils literal notranslate"><span class="pre">Sequence</span></code>拡張内から試みる時に混乱を減らすのを助けます。
 </span><!--end_jpstr-->
 </p>
 </div>
@@ -833,9 +833,9 @@
 </p>
 <div class="section" id="ID605">
 <h3>unknown<a class="headerlink" href="#ID605" title="Permalink to this headline">¶</a></h3>
-<p><span class="enstr">Apply this attribute to a switch case to indicate that it isn’t expected to be matched by any case of the enumeration that’s known at the time the code is compiled. For an example of how to use the <code class="docutils literal notranslate"><span class="pre">unknown</span></code> attribute, see <a class="reference internal" href="Statements.html#ID602"><span class="std std-ref">Switching over Future Enumeration Cases</span></a>.</span><!--end_enstr-->
+<p><span class="enstr">Apply this attribute to a switch case to indicate that it isn’t expected to be matched by any case of the enumeration that’s known at the time the code is compiled. For an example of how to use the <code class="docutils literal notranslate"><span class="pre">unknown</span></code> attribute, see <a class="reference internal" href="Statements.html#ID602"><span class="std std-ref">Switching Over Future Enumeration Cases</span></a>.</span><!--end_enstr-->
 <span class="jpstr">
-この属性をスイッチケース節に適用して、コードがコンパイルされる時点で既知である列挙のどんなケース節によってもそれが合致されることは期待されないことを指し示してください。どのように<code class="docutils literal notranslate"><span class="pre">unknown</span></code>属性を使うかの例として、<a class="reference internal" href="Statements.html#ID602"><span class="std std-ref">未来列挙ケース節に対してスイッチする</span></a>を見てください。
+この属性をスイッチケース節に適用して、コードがコンパイルされる時点で既知である列挙のどんなケース節によってもそれが合致されることは期待されないことを指し示してください。<code class="docutils literal notranslate"><span class="pre">unknown</span></code>属性を使う方法の例のために、<a class="reference internal" href="Statements.html#ID602"><span class="std std-ref">未来列挙ケース節に対してスイッチする</span></a>を見てください。
 </span><!--end_jpstr-->
 </p>
 <div class="admonition grammar"><p class="first admonition-title"><span class="enstr">Grammar of an attribute</span><!--end_enstr-->
@@ -868,18 +868,6 @@
 </span><!--end_jpstr-->
 </a></p>
     </div>
-
-    <div class="admonition-beta admonition">
-        <p class="first admonition-title">Beta Software</p>
-        <p>
-          <span class="enstr">This documentation contains preliminary information about an API or technology in development. This information is subject to change, and software implemented according to this documentation should be tested with final operating system software.</span><!--end_enstr-->
-<span class="jpstr">
-この文書は、開発でのテクノロジーまたはAPIのための事前の情報を含んでいます。この情報は変更される場合があり、この文書に沿って実装されるソフトウェアは最終的なオペレーティングシステム・ソフトウェアでテストされなければなりません。
-</span><!--end_jpstr-->
-
-        </p>
-        <p class="last"><a class="reference external" href="https://developer.apple.com/support/beta-software/">Learn more about using Apple's beta software</a></p>
-    </div>
 </main>
 
 
@@ -889,7 +877,7 @@
     <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter">Twitter</i></a>
   </aside>
 
-  <p class="copyright">Copyright © 2018 Apple Inc. All rights reserved.</p>
+  <p class="copyright">Copyright © 2019 Apple Inc. All rights reserved.</p>
   <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
   <p class="privacy">
     <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>

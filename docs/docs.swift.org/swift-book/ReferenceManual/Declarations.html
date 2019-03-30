@@ -950,7 +950,7 @@ in-outパラメータは、以下のように渡されます：
 </p>
 <p><span class="enstr">As an optimization, when the argument is a value stored at a physical address in memory, the same memory location is used both inside and outside the function body. The optimized behavior is known as <em>call by reference</em>; it satisfies all of the requirements of the copy-in copy-out model while removing the overhead of copying. Write your code using the model given by copy-in copy-out, without depending on the call-by-reference optimization, so that it behaves correctly with or without the optimization.</span><!--end_enstr-->
 <span class="jpstr">
-ひとつの最適化として、引数がメモリにおいて物理的番地に格納される値である時、同じメモリ位置は関数本体の内側と外側の両方で使われます。この最適化挙動は、<em>参照呼び出し</em>として知られます；それはコピーイン・コピーアウトモデルの要件の全てを満足させる一方でコピーすることのオーバーヘッド（間接的経費）を取り除きます。あなたのコードをコピーイン・コピーアウトによって与えられるモデルを使って描いてください、参照呼び出し最適化に依存することなしに、そうすることでそれは最適化があってもなくても正しく振舞います。
+ひとつの最適化として、引数がメモリにおいて物理的番地に格納される値である時、同じメモリ位置は関数本体の内側と外側の両方で使われます。この最適化挙動は、<em>参照呼び出し</em>として知られます；それはコピーイン・コピーアウトモデルの要件の全てを満足させる一方でコピーすることのオーバーヘッド（間接的経費）を取り除きます。あなたのコードをコピーイン・コピーアウトによって与えられるモデルを使って書いてください、参照呼び出し最適化に依存することなしに、そうすることでそれは最適化があってもなくても正しく振舞います。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">Within a function, don’t access a value that was passed as an in-out argument, even if the original value is available in the current scope. Accessing the original is a simultaneous access of the value, which violates Swift’s memory exclusivity guarantee. For the same reason, you can’t pass the same value to multiple in-out parameters.</span><!--end_enstr-->
@@ -2117,7 +2117,7 @@ in-outパラメータの議論と例のために、<a class="reference internal"
 </li><li>        <span class="c">// implementation</span>
 </li><li>    }
 </li><li>}
-</li><li><span class="c"><span class="enstr">// Error: redundant conformance of 'Array&lt;Element&gt;' to protocol 'Serializable'</span><!--end_enstr--><span class="jpstr">（ エラー: プロトコル 'Serializable' に対しての 'Array&lt;Element&gt;' の冗長な準拠）</span><!--end_jpstr--></span>
+</li><li><span class="c"><span class="enstr">// Error: redundant conformance of 'Array&lt;Element&gt;' to protocol 'Serializable'</span><!--end_enstr--><span class="jpstr">// エラー: プロトコル 'Serializable' に対しての 'Array&lt;Element&gt;' の冗長な準拠</span><!--end_jpstr--></span>
 </li></ol></div></div></div>
 <p><span class="enstr">If you need to add conditional conformance based on multiple concrete types, create a new protocol that each type can conform to and use that protocol as the requirement when declaring conditional conformance.</span><!--end_enstr-->
 <span class="jpstr">
@@ -2182,7 +2182,7 @@ in-outパラメータの議論と例のために、<a class="reference internal"
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">extension</span> <span class="nc">Array</span>: <span class="nc">Loggable</span> <span class="k">where</span> <span class="nc">Element</span>: <span class="nc">TitledLoggable</span> { }
 </li><li><span class="k">extension</span> <span class="nc">Array</span>: <span class="nc">Loggable</span> <span class="k">where</span> <span class="nc">Element</span>: <span class="nc">MarkedLoggable</span> { }
-</li><li><span class="c"><span class="enstr">// Error: redundant conformance of 'Array&lt;Element&gt;' to protocol 'Loggable'</span><!--end_enstr--><span class="jpstr">（ エラー: プロトコル 'Loggable' に対しての 'Array&lt;Element&gt;' の冗長な準拠）</span><!--end_jpstr--></span>
+</li><li><span class="c"><span class="enstr">// Error: redundant conformance of 'Array&lt;Element&gt;' to protocol 'Loggable'</span><!--end_enstr--><span class="jpstr">// エラー: プロトコル 'Loggable' に対しての 'Array&lt;Element&gt;' の冗長な準拠</span><!--end_jpstr--></span>
 </li></ol></div></div></div>
 <div class="admonition grammar"><p class="first admonition-title"><span class="enstr">Grammar of an extension declaration</span><!--end_enstr-->
 <span class="jpstr">
@@ -2380,7 +2380,7 @@ in-outパラメータの議論と例のために、<a class="reference internal"
 </div>
 <p><span class="enstr">Swift defines numerous precedence groups to go along with the operators provided by the standard library. For example, the addition (<code class="docutils literal notranslate"><span class="pre">+</span></code>) and subtraction (<code class="docutils literal notranslate"><span class="pre">-</span></code>) operators belong to the <code class="docutils literal notranslate"><span class="pre">AdditionPrecedence</span></code> group, and the multiplication (<code class="docutils literal notranslate"><span class="pre">*</span></code>) and division (<code class="docutils literal notranslate"><span class="pre">/</span></code>) operators belong to the <code class="docutils literal notranslate"><span class="pre">MultiplicationPrecedence</span></code> group. For a complete list of precedence groups provided by the Swift standard library, see <a class="reference external" href="https://developer.apple.com/documentation/swift/operator_declarations">Operator Declarations</a>.</span><!--end_enstr-->
 <span class="jpstr">
-スウィフトは、標準ライブラリによって提供される演算子と一緒にやっていくために、多数の優先順位グループを定義します。例えば、加算（<code class="docutils literal notranslate"><span class="pre">+</span></code>）および減算（<code class="docutils literal notranslate"><span class="pre">-</span></code>）演算子は、<code class="docutils literal notranslate"><span class="pre">AdditionPrecedence</span></code>グルーブに所属し、そして乗算（<code class="docutils literal notranslate"><span class="pre">*</span></code>）および減算（<code class="docutils literal notranslate"><span class="pre">/</span></code>）演算子は<code class="docutils literal notranslate"><span class="pre">MultiplicationPrecedence</span></code>グルーブに属します。スウィフト標準ライブラリによって提供される優先順位グループの完全なリストとして、<a class="reference external" href="../../../developer.apple.com/documentation/swift/operator_declarations.html">さまざまな演算子宣言</a>を見てください。
+スウィフトは、標準ライブラリによって提供される演算子と一緒にやっていくために、多数の優先順位グループを定義します。例えば、加算（<code class="docutils literal notranslate"><span class="pre">+</span></code>）および減算（<code class="docutils literal notranslate"><span class="pre">-</span></code>）演算子は、<code class="docutils literal notranslate"><span class="pre">AdditionPrecedence</span></code>グルーブに所属し、そして乗算（<code class="docutils literal notranslate"><span class="pre">*</span></code>）および減算（<code class="docutils literal notranslate"><span class="pre">/</span></code>）演算子は<code class="docutils literal notranslate"><span class="pre">MultiplicationPrecedence</span></code>グルーブに属します。スウィフト標準ライブラリによって提供される優先順位グループの完全なリストとして、<a class="reference external" href="https://developer.apple.com/documentation/swift/operator_declarations">さまざまな演算子宣言</a>を見てください。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">The <em>associativity</em> of an operator specifies how a sequence of operators with the same precedence level are grouped together in the absence of grouping parentheses. You specify the associativity of an operator by writing one of the context-sensitive keywords <code class="docutils literal notranslate"><span class="pre">left</span></code>, <code class="docutils literal notranslate"><span class="pre">right</span></code>, or <code class="docutils literal notranslate"><span class="pre">none</span></code>—if your omit the associativity, the default is <code class="docutils literal notranslate"><span class="pre">none</span></code>. Operators that are left-associative group left-to-right. For example, the subtraction operator (<code class="docutils literal notranslate"><span class="pre">-</span></code>) is left-associative, so the expression <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">-</span> <span class="pre">5</span> <span class="pre">-</span> <span class="pre">6</span></code> is grouped as <code class="docutils literal notranslate"><span class="pre">(4</span> <span class="pre">-</span> <span class="pre">5)</span> <span class="pre">-</span> <span class="pre">6</span></code> and evaluates to <code class="docutils literal notranslate"><span class="pre">-7</span></code>. Operators that are right-associative group right-to-left, and operators that are specified with an associativity of <code class="docutils literal notranslate"><span class="pre">none</span></code> don’t associate at all. Nonassociative operators of the same precedence level can’t appear adjacent to each to other. For example, the <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> operator has an associativity of <code class="docutils literal notranslate"><span class="pre">none</span></code>, which means <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">&lt;</span> <span class="pre">2</span> <span class="pre">&lt;</span> <span class="pre">3</span></code> is not a valid expression.</span><!--end_enstr-->
@@ -2552,18 +2552,6 @@ in-outパラメータの議論と例のために、<a class="reference internal"
 </span><!--end_jpstr-->
 </a></p>
     </div>
-
-    <div class="admonition-beta admonition">
-        <p class="first admonition-title">Beta Software</p>
-        <p>
-          <span class="enstr">This documentation contains preliminary information about an API or technology in development. This information is subject to change, and software implemented according to this documentation should be tested with final operating system software.</span><!--end_enstr-->
-<span class="jpstr">
-この文書は、開発でのテクノロジーまたはAPIのための事前の情報を含んでいます。この情報は変更される場合があり、この文書に沿って実装されるソフトウェアは最終的なオペレーティングシステム・ソフトウェアでテストされなければなりません。
-</span><!--end_jpstr-->
-
-        </p>
-        <p class="last"><a class="reference external" href="https://developer.apple.com/support/beta-software/">Learn more about using Apple's beta software</a></p>
-    </div>
 </main>
 
 
@@ -2573,7 +2561,7 @@ in-outパラメータの議論と例のために、<a class="reference internal"
     <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter">Twitter</i></a>
   </aside>
 
-  <p class="copyright">Copyright © 2018 Apple Inc. All rights reserved.</p>
+  <p class="copyright">Copyright © 2019 Apple Inc. All rights reserved.</p>
   <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
   <p class="privacy">
     <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>

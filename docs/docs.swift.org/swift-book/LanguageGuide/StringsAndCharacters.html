@@ -238,6 +238,7 @@
 文字列リテラル内の特別な文字
 </span><!--end_jpstr-->
 </a></li>
+<li><a class="reference internal" href="#ID606">Extended String Delimiters</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#ID287"><span class="enstr">Initializing an Empty String</span><!--end_enstr-->
@@ -393,7 +394,7 @@ UTF-16表現
 </p>
 <p class="last"><span class="enstr">For more information about using <code class="docutils literal notranslate"><span class="pre">String</span></code> with Foundation and Cocoa, see <a class="reference external" href="https://developer.apple.com/documentation/swift/string#2919514">Bridging Between String and NSString</a>.</span><!--end_enstr-->
 <span class="jpstr">
-FoundationとCocoaとともに<code class="docutils literal notranslate"><span class="pre">String</span></code>を使うことについてのさらなる情報として、<a class="reference external" href="../../../developer.apple.com/documentation/swift/string.html#2919514">StringとNSStringの間のブリッジ</a>を見てください。
+FoundationとCocoaとともに<code class="docutils literal notranslate"><span class="pre">String</span></code>を使うことについてのさらなる情報として、<a class="reference external" href="https://developer.apple.com/documentation/swift/string#2919514">StringとNSStringの間のブリッジ</a>を見てください。
 </span><!--end_jpstr-->
 </p>
 </div>
@@ -529,6 +530,32 @@ FoundationとCocoaとともに<code class="docutils literal notranslate"><span c
 </li><li><span class="s">Escaping the first quotation mark \"""</span>
 </li><li><span class="s">Escaping all three quotation marks \"\"\"</span>
 </li><li><span class="s">"""</span>
+</li></ol></div></div></div>
+</div>
+<div class="section" id="ID606">
+<h3><span class="enstr">Extended String Delimiters<a class="headerlink" href="#ID606" title="Permalink to this headline">¶</a></span><!--end_enstr-->
+<span class="jpstr">
+拡張文字列区切り記号<a class="headerlink" href="#ID606" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">You can place a string literal within <em>extended delimiters</em> to include special characters in a string without invoking their effect. You place your string within quotation marks (<code class="docutils literal notranslate"><span class="pre">"</span></code>) and surround that with number signs (<code class="docutils literal notranslate"><span class="pre">#</span></code>). For example, printing the string literal <code class="docutils literal notranslate"><span class="pre">#"Line</span> <span class="pre">1\nLine</span> <span class="pre">2"#</span></code> prints the line feed escape sequence (<code class="docutils literal notranslate"><span class="pre">\n</span></code>) rather than printing the string across two lines.</span><!--end_enstr-->
+<span class="jpstr">
+あなたは、文字列リテラルを<em>拡張区切り記号</em>内に置くことで、いくらかの特殊文字を文字列の中にそれらの効果を発動することなしに含めることができます。あなたは、あなたの文字列を引用符（<code class="docutils literal notranslate"><span class="pre">"</span></code>）内に置きます、そしてそれをシャープ記号（<code class="docutils literal notranslate"><span class="pre">#</span></code>）で囲みます。例えば、文字列リテラル<code class="docutils literal notranslate"><span class="pre">#"Line</span> <span class="pre">1\nLine</span> <span class="pre">2"#</span></code>をブリントすることは、行送りエスケープシーケンス（<code class="docutils literal notranslate"><span class="pre">\n</span></code>）をプリントします、プリントする文字列が２つの行に渡るのではなく。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">If you need the special effects of a character in a string literal, match the number of number signs within the string following the escape character (<code class="docutils literal notranslate"><span class="pre">\</span></code>). For example, if your string is <code class="docutils literal notranslate"><span class="pre">#"Line</span> <span class="pre">1\nLine</span> <span class="pre">2"#</span></code> and you want to break the line, you can use <code class="docutils literal notranslate"><span class="pre">#"Line</span> <span class="pre">1\#nLine</span> <span class="pre">2"#</span></code> instead. Similarly, <code class="docutils literal notranslate"><span class="pre">###"Line1\###nLine2"###</span></code> also breaks the line.</span><!--end_enstr-->
+<span class="jpstr">
+あなたが文字列リテラルの中のある文字の特別な効果を必要とするならば、文字列内のエスケープ文字（<code class="docutils literal notranslate"><span class="pre">\</span></code>）に続くシャープ記号の数を一致させてください。例えば、あなたの文字列が<code class="docutils literal notranslate"><span class="pre">#"Line</span> <span class="pre">1\nLine</span> <span class="pre">2"#</span></code>であるそしてあなたが行を改めることを望むならば、あなたは<code class="docutils literal notranslate"><span class="pre">#"Line</span> <span class="pre">1\#nLine</span> <span class="pre">2"#</span></code>を代わりに使用できます。同様に、<code class="docutils literal notranslate"><span class="pre">###"Line1\###nLine2"###</span></code>もまた行を改めます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">String literals created using extended delimiters can also be multiline string literals. You can use extended delimiters to include the text <code class="docutils literal notranslate"><span class="pre">"""</span></code> in a multiline string, overriding the default behavior that ends the literal. For example:</span><!--end_enstr-->
+<span class="jpstr">
+拡張区切り文字を使って作成される文字列リテラルは、また複数行文字列リテラルであることができます。あなたは拡張区切り文字を使うことで、テキスト<code class="docutils literal notranslate"><span class="pre">"""</span></code>を複数行文字列の中に含めることが、省略時の挙動であるリテラルの終わりをオーバーライドして行えます。例えば：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">let</span> <span class="nv">threeMoreDoubleQuotationMarks</span> = <span class="s">#"""</span>
+</li><li><span class="s">Here are three more double quotes: """</span>
+</li><li><span class="s">"""#</span>
 </li></ol></div></div></div>
 </div>
 </div>
@@ -758,6 +785,22 @@ FoundationとCocoaとともに<code class="docutils literal notranslate"><span c
 <code class="docutils literal notranslate"><span class="pre">multiplier</span></code>の値は、また、文字列の後半のより大きな式の一部でもあります。この式は、<code class="docutils literal notranslate"><span class="pre">Double(multiplier)</span> <span class="pre">*</span> <span class="pre">2.5</span></code>の値を計算して、結果（<code class="docutils literal notranslate"><span class="pre">7.5</span></code>）を文字列に差し込みます。この場合、式は、それが文字列リテラルに含められる時、<code class="docutils literal notranslate"><span class="pre">\(Double(multiplier)</span> <span class="pre">*</span> <span class="pre">2.5)</span></code>と書かれます。
 </span><!--end_jpstr-->
 </p>
+<p><span class="enstr">You can use extended string delimiters to create strings containing characters that would otherwise be treated as a string interpolation. For example:</span><!--end_enstr-->
+<span class="jpstr">
+あなたは、拡張文字列区切り記号を使うことで、そうしなければ文字列補間とみなされる文字を含んでいる文字列を作成できます。例えば：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="nv">print</span>(<span class="s">#"Write an interpolated string in Swift using \(multiplier)."#</span>)
+</li><li><span class="c">// Prints "Write an interpolated string in Swift using \(multiplier)."</span>
+</li></ol></div></div></div>
+<p><span class="enstr">To use string interpolation inside a string that uses extended delimiters, match the number of number signs before the backslash to the number of number signs at the beginning and end of the string. For example:</span><!--end_enstr-->
+<span class="jpstr">
+文字列補間を拡張区切り記号を使う文字列内部で使うには、バックスラッシュの後のシャープ記号の数をその文字列の始まりと終わりでのシャープ記号の数と合わせてください。例えば：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="nv">print</span>(<span class="s">#"6 times 7 is </span>\#<span class="p">(</span><span class="m">6</span> * <span class="m">7</span><span class="p">)</span><span class="s">."#</span>)
+</li><li><span class="c">// Prints "6 times 7 is 42."</span>
+</li></ol></div></div></div>
 <div class="admonition note">
 <p class="first admonition-title"><span class="enstr">Note</span><!--end_enstr-->
 <span class="jpstr">
@@ -1037,7 +1080,7 @@ FoundationとCocoaとともに<code class="docutils literal notranslate"><span c
 </h2>
 <p><span class="enstr">When you get a substring from a string—for example, using a subscript or a method like <code class="docutils literal notranslate"><span class="pre">prefix(_:)</span></code>—the result is an instance of <a class="reference external" href="https://developer.apple.com/documentation/swift/substring"><code class="docutils literal notranslate"><span class="pre">Substring</span></code></a>, not another string. Substrings in Swift have most of the same methods as strings, which means you can work with substrings the same way you work with strings. However, unlike strings, you use substrings for only a short amount of time while performing actions on a string. When you’re ready to store the result for a longer time, you convert the substring to an instance of <code class="docutils literal notranslate"><span class="pre">String</span></code>. For example:</span><!--end_enstr-->
 <span class="jpstr">
-あなたがある文字列から下位文字列を得る場合 — 例えば、添え字または<code class="docutils literal notranslate"><span class="pre">prefix(_:)</span></code>のようなメソッドを使って — その結果は<a class="reference external" href="../../../developer.apple.com/documentation/swift/substring.html"><code class="docutils literal notranslate"><span class="pre">Substring</span></code></a>のインスタンスとなります、別の文字列ではなく。スウィフトでの下位文字列は、文字列とほとんど同じメソッドを持ちます、それはあなたが下位文字列を、文字列を扱うのと同じ方法で扱えることを意味します。しかしながら、文字列と違い、ある文字列に関して様々な行為を行う間の短いある程度の時間だけのために、あなたは下位文字列を使います。あなたが結果を長期間にわたって格納しようとする場合、あなたは下位文字列を<code class="docutils literal notranslate"><span class="pre">String</span></code>のインスタンスへと変換します。例えば：
+あなたがある文字列から下位文字列を得る場合 — 例えば、添え字または<code class="docutils literal notranslate"><span class="pre">prefix(_:)</span></code>のようなメソッドを使って — その結果は<a class="reference external" href="https://developer.apple.com/documentation/swift/substring"><code class="docutils literal notranslate"><span class="pre">Substring</span></code></a>のインスタンスとなります、別の文字列ではなく。スウィフトでの下位文字列は、文字列とほとんど同じメソッドを持ちます、それはあなたが下位文字列を、文字列を扱うのと同じ方法で扱えることを意味します。しかしながら、文字列と違い、ある文字列に関して様々な行為を行う間の短いある程度の時間だけのために、あなたは下位文字列を使います。あなたが結果を長期間にわたって格納しようとする場合、あなたは下位文字列を<code class="docutils literal notranslate"><span class="pre">String</span></code>のインスタンスへと変換します。例えば：
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">let</span> <span class="nv">greeting</span> = <span class="s">"Hello, world!"</span>
@@ -1067,7 +1110,7 @@ FoundationとCocoaとともに<code class="docutils literal notranslate"><span c
 </p>
 <p class="last"><span class="enstr">Both <code class="docutils literal notranslate"><span class="pre">String</span></code> and <code class="docutils literal notranslate"><span class="pre">Substring</span></code> conform to the <a class="reference external" href="https://developer.apple.com/documentation/swift/stringprotocol"><code class="docutils literal notranslate"><span class="pre">StringProtocol</span></code></a> protocol, which means it’s often convenient for string-manipulation functions to accept a <code class="docutils literal notranslate"><span class="pre">StringProtocol</span></code> value. You can call such functions with either a <code class="docutils literal notranslate"><span class="pre">String</span></code> or <code class="docutils literal notranslate"><span class="pre">Substring</span></code> value.</span><!--end_enstr-->
 <span class="jpstr">
-<code class="docutils literal notranslate"><span class="pre">String</span></code>と<code class="docutils literal notranslate"><span class="pre">Substring</span></code>の両方とも<a class="reference external" href="../../../developer.apple.com/documentation/swift/stringprotocol.html"><code class="docutils literal notranslate"><span class="pre">StringProtocol</span></code></a>プロトコルに準拠します、それは<code class="docutils literal notranslate"><span class="pre">StringProtocol</span></code>値を受け取ることは文字列操作関数それぞれにとってしばしば都合が良いのを意味します。あなたは、そのような関数を<code class="docutils literal notranslate"><span class="pre">String</span></code>または<code class="docutils literal notranslate"><span class="pre">Substring</span></code>値で呼出せます。
+<code class="docutils literal notranslate"><span class="pre">String</span></code>と<code class="docutils literal notranslate"><span class="pre">Substring</span></code>の両方とも<a class="reference external" href="https://developer.apple.com/documentation/swift/stringprotocol"><code class="docutils literal notranslate"><span class="pre">StringProtocol</span></code></a>プロトコルに準拠します、それは<code class="docutils literal notranslate"><span class="pre">StringProtocol</span></code>値を受け取ることは文字列操作関数それぞれにとってしばしば都合が良いのを意味します。あなたは、そのような関数を<code class="docutils literal notranslate"><span class="pre">String</span></code>または<code class="docutils literal notranslate"><span class="pre">Substring</span></code>値で呼出せます。
 </span><!--end_jpstr-->
 </p>
 </div>
@@ -1397,18 +1440,6 @@ UTF-16表現<a class="headerlink" href="#ID303" title="Permalink to this headlin
 </span><!--end_jpstr-->
 </a></p>
     </div>
-
-    <div class="admonition-beta admonition">
-        <p class="first admonition-title">Beta Software</p>
-        <p>
-          <span class="enstr">This documentation contains preliminary information about an API or technology in development. This information is subject to change, and software implemented according to this documentation should be tested with final operating system software.</span><!--end_enstr-->
-<span class="jpstr">
-この文書は、開発でのテクノロジーまたはAPIのための事前の情報を含んでいます。この情報は変更される場合があり、この文書に沿って実装されるソフトウェアは最終的なオペレーティングシステム・ソフトウェアでテストされなければなりません。
-</span><!--end_jpstr-->
-
-        </p>
-        <p class="last"><a class="reference external" href="https://developer.apple.com/support/beta-software/">Learn more about using Apple's beta software</a></p>
-    </div>
 </main>
 
 
@@ -1418,7 +1449,7 @@ UTF-16表現<a class="headerlink" href="#ID303" title="Permalink to this headlin
     <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter">Twitter</i></a>
   </aside>
 
-  <p class="copyright">Copyright © 2018 Apple Inc. All rights reserved.</p>
+  <p class="copyright">Copyright © 2019 Apple Inc. All rights reserved.</p>
   <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
   <p class="privacy">
     <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
