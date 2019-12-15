@@ -1,0 +1,447 @@
+<!DOCTYPE html><html lang="en" data-reactroot=""><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>URLSessionTask - Foundation | Apple Developer Documentation</title><!-- link href="https://www.apple.com/wss/fonts?families=SF+Pro,v1|SF+Mono,v1|SF+Pro+Icons,v1" media="all" rel="stylesheet" type="text/css"/ --><meta content="width=device-width, initial-scale=1 viewport-fit=cover" name="viewport"/><meta data-pid="424974"/><link href="../../documentation/assets/application-e5bb1544.css" media="all" rel="stylesheet" type="text/css"/><noscript><link href="../../documentation/assets/nojs-c6be9131.css" media="all" rel="stylesheet" type="text/css"/></noscript><link rel="mask-icon" href="../../documentation/assets/apple-logo.svg" color="#000"/><link rel="shortcut icon" href="../../documentation/assets/favicon.ico"/><script src="../../documentation/assets/shared-b7676010.js"></script></head><body><div id="_omniture_top">
+      <script>
+        var s_account="awdappledeveloper"
+      </script><!-- script src="https://developer.apple.com/assets/metrics/scripts/analytics.js" -->
+      </script>
+      <script>
+        s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
+        s.channel="www.documentation.developer"
+
+        var s_code=s.t();if(s_code)document.write(s_code)
+      </script>
+    </div><div id="app"><div><a href="#main" id="skip-localnav" class="showonfocus hidden">Skip Navigation</a><aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"/><nav id="ac-globalnav" class="no-js" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions/">
+      <div class="ac-gn-content">
+        <ul class="ac-gn-header">
+          <li class="ac-gn-item ac-gn-menuicon">
+            <label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true">
+              <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top">
+                <span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span>
+              </span>
+              <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom">
+                <span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span>
+              </span>
+            </label>
+            <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open">
+              <span class="ac-gn-menuanchor-label">Global Nav Open Menu</span>
+            </a>
+            <a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close">
+              <span class="ac-gn-menuanchor-label">Global Nav Close Menu</span>
+            </a>
+          </li>
+          <li class="ac-gn-item ac-gn-apple">
+            <a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small">
+              <span class="ac-gn-link-text">Apple Developer</span>
+            </a>
+          </li>
+        </ul>
+        <div class="ac-gn-search-placeholder-container" role="search">
+          <div class="ac-gn-search ac-gn-search-small">
+            <a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link aria-label="Search Developer">
+              </a><div class="ac-gn-search-placeholder-bar">
+                <div class="ac-gn-search-placeholder-input">
+                  <div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
+                    <div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
+                    <span class="ac-gn-search-placeholder">Search Developer</span>
+                  </div>
+                </div>
+                <div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close">
+                  <span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <ul class="ac-gn-list">
+          <li class="ac-gn-item ac-gn-apple">
+            <a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus">
+              <span class="ac-gn-link-text">Apple Developer</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-discover">
+            <a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover">
+              <span class="ac-gn-link-text">Discover</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-design">
+            <a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design">
+              <span class="ac-gn-link-text">Design</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-develop">
+            <a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop">
+              <span class="ac-gn-link-text">Develop</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-distribute">
+            <a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute">
+              <span class="ac-gn-link-text">Distribute</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport">
+            <a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport">
+              <span class="ac-gn-link-text">Support</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-account">
+            <a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account">
+              <span class="ac-gn-link-text">Account</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search">
+            <a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link aria-label="Search Developer"></a>
+          </li>
+        </ul>
+        <aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search">
+          <div class="ac-gn-searchview-content">
+            <div class="ac-gn-searchview-bar">
+              <div class="ac-gn-searchview-bar-wrapper">
+                <form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get">
+                  <div class="ac-gn-searchform-wrapper">
+                    <input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions" />
+                    <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button>
+                    <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search">
+                        <span class="ac-gn-searchform-reset-background"></span>
+                      </button>
+                  </div>
+                </form>
+                <button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search">
+                    <span class="ac-gn-searchview-close-cancel" aria-hidden="true">
+                      Cancel
+                    </span>
+                  </button>
+              </div>
+            </div>
+            <aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
+          </div>
+          <button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search">
+              <span class="ac-gn-searchview-close-wrapper">
+                <span class="ac-gn-searchview-close-left"></span>
+                <span class="ac-gn-searchview-close-right"></span>
+              </span>
+            </button>
+        </aside>
+          </div>
+    </nav><div class="ac-gn-blur"></div><div id="ac-gn-curtain" class="ac-gn-curtain"></div><div id="ac-gn-placeholder" class="ac-nav-placeholder"></div><input type="checkbox" id="localnav-menustate" class="localnav-menustate" aria-hidden="true"/><nav id="localnav" class="localnav localnav-dark theme-dark localnav-scrim localnav-noborder" role="navigation" aria-label="API Reference" data-sticky="true"><div class="localnav-wrapper"><div class="referencenav"><div class="localnav-background"></div><div class="localnav-content"><a href="../../index.html" class="localnav-title">Documentation</a><div class="localnav-menu"><a href="#localnav-menustate" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span class="localnav-menucta-anchor-label" aria-hidden="true">Open Menu</span></a><a href="#" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span class="localnav-menucta-anchor-label" aria-hidden="true">Close Menu</span></a><div class="localnav-menu-tray"><ul aria-label="Breadcrumbs" class="localnav-menu-items localnav-menu-breadcrumbs"><li class="localnav-menu-item localnav-menu-breadcrumb-item"><a class="localnav-menu-link" href="../../documentation/foundation.html">Foundation</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item"><a class="localnav-menu-link" href="../../documentation/foundation/url_loading_system.html"><span class="enstr">URL Loading System</span><!--end_enstr-->
+<span class="jpstr">
+URLローディングシステム
+</span><!--end_jpstr-->
+</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item"><div class="localnav-menu-breadcrumb-current-container localnav-menu-link current"><span aria-current="page" class="localnav-menu-breadcrumb-current">URLSessionTask</span></div></li></ul><ul class="localnav-menu-items localnav-menu-settings" data-breadcrumbs-count="3"><li class="localnav-menu-setting language-container"><div class="language-toggle-container"><label for="language-toggle" class="language-toggle-label">Language:</label><select id="language-toggle" class="language-dropdown localnav-menu-link" style="width:auto"><option selected="" value="swift">Swift</option><option value="occ">Objective-C</option></select></div><div class="language-list-container"><span class="localnav-menu-setting-label">Language:</span><ul class="language-list"><li class="language-list-item"><span data-language="swift" aria-current="page" class="current-language">Swift</span></li><li class="language-list-item"><a href="../../documentation/foundation/nsurlsessiontask?language=objc.html" class="localnav-menu-setting-link">Objective-C</a></li></ul></div></li><li class="localnav-menu-setting"><span class="localnav-menu-setting-label">API Changes:</span><span class="changes-toggle">None</span></li></ul></div><div class="localnav-actions"><div class="localnav-action localnav-action-menucta" aria-hidden="true"><label for="localnav-menustate" class="localnav-menucta"><span class="localnav-menucta-chevron"></span></label></div></div></div></div></div></div></nav><label for="localnav-menustate" id="localnav-curtain" aria-hidden="true"></label><main role="main" id="main" class="main" tabindex="0"><div class="topic-title"><span class="eyebrow">Class</span><h1 class="topic-heading"><span>URLSession<wbr/>Task</span></h1></div><div class="topic-container section-content row"><div class="topic-description column large-9 medium-9 small-12"><div class="topic-abstract abstract formatted-content"><div><p><span class="enstr">A task, like downloading a specific resource, performed in a URL session.</span><!--end_enstr-->
+<span class="jpstr">
+URLセッションにおいて実行される、特定のリソースをダウンロードするような、あるタスク。
+</span><!--end_jpstr-->
+</p></div></div></div><div class="topic-summary column large-3 medium-3 small-12"><div class="topic-summary-section sdks" role="complementary" aria-label="SDKs"><p class="topic-summary-section-label subsection-label">SDKs</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item sdk"><span aria-label="iOS 7.0+, Available on iOS 7.0 and later" role="text" title="Available on iOS 7.0 and later">iOS 7.0+</span></li><li class="topic-summary-section-item sdk"><span aria-label="macOS 10.9+, Available on macOS 10.9 and later" role="text" title="Available on macOS 10.9 and later">macOS 10.9+</span></li><li class="topic-summary-section-item sdk"><span aria-label="Mac Catalyst 13.0+, Available on Mac Catalyst 13.0 and later" role="text" title="Available on Mac Catalyst 13.0 and later">Mac Catalyst 13.0+</span></li><li class="topic-summary-section-item sdk"><span aria-label="tvOS 9.0+, Available on tvOS 9.0 and later" role="text" title="Available on tvOS 9.0 and later">tvOS 9.0+</span></li><li class="topic-summary-section-item sdk"><span aria-label="watchOS 2.0+, Available on watchOS 2.0 and later" role="text" title="Available on watchOS 2.0 and later">watchOS 2.0+</span></li></ul></div><div class="topic-summary-section frameworks" role="complementary" aria-label="Framework"><p class="topic-summary-section-label subsection-label"><span class="enstr">Framework</span><!--end_enstr-->
+<span class="jpstr">
+フレームワーク
+</span><!--end_jpstr-->
+</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item"><span>Foundation</span></li></ul></div><div class="topic-summary-section onthispage"><nav class="onthispage-nav" aria-labelledby="onthispage-title"><p id="onthispage-title" class="topic-summary-section-label subsection-label"><span class="enstr">On This Page</span><!--end_enstr-->
+<span class="jpstr">
+この項には
+</span><!--end_jpstr-->
+</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item"><a href="#declarations" class="icon icon-after icon-chevrondowncircle"><span class="enstr">Declaration</span><!--end_enstr-->
+<span class="jpstr">
+宣言
+</span><!--end_jpstr-->
+</a></li><li class="topic-summary-section-item"><a href="#overview" class="icon icon-after icon-chevrondowncircle"><span class="enstr">Overview</span><!--end_enstr-->
+<span class="jpstr">
+概要
+</span><!--end_jpstr-->
+</a></li><li class="topic-summary-section-item"><a href="#topics" class="icon icon-after icon-chevrondowncircle"><span class="enstr">Topics</span><!--end_enstr-->
+<span class="jpstr">
+話題
+</span><!--end_jpstr-->
+</a></li><li class="topic-summary-section-item"><a href="#relationships" class="icon icon-after icon-chevrondowncircle"><span class="enstr">Relationships</span><!--end_enstr-->
+<span class="jpstr">
+関係
+</span><!--end_jpstr-->
+</a></li><li class="topic-summary-section-item"><a href="#see-also" class="icon icon-after icon-chevrondowncircle"><span class="enstr">See Also</span><!--end_enstr-->
+<span class="jpstr">
+参照
+</span><!--end_jpstr-->
+</a></li></ul></nav></div></div><div class="topic-content column large-9 medium-9 small-12" id="topic-content"><section id="declarations" class="section"><h2><span class="enstr">Declaration</span><!--end_enstr-->
+<span class="jpstr">
+宣言
+</span><!--end_jpstr-->
+</h2><figure class="declaration"><div class="code-listing"><pre class="code-source" data-language="swift"><code><span><span class="syntax-keyword">class</span> <span class="syntax-identifier">URLSessionTask</span> : <a class="symbolref" href="https://developer.apple.com/documentation/objectivec/nsobject"><span>NSObject</span></a>
+</span></code></pre></div></figure></section><section id="overview" class="section"><h2><span class="enstr">Overview</span><!--end_enstr-->
+<span class="jpstr">
+概要
+</span><!--end_jpstr-->
+</h2><div class="formatted-content"><div><p><span class="enstr">The <code class="code-voice"><span>URLSession<wbr/>Task</span></code> class is the base class for tasks in a URL session. Tasks are always part of a session; you create a task by calling one of the task creation methods on a <a class="symbol-name" href="../../documentation/foundation/urlsession.html"><code><span>URLSession</span></code></a> instance. The method you call determines the type of task.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="code-voice"><span>URLSession<wbr/>Task</span></code>クラスは、あるURLセッションの中のタスクに対する基本クラスです。タスクは常にあるセッションの一部です；あなたはタスクを<a class="symbol-name" href="../../documentation/foundation/urlsession.html"><code><span>URLSession</span></code></a>インスタンス上でタスク作成メソッドを呼び出すことによって作成します。あなたが呼び出すメソッドは、タスクの種類を決定します。
+</span><!--end_jpstr-->
+</p><ul><li><p><span class="enstr">Use <code class="code-voice"><span>URLSession</span></code>’s <a class="symbol-name" href="../../documentation/foundation/urlsession/1411554-datatask.html"><code><span>data<wbr/>Task(with:)</span></code></a> and related methods to create <a class="symbol-name" href="../../documentation/foundation/urlsessiondatatask.html"><code><span>URLSession<wbr/>Data<wbr/>Task</span></code></a> instances. Data tasks request a resource, returning the server’s response as one or more <code class="code-voice"><span>NSData</span></code> objects in memory. They are supported in default, ephemeral, and shared sessions, but are not supported in background sessions.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="code-voice"><span>URLSession</span></code>のもつ<a class="symbol-name" href="../../documentation/foundation/urlsession/1411554-datatask.html"><code><span>data<wbr/>Task(with:)</span></code></a>と関連メソッドを使って、<a class="symbol-name" href="../../documentation/foundation/urlsessiondatatask.html"><code><span>URLSession<wbr/>Data<wbr/>Task</span></code></a>インスタンスを作成してください。データタスクはあるリソースを要請します、それはサーバのもつ応答を１つ以上の<code class="code-voice"><span>NSData</span></code>オブジェクトとしてメモリの中に返します。それらは、省略時、短命、そして共有セッションでサポートされます、しかしバックグラウンドセッションではサポートされません。
+</span><!--end_jpstr-->
+</p></li><li><p><span class="enstr">Use <code class="code-voice"><span>URLSession</span></code>’s <a class="symbol-name" href="../../documentation/foundation/urlsession/1409763-uploadtask.html"><code><span>upload<wbr/>Task(with:<wbr/>from:)</span></code></a> and related methods to create <a class="symbol-name" href="../../documentation/foundation/urlsessionuploadtask.html"><code><span>URLSession<wbr/>Upload<wbr/>Task</span></code></a> instances. Upload tasks are like data tasks, except that they make it easier to provide a request body so you can upload data before retrieving the server’s response. Additionally, upload tasks are supported in background sessions.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="code-voice"><span>URLSession</span></code>のもつ<a class="symbol-name" href="../../documentation/foundation/urlsession/1409763-uploadtask.html"><code><span>upload<wbr/>Task(with:<wbr/>from:)</span></code></a>と関連メソッドを使って、<a class="symbol-name" href="../../documentation/foundation/urlsessionuploadtask.html"><code><span>URLSession<wbr/>Upload<wbr/>Task</span></code></a>インスタンスを作成してください。アップロードタスクはデータタスクに似ています、しかしそれらがリクエストボディの提供をより簡単にすることを除きます、それであなたはサーバのもつ応答を受け取る前にデータをアップロードできます。加えて、アップロードタスクは、バックグラウンドセッションにおいてサポートされます。
+</span><!--end_jpstr-->
+</p></li><li><p><span class="enstr">Use <code class="code-voice"><span>URLSession</span></code>’s <a class="symbol-name" href="../../documentation/foundation/urlsession/1411482-downloadtask.html"><code><span>download<wbr/>Task(with:)</span></code></a> and related methods to create <a class="symbol-name" href="../../documentation/foundation/urlsessiondownloadtask.html"><code><span>URLSession<wbr/>Download<wbr/>Task</span></code></a> instances. Download tasks download a resource directly to a file on disk. Download tasks are supported in any type of session.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="code-voice"><span>URLSession</span></code>のもつ<a class="symbol-name" href="../../documentation/foundation/urlsession/1411482-downloadtask.html"><code><span>download<wbr/>Task(with:)</span></code></a>と関連メソッドを使って、<a class="symbol-name" href="../../documentation/foundation/urlsessiondownloadtask.html"><code><span>URLSession<wbr/>Download<wbr/>Task</span></code></a>インスタンスを作成してください。ダウンロードタスクは、リソースを直接にディスク上のファイルへとダウンロードします。ダウンロードタスクは、あらゆる型のセッションにおいてサポートされます。
+</span><!--end_jpstr-->
+</p></li><li><p><span class="enstr">Use <code class="code-voice"><span>URLSession</span></code>’s <a class="symbol-name" href="../../documentation/foundation/urlsession/1411587-streamtask.html"><code><span>stream<wbr/>Task(with<wbr/>Host<wbr/>Name:<wbr/>port:)</span></code></a> or <a class="symbol-name" href="../../documentation/foundation/urlsession/1411545-streamtask.html"><code><span>stream<wbr/>Task(with:)</span></code></a> to create <a class="symbol-name" href="../../documentation/foundation/urlsessionstreamtask.html"><code><span>URLSession<wbr/>Stream<wbr/>Task</span></code></a> instances. Stream tasks establish a TCP/IP connection from a host name and port or a net service object.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="code-voice"><span>URLSession</span></code>のもつ<a class="symbol-name" href="../../documentation/foundation/urlsession/1411587-streamtask.html"><code><span>stream<wbr/>Task(with<wbr/>Host<wbr/>Name:<wbr/>port:)</span></code></a>または<a class="symbol-name" href="../../documentation/foundation/urlsession/1411545-streamtask.html"><code><span>stream<wbr/>Task(with:)</span></code></a>を使って、<a class="symbol-name" href="../../documentation/foundation/urlsessionstreamtask.html"><code><span>URLSession<wbr/>Stream<wbr/>Task</span></code></a>インスタンスを作成してください。ストリームタスクは、TCP/IP接続をホスト名とポートまたは新しいネットサービスオブジェクトから確立します。
+</span><!--end_jpstr-->
+</p></li></ul><p><span class="enstr">After you create a task, you start it by calling its <a class="symbol-name" href="../../documentation/foundation/urlsessiontask/1411121-resume.html"><code><span>resume()</span></code></a> method. The session then maintains a strong reference to the task until the request finishes or fails; you don’t need to maintain a reference to the task unless it’s useful for your app’s internal bookkeeping.</span><!--end_enstr-->
+<span class="jpstr">
+あなたがタスクを作成する後、あなたはそれをそれの<a class="symbol-name" href="../../documentation/foundation/urlsessiontask/1411121-resume.html"><code><span>resume()</span></code></a>メソッドを呼び出すことによって開始します。セッションは、それからそのタスクへの強い参照をリクエストが終了または失敗するまで保守します；あなたはタスクへの参照を保守する必要はありません、それがあなたのアプリのもつ内部的簿記に役立つ場合を除いて。
+</span><!--end_jpstr-->
+</p><aside class="aside aside-note" role="note"><p class="aside-name"><span class="enstr">Note</span><!--end_enstr-->
+<span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p><p><span class="enstr">All task properties support key-value observing.</span><!--end_enstr-->
+<span class="jpstr">
+全てのタスクプロパティは、キー値監視をサポートします。
+</span><!--end_jpstr-->
+</p></aside></div></div></section></div></div><section id="topics" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><span class="enstr">Topics</span><!--end_enstr-->
+<span class="jpstr">
+話題
+</span><!--end_jpstr-->
+</h2><section id="1660369" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Controlling the Task State</span><!--end_enstr-->
+<span class="jpstr">
+タスク状態を制御する
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/urlsessiontask/1411591-cancel.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">cancel</span><span class="decorator">()</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Cancels the task.</span><!--end_enstr-->
+<span class="jpstr">
+タスクを取り消します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/urlsessiontask/1411121-resume.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">resume</span><span class="decorator">()</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Resumes the task, if it is suspended.</span><!--end_enstr-->
+<span class="jpstr">
+タスクを再開します、もしれそが一時停止されるならば。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/urlsessiontask/1411565-suspend.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">suspend</span><span class="decorator">()</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Temporarily suspends a task.</span><!--end_enstr-->
+<span class="jpstr">
+一時的にタスクを一時停止します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/urlsessiontask/1409888-state.html"><code class="display-name"><span class="decorator">var </span><span class="identifier">state</span><span class="decorator">: URLSession<wbr/>Task<wbr/>.State</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The current state of the task—active, suspended, in the process of being canceled, or completed.</span><!--end_enstr-->
+<span class="jpstr">
+タスクの現在の状態 — 活動中、一時停止、取り消される処理中、または完了した。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/urlsessiontask/state.html"><code class="display-name"><span class="decorator">enum </span><span class="identifier">URLSession<wbr/>Task<wbr/>.State</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Constants for determining the current state of a task.</span><!--end_enstr-->
+<span class="jpstr">
+タスクの現在の状態を決定するための定数。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/urlsessiontask/1410569-priority.html"><code class="display-name"><span class="decorator">var </span><span class="identifier">priority</span><span class="decorator">: Float</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The relative priority at which you’d like a host to handle the task, specified as a floating point value between <code class="code-voice"><span>0<wbr/>.0</span></code> (lowest priority) and <code class="code-voice"><span>1<wbr/>.0</span></code> (highest priority).</span><!--end_enstr-->
+<span class="jpstr">
+それであなたがホストにそのタスクを取り扱って欲しい相対的優先度、<code class="code-voice"><span>0<wbr/>.0</span></code>（最低優先度）と<code class="code-voice"><span>1<wbr/>.0</span></code>（最高優先度）の間の浮動小数点値として指定されます。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../documentation/foundation/urlsessiontask/url_session_task_priority.html"><svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 15 16" class="svg-icon symbol-name-icon" aria-hidden="true"><title>API Collection</title><g class="svg-icon-small" fill-rule="evenodd"><path fill-rule="nonzero" d="M0,0 L15,0 L15,15 L0,15 L0,0 Z M1,14 L14,14 L14,1 L1,1 L1,14 Z"></path><polygon points="4 11 3 11 3 10 4 10"></polygon><polygon points="4 8 3 8 3 7 4 7"></polygon><polygon points="4 5 3 5 3 4 4 4"></polygon><polygon points="12 11 5 11 5 10 12 10"></polygon><polygon points="12 8 5 8 5 7 12 7"></polygon><polygon points="12 5 5 5 5 4 12 4"></polygon></g></svg><span><span class="enstr">URL Session Task Priority</span><!--end_enstr-->
+<span class="jpstr">
+URLセッションタスク優先度
+</span><!--end_jpstr-->
+</span></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Constants for providing task priority hints to a host, used with the <a class="symbol-name" href="../../documentation/foundation/urlsessiontask/1410569-priority.html"><code><span>priority</span></code></a> property.</span><!--end_enstr-->
+<span class="jpstr">
+タスク優先度ヒントをホストに提供するための定数、<a class="symbol-name" href="../../documentation/foundation/urlsessiontask/1410569-priority.html"><code><span>priority</span></code></a>プロパティで使われます。
+</span><!--end_jpstr-->
+</p></div></div></div></div></div></div></div></section><section id="1660482" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Obtaining Task Progress</span><!--end_enstr-->
+<span class="jpstr">
+タスク進捗を取得する
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/urlsessiontask/2908821-progress.html"><code class="display-name"><span class="decorator">var </span><span class="identifier">progress</span><span class="decorator">: Progress</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A representation of the overall task progress.</span><!--end_enstr-->
+<span class="jpstr">
+全てひっくるめたタスク進捗の表現。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/urlsessiontask/1410663-countofbytesexpectedtoreceive.html"><code class="display-name"><span class="decorator">var </span><span class="identifier">count<wbr/>Of<wbr/>Bytes<wbr/>Expected<wbr/>To<wbr/>Receive</span><span class="decorator">: Int64</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The number of bytes that the task expects to receive in the response body.</span><!--end_enstr-->
+<span class="jpstr">
+タスクが応答ボディにおいて受け取ることを予想するバイト数。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/urlsessiontask/1411581-countofbytesreceived.html"><code class="display-name"><span class="decorator">var </span><span class="identifier">count<wbr/>Of<wbr/>Bytes<wbr/>Received</span><span class="decorator">: Int64</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The number of bytes that the task has received from the server in the response body.</span><!--end_enstr-->
+<span class="jpstr">
+タスクがサーバーから応答ボディにおいて受け取ったバイト数。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/urlsessiontask/1411534-countofbytesexpectedtosend.html"><code class="display-name"><span class="decorator">var </span><span class="identifier">count<wbr/>Of<wbr/>Bytes<wbr/>Expected<wbr/>To<wbr/>Send</span><span class="decorator">: Int64</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The number of bytes that the task expects to send in the request body.</span><!--end_enstr-->
+<span class="jpstr">
+タスクがリクエストボディにおいて送ることを予想するバイト数。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/urlsessiontask/1410444-countofbytessent.html"><code class="display-name"><span class="decorator">var </span><span class="identifier">count<wbr/>Of<wbr/>Bytes<wbr/>Sent</span><span class="decorator">: Int64</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The number of bytes that the task has sent to the server in the request body.</span><!--end_enstr-->
+<span class="jpstr">
+タスクがリクエストボディにおいてサーバーに送ったバイト数。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsurlsessiontransfersizeunknown.html"><code class="display-name"><span class="decorator">let </span><span class="identifier">NSURLSession<wbr/>Transfer<wbr/>Size<wbr/>Unknown</span><span class="decorator">: Int64</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The total size of the transfer cannot be determined.</span><!--end_enstr-->
+<span class="jpstr">
+転送の合計サイズが決定されることができません。
+</span><!--end_jpstr-->
+</p></div></div></div></div></div></div></div></section><section id="1660538" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Obtaining General Task Information</span><!--end_enstr-->
+<span class="jpstr">
+一般的タスク情報を入手する
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/urlsessiontask/1411649-currentrequest.html"><code class="display-name"><span class="decorator">var </span><span class="identifier">current<wbr/>Request</span><span class="decorator">: URLRequest?</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The URL request object currently being handled by the task.</span><!--end_enstr-->
+<span class="jpstr">
+現在タスクによって取り扱われているURLリクエストオブジェクト。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/urlsessiontask/1411572-originalrequest.html"><code class="display-name"><span class="decorator">var </span><span class="identifier">original<wbr/>Request</span><span class="decorator">: URLRequest?</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The original request object passed when the task was created.</span><!--end_enstr-->
+<span class="jpstr">
+タスクが作成された時に渡された元のリクストオブジェクト。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/urlsessiontask/1410586-response.html"><code class="display-name"><span class="decorator">var </span><span class="identifier">response</span><span class="decorator">: URLResponse?</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The server’s response to the currently active request.</span><!--end_enstr-->
+<span class="jpstr">
+現在活動中のリクエストへのサーバのもつ応答。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/urlsessiontask/1409798-taskdescription.html"><code class="display-name"><span class="decorator">var </span><span class="identifier">task<wbr/>Description</span><span class="decorator">: String?</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p>An app-provided string value for the current task.</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/urlsessiontask/1411231-taskidentifier.html"><code class="display-name"><span class="decorator">var </span><span class="identifier">task<wbr/>Identifier</span><span class="decorator">: Int</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">An identifier uniquely identifying the task within a given session.</span><!--end_enstr-->
+<span class="jpstr">
+与えられたセッション内でタスクを特有に識別している識別子。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/urlsessiontask/1408145-error.html"><code class="display-name"><span class="decorator">var </span><span class="identifier">error</span><span class="decorator">: Error?</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">An error object that indicates why the task failed.</span><!--end_enstr-->
+<span class="jpstr">
+なぜタスクが失敗したかを指し示しているエラーオブジェクト。
+</span><!--end_jpstr-->
+</p></div></div></div></div></div></div></div></section><section id="2919275" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Scheduling Tasks</span><!--end_enstr-->
+<span class="jpstr">
+タスクを予定する
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/urlsessiontask/2873414-countofbytesclientexpectstorecei.html"><code class="display-name"><span class="decorator">var </span><span class="identifier">count<wbr/>Of<wbr/>Bytes<wbr/>Client<wbr/>Expects<wbr/>To<wbr/>Receive</span><span class="decorator">: Int64</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A best-guess upper bound on the number of bytes the client expects to receive.</span><!--end_enstr-->
+<span class="jpstr">
+クライアントが受け取ることを期待するバイトの数の、最も妥当な上側境界。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/urlsessiontask/2873401-countofbytesclientexpectstosend.html"><code class="display-name"><span class="decorator">var </span><span class="identifier">count<wbr/>Of<wbr/>Bytes<wbr/>Client<wbr/>Expects<wbr/>To<wbr/>Send</span><span class="decorator">: Int64</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A best-guess upper bound on the number of bytes the client expects to send.</span><!--end_enstr-->
+<span class="jpstr">
+クライアントが送信することを期待するバイトの数の、最も妥当な上側境界。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsurlsessiontransfersizeunknown.html"><code class="display-name"><span class="decorator">let </span><span class="identifier">NSURLSession<wbr/>Transfer<wbr/>Size<wbr/>Unknown</span><span class="decorator">: Int64</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The total size of the transfer cannot be determined.</span><!--end_enstr-->
+<span class="jpstr">
+転送の合計サイズが決定されることができません。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/urlsessiontask/2873413-earliestbegindate.html"><code class="display-name"><span class="decorator">var </span><span class="identifier">earliest<wbr/>Begin<wbr/>Date</span><span class="decorator">: Date?</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The earliest date at which the network load should begin.</span><!--end_enstr-->
+<span class="jpstr">
+それでネットワークロードが始まるべき最も早い日付。
+</span><!--end_jpstr-->
+</p></div></div></div></div></div></div></div></section><section id="3256434" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Initializers</span><!--end_enstr-->
+<span class="jpstr">
+イニシャライザ
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info has-inline-element"><a class="task-topic-deprecated symbol-name symbol-name-decorated" href="../../documentation/foundation/urlsessiontask/3240624-init.html"><code class="display-name"><span class="identifier">init</span><span class="decorator">()</span></code></a><span class="violator violator-inline violator-deprecated task-topic-violator task-topic-data task-topic-data-inline" role="presentation">Deprecated</span></div></div></div></div></div></section><section id="3256435" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Type Methods</span><!--end_enstr-->
+<span class="jpstr">
+型メソッド
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info has-inline-element"><a class="task-topic-deprecated symbol-name symbol-name-decorated" href="../../documentation/foundation/urlsessiontask/3240625-new.html"><code class="display-name"><span class="decorator">class func </span><span class="identifier">new</span><span class="decorator">() -&gt; Self</span></code></a><span class="violator violator-inline violator-deprecated task-topic-violator task-topic-data task-topic-data-inline" role="presentation">Deprecated</span></div></div></div></div></div></section></div></div></section><section id="relationships" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><span class="enstr">Relationships</span><!--end_enstr-->
+<span class="jpstr">
+関係
+</span><!--end_jpstr-->
+</h2><section id="inherits-from" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Inherits From</span><!--end_enstr-->
+<span class="jpstr">
+継承元
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div><a class="symbol-name" href="https://developer.apple.com/documentation/objectivec/nsobject"><code><span>NSObject</span></code></a></div></div></div></section><section id="conforms-to" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Conforms To</span><!--end_enstr-->
+<span class="jpstr">
+次に準拠
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><ul class="relationships-section-content-columns"><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/cvararg.html"><code><span>CVar<wbr/>Arg</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/equatable.html"><code><span>Equatable</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/hashable.html"><code><span>Hashable</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/foundation/nscopying.html"><code><span>NSCopying</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/foundation/progressreporting.html"><code><span>Progress<wbr/>Reporting</span></code></a></div></li></ul></div></div></section></div></div></section><section id="see-also" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><span class="enstr">See Also</span><!--end_enstr-->
+<span class="jpstr">
+参照
+</span><!--end_jpstr-->
+</h2><section id="2878017" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title">Essentials</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../documentation/foundation/url_loading_system/fetching_website_data_into_memory.html"><svg xmlns="http://www.w3.org/2000/svg" height="15" viewBox="0 0 22 30" class="svg-icon symbol-name-icon" aria-hidden="true"><title>Article</title><g id="Article" class="svg-icon-small"><path d="M12.87,0H0V2H0V28H0v2H22V9.13ZM20,28H2V2h9V12h9Zm0-18H13V3l7,7Z"></path></g></svg><span><span class="enstr">Fetching Website Data into Memory</span><!--end_enstr-->
+<span class="jpstr">
+ウェブサイトデータをメモリへと取ってくる
+</span><!--end_jpstr-->
+</span></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Receive data directly into memory by creating a data task from a URL session.</span><!--end_enstr-->
+<span class="jpstr">
+データを直接にメモリへと、あるデータタスクをURLセッションから作成することによって、受け取ります。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/urlsession.html"><code class="display-name"><span class="decorator">class </span><span class="identifier">URLSession</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p>An object that coordinates a group of related, network data-transfer tasks.</p></div></div></div></div></div></div></div></section></div></div></section></main><section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo">
+        <nav class="footer-breadory">
+          <a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a>
+          <section class="breadcrumbs">
+            <ol class="breadcrumbs-list">
+              <li><a href=/documentation>Documentation</a></li>
+            </ol>
+          </section>
+          <div id="directorynav" class="directorynav">
+            <div id="dn-cola" class="column">
+              <h3><a href="/discover/">Discover</a></h3>
+              <ul>
+                <li><a href="/macos/">macOS</a></li>
+                <li><a href="/ios/">iOS</a></li>
+                <li><a href="/watchos/">watchOS</a></li>
+                <li><a href="/tvos/">tvOS</a></li>
+                <li><a href="/safari/">Safari and Web</a></li>
+                <li><a href="/games/">Games</a></li>
+                <li><a href="/business/">Business</a></li>
+                <li><a href="/education/">Education</a></li>
+                <li><a href="/wwdc/">WWDC</a></li>
+              </ul>
+            </div>
+            <div id="dn-colb" class="column">
+              <h3><a href="/design/">Design</a></h3>
+              <ul>
+                <li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
+                <li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
+<span class="jpstr">
+リソース
+</span><!--end_jpstr-->
+</a></li>
+                <li><a href="/videos/design/">Videos</a></li>
+                <li><a href="/design/awards/">Apple Design Awards</a></li>
+                <li><a href="/accessibility/">Accessibility</a></li>
+                <li><a href="/internationalization/"><span class="enstr">Internationalization</span><!--end_enstr-->
+<span class="jpstr">
+国際化
+</span><!--end_jpstr-->
+</a></li>
+                <li><a href="/accessories/">Accessories</a></li>
+              </ul>
+            </div>
+            <div id="dn-colc" class="column">
+              <h3><a href="/develop/">Develop</a></h3>
+              <ul>
+                <li><a href="/xcode/">Xcode</a></li>
+                <li><a href="/swift/">Swift</a></li>
+                <li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
+                <li><a href="/testflight/">TestFlight</a></li>
+                <li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
+                <li><a href="/videos/">Videos</a></li>
+                <li><a href="/download/">Downloads</a></li>
+              </ul>
+            </div>
+            <div id="dn-cold" class="column">
+              <h3><a href="/distribute/">Distribute</a></h3>
+              <ul>
+                <li><a href="/programs/">Developer Program</a></li>
+                <li><a href="/app-store/">App Store</a></li>
+                <li><a href="/app-store/review/">App Review</a></li>
+                <li><a href="/macos/distribution/">Mac Software</a></li>
+                <li><a href="/business/distribute/">Apps for Business</a></li>
+                <li><a href="/safari/extensions/">Safari Extensions</a></li>
+                <li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
+                <li><a href="/softwarelicensing/">Trademark Licensing</a></li>
+              </ul>
+            </div>
+            <div id="dn-cole" class="column">
+              <h3><a href="/support/">Support</a></h3>
+              <ul>
+                <li><a href="https://forums.developer.apple.com">Developer Forums</a></li>
+                <li><a href="/bug-reporting/">Bug Reporting</a></li>
+                <li><a href="/terms/">License Agreements</a></li>
+                <li><a href="/system-status/">System Status</a></li>
+                <li><a href="/contact/">Contact Us</a></li>
+              </ul>
+              <h3><a href="/account/">Account</a></h3>
+              <ul>
+                <li><a href="/account/ios/certificate/">Certificates, IDs &amp; Profiles</a></li>
+                <li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="ac-gf-footer-legal">
+          <div class="ac-gf-footer-news"> To receive the latest developer news, visit and subscribe to our <a href="/news/">News and Updates</a>.
+          </div>
+          <div class="ac-gf-footer-legal-copyright">Copyright © 2019 Apple Inc. All rights reserved.</div>
+          <div class="ac-gf-footer-legal-links">
+            <a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a>
+            <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+            <a href="/bug-reporting/">Report Bugs</a>
+            <a href="/contact/submit/?subject=website-feedback">Feedback</a>
+          </div>
+          <div class="ac-gf-footer-language-links">
+            <a href="/cn/" class="first">简体中文</a>
+            <a href="/jp/">日本語</a>
+            <a href="/kr/">한국어</a>
+          </div>
+        </div>
+      </footer></section></div></div><script id="bootstrap-data" type="application/json">{"id":1410455,"title":{"content":"URLSessionTask"},"abstract":"<div><p>A task, like downloading a specific resource, performed in a URL session.<\/p><\/div>","discussion":"<div><p>The <code class=\"code-voice\"><span>URLSession<wbr\/>Task<\/span><\/code> class is the base class for tasks in a URL session. Tasks are always part of a session; you create a task by calling one of the task creation methods on a <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsession\"><code><span>URLSession<\/span><\/code><\/a> instance. The method you call determines the type of task.<\/p><ul><li><p>Use <code class=\"code-voice\"><span>URLSession<\/span><\/code>’s <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsession\/1411554-datatask\"><code><span>data<wbr\/>Task(with:)<\/span><\/code><\/a> and related methods to create <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsessiondatatask\"><code><span>URLSession<wbr\/>Data<wbr\/>Task<\/span><\/code><\/a> instances. Data tasks request a resource, returning the server’s response as one or more <code class=\"code-voice\"><span>NSData<\/span><\/code> objects in memory. They are supported in default, ephemeral, and shared sessions, but are not supported in background sessions.<\/p><\/li><li><p>Use <code class=\"code-voice\"><span>URLSession<\/span><\/code>’s <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsession\/1409763-uploadtask\"><code><span>upload<wbr\/>Task(with:<wbr\/>from:)<\/span><\/code><\/a> and related methods to create <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsessionuploadtask\"><code><span>URLSession<wbr\/>Upload<wbr\/>Task<\/span><\/code><\/a> instances. Upload tasks are like data tasks, except that they make it easier to provide a request body so you can upload data before retrieving the server’s response. Additionally, upload tasks are supported in background sessions.<\/p><\/li><li><p>Use <code class=\"code-voice\"><span>URLSession<\/span><\/code>’s <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsession\/1411482-downloadtask\"><code><span>download<wbr\/>Task(with:)<\/span><\/code><\/a> and related methods to create <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsessiondownloadtask\"><code><span>URLSession<wbr\/>Download<wbr\/>Task<\/span><\/code><\/a> instances. Download tasks download a resource directly to a file on disk. Download tasks are supported in any type of session.<\/p><\/li><li><p>Use <code class=\"code-voice\"><span>URLSession<\/span><\/code>’s <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsession\/1411587-streamtask\"><code><span>stream<wbr\/>Task(with<wbr\/>Host<wbr\/>Name:<wbr\/>port:)<\/span><\/code><\/a> or <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsession\/1411545-streamtask\"><code><span>stream<wbr\/>Task(with:)<\/span><\/code><\/a> to create <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsessionstreamtask\"><code><span>URLSession<wbr\/>Stream<wbr\/>Task<\/span><\/code><\/a> instances. Stream tasks establish a TCP\/IP connection from a host name and port or a net service object.<\/p><\/li><\/ul><p>After you create a task, you start it by calling its <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsessiontask\/1411121-resume\"><code><span>resume()<\/span><\/code><\/a> method. The session then maintains a strong reference to the task until the request finishes or fails; you don’t need to maintain a reference to the task unless it’s useful for your app’s internal bookkeeping.<\/p><aside class=\"aside aside-note\" role=\"note\"><p class=\"aside-name\">Note<\/p><p>All task properties support key-value observing.<\/p><\/aside><\/div>","containingGroup":[{"id":2878017,"role":"task","paths":[],"abstract":"<div><p>Configure and create sessions, then use them to create tasks that interact with URLs.<\/p><\/div>","symbols":[{"id":2919362,"role":"article","paths":["documentation\/foundation\/url_loading_system\/fetching_website_data_into_memory"],"abstract":"<div><p>Receive data directly into memory by creating a data task from a URL session.<\/p><\/div>","title":{"content":"Fetching Website Data into Memory"}},{"id":1411632,"role":"symbol","usr":"c:objc(cs)NSURLSession","name":"NSURLSession","domain":"swift","kind":"cl","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">class <\/span><span class=\"identifier\">URLSession<\/span><\/code>","paths":["documentation\/foundation\/urlsession"],"title":{"content":"URLSession"},"abstract":"<div><p>An object that coordinates a group of related, network data-transfer tasks.<\/p><\/div>","hasChildren":true},{"id":1410455,"role":"symbol","usr":"c:objc(cs)NSURLSessionTask","name":"NSURLSessionTask","domain":"swift","kind":"cl","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">class <\/span><span class=\"identifier\">URLSession<wbr\/>Task<\/span><\/code>","paths":["documentation\/foundation\/urlsessiontask"],"title":{"content":"URLSessionTask"},"abstract":"<div><p>A task, like downloading a specific resource, performed in a URL session.<\/p><\/div>","hasChildren":true}],"title":{"content":"Essentials"}}],"usr":"c:objc(cs)NSURLSessionTask","name":"NSURLSessionTask","domain":"swift","kind":"cl","availability":[{"platform":"iOS","current":"13.3","introduced":"7.0"},{"platform":"macOS","current":"10.15.2","introduced":"10.9"},{"platform":"Mac Catalyst","current":"13.3","introduced":"13.0"},{"platform":"tvOS","current":"13.2","introduced":"9.0"},{"platform":"watchOS","current":"6.2","introduced":"2.0"}],"conformance":[{"id":1410299,"usr":"c:objc(pl)NSProgressReporting","name":"NSProgressReporting","domain":"swift","kind":"intf","role":"symbol","paths":["documentation\/foundation\/progressreporting"],"title":{"content":"ProgressReporting"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1417041,"usr":"c:objc(pl)NSCopying","name":"NSCopying","domain":"swift","kind":"intf","role":"symbol","paths":["documentation\/foundation\/nscopying"],"title":{"content":"NSCopying"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1641507,"usr":"s:s7CVarArgP","name":"CVarArg","domain":"swift","kind":"intf","role":"symbol","paths":["documentation\/swift\/cvararg"],"title":{"content":"CVarArg"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1541213,"usr":"s:SQ","name":"Equatable","domain":"swift","kind":"intf","role":"symbol","paths":["documentation\/swift\/equatable"],"title":{"content":"Equatable"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1540942,"usr":"s:SH","name":"Hashable","domain":"swift","kind":"intf","role":"symbol","paths":["documentation\/swift\/hashable"],"title":{"content":"Hashable"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]}],"inheritance":[{"id":1418879,"usr":"c:objc(cs)NSObject","name":"NSObject","domain":"swift","kind":"cl","role":"symbol","paths":["documentation\/objectivec\/nsobject"],"title":{"content":"NSObject"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]}],"module":[{"title":{"content":"Foundation"},"importStatement":"<div><span class=\"syntax-identifier\">import<\/span> Foundation<\/div>","paths":["documentation\/foundation"],"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">class <\/span><span class=\"identifier\">URLSession<wbr\/>Task<\/span><\/code>","declaration":[{"content":"<span><span class=\"syntax-keyword\">class<\/span> <span class=\"syntax-identifier\">URLSessionTask<\/span> : <a class=\"symbolref\" href=\"\/documentation\/objectivec\/nsobject\"><span>NSObject<\/span><\/a>\n<\/span>","platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"],"references":{"1418879":{"id":1418879,"role":"symbol","paths":["documentation\/objectivec\/nsobject"],"usr":"c:objc(cs)NSObject","kind":"cl","language":"swift","domain":"swift","name":"NSObject","languages":["occ","swift"],"title":{"content":"NSObject"}}}}],"role":"symbol","language":"swift","roleHeading":"Class","languages":["occ","swift"],"variants":{"occ":{"paths":["documentation\/foundation\/nsurlsessiontask"],"usr":"c:objc(cs)NSURLSessionTask"},"swift":{"paths":["documentation\/foundation\/urlsessiontask"],"usr":"c:objc(cs)NSURLSessionTask"}},"pid":424974,"paths":["documentation\/foundation\/urlsessiontask"],"hierarchy":[[{"id":1613013,"role":"collection","title":{"content":"Foundation"},"paths":["documentation\/foundation"]},{"id":2877756,"role":"collectionGroup","title":{"content":"URL Loading System"},"paths":["documentation\/foundation\/url_loading_system"]}]],"legalNotices":{"copyright":"Copyright &copy; 2019 Apple Inc. All rights reserved.","termsOfUse":"https:\/\/www.apple.com\/legal\/internet-services\/terms\/site.html","privacyPolicy":"https:\/\/www.apple.com\/privacy\/privacy-policy"},"tasks":[{"id":1660369,"role":"task","symbols":[{"id":1411591,"role":"symbol","usr":"c:objc(cs)NSURLSessionTask(im)cancel","name":"cancel()","domain":"swift","kind":"instm","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">cancel<\/span><span class=\"decorator\">()<\/span><\/code>","paths":["documentation\/foundation\/urlsessiontask\/1411591-cancel"],"title":{"content":"cancel()"},"abstract":"<div><p>Cancels the task.<\/p><\/div>"},{"id":1411121,"role":"symbol","usr":"c:objc(cs)NSURLSessionTask(im)resume","name":"resume()","domain":"swift","kind":"instm","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">resume<\/span><span class=\"decorator\">()<\/span><\/code>","paths":["documentation\/foundation\/urlsessiontask\/1411121-resume"],"title":{"content":"resume()"},"abstract":"<div><p>Resumes the task, if it is suspended.<\/p><\/div>"},{"id":1411565,"role":"symbol","usr":"c:objc(cs)NSURLSessionTask(im)suspend","name":"suspend()","domain":"swift","kind":"instm","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">suspend<\/span><span class=\"decorator\">()<\/span><\/code>","paths":["documentation\/foundation\/urlsessiontask\/1411565-suspend"],"title":{"content":"suspend()"},"abstract":"<div><p>Temporarily suspends a task.<\/p><\/div>"},{"id":1409888,"role":"symbol","usr":"c:objc(cs)NSURLSessionTask(py)state","name":"state","domain":"swift","kind":"instp","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">var <\/span><span class=\"identifier\">state<\/span><span class=\"decorator\">: URLSession<wbr\/>Task<wbr\/>.State<\/span><\/code>","paths":["documentation\/foundation\/urlsessiontask\/1409888-state"],"title":{"content":"state"},"abstract":"<div><p>The current state of the task—active, suspended, in the process of being canceled, or completed.<\/p><\/div>"},{"id":1411542,"role":"symbol","usr":"c:@E@NSURLSessionTaskState","name":"NSURLSessionTaskState","domain":"swift","kind":"enum","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">enum <\/span><span class=\"identifier\">URLSession<wbr\/>Task<wbr\/>.State<\/span><\/code>","paths":["documentation\/foundation\/urlsessiontask\/state"],"title":{"content":"URLSessionTask.State"},"abstract":"<div><p>Constants for determining the current state of a task.<\/p><\/div>","hasChildren":true},{"id":1410569,"role":"symbol","usr":"c:objc(cs)NSURLSessionTask(py)priority","name":"priority","domain":"swift","kind":"instp","availability":[{"platform":"iOS","introduced":"8.0"},{"platform":"macOS","introduced":"10.10"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">var <\/span><span class=\"identifier\">priority<\/span><span class=\"decorator\">: Float<\/span><\/code>","paths":["documentation\/foundation\/urlsessiontask\/1410569-priority"],"title":{"content":"priority"},"abstract":"<div><p>The relative priority at which you’d like a host to handle the task, specified as a floating point value between <code class=\"code-voice\"><span>0<wbr\/>.0<\/span><\/code> (lowest priority) and <code class=\"code-voice\"><span>1<wbr\/>.0<\/span><\/code> (highest priority).<\/p><\/div>"},{"id":1660699,"role":"collectionGroup","paths":["documentation\/foundation\/urlsessiontask\/url_session_task_priority"],"hasChildren":true,"abstract":"<div><p>Constants for providing task priority hints to a host, used with the <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsessiontask\/1410569-priority\"><code><span>priority<\/span><\/code><\/a> property.<\/p><\/div>","title":{"content":"URL Session Task Priority"}}],"title":{"content":"Controlling the Task State"}},{"id":1660482,"role":"task","symbols":[{"id":2908821,"role":"symbol","usr":"c:objc(cs)NSURLSessionTask(py)progress","name":"progress","domain":"swift","kind":"instp","availability":[{"platform":"iOS","introduced":"11.0"},{"platform":"macOS","introduced":"10.13"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"11.0"},{"platform":"watchOS","introduced":"4.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">var <\/span><span class=\"identifier\">progress<\/span><span class=\"decorator\">: Progress<\/span><\/code>","paths":["documentation\/foundation\/urlsessiontask\/2908821-progress"],"title":{"content":"progress"},"abstract":"<div><p>A representation of the overall task progress.<\/p><\/div>"},{"id":1410663,"role":"symbol","usr":"c:objc(cs)NSURLSessionTask(py)countOfBytesExpectedToReceive","name":"countOfBytesExpectedToReceive","domain":"swift","kind":"instp","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">var <\/span><span class=\"identifier\">count<wbr\/>Of<wbr\/>Bytes<wbr\/>Expected<wbr\/>To<wbr\/>Receive<\/span><span class=\"decorator\">: Int64<\/span><\/code>","paths":["documentation\/foundation\/urlsessiontask\/1410663-countofbytesexpectedtoreceive"],"title":{"content":"countOfBytesExpectedToReceive"},"abstract":"<div><p>The number of bytes that the task expects to receive in the response body.<\/p><\/div>"},{"id":1411581,"role":"symbol","usr":"c:objc(cs)NSURLSessionTask(py)countOfBytesReceived","name":"countOfBytesReceived","domain":"swift","kind":"instp","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">var <\/span><span class=\"identifier\">count<wbr\/>Of<wbr\/>Bytes<wbr\/>Received<\/span><span class=\"decorator\">: Int64<\/span><\/code>","paths":["documentation\/foundation\/urlsessiontask\/1411581-countofbytesreceived"],"title":{"content":"countOfBytesReceived"},"abstract":"<div><p>The number of bytes that the task has received from the server in the response body.<\/p><\/div>"},{"id":1411534,"role":"symbol","usr":"c:objc(cs)NSURLSessionTask(py)countOfBytesExpectedToSend","name":"countOfBytesExpectedToSend","domain":"swift","kind":"instp","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">var <\/span><span class=\"identifier\">count<wbr\/>Of<wbr\/>Bytes<wbr\/>Expected<wbr\/>To<wbr\/>Send<\/span><span class=\"decorator\">: Int64<\/span><\/code>","paths":["documentation\/foundation\/urlsessiontask\/1411534-countofbytesexpectedtosend"],"title":{"content":"countOfBytesExpectedToSend"},"abstract":"<div><p>The number of bytes that the task expects to send in the request body.<\/p><\/div>"},{"id":1410444,"role":"symbol","usr":"c:objc(cs)NSURLSessionTask(py)countOfBytesSent","name":"countOfBytesSent","domain":"swift","kind":"instp","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">var <\/span><span class=\"identifier\">count<wbr\/>Of<wbr\/>Bytes<wbr\/>Sent<\/span><span class=\"decorator\">: Int64<\/span><\/code>","paths":["documentation\/foundation\/urlsessiontask\/1410444-countofbytessent"],"title":{"content":"countOfBytesSent"},"abstract":"<div><p>The number of bytes that the task has sent to the server in the request body.<\/p><\/div>"},{"id":1411650,"role":"symbol","usr":"c:@NSURLSessionTransferSizeUnknown","name":"NSURLSessionTransferSizeUnknown","domain":"swift","kind":"data","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">let <\/span><span class=\"identifier\">NSURLSession<wbr\/>Transfer<wbr\/>Size<wbr\/>Unknown<\/span><span class=\"decorator\">: Int64<\/span><\/code>","paths":["documentation\/foundation\/nsurlsessiontransfersizeunknown"],"title":{"content":"NSURLSessionTransferSizeUnknown"},"abstract":"<div><p>The total size of the transfer cannot be determined.<\/p><\/div>"}],"title":{"content":"Obtaining Task Progress"}},{"id":1660538,"role":"task","symbols":[{"id":1411649,"role":"symbol","usr":"c:objc(cs)NSURLSessionTask(py)currentRequest","name":"currentRequest","domain":"swift","kind":"instp","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">var <\/span><span class=\"identifier\">current<wbr\/>Request<\/span><span class=\"decorator\">: URLRequest?<\/span><\/code>","paths":["documentation\/foundation\/urlsessiontask\/1411649-currentrequest"],"title":{"content":"currentRequest"},"abstract":"<div><p>The URL request object currently being handled by the task.<\/p><\/div>"},{"id":1411572,"role":"symbol","usr":"c:objc(cs)NSURLSessionTask(py)originalRequest","name":"originalRequest","domain":"swift","kind":"instp","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">var <\/span><span class=\"identifier\">original<wbr\/>Request<\/span><span class=\"decorator\">: URLRequest?<\/span><\/code>","paths":["documentation\/foundation\/urlsessiontask\/1411572-originalrequest"],"title":{"content":"originalRequest"},"abstract":"<div><p>The original request object passed when the task was created.<\/p><\/div>"},{"id":1410586,"role":"symbol","usr":"c:objc(cs)NSURLSessionTask(py)response","name":"response","domain":"swift","kind":"instp","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">var <\/span><span class=\"identifier\">response<\/span><span class=\"decorator\">: URLResponse?<\/span><\/code>","paths":["documentation\/foundation\/urlsessiontask\/1410586-response"],"title":{"content":"response"},"abstract":"<div><p>The server’s response to the currently active request.<\/p><\/div>"},{"id":1409798,"role":"symbol","usr":"c:objc(cs)NSURLSessionTask(py)taskDescription","name":"taskDescription","domain":"swift","kind":"instp","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">var <\/span><span class=\"identifier\">task<wbr\/>Description<\/span><span class=\"decorator\">: String?<\/span><\/code>","paths":["documentation\/foundation\/urlsessiontask\/1409798-taskdescription"],"title":{"content":"taskDescription"},"abstract":"<div><p>An app-provided string value for the current task.<\/p><\/div>"},{"id":1411231,"role":"symbol","usr":"c:objc(cs)NSURLSessionTask(py)taskIdentifier","name":"taskIdentifier","domain":"swift","kind":"instp","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">var <\/span><span class=\"identifier\">task<wbr\/>Identifier<\/span><span class=\"decorator\">: Int<\/span><\/code>","paths":["documentation\/foundation\/urlsessiontask\/1411231-taskidentifier"],"title":{"content":"taskIdentifier"},"abstract":"<div><p>An identifier uniquely identifying the task within a given session.<\/p><\/div>"},{"id":1408145,"role":"symbol","usr":"c:objc(cs)NSURLSessionTask(py)error","name":"error","domain":"swift","kind":"instp","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">var <\/span><span class=\"identifier\">error<\/span><span class=\"decorator\">: Error?<\/span><\/code>","paths":["documentation\/foundation\/urlsessiontask\/1408145-error"],"title":{"content":"error"},"abstract":"<div><p>An error object that indicates why the task failed.<\/p><\/div>"}],"title":{"content":"Obtaining General Task Information"}},{"id":2919275,"role":"task","symbols":[{"id":2873414,"role":"symbol","usr":"c:objc(cs)NSURLSessionTask(py)countOfBytesClientExpectsToReceive","name":"countOfBytesClientExpectsToReceive","domain":"swift","kind":"instp","availability":[{"platform":"iOS","introduced":"11.0"},{"platform":"macOS","introduced":"10.13"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"11.0"},{"platform":"watchOS","introduced":"4.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">var <\/span><span class=\"identifier\">count<wbr\/>Of<wbr\/>Bytes<wbr\/>Client<wbr\/>Expects<wbr\/>To<wbr\/>Receive<\/span><span class=\"decorator\">: Int64<\/span><\/code>","paths":["documentation\/foundation\/urlsessiontask\/2873414-countofbytesclientexpectstorecei"],"title":{"content":"countOfBytesClientExpectsToReceive"},"abstract":"<div><p>A best-guess upper bound on the number of bytes the client expects to receive.<\/p><\/div>"},{"id":2873401,"role":"symbol","usr":"c:objc(cs)NSURLSessionTask(py)countOfBytesClientExpectsToSend","name":"countOfBytesClientExpectsToSend","domain":"swift","kind":"instp","availability":[{"platform":"iOS","introduced":"11.0"},{"platform":"macOS","introduced":"10.13"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"11.0"},{"platform":"watchOS","introduced":"4.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">var <\/span><span class=\"identifier\">count<wbr\/>Of<wbr\/>Bytes<wbr\/>Client<wbr\/>Expects<wbr\/>To<wbr\/>Send<\/span><span class=\"decorator\">: Int64<\/span><\/code>","paths":["documentation\/foundation\/urlsessiontask\/2873401-countofbytesclientexpectstosend"],"title":{"content":"countOfBytesClientExpectsToSend"},"abstract":"<div><p>A best-guess upper bound on the number of bytes the client expects to send.<\/p><\/div>"},{"id":1411650,"role":"symbol","usr":"c:@NSURLSessionTransferSizeUnknown","name":"NSURLSessionTransferSizeUnknown","domain":"swift","kind":"data","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">let <\/span><span class=\"identifier\">NSURLSession<wbr\/>Transfer<wbr\/>Size<wbr\/>Unknown<\/span><span class=\"decorator\">: Int64<\/span><\/code>","paths":["documentation\/foundation\/nsurlsessiontransfersizeunknown"],"title":{"content":"NSURLSessionTransferSizeUnknown"},"abstract":"<div><p>The total size of the transfer cannot be determined.<\/p><\/div>"},{"id":2873413,"role":"symbol","usr":"c:objc(cs)NSURLSessionTask(py)earliestBeginDate","name":"earliestBeginDate","domain":"swift","kind":"instp","availability":[{"platform":"iOS","introduced":"11.0"},{"platform":"macOS","introduced":"10.13"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"11.0"},{"platform":"watchOS","introduced":"4.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">var <\/span><span class=\"identifier\">earliest<wbr\/>Begin<wbr\/>Date<\/span><span class=\"decorator\">: Date?<\/span><\/code>","paths":["documentation\/foundation\/urlsessiontask\/2873413-earliestbegindate"],"title":{"content":"earliestBeginDate"},"abstract":"<div><p>The earliest date at which the network load should begin.<\/p><\/div>"}],"title":{"content":"Scheduling Tasks"}},{"id":3256434,"role":"task","symbols":[{"id":3240624,"role":"symbol","usr":"c:objc(cs)NSURLSessionTask(im)init","name":"init()","domain":"swift","kind":"instctr","availability":[{"platform":"iOS","deprecated":"13.0","introduced":"7.0"},{"platform":"macOS","deprecated":"10.15","introduced":"10.9"},{"platform":"Mac Catalyst","deprecated":"13.0","introduced":"13.0"},{"platform":"tvOS","deprecated":"13.0","introduced":"9.0"},{"platform":"watchOS","deprecated":"6.0","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"identifier\">init<\/span><span class=\"decorator\">()<\/span><\/code>","paths":["documentation\/foundation\/urlsessiontask\/3240624-init"],"title":{"content":"init()"}}],"title":{"content":"Initializers"}},{"id":3256435,"role":"task","symbols":[{"id":3240625,"role":"symbol","usr":"c:objc(cs)NSURLSessionTask(cm)new","name":"new()","domain":"swift","kind":"clm","availability":[{"platform":"iOS","deprecated":"13.0","introduced":"7.0"},{"platform":"macOS","deprecated":"10.15","introduced":"10.9"},{"platform":"Mac Catalyst","deprecated":"13.0","introduced":"13.0"},{"platform":"tvOS","deprecated":"13.0","introduced":"9.0"},{"platform":"watchOS","deprecated":"6.0","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">class func <\/span><span class=\"identifier\">new<\/span><span class=\"decorator\">() -&gt; Self<\/span><\/code>","paths":["documentation\/foundation\/urlsessiontask\/3240625-new"],"title":{"content":"new()"}}],"title":{"content":"Type Methods"}}]}</script></body></html>

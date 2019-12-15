@@ -10,11 +10,11 @@
     <meta name="author" content="Apple Inc." />
     <meta name="viewport" content="width=device-width initial-scale=1" />
     
-    <title>Access Control — The Swift Programming Language (Swift 5)</title>
+    <title>Access Control — The Swift Programming Language (Swift 5.1)</title>
     
     <link rel="license" href="/LICENSE.txt" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/tspl.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/application.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/tspl.css" />
     <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
@@ -41,7 +41,7 @@
 
     <div id="menu-toggle" class="menu-toggle open"></div>
 
-    <h2>The Swift Programming Language<div>Swift 5</div></h2>
+    <h2>The Swift Programming Language<div>Swift 5.1</div></h2>
 
     <ul>
     <ul class="current">
@@ -90,7 +90,7 @@
 クロージャ
 </span><!--end_jpstr-->
 </a></li>
-<li class="toctree-l2"><a class="reference internal" href="Enumerations.html"><span class="enstr">Enumeration</span><!--end_enstr-->
+<li class="toctree-l2"><a class="reference internal" href="Enumerations.html"><span class="enstr">Enumerations</span><!--end_enstr-->
 <span class="jpstr">
 列挙
 </span><!--end_jpstr-->
@@ -163,6 +163,11 @@
 <li class="toctree-l2"><a class="reference internal" href="Generics.html"><span class="enstr">Generics</span><!--end_enstr-->
 <span class="jpstr">
 総称体
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OpaqueTypes.html"><span class="enstr">Opaque Types</span><!--end_enstr-->
+<span class="jpstr">
+不透明型
 </span><!--end_jpstr-->
 </a></li>
 <li class="toctree-l2"><a class="reference internal" href="AutomaticReferenceCounting.html"><span class="enstr">Automatic Reference Counting</span><!--end_enstr-->
@@ -390,7 +395,7 @@
 </h1>
 <p><span class="enstr"><em>Access control</em> restricts access to parts of your code from code in other source files and modules. This feature enables you to hide the implementation details of your code, and to specify a preferred interface through which that code can be accessed and used.</span><!--end_enstr-->
 <span class="jpstr">
-<em>アクセス制御</em>は、他のソースファイルとモジュールの中のコードからのアクセスをあなたのコードの一部分に制限します。この特徴によってあなたは、あなたのコードの実施詳細を隠すこと、そしてそれを通してそのコードがアクセスされ使用されることができる好ましいインタフェースを指定することが可能になります。
+<em>アクセス制御</em>は、あなたのコードの各部への他のソースファイルとモジュールの中のコードからのアクセスを制限します。この特徴によってあなたは、あなたのコードの実施詳細を隠すこと、そしてそれを通してそのコードがアクセスされ使用されることができる好ましいインタフェースを指定することが可能になります。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">You can assign specific access levels to individual types (classes, structures, and enumerations), as well as to properties, methods, initializers, and subscripts belonging to those types. Protocols can be restricted to a certain context, as can global constants, variables, and functions.</span><!--end_enstr-->
@@ -480,36 +485,9 @@ Xcodeでの各ビルドターゲット（例えばアプリ・バンドルまた
 開放アクセスは最も高い（制限の最も少ない）アクセス水準であり、非公開アクセスは最も低い（制限の最も多い）アクセス水準です。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">Open access applies only to classes and class members, and it differs from public access as follows:</span><!--end_enstr-->
+<p><span class="enstr">Open access applies only to classes and class members, and it differs from public access by allowing code outside the module to subclass and override, as discussed below in <a class="reference internal" href="#ID16"><span class="std std-ref">Subclassing</span></a>. Marking a class as open explicitly indicates that you’ve considered the impact of code from other modules using that class as a superclass, and that you’ve designed your class’s code accordingly.</span><!--end_enstr-->
 <span class="jpstr">
-開放アクセスはクラスとクラスメソッドのみに適用されます、そしてそれは次のように公開アクセスと異なります：
-</span><!--end_jpstr-->
-</p>
-<ul class="simple">
-<li><span class="enstr">Classes with public access, or any more restrictive access level, can be subclassed only within the module where they’re defined.</span><!--end_enstr-->
-<span class="jpstr">
-公開アクセス、または何らかのより制限のあるアクセス水準を持つクラスは、それらが定義されるところのモジュール内部でのみ、サブクラスを作成されることができます。
-</span><!--end_jpstr-->
-</li>
-<li><span class="enstr">Class members with public access, or any more restrictive access level, can be overridden by subclasses only within the module where they’re defined.</span><!--end_enstr-->
-<span class="jpstr">
-公開アクセス、または何らかのより制限のあるアクセス水準を持つクラスメンバーは、それらが定義されるところのモジュール内部でのみ、サブクラスによってオーバライドされることができます。
-</span><!--end_jpstr-->
-</li>
-<li><span class="enstr">Open classes can be subclassed within the module where they’re defined, and within any module that imports the module where they’re defined.</span><!--end_enstr-->
-<span class="jpstr">
-開放クラスは、それらが定義されたところのモジュール内部で、そしてそれらが定義されたところのモジュールをインポートする何らかのモジュール内部で、サブクラスを作成されることができます。
-</span><!--end_jpstr-->
-</li>
-<li><span class="enstr">Open class members can be overridden by subclasses within the module where they’re defined, and within any module that imports the module where they’re defined.</span><!--end_enstr-->
-<span class="jpstr">
-開放クラスメンバーは、それらが定義されたところのモジュール内部で、そしてそれらが定義されたところのモジュールをインポートする何らかのモジュール内部で、サブクラスによってオーバーライドされることができます。
-</span><!--end_jpstr-->
-</li>
-</ul>
-<p><span class="enstr">Marking a class as open explicitly indicates that you’ve considered the impact of code from other modules using that class as a superclass, and that you’ve designed your class’s code accordingly.</span><!--end_enstr-->
-<span class="jpstr">
-あるクラスを明示的に開放とすることが指し示すのは、あなたが、そのクラスをスーパークラスとして使っている、他のモジュール由来のコードの影響を考慮に入れるということです、そしてあなたがあなたのクラスのコードをそれに従って設計するということです。
+解放アクセスは、クラスとクラスメンバにのみ適用されます、そしてそれは公開アクセスとは、モジュールの外側のコードにサブクラス作成およびオーバーライドをさせることによって異なります、下の<a class="reference internal" href="#ID16"><span class="std std-ref">サブクラスをつくる</span></a>で議論されるように。あるクラスを明示的に開放とすることが指し示すのは、あなたが、そのクラスをスーパークラスとして使っている、他のモジュール由来のコードの影響を考慮に入れるということです、そしてあなたがあなたのクラスのコードをそれに従って設計するということです。
 </span><!--end_jpstr-->
 </p>
 <div class="section" id="ID6">
@@ -613,9 +591,9 @@ Xcodeでの各ビルドターゲット（例えばアプリ・バンドルまた
 アクセス制御構文<a class="headerlink" href="#ID10" title="Permalink to this headline">¶</a>
 </span><!--end_jpstr-->
 </h2>
-<p><span class="enstr">Define the access level for an entity by placing one of the <code class="docutils literal notranslate"><span class="pre">open</span></code>, <code class="docutils literal notranslate"><span class="pre">public</span></code>, <code class="docutils literal notranslate"><span class="pre">internal</span></code>, <code class="docutils literal notranslate"><span class="pre">fileprivate</span></code>, or <code class="docutils literal notranslate"><span class="pre">private</span></code> modifiers before the entity’s introducer:</span><!--end_enstr-->
+<p><span class="enstr">Define the access level for an entity by placing one of the <code class="docutils literal notranslate"><span class="pre">open</span></code>, <code class="docutils literal notranslate"><span class="pre">public</span></code>, <code class="docutils literal notranslate"><span class="pre">internal</span></code>, <code class="docutils literal notranslate"><span class="pre">fileprivate</span></code>, or <code class="docutils literal notranslate"><span class="pre">private</span></code> modifiers at the beginning of the entity’s declaration.</span><!--end_enstr-->
 <span class="jpstr">
-ある実在にアクセス水準を定義するには、<code class="docutils literal notranslate"><span class="pre">open</span></code>、<code class="docutils literal notranslate"><span class="pre">public</span></code>、<code class="docutils literal notranslate"><span class="pre">internal</span></code>、<code class="docutils literal notranslate"><span class="pre">fileprivate</span></code>、または<code class="docutils literal notranslate"><span class="pre">private</span></code>修飾子のうちの１つをその実在の導入子の前に置いてください。
+ある実在にアクセス水準を定義するには、<code class="docutils literal notranslate"><span class="pre">open</span></code>、<code class="docutils literal notranslate"><span class="pre">public</span></code>、<code class="docutils literal notranslate"><span class="pre">internal</span></code>、<code class="docutils literal notranslate"><span class="pre">fileprivate</span></code>、または<code class="docutils literal notranslate"><span class="pre">private</span></code>修飾子のうちの１つをその実在の宣言の始まりに置いてください。
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">public</span> <span class="k">class</span> <span class="nv">SomePublicClass</span> {}
@@ -633,7 +611,7 @@ Xcodeでの各ビルドターゲット（例えばアプリ・バンドルまた
 特に明記しない限り、<a class="reference internal" href="#ID7"><span class="std std-ref">省略時のアクセス水準</span></a>で記述されるように、省略時のアクセス水準は内部です。これは、<code class="docutils literal notranslate"><span class="pre">SomeInternalClass</span></code>と<code class="docutils literal notranslate"><span class="pre">someInternalConstant</span></code>が明示的なアクセス水準修飾子なしで書かれることができ、それでもまだ内部のアクセス水準を持つことを意味します：
 </span><!--end_jpstr-->
 </p>
-<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">class</span> <span class="nv">SomeInternalClass</span> {}<span class="enstr"><span class="c">// implicitly internal</span></span><!--end_enstr--><span class="jpstr"><span class="c">（暗黙的に内部です）</span></span><!--end_jpstr--></li><li><span class="k">let</span> <span class="nv">someInternalConstant</span> = <span class="m">0</span>            <span class="enstr"><span class="c">// implicitly internal</span></span><!--end_enstr--><span class="jpstr"><span class="c">（暗黙的に内部です）</span></span><!--end_jpstr--></li></ol></div></div></div>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">class</span> <span class="nv">SomeInternalClass</span> {}              <span class="enstr"><span class="c">// implicitly internal</span></span><!--end_enstr--><span class="jpstr"><span class="c">（暗黙的に内部です）</span></span><!--end_jpstr--></li><li><span class="k">let</span> <span class="nv">someInternalConstant</span> = <span class="m">0</span>            <span class="enstr"><span class="c">// implicitly internal</span></span><!--end_enstr--><span class="jpstr"><span class="c">（暗黙的に内部です）</span></span><!--end_jpstr--></li></ol></div></div></div>
 </div>
 <div class="section" id="ID11">
 <h2><span class="enstr">Custom Types<a class="headerlink" href="#ID11" title="Permalink to this headline">¶</a></span><!--end_enstr-->
@@ -663,13 +641,13 @@ Xcodeでの各ビルドターゲット（例えばアプリ・バンドルまた
 </span><!--end_jpstr-->
 </p>
 </div>
-<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">public</span> <span class="k">class</span> <span class="nv">SomePublicClass</span> {<span class="enstr"><span class="c">// explicitly public class</span></span><!--end_enstr--><span class="jpstr"><span class="c">（明示的に公開のクラス）</span></span><!--end_jpstr--></li><li>    <span class="k">public</span> <span class="k">var</span> <span class="nv">somePublicProperty</span> = <span class="m">0</span>            <span class="enstr"><span class="c">// explicitly public class member</span></span><!--end_enstr--><span class="jpstr"><span class="c">（明示的に公開のクラス・メンバー）</span></span><!--end_jpstr--></li><li>    <span class="k">var</span> <span class="nv">someInternalProperty</span> = <span class="m">0</span>                 <span class="enstr"><span class="c">// implicitly internal class member</span></span><!--end_enstr--><span class="jpstr"><span class="c">（暗黙的に内部のクラス・メンバー）</span></span><!--end_jpstr--></li><li>    <span class="k">fileprivate</span> <span class="k">func</span> <span class="nv">someFilePrivateMethod</span>() {}<span class="enstr"><span class="c">// explicitly file-private class member</span></span><!--end_enstr--><span class="jpstr"><span class="c">（明示的にファイル外非公開のクラス・メンバー）</span></span><!--end_jpstr--></li><li>    <span class="k">private</span> <span class="k">func</span> <span class="nv">somePrivateMethod</span>() {}<span class="enstr"><span class="c">// explicitly private class member</span></span><!--end_enstr--><span class="jpstr"><span class="c">（明示的に非公開のクラス・メンバー）</span></span><!--end_jpstr--></li><li>}
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">public</span> <span class="k">class</span> <span class="nv">SomePublicClass</span> {                  <span class="enstr"><span class="c">// explicitly public class</span></span><!--end_enstr--><span class="jpstr"><span class="c">（明示的に公開のクラス）</span></span><!--end_jpstr--></li><li>    <span class="k">public</span> <span class="k">var</span> <span class="nv">somePublicProperty</span> = <span class="m">0</span>            <span class="enstr"><span class="c">// explicitly public class member</span></span><!--end_enstr--><span class="jpstr"><span class="c">（明示的に公開のクラス・メンバー）</span></span><!--end_jpstr--></li><li>    <span class="k">var</span> <span class="nv">someInternalProperty</span> = <span class="m">0</span>                 <span class="enstr"><span class="c">// implicitly internal class member</span></span><!--end_enstr--><span class="jpstr"><span class="c">（暗黙的に内部のクラス・メンバー）</span></span><!--end_jpstr--></li><li>    <span class="k">fileprivate</span> <span class="k">func</span> <span class="nv">someFilePrivateMethod</span>() {}  <span class="enstr"><span class="c">// explicitly file-private class member</span></span><!--end_enstr--><span class="jpstr"><span class="c">（明示的にファイル外非公開のクラス・メンバー）</span></span><!--end_jpstr--></li><li>    <span class="k">private</span> <span class="k">func</span> <span class="nv">somePrivateMethod</span>() {}          <span class="enstr"><span class="c">// explicitly private class member</span></span><!--end_enstr--><span class="jpstr"><span class="c">（明示的に非公開のクラス・メンバー）</span></span><!--end_jpstr--></li><li>}
 </li><li>
-</li><li><span class="k">class</span> <span class="nv">SomeInternalClass</span> {<span class="enstr"><span class="c">// implicitly internal class</span></span><!--end_enstr--><span class="jpstr"><span class="c">（暗黙的に内部のクラス）</span></span><!--end_jpstr--></li><li>    <span class="k">var</span> <span class="nv">someInternalProperty</span> = <span class="m">0</span>                 <span class="enstr"><span class="c">// implicitly internal class member</span></span><!--end_enstr--><span class="jpstr"><span class="c">（暗黙的に内部のクラス・メンバー）</span></span><!--end_jpstr--></li><li>    <span class="k">fileprivate</span> <span class="k">func</span> <span class="nv">someFilePrivateMethod</span>() {}<span class="enstr"><span class="c">// explicitly file-private class member</span></span><!--end_enstr--><span class="jpstr"><span class="c">（明示的にファイル外非公開のクラス・メンバー）</span></span><!--end_jpstr--></li><li>    <span class="k">private</span> <span class="k">func</span> <span class="nv">somePrivateMethod</span>() {}<span class="enstr"><span class="c">// explicitly private class member</span></span><!--end_enstr--><span class="jpstr"><span class="c">（明示的に非公開のクラス・メンバー）</span></span><!--end_jpstr--></li><li>}
+</li><li><span class="k">class</span> <span class="nv">SomeInternalClass</span> {                       <span class="enstr"><span class="c">// implicitly internal class</span></span><!--end_enstr--><span class="jpstr"><span class="c">（暗黙的に内部のクラス）</span></span><!--end_jpstr--></li><li>    <span class="k">var</span> <span class="nv">someInternalProperty</span> = <span class="m">0</span>                 <span class="enstr"><span class="c">// implicitly internal class member</span></span><!--end_enstr--><span class="jpstr"><span class="c">（暗黙的に内部のクラス・メンバー）</span></span><!--end_jpstr--></li><li>    <span class="k">fileprivate</span> <span class="k">func</span> <span class="nv">someFilePrivateMethod</span>() {}  <span class="enstr"><span class="c">// explicitly file-private class member</span></span><!--end_enstr--><span class="jpstr"><span class="c">（明示的にファイル外非公開のクラス・メンバー）</span></span><!--end_jpstr--></li><li>    <span class="k">private</span> <span class="k">func</span> <span class="nv">somePrivateMethod</span>() {}          <span class="enstr"><span class="c">// explicitly private class member</span></span><!--end_enstr--><span class="jpstr"><span class="c">（明示的に非公開のクラス・メンバー）</span></span><!--end_jpstr--></li><li>}
 </li><li>
-</li><li><span class="k">fileprivate</span> <span class="k">class</span> <span class="nv">SomeFilePrivateClass</span> {<span class="enstr"><span class="c">// explicitly file-private class</span></span><!--end_enstr--><span class="jpstr"><span class="c">（明示的にファイル外非公開のクラス）</span></span><!--end_jpstr--></li><li>    <span class="k">func</span> <span class="nv">someFilePrivateMethod</span>() {}<span class="enstr"><span class="c">// implicitly file-private class member</span></span><!--end_enstr--><span class="jpstr"><span class="c">（暗黙的にファイル外非公開のクラス・メンバー）</span></span><!--end_jpstr--></li><li>    <span class="k">private</span> <span class="k">func</span> <span class="nv">somePrivateMethod</span>() {}<span class="enstr"><span class="c">// explicitly private class member</span></span><!--end_enstr--><span class="jpstr"><span class="c">（明示的に非公開のクラス・メンバー）</span></span><!--end_jpstr--></li><li>}
+</li><li><span class="k">fileprivate</span> <span class="k">class</span> <span class="nv">SomeFilePrivateClass</span> {        <span class="enstr"><span class="c">// explicitly file-private class</span></span><!--end_enstr--><span class="jpstr"><span class="c">（明示的にファイル外非公開のクラス）</span></span><!--end_jpstr--></li><li>    <span class="k">func</span> <span class="nv">someFilePrivateMethod</span>() {}              <span class="enstr"><span class="c">// implicitly file-private class member</span></span><!--end_enstr--><span class="jpstr"><span class="c">（暗黙的にファイル外非公開のクラス・メンバー）</span></span><!--end_jpstr--></li><li>    <span class="k">private</span> <span class="k">func</span> <span class="nv">somePrivateMethod</span>() {}          <span class="enstr"><span class="c">// explicitly private class member</span></span><!--end_enstr--><span class="jpstr"><span class="c">（明示的に非公開のクラス・メンバー）</span></span><!--end_jpstr--></li><li>}
 </li><li>
-</li><li><span class="k">private</span> <span class="k">class</span> <span class="nv">SomePrivateClass</span> {<span class="enstr"><span class="c">// explicitly private class</span></span><!--end_enstr--><span class="jpstr"><span class="c">（明示的に非公開のクラス）</span></span><!--end_jpstr--></li><li>    <span class="k">func</span> <span class="nv">somePrivateMethod</span>() {}<span class="enstr"><span class="c">// implicitly private class member</span></span><!--end_enstr--><span class="jpstr"><span class="c">（暗黙のうちに非公開のクラス・メンバー）</span></span><!--end_jpstr--></li><li>}
+</li><li><span class="k">private</span> <span class="k">class</span> <span class="nv">SomePrivateClass</span> {                <span class="enstr"><span class="c">// explicitly private class</span></span><!--end_enstr--><span class="jpstr"><span class="c">（明示的に非公開のクラス）</span></span><!--end_jpstr--></li><li>    <span class="k">func</span> <span class="nv">somePrivateMethod</span>() {}                  <span class="enstr"><span class="c">// implicitly private class member</span></span><!--end_enstr--><span class="jpstr"><span class="c">（暗黙のうちに非公開のクラス・メンバー）</span></span><!--end_jpstr--></li><li>}
 </li></ol></div></div></div>
 <div class="section" id="ID12">
 <h3><span class="enstr">Tuple Types<a class="headerlink" href="#ID12" title="Permalink to this headline">¶</a></span><!--end_enstr-->
@@ -688,9 +666,9 @@ Xcodeでの各ビルドターゲット（例えばアプリ・バンドルまた
 注意
 </span><!--end_jpstr-->
 </p>
-<p class="last"><span class="enstr">Tuple types don’t have a standalone definition in the way that classes, structures, enumerations, and functions do. A tuple type’s access level is deduced automatically when the tuple type is used, and can’t be specified explicitly.</span><!--end_enstr-->
+<p class="last"><span class="enstr">Tuple types don’t have a standalone definition in the way that classes, structures, enumerations, and functions do. A tuple type’s access level is determined automatically from the types that make up the tuple type, and can’t be specified explicitly.</span><!--end_enstr-->
 <span class="jpstr">
-タプル型には、クラス、構造体、列挙、そして関数が行う方法での、独立した定義がありません。あるタプル型のアクセス水準は、そのタプル型が使われるときに自動的に演繹されます、したがって明示的に指定されることができません。
+タプル型には、クラス、構造体、列挙、そして関数が行う方法での、独立した定義がありません。あるタプル型のアクセス水準は、そのタプル型を作り上げる型から自動的に決定されます、したがって明示的に指定されることはできません。
 </span><!--end_jpstr-->
 </p>
 </div>
@@ -764,7 +742,7 @@ Xcodeでの各ビルドターゲット（例えばアプリ・バンドルまた
 生の値と関連値<a class="headerlink" href="#ID468" title="Permalink to this headline">¶</a>
 </span><!--end_jpstr-->
 </h4>
-<p><span class="enstr">The types used for any raw values or associated values in an enumeration definition must have an access level at least as high as the enumeration’s access level. You can’t use a private type as the raw-value type of an enumeration with an internal access level, for example.</span><!--end_enstr-->
+<p><span class="enstr">The types used for any raw values or associated values in an enumeration definition must have an access level at least as high as the enumeration’s access level. For example, you can’t use a private type as the raw-value type of an enumeration with an internal access level.</span><!--end_enstr-->
 <span class="jpstr">
 列挙定義の中のあらゆる生の値または関連値のために使われる型は、少なくとも列挙のアクセス水準と同じの高さのアクセス水準を持たなければなりません。例えば、あなたはある非公開型を、内部のアクセス水準をもつ列挙の「生の値」型として使うことができません。
 </span><!--end_jpstr-->
@@ -777,9 +755,9 @@ Xcodeでの各ビルドターゲット（例えばアプリ・バンドルまた
 入れ子にされた型<a class="headerlink" href="#ID15" title="Permalink to this headline">¶</a>
 </span><!--end_jpstr-->
 </h3>
-<p><span class="enstr">Nested types defined within a private type have an automatic access level of private. Nested types defined within a file-private type have an automatic access level of file private. Nested types defined within a public type or an internal type have an automatic access level of internal. If you want a nested type within a public type to be publicly available, you must explicitly declare the nested type as public.</span><!--end_enstr-->
+<p><span class="enstr">The access level of a nested type is the same as its containing type, unless the containing type is public. Nested types defined within a public type have an automatic access level of internal. If you want a nested type within a public type to be publicly available, you must explicitly declare the nested type as public.</span><!--end_enstr-->
 <span class="jpstr">
-非公開型の内側で定義される入れ子にされた型は、自動的なアクセス水準として非公開を持ちます。ファイル外非公開型の内側で定義される入れ子にされた型は、自動的なアクセス水準としてファイル外非公開を持ちます。公開型または内部型の内側で定義される入れ子にされた型は、自動的なアクセス水準として内部を持ちます。あなたが公開型の内側で入れ子にされた型に公開的に利用できて欲しいならば、あなたは明確に入れ子にされた型を公開として宣言しなければなりません。
+入れ子にされた型のアクセス水準は、それの容れ物である型と同じです、容れ物である型が公開である場合を除いて。公開型の内側で定義される入れ子にされた型は、自動的なアクセス水準として内部を持ちます。あなたが公開型の内側で入れ子にされた型に公開的に利用できて欲しいならば、あなたは明確に入れ子にされた型を公開として宣言しなければなりません。
 </span><!--end_jpstr-->
 </p>
 </div>
@@ -790,14 +768,14 @@ Xcodeでの各ビルドターゲット（例えばアプリ・バンドルまた
 サブクラスをつくる<a class="headerlink" href="#ID16" title="Permalink to this headline">¶</a>
 </span><!--end_jpstr-->
 </h2>
-<p><span class="enstr">You can subclass any class that can be accessed in the current access context. A subclass can’t have a higher access level than its superclass—for example, you can’t write a public subclass of an internal superclass.</span><!--end_enstr-->
+<p><span class="enstr">You can subclass any class that can be accessed in the current access context and that’s defined in the same module as the subclass. You can also subclass any open class that’s defined in a different module. A subclass can’t have a higher access level than its superclass—for example, you can’t write a public subclass of an internal superclass.</span><!--end_enstr-->
 <span class="jpstr">
-あなたは、現在のアクセス前後関係においてアクセスされることができるどんなクラスにでもサブクラスをつくることができます。サブクラスには、そのスーパークラスより高いアクセス水準があることができません ― 例えば、あなたは内部のスーパークラスに属する公開のサブクラスを書くことができません。
+あなたは、現在のアクセス前後関係においてアクセスされることが出来るどんなクラスにでもサブクラスを作れます、それは同じモジュールの中でサブクラスとして定義されます。あなたはまた、異なるモジュールにおいて定義されるどんな開放クラスにでもサブクラスを作れます。サブクラスには、そのスーパークラスより高いアクセス水準があることができません ― 例えば、あなたは内部のスーパークラスに属する公開のサブクラスを書くことができません。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">In addition, you can override any class member (method, property, initializer, or subscript) that is visible in a certain access context.</span><!--end_enstr-->
+<p><span class="enstr">In addition, for classes that are defined in the same module, you can override any class member (method, property, initializer, or subscript) that’s visible in a certain access context. For classes that are defined in another module, you can override any open class member.</span><!--end_enstr-->
 <span class="jpstr">
-それに加えて、あなたは特定のアクセス前後関係において見えるあらゆるクラスメンバー（メソッド、プロパティ、イニシャライザ、または添え字）をオーバーライドすることができます。
+それに加えて、同じモジュールにおいて定義されるクラスに対して、あなたは特定のアクセス前後関係において可視であるあらゆるクラスメンバー（メソッド、プロパティ、イニシャライザ、または添え字）をオーバーライドすることができます。別のモジュールにおいて定義されるクラスに対して、あなたはどんな開放クラスメンバーでもオーバーライドできます。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">An override can make an inherited class member more accessible than its superclass version. In the example below, class <code class="docutils literal notranslate"><span class="pre">A</span></code> is a public class with a file-private method called <code class="docutils literal notranslate"><span class="pre">someMethod()</span></code>. Class <code class="docutils literal notranslate"><span class="pre">B</span></code> is a subclass of <code class="docutils literal notranslate"><span class="pre">A</span></code>, with a reduced access level of “internal”. Nonetheless, class <code class="docutils literal notranslate"><span class="pre">B</span></code> provides an override of <code class="docutils literal notranslate"><span class="pre">someMethod()</span></code> with an access level of “internal”, which is <em>higher</em> than the original implementation of <code class="docutils literal notranslate"><span class="pre">someMethod()</span></code>:</span><!--end_enstr-->
@@ -1023,9 +1001,9 @@ Xcodeでの各ビルドターゲット（例えばアプリ・バンドルまた
 プロトコル継承<a class="headerlink" href="#ID23" title="Permalink to this headline">¶</a>
 </span><!--end_jpstr-->
 </h3>
-<p><span class="enstr">If you define a new protocol that inherits from an existing protocol, the new protocol can have at most the same access level as the protocol it inherits from. You can’t write a public protocol that inherits from an internal protocol, for example.</span><!--end_enstr-->
+<p><span class="enstr">If you define a new protocol that inherits from an existing protocol, the new protocol can have at most the same access level as the protocol it inherits from. For example, you can’t write a public protocol that inherits from an internal protocol.</span><!--end_enstr-->
 <span class="jpstr">
-あなたが既存のプロトコルから継承する新しいプロトコルを定義するならば、新しいプロトコルは最大ではそれが継承するプロトコルと同じアクセス水準を持つことができます。あなたは、例えば、内部のプロトコルから継承する公開のプロトコルを書くことができません。
+あなたが既存のプロトコルから継承する新しいプロトコルを定義するならば、新しいプロトコルは最大ではそれが継承するプロトコルと同じアクセス水準を持つことができます。例えば、あなたは内部のプロトコルから継承する公開のプロトコルを書くことができません。
 </span><!--end_jpstr-->
 </p>
 </div>
@@ -1040,14 +1018,14 @@ Xcodeでの各ビルドターゲット（例えばアプリ・バンドルまた
 ある型は、その型自体よりも低いアクセス水準を持つプロトコルに準拠することができます。たとえば、あなたは、別のモジュール内で使われることができる公開の型を定義することができます、しかし内部プロトコルに準拠するものは、ただその内部プロトコルの定義するモジュール内で使われることができるだけです。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">The context in which a type conforms to a particular protocol is the minimum of the type’s access level and the protocol’s access level. If a type is public, but a protocol it conforms to is internal, the type’s conformance to that protocol is also internal.</span><!--end_enstr-->
+<p><span class="enstr">The context in which a type conforms to a particular protocol is the minimum of the type’s access level and the protocol’s access level. For example, if a type is public, but a protocol it conforms to is internal, the type’s conformance to that protocol is also internal.</span><!--end_enstr-->
 <span class="jpstr">
-ある型が特定のプロトコルに準拠するところの前後関係は、その型のアクセス水準とプロトコルのアクセス水準の最も低いものです。ある型が公開である、しかしそれが準拠するプロトコルは内部であるならば、そのプロトコルに対する型の準拠もまた内部です。
+ある型が特定のプロトコルに準拠するところの前後関係は、その型のアクセス水準とプロトコルのアクセス水準の最も低いものです。例えば、ある型が公開である、しかしそれが準拠するプロトコルは内部であるならば、その型のもつそのプロトコルに対する準拠もまた内部です。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">When you write or extend a type to conform to a protocol, you must ensure that the type’s implementation of each protocol requirement has at least the same access level as the type’s conformance to that protocol. For example, if a public type conforms to an internal protocol, the type’s implementation of each protocol requirement must be at least “internal”.</span><!--end_enstr-->
+<p><span class="enstr">When you write or extend a type to conform to a protocol, you must ensure that the type’s implementation of each protocol requirement has at least the same access level as the type’s conformance to that protocol. For example, if a public type conforms to an internal protocol, the type’s implementation of each protocol requirement must be at least internal.</span><!--end_enstr-->
 <span class="jpstr">
-あなたがある型をプロトコルに準拠するように書く、または拡張する時は、あなたはその型のもつ各プロトコル要件の実装が少なくともそのプロトコルに対するその型の準拠と同じアクセス水準を持つことを確かにしてください。例えば、ある公開型が内部プロトコルに準拠するならば、その型の持つ各プロトコル要件の実装は少なくとも「内部」でなければなりません。
+あなたがある型をプロトコルに準拠するように書く、または拡張する時は、あなたはその型のもつ各プロトコル要件の実装が少なくともそのプロトコルに対するその型の準拠と同じアクセス水準を持つことを確かにしてください。例えば、ある公開型が内部プロトコルに準拠するならば、その型の持つ各プロトコル要件の実装は、少なくとも内部でなければなりません。
 </span><!--end_jpstr-->
 </p>
 <div class="admonition note">
@@ -1075,9 +1053,9 @@ Xcodeでの各ビルドターゲット（例えばアプリ・バンドルまた
 あなたは、あるクラス、構造体、または列挙を拡張することが、そこにおいてそのクラス、構造体、または列挙が利用可能であるあらゆるアクセス文脈において可能です。拡張において加えられるどんな型メンバーでも、拡張されているところの本来の型で宣言される型メンバーと同じ省略時のアクセス水準を持ちます。あなたがある公開または内部型を拡張するならば、あなたが加えるどんな新しい型メンバーでも省略時のアクセス水準である内部を持ちます。あなたがあるファイル外非公開型を拡張するならば、あなたが加えるどんな新しい型メンバーでも省略時のアクセス水準であるファイル外非公開を持ちます。あなたがある非公開型を拡張するならば、あなたが加えるどんな新しい型メンバーでも省略時のアクセス水準である非公開を持ちます。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">Alternatively, you can mark an extension with an explicit access-level modifier (for example, <code class="docutils literal notranslate"><span class="pre">private</span> <span class="pre">extension</span></code>) to set a new default access level for all members defined within the extension. This new default can still be overridden within the extension for individual type members.</span><!--end_enstr-->
+<p><span class="enstr">Alternatively, you can mark an extension with an explicit access-level modifier (for example, <code class="docutils literal notranslate"><span class="pre">private</span></code>) to set a new default access level for all members defined within the extension. This new default can still be overridden within the extension for individual type members.</span><!--end_enstr-->
 <span class="jpstr">
-代わりに、あなたは拡張に明確なアクセス水準修飾子（例えば<code class="docutils literal notranslate"><span class="pre">private</span> <span class="pre">extension</span></code>）で印して、新しい省略時のアクセス水準をその拡張内で定義される全てのメンバーに設定することができます。この新しい省略時設定はさらに、個々の型メンバーのために拡張内でオーバーライドされることができます。
+代わりに、あなたは拡張に明確なアクセス水準修飾子（例えば<code class="docutils literal notranslate"><span class="pre">private</span></code>）で印して、新しい省略時のアクセス水準をその拡張内で定義される全てのメンバーに設定することができます。この新しい省略時設定はさらに、個々の型メンバーのために拡張内でオーバーライドされることができます。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">You can’t provide an explicit access-level modifier for an extension if you’re using that extension to add protocol conformance. Instead, the protocol’s own access level is used to provide the default access level for each protocol requirement implementation within the extension.</span><!--end_enstr-->
@@ -1208,6 +1186,6 @@ Xcodeでの各ビルドターゲット（例えばアプリ・バンドルまた
   </p>
 </footer>
 <div id="jump_to_overlay"></div>
-<script src="../static/javascripts/application.js"></script>
+<script src="../_static/javascripts/application.js"></script>
   </body>
 </html>

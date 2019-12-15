@@ -10,11 +10,11 @@
     <meta name="author" content="Apple Inc." />
     <meta name="viewport" content="width=device-width initial-scale=1" />
     
-    <title>Protocols — The Swift Programming Language (Swift 5)</title>
+    <title>Protocols — The Swift Programming Language (Swift 5.1)</title>
     
     <link rel="license" href="/LICENSE.txt" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/tspl.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/application.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/tspl.css" />
     <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
@@ -41,7 +41,7 @@
 
     <div id="menu-toggle" class="menu-toggle open"></div>
 
-    <h2>The Swift Programming Language<div>Swift 5</div></h2>
+    <h2>The Swift Programming Language<div>Swift 5.1</div></h2>
 
     <ul>
     <ul class="current">
@@ -90,7 +90,7 @@
 クロージャ
 </span><!--end_jpstr-->
 </a></li>
-<li class="toctree-l2"><a class="reference internal" href="Enumerations.html"><span class="enstr">Enumeration</span><!--end_enstr-->
+<li class="toctree-l2"><a class="reference internal" href="Enumerations.html"><span class="enstr">Enumerations</span><!--end_enstr-->
 <span class="jpstr">
 列挙
 </span><!--end_jpstr-->
@@ -163,6 +163,11 @@
 <li class="toctree-l2"><a class="reference internal" href="Generics.html"><span class="enstr">Generics</span><!--end_enstr-->
 <span class="jpstr">
 総称体
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OpaqueTypes.html"><span class="enstr">Opaque Types</span><!--end_enstr-->
+<span class="jpstr">
+不透明型
 </span><!--end_jpstr-->
 </a></li>
 <li class="toctree-l2"><a class="reference internal" href="AutomaticReferenceCounting.html"><span class="enstr">Automatic Reference Counting</span><!--end_enstr-->
@@ -438,7 +443,7 @@
 </li><li>    <span class="k">var</span> <span class="nv">fullName</span>: <span class="nc">String</span> { <span class="k">get</span> }
 </li><li>}
 </li></ol></div></div></div>
-<p><span class="enstr">The <code class="docutils literal notranslate"><span class="pre">FullyNamed</span></code> protocol requires a conforming type to provide a fully-qualified name. The protocol doesn’t specify anything else about the nature of the conforming type—it only specifies that the type must be able to provide a full name for itself. The protocol states that any <code class="docutils literal notranslate"><span class="pre">FullyNamed</span></code> type must have a gettable instance property called <code class="docutils literal notranslate"><span class="pre">fullName</span></code>, which is of type <code class="docutils literal notranslate"><span class="pre">String</span></code>.</span><!--end_enstr-->
+<p><span class="enstr">The <code class="docutils literal notranslate"><span class="pre">FullyNamed</span></code> protocol requires a conforming type to provide a fully qualified name. The protocol doesn’t specify anything else about the nature of the conforming type—it only specifies that the type must be able to provide a full name for itself. The protocol states that any <code class="docutils literal notranslate"><span class="pre">FullyNamed</span></code> type must have a gettable instance property called <code class="docutils literal notranslate"><span class="pre">fullName</span></code>, which is of type <code class="docutils literal notranslate"><span class="pre">String</span></code>.</span><!--end_enstr-->
 <span class="jpstr">
 <code class="docutils literal notranslate"><span class="pre">FullyNamed</span></code>プロトコルは、完全修飾名を提供するある準拠型を要件とします。このプロトコルは、その準拠型の性質について何ら指定しません ― それはただその型がそれ自身のフルネームを提供できなければならないことだけを指定します。このプロトコルは、あらゆる<code class="docutils literal notranslate"><span class="pre">FullyNamed</span></code>型は<code class="docutils literal notranslate"><span class="pre">fullName</span></code>と呼ばれる、<code class="docutils literal notranslate"><span class="pre">String</span></code>型である、取得可能なインスタンスプロパティを持たなければならないことを述べます。
 </span><!--end_jpstr-->
@@ -539,7 +544,8 @@
 </li><li>    <span class="k">let</span> <span class="nv">a</span> = <span class="m">3877.0</span>
 </li><li>    <span class="k">let</span> <span class="nv">c</span> = <span class="m">29573.0</span>
 </li><li>    <span class="k">func</span> <span class="nv">random</span>() -&gt; <span class="nc">Double</span> {
-</li><li>        <span class="nv">lastRandom</span> = ((<span class="nv">lastRandom</span> * <span class="nv">a</span> + <span class="nv">c</span>).<span class="nv">truncatingRemainder</span>(<span class="nv">dividingBy</span>:<span class="nv">m</span>))
+</li><li>        <span class="nv">lastRandom</span> = ((<span class="nv">lastRandom</span> * <span class="nv">a</span> + <span class="nv">c</span>)
+</li><li>            .<span class="nv">truncatingRemainder</span>(<span class="nv">dividingBy</span>:<span class="nv">m</span>))
 </li><li>        <span class="k">return</span> <span class="nv">lastRandom</span> / <span class="nv">m</span>
 </li><li>    }
 </li><li>}
@@ -719,14 +725,14 @@
 型としてのプロトコル<a class="headerlink" href="#ID275" title="Permalink to this headline">¶</a>
 </span><!--end_jpstr-->
 </h2>
-<p><span class="enstr">Protocols don’t actually implement any functionality themselves. Nonetheless, any protocol you create will become a fully-fledged type for use in your code.</span><!--end_enstr-->
+<p><span class="enstr">Protocols don’t actually implement any functionality themselves. Nonetheless, you can use protocols as a fully fledged types in your code. Using a protocol as a type is sometimes called an <em>existential type</em>, which comes from the phrase “there exists a type <em>T</em> such that <em>T</em> conforms to the protocol”.</span><!--end_enstr-->
 <span class="jpstr">
-プロトコルは、実際に少しの機能性も実装しません。それでもなお、あなたがつくるどんなプロトコルでも、あなたのコードに用いられるひとつの完全に自立した型になります。
+プロトコルは、実際に少しの機能性も実装しません。それにもかかわらず、あなたはプロトコルを完全に一人前の型としてあなたのコードにおいて使用できます。プロトコルを型として使うことは、ときどき<em>存在型</em>と呼ばれます、それは語句 “そこに型<em>T</em>が存在する、そのような<em>T</em>はそのプロトコルに準拠する” から来ています。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">Because it’s a type, you can use a protocol in many places where other types are allowed, including:</span><!--end_enstr-->
+<p><span class="enstr">You can use a protocol in many places where other types are allowed, including:</span><!--end_enstr-->
 <span class="jpstr">
-それが型であるので、以下を含む、他の型が許される多くの場所において、あなたはプロトコルを使うことができます：
+あなたは、プロトコルを、他の型が許可される多くの場所で使用できます、以下を含みます：
 </span><!--end_jpstr-->
 </p>
 <ul class="simple">
@@ -780,9 +786,9 @@
 この例は<code class="docutils literal notranslate"><span class="pre">Dice</span></code>と呼ばれる新しいクラスを定義します、それは、ボードゲームで使うのために<em>n</em>面のさいころを表します。<code class="docutils literal notranslate"><span class="pre">Dice</span></code>インスタンスは、それがどれくらいの面を持つのかを表す<code class="docutils literal notranslate"><span class="pre">sides</span></code>と呼ばれる整数プロパティ、そしてそこからさいころを振った値を作成する乱数生成器を提供する<code class="docutils literal notranslate"><span class="pre">generator</span></code>と呼ばれるプロパティを持ちます。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">The <code class="docutils literal notranslate"><span class="pre">generator</span></code> property is of type <code class="docutils literal notranslate"><span class="pre">RandomNumberGenerator</span></code>. Therefore, you can set it to an instance of <em>any</em> type that adopts the <code class="docutils literal notranslate"><span class="pre">RandomNumberGenerator</span></code> protocol. Nothing else is required of the instance you assign to this property, except that the instance must adopt the <code class="docutils literal notranslate"><span class="pre">RandomNumberGenerator</span></code> protocol.</span><!--end_enstr-->
+<p><span class="enstr">The <code class="docutils literal notranslate"><span class="pre">generator</span></code> property is of type <code class="docutils literal notranslate"><span class="pre">RandomNumberGenerator</span></code>. Therefore, you can set it to an instance of <em>any</em> type that adopts the <code class="docutils literal notranslate"><span class="pre">RandomNumberGenerator</span></code> protocol. Nothing else is required of the instance you assign to this property, except that the instance must adopt the <code class="docutils literal notranslate"><span class="pre">RandomNumberGenerator</span></code> protocol. Because its type is <code class="docutils literal notranslate"><span class="pre">RandomNumberGenerator</span></code>, code inside the <code class="docutils literal notranslate"><span class="pre">Dice</span></code> class can only interact with <code class="docutils literal notranslate"><span class="pre">generator</span></code> in ways that apply to all generators that conform to this protocol. That means it can’t use any methods or properties that are defined by the underlying type of the generator. However, you can downcast from a protocol type to an underlying type in the same way you can downcast from a superclass to a subclass, as discussed in <a class="reference internal" href="TypeCasting.html#ID341"><span class="std std-ref">Downcasting</span></a>.</span><!--end_enstr-->
 <span class="jpstr">
-<code class="docutils literal notranslate"><span class="pre">generator</span></code>プロパティは、型<code class="docutils literal notranslate"><span class="pre">RandomNumberGenerator</span></code>です。したがって、あなたはそれを<code class="docutils literal notranslate"><span class="pre">RandomNumberGenerator</span></code>プロトコルを採用する<em>あらゆる</em>型のインスタンスに設定することができます。そのインスタンスが<code class="docutils literal notranslate"><span class="pre">RandomNumberGenerator</span></code>プロトコルを採用しなければならないことをのぞいては、あなたがこのプロパティに代入するインスタンスに必要とされるものは他に何もありません。
+<code class="docutils literal notranslate"><span class="pre">generator</span></code>プロパティは、型<code class="docutils literal notranslate"><span class="pre">RandomNumberGenerator</span></code>のものです。したがって、あなたはそれを<code class="docutils literal notranslate"><span class="pre">RandomNumberGenerator</span></code>プロトコルを採用する<em>あらゆる</em>型のインスタンスに設定できます。そのインスタンスが<code class="docutils literal notranslate"><span class="pre">RandomNumberGenerator</span></code>プロトコルを採用しなければならないことをのぞいては、あなたがこのプロパティに代入するところのインスタンスに必要とされるものは他に何もありません。それの型が<code class="docutils literal notranslate"><span class="pre">RandomNumberGenerator</span></code>であることから、<code class="docutils literal notranslate"><span class="pre">Dice</span></code>クラスの内部のコードは、全ての生成子にこのプロトコルに準拠することを適用するという方法で<code class="docutils literal notranslate"><span class="pre">generator</span></code>と相互作用できるだけです。それは意味するのは、それが生成子の基礎をなす型によって定義されるどんなメソッドまたはプロパティも使用できないということです。しかしながら、あなたはあるプロトコル型からある基礎をなす型へとダウンキャストすることが、あなたがスーパークラスからサブクラスへとダウンキャスト出来るのと同じ方法で可能です、<a class="reference internal" href="TypeCasting.html#ID341"><span class="std std-ref">ダウンキャスト</span></a>で記述されるように。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr"><code class="docutils literal notranslate"><span class="pre">Dice</span></code> also has an initializer, to set up its initial state. This initializer has a parameter called <code class="docutils literal notranslate"><span class="pre">generator</span></code>, which is also of type <code class="docutils literal notranslate"><span class="pre">RandomNumberGenerator</span></code>. You can pass a value of any conforming type in to this parameter when initializing a new <code class="docutils literal notranslate"><span class="pre">Dice</span></code> instance.</span><!--end_enstr-->
@@ -842,9 +848,9 @@
 <code class="docutils literal notranslate"><span class="pre">DiceGame</span></code>プロトコルは、さいころが関わるどんなゲームによってでも採用されることができるプロトコルです。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">The <code class="docutils literal notranslate"><span class="pre">DiceGameDelegate</span></code> protocol can be adopted to track the progress of a <code class="docutils literal notranslate"><span class="pre">DiceGame</span></code>. To prevent strong reference cycles, delegates are declared as weak references. For information about weak references, see <a class="reference internal" href="AutomaticReferenceCounting.html#ID51"><span class="std std-ref">Strong Reference Cycles Between Class Instances</span></a>. Marking the protocol as class-only lets the <code class="docutils literal notranslate"><span class="pre">SnakesAndLadders</span></code> class later in this chapter declare that its delegate must use a weak reference. A class-only protocol is marked by its inheritance from <code class="docutils literal notranslate"><span class="pre">AnyObject</span></code> as discussed in <a class="reference internal" href="#ID281"><span class="std std-ref">Class-Only Protocols</span></a>.</span><!--end_enstr-->
+<p><span class="enstr">The <code class="docutils literal notranslate"><span class="pre">DiceGameDelegate</span></code> protocol can be adopted to track the progress of a <code class="docutils literal notranslate"><span class="pre">DiceGame</span></code>. To prevent strong reference cycles, delegates are declared as weak references. For information about weak references, see <a class="reference internal" href="AutomaticReferenceCounting.html#ID51"><span class="std std-ref">Strong Reference Cycles Between Class Instances</span></a>. Marking the protocol as class-only lets the <code class="docutils literal notranslate"><span class="pre">SnakesAndLadders</span></code> class later in this chapter declare that its delegate must use a weak reference. A class-only protocol is marked by its inheritance from <code class="docutils literal notranslate"><span class="pre">AnyObject</span></code>, as discussed in <a class="reference internal" href="#ID281"><span class="std std-ref">Class-Only Protocols</span></a>.</span><!--end_enstr-->
 <span class="jpstr">
-<code class="docutils literal notranslate"><span class="pre">DiceGameDelegate</span></code>プロトコルが採用されることで、<code class="docutils literal notranslate"><span class="pre">DiceGame</span></code>の進捗を追いかけることができます。強い参照循環を防ぐために、委任先は弱い参照として宣言されます。弱い参照についての詳細は、<a class="reference internal" href="AutomaticReferenceCounting.html#ID51"><span class="std std-ref">クラスインスタンス間の強い参照循環</span></a>を見てください。プロトコルをクラス専用とすることは、<code class="docutils literal notranslate"><span class="pre">SnakesAndLadders</span></code>クラスに後でこの章においてその委任先が弱い参照を使わなければならないことを宣言させます。クラス専用プロトコルは、<code class="docutils literal notranslate"><span class="pre">AnyObject</span></code>からのそれの継承によって、<a class="reference internal" href="#ID281"><span class="std std-ref">クラス専用プロトコル</span></a>において議論されるように印されます。
+<code class="docutils literal notranslate"><span class="pre">DiceGameDelegate</span></code>プロトコルが採用されることで、<code class="docutils literal notranslate"><span class="pre">DiceGame</span></code>の進捗を追いかけることができます。強い参照循環を防ぐために、委任先は弱い参照として宣言されます。弱い参照についての詳細は、<a class="reference internal" href="AutomaticReferenceCounting.html#ID51"><span class="std std-ref">クラスインスタンス間の強い参照循環</span></a>を見てください。プロトコルをクラス専用とすることは、<code class="docutils literal notranslate"><span class="pre">SnakesAndLadders</span></code>クラスに後でこの章においてその委任先が弱い参照を使わなければならないことを宣言させます。クラス専用プロトコルは、<code class="docutils literal notranslate"><span class="pre">AnyObject</span></code>からのそれの継承によって印されます、<a class="reference internal" href="#ID281"><span class="std std-ref">クラス専用プロトコル</span></a>において議論されるように。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">Here’s a version of the <em>Snakes and Ladders</em> game originally introduced in <a class="reference internal" href="ControlFlow.html"><span class="doc">Control Flow</span></a>. This version is adapted to use a <code class="docutils literal notranslate"><span class="pre">Dice</span></code> instance for its dice-rolls; to adopt the <code class="docutils literal notranslate"><span class="pre">DiceGame</span></code> protocol; and to notify a <code class="docutils literal notranslate"><span class="pre">DiceGameDelegate</span></code> about its progress:</span><!--end_enstr-->
@@ -1465,9 +1471,9 @@
 オプショナルのプロトコル要件<a class="headerlink" href="#ID284" title="Permalink to this headline">¶</a>
 </span><!--end_jpstr-->
 </h2>
-<p><span class="enstr">You can define <em>optional requirements</em> for protocols, These requirements don’t have to be implemented by types that conform to the protocol. Optional requirements are prefixed by the <code class="docutils literal notranslate"><span class="pre">optional</span></code> modifier as part of the protocol’s definition. Optional requirements are available so that you can write code that interoperates with Objective-C. Both the protocol and the optional requirement must be marked with the <code class="docutils literal notranslate"><span class="pre">@objc</span></code> attribute. Note that <code class="docutils literal notranslate"><span class="pre">@objc</span></code> protocols can be adopted only by classes that inherit from Objective-C classes or other <code class="docutils literal notranslate"><span class="pre">@objc</span></code> classes. They can’t be adopted by structures or enumerations.</span><!--end_enstr-->
+<p><span class="enstr">You can define <em>optional requirements</em> for protocols. These requirements don’t have to be implemented by types that conform to the protocol. Optional requirements are prefixed by the <code class="docutils literal notranslate"><span class="pre">optional</span></code> modifier as part of the protocol’s definition. Optional requirements are available so that you can write code that interoperates with Objective-C. Both the protocol and the optional requirement must be marked with the <code class="docutils literal notranslate"><span class="pre">@objc</span></code> attribute. Note that <code class="docutils literal notranslate"><span class="pre">@objc</span></code> protocols can be adopted only by classes that inherit from Objective-C classes or other <code class="docutils literal notranslate"><span class="pre">@objc</span></code> classes. They can’t be adopted by structures or enumerations.</span><!--end_enstr-->
 <span class="jpstr">
-あなたはプロトコルのために<em>オプショナルの要件</em>を定義することができます。 それらの要件は、そのプロトコルに準拠する型によって実装されることは必要ではありません。 オプショナルの要件は、そのプロトコル定義において<code class="docutils literal notranslate"><span class="pre">optional</span></code>修飾子を前に置かれます。オプショナル要件が利用可能なことから、あなたはObjective-Cと相互運用するコードを書くことができます。プロトコルとオプショナル要件の両方は、<code class="docutils literal notranslate"><span class="pre">@objc</span></code>属性で印されなければなりません。<code class="docutils literal notranslate"><span class="pre">@objc</span></code>プロトコルがObjective-Cクラスや他の<code class="docutils literal notranslate"><span class="pre">@objc</span></code>クラスから継承するクラスによってのみ採用される点に注意してください。それは構造体や列挙によって採用されることはできません。
+あなたは、<em>オプショナル要件</em>をプロトコルに対して定義できます。それらの要件は、そのプロトコルに準拠する型によって実装される必要はありません。 オプショナルの要件は、そのプロトコル定義において<code class="docutils literal notranslate"><span class="pre">optional</span></code>修飾子を前に置かれます。オプショナル要件が利用可能なことから、あなたはObjective-Cと相互運用するコードを書くことができます。プロトコルとオプショナル要件の両方は、<code class="docutils literal notranslate"><span class="pre">@objc</span></code>属性で印されなければなりません。<code class="docutils literal notranslate"><span class="pre">@objc</span></code>プロトコルがObjective-Cクラスや他の<code class="docutils literal notranslate"><span class="pre">@objc</span></code>クラスから継承するクラスによってのみ採用される点に注意してください。それは構造体や列挙によって採用されることはできません。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">When you use a method or property in an optional requirement, its type automatically becomes an optional. For example, a method of type <code class="docutils literal notranslate"><span class="pre">(Int)</span> <span class="pre">-&gt;</span> <span class="pre">String</span></code> becomes <code class="docutils literal notranslate"><span class="pre">((Int)</span> <span class="pre">-&gt;</span> <span class="pre">String)?</span></code>. Note that the entire function type is wrapped in the optional, not the method’s return value.</span><!--end_enstr-->
@@ -1794,6 +1800,6 @@ c複数の制約拡張のそれら要件で、同じメソッドやプロパテ�
   </p>
 </footer>
 <div id="jump_to_overlay"></div>
-<script src="../static/javascripts/application.js"></script>
+<script src="../_static/javascripts/application.js"></script>
   </body>
 </html>

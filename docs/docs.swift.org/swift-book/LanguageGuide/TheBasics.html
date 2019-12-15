@@ -10,11 +10,11 @@
     <meta name="author" content="Apple Inc." />
     <meta name="viewport" content="width=device-width initial-scale=1" />
     
-    <title>The Basics — The Swift Programming Language (Swift 5)</title>
+    <title>The Basics — The Swift Programming Language (Swift 5.1)</title>
     
     <link rel="license" href="/LICENSE.txt" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/tspl.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/application.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/tspl.css" />
     <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
@@ -41,7 +41,7 @@
 
     <div id="menu-toggle" class="menu-toggle open"></div>
 
-    <h2>The Swift Programming Language<div>Swift 5</div></h2>
+    <h2>The Swift Programming Language<div>Swift 5.1</div></h2>
 
     <ul>
     <ul class="current">
@@ -90,7 +90,7 @@
 クロージャ
 </span><!--end_jpstr-->
 </a></li>
-<li class="toctree-l2"><a class="reference internal" href="Enumerations.html"><span class="enstr">Enumeration</span><!--end_enstr-->
+<li class="toctree-l2"><a class="reference internal" href="Enumerations.html"><span class="enstr">Enumerations</span><!--end_enstr-->
 <span class="jpstr">
 列挙
 </span><!--end_jpstr-->
@@ -163,6 +163,11 @@
 <li class="toctree-l2"><a class="reference internal" href="Generics.html"><span class="enstr">Generics</span><!--end_enstr-->
 <span class="jpstr">
 総称体
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OpaqueTypes.html"><span class="enstr">Opaque Types</span><!--end_enstr-->
+<span class="jpstr">
+不透明型
 </span><!--end_jpstr-->
 </a></li>
 <li class="toctree-l2"><a class="reference internal" href="AutomaticReferenceCounting.html"><span class="enstr">Automatic Reference Counting</span><!--end_enstr-->
@@ -649,7 +654,7 @@ Cのように、スウィフトはひとつの識別名によっていろいろ�
 スウィフトのコメントは、Cのコメントに非常に似ています。一行コメントは２つのスラッシュで始まります（<code class="docutils literal notranslate"><span class="pre">//</span></code>）：
 </span><!--end_jpstr-->
 </p>
-<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="c"><span class="enstr">// This is a comment.</span><!--end_enstr--><span class="jpstr">//（これはコメントです。）</span><!--end_jpstr--></span>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="c"><span class="enstr">// This is a comment.</span><!--end_enstr--><span class="jpstr">（これはコメントです。）</span><!--end_jpstr--></span>
 </li></ol></div></div></div>
 <p><span class="enstr">Multiline comments start with a forward-slash followed by an asterisk (<code class="docutils literal notranslate"><span class="pre">/*</span></code>) and end with an asterisk followed by a forward-slash (<code class="docutils literal notranslate"><span class="pre">*/</span></code>):</span><!--end_enstr-->
 <span class="jpstr">
@@ -1282,9 +1287,9 @@ Cでの複数行コメントと違って、スウィフトの複数行コメン�
 注意
 </span><!--end_jpstr-->
 </p>
-<p class="last"><span class="enstr">Tuples are useful for temporary groups of related values. They’re not suited to the creation of complex data structures. If your data structure is likely to persist beyond a temporary scope, model it as a class or structure, rather than as a tuple. For more information, see <a class="reference internal" href="ClassesAndStructures.html"><span class="doc">Structures and Classes</span></a>.</span><!--end_enstr-->
+<p class="last"><span class="enstr">Tuples are useful for simple groups of related values. They’re not suited to the creation of complex data structures. If your data structure is likely to be more complex, model it as a class or structure, rather than as a tuple. For more information, see <a class="reference internal" href="ClassesAndStructures.html"><span class="doc">Structures and Classes</span></a>.</span><!--end_enstr-->
 <span class="jpstr">
-タプルは、関連した値の一時的なグループに役立ちます。それらは、複雑なデータ構造物の作成には適していません。あなたのデータ構造が、一時的な範囲を越えて存続しそうならば、タプルとしてよりも、クラスまたは構造体としてそれをモデル化してください。詳細は、<a class="reference internal" href="ClassesAndStructures.html"><span class="doc">クラスと構造体</span></a>を見てください。
+タプルは、関連した値の単純なグループに対して便利です。それらは、複雑なデータ構造物の作成には適していません。あなたのデータ構造体がより複雑になるようならば、それをクラスまたは構造体として形作ってください、タプルとしてよりも。詳細は、<a class="reference internal" href="ClassesAndStructures.html"><span class="doc">クラスと構造体</span></a>を見てください。
 </span><!--end_jpstr-->
 </p>
 </div>
@@ -1537,11 +1542,11 @@ if文と強制アンラップ<a class="headerlink" href="#ID332" title="Permalin
 </p>
 <p><span class="enstr">An implicitly unwrapped optional is a normal optional behind the scenes, but can also be used like a non-optional value, without the need to unwrap the optional value each time it’s accessed. The following example shows the difference in behavior between an optional string and an implicitly unwrapped optional string when accessing their wrapped value as an explicit <code class="docutils literal notranslate"><span class="pre">String</span></code>:</span><!--end_enstr-->
 <span class="jpstr">
-暗黙的にアンラップされるオプショナルは、舞台裏では普通のオプショナルです、しかしまたオプショナルでない値のように扱うこともできます、それがアクセスされるたびにオプショナルの値をアンラップする必要はありません。以下の例は、オプショナルの文字列と、暗黙的にアンラップされるオプショナルの文字列の間での、明示的な<code class="docutils literal notranslate"><span class="pre">String</span></code>としてラップされるそれらにアクセスする場合での、挙動の違いを示します：
+暗黙的にアンラップされるオプショナルは、舞台裏では普通のオプショナルです、しかしまたオプショナルでない値のように扱うこともできます、それがアクセスされるたびにオプショナルの値をアンラップする必要はありません。以下の例は、オプショナルの文字列と、暗黙的にアンラップされるオプショナルの文字列の間での、それらのラップされた値に明示的な<code class="docutils literal notranslate"><span class="pre">String</span></code>としてアクセスする場合での挙動の違いを示します：
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">let</span> <span class="nv">possibleString</span>: <span class="nc">String</span>? = <span class="s">"An optional string."</span>
-</li><li><span class="k">let</span> <span class="nv">forcedString</span>: <span class="nc">String</span> = <span class="nv">possibleString</span>!<span class="c">// requires an exclamation mark</span>
+</li><li><span class="k">let</span> <span class="nv">forcedString</span>: <span class="nc">String</span> = <span class="nv">possibleString</span>! <span class="c">// requires an exclamation mark</span>
 </li><li>
 </li><li><span class="k">let</span> <span class="nv">assumedString</span>: <span class="nc">String</span>! = <span class="s">"An implicitly unwrapped optional string."</span>
 </li><li><span class="k">let</span> <span class="nv">implicitString</span>: <span class="nc">String</span> = <span class="nv">assumedString</span> <span class="c">// no need for an exclamation mark</span>
@@ -1826,6 +1831,6 @@ if文と強制アンラップ<a class="headerlink" href="#ID332" title="Permalin
   </p>
 </footer>
 <div id="jump_to_overlay"></div>
-<script src="../static/javascripts/application.js"></script>
+<script src="../_static/javascripts/application.js"></script>
   </body>
 </html>

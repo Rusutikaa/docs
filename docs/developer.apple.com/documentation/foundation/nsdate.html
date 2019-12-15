@@ -1,0 +1,555 @@
+<!DOCTYPE html><html lang="en" data-reactroot=""><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>NSDate - Foundation | Apple Developer Documentation</title><!-- link href="https://www.apple.com/wss/fonts?families=SF+Pro,v1|SF+Mono,v1|SF+Pro+Icons,v1" media="all" rel="stylesheet" type="text/css"/ --><meta content="width=device-width, initial-scale=1 viewport-fit=cover" name="viewport"/><meta data-pid="424974"/><link href="../../documentation/assets/application-e5bb1544.css" media="all" rel="stylesheet" type="text/css"/><noscript><link href="../../documentation/assets/nojs-c6be9131.css" media="all" rel="stylesheet" type="text/css"/></noscript><link rel="mask-icon" href="../../documentation/assets/apple-logo.svg" color="#000"/><link rel="shortcut icon" href="../../documentation/assets/favicon.ico"/><script src="../../documentation/assets/shared-b7676010.js"></script></head><body><div id="_omniture_top">
+      <script>
+        var s_account="awdappledeveloper"
+      </script><!-- script src="https://developer.apple.com/assets/metrics/scripts/analytics.js" -->
+      </script>
+      <script>
+        s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
+        s.channel="www.documentation.developer"
+
+        var s_code=s.t();if(s_code)document.write(s_code)
+      </script>
+    </div><div id="app"><div><a href="#main" id="skip-localnav" class="showonfocus hidden">Skip Navigation</a><aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"/><nav id="ac-globalnav" class="no-js" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions/">
+      <div class="ac-gn-content">
+        <ul class="ac-gn-header">
+          <li class="ac-gn-item ac-gn-menuicon">
+            <label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true">
+              <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top">
+                <span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span>
+              </span>
+              <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom">
+                <span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span>
+              </span>
+            </label>
+            <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open">
+              <span class="ac-gn-menuanchor-label">Global Nav Open Menu</span>
+            </a>
+            <a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close">
+              <span class="ac-gn-menuanchor-label">Global Nav Close Menu</span>
+            </a>
+          </li>
+          <li class="ac-gn-item ac-gn-apple">
+            <a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small">
+              <span class="ac-gn-link-text">Apple Developer</span>
+            </a>
+          </li>
+        </ul>
+        <div class="ac-gn-search-placeholder-container" role="search">
+          <div class="ac-gn-search ac-gn-search-small">
+            <a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link aria-label="Search Developer">
+              </a><div class="ac-gn-search-placeholder-bar">
+                <div class="ac-gn-search-placeholder-input">
+                  <div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
+                    <div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
+                    <span class="ac-gn-search-placeholder">Search Developer</span>
+                  </div>
+                </div>
+                <div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close">
+                  <span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <ul class="ac-gn-list">
+          <li class="ac-gn-item ac-gn-apple">
+            <a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus">
+              <span class="ac-gn-link-text">Apple Developer</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-discover">
+            <a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover">
+              <span class="ac-gn-link-text">Discover</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-design">
+            <a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design">
+              <span class="ac-gn-link-text">Design</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-develop">
+            <a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop">
+              <span class="ac-gn-link-text">Develop</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-distribute">
+            <a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute">
+              <span class="ac-gn-link-text">Distribute</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport">
+            <a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport">
+              <span class="ac-gn-link-text">Support</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-account">
+            <a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account">
+              <span class="ac-gn-link-text">Account</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search">
+            <a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link aria-label="Search Developer"></a>
+          </li>
+        </ul>
+        <aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search">
+          <div class="ac-gn-searchview-content">
+            <div class="ac-gn-searchview-bar">
+              <div class="ac-gn-searchview-bar-wrapper">
+                <form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get">
+                  <div class="ac-gn-searchform-wrapper">
+                    <input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions" />
+                    <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button>
+                    <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search">
+                        <span class="ac-gn-searchform-reset-background"></span>
+                      </button>
+                  </div>
+                </form>
+                <button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search">
+                    <span class="ac-gn-searchview-close-cancel" aria-hidden="true">
+                      Cancel
+                    </span>
+                  </button>
+              </div>
+            </div>
+            <aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
+          </div>
+          <button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search">
+              <span class="ac-gn-searchview-close-wrapper">
+                <span class="ac-gn-searchview-close-left"></span>
+                <span class="ac-gn-searchview-close-right"></span>
+              </span>
+            </button>
+        </aside>
+          </div>
+    </nav><div class="ac-gn-blur"></div><div id="ac-gn-curtain" class="ac-gn-curtain"></div><div id="ac-gn-placeholder" class="ac-nav-placeholder"></div><input type="checkbox" id="localnav-menustate" class="localnav-menustate" aria-hidden="true"/><nav id="localnav" class="localnav localnav-dark theme-dark localnav-scrim localnav-noborder" role="navigation" aria-label="API Reference" data-sticky="true"><div class="localnav-wrapper"><div class="referencenav"><div class="localnav-background"></div><div class="localnav-content"><a href="../../index.html" class="localnav-title">Documentation</a><div class="localnav-menu"><a href="#localnav-menustate" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span class="localnav-menucta-anchor-label" aria-hidden="true">Open Menu</span></a><a href="#" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span class="localnav-menucta-anchor-label" aria-hidden="true">Close Menu</span></a><div class="localnav-menu-tray"><ul aria-label="Breadcrumbs" class="localnav-menu-items localnav-menu-breadcrumbs"><li class="localnav-menu-item localnav-menu-breadcrumb-item truncated"><a class="localnav-menu-link" href="../../documentation/foundation.html">Foundation</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item truncated"><a class="localnav-menu-link" href="../../documentation/foundation/dates_and_times.html"><span class="enstr">Dates and Times</span><!--end_enstr-->
+<span class="jpstr">
+日付と時刻
+</span><!--end_jpstr-->
+</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item truncated-breadcrumbs"><button class="localnav-menu-breadcrumb-link truncated-breadcrumbs-disclosebtn"><span class="truncated-breadcrumbs-disclosebtn-indicator">⋯</span></button><ul class="truncated-breadcrumbs-dropdown"><li class="truncated-breadcrumbs-dropdown-item"><a class="truncated-breadcrumbs-dropdown-item-link" href="../../documentation/foundation.html">Foundation</a></li><li class="truncated-breadcrumbs-dropdown-item"><a class="truncated-breadcrumbs-dropdown-item-link" href="../../documentation/foundation/dates_and_times.html"><span class="enstr">Dates and Times</span><!--end_enstr-->
+<span class="jpstr">
+日付と時刻
+</span><!--end_jpstr-->
+</a></li></ul></li><li class="localnav-menu-item localnav-menu-breadcrumb-item"><a class="localnav-menu-link" href="../../documentation/foundation/date.html">Date</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item"><div class="localnav-menu-breadcrumb-current-container localnav-menu-link current"><span aria-current="page" class="localnav-menu-breadcrumb-current">NSDate</span></div></li></ul><ul class="localnav-menu-items localnav-menu-settings" data-breadcrumbs-count="4"><li class="localnav-menu-setting language-container"><div class="language-toggle-container"><label for="language-toggle" class="language-toggle-label">Language:</label><select id="language-toggle" class="language-dropdown localnav-menu-link" style="width:auto"><option selected="" value="swift">Swift</option><option value="occ">Objective-C</option></select></div><div class="language-list-container"><span class="localnav-menu-setting-label">Language:</span><ul class="language-list"><li class="language-list-item"><span data-language="swift" aria-current="page" class="current-language">Swift</span></li><li class="language-list-item"><a href="../../documentation/foundation/nsdate?language=objc.html" class="localnav-menu-setting-link">Objective-C</a></li></ul></div></li><li class="localnav-menu-setting"><span class="localnav-menu-setting-label">API Changes:</span><span class="changes-toggle">None</span></li></ul></div><div class="localnav-actions"><div class="localnav-action localnav-action-menucta" aria-hidden="true"><label for="localnav-menustate" class="localnav-menucta"><span class="localnav-menucta-chevron"></span></label></div></div></div></div></div></div></nav><label for="localnav-menustate" id="localnav-curtain" aria-hidden="true"></label><main role="main" id="main" class="main" tabindex="0"><div class="topic-title"><span class="eyebrow">Class</span><h1 class="topic-heading"><span>NSDate</span></h1></div><div class="topic-container section-content row"><div class="topic-description column large-9 medium-9 small-12"><div class="topic-abstract abstract formatted-content"><div><p><span class="enstr">A representation of a specific point in time that bridges to <a class="symbol-name" href="../../documentation/foundation/date.html"><code><span>Date</span></code></a>; use <code class="code-voice"><span>NSDate</span></code> when you need reference semantics or other Foundation-specific behavior.</span><!--end_enstr-->
+<span class="jpstr">
+<a class="symbol-name" href="../../documentation/foundation/date.html"><code><span>Date</span></code></a>にブリッジするある特定の時点の表現；あなたが参照意味論や他のFoundation特有の挙動を必要とする場合に<code class="code-voice"><span>NSDate</span></code>を使ってください。
+</span><!--end_jpstr-->
+</p></div></div></div><div class="topic-summary column large-3 medium-3 small-12"><div class="topic-summary-section sdks" role="complementary" aria-label="SDKs"><p class="topic-summary-section-label subsection-label">SDKs</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item sdk"><span aria-label="iOS 2.0+, Available on iOS 2.0 and later" role="text" title="Available on iOS 2.0 and later">iOS 2.0+</span></li><li class="topic-summary-section-item sdk"><span aria-label="macOS 10.0+, Available on macOS 10.0 and later" role="text" title="Available on macOS 10.0 and later">macOS 10.0+</span></li><li class="topic-summary-section-item sdk"><span aria-label="Mac Catalyst 13.0+, Available on Mac Catalyst 13.0 and later" role="text" title="Available on Mac Catalyst 13.0 and later">Mac Catalyst 13.0+</span></li><li class="topic-summary-section-item sdk"><span aria-label="tvOS 9.0+, Available on tvOS 9.0 and later" role="text" title="Available on tvOS 9.0 and later">tvOS 9.0+</span></li><li class="topic-summary-section-item sdk"><span aria-label="watchOS 2.0+, Available on watchOS 2.0 and later" role="text" title="Available on watchOS 2.0 and later">watchOS 2.0+</span></li></ul></div><div class="topic-summary-section frameworks" role="complementary" aria-label="Framework"><p class="topic-summary-section-label subsection-label"><span class="enstr">Framework</span><!--end_enstr-->
+<span class="jpstr">
+フレームワーク
+</span><!--end_jpstr-->
+</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item"><span>Foundation</span></li></ul></div><div class="topic-summary-section onthispage"><nav class="onthispage-nav" aria-labelledby="onthispage-title"><p id="onthispage-title" class="topic-summary-section-label subsection-label"><span class="enstr">On This Page</span><!--end_enstr-->
+<span class="jpstr">
+この項には
+</span><!--end_jpstr-->
+</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item"><a href="#declarations" class="icon icon-after icon-chevrondowncircle"><span class="enstr">Declaration</span><!--end_enstr-->
+<span class="jpstr">
+宣言
+</span><!--end_jpstr-->
+</a></li><li class="topic-summary-section-item"><a href="#overview" class="icon icon-after icon-chevrondowncircle"><span class="enstr">Overview</span><!--end_enstr-->
+<span class="jpstr">
+概要
+</span><!--end_jpstr-->
+</a></li><li class="topic-summary-section-item"><a href="#topics" class="icon icon-after icon-chevrondowncircle"><span class="enstr">Topics</span><!--end_enstr-->
+<span class="jpstr">
+話題
+</span><!--end_jpstr-->
+</a></li><li class="topic-summary-section-item"><a href="#relationships" class="icon icon-after icon-chevrondowncircle"><span class="enstr">Relationships</span><!--end_enstr-->
+<span class="jpstr">
+関係
+</span><!--end_jpstr-->
+</a></li><li class="topic-summary-section-item"><a href="#see-also" class="icon icon-after icon-chevrondowncircle"><span class="enstr">See Also</span><!--end_enstr-->
+<span class="jpstr">
+参照
+</span><!--end_jpstr-->
+</a></li></ul></nav></div></div><div class="topic-content column large-9 medium-9 small-12" id="topic-content"><section id="declarations" class="section"><h2><span class="enstr">Declaration</span><!--end_enstr-->
+<span class="jpstr">
+宣言
+</span><!--end_jpstr-->
+</h2><figure class="declaration"><div class="code-listing"><pre class="code-source" data-language="swift"><code><span><span class="syntax-keyword">class</span> <span class="syntax-identifier">NSDate</span> : <a class="symbolref" href="https://developer.apple.com/documentation/objectivec/nsobject"><span>NSObject</span></a>
+</span></code></pre></div></figure></section><section id="overview" class="section"><h2><span class="enstr">Overview</span><!--end_enstr-->
+<span class="jpstr">
+概要
+</span><!--end_jpstr-->
+</h2><div class="formatted-content"><div><p><span class="enstr"><code class="code-voice"><span>NSDate</span></code> objects encapsulate a single point in time, independent of any particular calendrical system or time zone. Date objects are immutable, representing an invariant time interval relative to an absolute reference date (00:00:00 UTC on 1 January 2001).</span><!--end_enstr-->
+<span class="jpstr">
+<code class="code-voice"><span>NSDate</span></code>オブジェクトは、あらゆる特定の暦体系またはタイムゾーンから独立して、時間の中のある一点をカプセル化します。Dateオブジェクトは不変です、ある変化しない時間間隔を、絶対基準日（2001 January 1 での 00:00:00 UTC）に相対して表します。
+</span><!--end_jpstr-->
+</p><p><span class="enstr">The <code class="code-voice"><span>NSDate</span></code> class provides methods for comparing dates, calculating the time interval between two dates, and creating a new date from a time interval relative to another date. <code class="code-voice"><span>NSDate</span></code> objects can be used in conjunction with <a class="symbol-name" href="../../documentation/foundation/dateformatter.html"><code><span>Date<wbr/>Formatter</span></code></a> objects to create localized representations of dates and times, as well as with <a class="symbol-name" href="../../documentation/foundation/nscalendar.html"><code><span>NSCalendar</span></code></a> objects to perform calendar arithmetic.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="code-voice"><span>NSDate</span></code>クラスは、日付の比較、２つの日付の間の時間の隔たりの計算、そして別の日付と相対的にある時間の隔たりから新しい日付を作成することに対してメソッドを提供します。<code class="code-voice"><span>NSDate</span></code>オブジェクトは、日付と時刻のローカライズされた表現を作成するために<a class="symbol-name" href="../../documentation/foundation/dateformatter.html"><code><span>Date<wbr/>Formatter</span></code></a>オブジェクトと、それだけでなくカレンダー算術を実行するために<a class="symbol-name" href="../../documentation/foundation/nscalendar.html"><code><span>NSCalendar</span></code></a>オブジェクトと協力して使用できます。
+</span><!--end_jpstr-->
+</p><p><span class="enstr"><code class="code-voice"><span>NSDate</span></code> is <em>toll-free bridged</em> with its Core Foundation counterpart, <a class="symbol-name" href="https://developer.apple.com/documentation/corefoundation/cfdate"><code><span>CFDate</span></code></a>. See <a href="https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2">Toll-Free Bridging</a> for more information on toll-free bridging.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="code-voice"><span>NSDate</span></code>は、<em>トールフリーブリッジ</em>をそれのCore Foundation相当物、<a class="symbol-name" href="https://developer.apple.com/documentation/corefoundation/cfdate"><code><span>CFDate</span></code></a>とされます。トールフリーブリッジに関する更なる情報として<a href="https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2">トールフリーブリッジ</a>を見てください。
+</span><!--end_jpstr-->
+</p><aside class="aside aside-important" aria-label="important"><p class="aside-name"><span class="enstr">Important</span><!--end_enstr-->
+<span class="jpstr">
+重要
+</span><!--end_jpstr-->
+</p><p><span class="enstr">The Swift overlay to the Foundation framework provides the <a class="symbol-name" href="../../documentation/foundation/date.html"><code><span>Date</span></code></a> structure, which bridges to the <code class="code-voice"><span>NSDate</span></code> class. For more information about value types, see <a href="https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6">Working with Cocoa Frameworks</a> in <a href="https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216">Using Swift with Cocoa and Objective-C (Swift 4.1)</a>.</span><!--end_enstr-->
+<span class="jpstr">
+Foundationフレームワークに対するSwiftオーバーレイは、<a class="symbol-name" href="../../documentation/foundation/date.html"><code><span>Date</span></code></a>構造体を提供します、それは<code class="code-voice"><span>NSDate</span></code>クラスへとブリッジします。値型についてのさらなる情報として、<a href="https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6">Working with Cocoa Frameworks</a>を<a href="https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216">Using Swift with Cocoa and Objective-C (Swift 4.1)</a>で見てください。
+</span><!--end_jpstr-->
+</p></aside></div><h3 id="1651270"><span class="enstr">Subclassing Notes</span><!--end_enstr-->
+<span class="jpstr">
+サブクラス作成の注意
+</span><!--end_jpstr-->
+</h3><div><p><span class="enstr">You might subclass <code class="code-voice"><span>NSDate</span></code> in order to make it easier to work with a particular calendrical system, or to work with date and time values with a finer temporal granularity.</span><!--end_enstr-->
+<span class="jpstr">
+あなたは<code class="code-voice"><span>NSDate</span></code>のサブクラスの作成を行うかもしれません、それは特定のカレンダー関連システムを扱うのを、または日付と時刻の値を詳細な時間粒度で扱うのを、より簡単にするためにです。
+</span><!--end_jpstr-->
+</p></div><h4 id="1651281"><span class="enstr">Methods to Override and Other Requirements</span><!--end_enstr-->
+<span class="jpstr">
+オーバーライドするメソッドと他の要件
+</span><!--end_jpstr-->
+</h4><div><p><span class="enstr">If you want to subclass <code class="code-voice"><span>NSDate</span></code> to obtain behavior different than that provided by the private or public subclasses, you must:</span><!--end_enstr-->
+<span class="jpstr">
+あなたが<code class="code-voice"><span>NSDate</span></code>のサブクラスを作ってプライベートまたはパブリックなサブクラスによって提供されるものとは異なる挙動を獲得したいならば、あなたは次をしなければなりません：
+</span><!--end_jpstr-->
+</p><ul><li><p><span class="enstr">Declare a suitable instance variable to hold the date and time value (relative to an absolute reference date)</span><!--end_enstr-->
+<span class="jpstr">
+適切なインスタンス変数を宣言して日付と時刻の値を保持してください（ある絶対基準日に相対的に）
+</span><!--end_jpstr-->
+</p></li><li><p><span class="enstr">Override the <a class="symbol-name" href="../../documentation/foundation/nsdate/1417376-timeintervalsincereferencedate.html"><code><span>time<wbr/>Interval<wbr/>Since<wbr/>Reference<wbr/>Date</span></code></a> instance method to provide the correct date and time value based on your instance variable</span><!--end_enstr-->
+<span class="jpstr">
+<a class="symbol-name" href="../../documentation/foundation/nsdate/1417376-timeintervalsincereferencedate.html"><code><span>time<wbr/>Interval<wbr/>Since<wbr/>Reference<wbr/>Date</span></code></a>インスタンスメソッドをオーバーライドして正確な日付と時刻をあなたのインスタンス変数に基づいて提供してください
+</span><!--end_jpstr-->
+</p></li><li><p><span class="enstr">Override <a class="symbol-name" href="../../documentation/foundation/nsdate/1409769-init.html"><code><span>init(time<wbr/>Interval<wbr/>Since<wbr/>Reference<wbr/>Date:)</span></code></a>, one of the designated initializer methods</span><!--end_enstr-->
+<span class="jpstr">
+指定イニシャライザメソッドの１つ、<a class="symbol-name" href="../../documentation/foundation/nsdate/1409769-init.html"><code><span>init(time<wbr/>Interval<wbr/>Since<wbr/>Reference<wbr/>Date:)</span></code></a>をオーバーライドしてください
+</span><!--end_jpstr-->
+</p></li><li><p><span class="enstr">If creating a subclass that represents a calendrical system, define methods that partition past and future periods into the units of this calendar</span><!--end_enstr-->
+<span class="jpstr">
+あるカレンダー関連システムを表すサブクラスを作成するならば、過去と未来の期間をこのカレンダーの単位へと分割するメソッドを定義してください
+</span><!--end_jpstr-->
+</p></li><li><p><span class="enstr">Implement the methods required by the <a class="symbol-name" href="../../documentation/foundation/nscopying.html"><code><span>NSCopying</span></code></a> and <a href="https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WritingSwiftClassesWithObjective-CBehavior.html#//apple_ref/doc/uid/TP40014216-CH5-ID152">NSCoding</a> protocols, because <a class="symbol-name" href="../../documentation/foundation/nsdate.html"><code><span>NSDate</span></code></a> adopts these protocols</span><!--end_enstr-->
+<span class="jpstr">
+<a class="symbol-name" href="../../documentation/foundation/nscopying.html"><code><span>NSCopying</span></code></a>と<a href="https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WritingSwiftClassesWithObjective-CBehavior.html#//apple_ref/doc/uid/TP40014216-CH5-ID152">NSCoding</a>プロトコルによって必要とされるメソッドを実装してください、なぜなら<a class="symbol-name" href="../../documentation/foundation/nsdate.html"><code><span>NSDate</span></code></a>はこれらのプロトコルを採用するからです
+</span><!--end_jpstr-->
+</p></li></ul><p></p></div><h4 id="1651294"><span class="enstr">Special Considerations</span><!--end_enstr-->
+<span class="jpstr">
+特別な注意事項
+</span><!--end_jpstr-->
+</h4><div><p><span class="enstr">Your subclass may use a different reference date than the absolute reference date used by <code class="code-voice"><span>NSDate</span></code> (00:00:00 UTC on 1 January 2001). If it does, it must still use the absolute reference date in its implementations of the methods <a class="symbol-name" href="../../documentation/foundation/nsdate/1417376-timeintervalsincereferencedate.html"><code><span>time<wbr/>Interval<wbr/>Since<wbr/>Reference<wbr/>Date</span></code></a> and <a class="symbol-name" href="../../documentation/foundation/nsdate/1409769-init.html"><code><span>init(time<wbr/>Interval<wbr/>Since<wbr/>Reference<wbr/>Date:)</span></code></a>. That is, the reference date referred to in the titles of these methods is the absolute reference date. If you do not use the absolute reference date in these methods, comparisons between <code class="code-voice"><span>NSDate</span></code> objects of your subclass and <code class="code-voice"><span>NSDate</span></code> objects of a private subclass will not work.</span><!--end_enstr-->
+<span class="jpstr">
+あなたのサブクラスは、<code class="code-voice"><span>NSDate</span></code>によって使われる絶対基準日（1 January 2001 での 00:00:00 UTC）とは違う基準日を使うかもしれません。たとえそうしても、それは依然として絶対基準日をメソッド<a class="symbol-name" href="../../documentation/foundation/nsdate/1417376-timeintervalsincereferencedate.html"><code><span>time<wbr/>Interval<wbr/>Since<wbr/>Reference<wbr/>Date</span></code></a>と<a class="symbol-name" href="../../documentation/foundation/nsdate/1409769-init.html"><code><span>init(time<wbr/>Interval<wbr/>Since<wbr/>Reference<wbr/>Date:)</span></code></a>のそれの実装において使わなければなりません。すなわち、これらのメソッドのタイトルにおいて参照される基準日は、絶対基準日です。あなたが絶対基準日をこれらのメソッドにおいて使わないならば、あなたのサブクラスの<code class="code-voice"><span>NSDate</span></code>オブジェクトとあるプライベートなサブクラスの<code class="code-voice"><span>NSDate</span></code>オブジェクトの間の比較は、機能しません。
+</span><!--end_jpstr-->
+</p></div></div></section></div></div><section id="topics" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><span class="enstr">Topics</span><!--end_enstr-->
+<span class="jpstr">
+話題
+</span><!--end_jpstr-->
+</h2><section id="2891799" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Initializing a Date</span><!--end_enstr-->
+<span class="jpstr">
+日付を初期化する
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsdate/1415407-init.html"><code class="display-name"><span class="identifier">init</span><span class="decorator">()</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns a date object initialized to the current date and time.</span><!--end_enstr-->
+<span class="jpstr">
+現在の日付と時刻に初期化される日付オブジェクトを返します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsdate/1411701-init.html"><code class="display-name"><span class="identifier">init</span><span class="decorator">(</span><span class="identifier">time<wbr/>Interval<wbr/>Since<wbr/>Now</span><span class="decorator">: Time<wbr/>Interval)</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns a date object initialized relative to the current date and time by a given number of seconds.</span><!--end_enstr-->
+<span class="jpstr">
+現在の日付と時刻に相対してある与えられた秒数の差で初期化される日付オブジェクトを返します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsdate/1414201-init.html"><code class="display-name"><span class="identifier">init</span><span class="decorator">(</span><span class="identifier">time<wbr/>Interval</span><span class="decorator">: Time<wbr/>Interval, </span><span class="identifier">since</span><span class="decorator">: Date)</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns a date object initialized relative to another given date by a given number of seconds.</span><!--end_enstr-->
+<span class="jpstr">
+別の与えられた日付に相対してある与えられた秒数の差で初期化される日付オブジェクトを返します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsdate/1409769-init.html"><code class="display-name"><span class="identifier">init</span><span class="decorator">(</span><span class="identifier">time<wbr/>Interval<wbr/>Since<wbr/>Reference<wbr/>Date</span><span class="decorator">: Time<wbr/>Interval)</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns a date object initialized relative to 00:00:00 UTC on 1 January 2001 by a given number of seconds.</span><!--end_enstr-->
+<span class="jpstr">
+00:00:00 UTC 1 January 2001に相対してある与えられた秒数の差で初期化される日付オブジェクトを返します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsdate/1416453-init.html"><code class="display-name"><span class="identifier">init</span><span class="decorator">(</span><span class="identifier">time<wbr/>Interval<wbr/>Since1970</span><span class="decorator">: Time<wbr/>Interval)</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns a date object initialized relative to 00:00:00 UTC on 1 January 1970 by a given number of seconds.</span><!--end_enstr-->
+<span class="jpstr">
+00:00:00 UTC 1 January 1970に相対してある与えられた秒数の差で初期化される日付オブジェクトを返します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsdate/1412602-init.html"><code class="display-name"><span class="identifier">init</span><span class="decorator">?(</span><span class="identifier">coder</span><span class="decorator">: NSCoder)</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns a date object initialized from data in the given unarchiver.</span><!--end_enstr-->
+<span class="jpstr">
+与えられたアンアーカイバの中のデータから初期化される日付オブジェクトを返します。
+</span><!--end_jpstr-->
+</p></div></div></div></div></div></div></div></section><section id="1651445" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Getting Temporal Boundaries</span><!--end_enstr-->
+<span class="jpstr">
+時間的な境界を得る
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsdate/1415385-distantfuture.html"><code class="display-name"><span class="decorator">class var </span><span class="identifier">distant<wbr/>Future</span><span class="decorator">: Date</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A date object representing a date in the distant future.</span><!--end_enstr-->
+<span class="jpstr">
+遠い未来のある日付を表している日付オブジェクト。
+</span><!--end_jpstr-->
+ </p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsdate/1418197-distantpast.html"><code class="display-name"><span class="decorator">class var </span><span class="identifier">distant<wbr/>Past</span><span class="decorator">: Date</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A date object representing a date in the distant past.</span><!--end_enstr-->
+<span class="jpstr">
+遠い過去のある日付を表している日付オブジェクト。
+</span><!--end_jpstr-->
+</p></div></div></div></div></div></div></div></section><section id="1651461" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Comparing Dates</span><!--end_enstr-->
+<span class="jpstr">
+日付を比較する
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsdate/1416400-isequal.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">is<wbr/>Equal</span><span class="decorator">(</span><span class="identifier">to</span><span class="decorator">: Date) -&gt; Bool</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns a Boolean value that indicates whether a given object is a date that is exactly equal the receiver.</span><!--end_enstr-->
+<span class="jpstr">
+与えられたオブジェクトがレシーバと正確に等しい日付であるかどうかを指し示すブール値を返します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsdate/1412791-earlierdate.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">earlier<wbr/>Date</span><span class="decorator">(Date) -&gt; Date</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns the earlier of the receiver and another given date.</span><!--end_enstr-->
+<span class="jpstr">
+レシーバと別の与えられた日付のより前のものを返します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsdate/1409058-laterdate.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">later<wbr/>Date</span><span class="decorator">(Date) -&gt; Date</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns the later of the receiver and another given date.</span><!--end_enstr-->
+<span class="jpstr">
+レシーバと別の与えられた日付のより後のものを返します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsdate/1409748-compare.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">compare</span><span class="decorator">(Date) -&gt; Comparison<wbr/>Result</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Indicates the temporal ordering of the receiver and another given date.</span><!--end_enstr-->
+<span class="jpstr">
+レシーバと別の与えられた日付の時間的順序を指し示します。
+</span><!--end_jpstr-->
+</p></div></div></div></div></div></div></div></section><section id="1651508" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Getting Time Intervals</span><!--end_enstr-->
+<span class="jpstr">
+時間の隔たりを得る
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsdate/1410206-timeintervalsince.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">time<wbr/>Interval<wbr/>Since</span><span class="decorator">(Date) -&gt; Time<wbr/>Interval</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns the interval between the receiver and another given date.</span><!--end_enstr-->
+<span class="jpstr">
+レシーバと別の与えられた日付との間の隔たりを返します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsdate/1407937-timeintervalsincenow.html"><code class="display-name"><span class="decorator">var </span><span class="identifier">time<wbr/>Interval<wbr/>Since<wbr/>Now</span><span class="decorator">: Time<wbr/>Interval</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The interval between the date object and the current date and time.</span><!--end_enstr-->
+<span class="jpstr">
+この日付オブジェクトと現在の日付と時刻の間の隔たり。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsdate/1417376-timeintervalsincereferencedate.html"><code class="display-name"><span class="decorator">var </span><span class="identifier">time<wbr/>Interval<wbr/>Since<wbr/>Reference<wbr/>Date</span><span class="decorator">: Time<wbr/>Interval</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The interval between the date object and 00:00:00 UTC on 1 January 2001.</span><!--end_enstr-->
+<span class="jpstr">
+この日付オブジェクトと1 January 2001での00:00:00 UTCの間の隔たり。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsdate/1407504-timeintervalsince1970.html"><code class="display-name"><span class="decorator">var </span><span class="identifier">time<wbr/>Interval<wbr/>Since1970</span><span class="decorator">: Time<wbr/>Interval</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The interval between the date object and 00:00:00 UTC on 1 January 1970.</span><!--end_enstr-->
+<span class="jpstr">
+この日付オブジェクトと1 January 1970での00:00:00 UTCの間の隔たり。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsdate/1408189-timeintervalsincereferencedate.html"><code class="display-name"><span class="decorator">class var </span><span class="identifier">time<wbr/>Interval<wbr/>Since<wbr/>Reference<wbr/>Date</span><span class="decorator">: Time<wbr/>Interval</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The interval between 00:00:00 UTC on 1 January 2001 and the current date and time.</span><!--end_enstr-->
+<span class="jpstr">
+00:00:00 UTC 1 January 2001と現在の日付と時刻との間の隔たり。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nstimeintervalsince1970.html"><code class="display-name"><span class="decorator">var </span><span class="identifier">NSTime<wbr/>Interval<wbr/>Since1970</span><span class="decorator">: Double</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The number of seconds from 1 January 1970 to the reference date, 1 January 2001.</span><!--end_enstr-->
+<span class="jpstr">
+1 January 1970から基準日、1 January 2001までの秒数。
+</span><!--end_jpstr-->
+</p></div></div></div></div></div></div></div></section><section id="1651553" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Adding Time Intervals</span><!--end_enstr-->
+<span class="jpstr">
+時間間隔の加算
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsdate/1408823-addingtimeinterval.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">adding<wbr/>Time<wbr/>Interval</span><span class="decorator">(Time<wbr/>Interval) -&gt; Self</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns a new date object that is set to a given number of seconds relative to the receiver.</span><!--end_enstr-->
+<span class="jpstr">
+レシーバに相対してある与えられた秒数を設定される新しい日付オブジェクトを返します。
+</span><!--end_jpstr-->
+</p></div></div></div></div></div></div></div></section><section id="1651574" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Describing Dates</span><!--end_enstr-->
+<span class="jpstr">
+日付を記述する
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsdate/1409767-description.html"><code class="display-name"><span class="decorator">var </span><span class="identifier">description</span><span class="decorator">: String</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A string representation of the date object.</span><!--end_enstr-->
+<span class="jpstr">
+日付オブジェクトの文字列表現。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsdate/1414108-description.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">description</span><span class="decorator">(</span><span class="identifier">with</span><span class="decorator">: Any?) -&gt; String</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns a string representation of the date using the given locale.</span><!--end_enstr-->
+<span class="jpstr">
+与えられたロケールを使って時間の文字列表現を返します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="task-topic-deprecated has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsdate/1642973-customplaygroundquicklook.html"><code class="display-name"><span class="decorator">var </span><span class="identifier">custom<wbr/>Playground<wbr/>Quick<wbr/>Look</span><span class="decorator">: Playground<wbr/>Quick<wbr/>Look</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A custom playground Quick Look for this object.</span><!--end_enstr-->
+<span class="jpstr">
+このオブジェクトのためのあつらえのプレイグラウンドQuick Look。
+</span><!--end_jpstr-->
+</p></div></div><span class="violator violator-inline violator-deprecated task-topic-violator task-topic-data" role="presentation"><span class="enstr">Deprecated</span><!--end_enstr-->
+<span class="jpstr">
+非推奨
+</span><!--end_jpstr-->
+</span></div></div></div></div></div></section><section id="1680373" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Recognizing Notifications</span><!--end_enstr-->
+<span class="jpstr">
+通知を認識する
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsnotification/name/1414255-nssystemclockdidchange.html"><code class="display-name"><span class="decorator">static let </span><span class="identifier">NSSystem<wbr/>Clock<wbr/>Did<wbr/>Change</span><span class="decorator">: NSNotification<wbr/>.Name</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A notification posted whenever the system clock is changed.</span><!--end_enstr-->
+<span class="jpstr">
+システム時計が変更される時はいつでも投函される通知。
+</span><!--end_jpstr-->
+ </p></div></div></div></div></div></div></div></section><section id="1651602" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Legacy Operations</span><!--end_enstr-->
+<span class="jpstr">
+レガシー演算
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="task-topic-deprecated has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsdate/1415776-date.html"><code class="display-name"><span class="decorator">class func </span><span class="identifier">date</span><span class="decorator">(</span><span class="identifier">with<wbr/>Natural<wbr/>Language<wbr/>String</span><span class="decorator">: String) -&gt; Any?</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Creates and returns a date object set to the date and time specified by a given string.</span><!--end_enstr-->
+<span class="jpstr">
+与えられた文字列によって指定される日付と時刻に設定されるある日付オブジェクトを作成して返します。
+</span><!--end_jpstr-->
+</p></div></div><span class="violator violator-inline violator-deprecated task-topic-violator task-topic-data" role="presentation"><span class="enstr">Deprecated</span><!--end_enstr-->
+<span class="jpstr">
+非推奨
+</span><!--end_jpstr-->
+</span></div></div><div class="task-topic"><div class="task-topic-info"><a class="task-topic-deprecated has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsdate/1407720-date.html"><code class="display-name"><span class="decorator">class func </span><span class="identifier">date</span><span class="decorator">(</span><span class="identifier">with<wbr/>Natural<wbr/>Language<wbr/>String</span><span class="decorator">: String, </span><span class="identifier">locale</span><span class="decorator">: Any?) -&gt; Any?</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Creates and returns a date object set to the date and time specified by a given string.</span><!--end_enstr-->
+<span class="jpstr">
+与えられた文字列によって指定される日付と時刻に設定されるある日付オブジェクトを作成して返します。
+</span><!--end_jpstr-->
+</p></div></div><span class="violator violator-inline violator-deprecated task-topic-violator task-topic-data" role="presentation"><span class="enstr">Deprecated</span><!--end_enstr-->
+<span class="jpstr">
+非推奨
+</span><!--end_jpstr-->
+</span></div></div><div class="task-topic"><div class="task-topic-info"><a class="task-topic-deprecated has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsdate/1408398-date.html"><code class="display-name"><span class="decorator">class func </span><span class="identifier">date</span><span class="decorator">(</span><span class="identifier">with</span><span class="decorator">: String) -&gt; Any</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Creates and returns a date object with a date and time value specified by a given string in the international string representation format (<code class="code-voice"><span>YYYY-MM-DD HH:<wbr/>MM:<wbr/>SS ±HHMM</span></code>).</span><!--end_enstr-->
+<span class="jpstr">
+国際化文字列表現形式（<code class="code-voice"><span>YYYY-MM-DD HH:<wbr/>MM:<wbr/>SS ±HHMM</span></code>）で与えられる文字列によって指定される日付と時刻の値で日付オブジェクトを作成して返します。
+</span><!--end_jpstr-->
+</p></div></div><span class="violator violator-inline violator-deprecated task-topic-violator task-topic-data" role="presentation"><span class="enstr">Deprecated</span><!--end_enstr-->
+<span class="jpstr">
+非推奨
+</span><!--end_jpstr-->
+</span></div></div><div class="task-topic"><div class="task-topic-info"><a class="task-topic-deprecated has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsdate/1407172-init.html"><code class="display-name"><span class="identifier">init</span><span class="decorator">?(</span><span class="identifier">string</span><span class="decorator">: String)</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns a date object initialized with a date and time value specified by a given string in the international string representation format.</span><!--end_enstr-->
+<span class="jpstr">
+国際化文字列表現形式で与えられる文字列によって指定される日付と時刻の値で初期化される日付オブジェクトを返します。
+</span><!--end_jpstr-->
+</p></div></div><span class="violator violator-inline violator-deprecated task-topic-violator task-topic-data" role="presentation"><span class="enstr">Deprecated</span><!--end_enstr-->
+<span class="jpstr">
+非推奨
+</span><!--end_jpstr-->
+</span></div></div><div class="task-topic"><div class="task-topic-info"><a class="task-topic-deprecated has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsdate/1591575-addtimeinterval.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">add<wbr/>Time<wbr/>Interval</span><span class="decorator">(Time<wbr/>Interval) -&gt; Any</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns a new date object that is set to a given number of seconds relative to the receiver.</span><!--end_enstr-->
+<span class="jpstr">
+レシーバに相対してある与えられた秒数を設定される新しい日付オブジェクトを返します。
+</span><!--end_jpstr-->
+</p></div></div><span class="violator violator-inline violator-deprecated task-topic-violator task-topic-data" role="presentation"><span class="enstr">Deprecated</span><!--end_enstr-->
+<span class="jpstr">
+非推奨
+</span><!--end_jpstr-->
+</span></div></div><div class="task-topic"><div class="task-topic-info"><a class="task-topic-deprecated has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsdate/1407899-date.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">date</span><span class="decorator">(</span><span class="identifier">with<wbr/>Calendar<wbr/>Format</span><span class="decorator">: String?, </span><span class="identifier">time<wbr/>Zone</span><span class="decorator">: Time<wbr/>Zone?) -&gt; NSCalendar<wbr/>Date</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Converts the receiver to a calendar date with a given format string and time zone.</span><!--end_enstr-->
+<span class="jpstr">
+レシーバをある与えられた書式設定文字列とタイムゾーンでのあるカレンダー日付へ変換します。
+</span><!--end_jpstr-->
+</p></div></div><span class="violator violator-inline violator-deprecated task-topic-violator task-topic-data" role="presentation"><span class="enstr">Deprecated</span><!--end_enstr-->
+<span class="jpstr">
+非推奨
+</span><!--end_jpstr-->
+</span></div></div><div class="task-topic"><div class="task-topic-info"><a class="task-topic-deprecated has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsdate/1415983-description.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">description</span><span class="decorator">(</span><span class="identifier">with<wbr/>Calendar<wbr/>Format</span><span class="decorator">: String?, </span><span class="identifier">time<wbr/>Zone</span><span class="decorator">: Time<wbr/>Zone?, </span><span class="identifier">locale</span><span class="decorator">: Any?) -&gt; String?</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns a string representation of the date formatted as specified by given conversion specifiers.</span><!--end_enstr-->
+<span class="jpstr">
+与えられた変換指定子によって書式設定される日付の文字列表現を返します。
+</span><!--end_jpstr-->
+</p></div></div><span class="violator violator-inline violator-deprecated task-topic-violator task-topic-data" role="presentation"><span class="enstr">Deprecated</span><!--end_enstr-->
+<span class="jpstr">
+非推奨
+</span><!--end_jpstr-->
+</span></div></div></div></div></div></section><section id="3183992" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Type Properties</span><!--end_enstr-->
+<span class="jpstr">
+型プロパティ 
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info has-inline-element"><a class="symbol-name symbol-name-decorated" href="../../documentation/foundation/nsdate/3180113-now.html"><code class="display-name"><span class="decorator">class var </span><span class="identifier">now</span><span class="decorator">: Date</span></code></a></div></div></div></div></div></section></div></div></section><section id="relationships" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><span class="enstr">Relationships</span><!--end_enstr-->
+<span class="jpstr">
+関係
+</span><!--end_jpstr-->
+</h2><section id="inherits-from" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Inherits From</span><!--end_enstr-->
+<span class="jpstr">
+継承元
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div><a class="symbol-name" href="https://developer.apple.com/documentation/objectivec/nsobject"><code><span>NSObject</span></code></a></div></div></div></section><section id="conforms-to" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Conforms To</span><!--end_enstr-->
+<span class="jpstr">
+次に準拠
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><ul class="relationships-section-content-columns"><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="https://developer.apple.com/documentation/cloudkit/ckrecordvalueprotocol"><code><span>CKRecord<wbr/>Value<wbr/>Protocol</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/cvararg.html"><code><span>CVar<wbr/>Arg</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/equatable.html"><code><span>Equatable</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/hashable.html"><code><span>Hashable</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/foundation/nscopying.html"><code><span>NSCopying</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/foundation/nssecurecoding.html"><code><span>NSSecure<wbr/>Coding</span></code></a></div></li></ul></div></div></section></div></div></section><section id="see-also" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><span class="enstr">See Also</span><!--end_enstr-->
+<span class="jpstr">
+参照
+</span><!--end_jpstr-->
+</h2><section id="2879039" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Using Reference Types</span><!--end_enstr-->
+<span class="jpstr">
+参照型を使用する
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/date/referencetype.html"><code class="display-name"><span class="decorator">typealias </span><span class="identifier">Date<wbr/>.Reference<wbr/>Type</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">An alias for this value type's equivalent reference type.</span><!--end_enstr-->
+<span class="jpstr">
+この値型のもつ同等な参照型に対するエイリアス。
+</span><!--end_jpstr-->
+</p></div></div></div></div></div></div></div></section></div></div></section></main><section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo">
+        <nav class="footer-breadory">
+          <a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a>
+          <section class="breadcrumbs">
+            <ol class="breadcrumbs-list">
+              <li><a href=/documentation>Documentation</a></li>
+            </ol>
+          </section>
+          <div id="directorynav" class="directorynav">
+            <div id="dn-cola" class="column">
+              <h3><a href="/discover/">Discover</a></h3>
+              <ul>
+                <li><a href="/macos/">macOS</a></li>
+                <li><a href="/ios/">iOS</a></li>
+                <li><a href="/watchos/">watchOS</a></li>
+                <li><a href="/tvos/">tvOS</a></li>
+                <li><a href="/safari/">Safari and Web</a></li>
+                <li><a href="/games/">Games</a></li>
+                <li><a href="/business/">Business</a></li>
+                <li><a href="/education/">Education</a></li>
+                <li><a href="/wwdc/">WWDC</a></li>
+              </ul>
+            </div>
+            <div id="dn-colb" class="column">
+              <h3><a href="/design/">Design</a></h3>
+              <ul>
+                <li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
+                <li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
+<span class="jpstr">
+リソース
+</span><!--end_jpstr-->
+</a></li>
+                <li><a href="/videos/design/">Videos</a></li>
+                <li><a href="/design/awards/">Apple Design Awards</a></li>
+                <li><a href="/accessibility/">Accessibility</a></li>
+                <li><a href="/internationalization/"><span class="enstr">Internationalization</span><!--end_enstr-->
+<span class="jpstr">
+国際化
+</span><!--end_jpstr-->
+</a></li>
+                <li><a href="/accessories/">Accessories</a></li>
+              </ul>
+            </div>
+            <div id="dn-colc" class="column">
+              <h3><a href="/develop/">Develop</a></h3>
+              <ul>
+                <li><a href="/xcode/">Xcode</a></li>
+                <li><a href="/swift/">Swift</a></li>
+                <li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
+                <li><a href="/testflight/">TestFlight</a></li>
+                <li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
+                <li><a href="/videos/">Videos</a></li>
+                <li><a href="/download/">Downloads</a></li>
+              </ul>
+            </div>
+            <div id="dn-cold" class="column">
+              <h3><a href="/distribute/">Distribute</a></h3>
+              <ul>
+                <li><a href="/programs/">Developer Program</a></li>
+                <li><a href="/app-store/">App Store</a></li>
+                <li><a href="/app-store/review/">App Review</a></li>
+                <li><a href="/macos/distribution/">Mac Software</a></li>
+                <li><a href="/business/distribute/">Apps for Business</a></li>
+                <li><a href="/safari/extensions/">Safari Extensions</a></li>
+                <li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
+                <li><a href="/softwarelicensing/">Trademark Licensing</a></li>
+              </ul>
+            </div>
+            <div id="dn-cole" class="column">
+              <h3><a href="/support/">Support</a></h3>
+              <ul>
+                <li><a href="https://forums.developer.apple.com">Developer Forums</a></li>
+                <li><a href="/bug-reporting/">Bug Reporting</a></li>
+                <li><a href="/terms/">License Agreements</a></li>
+                <li><a href="/system-status/">System Status</a></li>
+                <li><a href="/contact/">Contact Us</a></li>
+              </ul>
+              <h3><a href="/account/">Account</a></h3>
+              <ul>
+                <li><a href="/account/ios/certificate/">Certificates, IDs &amp; Profiles</a></li>
+                <li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="ac-gf-footer-legal">
+          <div class="ac-gf-footer-news"> To receive the latest developer news, visit and subscribe to our <a href="/news/">News and Updates</a>.
+          </div>
+          <div class="ac-gf-footer-legal-copyright">Copyright © 2019 Apple Inc. All rights reserved.</div>
+          <div class="ac-gf-footer-legal-links">
+            <a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a>
+            <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+            <a href="/bug-reporting/">Report Bugs</a>
+            <a href="/contact/submit/?subject=website-feedback">Feedback</a>
+          </div>
+          <div class="ac-gf-footer-language-links">
+            <a href="/cn/" class="first">简体中文</a>
+            <a href="/jp/">日本語</a>
+            <a href="/kr/">한국어</a>
+          </div>
+        </div>
+      </footer></section></div></div><script id="bootstrap-data" type="application/json">{"id":1407266,"title":{"content":"NSDate"},"discussion":"<div><p><code class=\"code-voice\"><span>NSDate<\/span><\/code> objects encapsulate a single point in time, independent of any particular calendrical system or time zone. Date objects are immutable, representing an invariant time interval relative to an absolute reference date (00:00:00 UTC on 1 January 2001).<\/p><p>The <code class=\"code-voice\"><span>NSDate<\/span><\/code> class provides methods for comparing dates, calculating the time interval between two dates, and creating a new date from a time interval relative to another date. <code class=\"code-voice\"><span>NSDate<\/span><\/code> objects can be used in conjunction with <a class=\"symbol-name\" href=\"\/documentation\/foundation\/dateformatter\"><code><span>Date<wbr\/>Formatter<\/span><\/code><\/a> objects to create localized representations of dates and times, as well as with <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nscalendar\"><code><span>NSCalendar<\/span><\/code><\/a> objects to perform calendar arithmetic.<\/p><p><code class=\"code-voice\"><span>NSDate<\/span><\/code> is <em>toll-free bridged<\/em> with its Core Foundation counterpart, <a class=\"symbol-name\" href=\"\/documentation\/corefoundation\/cfdate\"><code><span>CFDate<\/span><\/code><\/a>. See <a href=\"https:\/\/developer.apple.com\/library\/archive\/documentation\/General\/Conceptual\/CocoaEncyclopedia\/Toll-FreeBridgin\/Toll-FreeBridgin.html#\/\/apple_ref\/doc\/uid\/TP40010810-CH2\">Toll-Free Bridging<\/a> for more information on toll-free bridging.<\/p><aside class=\"aside aside-important\" aria-label=\"important\"><p class=\"aside-name\">Important<\/p><p>The Swift overlay to the Foundation framework provides the <a class=\"symbol-name\" href=\"\/documentation\/foundation\/date\"><code><span>Date<\/span><\/code><\/a> structure, which bridges to the <code class=\"code-voice\"><span>NSDate<\/span><\/code> class. For more information about value types, see <a href=\"https:\/\/developer.apple.com\/library\/archive\/documentation\/Swift\/Conceptual\/BuildingCocoaApps\/WorkingWithCocoaDataTypes.html#\/\/apple_ref\/doc\/uid\/TP40014216-CH6\">Working with Cocoa Frameworks<\/a> in <a href=\"https:\/\/developer.apple.com\/library\/archive\/documentation\/Swift\/Conceptual\/BuildingCocoaApps\/index.html#\/\/apple_ref\/doc\/uid\/TP40014216\">Using Swift with Cocoa and Objective-C (Swift 4.1)<\/a>.<\/p><\/aside><\/div><h3 id=\"1651270\">Subclassing Notes<\/h3><div><p>You might subclass <code class=\"code-voice\"><span>NSDate<\/span><\/code> in order to make it easier to work with a particular calendrical system, or to work with date and time values with a finer temporal granularity.<\/p><\/div><h4 id=\"1651281\">Methods to Override and Other Requirements<\/h4><div><p>If you want to subclass <code class=\"code-voice\"><span>NSDate<\/span><\/code> to obtain behavior different than that provided by the private or public subclasses, you must:<\/p><ul><li><p>Declare a suitable instance variable to hold the date and time value (relative to an absolute reference date)<\/p><\/li><li><p>Override the <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsdate\/1417376-timeintervalsincereferencedate\"><code><span>time<wbr\/>Interval<wbr\/>Since<wbr\/>Reference<wbr\/>Date<\/span><\/code><\/a> instance method to provide the correct date and time value based on your instance variable<\/p><\/li><li><p>Override <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsdate\/1409769-init\"><code><span>init(time<wbr\/>Interval<wbr\/>Since<wbr\/>Reference<wbr\/>Date:)<\/span><\/code><\/a>, one of the designated initializer methods<\/p><\/li><li><p>If creating a subclass that represents a calendrical system, define methods that partition past and future periods into the units of this calendar<\/p><\/li><li><p>Implement the methods required by the <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nscopying\"><code><span>NSCopying<\/span><\/code><\/a> and <a href=\"https:\/\/developer.apple.com\/library\/archive\/documentation\/Swift\/Conceptual\/BuildingCocoaApps\/WritingSwiftClassesWithObjective-CBehavior.html#\/\/apple_ref\/doc\/uid\/TP40014216-CH5-ID152\">NSCoding<\/a> protocols, because <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsdate\"><code><span>NSDate<\/span><\/code><\/a> adopts these protocols<\/p><\/li><\/ul><p><\/p><\/div><h4 id=\"1651294\">Special Considerations<\/h4><div><p>Your subclass may use a different reference date than the absolute reference date used by <code class=\"code-voice\"><span>NSDate<\/span><\/code> (00:00:00 UTC on 1 January 2001). If it does, it must still use the absolute reference date in its implementations of the methods <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsdate\/1417376-timeintervalsincereferencedate\"><code><span>time<wbr\/>Interval<wbr\/>Since<wbr\/>Reference<wbr\/>Date<\/span><\/code><\/a> and <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsdate\/1409769-init\"><code><span>init(time<wbr\/>Interval<wbr\/>Since<wbr\/>Reference<wbr\/>Date:)<\/span><\/code><\/a>. That is, the reference date referred to in the titles of these methods is the absolute reference date. If you do not use the absolute reference date in these methods, comparisons between <code class=\"code-voice\"><span>NSDate<\/span><\/code> objects of your subclass and <code class=\"code-voice\"><span>NSDate<\/span><\/code> objects of a private subclass will not work.<\/p><\/div>","abstract":"<div><p>A representation of a specific point in time that bridges to <a class=\"symbol-name\" href=\"\/documentation\/foundation\/date\"><code><span>Date<\/span><\/code><\/a>; use <code class=\"code-voice\"><span>NSDate<\/span><\/code> when you need reference semantics or other Foundation-specific behavior.<\/p><\/div>","containingGroup":[{"id":2879039,"role":"task","paths":[],"symbols":[{"id":1407266,"role":"symbol","usr":"c:objc(cs)NSDate","name":"NSDate","domain":"swift","kind":"cl","availability":[{"platform":"iOS","introduced":"2.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">class <\/span><span class=\"identifier\">NSDate<\/span><\/code>","paths":["documentation\/foundation\/nsdate"],"title":{"content":"NSDate"},"abstract":"<div><p>A representation of a specific point in time that bridges to <a class=\"symbol-name\" href=\"\/documentation\/foundation\/date\"><code><span>Date<\/span><\/code><\/a>; use <code class=\"code-voice\"><span>NSDate<\/span><\/code> when you need reference semantics or other Foundation-specific behavior.<\/p><\/div>","hasChildren":true},{"id":1779957,"role":"symbol","usr":"s:10Foundation4DateV13ReferenceTypea","name":"ReferenceType","domain":"swift","kind":"tdef","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">typealias <\/span><span class=\"identifier\">Date<wbr\/>.Reference<wbr\/>Type<\/span><\/code>","paths":["documentation\/foundation\/date\/referencetype"],"title":{"content":"Date.ReferenceType"},"abstract":"<div><p>An alias for this value type&#x27;s equivalent reference type.<\/p><\/div>"}],"title":{"content":"Using Reference Types"}}],"usr":"c:objc(cs)NSDate","name":"NSDate","domain":"swift","kind":"cl","availability":[{"platform":"iOS","current":"13.3","introduced":"2.0"},{"platform":"macOS","current":"10.15.2","introduced":"10.0"},{"platform":"Mac Catalyst","current":"13.3","introduced":"13.0"},{"platform":"tvOS","current":"13.2","introduced":"9.0"},{"platform":"watchOS","current":"6.2","introduced":"2.0"}],"conformance":[{"id":1415638,"usr":"c:objc(pl)NSSecureCoding","name":"NSSecureCoding","domain":"swift","kind":"intf","role":"symbol","paths":["documentation\/foundation\/nssecurecoding"],"title":{"content":"NSSecureCoding"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1417041,"usr":"c:objc(pl)NSCopying","name":"NSCopying","domain":"swift","kind":"intf","role":"symbol","paths":["documentation\/foundation\/nscopying"],"title":{"content":"NSCopying"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1641507,"usr":"s:s7CVarArgP","name":"CVarArg","domain":"swift","kind":"intf","role":"symbol","paths":["documentation\/swift\/cvararg"],"title":{"content":"CVarArg"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":3003395,"usr":"s:8CloudKit21CKRecordValueProtocolP","name":"CKRecordValueProtocol","domain":"swift","kind":"intf","role":"symbol","paths":["documentation\/cloudkit\/ckrecordvalueprotocol"],"title":{"content":"CKRecordValueProtocol"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1541213,"usr":"s:SQ","name":"Equatable","domain":"swift","kind":"intf","role":"symbol","paths":["documentation\/swift\/equatable"],"title":{"content":"Equatable"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1540942,"usr":"s:SH","name":"Hashable","domain":"swift","kind":"intf","role":"symbol","paths":["documentation\/swift\/hashable"],"title":{"content":"Hashable"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]}],"inheritance":[{"id":1418879,"usr":"c:objc(cs)NSObject","name":"NSObject","domain":"swift","kind":"cl","role":"symbol","paths":["documentation\/objectivec\/nsobject"],"title":{"content":"NSObject"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]}],"module":[{"title":{"content":"Foundation"},"importStatement":"<div><span class=\"syntax-identifier\">import<\/span> Foundation<\/div>","paths":["documentation\/foundation"],"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">class <\/span><span class=\"identifier\">NSDate<\/span><\/code>","declaration":[{"content":"<span><span class=\"syntax-keyword\">class<\/span> <span class=\"syntax-identifier\">NSDate<\/span> : <a class=\"symbolref\" href=\"\/documentation\/objectivec\/nsobject\"><span>NSObject<\/span><\/a>\n<\/span>","platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"],"references":{"1418879":{"id":1418879,"role":"symbol","paths":["documentation\/objectivec\/nsobject"],"usr":"c:objc(cs)NSObject","kind":"cl","language":"swift","domain":"swift","name":"NSObject","languages":["occ","swift"],"title":{"content":"NSObject"}}}}],"role":"symbol","language":"swift","roleHeading":"Class","languages":["occ","swift"],"variants":{"occ":{"paths":["documentation\/foundation\/nsdate"],"usr":"c:objc(cs)NSDate"},"swift":{"paths":["documentation\/foundation\/nsdate"],"usr":"c:objc(cs)NSDate"}},"pid":424974,"paths":["documentation\/foundation\/nsdate"],"hierarchy":[[{"id":1613013,"role":"collection","title":{"content":"Foundation"},"paths":["documentation\/foundation"]},{"id":2877745,"role":"collectionGroup","title":{"content":"Dates and Times"},"paths":["documentation\/foundation\/dates_and_times"]},{"id":1780046,"role":"symbol","title":{"content":"Date"},"usr":"s:10Foundation4DateV","kind":"struct","paths":["documentation\/foundation\/date"]}]],"legalNotices":{"copyright":"Copyright &copy; 2019 Apple Inc. All rights reserved.","termsOfUse":"https:\/\/www.apple.com\/legal\/internet-services\/terms\/site.html","privacyPolicy":"https:\/\/www.apple.com\/privacy\/privacy-policy"},"tasks":[{"id":2891799,"role":"task","symbols":[{"id":1415407,"role":"symbol","usr":"c:objc(cs)NSDate(im)init","name":"init()","domain":"swift","kind":"instctr","availability":[{"platform":"iOS","introduced":"2.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"identifier\">init<\/span><span class=\"decorator\">()<\/span><\/code>","paths":["documentation\/foundation\/nsdate\/1415407-init"],"title":{"content":"init()"},"abstract":"<div><p>Returns a date object initialized to the current date and time.<\/p><\/div>"},{"id":1411701,"role":"symbol","usr":"c:objc(cs)NSDate(im)initWithTimeIntervalSinceNow:","name":"init(timeIntervalSinceNow:)","domain":"swift","kind":"instctr","availability":[{"platform":"iOS","introduced":"2.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"identifier\">init<\/span><span class=\"decorator\">(<\/span><span class=\"identifier\">time<wbr\/>Interval<wbr\/>Since<wbr\/>Now<\/span><span class=\"decorator\">: Time<wbr\/>Interval)<\/span><\/code>","paths":["documentation\/foundation\/nsdate\/1411701-init"],"title":{"content":"init(timeIntervalSinceNow:)"},"abstract":"<div><p>Returns a date object initialized relative to the current date and time by a given number of seconds.<\/p><\/div>"},{"id":1414201,"role":"symbol","usr":"c:objc(cs)NSDate(im)initWithTimeInterval:sinceDate:","name":"init(timeInterval:sinceDate:)","domain":"swift","kind":"instctr","availability":[{"platform":"iOS","introduced":"2.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"identifier\">init<\/span><span class=\"decorator\">(<\/span><span class=\"identifier\">time<wbr\/>Interval<\/span><span class=\"decorator\">: Time<wbr\/>Interval, <\/span><span class=\"identifier\">since<\/span><span class=\"decorator\">: Date)<\/span><\/code>","paths":["documentation\/foundation\/nsdate\/1414201-init"],"title":{"content":"init(timeInterval:since:)"},"abstract":"<div><p>Returns a date object initialized relative to another given date by a given number of seconds.<\/p><\/div>"},{"id":1409769,"role":"symbol","usr":"c:objc(cs)NSDate(im)initWithTimeIntervalSinceReferenceDate:","name":"init(timeIntervalSinceReferenceDate:)","domain":"swift","kind":"instctr","availability":[{"platform":"iOS","introduced":"2.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"identifier\">init<\/span><span class=\"decorator\">(<\/span><span class=\"identifier\">time<wbr\/>Interval<wbr\/>Since<wbr\/>Reference<wbr\/>Date<\/span><span class=\"decorator\">: Time<wbr\/>Interval)<\/span><\/code>","paths":["documentation\/foundation\/nsdate\/1409769-init"],"title":{"content":"init(timeIntervalSinceReferenceDate:)"},"abstract":"<div><p>Returns a date object initialized relative to 00:00:00 UTC on 1 January 2001 by a given number of seconds.<\/p><\/div>"},{"id":1416453,"role":"symbol","usr":"c:objc(cs)NSDate(im)initWithTimeIntervalSince1970:","name":"init(timeIntervalSince1970:)","domain":"swift","kind":"instctr","availability":[{"platform":"iOS","introduced":"4.0"},{"platform":"macOS","introduced":"10.6"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"identifier\">init<\/span><span class=\"decorator\">(<\/span><span class=\"identifier\">time<wbr\/>Interval<wbr\/>Since1970<\/span><span class=\"decorator\">: Time<wbr\/>Interval)<\/span><\/code>","paths":["documentation\/foundation\/nsdate\/1416453-init"],"title":{"content":"init(timeIntervalSince1970:)"},"abstract":"<div><p>Returns a date object initialized relative to 00:00:00 UTC on 1 January 1970 by a given number of seconds.<\/p><\/div>"},{"id":1412602,"role":"symbol","usr":"c:objc(cs)NSDate(im)initWithCoder:","name":"init(coder:)","domain":"swift","kind":"instctr","availability":[{"platform":"iOS","introduced":"8.0"},{"platform":"macOS","introduced":"10.10"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"identifier\">init<\/span><span class=\"decorator\">?(<\/span><span class=\"identifier\">coder<\/span><span class=\"decorator\">: NSCoder)<\/span><\/code>","paths":["documentation\/foundation\/nsdate\/1412602-init"],"title":{"content":"init(coder:)"},"abstract":"<div><p>Returns a date object initialized from data in the given unarchiver.<\/p><\/div>"}],"title":{"content":"Initializing a Date"}},{"id":1651445,"role":"task","symbols":[{"id":1415385,"role":"symbol","usr":"c:objc(cs)NSDate(cpy)distantFuture","name":"distantFuture","domain":"swift","kind":"cldata","availability":[{"platform":"iOS","introduced":"2.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">class var <\/span><span class=\"identifier\">distant<wbr\/>Future<\/span><span class=\"decorator\">: Date<\/span><\/code>","paths":["documentation\/foundation\/nsdate\/1415385-distantfuture"],"title":{"content":"distantFuture"},"abstract":"<div><p>A date object representing a date in the distant future. <\/p><\/div>"},{"id":1418197,"role":"symbol","usr":"c:objc(cs)NSDate(cpy)distantPast","name":"distantPast","domain":"swift","kind":"cldata","availability":[{"platform":"iOS","introduced":"2.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">class var <\/span><span class=\"identifier\">distant<wbr\/>Past<\/span><span class=\"decorator\">: Date<\/span><\/code>","paths":["documentation\/foundation\/nsdate\/1418197-distantpast"],"title":{"content":"distantPast"},"abstract":"<div><p>A date object representing a date in the distant past.<\/p><\/div>"}],"title":{"content":"Getting Temporal Boundaries"}},{"id":1651461,"role":"task","symbols":[{"id":1416400,"role":"symbol","usr":"c:objc(cs)NSDate(im)isEqualToDate:","name":"isEqualToDate(_:)","domain":"swift","kind":"instm","availability":[{"platform":"iOS","introduced":"2.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">is<wbr\/>Equal<\/span><span class=\"decorator\">(<\/span><span class=\"identifier\">to<\/span><span class=\"decorator\">: Date) -&gt; Bool<\/span><\/code>","paths":["documentation\/foundation\/nsdate\/1416400-isequal"],"title":{"content":"isEqual(to:)"},"abstract":"<div><p>Returns a Boolean value that indicates whether a given object is a date that is exactly equal the receiver.<\/p><\/div>"},{"id":1412791,"role":"symbol","usr":"c:objc(cs)NSDate(im)earlierDate:","name":"earlierDate(_:)","domain":"swift","kind":"instm","availability":[{"platform":"iOS","introduced":"2.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">earlier<wbr\/>Date<\/span><span class=\"decorator\">(Date) -&gt; Date<\/span><\/code>","paths":["documentation\/foundation\/nsdate\/1412791-earlierdate"],"title":{"content":"earlierDate(_:)"},"abstract":"<div><p>Returns the earlier of the receiver and another given date.<\/p><\/div>"},{"id":1409058,"role":"symbol","usr":"c:objc(cs)NSDate(im)laterDate:","name":"laterDate(_:)","domain":"swift","kind":"instm","availability":[{"platform":"iOS","introduced":"2.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">later<wbr\/>Date<\/span><span class=\"decorator\">(Date) -&gt; Date<\/span><\/code>","paths":["documentation\/foundation\/nsdate\/1409058-laterdate"],"title":{"content":"laterDate(_:)"},"abstract":"<div><p>Returns the later of the receiver and another given date.<\/p><\/div>"},{"id":1409748,"role":"symbol","usr":"c:objc(cs)NSDate(im)compare:","name":"compare(_:)","domain":"swift","kind":"instm","availability":[{"platform":"iOS","introduced":"2.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">compare<\/span><span class=\"decorator\">(Date) -&gt; Comparison<wbr\/>Result<\/span><\/code>","paths":["documentation\/foundation\/nsdate\/1409748-compare"],"title":{"content":"compare(_:)"},"abstract":"<div><p>Indicates the temporal ordering of the receiver and another given date.<\/p><\/div>"}],"title":{"content":"Comparing Dates"}},{"id":1651508,"role":"task","symbols":[{"id":1410206,"role":"symbol","usr":"c:objc(cs)NSDate(im)timeIntervalSinceDate:","name":"timeIntervalSinceDate(_:)","domain":"swift","kind":"instm","availability":[{"platform":"iOS","introduced":"2.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">time<wbr\/>Interval<wbr\/>Since<\/span><span class=\"decorator\">(Date) -&gt; Time<wbr\/>Interval<\/span><\/code>","paths":["documentation\/foundation\/nsdate\/1410206-timeintervalsince"],"title":{"content":"timeIntervalSince(_:)"},"abstract":"<div><p>Returns the interval between the receiver and another given date.<\/p><\/div>"},{"id":1407937,"role":"symbol","usr":"c:objc(cs)NSDate(py)timeIntervalSinceNow","name":"timeIntervalSinceNow","domain":"swift","kind":"instp","availability":[{"platform":"iOS","introduced":"2.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">var <\/span><span class=\"identifier\">time<wbr\/>Interval<wbr\/>Since<wbr\/>Now<\/span><span class=\"decorator\">: Time<wbr\/>Interval<\/span><\/code>","paths":["documentation\/foundation\/nsdate\/1407937-timeintervalsincenow"],"title":{"content":"timeIntervalSinceNow"},"abstract":"<div><p>The interval between the date object and the current date and time.<\/p><\/div>"},{"id":1417376,"role":"symbol","usr":"c:objc(cs)NSDate(py)timeIntervalSinceReferenceDate","name":"timeIntervalSinceReferenceDate","domain":"swift","kind":"instp","availability":[{"platform":"iOS","introduced":"2.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">var <\/span><span class=\"identifier\">time<wbr\/>Interval<wbr\/>Since<wbr\/>Reference<wbr\/>Date<\/span><span class=\"decorator\">: Time<wbr\/>Interval<\/span><\/code>","paths":["documentation\/foundation\/nsdate\/1417376-timeintervalsincereferencedate"],"title":{"content":"timeIntervalSinceReferenceDate"},"abstract":"<div><p>The interval between the date object and 00:00:00 UTC on 1 January 2001.<\/p><\/div>"},{"id":1407504,"role":"symbol","usr":"c:objc(cs)NSDate(py)timeIntervalSince1970","name":"timeIntervalSince1970","domain":"swift","kind":"instp","availability":[{"platform":"iOS","introduced":"2.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">var <\/span><span class=\"identifier\">time<wbr\/>Interval<wbr\/>Since1970<\/span><span class=\"decorator\">: Time<wbr\/>Interval<\/span><\/code>","paths":["documentation\/foundation\/nsdate\/1407504-timeintervalsince1970"],"title":{"content":"timeIntervalSince1970"},"abstract":"<div><p>The interval between the date object and 00:00:00 UTC on 1 January 1970.<\/p><\/div>"},{"id":1408189,"role":"symbol","usr":"c:objc(cs)NSDate(cpy)timeIntervalSinceReferenceDate","name":"timeIntervalSinceReferenceDate","domain":"swift","kind":"cldata","availability":[{"platform":"iOS","introduced":"2.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">class var <\/span><span class=\"identifier\">time<wbr\/>Interval<wbr\/>Since<wbr\/>Reference<wbr\/>Date<\/span><span class=\"decorator\">: Time<wbr\/>Interval<\/span><\/code>","paths":["documentation\/foundation\/nsdate\/1408189-timeintervalsincereferencedate"],"title":{"content":"timeIntervalSinceReferenceDate"},"abstract":"<div><p>The interval between 00:00:00 UTC on 1 January 2001 and the current date and time.<\/p><\/div>"},{"id":1416373,"role":"symbol","usr":"c:@macro@NSTimeIntervalSince1970","name":"NSTimeIntervalSince1970","domain":"swift","kind":"data","availability":[{"platform":"iOS","introduced":"2.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">var <\/span><span class=\"identifier\">NSTime<wbr\/>Interval<wbr\/>Since1970<\/span><span class=\"decorator\">: Double<\/span><\/code>","paths":["documentation\/foundation\/nstimeintervalsince1970"],"title":{"content":"NSTimeIntervalSince1970"},"abstract":"<div><p>The number of seconds from 1 January 1970 to the reference date, 1 January 2001.<\/p><\/div>"}],"title":{"content":"Getting Time Intervals"}},{"id":1651553,"role":"task","symbols":[{"id":1408823,"role":"symbol","usr":"c:objc(cs)NSDate(im)dateByAddingTimeInterval:","name":"dateByAddingTimeInterval(_:)","domain":"swift","kind":"instm","availability":[{"platform":"iOS","introduced":"2.0"},{"platform":"macOS","introduced":"10.6"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">adding<wbr\/>Time<wbr\/>Interval<\/span><span class=\"decorator\">(Time<wbr\/>Interval) -&gt; Self<\/span><\/code>","paths":["documentation\/foundation\/nsdate\/1408823-addingtimeinterval"],"title":{"content":"addingTimeInterval(_:)"},"abstract":"<div><p>Returns a new date object that is set to a given number of seconds relative to the receiver.<\/p><\/div>"}],"title":{"content":"Adding Time Intervals"}},{"id":1651574,"role":"task","symbols":[{"id":1409767,"role":"symbol","usr":"c:objc(cs)NSDate(py)description","name":"description","domain":"swift","kind":"instp","availability":[{"platform":"iOS","introduced":"2.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">var <\/span><span class=\"identifier\">description<\/span><span class=\"decorator\">: String<\/span><\/code>","paths":["documentation\/foundation\/nsdate\/1409767-description"],"title":{"content":"description"},"abstract":"<div><p>A string representation of the date object.<\/p><\/div>"},{"id":1414108,"role":"symbol","usr":"c:objc(cs)NSDate(im)descriptionWithLocale:","name":"descriptionWithLocale(_:)","domain":"swift","kind":"instm","availability":[{"platform":"iOS","introduced":"4.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">description<\/span><span class=\"decorator\">(<\/span><span class=\"identifier\">with<\/span><span class=\"decorator\">: Any?) -&gt; String<\/span><\/code>","paths":["documentation\/foundation\/nsdate\/1414108-description"],"title":{"content":"description(with:)"},"abstract":"<div><p>Returns a string representation of the date using the given locale.<\/p><\/div>"},{"id":1642973,"role":"symbol","usr":"s:So6NSDateC10FoundationE25customPlaygroundQuickLooks01_deF0Ovp","name":"customPlaygroundQuickLook","domain":"swift","kind":"instp","availability":[{"platform":"iOS","deprecated":"11.3","introduced":"7.0"},{"platform":"macOS","deprecated":"10.13.4","introduced":"10.9"},{"platform":"Mac Catalyst","deprecated":"13.0","introduced":"13.0"},{"platform":"tvOS","deprecated":"11.3","introduced":"9.0"},{"platform":"watchOS","deprecated":"4.3","introduced":"2.0"},{"platform":"Xcode","deprecated":"9.3","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">var <\/span><span class=\"identifier\">custom<wbr\/>Playground<wbr\/>Quick<wbr\/>Look<\/span><span class=\"decorator\">: Playground<wbr\/>Quick<wbr\/>Look<\/span><\/code>","paths":["documentation\/foundation\/nsdate\/1642973-customplaygroundquicklook"],"title":{"content":"customPlaygroundQuickLook"},"abstract":"<div><p>A custom playground Quick Look for this object.<\/p><\/div>"}],"title":{"content":"Describing Dates"}},{"id":1680373,"role":"task","symbols":[{"id":1414255,"role":"symbol","usr":"c:@NSSystemClockDidChangeNotification","name":"NSSystemClockDidChange","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"4.0"},{"platform":"macOS","introduced":"10.6"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static let <\/span><span class=\"identifier\">NSSystem<wbr\/>Clock<wbr\/>Did<wbr\/>Change<\/span><span class=\"decorator\">: NSNotification<wbr\/>.Name<\/span><\/code>","paths":["documentation\/foundation\/nsnotification\/name\/1414255-nssystemclockdidchange"],"title":{"content":"NSSystemClockDidChange"},"abstract":"<div><p>A notification posted whenever the system clock is changed. <\/p><\/div>"}],"title":{"content":"Recognizing Notifications"}},{"id":1651602,"role":"task","symbols":[{"id":1415776,"role":"symbol","usr":"c:objc(cs)NSDate(cm)dateWithNaturalLanguageString:","name":"dateWithNaturalLanguageString(_:)","domain":"swift","kind":"clm","availability":[{"platform":"macOS","deprecated":"10.10","introduced":"10.4"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">class func <\/span><span class=\"identifier\">date<\/span><span class=\"decorator\">(<\/span><span class=\"identifier\">with<wbr\/>Natural<wbr\/>Language<wbr\/>String<\/span><span class=\"decorator\">: String) -&gt; Any?<\/span><\/code>","paths":["documentation\/foundation\/nsdate\/1415776-date"],"title":{"content":"date(withNaturalLanguageString:)"},"abstract":"<div><p>Creates and returns a date object set to the date and time specified by a given string.<\/p><\/div>"},{"id":1407720,"role":"symbol","usr":"c:objc(cs)NSDate(cm)dateWithNaturalLanguageString:locale:","name":"dateWithNaturalLanguageString(_:locale:)","domain":"swift","kind":"clm","availability":[{"platform":"macOS","deprecated":"10.10","introduced":"10.4"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">class func <\/span><span class=\"identifier\">date<\/span><span class=\"decorator\">(<\/span><span class=\"identifier\">with<wbr\/>Natural<wbr\/>Language<wbr\/>String<\/span><span class=\"decorator\">: String, <\/span><span class=\"identifier\">locale<\/span><span class=\"decorator\">: Any?) -&gt; Any?<\/span><\/code>","paths":["documentation\/foundation\/nsdate\/1407720-date"],"title":{"content":"date(withNaturalLanguageString:locale:)"},"abstract":"<div><p>Creates and returns a date object set to the date and time specified by a given string.<\/p><\/div>"},{"id":1408398,"role":"symbol","usr":"c:objc(cs)NSDate(cm)dateWithString:","name":"dateWithString(_:)","domain":"swift","kind":"clm","availability":[{"platform":"macOS","deprecated":"10.10","introduced":"10.4"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">class func <\/span><span class=\"identifier\">date<\/span><span class=\"decorator\">(<\/span><span class=\"identifier\">with<\/span><span class=\"decorator\">: String) -&gt; Any<\/span><\/code>","paths":["documentation\/foundation\/nsdate\/1408398-date"],"title":{"content":"date(with:)"},"abstract":"<div><p>Creates and returns a date object with a date and time value specified by a given string in the international string representation format (<code class=\"code-voice\"><span>YYYY-MM-DD HH:<wbr\/>MM:<wbr\/>SS ±HHMM<\/span><\/code>).<\/p><\/div>"},{"id":1407172,"role":"symbol","usr":"c:objc(cs)NSDate(im)initWithString:","name":"init(string:)","domain":"swift","kind":"instctr","availability":[{"platform":"macOS","deprecated":"10.10","introduced":"10.4"}],"displayName":"<code class=\"display-name\"><span class=\"identifier\">init<\/span><span class=\"decorator\">?(<\/span><span class=\"identifier\">string<\/span><span class=\"decorator\">: String)<\/span><\/code>","paths":["documentation\/foundation\/nsdate\/1407172-init"],"title":{"content":"init(string:)"},"abstract":"<div><p>Returns a date object initialized with a date and time value specified by a given string in the international string representation format.<\/p><\/div>"},{"id":1591575,"role":"symbol","usr":"c:objc(cs)NSDate(im)addTimeInterval:","name":"addTimeInterval(_:)","domain":"swift","kind":"instm","availability":[{"platform":"iOS","deprecated":"4.0","introduced":"2.0"},{"platform":"macOS","deprecated":"10.6","introduced":"10.0"},{"platform":"Mac Catalyst","deprecated":"13.0","introduced":"13.0"},{"platform":"tvOS","deprecated":"9.0","introduced":"9.0"},{"platform":"watchOS","deprecated":"2.0","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">add<wbr\/>Time<wbr\/>Interval<\/span><span class=\"decorator\">(Time<wbr\/>Interval) -&gt; Any<\/span><\/code>","paths":["documentation\/foundation\/nsdate\/1591575-addtimeinterval"],"title":{"content":"addTimeInterval(_:)"},"abstract":"<div><p>Returns a new date object that is set to a given number of seconds relative to the receiver.<\/p><\/div>"},{"id":1407899,"role":"symbol","usr":"c:objc(cs)NSDate(im)dateWithCalendarFormat:timeZone:","name":"dateWithCalendarFormat(_:timeZone:)","domain":"swift","kind":"instm","availability":[{"platform":"macOS","deprecated":"10.10","introduced":"10.4"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">date<\/span><span class=\"decorator\">(<\/span><span class=\"identifier\">with<wbr\/>Calendar<wbr\/>Format<\/span><span class=\"decorator\">: String?, <\/span><span class=\"identifier\">time<wbr\/>Zone<\/span><span class=\"decorator\">: Time<wbr\/>Zone?) -&gt; NSCalendar<wbr\/>Date<\/span><\/code>","paths":["documentation\/foundation\/nsdate\/1407899-date"],"title":{"content":"date(withCalendarFormat:timeZone:)"},"abstract":"<div><p>Converts the receiver to a calendar date with a given format string and time zone.<\/p><\/div>"},{"id":1415983,"role":"symbol","usr":"c:objc(cs)NSDate(im)descriptionWithCalendarFormat:timeZone:locale:","name":"descriptionWithCalendarFormat(_:timeZone:locale:)","domain":"swift","kind":"instm","availability":[{"platform":"macOS","deprecated":"10.10","introduced":"10.4"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">description<\/span><span class=\"decorator\">(<\/span><span class=\"identifier\">with<wbr\/>Calendar<wbr\/>Format<\/span><span class=\"decorator\">: String?, <\/span><span class=\"identifier\">time<wbr\/>Zone<\/span><span class=\"decorator\">: Time<wbr\/>Zone?, <\/span><span class=\"identifier\">locale<\/span><span class=\"decorator\">: Any?) -&gt; String?<\/span><\/code>","paths":["documentation\/foundation\/nsdate\/1415983-description"],"title":{"content":"description(withCalendarFormat:timeZone:locale:)"},"abstract":"<div><p>Returns a string representation of the date formatted as specified by given conversion specifiers.<\/p><\/div>"}],"title":{"content":"Legacy Operations"}},{"id":3183992,"role":"task","symbols":[{"id":3180113,"role":"symbol","usr":"c:objc(cs)NSDate(cpy)now","name":"now","domain":"swift","kind":"cldata","availability":[{"platform":"iOS","introduced":"13.0"},{"platform":"macOS","introduced":"10.15"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"13.0"},{"platform":"watchOS","introduced":"6.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">class var <\/span><span class=\"identifier\">now<\/span><span class=\"decorator\">: Date<\/span><\/code>","paths":["documentation\/foundation\/nsdate\/3180113-now"],"title":{"content":"now"}}],"title":{"content":"Type Properties"}}]}</script></body></html>

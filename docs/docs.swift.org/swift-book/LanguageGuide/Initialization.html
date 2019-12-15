@@ -10,11 +10,11 @@
     <meta name="author" content="Apple Inc." />
     <meta name="viewport" content="width=device-width initial-scale=1" />
     
-    <title>Initialization — The Swift Programming Language (Swift 5)</title>
+    <title>Initialization — The Swift Programming Language (Swift 5.1)</title>
     
     <link rel="license" href="/LICENSE.txt" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/tspl.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/application.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/tspl.css" />
     <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
@@ -41,7 +41,7 @@
 
     <div id="menu-toggle" class="menu-toggle open"></div>
 
-    <h2>The Swift Programming Language<div>Swift 5</div></h2>
+    <h2>The Swift Programming Language<div>Swift 5.1</div></h2>
 
     <ul>
     <ul class="current">
@@ -90,7 +90,7 @@
 クロージャ
 </span><!--end_jpstr-->
 </a></li>
-<li class="toctree-l2"><a class="reference internal" href="Enumerations.html"><span class="enstr">Enumeration</span><!--end_enstr-->
+<li class="toctree-l2"><a class="reference internal" href="Enumerations.html"><span class="enstr">Enumerations</span><!--end_enstr-->
 <span class="jpstr">
 列挙
 </span><!--end_jpstr-->
@@ -163,6 +163,11 @@
 <li class="toctree-l2"><a class="reference internal" href="Generics.html"><span class="enstr">Generics</span><!--end_enstr-->
 <span class="jpstr">
 総称体
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OpaqueTypes.html"><span class="enstr">Opaque Types</span><!--end_enstr-->
+<span class="jpstr">
+不透明型
 </span><!--end_jpstr-->
 </a></li>
 <li class="toctree-l2"><a class="reference internal" href="AutomaticReferenceCounting.html"><span class="enstr">Automatic Reference Counting</span><!--end_enstr-->
@@ -572,7 +577,7 @@ init!失敗できるイニシャライザ
 </p>
 <p><span class="enstr"><code class="docutils literal notranslate"><span class="pre">Color</span></code> provides an initializer with three appropriately named parameters of type <code class="docutils literal notranslate"><span class="pre">Double</span></code> for its red, green, and blue components. <code class="docutils literal notranslate"><span class="pre">Color</span></code> also provides a second initializer with a single <code class="docutils literal notranslate"><span class="pre">white</span></code> parameter, which is used to provide the same value for all three color components.</span><!--end_enstr-->
 <span class="jpstr">
-<code class="docutils literal notranslate"><span class="pre">Color</span></code>は、３つの適切に命名された型<code class="docutils literal notranslate"><span class="pre">Double</span></code>のパラメータを、それの赤、緑、および青の構成要素のために提供します。<code class="docutils literal notranslate"><span class="pre">Color</span></code>はまた、ただ１つの<code class="docutils literal notranslate"><span class="pre">white</span></code>パラメータを持つ第２のイニシャライザを提供します、それは３つの色構成要素すべてに同じ値を提供するのに使用されます。
+<code class="docutils literal notranslate"><span class="pre">Color</span></code>はイニシャライザに、それの赤、緑、および青の構成要素に対する３つの適切に命名された型<code class="docutils literal notranslate"><span class="pre">Double</span></code>のパラメータを提供します。<code class="docutils literal notranslate"><span class="pre">Color</span></code>はまた、ただ１つの<code class="docutils literal notranslate"><span class="pre">white</span></code>パラメータを持つ第２のイニシャライザを提供します、それは３つの色構成要素すべてに同じ値を提供するのに使用されます。
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">struct</span> <span class="nv">Color</span> {
@@ -635,7 +640,7 @@ init!失敗できるイニシャライザ
 </li><li>    }
 </li><li>}
 </li><li><span class="k">let</span> <span class="nv">bodyTemperature</span> = <span class="nv">Celsius</span>(<span class="m">37.0</span>)
-</li><li><span class="c">// bodyTemperature.temperatureInCelsius is 37.0</span>
+</li><li><span class="c"><span class="enstr">// bodyTemperature.temperatureInCelsius is 37.0</span><!--end_enstr--><span class="jpstr">（bodyTemperature.temperatureInCelsius は 37.0 です）</span><!--end_jpstr--></span>
 </li></ol></div></div></div>
 <p><span class="enstr">The initializer call <code class="docutils literal notranslate"><span class="pre">Celsius(37.0)</span></code> is clear in its intent without the need for an argument label. It is therefore appropriate to write this initializer as <code class="docutils literal notranslate"><span class="pre">init(_</span> <span class="pre">celsius:</span> <span class="pre">Double)</span></code> so that it can be called by providing an unnamed <code class="docutils literal notranslate"><span class="pre">Double</span></code> value.</span><!--end_enstr-->
 <span class="jpstr">
@@ -759,9 +764,9 @@ init!失敗できるイニシャライザ
 構造体型のためのメンバー関連イニシャライザ<a class="headerlink" href="#ID214" title="Permalink to this headline">¶</a>
 </span><!--end_jpstr-->
 </h3>
-<p><span class="enstr">Structure types automatically receive a <em>memberwise initializer</em> if they do not define any of their own custom initializers. Unlike a default initializer, the structure receives a memberwise initializer even if it has stored properties that do not have default values.</span><!--end_enstr-->
+<p><span class="enstr">Structure types automatically receive a <em>memberwise initializer</em> if they don’t define any of their own custom initializers. Unlike a default initializer, the structure receives a memberwise initializer even if it has stored properties that don’t have default values.</span><!--end_enstr-->
 <span class="jpstr">
-構造体型は、それが独自のあつらえのイニシャライザを何ら定義しないならば、自動的に<em>メンバー関連イニシャライザ</em>を受け取ります。省略時のイニシャライザと違って、構造体はメンバー関連イニシャライザを、たとえその構造体が省略時の値を持たない格納プロパティを持つとしても、受け取ります。
+構造体型は、それが独自のあつらえのイニシャライザを何ら定義しないならば、自動的に<em>メンバー関連イニシャライザ</em>を受け取ります。省略時のイニシャライザと違って、構造体はメンバー関連イニシャライザを受け取ります、たとえそれが省略時の値を持たない格納プロパティを持つとしても。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">The memberwise initializer is a shorthand way to initialize the member properties of new structure instances. Initial values for the properties of the new instance can be passed to the memberwise initializer by name.</span><!--end_enstr-->
@@ -783,6 +788,19 @@ init!失敗できるイニシャライザ
 </li><li>    <span class="k">var</span> <span class="nv">width</span> = <span class="m">0.0</span>, <span class="nv">height</span> = <span class="m">0.0</span>
 </li><li>}
 </li><li><span class="k">let</span> <span class="nv">twoByTwo</span> = <span class="nv">Size</span>(<span class="nv">width</span>: <span class="m">2.0</span>, <span class="nv">height</span>: <span class="m">2.0</span>)
+</li></ol></div></div></div>
+<p><span class="enstr">When you call a memberwise initializer, you can omit values for any properties that have default values. In the example above, the <code class="docutils literal notranslate"><span class="pre">Size</span></code> structure has a default value for both its <code class="docutils literal notranslate"><span class="pre">height</span></code> and <code class="docutils literal notranslate"><span class="pre">width</span></code> properties. You can omit either property or both properties, and the initializer uses the default value for anything you omit—for example:</span><!--end_enstr-->
+<span class="jpstr">
+あなたがメンバー関連イニシャライザを呼び出す場合、あなたは省略時の値を持つあらゆるプロパティに対して値を省略できます。上の例において、<code class="docutils literal notranslate"><span class="pre">Size</span></code>構造体は省略時の値をそれの<code class="docutils literal notranslate"><span class="pre">height</span></code>と<code class="docutils literal notranslate"><span class="pre">width</span></code>プロパティの両方に対して持ちます。あなたは、どちらかのプロパティまたは両方のプロパティを省略できます、そしてイニシャライザは省略時の値をあなたが省略するどんなものにも使います — 例えば：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">let</span> <span class="nv">zeroByTwo</span> = <span class="nv">Size</span>(<span class="nv">height</span>: <span class="m">2.0</span>)
+</li><li><span class="nv">print</span>(<span class="nv">zeroByTwo</span>.<span class="nv">width</span>, <span class="nv">zeroByTwo</span>.<span class="nv">height</span>)
+</li><li><span class="c">// Prints "0.0 2.0"</span>
+</li><li>
+</li><li><span class="k">let</span> <span class="nv">zeroByZero</span> = <span class="nv">Size</span>()
+</li><li><span class="nv">print</span>(<span class="nv">zeroByZero</span>.<span class="nv">width</span>, <span class="nv">zeroByZero</span>.<span class="nv">height</span>)
+</li><li><span class="c">// Prints "0.0 0.0"</span>
 </li></ol></div></div></div>
 </div>
 </div>
@@ -1038,7 +1056,7 @@ init!失敗できるイニシャライザ
 これらの規則は、下の図で説明されます：
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/initializerDelegation01_2x.png" class="align-center" src="../images/initializerDelegation01_2x.png" style="width: 448px;" />
+<img alt="../_images/initializerDelegation01_2x.png" class="align-center" src="../_images/initializerDelegation01_2x.png" style="width: 448px;" />
 <p><span class="enstr">Here, the superclass has a single designated initializer and two convenience initializers. One convenience initializer calls another convenience initializer, which in turn calls the single designated initializer. This satisfies rules 2 and 3 from above. The superclass does not itself have a further superclass, and so rule 1 does not apply.</span><!--end_enstr-->
 <span class="jpstr">
 ここでは、スーパークラスは１つの指定イニシャライザと２つの便宜イニシャライザを持ちます。１つの便宜イニシャライザは、別の便宜イニシャライザを呼びます、それは、今度は１つだけある指定イニシャライザを呼びます。これは、上記の規則２と３を満たします。このスーパークラスにはそれ自身には更にスーパークラスをもちません、なので規則１は適用されません。
@@ -1055,7 +1073,7 @@ init!失敗できるイニシャライザ
 注意
 </span><!--end_jpstr-->
 </p>
-<p class="last"><span class="enstr">These rules don’t affect how users of your classes <em>create</em> instances of each class. Any initializer in the diagram above can be used to create a fully-initialized instance of the class they belong to. The rules only affect how you write the implementation of the class’s initializers.</span><!--end_enstr-->
+<p class="last"><span class="enstr">These rules don’t affect how users of your classes <em>create</em> instances of each class. Any initializer in the diagram above can be used to create a fully initialized instance of the class they belong to. The rules only affect how you write the implementation of the class’s initializers.</span><!--end_enstr-->
 <span class="jpstr">
 これらの規則は、あなたのクラスのユーザーが各クラスのインスタンスを<em>作成する</em>方法に影響を及ぼしません。上の図の中のどんなイニシャライザでも、それらが属しているクラスの充分に初期化されたインスタンスをつくるために使用されることができます。これらの規則は、あなたがクラスのイニシャライザの実装を書く方法に影響を及ぼすだけです。
 </span><!--end_jpstr-->
@@ -1066,7 +1084,7 @@ init!失敗できるイニシャライザ
 下の図は、４つのクラスのためのより複雑なクラス階層を示します。それは、この階層の中の指定イニシャライザが、どのようにクラス初期化のために「漏斗」地点の働きをして、この連鎖におけるクラス間の相互関係を単純化しているかを図示します：
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/initializerDelegation02_2x.png" class="align-center" src="../images/initializerDelegation02_2x.png" style="width: 448px;" />
+<img alt="../_images/initializerDelegation02_2x.png" class="align-center" src="../_images/initializerDelegation02_2x.png" style="width: 448px;" />
 </div>
 <div class="section" id="ID220">
 <h3><span class="enstr">Two-Phase Initialization<a class="headerlink" href="#ID220" title="Permalink to this headline">¶</a></span><!--end_enstr-->
@@ -1219,7 +1237,7 @@ init!失敗できるイニシャライザ
 第１段階がある仮定のサブクラスとスーパークラスのための初期化呼び出しを捜す方法がここにあります：
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/twoPhaseInitialization01_2x.png" class="align-center" src="../images/twoPhaseInitialization01_2x.png" style="width: 448px;" />
+<img alt="../_images/twoPhaseInitialization01_2x.png" class="align-center" src="../_images/twoPhaseInitialization01_2x.png" style="width: 448px;" />
 <p><span class="enstr">In this example, initialization begins with a call to a convenience initializer on the subclass. This convenience initializer cannot yet modify any properties. It delegates across to a designated initializer from the same class.</span><!--end_enstr-->
 <span class="jpstr">
 この例では、初期化はサブクラス上での便宜イニシャライザへの呼び出しから始まります。この便宜イニシャライザは、まだどのプロパティも修正することはできません。それは、横の同じクラスの指定イニシャライザに向かって委任します。
@@ -1245,7 +1263,7 @@ init!失敗できるイニシャライザ
 第２段階が同じ初期化呼び出しを捜す方法は、ここにあります：
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/twoPhaseInitialization02_2x.png" class="align-center" src="../images/twoPhaseInitialization02_2x.png" style="width: 448px;" />
+<img alt="../_images/twoPhaseInitialization02_2x.png" class="align-center" src="../_images/twoPhaseInitialization02_2x.png" style="width: 448px;" />
 <p><span class="enstr">The superclass’s designated initializer now has an opportunity to customize the instance further (although it does not have to).</span><!--end_enstr-->
 <span class="jpstr">
 スーパークラスの指定イニシャライザは、現在、さらにインスタンスを好みに合わせて作り返る機会があります（しかしながら、それはそうしなければならない訳ではない）。
@@ -1499,7 +1517,7 @@ Objective-Cでのサブクラスとは異なり、スウィフトのサブクラ
 下の図は、<code class="docutils literal notranslate"><span class="pre">Food</span></code>クラスのためのイニシャライザ連鎖を示します：
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/initializersExample01_2x.png" class="align-center" src="../images/initializersExample01_2x.png" style="width: 482px;" />
+<img alt="../_images/initializersExample01_2x.png" class="align-center" src="../_images/initializersExample01_2x.png" style="width: 482px;" />
 <p><span class="enstr">Classes do not have a default memberwise initializer, and so the <code class="docutils literal notranslate"><span class="pre">Food</span></code> class provides a designated initializer that takes a single argument called <code class="docutils literal notranslate"><span class="pre">name</span></code>. This initializer can be used to create a new <code class="docutils literal notranslate"><span class="pre">Food</span></code> instance with a specific name:</span><!--end_enstr-->
 <span class="jpstr">
 これらのクラスには省略時のメンバー関連イニシャライザがありません、なので、<code class="docutils literal notranslate"><span class="pre">Food</span></code>クラスは<code class="docutils literal notranslate"><span class="pre">name</span></code>と呼ばれる１つの引数をとる指定イニシャライザを提供します。このイニシャライザが、ある特定の名前を使って新しい<code class="docutils literal notranslate"><span class="pre">Food</span></code>インスタンスをつくるために使われることができます：
@@ -1542,7 +1560,7 @@ Objective-Cでのサブクラスとは異なり、スウィフトのサブクラ
 下の図は、<code class="docutils literal notranslate"><span class="pre">RecipeIngredient</span></code>クラスのためのイニシャライザ連鎖を示します：
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/initializersExample02_2x.png" class="align-center" src="../images/initializersExample02_2x.png" style="width: 482px;" />
+<img alt="../_images/initializersExample02_2x.png" class="align-center" src="../_images/initializersExample02_2x.png" style="width: 482px;" />
 <p><span class="enstr">The <code class="docutils literal notranslate"><span class="pre">RecipeIngredient</span></code> class has a single designated initializer, <code class="docutils literal notranslate"><span class="pre">init(name:</span> <span class="pre">String,</span> <span class="pre">quantity:</span> <span class="pre">Int)</span></code>, which can be used to populate all of the properties of a new <code class="docutils literal notranslate"><span class="pre">RecipeIngredient</span></code> instance. This initializer starts by assigning the passed <code class="docutils literal notranslate"><span class="pre">quantity</span></code> argument to the <code class="docutils literal notranslate"><span class="pre">quantity</span></code> property, which is the only new property introduced by <code class="docutils literal notranslate"><span class="pre">RecipeIngredient</span></code>. After doing so, the initializer delegates up to the <code class="docutils literal notranslate"><span class="pre">init(name:</span> <span class="pre">String)</span></code> initializer of the <code class="docutils literal notranslate"><span class="pre">Food</span></code> class. This process satisfies safety check 1 from <a class="reference internal" href="#ID220"><span class="std std-ref">Two-Phase Initialization</span></a> above.</span><!--end_enstr-->
 <span class="jpstr">
 <code class="docutils literal notranslate"><span class="pre">RecipeIngredient</span></code>クラスは、１つの指定イニシャライザ、<code class="docutils literal notranslate"><span class="pre">init(name:</span> <span class="pre">String,</span> <span class="pre">quantity:</span> <span class="pre">Int)</span></code>を持ちます、それは、新しい<code class="docutils literal notranslate"><span class="pre">RecipeIngredient</span></code>インスタンスのプロパティの全てに何か入れるために使われることができます。このイニシャライザは、渡された<code class="docutils literal notranslate"><span class="pre">quantity</span></code>引数を<code class="docutils literal notranslate"><span class="pre">quantity</span></code>プロパティに代入することによって始めます、それは、<code class="docutils literal notranslate"><span class="pre">RecipeIngredient</span></code>によって導入される唯一の新しいプロパティです。そうした後に、イニシャライザは上って<code class="docutils literal notranslate"><span class="pre">Food</span></code>クラスの<code class="docutils literal notranslate"><span class="pre">init(name:</span> <span class="pre">String)</span></code>イニシャライザに委任します。この過程は、上記の<a class="reference internal" href="#ID220"><span class="std std-ref">２段階初期化</span></a>の安全点検１を満たします。
@@ -1618,7 +1636,7 @@ Objective-Cでのサブクラスとは異なり、スウィフトのサブクラ
 下の図は、３つのクラス全てのために全体的なイニシャライザ連鎖を示します：
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/initializersExample03_2x.png" class="align-center" src="../images/initializersExample03_2x.png" style="width: 482px;" />
+<img alt="../_images/initializersExample03_2x.png" class="align-center" src="../_images/initializersExample03_2x.png" style="width: 482px;" />
 <p><span class="enstr">You can use all three of the inherited initializers to create a new <code class="docutils literal notranslate"><span class="pre">ShoppingListItem</span></code> instance:</span><!--end_enstr-->
 <span class="jpstr">
 あなたは、継承されたイニシャライザの３つ全てを新しい<code class="docutils literal notranslate"><span class="pre">ShoppingListItem</span></code>インスタンスをつくるために使うことができます：
@@ -1704,7 +1722,7 @@ Objective-Cでのサブクラスとは異なり、スウィフトのサブクラ
 </li><li><span class="c">// Prints "12345.0 conversion to Int maintains value of 12345"</span>
 </li><li>
 </li><li><span class="k">let</span> <span class="nv">valueChanged</span> = <span class="nv">Int</span>(<span class="nv">exactly</span>: <span class="nv">pi</span>)
-</li><li><span class="c">// valueChanged is of type Int?, not Int</span>
+</li><li><span class="c"><span class="enstr">// valueChanged is of type Int?, not Int</span><!--end_enstr--><span class="jpstr">（valueChanged は、型 Int? のものです、Int ではなく）</span><!--end_jpstr--></span>
 </li><li>
 </li><li><span class="k">if</span> <span class="nv">valueChanged</span> == <span class="k">nil</span> {
 </li><li>    <span class="nv">print</span>(<span class="s">"</span>\<span class="p">(</span><span class="nv">pi</span><span class="p">)</span><span class="s"> conversion to Int does not maintain value"</span>)
@@ -2131,7 +2149,7 @@ init!失敗できるイニシャライザ<a class="headerlink" href="#ID230" tit
 下の例は<code class="docutils literal notranslate"><span class="pre">Chessboard</span></code>と呼ばれる構造体を定義します、それは、「チェス」ゲーム用の盤をモデル化します。チェスは、黒と白の正方形を互い違いに持つ、８×８マスの盤上で行われます。
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/chessBoard_2x.png" class="align-center" src="../images/chessBoard_2x.png" style="width: 230px;" />
+<img alt="../_images/chessBoard_2x.png" class="align-center" src="../_images/chessBoard_2x.png" style="width: 230px;" />
 <p><span class="enstr">To represent this game board, the <code class="docutils literal notranslate"><span class="pre">Chessboard</span></code> structure has a single property called <code class="docutils literal notranslate"><span class="pre">boardColors</span></code>, which is an array of 64 <code class="docutils literal notranslate"><span class="pre">Bool</span></code> values. A value of <code class="docutils literal notranslate"><span class="pre">true</span></code> in the array represents a black square and a value of <code class="docutils literal notranslate"><span class="pre">false</span></code> represents a white square. The first item in the array represents the top left square on the board and the last item in the array represents the bottom right square on the board.</span><!--end_enstr-->
 <span class="jpstr">
 このゲーム板を表すために、<code class="docutils literal notranslate"><span class="pre">Chessboard</span></code>構造体は<code class="docutils literal notranslate"><span class="pre">boardColors</span></code>と呼ばれる１つのプロパティだけを持ちます、それは64個の<code class="docutils literal notranslate"><span class="pre">Bool</span></code>値の配列です。この配列の中の<code class="docutils literal notranslate"><span class="pre">true</span></code>の値は黒の正方形を表します、そして<code class="docutils literal notranslate"><span class="pre">false</span></code>の値は白い正方形を表します。配列の最初の項目は盤上の一番左上の正方形を表わします、そして配列の最後の項目は盤上の一番右下の正方形を表します。
@@ -2205,6 +2223,6 @@ init!失敗できるイニシャライザ<a class="headerlink" href="#ID230" tit
   </p>
 </footer>
 <div id="jump_to_overlay"></div>
-<script src="../static/javascripts/application.js"></script>
+<script src="../_static/javascripts/application.js"></script>
   </body>
 </html>

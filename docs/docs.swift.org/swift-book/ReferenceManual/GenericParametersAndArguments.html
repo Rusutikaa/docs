@@ -10,11 +10,11 @@
     <meta name="author" content="Apple Inc." />
     <meta name="viewport" content="width=device-width initial-scale=1" />
     
-    <title>Generic Parameters and Arguments — The Swift Programming Language (Swift 5)</title>
+    <title>Generic Parameters and Arguments — The Swift Programming Language (Swift 5.1)</title>
     
     <link rel="license" href="/LICENSE.txt" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/tspl.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/application.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/tspl.css" />
     <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
@@ -41,7 +41,7 @@
 
     <div id="menu-toggle" class="menu-toggle open"></div>
 
-    <h2>The Swift Programming Language<div>Swift 5</div></h2>
+    <h2>The Swift Programming Language<div>Swift 5.1</div></h2>
 
     <ul>
     <ul class="current">
@@ -228,7 +228,7 @@
 例えば、<code class="docutils literal notranslate"><span class="pre">Int</span></code>と<code class="docutils literal notranslate"><span class="pre">Double</span></code>は両方とも<code class="docutils literal notranslate"><span class="pre">Comparable</span></code>プロトコルに準拠するので、この関数はどちらの型の引数でも受け入れます。総称体型と対照的に、あなたが総称体の関数やイニシャライザを使うとき、あなたは総称体引数節を指定しません。型引数は、その代わりに関数またはイニシャライザに渡される引数の型から推論されます。
 </span><!--end_jpstr-->
 </p>
-<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="nv">simpleMax</span>(<span class="m">17</span>, <span class="m">42</span>)<span class="enstr"><span class="c">// T is inferred to be Int</span></span><!--end_enstr--><span class="jpstr"><span class="c">（Tは、Intであると推論されます）</span></span><!--end_jpstr--></li><li><span class="nv">simpleMax</span>(<span class="m">3.14159</span>, <span class="m">2.71828</span>)<span class="enstr"><span class="c">// T is inferred to be Double</span></span><!--end_enstr--><span class="jpstr"><span class="c">（TはDoubleであると推論されます）</span></span><!--end_jpstr--></li></ol></div></div></div>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="nv">simpleMax</span>(<span class="m">17</span>, <span class="m">42</span>) <span class="enstr"><span class="c">// T is inferred to be Int</span></span><!--end_enstr--><span class="jpstr"><span class="c">（Tは、Intであると推論されます）</span></span><!--end_jpstr--></li><li><span class="nv">simpleMax</span>(<span class="m">3.14159</span>, <span class="m">2.71828</span>) <span class="enstr"><span class="c">// T is inferred to be Double</span></span><!--end_enstr--><span class="jpstr"><span class="c">（TはDoubleであると推論されます）</span></span><!--end_jpstr--></li></ol></div></div></div>
 <div class="section" id="ID408">
 <h3><span class="enstr">Generic Where Clauses<a class="headerlink" href="#ID408" title="Permalink to this headline">¶</a></span><!--end_enstr-->
 <span class="jpstr">
@@ -244,7 +244,7 @@
 </li></ol></div></div></div>
 <p><span class="enstr">The <em>requirements</em> in a generic <code class="docutils literal notranslate"><span class="pre">where</span></code> clause specify that a type parameter inherits from a class or conforms to a protocol or protocol composition. Although the generic <code class="docutils literal notranslate"><span class="pre">where</span></code> clause provides syntactic sugar for expressing simple constraints on type parameters (for example, <code class="docutils literal notranslate"><span class="pre">&lt;T:</span> <span class="pre">Comparable&gt;</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">&lt;T&gt;</span> <span class="pre">where</span> <span class="pre">T:</span> <span class="pre">Comparable</span></code> and so on), you can use it to provide more complex constraints on type parameters and their associated types. For example, you can constrain the associated types of type parameters to conform to protocols. For example, <code class="docutils literal notranslate"><span class="pre">&lt;S:</span> <span class="pre">Sequence&gt;</span> <span class="pre">where</span> <span class="pre">S.Iterator.Element:</span> <span class="pre">Equatable</span></code> specifies that <code class="docutils literal notranslate"><span class="pre">S</span></code> conforms to the <code class="docutils literal notranslate"><span class="pre">Sequence</span></code> protocol and that the associated type <code class="docutils literal notranslate"><span class="pre">S.Iterator.Element</span></code> conforms to the <code class="docutils literal notranslate"><span class="pre">Equatable</span></code> protocol. This constraint ensures that each element of the sequence is equatable.</span><!--end_enstr-->
 <span class="jpstr">
-総称体<code class="docutils literal notranslate"><span class="pre">where</span></code>節の中の<em>要件</em>が指定するのは、型パラメータがクラスから継承するかまたはプロトコルやプロトコル合成に準拠するということです。総称体<code class="docutils literal notranslate"><span class="pre">where</span></code>節は、型パラメータ上で単純な制約を表すために構文糖衣を提供しますが（例えば、<code class="docutils literal notranslate"><span class="pre">&lt;T:</span> <span class="pre">Comparable&gt;</span></code>は<code class="docutils literal notranslate"><span class="pre">&lt;T&gt;</span> <span class="pre">where</span> <span class="pre">T:</span> <span class="pre">Comparable</span></code>に等しいなどなど）、あなたはそれを使ってより複雑な制約を型パラメータとそれの関連型に提供することができます。たとえば、あなたは型パラメータの関連型をいくらかのプロトコルに準拠するように制約することができます。例えば、<code class="docutils literal notranslate"><span class="pre">&lt;S:</span> <span class="pre">Sequence&gt;</span> <span class="pre">where</span> <span class="pre">S.Iterator.Element:</span> <span class="pre">Equatable</span></code>が指定するのは、<code class="docutils literal notranslate"><span class="pre">S</span></code>が<code class="docutils literal notranslate"><span class="pre">Sequence</span></code>プロトコルに準拠すること、そして関連型<code class="docutils literal notranslate"><span class="pre">S.Iterator.Element</span></code>が<code class="docutils literal notranslate"><span class="pre">Equatable</span></code>プロトコルに準拠することです。この制約はシーケンスの各要素が同等比較可能であることを保証します。
+総称体<code class="docutils literal notranslate"><span class="pre">where</span></code>節の中の<em>要件</em>が指定するのは、型パラメータがクラスから継承するかまたはプロトコルやプロトコル合成に準拠するということです。総称体<code class="docutils literal notranslate"><span class="pre">where</span></code>節は、型パラメータ上で単純な制約を表すために糖衣構文を提供しますが（例えば、<code class="docutils literal notranslate"><span class="pre">&lt;T:</span> <span class="pre">Comparable&gt;</span></code>は<code class="docutils literal notranslate"><span class="pre">&lt;T&gt;</span> <span class="pre">where</span> <span class="pre">T:</span> <span class="pre">Comparable</span></code>に等しいなどなど）、あなたはそれを使ってより複雑な制約を型パラメータとそれの関連型に提供することができます。たとえば、あなたは型パラメータの関連型をいくらかのプロトコルに準拠するように制約することができます。例えば、<code class="docutils literal notranslate"><span class="pre">&lt;S:</span> <span class="pre">Sequence&gt;</span> <span class="pre">where</span> <span class="pre">S.Iterator.Element:</span> <span class="pre">Equatable</span></code>が指定するのは、<code class="docutils literal notranslate"><span class="pre">S</span></code>が<code class="docutils literal notranslate"><span class="pre">Sequence</span></code>プロトコルに準拠すること、そして関連型<code class="docutils literal notranslate"><span class="pre">S.Iterator.Element</span></code>が<code class="docutils literal notranslate"><span class="pre">Equatable</span></code>プロトコルに準拠することです。この制約はシーケンスの各要素が同等比較可能であることを保証します。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">You can also specify the requirement that two types be identical, using the <code class="docutils literal notranslate"><span class="pre">==</span></code> operator. For example, <code class="docutils literal notranslate"><span class="pre">&lt;S1:</span> <span class="pre">Sequence,</span> <span class="pre">S2:</span> <span class="pre">Sequence&gt;</span> <span class="pre">where</span> <span class="pre">S1.Iterator.Element</span> <span class="pre">==</span> <span class="pre">S2.Iterator.Element</span></code> expresses the constraints that <code class="docutils literal notranslate"><span class="pre">S1</span></code> and <code class="docutils literal notranslate"><span class="pre">S2</span></code> conform to the <code class="docutils literal notranslate"><span class="pre">Sequence</span></code> protocol and that the elements of both sequences must be of the same type.</span><!--end_enstr-->
@@ -264,7 +264,7 @@
 </p>
 <p><span class="enstr">For more information about generic <code class="docutils literal notranslate"><span class="pre">where</span></code> clauses and to see an example of one in a generic function declaration, see <a class="reference internal" href="../LanguageGuide/Generics.html#ID192"><span class="std std-ref">Generic Where Clauses</span></a>.</span><!--end_enstr-->
 <span class="jpstr">
-総称体<code class="docutils literal notranslate"><span class="pre">where</span></code>節のさらなる情報のために、そして総称体関数定義におけるそれの一例を見るために、<a class="reference internal" href="../LanguageGuide/Generics.html#ID192"><span class="std std-ref">総称体where節</span></a>を見てください。
+総称体<code class="docutils literal notranslate"><span class="pre">where</span></code>節のさらなる情報のために、そして総称体関数宣言におけるそれの一例を見るために、<a class="reference internal" href="../LanguageGuide/Generics.html#ID192"><span class="std std-ref">総称体where節</span></a>を見てください。
 </span><!--end_jpstr-->
 </p>
 <div class="admonition grammar"><p class="first admonition-title"><span class="enstr">Grammar of a generic parameter clause</span><!--end_enstr-->
@@ -350,6 +350,6 @@
   </p>
 </footer>
 <div id="jump_to_overlay"></div>
-<script src="../static/javascripts/application.js"></script>
+<script src="../_static/javascripts/application.js"></script>
   </body>
 </html>

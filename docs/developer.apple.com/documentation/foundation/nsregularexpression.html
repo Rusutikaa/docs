@@ -1,0 +1,941 @@
+<!DOCTYPE html><html lang="en" data-reactroot=""><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>NSRegularExpression - Foundation | Apple Developer Documentation</title><!-- link href="https://www.apple.com/wss/fonts?families=SF+Pro,v1|SF+Mono,v1|SF+Pro+Icons,v1" media="all" rel="stylesheet" type="text/css"/ --><meta content="width=device-width, initial-scale=1 viewport-fit=cover" name="viewport"/><meta data-pid="424974"/><link href="../../documentation/assets/application-e5bb1544.css" media="all" rel="stylesheet" type="text/css"/><noscript><link href="../../documentation/assets/nojs-c6be9131.css" media="all" rel="stylesheet" type="text/css"/></noscript><link rel="mask-icon" href="../../documentation/assets/apple-logo.svg" color="#000"/><link rel="shortcut icon" href="../../documentation/assets/favicon.ico"/><script src="../../documentation/assets/shared-b7676010.js"></script></head><body><div id="_omniture_top">
+      <script>
+        var s_account="awdappledeveloper"
+      </script><!-- script src="https://developer.apple.com/assets/metrics/scripts/analytics.js" -->
+      </script>
+      <script>
+        s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
+        s.channel="www.documentation.developer"
+
+        var s_code=s.t();if(s_code)document.write(s_code)
+      </script>
+    </div><div id="app"><div><a href="#main" id="skip-localnav" class="showonfocus hidden">Skip Navigation</a><aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"/><nav id="ac-globalnav" class="no-js" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions/">
+      <div class="ac-gn-content">
+        <ul class="ac-gn-header">
+          <li class="ac-gn-item ac-gn-menuicon">
+            <label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true">
+              <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top">
+                <span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span>
+              </span>
+              <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom">
+                <span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span>
+              </span>
+            </label>
+            <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open">
+              <span class="ac-gn-menuanchor-label">Global Nav Open Menu</span>
+            </a>
+            <a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close">
+              <span class="ac-gn-menuanchor-label">Global Nav Close Menu</span>
+            </a>
+          </li>
+          <li class="ac-gn-item ac-gn-apple">
+            <a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small">
+              <span class="ac-gn-link-text">Apple Developer</span>
+            </a>
+          </li>
+        </ul>
+        <div class="ac-gn-search-placeholder-container" role="search">
+          <div class="ac-gn-search ac-gn-search-small">
+            <a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link aria-label="Search Developer">
+              </a><div class="ac-gn-search-placeholder-bar">
+                <div class="ac-gn-search-placeholder-input">
+                  <div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
+                    <div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
+                    <span class="ac-gn-search-placeholder">Search Developer</span>
+                  </div>
+                </div>
+                <div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close">
+                  <span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <ul class="ac-gn-list">
+          <li class="ac-gn-item ac-gn-apple">
+            <a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus">
+              <span class="ac-gn-link-text">Apple Developer</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-discover">
+            <a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover">
+              <span class="ac-gn-link-text">Discover</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-design">
+            <a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design">
+              <span class="ac-gn-link-text">Design</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-develop">
+            <a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop">
+              <span class="ac-gn-link-text">Develop</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-distribute">
+            <a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute">
+              <span class="ac-gn-link-text">Distribute</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport">
+            <a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport">
+              <span class="ac-gn-link-text">Support</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-account">
+            <a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account">
+              <span class="ac-gn-link-text">Account</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search">
+            <a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link aria-label="Search Developer"></a>
+          </li>
+        </ul>
+        <aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search">
+          <div class="ac-gn-searchview-content">
+            <div class="ac-gn-searchview-bar">
+              <div class="ac-gn-searchview-bar-wrapper">
+                <form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get">
+                  <div class="ac-gn-searchform-wrapper">
+                    <input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions" />
+                    <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button>
+                    <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search">
+                        <span class="ac-gn-searchform-reset-background"></span>
+                      </button>
+                  </div>
+                </form>
+                <button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search">
+                    <span class="ac-gn-searchview-close-cancel" aria-hidden="true">
+                      Cancel
+                    </span>
+                  </button>
+              </div>
+            </div>
+            <aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
+          </div>
+          <button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search">
+              <span class="ac-gn-searchview-close-wrapper">
+                <span class="ac-gn-searchview-close-left"></span>
+                <span class="ac-gn-searchview-close-right"></span>
+              </span>
+            </button>
+        </aside>
+          </div>
+    </nav><div class="ac-gn-blur"></div><div id="ac-gn-curtain" class="ac-gn-curtain"></div><div id="ac-gn-placeholder" class="ac-nav-placeholder"></div><input type="checkbox" id="localnav-menustate" class="localnav-menustate" aria-hidden="true"/><nav id="localnav" class="localnav localnav-dark theme-dark localnav-scrim localnav-noborder" role="navigation" aria-label="API Reference" data-sticky="true"><div class="localnav-wrapper"><div class="referencenav"><div class="localnav-background"></div><div class="localnav-content"><a href="../../index.html" class="localnav-title">Documentation</a><div class="localnav-menu"><a href="#localnav-menustate" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span class="localnav-menucta-anchor-label" aria-hidden="true">Open Menu</span></a><a href="#" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span class="localnav-menucta-anchor-label" aria-hidden="true">Close Menu</span></a><div class="localnav-menu-tray"><ul aria-label="Breadcrumbs" class="localnav-menu-items localnav-menu-breadcrumbs"><li class="localnav-menu-item localnav-menu-breadcrumb-item"><a class="localnav-menu-link" href="../../documentation/foundation.html">Foundation</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item"><a class="localnav-menu-link" href="../../documentation/foundation/strings_and_text.html"><span class="enstr">Strings and Text</span><!--end_enstr-->
+<span class="jpstr">
+文字列とテキスト
+</span><!--end_jpstr-->
+</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item"><div class="localnav-menu-breadcrumb-current-container localnav-menu-link current"><span aria-current="page" class="localnav-menu-breadcrumb-current">NSRegularExpression</span></div></li></ul><ul class="localnav-menu-items localnav-menu-settings" data-breadcrumbs-count="3"><li class="localnav-menu-setting language-container"><div class="language-toggle-container"><label for="language-toggle" class="language-toggle-label">Language:</label><select id="language-toggle" class="language-dropdown localnav-menu-link" style="width:auto"><option selected="" value="swift">Swift</option><option value="occ">Objective-C</option></select></div><div class="language-list-container"><span class="localnav-menu-setting-label">Language:</span><ul class="language-list"><li class="language-list-item"><span data-language="swift" aria-current="page" class="current-language">Swift</span></li><li class="language-list-item"><a href="../../documentation/foundation/nsregularexpression?language=objc.html" class="localnav-menu-setting-link">Objective-C</a></li></ul></div></li><li class="localnav-menu-setting"><span class="localnav-menu-setting-label">API Changes:</span><span class="changes-toggle">None</span></li></ul></div><div class="localnav-actions"><div class="localnav-action localnav-action-menucta" aria-hidden="true"><label for="localnav-menustate" class="localnav-menucta"><span class="localnav-menucta-chevron"></span></label></div></div></div></div></div></div></nav><label for="localnav-menustate" id="localnav-curtain" aria-hidden="true"></label><main role="main" id="main" class="main" tabindex="0"><div class="topic-title"><span class="eyebrow">Class</span><h1 class="topic-heading"><span>NSRegular<wbr/>Expression</span></h1></div><div class="topic-container section-content row"><div class="topic-description column large-9 medium-9 small-12"><div class="topic-abstract abstract formatted-content"><div><p><span class="enstr">An immutable representation of a compiled regular expression that you apply to Unicode strings.</span><!--end_enstr-->
+<span class="jpstr">
+可変でない表現のコンパイル済み正規表現で、それをあなたはユニコード文字列に適用します。
+</span><!--end_jpstr-->
+  </p></div></div></div><div class="topic-summary column large-3 medium-3 small-12"><div class="topic-summary-section sdks" role="complementary" aria-label="SDKs"><p class="topic-summary-section-label subsection-label">SDKs</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item sdk"><span aria-label="iOS 4.0+, Available on iOS 4.0 and later" role="text" title="Available on iOS 4.0 and later">iOS 4.0+</span></li><li class="topic-summary-section-item sdk"><span aria-label="macOS 10.7+, Available on macOS 10.7 and later" role="text" title="Available on macOS 10.7 and later">macOS 10.7+</span></li><li class="topic-summary-section-item sdk"><span aria-label="Mac Catalyst 13.0+, Available on Mac Catalyst 13.0 and later" role="text" title="Available on Mac Catalyst 13.0 and later">Mac Catalyst 13.0+</span></li><li class="topic-summary-section-item sdk"><span aria-label="tvOS 9.0+, Available on tvOS 9.0 and later" role="text" title="Available on tvOS 9.0 and later">tvOS 9.0+</span></li><li class="topic-summary-section-item sdk"><span aria-label="watchOS 2.0+, Available on watchOS 2.0 and later" role="text" title="Available on watchOS 2.0 and later">watchOS 2.0+</span></li></ul></div><div class="topic-summary-section frameworks" role="complementary" aria-label="Framework"><p class="topic-summary-section-label subsection-label"><span class="enstr">Framework</span><!--end_enstr-->
+<span class="jpstr">
+フレームワーク
+</span><!--end_jpstr-->
+</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item"><span>Foundation</span></li></ul></div><div class="topic-summary-section onthispage"><nav class="onthispage-nav" aria-labelledby="onthispage-title"><p id="onthispage-title" class="topic-summary-section-label subsection-label"><span class="enstr">On This Page</span><!--end_enstr-->
+<span class="jpstr">
+この項には
+</span><!--end_jpstr-->
+</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item"><a href="#declarations" class="icon icon-after icon-chevrondowncircle"><span class="enstr">Declaration</span><!--end_enstr-->
+<span class="jpstr">
+宣言
+</span><!--end_jpstr-->
+</a></li><li class="topic-summary-section-item"><a href="#overview" class="icon icon-after icon-chevrondowncircle"><span class="enstr">Overview</span><!--end_enstr-->
+<span class="jpstr">
+概要
+</span><!--end_jpstr-->
+</a></li><li class="topic-summary-section-item"><a href="#topics" class="icon icon-after icon-chevrondowncircle"><span class="enstr">Topics</span><!--end_enstr-->
+<span class="jpstr">
+話題
+</span><!--end_jpstr-->
+</a></li><li class="topic-summary-section-item"><a href="#relationships" class="icon icon-after icon-chevrondowncircle"><span class="enstr">Relationships</span><!--end_enstr-->
+<span class="jpstr">
+関係
+</span><!--end_jpstr-->
+</a></li><li class="topic-summary-section-item"><a href="#see-also" class="icon icon-after icon-chevrondowncircle"><span class="enstr">See Also</span><!--end_enstr-->
+<span class="jpstr">
+参照
+</span><!--end_jpstr-->
+</a></li></ul></nav></div></div><div class="topic-content column large-9 medium-9 small-12" id="topic-content"><section id="declarations" class="section"><h2><span class="enstr">Declaration</span><!--end_enstr-->
+<span class="jpstr">
+宣言
+</span><!--end_jpstr-->
+</h2><figure class="declaration"><div class="code-listing"><pre class="code-source" data-language="swift"><code><span><span class="syntax-keyword">class</span> <span class="syntax-identifier">NSRegularExpression</span> : <a class="symbolref" href="https://developer.apple.com/documentation/objectivec/nsobject"><span>NSObject</span></a>
+</span></code></pre></div></figure></section><section id="overview" class="section"><h2><span class="enstr">Overview</span><!--end_enstr-->
+<span class="jpstr">
+概要
+</span><!--end_jpstr-->
+</h2><div class="formatted-content"><div><p><span class="enstr">The fundamental matching method for <code class="code-voice"><span>NSRegular<wbr/>Expression</span></code> is a Block iterator method that allows clients to supply a Block object which will be invoked each time the regular expression matches a portion of the target string. There are additional convenience methods for returning all the matches as an array, the total number of matches, the first match, and the range of the first match.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="code-voice"><span>NSRegular<wbr/>Expression</span></code>の基本となるマッチング・メソッドは、「ブロック」イテレータメソッド（反復子メソッド）です、それは、その正規表現が目標文字列のある部分にマッチするたびに呼び出される「ブロック」オブジェクトを、クライアントが提供できるようにするものです。全てのマッチの配列、マッチの総数、最初のマッチ、そして最初のマッチの範囲を返す、いっそう便利なメソッドもあります。
+</span><!--end_jpstr-->
+</p><p><span class="enstr">An individual match is represented by an instance of the <a class="symbol-name" href="../../documentation/foundation/nstextcheckingresult.html"><code><span>NSText<wbr/>Checking<wbr/>Result</span></code></a> class, which carries information about the overall matched range (via its <a class="symbol-name" href="../../documentation/foundation/nstextcheckingresult/1415852-range.html"><code><span>range</span></code></a> property), and the range of each individual capture group (via the <a class="symbol-name" href="../../documentation/foundation/nstextcheckingresult/1416732-range.html"><code><span>range(at:)</span></code></a> method). For basic <code class="code-voice"><span>NSRegular<wbr/>Expression</span></code> objects, these match results will be of type <a class="symbol-name" href="../../documentation/foundation/nstextcheckingresult/checkingtype/1408922-regularexpression.html"><code><span>regular<wbr/>Expression</span></code></a>, but subclasses may use other types.</span><!--end_enstr-->
+<span class="jpstr">
+ある特定のマッチは<a class="symbol-name" href="../../documentation/foundation/nstextcheckingresult.html"><code><span>NSText<wbr/>Checking<wbr/>Result</span></code></a>クラスのインスタンスによって表されます、そして、それはマッチされた全体の範囲（その<a class="symbol-name" href="../../documentation/foundation/nstextcheckingresult/1415852-range.html"><code><span>range</span></code></a>プロパティによって）、そして個々の捕獲グループの範囲（<a class="symbol-name" href="../../documentation/foundation/nstextcheckingresult/1416732-range.html"><code><span>range(at:)</span></code></a>メソッドによって）に関する情報を持ち運びます。基本的な<code class="code-voice"><span>NSRegular<wbr/>Expression</span></code>オブジェクトに対して、これらのマッチ結果は型<a class="symbol-name" href="../../documentation/foundation/nstextcheckingresult/checkingtype/1408922-regularexpression.html"><code><span>regular<wbr/>Expression</span></code></a>のものです、しかしサブクラスは他の型を使うかもしれません。
+</span><!--end_jpstr-->
+</p><p><span class="enstr">The ICU regular expressions supported by <code class="code-voice"><span>NSRegular<wbr/>Expression</span></code> are described at <a href="http://userguide.icu-project.org/strings/regexp">http://userguide.icu-project.org/strings/regexp</a>.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="code-voice"><span>NSRegular<wbr/>Expression</span></code>でサポートされるICU正規表現は<a href="http://userguide.icu-project.org/strings/regexp">http://userguide.icu-project.org/strings/regexp</a>で記述されます。
+</span><!--end_jpstr-->
+</p></div><h3 id="1660992"><span class="enstr">Examples Using NSRegularExpression</span><!--end_enstr-->
+<span class="jpstr">
+NSRegularExpressionの使用例
+</span><!--end_jpstr-->
+</h3><div><p><span class="enstr">What follows are a set of graduated examples for using the <code class="code-voice"><span>NSRegular<wbr/>Expression</span></code> class. All these examples use the regular expression <code class="code-voice"><span>\\b(a|b)(c|d)\\b</span></code> as their regular expression.</span><!--end_enstr-->
+<span class="jpstr">
+以下のものは、<code class="code-voice"><span>NSRegular<wbr/>Expression</span></code>クラスの使用に対する一揃いの段階的な例です。これらの例の全ては、それらの正規表現として正規表現<code class="code-voice"><span>\\b(a|b)(c|d)\\b</span></code>を使います。
+</span><!--end_jpstr-->
+</p><p><span class="enstr">This snippet creates a regular expression to match two-letter words, in which the first letter is “a” or “b” and the second letter is “c” or “d”. Specifying <a class="symbol-name" href="../../documentation/foundation/nsregularexpression/options/1417830-caseinsensitive.html"><code><span>case<wbr/>Insensitive</span></code></a> means that matches will be case-insensitive, so this will match “BC”, “aD”, and so forth, as well as their lower-case equivalents.</span><!--end_enstr-->
+<span class="jpstr">
+この切れっぱしは、最初の文字が“a”または“b”で２番目の文字が“c”または“d”であるところの、２文字単語にマッチする正規表現をつくります。<a class="symbol-name" href="../../documentation/foundation/nsregularexpression/options/1417830-caseinsensitive.html"><code><span>case<wbr/>Insensitive</span></code></a>の指定は、マッチが大文字と小文字の区別をしないことを意味します、それでこれは、“BC”、“aD”、その他にマッチします、それらの小文字の等価物だけではなしに。
+</span><!--end_jpstr-->
+</p><figure id="2557027"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="occ"><code>NSError *error = NULL;
+NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\b(a|b)(c|d)\\b"
+                                                                       options:NSRegularExpressionCaseInsensitive
+                                                                         error:&amp;error];
+</code></pre></div></div></figure><p><span class="enstr">The <a class="symbol-name" href="../../documentation/foundation/nsregularexpression/1414308-numberofmatches.html"><code><span>number<wbr/>Of<wbr/>Matches(in:<wbr/>options:<wbr/>range:)</span></code></a> method provides a simple mechanism for counting the number of matches in a given range of a string.</span><!--end_enstr-->
+<span class="jpstr">
+<a class="symbol-name" href="../../documentation/foundation/nsregularexpression/1414308-numberofmatches.html"><code><span>number<wbr/>Of<wbr/>Matches(in:<wbr/>options:<wbr/>range:)</span></code></a>メソッドは、ある文字列の与えられた範囲においてマッチの数を数えるための単純な仕組みを提供します。
+</span><!--end_jpstr-->
+</p><figure id="2557035"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="occ"><code>NSUInteger numberOfMatches = [regex numberOfMatchesInString:string
+                                                    options:0
+                                                      range:NSMakeRange(0, [string length])];
+</code></pre></div></div></figure><p><span class="enstr">If you are interested only in the overall range of the first match, the <a class="symbol-name" href="../../documentation/foundation/nsregularexpression/1411510-rangeoffirstmatch.html"><code><span>range<wbr/>Of<wbr/>First<wbr/>Match(in:<wbr/>options:<wbr/>range:)</span></code></a> method provides it for you. Some regular expressions (though not the example pattern) can successfully match a zero-length range, so the comparison of the resulting range with <code class="code-voice"><span>{NSNot<wbr/>Found, 0}</span></code> is the most reliable way to determine whether there was a match or not.</span><!--end_enstr-->
+<span class="jpstr">
+あなたが最初のマッチの範囲だけに興味があるならば、<a class="symbol-name" href="../../documentation/foundation/nsregularexpression/1411510-rangeoffirstmatch.html"><code><span>range<wbr/>Of<wbr/>First<wbr/>Match(in:<wbr/>options:<wbr/>range:)</span></code></a>メソッドがあなたにそれを与えます。若干の正規表現は（例パターンはそうでないけれども）成功裏にゼロ長の範囲にマッチすることができるので、結果として生じる範囲を<code class="code-voice"><span>{NSNot<wbr/>Found, 0}</span></code>と比較することは、マッチがあったかどうか判定する最も信頼できる方法です。
+</span><!--end_jpstr-->
+</p><p><span class="enstr">The example regular expression contains two capture groups, corresponding to the two sets of parentheses, one for the first letter, and one for the second. If you are interested in more than just the overall matched range, you want to obtain an <a class="symbol-name" href="../../documentation/foundation/nstextcheckingresult.html"><code><span>NSText<wbr/>Checking<wbr/>Result</span></code></a> object corresponding to a given match. This object provides information about the overall matched range, via its <a class="symbol-name" href="../../documentation/foundation/nstextcheckingresult/1415852-range.html"><code><span>range</span></code></a> property, and also supplies the capture group ranges, via the <a class="symbol-name" href="../../documentation/foundation/nstextcheckingresult/1416732-range.html"><code><span>range(at:)</span></code></a> method. The first capture group range is given by <code class="code-voice"><span>[result range<wbr/>At<wbr/>Index:<wbr/>1]</span></code>, the second by <code class="code-voice"><span>[result range<wbr/>At<wbr/>Index:<wbr/>2]</span></code>. Sending a result the  <a class="symbol-name" href="../../documentation/foundation/nstextcheckingresult/1416732-range.html"><code><span>range(at:)</span></code></a> message and passing <code class="code-voice"><span>0</span></code> is equivalent to <code class="code-voice"><span>[result range]</span></code>.</span><!--end_enstr-->
+<span class="jpstr">
+この例の正規表現は、最初の文字のためのものと２番目のためのもの、２つの括弧対に対応している、２つの捕獲グループを含みます。あなたが単にマッチした範囲全体だけでなくより多くのことに興味を持つならば、あなたは与えられたマッチに対応している<a class="symbol-name" href="../../documentation/foundation/nstextcheckingresult.html"><code><span>NSText<wbr/>Checking<wbr/>Result</span></code></a>オブジェクトを得るといいでしょう。このオブジェクトは、その<a class="symbol-name" href="../../documentation/foundation/nstextcheckingresult/1415852-range.html"><code><span>range</span></code></a>プロパティによって、全体的なマッチされた範囲に関する情報を提供して、そのうえ、<a class="symbol-name" href="../../documentation/foundation/nstextcheckingresult/1416732-range.html"><code><span>range(at:)</span></code></a>メソッドによって、捕獲グループの範囲を供給します。最初の捕獲グループ範囲は<code class="code-voice"><span>[result range<wbr/>At<wbr/>Index:<wbr/>1]</span></code>で、２番目は<code class="code-voice"><span>[result range<wbr/>At<wbr/>Index:<wbr/>2]</span></code>で与えられます。ある結果に<a class="symbol-name" href="../../documentation/foundation/nstextcheckingresult/1416732-range.html"><code><span>range(at:)</span></code></a>メッセージを<code class="code-voice"><span>0</span></code>を渡して送ることは、<code class="code-voice"><span>[result range]</span></code>に等しいです。
+</span><!--end_jpstr-->
+</p><p><span class="enstr">If the result returned is non-<code class="code-voice"><span>nil</span></code>, then <code class="code-voice"><span>[result range]</span></code> will always be a valid range, so it is not necessary to compare it against <code class="code-voice"><span>{NSNot<wbr/>Found, 0}</span></code>. However, for some regular expressions (though not the example pattern) some capture groups may or may not participate in a given match. If a given capture group does not participate in a given match, then<code class="code-voice"><span> [result range<wbr/>At<wbr/>Index:<wbr/>idx]</span></code> will return <code class="code-voice"><span>{NSNot<wbr/>Found, 0}</span></code>.</span><!--end_enstr-->
+<span class="jpstr">
+返される結果が<code class="code-voice"><span>nil</span></code>でないならば、<code class="code-voice"><span>[result range]</span></code>は常に有効な範囲であるので、それを<code class="code-voice"><span>{NSNot<wbr/>Found, 0}</span></code>と比較することは必要ではありません。しかし、若干の正規表現では（例パターンはそうでないけれども）いくつかの捕獲グループが、ある与えられたマッチに関与するかもしれないし、しないかもしれません。ある捕獲グループが与えられたマッチに関与しないならば、<code class="code-voice"><span> [result range<wbr/>At<wbr/>Index:<wbr/>idx]</span></code>は<code class="code-voice"><span>{NSNot<wbr/>Found, 0}</span></code>を返すでしょう。
+</span><!--end_jpstr-->
+</p><figure id="2557039"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="occ"><code>NSRange rangeOfFirstMatch = [regex rangeOfFirstMatchInString:string options:0 range:NSMakeRange(0, [string length])];
+if (!NSEqualRanges(rangeOfFirstMatch, NSMakeRange(NSNotFound, 0))) {
+    NSString *substringForFirstMatch = [string substringWithRange:rangeOfFirstMatch];
+}
+</code></pre></div></div></figure><p><span class="enstr">The <a class="symbol-name" href="../../documentation/foundation/nsregularexpression/1412446-matches.html"><code><span>matches(in:<wbr/>options:<wbr/>range:)</span></code></a> returns all the matching results.</span><!--end_enstr-->
+<span class="jpstr">
+<a class="symbol-name" href="../../documentation/foundation/nsregularexpression/1412446-matches.html"><code><span>matches(in:<wbr/>options:<wbr/>range:)</span></code></a>は、全てのマッチした結果を返します。
+</span><!--end_jpstr-->
+</p><figure id="2557042"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="occ"><code>NSArray *matches = [regex matchesInString:string
+                                  options:0
+                                    range:NSMakeRange(0, [string length])];
+for (NSTextCheckingResult *match in matches) {
+     NSRange matchRange = [match range];
+     NSRange firstHalfRange = [match rangeAtIndex:1];
+     NSRange secondHalfRange = [match rangeAtIndex:2];
+}
+</code></pre></div></div></figure><p><span class="enstr">The <a class="symbol-name" href="../../documentation/foundation/nsregularexpression/1409838-firstmatch.html"><code><span>first<wbr/>Match(in:<wbr/>options:<wbr/>range:)</span></code></a> method is similar to <a class="symbol-name" href="../../documentation/foundation/nsregularexpression/1412446-matches.html"><code><span>matches(in:<wbr/>options:<wbr/>range:)</span></code></a> but it returns only the first match.</span><!--end_enstr-->
+<span class="jpstr">
+<a class="symbol-name" href="../../documentation/foundation/nsregularexpression/1409838-firstmatch.html"><code><span>first<wbr/>Match(in:<wbr/>options:<wbr/>range:)</span></code></a>メソッドは<a class="symbol-name" href="../../documentation/foundation/nsregularexpression/1412446-matches.html"><code><span>matches(in:<wbr/>options:<wbr/>range:)</span></code></a>に似ています、しかしそれは最初のマッチだけを返します。
+</span><!--end_jpstr-->
+</p><figure id="2557043"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="occ"><code>NSTextCheckingResult *match = [regex firstMatchInString:string
+                                                options:0
+                                                  range:NSMakeRange(0, [string length])];
+if (match) {
+    NSRange matchRange = [match range];
+    NSRange firstHalfRange = [match rangeAtIndex:1];
+    NSRange secondHalfRange = [match rangeAtIndex:2];
+ }
+</code></pre></div></div></figure><p><span class="enstr">The Block enumeration method <a class="symbol-name" href="../../documentation/foundation/nsregularexpression/1409687-enumeratematches.html"><code><span>enumerate<wbr/>Matches(in:<wbr/>options:<wbr/>range:<wbr/>using:)</span></code></a> is the most general and flexible of the matching methods of <code class="code-voice"><span>NSRegular<wbr/>Expression</span></code>. It allows you to iterate through matches in a string, performing arbitrary actions on each as specified by the code in the Block and to stop partway through if desired. In the following example case, the iteration is stopped after a certain number of matches have been found.</span><!--end_enstr-->
+<span class="jpstr">
+「ブロック」列挙メソッド<a class="symbol-name" href="../../documentation/foundation/nsregularexpression/1409687-enumeratematches.html"><code><span>enumerate<wbr/>Matches(in:<wbr/>options:<wbr/>range:<wbr/>using:)</span></code></a>は、<code class="code-voice"><span>NSRegular<wbr/>Expression</span></code>のマッチング・メソッドの最も一般的で柔軟性に富むものです。それはある文字列の中のマッチすべてに対して、それぞれにおいて「ブロック」のコードで指定される通りに任意のアクションの実行を繰り返すこと、そして希望する場合には最後までの途中で中止することをあなたに可能にします。以下の例の場合には、繰り返しは、特定の数のマッチが見つけられた後で中止されます。
+</span><!--end_jpstr-->
+ </p><p><span class="enstr">If neither of the special options <a class="symbol-name" href="../../documentation/foundation/nsregularexpression/matchingoptions/1417028-reportprogress.html"><code><span>report<wbr/>Progress</span></code></a> or <a class="symbol-name" href="../../documentation/foundation/nsregularexpression/matchingoptions/1418436-reportcompletion.html"><code><span>report<wbr/>Completion</span></code></a> is specified, then the result argument to the Block is guaranteed to be non-<code class="code-voice"><span>nil</span></code>, and as mentioned before, it is guaranteed to have a valid overall range. See <a class="symbol-name" href="../../documentation/foundation/nsregularexpression/matchingoptions.html"><code><span>NSRegular<wbr/>Expression<wbr/>.Matching<wbr/>Options</span></code></a> for the significance of <a class="symbol-name" href="../../documentation/foundation/nsregularexpression/matchingoptions/1417028-reportprogress.html"><code><span>report<wbr/>Progress</span></code></a> or <a class="symbol-name" href="../../documentation/foundation/nsregularexpression/matchingoptions/1418436-reportcompletion.html"><code><span>report<wbr/>Completion</span></code></a>.</span><!--end_enstr-->
+<span class="jpstr">
+特別なオプション<a class="symbol-name" href="../../documentation/foundation/nsregularexpression/matchingoptions/1417028-reportprogress.html"><code><span>report<wbr/>Progress</span></code></a>または<a class="symbol-name" href="../../documentation/foundation/nsregularexpression/matchingoptions/1418436-reportcompletion.html"><code><span>report<wbr/>Completion</span></code></a>のどちらも指定されないならば、「ブロック」に対する結果引数は、<code class="code-voice"><span>nil</span></code>でないことを保証されます、そして前に言及されたように、それは有効な全体的な範囲を持つと保証されます。<a class="symbol-name" href="../../documentation/foundation/nsregularexpression/matchingoptions.html"><code><span>NSRegular<wbr/>Expression<wbr/>.Matching<wbr/>Options</span></code></a>を<a class="symbol-name" href="../../documentation/foundation/nsregularexpression/matchingoptions/1417028-reportprogress.html"><code><span>report<wbr/>Progress</span></code></a>や<a class="symbol-name" href="../../documentation/foundation/nsregularexpression/matchingoptions/1418436-reportcompletion.html"><code><span>report<wbr/>Completion</span></code></a>の意義のために見てください。
+</span><!--end_jpstr-->
+</p><figure id="2557045"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="occ"><code>__block NSUInteger count = 0;
+[regex enumerateMatchesInString:string options:0 range:NSMakeRange(0, [string length]) usingBlock:^(NSTextCheckingResult *match, NSMatchingFlags flags, BOOL *stop){
+     NSRange matchRange = [match range];
+     NSRange firstHalfRange = [match rangeAtIndex:1];
+     NSRange secondHalfRange = [match rangeAtIndex:2];
+     if (++count &gt;= 100) *stop = YES;
+}];
+</code></pre></div></div></figure><p><span class="enstr"><code class="code-voice"><span>NSRegular<wbr/>Expression</span></code> also provides simple methods for performing find-and-replace operations on a string. The following example returns a modified copy, but there is a corresponding method for modifying a mutable string in place. The template specifies what is to be used to replace each match, with <code class="code-voice"><span>$0</span></code> representing the contents of the overall matched range, <code class="code-voice"><span>$1</span></code> representing the contents of the first capture group, and so on. In this case, the template reverses the two letters of the word.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="code-voice"><span>NSRegular<wbr/>Expression</span></code>はまた、単純なメソッドを検索置換操作を文字列において実行するために提供します。以下の例は修正されたコピーを返します、しかし可変文字列をその場で修正する対応するメソッドがあります。テンプレート（ひな形）は、全体的なマッチされた範囲の内容を表す<code class="code-voice"><span>$0</span></code>、そして最初の捕獲グループ内容を表す<code class="code-voice"><span>$1</span></code>など、各マッチを置換するために何が使われることになるかを指定します。この場合では、テンプレートは語の２つの文字を逆にします。
+</span><!--end_jpstr-->
+</p><figure id="2557047"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="occ"><code>NSString *modifiedString = [regex stringByReplacingMatchesInString:string
+                                                           options:0
+                                                             range:NSMakeRange(0, [string length])
+                                                      withTemplate:@"$2$1"];
+</code></pre></div></div></figure></div><h3 id="1661013"><span class="enstr">Concurrency and Thread Safety</span><!--end_enstr-->
+<span class="jpstr">
+並列性とスレッド安全
+</span><!--end_jpstr-->
+</h3><div><p><span class="enstr"><code class="code-voice"><span>NSRegular<wbr/>Expression</span></code> is designed to be immutable and thread safe, so that a single instance can be used in matching operations on multiple threads at once. However, the string on which it is operating should not be mutated during the course of a matching operation, whether from another thread or from within the Block used in the iteration.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="code-voice"><span>NSRegular<wbr/>Expression</span></code>はイミュータブル（不変）でスレッドセーフに設計されます、そのため単一のインスタンスが同時に複数のスレッドの上でのマッチング操作で使われることができます。しかしながら、別のスレッド由来かまたは繰り返しにおいて使われる「ブロック」内部由来かどうかに関係なく、それが作用している文字列がマッチング操作の経過の間に変化しないようにする必要があります。
+</span><!--end_jpstr-->
+</p></div><h3 id="1661042"><span class="enstr">Regular Expression Syntax</span><!--end_enstr-->
+<span class="jpstr">
+正規表現構文
+</span><!--end_jpstr-->
+</h3><div><p><span class="enstr">The following tables describe the character expressions used by the regular expression to match patterns within a string, the pattern operators that specify how many times a pattern is matched and additional matching restrictions, and the last table specifies flags that can be included in the regular expression pattern that specify search behavior over multiple lines (these flags can also be specified using the <a class="symbol-name" href="../../documentation/foundation/nsregularexpression/options.html"><code><span>NSRegular<wbr/>Expression<wbr/>.Options</span></code></a> option flags.</span><!--end_enstr-->
+<span class="jpstr">
+以下の表は、ある文字列内部においてさまざまな類型（パターン）にマッチするために正規表現において使われる文字表現、どのくらい多くの回数あるパターンがマッチするかを、そして特別なマッチング制約を指定するパターン演算子を解説します、そして最後の表は正規表現パターンに含めることが出来るフラグを指定します、それは複数行にわたる検索挙動を指定します（これらのフラグはまた、<a class="symbol-name" href="../../documentation/foundation/nsregularexpression/options.html"><code><span>NSRegular<wbr/>Expression<wbr/>.Options</span></code></a>オプションフラグを使って指定されることができます）。
+</span><!--end_jpstr-->
+</p></div><h4 id="1661061"><span class="enstr">Regular Expression Metacharacters</span><!--end_enstr-->
+<span class="jpstr">
+正規表現メタ文字
+</span><!--end_jpstr-->
+</h4><div><p><span class="enstr"><a href="../../documentation/foundation/nsregularexpression.html#1965589">Table 1</a> describe the character sequences used to match characters within a string.</span><!--end_enstr-->
+<span class="jpstr">
+<a href="../../documentation/foundation/nsregularexpression.html#1965589">表 1</a>は、ある文字列内のなんらかの文字にマッチするために使われる文字表記を記述します。
+</span><!--end_jpstr-->
+</p><figure id="1965589"><figcaption><strong class="caption-title"><span class="enstr">Table 1</span><!--end_enstr-->
+<span class="jpstr">
+表 1
+</span><!--end_jpstr-->
+</strong> <div class="caption-content formatted-content"><div><p><span class="enstr">Regular Expression Metacharacters</span><!--end_enstr-->
+<span class="jpstr">
+正規表現メタ文字
+</span><!--end_jpstr-->
+</p></div></div></figcaption><div class="formatted-content"><div class="table-wrapper"><table><thead><tr><th scope="col"><p><span class="enstr">Character Expression</span><!--end_enstr-->
+<span class="jpstr">
+文字表現
+</span><!--end_jpstr-->
+</p></th><th scope="col"><p><span class="enstr">Description</span><!--end_enstr-->
+<span class="jpstr">
+説明
+</span><!--end_jpstr-->
+</p></th></tr></thead><tbody><tr><td><p><code class="code-voice"><span>\a</span></code></p></td><td><p><span class="enstr">Match a BELL, <code class="code-voice"><span>\u0007</span></code></span><!--end_enstr-->
+<span class="jpstr">
+ひとつのBELL、<code class="code-voice"><span>\u0007</span></code>にマッチします
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>\A</span></code></p></td><td><p><span class="enstr">Match at the beginning of the input. Differs from <code class="code-voice"><span>^</span></code> in that <code class="code-voice"><span>\A</span></code> will not match after a new line within the input.</span><!--end_enstr-->
+<span class="jpstr">
+入力の初めにマッチ。<code class="code-voice"><span>\A</span></code>はその入力範囲内においてひとつの新しい行の後にマッチしないということににおいて<code class="code-voice"><span>^</span></code>と異なります。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span><span class="enstr">\b, outside of a [Set]</span><!--end_enstr-->
+<span class="jpstr">
+\b、[集合]外で
+</span><!--end_jpstr-->
+</span></code></p></td><td><p><span class="enstr">Match if the current position is a word boundary. Boundaries occur at the transitions between word (<code class="code-voice"><span>\w</span></code>) and non-word (<code class="code-voice"><span>\W</span></code>) characters, with combining marks ignored. For better word boundaries, see <a class="symbol-name" href="../../documentation/foundation/nsregularexpression/options/1411838-useunicodewordboundaries.html"><code><span>use<wbr/>Unicode<wbr/>Word<wbr/>Boundaries</span></code></a>.</span><!--end_enstr-->
+<span class="jpstr">
+現在の位置が語境界であるならば、マッチします。境界は、結合記号を無視して、語（<code class="code-voice"><span>\w</span></code>）と非語（<code class="code-voice"><span>\W</span></code>）文字の間で移行部で生じます。より良い語境界としては、<a class="symbol-name" href="../../documentation/foundation/nsregularexpression/options/1411838-useunicodewordboundaries.html"><code><span>use<wbr/>Unicode<wbr/>Word<wbr/>Boundaries</span></code></a>を見てください。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span><span class="enstr">\b, within a [Set]</span><!--end_enstr-->
+<span class="jpstr">
+\b、[集合]内で
+</span><!--end_jpstr-->
+</span></code></p></td><td><p><span class="enstr">Match a BACKSPACE, <code class="code-voice"><span>\u0008</span></code>.</span><!--end_enstr-->
+<span class="jpstr">
+バックスペース（<code class="code-voice"><span>\u0008</span></code>）にマッチします。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>\B</span></code></p></td><td><p><span class="enstr">Match if the current position is not a word boundary.</span><!--end_enstr-->
+<span class="jpstr">
+現在の位置が単語境界でないならば、マッチします。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>\c<wbr/>X</span></code></p></td><td><p><span class="enstr">Match a <code class="code-voice"><span>control-X</span></code> character</span><!--end_enstr-->
+<span class="jpstr">
+<code class="code-voice"><span>control-X</span></code>文字にマッチします
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>\d</span></code></p></td><td><p><span class="enstr">Match any character with the Unicode General Category of Nd (Number, Decimal Digit.)</span><!--end_enstr-->
+<span class="jpstr">
+Unicode一般カテゴリーのNd（数、10進数）であるどんな文字にでもにマッチします。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>\D</span></code></p></td><td><p><span class="enstr">Match any character that is not a decimal digit.</span><!--end_enstr-->
+<span class="jpstr">
+10進数でないどんな文字にでもマッチします。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>\e</span></code></p></td><td><p><span class="enstr">Match an <code class="code-voice"><span>ESCAPE</span></code>, <code class="code-voice"><span>\u001B</span></code>.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="code-voice"><span>ESCAPE</span></code>、<code class="code-voice"><span>\u001B</span></code>にマッチします。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>\E</span></code></p></td><td><p><span class="enstr">Terminates a <code class="code-voice"><span>\Q ... \E</span></code> quoted sequence.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="code-voice"><span>\Q ... \E</span></code>引用部を終了します。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>\f</span></code></p></td><td><p><span class="enstr">Match a FORM FEED, <code class="code-voice"><span>\u000C</span></code>.</span><!--end_enstr-->
+<span class="jpstr">
+FORM FEED（改ページ）、<code class="code-voice"><span>\u000C</span></code>にマッチします。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>\G</span></code></p></td><td><p><span class="enstr">Match if the current position is at the end of the previous match.</span><!--end_enstr-->
+<span class="jpstr">
+現在の位置が直前のマッチの終わりにあるならば、マッチします。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>\n</span></code></p></td><td><p><span class="enstr">Match a <code class="code-voice"><span>LINE FEED</span></code>, <code class="code-voice"><span>\u000A</span></code>.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="code-voice"><span>LINE FEED</span></code>（<code class="code-voice"><span>\u000A</span></code>）にマッチします。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>\N{</span></code><em>UNICODE CHARACTER NAME</em><code class="code-voice"><span>}</span></code></p></td><td><p><span class="enstr">Match the named character.</span><!--end_enstr-->
+<span class="jpstr">
+指定された文字にマッチします。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>\p{</span></code><em>UNICODE PROPERTY NAME</em><code class="code-voice"><span>}</span></code></p></td><td><p><span class="enstr">Match any character with the specified Unicode Property.</span><!--end_enstr-->
+<span class="jpstr">
+指定された「Unicodeプロパティ」を持つどんな文字でもマッチします。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>\P{</span></code><em>UNICODE PROPERTY NAME</em><code class="code-voice"><span>}</span></code></p></td><td><p><span class="enstr">Match any character not having the specified Unicode Property.</span><!--end_enstr-->
+<span class="jpstr">
+指定された「Unicodeプロパティ」を持っていないどんな文字にでもマッチします。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>\Q</span></code></p></td><td><p><span class="enstr">Quotes all following characters until <code class="code-voice"><span>\E</span></code>.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="code-voice"><span>\E</span></code>まで全ての以降の文字を引用します。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>\r</span></code></p></td><td><p><span class="enstr">Match a CARRIAGE RETURN, \u000D.</span><!--end_enstr-->
+<span class="jpstr">
+キャリッジ・リターン（\u000D）にマッチします。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>\s</span></code></p></td><td><p><span class="enstr">Match a white space character. White space is defined as [\t\n\f\r\p{Z}].</span><!--end_enstr-->
+<span class="jpstr">
+空白文字にマッチします。空白は、 [\t\n\f\r\p{Z}]として定義されます。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>\S</span></code></p></td><td><p><span class="enstr">Match a non-white space character.</span><!--end_enstr-->
+<span class="jpstr">
+空白でない文字にマッチします。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>\t</span></code></p></td><td><p><span class="enstr">Match a HORIZONTAL TABULATION, <code class="code-voice"><span>\u0009</span></code>.</span><!--end_enstr-->
+<span class="jpstr">
+HORIZONTAL TABULATION（水平タブ）、<code class="code-voice"><span>\u0009</span></code>にマッチします。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>\u</span></code><em>hhhh</em></p></td><td><p><span class="enstr">Match the character with the hex value <em>hhhh</em>.</span><!--end_enstr-->
+<span class="jpstr">
+16進値<em>hhhh</em>をもつ文字にマッチします。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>\U</span></code><em>hhhhhhhh</em></p></td><td><p><span class="enstr">Match the character with the hex value <em>hhhhhhhh</em>. Exactly eight hex digits must be provided, even though the largest Unicode code point is <code class="code-voice"><span>\U0010ffff</span></code>.</span><!--end_enstr-->
+<span class="jpstr">
+16進値<em>hhhhhhhh</em>での文字にマッチします。たとえ最も大きいUnicodeコード点が<code class="code-voice"><span>\U0010ffff</span></code>であるとしても、正確に８つの16進桁が提供されなければなりません。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>\w</span></code></p></td><td><p><span class="enstr">Match a word character. Word characters are [\p{Ll}\p{Lu}\p{Lt}\p{Lo}\p{Nd}].</span><!--end_enstr-->
+<span class="jpstr">
+単語文字にマッチします。単語文字は、[\p{Ll}\p{Lu}\p{Lt}\p{Lo}\p{Nd}]です。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>\W</span></code></p></td><td><p><span class="enstr">Match a non-word character.</span><!--end_enstr-->
+<span class="jpstr">
+非単語文字にマッチします。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>\x{</span></code><em>hhhh</em><code class="code-voice"><span>}</span></code></p></td><td><p><span class="enstr">Match the character with hex value <em>hhhh</em>. From one to six hex digits may be supplied.</span><!--end_enstr-->
+<span class="jpstr">
+16進値<em>hhhh</em>での文字にマッチします。１から６桁までの16進数が、供給されることができます。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>\x</span></code><em>hh</em></p></td><td><p><span class="enstr">Match the character with two digit hex value <em>hh</em>.</span><!--end_enstr-->
+<span class="jpstr">
+２桁16進値<em>hh</em>での文字にマッチします。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>\X</span></code></p></td><td><p><span class="enstr">Match a Grapheme Cluster.</span><!--end_enstr-->
+<span class="jpstr">
+Grapheme Cluster（書記素クラスタ）にマッチします。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>\Z</span></code></p></td><td><p><span class="enstr">Match if the current position is at the end of input, but before the final line terminator, if one exists.</span><!--end_enstr-->
+<span class="jpstr">
+現在の位置が入力の終わりにあるならばマッチします、しかし、もしそれが存在するならば、最終行終端子の前で。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>\z</span></code></p></td><td><p><span class="enstr">Match if the current position is at the end of input.</span><!--end_enstr-->
+<span class="jpstr">
+現在の位置が入力の終わりにあるならばマッチします。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>\</span></code><em>n</em></p></td><td><p><span class="enstr">Back Reference. Match whatever the <em>n</em>th capturing group matched. <em>n</em> must be a number <code class="code-voice"><span>≥ 1</span></code> and <code class="code-voice"><span>≤</span></code> total number of capture groups in the pattern.</span><!--end_enstr-->
+<span class="jpstr">
+前方参照。第<em>n</em>番目の捕らえているグループがマッチしたもの何にでもマッチします。<em>n</em>は、「<code class="code-voice"><span>≥ 1</span></code>」そして「<code class="code-voice"><span>≤</span></code>パターンでの捕獲グループの総数」である数でなければなりません。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>\0</span></code><em>ooo</em></p></td><td><p><span class="enstr">Match an Octal character. <em>ooo</em> is from one to three octal digits. <code class="code-voice"><span>0377</span></code> is the largest allowed Octal character. The leading zero is required; it distinguishes Octal constants from back references.</span><!--end_enstr-->
+<span class="jpstr">
+８進数の文字にマッチします。<em>ooo</em>は、１から３桁までの８進数です。<code class="code-voice"><span>0377</span></code>は、最大の許可された８進の文字です。先頭のゼロは必要です；それは、８進の定数と前方参照を区別します。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>[</span></code><em>pattern</em><code class="code-voice"><span>]</span></code></p></td><td><p><span class="enstr">Match any one character from the pattern.</span><!--end_enstr-->
+<span class="jpstr">
+パターンからの何らかの１つの文字にマッチします。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>.</span></code></p></td><td><p><span class="enstr">Match any character. See <a class="symbol-name" href="../../documentation/foundation/nsregularexpression/options/1412529-dotmatcheslineseparators.html"><code><span>dot<wbr/>Matches<wbr/>Line<wbr/>Separators</span></code></a> and the <code class="code-voice"><span>s</span></code> character expression in <a href="../../documentation/foundation/nsregularexpression.html#1965592">Table 4</a>.</span><!--end_enstr-->
+<span class="jpstr">
+どんな文字にでもマッチします。<a class="symbol-name" href="../../documentation/foundation/nsregularexpression/options/1412529-dotmatcheslineseparators.html"><code><span>dot<wbr/>Matches<wbr/>Line<wbr/>Separators</span></code></a>と<code class="code-voice"><span>s</span></code>文字表現を<a href="../../documentation/foundation/nsregularexpression.html#1965592">表 4</a>で見てください。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>^</span></code></p></td><td><p><span class="enstr">Match at the beginning of a line. See <a class="symbol-name" href="../../documentation/foundation/nsregularexpression/options/1408263-anchorsmatchlines.html"><code><span>anchors<wbr/>Match<wbr/>Lines</span></code></a> and the <code class="code-voice"><span>\m</span></code> character expression in <a href="../../documentation/foundation/nsregularexpression.html#1965592">Table 4</a>.</span><!--end_enstr-->
+<span class="jpstr">
+行の初めにマッチします。<a class="symbol-name" href="../../documentation/foundation/nsregularexpression/options/1408263-anchorsmatchlines.html"><code><span>anchors<wbr/>Match<wbr/>Lines</span></code></a>と<code class="code-voice"><span>\m</span></code>文字表現を<a href="../../documentation/foundation/nsregularexpression.html#1965592">表 4</a>で見てください。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>$</span></code></p></td><td><p><span class="enstr">Match at the end of a line. See <a class="symbol-name" href="../../documentation/foundation/nsregularexpression/options/1408263-anchorsmatchlines.html"><code><span>anchors<wbr/>Match<wbr/>Lines</span></code></a> and the <code class="code-voice"><span>m</span></code> character expression in <a href="../../documentation/foundation/nsregularexpression.html#1965592">Table 4</a>.</span><!--end_enstr-->
+<span class="jpstr">
+行の終わりにマッチします。<a class="symbol-name" href="../../documentation/foundation/nsregularexpression/options/1408263-anchorsmatchlines.html"><code><span>anchors<wbr/>Match<wbr/>Lines</span></code></a>と<code class="code-voice"><span>m</span></code>文字表現を<a href="../../documentation/foundation/nsregularexpression.html#1965592">表 4</a>で見てください。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>\</span></code></p></td><td><p><span class="enstr">Quotes the following character. Characters that must be quoted to be treated as literals are <code class="code-voice"><span>* ? + [ ( ) { } ^ $ | \ . /</span></code></span><!--end_enstr-->
+<span class="jpstr">
+続く文字を引用します。リテラルとして扱われるために引用されなければならない文字は、<code class="code-voice"><span>* ? + [ ( ) { } ^ $ | \ . /</span></code>です。
+</span><!--end_jpstr-->
+</p></td></tr></tbody></table></div></div></figure></div><h4 id="1661082"><span class="enstr">Regular Expression Operators</span><!--end_enstr-->
+<span class="jpstr">
+正規表現演算子
+</span><!--end_jpstr-->
+</h4><div><p><span class="enstr"><span class="reference">Table 2</span> defines the regular expression operators.</span><!--end_enstr-->
+<span class="jpstr">
+<span class="reference">表 2</span>は正規表現演算子を定義します。
+</span><!--end_jpstr-->
+</p><figure id="1965590"><figcaption><strong class="caption-title"><span class="enstr">Table 2</span><!--end_enstr-->
+<span class="jpstr">
+表２
+</span><!--end_jpstr-->
+</strong> <div class="caption-content formatted-content"><div><p><span class="enstr">Regular Expression Operators</span><!--end_enstr-->
+<span class="jpstr">
+正規表現演算子
+</span><!--end_jpstr-->
+</p></div></div></figcaption><div class="formatted-content"><div class="table-wrapper"><table><thead><tr><th scope="col"><p><span class="enstr">Operator</span><!--end_enstr-->
+<span class="jpstr">
+演算子
+</span><!--end_jpstr-->
+</p></th><th scope="col"><p><span class="enstr">Description</span><!--end_enstr-->
+<span class="jpstr">
+説明
+</span><!--end_jpstr-->
+</p></th></tr></thead><tbody><tr><td><p><code class="code-voice"><span>|</span></code></p></td><td><p><span class="enstr">Alternation. <em>A</em><code class="code-voice"><span>|</span></code><em>B</em> matches either <em>A</em> or <em>B</em>.</span><!--end_enstr-->
+<span class="jpstr">
+代替。<em>A</em><code class="code-voice"><span>|</span></code><em>B</em>は、<em>A</em>か<em>B</em>にマッチします。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span><span class="enstr">*</span><!--end_enstr-->
+<span class="jpstr">
+*
+</span><!--end_jpstr-->
+</span></code></p></td><td><p><span class="enstr">Match <code class="code-voice"><span>0</span></code> or more times. Match as many times as possible.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="code-voice"><span>0</span></code>以上の繰り返しにマッチします。できるだけ多くの回数をマッチします。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>+</span></code></p></td><td><p><span class="enstr">Match <code class="code-voice"><span>1</span></code> or more times. Match as many times as possible.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="code-voice"><span>１</span></code>以上の繰り返しにマッチします。できるだけ多くの回数をマッチします。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>?</span></code></p></td><td><p><span class="enstr">Match zero or one times. Prefer one.</span><!--end_enstr-->
+<span class="jpstr">
+０か１の繰り返しにマッチします。１を優先して選びます。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>{</span></code><em>n</em><code class="code-voice"><span>}</span></code></p></td><td><p><span class="enstr">Match exactly <em>n</em> times.</span><!--end_enstr-->
+<span class="jpstr">
+正確に<em>n</em>回にマッチします。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>{</span></code><em>n</em><code class="code-voice"><span>,}</span></code></p></td><td><p><span class="enstr">Match at least <em>n</em> times. Match as many times as possible.</span><!--end_enstr-->
+<span class="jpstr">
+少なくとも<em>n</em>回にマッチします。できるだけ多くの回数をマッチします。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>{</span></code><em>n</em><code class="code-voice"><span>,</span></code><em>m</em><code class="code-voice"><span>}</span></code></p></td><td><p><span class="enstr">Match between <em>n</em> and <em>m</em> times. Match as many times as possible, but not more than <em>m</em>.</span><!--end_enstr-->
+<span class="jpstr">
+<em>n</em>と<em>m</em>回の間のマッチ。可能なかぎり多くの、しかし<em>m</em>より多くでない、回数にマッチします。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>*?</span></code></p></td><td><p><span class="enstr">Match <code class="code-voice"><span>0</span></code> or more times. Match as few times as possible.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="code-voice"><span>0</span></code>以上の繰り返しにマッチします。できるだけ少しの回数にしかマッチしません。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>+?</span></code></p></td><td><p><span class="enstr">Match 1 or more times. Match as few times as possible.</span><!--end_enstr-->
+<span class="jpstr">
+１以上の繰り返しにマッチします。できるだけ少しの回数にしかマッチしません。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>??</span></code></p></td><td><p><span class="enstr">Match zero or one times. Prefer zero.</span><!--end_enstr-->
+<span class="jpstr">
+０か１の繰り返しにマッチします。ゼロを優先します。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>{</span></code><em>n</em><code class="code-voice"><span>}?</span></code></p></td><td><p><span class="enstr">Match exactly n times.</span><!--end_enstr-->
+<span class="jpstr">
+きっちりn回にマッチします。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>{</span></code><em>n</em><code class="code-voice"><span>,}?</span></code></p></td><td><p><span class="enstr">Match at least n times, but no more than required for an overall pattern match.</span><!--end_enstr-->
+<span class="jpstr">
+少なくともn回にマッチします、しかしパターン・マッチ全体的のために要求されるより多くではありません。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>{</span></code><em>n</em><code class="code-voice"><span>,</span></code><em>m</em><code class="code-voice"><span>}?</span></code></p></td><td><p><span class="enstr">Match between n and m times. Match as few times as possible, but not less than n.</span><!--end_enstr-->
+<span class="jpstr">
+nとm回の間にマッチします。可能な限り少なくマッチします、しかしnより少なくではありません。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>*+</span></code></p></td><td><p><span class="enstr">Match 0 or more times. Match as many times as possible when first encountered, do not retry with fewer even if overall match fails (Possessive Match).</span><!--end_enstr-->
+<span class="jpstr">
+０以上の繰り返しにマッチします。最初に出くわした時にできるだけ多くの回数にマッチします、たとえマッチ全体的が失敗するとしても、より少なく持つように再び試みることをしません（欲張りマッチ）。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>++</span></code></p></td><td><p><span class="enstr">Match 1 or more times. Possessive match.</span><!--end_enstr-->
+<span class="jpstr">
+１以上の繰り返しにマッチします。欲張りマッチ。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>?+</span></code></p></td><td><p><span class="enstr">Match zero or one times. Possessive match.</span><!--end_enstr-->
+<span class="jpstr">
+０か１の繰り返しにマッチします。欲張りマッチ。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>{</span></code><em>n</em><code class="code-voice"><span>}+</span></code></p></td><td><p><span class="enstr">Match exactly <em>n</em> times.</span><!--end_enstr-->
+<span class="jpstr">
+正確に<em>n</em>回にマッチします。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>{</span></code><em>n</em><code class="code-voice"><span>,}+</span></code></p></td><td><p><span class="enstr">Match at least <em>n</em> times. Possessive Match.</span><!--end_enstr-->
+<span class="jpstr">
+少なくとも<em>n</em>回にマッチします。欲張りマッチ。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>{</span></code><em>n</em><code class="code-voice"><span>,</span></code><em>m</em><code class="code-voice"><span>}+</span></code></p></td><td><p><span class="enstr">Match between <em>n</em> and <em>m</em> times. Possessive Match.</span><!--end_enstr-->
+<span class="jpstr">
+<em>n</em>と<em>m</em>回の間のマッチ。欲張りマッチ。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>(</span></code><em>...</em><code class="code-voice"><span>)</span></code></p></td><td><p><span class="enstr">Capturing parentheses. Range of input that matched the parenthesized subexpression is available after the match.</span><!--end_enstr-->
+<span class="jpstr">
+捕獲する括弧。括弧に入れられた正規表現部分にマッチした入力の範囲は、マッチ終了後に利用できます。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>(?:</span></code><em>...</em><code class="code-voice"><span>)</span></code></p></td><td><p><span class="enstr">Non-capturing parentheses. Groups the included pattern, but does not provide capturing of matching text. Somewhat more efficient than capturing parentheses.</span><!--end_enstr-->
+<span class="jpstr">
+捕獲しない括弧。含まれるパターンをグループにします、しかしマッチしているテキストの捕獲を提供しません。捕獲する括弧よりいくぶん効率的なもの。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>(?></span></code><em>...</em><code class="code-voice"><span>)</span></code></p></td><td><p><span class="enstr">Atomic-match parentheses. First match of the parenthesized subexpression is the only one tried; if it does not lead to an overall pattern match, back up the search for a match to a position before the "<code class="code-voice"><span>(?></span></code>"</span><!--end_enstr-->
+<span class="jpstr">
+不可分マッチの括弧。括弧に入れられた正規表現部分の１回目のマッチが、試みられる唯一のものです；それが全体としてパターンマッチに至らないならば、「<code class="code-voice"><span>(?></span></code>」の前の位置に検索を戻します
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>(?# ... )</span></code></p></td><td><p><span class="enstr">Free-format comment <code class="code-voice"><span>(?# comment )</span></code>.</span><!--end_enstr-->
+<span class="jpstr">
+自由な形式のコメント<code class="code-voice"><span>(?# comment )</span></code>。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>(?= ... )</span></code></p></td><td><p><span class="enstr">Look-ahead assertion. True if the parenthesized pattern matches at the current input position, but does not advance the input position.</span><!--end_enstr-->
+<span class="jpstr">
+前方指定。括弧に入れられたパターンが現在の入力での位置でマッチするならば真、しかし入力での位置を進めません。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>(?! ... )</span></code></p></td><td><p><span class="enstr">Negative look-ahead assertion. True if the parenthesized pattern does not match at the current input position. Does not advance the input position.</span><!--end_enstr-->
+<span class="jpstr">
+否定の前方指定。括弧に入れられたパターンが現在の入力での位置でマッチしないならば真。入力での位置を進めません。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>(?&lt;= ... )</span></code></p></td><td><p><span class="enstr">Look-behind assertion. True if the parenthesized pattern matches text preceding the current input position, with the last character of the match being the input character just before the current position. Does not alter the input position. The length of possible strings matched by the look-behind pattern must not be unbounded (no * or + operators.)</span><!--end_enstr-->
+<span class="jpstr">
+後方指定。括弧に入れられたパターンが現在の入力位置の前のテキストにマッチするならば真、マッチの最後の文字がちょうど現在の位置の前の入力文字になる状態。入力位置を変えません。後方指定パターンによってマッチされる可能な文字列の長さは、限界がなければなりません（*または+演算子は不可）。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>(?&lt;! ... )</span></code></p></td><td><p><span class="enstr">Negative Look-behind assertion. True if the parenthesized pattern does not match text preceding the current input position, with the last character of the match being the input character just before the current position. Does not alter the input position. The length of possible strings matched by the look-behind pattern must not be unbounded (no * or + operators.)</span><!--end_enstr-->
+<span class="jpstr">
+否定の後方指定。括弧に入れられたパターンが現在の入力位置の前のテキストにマッチしないならば真、マッチの最後の文字がちょうど現在の位置の前の入力文字になる状態。入力位置を変えません。後方指定パターンによってマッチされる可能な文字列の長さは、限界がなければなりません（*または+演算子は不可）。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>(?ismwx-ismwx:</span></code> <code class="code-voice"><span>...</span></code> <code class="code-voice"><span>)</span></code></p></td><td><p><span class="enstr">Flag settings. Evaluate the parenthesized expression with the specified flags enabled or -disabled. The flags are defined in <span class="reference">Flag Options</span>.</span><!--end_enstr-->
+<span class="jpstr">
+フラグ設定。指定されたフラグを有効にあるいは無効にして、括弧に入れられた表現を評価します。フラグは、「<span class="reference">フラグ・オプション</span>」で定義されます
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>(?ismwx-ismwx)</span></code></p></td><td><p><span class="enstr">Flag settings. Change the flag settings. Changes apply to the portion of the pattern following the setting. For example, (?i) changes to a case insensitive match.The flags are defined in <span class="reference">Flag Options</span>.</span><!--end_enstr-->
+<span class="jpstr">
+フラグ設定。フラグ設定を変更します。変更は、設定に続いているパターンの部分に適用されます。例えば、(?i)は、大文字小文字を区別しないマッチへ変更します。フラグは、「<span class="reference">フラグ・オプション</span>」で定義されます
+</span><!--end_jpstr-->
+</p></td></tr></tbody></table></div></div></figure></div><h4 id="1661112"><span class="enstr">Template Matching Format</span><!--end_enstr-->
+<span class="jpstr">
+テンプレートマッチング書式
+</span><!--end_jpstr-->
+</h4><div><p><span class="enstr">The <code class="code-voice"><span>NSRegular<wbr/>Expression</span></code> class provides find-and-replace methods for both immutable and mutable strings using the technique of template matching. <a href="../../documentation/foundation/nsregularexpression.html#1965591">Table 3</a> describes the syntax.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="code-voice"><span>NSRegular<wbr/>Expression</span></code>クラスは、検索置換メソッドをテンプレート（ひな形）マッチングのテクニックを使用して不変および可変の文字列両方のために用意します。<a href="../../documentation/foundation/nsregularexpression.html#1965591">表 3</a>は、構文を記述します。
+</span><!--end_jpstr-->
+</p><figure id="1965591"><figcaption><strong class="caption-title"><span class="enstr">Table 3</span><!--end_enstr-->
+<span class="jpstr">
+表 3
+</span><!--end_jpstr-->
+</strong> <div class="caption-content formatted-content"><div><p><span class="enstr">Template Matching Format</span><!--end_enstr-->
+<span class="jpstr">
+テンプレートマッチング書式
+</span><!--end_jpstr-->
+</p></div></div></figcaption><div class="formatted-content"><div class="table-wrapper"><table><thead><tr><th scope="col"><p><span class="enstr">Character</span><!--end_enstr-->
+<span class="jpstr">
+文字
+</span><!--end_jpstr-->
+</p></th><th scope="col"><p><span class="enstr">Descriptions</span><!--end_enstr-->
+<span class="jpstr">
+記述 
+</span><!--end_jpstr-->
+</p></th></tr></thead><tbody><tr><td><p><code class="code-voice"><span>$</span></code><em>n</em></p></td><td><p><span class="enstr">The text of capture group n will be substituted for $<em>n</em>. <em>n</em> must be <code class="code-voice"><span>&gt;= 0</span></code> and not greater than the number of capture groups. A <code class="code-voice"><span>$</span></code> not followed by a digit has no special meaning, and will appear in the substitution text as itself, a <code class="code-voice"><span>$</span></code>.</span><!--end_enstr-->
+<span class="jpstr">
+捕獲グループnのテキストは、$<em>n</em>で代用されます。<em>n</em>は、<code class="code-voice"><span>&gt;= 0</span></code>で捕獲グループの数より大きくてはなりません。桁が続かない<code class="code-voice"><span>$</span></code>は、特別な意味を持たず、<code class="code-voice"><span>$</span></code>、それ自身として置換テキストにおいて見えます。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p><code class="code-voice"><span>\</span></code></p></td><td><p><span class="enstr">Treat the following character as a literal, suppressing any special meaning. Backslash escaping in substitution text is only required for '$' and '\', but may be used on any other character without bad effects.</span><!--end_enstr-->
+<span class="jpstr">
+続く文字を文字通りに、あらゆる特別な意味を抑制して扱います。置換テキストにおいてバックスラッシュ・エスケープは『$』と『\』のために必要であるだけです、しかし悪い効果なしに他のどの文字についても使われることができます。
+</span><!--end_jpstr-->
+</p></td></tr></tbody></table></div></div></figure><p><span class="enstr">The replacement string is treated as a template, with <code class="code-voice"><span>$0</span></code> being replaced by the contents of the matched range, <code class="code-voice"><span>$1</span></code> by the contents of the first capture group, and so on. Additional digits beyond the maximum required to represent the number of capture groups will be treated as ordinary characters, as will a <code class="code-voice"><span>$</span></code> not followed by digits. Backslash will escape both <code class="code-voice"><span>$</span></code> and <code class="code-voice"><span>\</span></code>.</span><!--end_enstr-->
+<span class="jpstr">
+置き換え文字列はテンプレートとしてみなされ、<code class="code-voice"><span>$0</span></code>はマッチされた範囲の内容に、<code class="code-voice"><span>$1</span></code>は最初の捕獲グループの内容等々によって取り替えられます。捕獲グループの数を表すのに必要とされる最大を越えたそれ以上の桁は、桁が続かない１つの<code class="code-voice"><span>$</span></code>のように、普通の文字とみなされます。バックスラッシュは、<code class="code-voice"><span>$</span></code>と<code class="code-voice"><span>\</span></code>をエスケープします。
+</span><!--end_jpstr-->
+</p></div><h4 id="1661132"><span class="enstr">Flag Options</span><!--end_enstr-->
+<span class="jpstr">
+フラグ・オプション
+</span><!--end_jpstr-->
+</h4><div><p><span class="enstr">The following flags control various aspects of regular expression matching. These flag values may be specified within the pattern using the <code class="code-voice"><span>(?ismx-ismx)</span></code> pattern options. Equivalent behaviors can be specified for the entire pattern when an <code class="code-voice"><span>NSRegular<wbr/>Expression</span></code> is initialized, using the <a class="symbol-name" href="../../documentation/foundation/nsregularexpression/options.html"><code><span>NSRegular<wbr/>Expression<wbr/>.Options</span></code></a> option flags.</span><!--end_enstr-->
+<span class="jpstr">
+以下のフラグは、正規表現マッチングのさまざまな面を制御します。これらのフラグ値は、パターンの範囲内で<code class="code-voice"><span>(?ismx-ismx)</span></code>パターン・オプションを使って指定されことができます。同等の挙動は、パターン全体に対して<code class="code-voice"><span>NSRegular<wbr/>Expression</span></code>が初期化される時に、<a class="symbol-name" href="../../documentation/foundation/nsregularexpression/options.html"><code><span>NSRegular<wbr/>Expression<wbr/>.Options</span></code></a>オプション・フラグを使って指定されることができます。
+</span><!--end_jpstr-->
+</p><figure id="1965592"><figcaption><strong class="caption-title"><span class="enstr">Table 4</span><!--end_enstr-->
+<span class="jpstr">
+表 4
+</span><!--end_jpstr-->
+</strong> <div class="caption-content formatted-content"><div><p><span class="enstr">Flag Options</span><!--end_enstr-->
+<span class="jpstr">
+フラグ・オプション
+</span><!--end_jpstr-->
+</p></div></div></figcaption><div class="formatted-content"><div class="table-wrapper"><table><thead><tr><th scope="col"><p><span class="enstr">Flag (Pattern)</span><!--end_enstr-->
+<span class="jpstr">
+フラグ（パターン）
+</span><!--end_jpstr-->
+</p></th><th scope="col"><p><span class="enstr">Description</span><!--end_enstr-->
+<span class="jpstr">
+説明
+</span><!--end_jpstr-->
+</p></th></tr></thead><tbody><tr><td><p>i</p></td><td><p><span class="enstr">If set, matching will take place in a case-insensitive manner.</span><!--end_enstr-->
+<span class="jpstr">
+設定されるならば、マッチングは大文字と小文字の区別をしない方法で発生します。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p>x</p></td><td><p><span class="enstr">If set, allow use of white space and #comments within patterns</span><!--end_enstr-->
+<span class="jpstr">
+設定されるならば、パターンの範囲内で空白と#commentsの使用を許します
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p>s</p></td><td><p><span class="enstr">If set, a "<code class="code-voice"><span>.</span></code>" in a pattern will match a line terminator in the input text. By default, it will not. Note that a <code class="code-voice"><span>carriage-return / line-feed pair</span></code> in text behave as a single line terminator, and will match a single "<code class="code-voice"><span>.</span></code>" in a regular expression pattern</span><!--end_enstr-->
+<span class="jpstr">
+設定されるならば、パターン中の「<code class="code-voice"><span>.</span></code>」は入力されたテキストで行終端子にマッチします。初期値では、それはそうしません。テキストの中の<code class="code-voice"><span>carriage-return / line-feed 対</span></code>が１つの行終端子としてふるまって、正規表現パターンで単一の「<code class="code-voice"><span>.</span></code>」にマッチすることに注意してください
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p>m</p></td><td><p><span class="enstr">Control the behavior of "<code class="code-voice"><span>^</span></code>" and "<code class="code-voice"><span>$</span></code>" in a pattern. By default these will only match at the start and end, respectively, of the input text. If this flag is set, "<code class="code-voice"><span>^</span></code>" and "<code class="code-voice"><span>$</span></code>" will also match at the start and end of each line within the input text.</span><!--end_enstr-->
+<span class="jpstr">
+パターンで「<code class="code-voice"><span>^</span></code>」と「<code class="code-voice"><span>$</span></code>」の挙動を制御します。初期値では、これらは、それぞれ、入力されたテキストの始まりと終わりにマッチするだけです。このフラグが設定されるならば、「<code class="code-voice"><span>^</span></code>」と「<code class="code-voice"><span>$</span></code>」は、入力されたテキストの範囲内でそれぞれの行の始まりと終わりにもマッチします。
+</span><!--end_jpstr-->
+</p></td></tr><tr><td><p>w</p></td><td><p><span class="enstr">Controls the behavior of <code class="code-voice"><span>\b</span></code> in a pattern. If set, word boundaries are found according to the definitions of word found in Unicode UAX 29, Text Boundaries. By default, word boundaries are identified by means of a simple classification of characters as either “word” or “non-word”, which approximates traditional regular expression behavior. The results obtained with the two options can be quite different in runs of spaces and other non-word characters.</span><!--end_enstr-->
+<span class="jpstr">
+パターンで<code class="code-voice"><span>\b</span></code>の挙動を制御します。設定されるならば、語境界はUnicode UAX 29: Text Boundaries（テキスト境界）で見つけられる語の定義によって見つけられます。初期値では、語境界は、“単語”または“非単語”どちらかとしての文字の単純な分類方法によって確認されます、それはおおよそ従来の正規表現挙動です。２つのオプションで得られる結果は、空白と他の非語文字の連続において、全く異なることがありえます。
+</span><!--end_jpstr-->
+</p></td></tr></tbody></table></div></div></figure></div><h3 id="1673763"><span class="enstr">Performance</span><!--end_enstr-->
+<span class="jpstr">
+性能
+</span><!--end_jpstr-->
+</h3><div><p><span class="enstr"><code class="code-voice"><span>NSRegular<wbr/>Expression</span></code> implements a nondeterministic finite automaton matching engine. As such, complex regular expression patterns containing multiple <code class="code-voice"><span>*</span></code> or <code class="code-voice"><span>+</span></code> operators may result in poor performance when attempting to perform matches — particularly failing to match a given input. For more information, see the <a href="http://userguide.icu-project.org/strings/regexp#TOC-Performance-Tips">“Performance Tips” section of the ICU User Guide</a>.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="code-voice"><span>NSRegular<wbr/>Expression</span></code>は、ある非決定性有限オートマトンマッチエンジンを実装します。そういうことで、<code class="code-voice"><span>*</span></code>や<code class="code-voice"><span>+</span></code>演算子を含む複雑な正規表現式は、マッチ実行を試みようとすれば — とりわけ与えられた入力にマッチするのに失敗すれば、貧弱な性能という結果になります。さらなる情報として、<a href="http://userguide.icu-project.org/strings/regexp#TOC-Performance-Tips">ICUユーザガイドの“Performance Tips”の節</a>を見てください。
+</span><!--end_jpstr-->
+</p></div><h3 id="1661156"><span class="enstr">ICU License</span><!--end_enstr-->
+<span class="jpstr">
+ICUライセンス
+</span><!--end_jpstr-->
+</h3><div><p><span class="enstr"><a href="../../documentation/foundation/nsregularexpression.html#1965589">Table 1</a>, <a href="../../documentation/foundation/nsregularexpression.html#1965590">Table 2</a>, <a href="../../documentation/foundation/nsregularexpression.html#1965591">Table 3</a>, <a href="../../documentation/foundation/nsregularexpression.html#1965592">Table 4</a> are reproduced from the ICU User Guide, Copyright (c) 2000 - 2009 IBM and Others, which are licensed under the following terms:</span><!--end_enstr-->
+<span class="jpstr">
+<a href="../../documentation/foundation/nsregularexpression.html#1965589">表 1</a>、<a href="../../documentation/foundation/nsregularexpression.html#1965590">表 2</a>、<a href="../../documentation/foundation/nsregularexpression.html#1965591">表 3</a>、<a href="../../documentation/foundation/nsregularexpression.html#1965592">表 4</a>は、「ICUユーザー・ガイド」、著作権(c) 2000-2009 IBMその他、から転載されます、それは次の条項の下で認可されます：
+</span><!--end_jpstr-->
+</p><p>COPYRIGHT AND PERMISSION NOTICE</p><p>Copyright (c) 1995-2009 International Business Machines Corporation and others. All rights reserved.</p><p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, provided that the above copyright notice(s) and this permission notice appear in all copies of the Software and that both the above copyright notice(s) and this permission notice appear in supporting documentation.</p><p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT OF THIRD PARTY RIGHTS. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR HOLDERS INCLUDED IN THIS NOTICE BE LIABLE FOR ANY CLAIM, OR ANY SPECIAL INDIRECT OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.</p><p>Except as contained in this notice, the name of a copyright holder shall not be used in advertising or otherwise to promote the sale, use or other dealings in this Software without prior written authorization of the copyright holder.</p><p>All trademarks and registered trademarks mentioned herein are the property of their respective owners. </p></div></div></section></div></div><section id="topics" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><span class="enstr">Topics</span><!--end_enstr-->
+<span class="jpstr">
+話題
+</span><!--end_jpstr-->
+</h2><section id="1661184" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Creating Regular Expressions</span><!--end_enstr-->
+<span class="jpstr">
+正規表現を作成する
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsregularexpression/1410900-init.html"><code class="display-name"><span class="identifier">init</span><span class="decorator">(</span><span class="identifier">pattern</span><span class="decorator">: String, </span><span class="identifier">options</span><span class="decorator">: NSRegular<wbr/>Expression<wbr/>.Options)</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns an initialized NSRegularExpression instance with the specified regular expression pattern and options.</span><!--end_enstr-->
+<span class="jpstr">
+指定された正規表現パターンとオプションを使って初期化されたNSRegularExpressionインスタンスを返します。
+</span><!--end_jpstr-->
+</p></div></div></div></div></div></div></div></section><section id="1661213" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Getting the Regular Expression and Options</span><!--end_enstr-->
+<span class="jpstr">
+正規表現とオプションを得る
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsregularexpression/1414932-pattern.html"><code class="display-name"><span class="decorator">var </span><span class="identifier">pattern</span><span class="decorator">: String</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns the regular expression pattern.</span><!--end_enstr-->
+<span class="jpstr">
+正規表現パターンを返します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsregularexpression/1408265-options.html"><code class="display-name"><span class="decorator">var </span><span class="identifier">options</span><span class="decorator">: NSRegular<wbr/>Expression<wbr/>.Options</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns the options used when the regular expression option was created.</span><!--end_enstr-->
+<span class="jpstr">
+正規表現オプションが作成された時に使用されたオプションを返します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsregularexpression/1415052-numberofcapturegroups.html"><code class="display-name"><span class="decorator">var </span><span class="identifier">number<wbr/>Of<wbr/>Capture<wbr/>Groups</span><span class="decorator">: Int</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns the number of capture groups in the regular expression.</span><!--end_enstr-->
+<span class="jpstr">
+その正規表現での捕獲グループの数を返します。
+</span><!--end_jpstr-->
+</p></div></div></div></div></div></div></div></section><section id="1661263" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Searching Strings Using Regular Expressions</span><!--end_enstr-->
+<span class="jpstr">
+正規表現を使った文字列検索
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsregularexpression/1414308-numberofmatches.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">number<wbr/>Of<wbr/>Matches</span><span class="decorator">(</span><span class="identifier">in</span><span class="decorator">: String, </span><span class="identifier">options</span><span class="decorator">: NSRegular<wbr/>Expression<wbr/>.Matching<wbr/>Options, </span><span class="identifier">range</span><span class="decorator">: NSRange) -&gt; Int</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns the number of matches of the regular expression within the specified range of the string.</span><!--end_enstr-->
+<span class="jpstr">
+この文字列の指定の範囲内における正規表現のマッチ数を返します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsregularexpression/1409687-enumeratematches.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">enumerate<wbr/>Matches</span><span class="decorator">(</span><span class="identifier">in</span><span class="decorator">: String, </span><span class="identifier">options</span><span class="decorator">: NSRegular<wbr/>Expression<wbr/>.Matching<wbr/>Options, </span><span class="identifier">range</span><span class="decorator">: NSRange, </span><span class="identifier">using</span><span class="decorator">: (NSText<wbr/>Checking<wbr/>Result?, NSRegular<wbr/>Expression<wbr/>.Matching<wbr/>Flags, Unsafe<wbr/>Mutable<wbr/>Pointer&lt;Obj<wbr/>CBool&gt;) -&gt; Void)</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Enumerates the string allowing the Block to handle each regular expression match.</span><!--end_enstr-->
+<span class="jpstr">
+文字列を、「ブロック」に各正規表現マッチを取り扱わせて、列挙します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsregularexpression/1412446-matches.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">matches</span><span class="decorator">(</span><span class="identifier">in</span><span class="decorator">: String, </span><span class="identifier">options</span><span class="decorator">: NSRegular<wbr/>Expression<wbr/>.Matching<wbr/>Options, </span><span class="identifier">range</span><span class="decorator">: NSRange) -&gt; [NSText<wbr/>Checking<wbr/>Result]</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns an array containing all the matches of the regular expression in the string.</span><!--end_enstr-->
+<span class="jpstr">
+文字列中のその正規表現の全てのマッチを含んでいる配列を返します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsregularexpression/1409838-firstmatch.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">first<wbr/>Match</span><span class="decorator">(</span><span class="identifier">in</span><span class="decorator">: String, </span><span class="identifier">options</span><span class="decorator">: NSRegular<wbr/>Expression<wbr/>.Matching<wbr/>Options, </span><span class="identifier">range</span><span class="decorator">: NSRange) -&gt; NSText<wbr/>Checking<wbr/>Result?</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns the first match of the regular expression within the specified range of the string.</span><!--end_enstr-->
+<span class="jpstr">
+この文字列の指定の範囲内における正規表現の最初のマッチを返します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsregularexpression/1411510-rangeoffirstmatch.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">range<wbr/>Of<wbr/>First<wbr/>Match</span><span class="decorator">(</span><span class="identifier">in</span><span class="decorator">: String, </span><span class="identifier">options</span><span class="decorator">: NSRegular<wbr/>Expression<wbr/>.Matching<wbr/>Options, </span><span class="identifier">range</span><span class="decorator">: NSRange) -&gt; NSRange</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns the range of the first match of the regular expression within the specified range of the string.</span><!--end_enstr-->
+<span class="jpstr">
+この文字列の指定の範囲内における正規表現の最初のマッチの範囲を返します。
+</span><!--end_jpstr-->
+</p></div></div></div></div></div></div></div></section><section id="1661318" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Replacing Strings Using Regular Expressions</span><!--end_enstr-->
+<span class="jpstr">
+正規表現を使って文字列を置換する
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsregularexpression/1411139-replacematches.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">replace<wbr/>Matches</span><span class="decorator">(</span><span class="identifier">in</span><span class="decorator">: NSMutable<wbr/>String, </span><span class="identifier">options</span><span class="decorator">: NSRegular<wbr/>Expression<wbr/>.Matching<wbr/>Options, </span><span class="identifier">range</span><span class="decorator">: NSRange, </span><span class="identifier">with<wbr/>Template</span><span class="decorator">: String) -&gt; Int</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Replaces regular expression matches within the mutable string using the template string.</span><!--end_enstr-->
+<span class="jpstr">
+可変文字列内の正規表現マッチを、テンプレート文字列を使って置き替えます。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsregularexpression/1413740-stringbyreplacingmatches.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">string<wbr/>By<wbr/>Replacing<wbr/>Matches</span><span class="decorator">(</span><span class="identifier">in</span><span class="decorator">: String, </span><span class="identifier">options</span><span class="decorator">: NSRegular<wbr/>Expression<wbr/>.Matching<wbr/>Options, </span><span class="identifier">range</span><span class="decorator">: NSRange, </span><span class="identifier">with<wbr/>Template</span><span class="decorator">: String) -&gt; String</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns a new string containing matching regular expressions replaced with the template string.</span><!--end_enstr-->
+<span class="jpstr">
+正規表現にマッチするものをテンプレート文字列と取り替えられたもの含んでいる新しい文字列を返します。
+</span><!--end_jpstr-->
+</p></div></div></div></div></div></div></div></section><section id="1661355" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Escaping Characters in a String</span><!--end_enstr-->
+<span class="jpstr">
+文字列中の文字をエスケープする
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsregularexpression/1410085-escapedtemplate.html"><code class="display-name"><span class="decorator">class func </span><span class="identifier">escaped<wbr/>Template</span><span class="decorator">(</span><span class="identifier">for</span><span class="decorator">: String) -&gt; String</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns a template string by adding backslash escapes as necessary to protect any characters that would match as pattern metacharacters</span><!--end_enstr-->
+<span class="jpstr">
+パターン・メタ文字とマッチするあらゆる文字を保護するために必要なバックスラッシュ・エスケープを加えることによるテンプレート文字列を返します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsregularexpression/1408386-escapedpattern.html"><code class="display-name"><span class="decorator">class func </span><span class="identifier">escaped<wbr/>Pattern</span><span class="decorator">(</span><span class="identifier">for</span><span class="decorator">: String) -&gt; String</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns a string by adding backslash escapes as necessary to protect any characters that would match as pattern metacharacters.</span><!--end_enstr-->
+<span class="jpstr">
+パターンメタ文字としてマッチするだろうあらゆる文字を保護するためにバックスラッシュエスケープを必要に応じて加えることによる文字列を返します。
+</span><!--end_jpstr-->
+</p></div></div></div></div></div></div></div></section><section id="1661390" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Custom Replace Functionality</span><!--end_enstr-->
+<span class="jpstr">
+カスタムの置換機能性
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsregularexpression/1414859-replacementstring.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">replacement<wbr/>String</span><span class="decorator">(</span><span class="identifier">for</span><span class="decorator">: NSText<wbr/>Checking<wbr/>Result, </span><span class="identifier">in</span><span class="decorator">: String, </span><span class="identifier">offset</span><span class="decorator">: Int, </span><span class="identifier">template</span><span class="decorator">: String) -&gt; String</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Used to perform template substitution for a single result for clients implementing their own replace functionality.</span><!--end_enstr-->
+<span class="jpstr">
+クライアントが実装した彼ら独自の置換機能の結果文字列に対してテンプレート置換を実行するために使用されます。
+</span><!--end_jpstr-->
+</p></div></div></div></div></div></div></div></section><section id="1674026" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Constants</span><!--end_enstr-->
+<span class="jpstr">
+定数
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsregularexpression/options.html"><code class="display-name"><span class="decorator">struct </span><span class="identifier">NSRegular<wbr/>Expression<wbr/>.Options</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">These constants define the regular expression options. These constants are used by the property <a class="symbol-name" href="../../documentation/foundation/nsregularexpression/1408265-options.html"><code><span>options</span></code></a>, <a class="symbol-name" href="../../documentation/foundation/nsregularexpression/1557374-regularexpressionwithpattern.html"><code><span>regular<wbr/>Expression<wbr/>With<wbr/>Pattern:<wbr/>options:<wbr/>error:</span></code></a>, and <a class="symbol-name" href="../../documentation/foundation/nsregularexpression/1410900-init.html"><code><span>init(pattern:<wbr/>options:)</span></code></a>.</span><!--end_enstr-->
+<span class="jpstr">
+これらの定数は、正規表現オプションを定義します。これらの定数は、プロパティ<a class="symbol-name" href="../../documentation/foundation/nsregularexpression/1408265-options.html"><code><span>options</span></code></a>、<a class="symbol-name" href="../../documentation/foundation/nsregularexpression/1557374-regularexpressionwithpattern.html"><code><span>regular<wbr/>Expression<wbr/>With<wbr/>Pattern:<wbr/>options:<wbr/>error:</span></code></a>、そして<a class="symbol-name" href="../../documentation/foundation/nsregularexpression/1410900-init.html"><code><span>init(pattern:<wbr/>options:)</span></code></a>によって使われます。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsregularexpression/matchingflags.html"><code class="display-name"><span class="decorator">struct </span><span class="identifier">NSRegular<wbr/>Expression<wbr/>.Matching<wbr/>Flags</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Set by the Block as the matching progresses, completes, or fails. Used by the method <a class="symbol-name" href="../../documentation/foundation/nsregularexpression/1409687-enumeratematches.html"><code><span>enumerate<wbr/>Matches(in:<wbr/>options:<wbr/>range:<wbr/>using:)</span></code></a>.</span><!--end_enstr-->
+<span class="jpstr">
+「ブロック」によってマッチングの進捗、完了、失敗するにつれて設定されます。メソッド<a class="symbol-name" href="../../documentation/foundation/nsregularexpression/1409687-enumeratematches.html"><code><span>enumerate<wbr/>Matches(in:<wbr/>options:<wbr/>range:<wbr/>using:)</span></code></a>によって使われます。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsregularexpression/matchingoptions.html"><code class="display-name"><span class="decorator">struct </span><span class="identifier">NSRegular<wbr/>Expression<wbr/>.Matching<wbr/>Options</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The matching options constants specify the reporting, completion and matching rules to the expression matching methods. These constants are used by all methods that search for, or replace values, using a regular expression.</span><!--end_enstr-->
+<span class="jpstr">
+マッチング・オプション定数は、情報提供、完了そしてマッチング規則を、表現マッチングメソッドに指定します。これらの定数は、正規表現を使って値を捜す、または置換する、全てのメソッドによって使われます。
+</span><!--end_jpstr-->
+</p></div></div></div></div></div></div></div></section></div></div></section><section id="relationships" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><span class="enstr">Relationships</span><!--end_enstr-->
+<span class="jpstr">
+関係
+</span><!--end_jpstr-->
+</h2><section id="inherits-from" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Inherits From</span><!--end_enstr-->
+<span class="jpstr">
+継承元
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div><a class="symbol-name" href="https://developer.apple.com/documentation/objectivec/nsobject"><code><span>NSObject</span></code></a></div></div></div></section><section id="conforms-to" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Conforms To</span><!--end_enstr-->
+<span class="jpstr">
+次に準拠
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><ul class="relationships-section-content-columns"><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/cvararg.html"><code><span>CVar<wbr/>Arg</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/equatable.html"><code><span>Equatable</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/hashable.html"><code><span>Hashable</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/foundation/nscopying.html"><code><span>NSCopying</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/foundation/nssecurecoding.html"><code><span>NSSecure<wbr/>Coding</span></code></a></div></li></ul></div></div></section></div></div></section><section id="see-also" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><span class="enstr">See Also</span><!--end_enstr-->
+<span class="jpstr">
+参照
+</span><!--end_jpstr-->
+</h2><section id="2877899" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Pattern Matching</span><!--end_enstr-->
+<span class="jpstr">
+パターンマッチング
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/scanner.html"><code class="display-name"><span class="decorator">class </span><span class="identifier">Scanner</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A string parser that scans for substrings or characters in a character set, and for numeric values from decimal, hexadecimal, and floating-point representations.</span><!--end_enstr-->
+<span class="jpstr">
+ある文字列パーサー、それはある文字集合での下位文字列または文字を求めて、そして10進、16進、および浮動小数点表現からの数値を求めて、走査します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsdatadetector.html"><code class="display-name"><span class="decorator">class </span><span class="identifier">NSData<wbr/>Detector</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A specialized regular expression object that matches natural language text for predefined data patterns.</span><!--end_enstr-->
+<span class="jpstr">
+ある特殊化された正規表現オブジェクトで、自然言語テキストをあらかじめ定義されたデータパターンと照合します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nstextcheckingresult.html"><code class="display-name"><span class="decorator">class </span><span class="identifier">NSText<wbr/>Checking<wbr/>Result</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">An occurrence of textual content found during the analysis of a block of text, such as when matching a regular expression.</span><!--end_enstr-->
+<span class="jpstr">
+あるテキストの塊の分析の間に、例えばある正規表現のマッチングの時に、見つけられたテキスト内容の存在。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsnotfound.html"><code class="display-name"><span class="decorator">let </span><span class="identifier">NSNot<wbr/>Found</span><span class="decorator">: Int</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A value indicating that a requested item couldn’t be found or doesn’t exist.</span><!--end_enstr-->
+<span class="jpstr">
+要求された項目が見つけられなかったまたは存在しないことを指し示す値。
+</span><!--end_jpstr-->
+</p></div></div></div></div></div></div></div></section></div></div></section></main><section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo">
+        <nav class="footer-breadory">
+          <a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a>
+          <section class="breadcrumbs">
+            <ol class="breadcrumbs-list">
+              <li><a href=/documentation>Documentation</a></li>
+            </ol>
+          </section>
+          <div id="directorynav" class="directorynav">
+            <div id="dn-cola" class="column">
+              <h3><a href="/discover/">Discover</a></h3>
+              <ul>
+                <li><a href="/macos/">macOS</a></li>
+                <li><a href="/ios/">iOS</a></li>
+                <li><a href="/watchos/">watchOS</a></li>
+                <li><a href="/tvos/">tvOS</a></li>
+                <li><a href="/safari/">Safari and Web</a></li>
+                <li><a href="/games/">Games</a></li>
+                <li><a href="/business/">Business</a></li>
+                <li><a href="/education/">Education</a></li>
+                <li><a href="/wwdc/">WWDC</a></li>
+              </ul>
+            </div>
+            <div id="dn-colb" class="column">
+              <h3><a href="/design/">Design</a></h3>
+              <ul>
+                <li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
+                <li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
+<span class="jpstr">
+リソース
+</span><!--end_jpstr-->
+</a></li>
+                <li><a href="/videos/design/">Videos</a></li>
+                <li><a href="/design/awards/">Apple Design Awards</a></li>
+                <li><a href="/accessibility/">Accessibility</a></li>
+                <li><a href="/internationalization/"><span class="enstr">Internationalization</span><!--end_enstr-->
+<span class="jpstr">
+国際化
+</span><!--end_jpstr-->
+</a></li>
+                <li><a href="/accessories/">Accessories</a></li>
+              </ul>
+            </div>
+            <div id="dn-colc" class="column">
+              <h3><a href="/develop/">Develop</a></h3>
+              <ul>
+                <li><a href="/xcode/">Xcode</a></li>
+                <li><a href="/swift/">Swift</a></li>
+                <li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
+                <li><a href="/testflight/">TestFlight</a></li>
+                <li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
+                <li><a href="/videos/">Videos</a></li>
+                <li><a href="/download/">Downloads</a></li>
+              </ul>
+            </div>
+            <div id="dn-cold" class="column">
+              <h3><a href="/distribute/">Distribute</a></h3>
+              <ul>
+                <li><a href="/programs/">Developer Program</a></li>
+                <li><a href="/app-store/">App Store</a></li>
+                <li><a href="/app-store/review/">App Review</a></li>
+                <li><a href="/macos/distribution/">Mac Software</a></li>
+                <li><a href="/business/distribute/">Apps for Business</a></li>
+                <li><a href="/safari/extensions/">Safari Extensions</a></li>
+                <li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
+                <li><a href="/softwarelicensing/">Trademark Licensing</a></li>
+              </ul>
+            </div>
+            <div id="dn-cole" class="column">
+              <h3><a href="/support/">Support</a></h3>
+              <ul>
+                <li><a href="https://forums.developer.apple.com">Developer Forums</a></li>
+                <li><a href="/bug-reporting/">Bug Reporting</a></li>
+                <li><a href="/terms/">License Agreements</a></li>
+                <li><a href="/system-status/">System Status</a></li>
+                <li><a href="/contact/">Contact Us</a></li>
+              </ul>
+              <h3><a href="/account/">Account</a></h3>
+              <ul>
+                <li><a href="/account/ios/certificate/">Certificates, IDs &amp; Profiles</a></li>
+                <li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="ac-gf-footer-legal">
+          <div class="ac-gf-footer-news"> To receive the latest developer news, visit and subscribe to our <a href="/news/">News and Updates</a>.
+          </div>
+          <div class="ac-gf-footer-legal-copyright">Copyright © 2019 Apple Inc. All rights reserved.</div>
+          <div class="ac-gf-footer-legal-links">
+            <a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a>
+            <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+            <a href="/bug-reporting/">Report Bugs</a>
+            <a href="/contact/submit/?subject=website-feedback">Feedback</a>
+          </div>
+          <div class="ac-gf-footer-language-links">
+            <a href="/cn/" class="first">简体中文</a>
+            <a href="/jp/">日本語</a>
+            <a href="/kr/">한국어</a>
+          </div>
+        </div>
+      </footer></section></div></div><script id="bootstrap-data" type="application/json">{"id":1416747,"title":{"content":"NSRegularExpression"},"abstract":"<div><p>An immutable representation of a compiled regular expression that you apply to Unicode strings.  <\/p><\/div>","discussion":"<div><p>The fundamental matching method for <code class=\"code-voice\"><span>NSRegular<wbr\/>Expression<\/span><\/code> is a Block iterator method that allows clients to supply a Block object which will be invoked each time the regular expression matches a portion of the target string.  There are additional convenience methods for returning all the matches as an array, the total number of matches, the first match, and the range of the first match.<\/p><p>An individual match is represented by an instance of the <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nstextcheckingresult\"><code><span>NSText<wbr\/>Checking<wbr\/>Result<\/span><\/code><\/a> class, which carries information about the overall matched range (via its <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nstextcheckingresult\/1415852-range\"><code><span>range<\/span><\/code><\/a> property), and the range of each individual capture group (via the <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nstextcheckingresult\/1416732-range\"><code><span>range(at:)<\/span><\/code><\/a> method).  For basic <code class=\"code-voice\"><span>NSRegular<wbr\/>Expression<\/span><\/code> objects, these match results will be of type <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nstextcheckingresult\/checkingtype\/1408922-regularexpression\"><code><span>regular<wbr\/>Expression<\/span><\/code><\/a>, but subclasses may use other types.<\/p><p>The ICU regular expressions supported by <code class=\"code-voice\"><span>NSRegular<wbr\/>Expression<\/span><\/code> are described at <a href=\"http:\/\/userguide.icu-project.org\/strings\/regexp\">http:\/\/userguide.icu-project.org\/strings\/regexp<\/a>.<\/p><\/div><h3 id=\"1660992\">Examples Using NSRegularExpression<\/h3><div><p>What follows are a set of graduated examples for using the <code class=\"code-voice\"><span>NSRegular<wbr\/>Expression<\/span><\/code> class. All these examples use the regular expression <code class=\"code-voice\"><span>\\\\b(a|b)(c|d)\\\\b<\/span><\/code> as their regular expression.<\/p><p>This snippet creates a regular expression to match two-letter words, in which the first letter is “a” or “b” and the second letter is “c” or “d”. Specifying <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsregularexpression\/options\/1417830-caseinsensitive\"><code><span>case<wbr\/>Insensitive<\/span><\/code><\/a> means that matches will be case-insensitive, so this will match “BC”, “aD”, and so forth, as well as their lower-case equivalents.<\/p><figure id=\"2557027\"><div class=\"formatted-content\"><div class=\"code-listing\"><pre class=\"code-source\" data-language=\"occ\"><code>NSError *error = NULL;\nNSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@&quot;\\\\b(a|b)(c|d)\\\\b&quot;\n                                                                       options:NSRegularExpressionCaseInsensitive\n                                                                         error:&amp;error];\n<\/code><\/pre><\/div><\/div><\/figure><p>The <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsregularexpression\/1414308-numberofmatches\"><code><span>number<wbr\/>Of<wbr\/>Matches(in:<wbr\/>options:<wbr\/>range:)<\/span><\/code><\/a> method provides a simple mechanism for counting the number of matches in a given range of a string.<\/p><figure id=\"2557035\"><div class=\"formatted-content\"><div class=\"code-listing\"><pre class=\"code-source\" data-language=\"occ\"><code>NSUInteger numberOfMatches = [regex numberOfMatchesInString:string\n                                                    options:0\n                                                      range:NSMakeRange(0, [string length])];\n<\/code><\/pre><\/div><\/div><\/figure><p>If you are interested only in the overall range of the first match, the <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsregularexpression\/1411510-rangeoffirstmatch\"><code><span>range<wbr\/>Of<wbr\/>First<wbr\/>Match(in:<wbr\/>options:<wbr\/>range:)<\/span><\/code><\/a> method provides it for you.  Some regular expressions (though not the example pattern) can successfully match a zero-length range, so the comparison of the resulting range with <code class=\"code-voice\"><span>{NSNot<wbr\/>Found, 0}<\/span><\/code> is the most reliable way to determine whether there was a match or not.<\/p><p>The example regular expression contains two capture groups, corresponding to the two sets of parentheses, one for the first letter, and one for the second.  If you are interested in more than just the overall matched range, you want to obtain an <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nstextcheckingresult\"><code><span>NSText<wbr\/>Checking<wbr\/>Result<\/span><\/code><\/a> object corresponding to a given match.  This object provides information about the overall matched range, via its <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nstextcheckingresult\/1415852-range\"><code><span>range<\/span><\/code><\/a> property, and also supplies the capture group ranges, via the <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nstextcheckingresult\/1416732-range\"><code><span>range(at:)<\/span><\/code><\/a> method.  The first capture group range is given by <code class=\"code-voice\"><span>[result range<wbr\/>At<wbr\/>Index:<wbr\/>1]<\/span><\/code>, the second by <code class=\"code-voice\"><span>[result range<wbr\/>At<wbr\/>Index:<wbr\/>2]<\/span><\/code>.  Sending a result the  <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nstextcheckingresult\/1416732-range\"><code><span>range(at:)<\/span><\/code><\/a> message and passing <code class=\"code-voice\"><span>0<\/span><\/code> is equivalent to <code class=\"code-voice\"><span>[result range]<\/span><\/code>.<\/p><p>If the result returned is non-<code class=\"code-voice\"><span>nil<\/span><\/code>, then <code class=\"code-voice\"><span>[result range]<\/span><\/code> will always be a valid range, so it is not necessary to compare it against <code class=\"code-voice\"><span>{NSNot<wbr\/>Found, 0}<\/span><\/code>.  However, for some regular expressions (though not the example pattern) some capture groups may or may not participate in a given match.  If a given capture group does not participate in a given match, then<code class=\"code-voice\"><span> [result range<wbr\/>At<wbr\/>Index:<wbr\/>idx]<\/span><\/code> will return <code class=\"code-voice\"><span>{NSNot<wbr\/>Found, 0}<\/span><\/code>.<\/p><figure id=\"2557039\"><div class=\"formatted-content\"><div class=\"code-listing\"><pre class=\"code-source\" data-language=\"occ\"><code>NSRange rangeOfFirstMatch = [regex rangeOfFirstMatchInString:string options:0 range:NSMakeRange(0, [string length])];\nif (!NSEqualRanges(rangeOfFirstMatch, NSMakeRange(NSNotFound, 0))) {\n    NSString *substringForFirstMatch = [string substringWithRange:rangeOfFirstMatch];\n}\n<\/code><\/pre><\/div><\/div><\/figure><p>The <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsregularexpression\/1412446-matches\"><code><span>matches(in:<wbr\/>options:<wbr\/>range:)<\/span><\/code><\/a> returns all the matching results.<\/p><figure id=\"2557042\"><div class=\"formatted-content\"><div class=\"code-listing\"><pre class=\"code-source\" data-language=\"occ\"><code>NSArray *matches = [regex matchesInString:string\n                                  options:0\n                                    range:NSMakeRange(0, [string length])];\nfor (NSTextCheckingResult *match in matches) {\n     NSRange matchRange = [match range];\n     NSRange firstHalfRange = [match rangeAtIndex:1];\n     NSRange secondHalfRange = [match rangeAtIndex:2];\n}\n<\/code><\/pre><\/div><\/div><\/figure><p>The <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsregularexpression\/1409838-firstmatch\"><code><span>first<wbr\/>Match(in:<wbr\/>options:<wbr\/>range:)<\/span><\/code><\/a> method is similar to <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsregularexpression\/1412446-matches\"><code><span>matches(in:<wbr\/>options:<wbr\/>range:)<\/span><\/code><\/a> but it returns only the first match.<\/p><figure id=\"2557043\"><div class=\"formatted-content\"><div class=\"code-listing\"><pre class=\"code-source\" data-language=\"occ\"><code>NSTextCheckingResult *match = [regex firstMatchInString:string\n                                                options:0\n                                                  range:NSMakeRange(0, [string length])];\nif (match) {\n    NSRange matchRange = [match range];\n    NSRange firstHalfRange = [match rangeAtIndex:1];\n    NSRange secondHalfRange = [match rangeAtIndex:2];\n }\n<\/code><\/pre><\/div><\/div><\/figure><p>The Block enumeration method <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsregularexpression\/1409687-enumeratematches\"><code><span>enumerate<wbr\/>Matches(in:<wbr\/>options:<wbr\/>range:<wbr\/>using:)<\/span><\/code><\/a> is the most general and flexible of the matching methods of <code class=\"code-voice\"><span>NSRegular<wbr\/>Expression<\/span><\/code>.  It allows you to iterate through matches in a string, performing arbitrary actions on each as specified by the code in the Block and to stop partway through if desired.  In the following example case, the iteration is stopped after a certain number of matches have been found. <\/p><p>If neither of the special options <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsregularexpression\/matchingoptions\/1417028-reportprogress\"><code><span>report<wbr\/>Progress<\/span><\/code><\/a> or <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsregularexpression\/matchingoptions\/1418436-reportcompletion\"><code><span>report<wbr\/>Completion<\/span><\/code><\/a> is specified, then the result argument to the Block is guaranteed to be non-<code class=\"code-voice\"><span>nil<\/span><\/code>, and as mentioned before, it is guaranteed to have a valid overall range.  See <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsregularexpression\/matchingoptions\"><code><span>NSRegular<wbr\/>Expression<wbr\/>.Matching<wbr\/>Options<\/span><\/code><\/a> for the significance of <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsregularexpression\/matchingoptions\/1417028-reportprogress\"><code><span>report<wbr\/>Progress<\/span><\/code><\/a> or <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsregularexpression\/matchingoptions\/1418436-reportcompletion\"><code><span>report<wbr\/>Completion<\/span><\/code><\/a>.<\/p><figure id=\"2557045\"><div class=\"formatted-content\"><div class=\"code-listing\"><pre class=\"code-source\" data-language=\"occ\"><code>__block NSUInteger count = 0;\n[regex enumerateMatchesInString:string options:0 range:NSMakeRange(0, [string length]) usingBlock:^(NSTextCheckingResult *match, NSMatchingFlags flags, BOOL *stop){\n     NSRange matchRange = [match range];\n     NSRange firstHalfRange = [match rangeAtIndex:1];\n     NSRange secondHalfRange = [match rangeAtIndex:2];\n     if (++count &gt;= 100) *stop = YES;\n}];\n<\/code><\/pre><\/div><\/div><\/figure><p><code class=\"code-voice\"><span>NSRegular<wbr\/>Expression<\/span><\/code> also provides simple methods for performing find-and-replace operations on a string.  The following example returns a modified copy, but there is a corresponding method for modifying a mutable string in place.  The template specifies what is to be used to replace each match, with <code class=\"code-voice\"><span>$0<\/span><\/code> representing the contents of the overall matched range, <code class=\"code-voice\"><span>$1<\/span><\/code> representing the contents of the first capture group, and so on.  In this case, the template reverses the two letters of the word.<\/p><figure id=\"2557047\"><div class=\"formatted-content\"><div class=\"code-listing\"><pre class=\"code-source\" data-language=\"occ\"><code>NSString *modifiedString = [regex stringByReplacingMatchesInString:string\n                                                           options:0\n                                                             range:NSMakeRange(0, [string length])\n                                                      withTemplate:@&quot;$2$1&quot;];\n<\/code><\/pre><\/div><\/div><\/figure><\/div><h3 id=\"1661013\">Concurrency and Thread Safety<\/h3><div><p><code class=\"code-voice\"><span>NSRegular<wbr\/>Expression<\/span><\/code> is designed to be immutable and thread safe, so that a single instance can be used in matching operations on multiple threads at once.  However, the string on which it is operating should not be mutated during the course of a matching operation, whether from another thread or from within the Block used in the iteration.<\/p><\/div><h3 id=\"1661042\">Regular Expression Syntax<\/h3><div><p>The following tables describe the character expressions used by the regular expression to match patterns within a string, the pattern operators that specify how many times a pattern is matched and additional matching restrictions, and the last table specifies flags that can be included in the regular expression pattern that specify search behavior over multiple lines (these flags can also be specified using the <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsregularexpression\/options\"><code><span>NSRegular<wbr\/>Expression<wbr\/>.Options<\/span><\/code><\/a> option flags.<\/p><\/div><h4 id=\"1661061\">Regular Expression Metacharacters<\/h4><div><p><a href=\"\/documentation\/foundation\/nsregularexpression#1965589\">Table 1<\/a> describe the character sequences used to match characters within a string.<\/p><figure id=\"1965589\"><figcaption><strong class=\"caption-title\">Table 1<\/strong> <div class=\"caption-content formatted-content\"><div><p>Regular Expression Metacharacters<\/p><\/div><\/div><\/figcaption><div class=\"formatted-content\"><div class=\"table-wrapper\"><table><thead><tr><th scope=\"col\"><p>Character Expression<\/p><\/th><th scope=\"col\"><p>Description<\/p><\/th><\/tr><\/thead><tbody><tr><td><p><code class=\"code-voice\"><span>\\a<\/span><\/code><\/p><\/td><td><p>Match a BELL, <code class=\"code-voice\"><span>\\u0007<\/span><\/code><\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\A<\/span><\/code><\/p><\/td><td><p>Match at the beginning of the input. Differs from <code class=\"code-voice\"><span>^<\/span><\/code> in that <code class=\"code-voice\"><span>\\A<\/span><\/code> will not match after a new line within the input.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\b, outside of a [Set]<\/span><\/code><\/p><\/td><td><p>Match if the current position is a word boundary. Boundaries occur at the transitions between word (<code class=\"code-voice\"><span>\\w<\/span><\/code>) and non-word (<code class=\"code-voice\"><span>\\W<\/span><\/code>) characters, with combining marks ignored. For better word boundaries, see <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsregularexpression\/options\/1411838-useunicodewordboundaries\"><code><span>use<wbr\/>Unicode<wbr\/>Word<wbr\/>Boundaries<\/span><\/code><\/a>.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\b, within a [Set]<\/span><\/code><\/p><\/td><td><p>Match a BACKSPACE, <code class=\"code-voice\"><span>\\u0008<\/span><\/code>.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\B<\/span><\/code><\/p><\/td><td><p>Match if the current position is not a word boundary.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\c<wbr\/>X<\/span><\/code><\/p><\/td><td><p>Match a <code class=\"code-voice\"><span>control-X<\/span><\/code> character<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\d<\/span><\/code><\/p><\/td><td><p>Match any character with the Unicode General Category of Nd (Number, Decimal Digit.)<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\D<\/span><\/code><\/p><\/td><td><p>Match any character that is not a decimal digit.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\e<\/span><\/code><\/p><\/td><td><p>Match an <code class=\"code-voice\"><span>ESCAPE<\/span><\/code>, <code class=\"code-voice\"><span>\\u001B<\/span><\/code>.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\E<\/span><\/code><\/p><\/td><td><p>Terminates a <code class=\"code-voice\"><span>\\Q ... \\E<\/span><\/code> quoted sequence.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\f<\/span><\/code><\/p><\/td><td><p>Match a FORM FEED, <code class=\"code-voice\"><span>\\u000C<\/span><\/code>.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\G<\/span><\/code><\/p><\/td><td><p>Match if the current position is at the end of the previous match.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\n<\/span><\/code><\/p><\/td><td><p>Match a <code class=\"code-voice\"><span>LINE FEED<\/span><\/code>, <code class=\"code-voice\"><span>\\u000A<\/span><\/code>.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\N{<\/span><\/code><em>UNICODE CHARACTER NAME<\/em><code class=\"code-voice\"><span>}<\/span><\/code><\/p><\/td><td><p>Match the named character.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\p{<\/span><\/code><em>UNICODE PROPERTY NAME<\/em><code class=\"code-voice\"><span>}<\/span><\/code><\/p><\/td><td><p>Match any character with the specified Unicode Property.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\P{<\/span><\/code><em>UNICODE PROPERTY NAME<\/em><code class=\"code-voice\"><span>}<\/span><\/code><\/p><\/td><td><p>Match any character not having the specified Unicode Property.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\Q<\/span><\/code><\/p><\/td><td><p>Quotes all following characters until <code class=\"code-voice\"><span>\\E<\/span><\/code>.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\r<\/span><\/code><\/p><\/td><td><p>Match a CARRIAGE RETURN, \\u000D.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\s<\/span><\/code><\/p><\/td><td><p>Match a white space character. White space is defined as [\\t\\n\\f\\r\\p{Z}].<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\S<\/span><\/code><\/p><\/td><td><p>Match a non-white space character.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\t<\/span><\/code><\/p><\/td><td><p>Match a HORIZONTAL TABULATION, <code class=\"code-voice\"><span>\\u0009<\/span><\/code>.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\u<\/span><\/code><em>hhhh<\/em><\/p><\/td><td><p>Match the character with the hex value <em>hhhh<\/em>.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\U<\/span><\/code><em>hhhhhhhh<\/em><\/p><\/td><td><p>Match the character with the hex value <em>hhhhhhhh<\/em>. Exactly eight hex digits must be provided, even though the largest Unicode code point is <code class=\"code-voice\"><span>\\U0010ffff<\/span><\/code>.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\w<\/span><\/code><\/p><\/td><td><p>Match a word character. Word characters are [\\p{Ll}\\p{Lu}\\p{Lt}\\p{Lo}\\p{Nd}].<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\W<\/span><\/code><\/p><\/td><td><p>Match a non-word character.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\x{<\/span><\/code><em>hhhh<\/em><code class=\"code-voice\"><span>}<\/span><\/code><\/p><\/td><td><p>Match the character with hex value <em>hhhh<\/em>. From one to six hex digits may be supplied.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\x<\/span><\/code><em>hh<\/em><\/p><\/td><td><p>Match the character with two digit hex value <em>hh<\/em>.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\X<\/span><\/code><\/p><\/td><td><p>Match a Grapheme Cluster.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\Z<\/span><\/code><\/p><\/td><td><p>Match if the current position is at the end of input, but before the final line terminator, if one exists.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\z<\/span><\/code><\/p><\/td><td><p>Match if the current position is at the end of input.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\<\/span><\/code><em>n<\/em><\/p><\/td><td><p>Back Reference. Match whatever the <em>n<\/em>th capturing group matched. <em>n<\/em> must be a number <code class=\"code-voice\"><span>≥ 1<\/span><\/code> and <code class=\"code-voice\"><span>≤<\/span><\/code> total number of capture groups in the pattern.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\0<\/span><\/code><em>ooo<\/em><\/p><\/td><td><p>Match an Octal character.  <em>ooo<\/em> is from one to three octal digits.  <code class=\"code-voice\"><span>0377<\/span><\/code> is the largest allowed Octal character.  The leading zero is required; it distinguishes Octal constants from back references.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>[<\/span><\/code><em>pattern<\/em><code class=\"code-voice\"><span>]<\/span><\/code><\/p><\/td><td><p>Match any one character from the pattern.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>.<\/span><\/code><\/p><\/td><td><p>Match any character. See <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsregularexpression\/options\/1412529-dotmatcheslineseparators\"><code><span>dot<wbr\/>Matches<wbr\/>Line<wbr\/>Separators<\/span><\/code><\/a> and the <code class=\"code-voice\"><span>s<\/span><\/code> character expression in <a href=\"\/documentation\/foundation\/nsregularexpression#1965592\">Table 4<\/a>.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>^<\/span><\/code><\/p><\/td><td><p>Match at the beginning of a line. See <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsregularexpression\/options\/1408263-anchorsmatchlines\"><code><span>anchors<wbr\/>Match<wbr\/>Lines<\/span><\/code><\/a> and the <code class=\"code-voice\"><span>\\m<\/span><\/code> character expression in <a href=\"\/documentation\/foundation\/nsregularexpression#1965592\">Table 4<\/a>.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>$<\/span><\/code><\/p><\/td><td><p>Match at the end of a line. See <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsregularexpression\/options\/1408263-anchorsmatchlines\"><code><span>anchors<wbr\/>Match<wbr\/>Lines<\/span><\/code><\/a> and the <code class=\"code-voice\"><span>m<\/span><\/code> character expression in <a href=\"\/documentation\/foundation\/nsregularexpression#1965592\">Table 4<\/a>.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\<\/span><\/code><\/p><\/td><td><p>Quotes the following character. Characters that must be quoted to be treated as literals are <code class=\"code-voice\"><span>* ? + [ ( ) { } ^ $ | \\ . \/<\/span><\/code><\/p><\/td><\/tr><\/tbody><\/table><\/div><\/div><\/figure><\/div><h4 id=\"1661082\">Regular Expression Operators<\/h4><div><p><span class=\"reference\">Table 2<\/span> defines the regular expression operators.<\/p><figure id=\"1965590\"><figcaption><strong class=\"caption-title\">Table 2<\/strong> <div class=\"caption-content formatted-content\"><div><p>Regular Expression Operators<\/p><\/div><\/div><\/figcaption><div class=\"formatted-content\"><div class=\"table-wrapper\"><table><thead><tr><th scope=\"col\"><p>Operator<\/p><\/th><th scope=\"col\"><p>Description<\/p><\/th><\/tr><\/thead><tbody><tr><td><p><code class=\"code-voice\"><span>|<\/span><\/code><\/p><\/td><td><p>Alternation. <em>A<\/em><code class=\"code-voice\"><span>|<\/span><\/code><em>B<\/em> matches either <em>A<\/em> or <em>B<\/em>.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>*<\/span><\/code><\/p><\/td><td><p>Match <code class=\"code-voice\"><span>0<\/span><\/code> or more times. Match as many times as possible.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>+<\/span><\/code><\/p><\/td><td><p>Match <code class=\"code-voice\"><span>1<\/span><\/code> or more times. Match as many times as possible.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>?<\/span><\/code><\/p><\/td><td><p>Match zero or one times. Prefer one.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>{<\/span><\/code><em>n<\/em><code class=\"code-voice\"><span>}<\/span><\/code><\/p><\/td><td><p>Match exactly <em>n<\/em> times.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>{<\/span><\/code><em>n<\/em><code class=\"code-voice\"><span>,}<\/span><\/code><\/p><\/td><td><p>Match at least <em>n<\/em> times. Match as many times as possible.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>{<\/span><\/code><em>n<\/em><code class=\"code-voice\"><span>,<\/span><\/code><em>m<\/em><code class=\"code-voice\"><span>}<\/span><\/code><\/p><\/td><td><p>Match between <em>n<\/em> and <em>m<\/em> times. Match as many times as possible, but not more than <em>m<\/em>.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>*?<\/span><\/code><\/p><\/td><td><p>Match <code class=\"code-voice\"><span>0<\/span><\/code> or more times. Match as few times as possible.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>+?<\/span><\/code><\/p><\/td><td><p>Match 1 or more times. Match as few times as possible.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>??<\/span><\/code><\/p><\/td><td><p>Match zero or one times. Prefer zero.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>{<\/span><\/code><em>n<\/em><code class=\"code-voice\"><span>}?<\/span><\/code><\/p><\/td><td><p>Match exactly n times.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>{<\/span><\/code><em>n<\/em><code class=\"code-voice\"><span>,}?<\/span><\/code><\/p><\/td><td><p>Match at least n times, but no more than required for an overall pattern match.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>{<\/span><\/code><em>n<\/em><code class=\"code-voice\"><span>,<\/span><\/code><em>m<\/em><code class=\"code-voice\"><span>}?<\/span><\/code><\/p><\/td><td><p>Match between n and m times. Match as few times as possible, but not less than n.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>*+<\/span><\/code><\/p><\/td><td><p>Match 0 or more times. Match as many times as possible when first encountered, do not retry with fewer even if overall match fails (Possessive Match).<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>++<\/span><\/code><\/p><\/td><td><p>Match 1 or more times. Possessive match.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>?+<\/span><\/code><\/p><\/td><td><p>Match zero or one times. Possessive match.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>{<\/span><\/code><em>n<\/em><code class=\"code-voice\"><span>}+<\/span><\/code><\/p><\/td><td><p>Match exactly <em>n<\/em> times.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>{<\/span><\/code><em>n<\/em><code class=\"code-voice\"><span>,}+<\/span><\/code><\/p><\/td><td><p>Match at least <em>n<\/em> times. Possessive Match.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>{<\/span><\/code><em>n<\/em><code class=\"code-voice\"><span>,<\/span><\/code><em>m<\/em><code class=\"code-voice\"><span>}+<\/span><\/code><\/p><\/td><td><p>Match between <em>n<\/em> and <em>m<\/em> times. Possessive Match.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>(<\/span><\/code><em>...<\/em><code class=\"code-voice\"><span>)<\/span><\/code><\/p><\/td><td><p>Capturing parentheses. Range of input that matched the parenthesized subexpression is available after the match.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>(?:<\/span><\/code><em>...<\/em><code class=\"code-voice\"><span>)<\/span><\/code><\/p><\/td><td><p>Non-capturing parentheses. Groups the included pattern, but does not provide capturing of matching text. Somewhat more efficient than capturing parentheses.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>(?&gt;<\/span><\/code><em>...<\/em><code class=\"code-voice\"><span>)<\/span><\/code><\/p><\/td><td><p>Atomic-match parentheses. First match of the parenthesized subexpression is the only one tried; if it does not lead to an overall pattern match, back up the search for a match to a position before the &quot;<code class=\"code-voice\"><span>(?&gt;<\/span><\/code>&quot;<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>(?# ... )<\/span><\/code><\/p><\/td><td><p>Free-format comment <code class=\"code-voice\"><span>(?# comment )<\/span><\/code>.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>(?= ... )<\/span><\/code><\/p><\/td><td><p>Look-ahead assertion. True if the parenthesized pattern matches at the current input position, but does not advance the input position.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>(?! ... )<\/span><\/code><\/p><\/td><td><p>Negative look-ahead assertion. True if the parenthesized pattern does not match at the current input position. Does not advance the input position.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>(?&lt;= ... )<\/span><\/code><\/p><\/td><td><p>Look-behind assertion. True if the parenthesized pattern matches text preceding the current input position, with the last character of the match being the input character just before the current position. Does not alter the input position. The length of possible strings matched by the look-behind pattern must not be unbounded (no * or + operators.)<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>(?&lt;! ... )<\/span><\/code><\/p><\/td><td><p>Negative Look-behind assertion. True if the parenthesized pattern does not match text preceding the current input position, with the last character of the match being the input character just before the current position. Does not alter the input position. The length of possible strings matched by the look-behind pattern must not be unbounded (no * or + operators.)<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>(?ismwx-ismwx:<\/span><\/code> <code class=\"code-voice\"><span>...<\/span><\/code> <code class=\"code-voice\"><span>)<\/span><\/code><\/p><\/td><td><p>Flag settings. Evaluate the parenthesized expression with the specified flags enabled or -disabled. The flags are defined in <span class=\"reference\">Flag Options<\/span>.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>(?ismwx-ismwx)<\/span><\/code><\/p><\/td><td><p>Flag settings. Change the flag settings. Changes apply to the portion of the pattern following the setting. For example, (?i) changes to a case insensitive match.The flags are defined in <span class=\"reference\">Flag Options<\/span>.<\/p><\/td><\/tr><\/tbody><\/table><\/div><\/div><\/figure><\/div><h4 id=\"1661112\">Template Matching Format<\/h4><div><p>The <code class=\"code-voice\"><span>NSRegular<wbr\/>Expression<\/span><\/code> class provides find-and-replace methods for both immutable and mutable strings using the technique of template matching. <a href=\"\/documentation\/foundation\/nsregularexpression#1965591\">Table 3<\/a> describes the syntax.<\/p><figure id=\"1965591\"><figcaption><strong class=\"caption-title\">Table 3<\/strong> <div class=\"caption-content formatted-content\"><div><p>Template Matching Format<\/p><\/div><\/div><\/figcaption><div class=\"formatted-content\"><div class=\"table-wrapper\"><table><thead><tr><th scope=\"col\"><p>Character<\/p><\/th><th scope=\"col\"><p>Descriptions<\/p><\/th><\/tr><\/thead><tbody><tr><td><p><code class=\"code-voice\"><span>$<\/span><\/code><em>n<\/em><\/p><\/td><td><p>The text of capture group n will be substituted for $<em>n<\/em>. <em>n<\/em> must be <code class=\"code-voice\"><span>&gt;= 0<\/span><\/code> and not greater than the number of capture groups. A <code class=\"code-voice\"><span>$<\/span><\/code> not followed by a digit has no special meaning, and will appear in the substitution text as itself, a <code class=\"code-voice\"><span>$<\/span><\/code>.<\/p><\/td><\/tr><tr><td><p><code class=\"code-voice\"><span>\\<\/span><\/code><\/p><\/td><td><p>Treat the following character as a literal, suppressing any special meaning. Backslash escaping in substitution text is only required for &#x27;$&#x27; and &#x27;\\&#x27;, but may be used on any other character without bad effects.<\/p><\/td><\/tr><\/tbody><\/table><\/div><\/div><\/figure><p>The replacement string is treated as a template, with <code class=\"code-voice\"><span>$0<\/span><\/code> being replaced by the contents of the matched range, <code class=\"code-voice\"><span>$1<\/span><\/code> by the contents of the first capture group, and so on.  Additional digits beyond the maximum required to represent the number of capture groups will be treated as ordinary characters, as will a <code class=\"code-voice\"><span>$<\/span><\/code> not followed by digits.  Backslash will escape both <code class=\"code-voice\"><span>$<\/span><\/code> and <code class=\"code-voice\"><span>\\<\/span><\/code>.<\/p><\/div><h4 id=\"1661132\">Flag Options<\/h4><div><p>The following flags control various aspects of regular expression matching. These flag values may be specified within the pattern using the <code class=\"code-voice\"><span>(?ismx-ismx)<\/span><\/code> pattern options.  Equivalent behaviors can be specified for the entire pattern when an <code class=\"code-voice\"><span>NSRegular<wbr\/>Expression<\/span><\/code> is initialized, using the <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsregularexpression\/options\"><code><span>NSRegular<wbr\/>Expression<wbr\/>.Options<\/span><\/code><\/a> option flags.<\/p><figure id=\"1965592\"><figcaption><strong class=\"caption-title\">Table 4<\/strong> <div class=\"caption-content formatted-content\"><div><p>Flag Options<\/p><\/div><\/div><\/figcaption><div class=\"formatted-content\"><div class=\"table-wrapper\"><table><thead><tr><th scope=\"col\"><p>Flag (Pattern)<\/p><\/th><th scope=\"col\"><p>Description<\/p><\/th><\/tr><\/thead><tbody><tr><td><p>i<\/p><\/td><td><p>If set, matching will take place in a case-insensitive manner.<\/p><\/td><\/tr><tr><td><p>x<\/p><\/td><td><p>If set, allow use of white space and #comments within patterns<\/p><\/td><\/tr><tr><td><p>s<\/p><\/td><td><p>If set, a &quot;<code class=\"code-voice\"><span>.<\/span><\/code>&quot; in a pattern will match a line terminator in the input text. By default, it will not. Note that a <code class=\"code-voice\"><span>carriage-return \/ line-feed pair<\/span><\/code> in text behave as a single line terminator, and will match a single &quot;<code class=\"code-voice\"><span>.<\/span><\/code>&quot; in a regular expression pattern<\/p><\/td><\/tr><tr><td><p>m<\/p><\/td><td><p>Control the behavior of &quot;<code class=\"code-voice\"><span>^<\/span><\/code>&quot; and &quot;<code class=\"code-voice\"><span>$<\/span><\/code>&quot; in a pattern. By default these will only match at the start and end, respectively, of the input text. If this flag is set, &quot;<code class=\"code-voice\"><span>^<\/span><\/code>&quot; and &quot;<code class=\"code-voice\"><span>$<\/span><\/code>&quot; will also match at the start and end of each line within the input text.<\/p><\/td><\/tr><tr><td><p>w<\/p><\/td><td><p>Controls the behavior of <code class=\"code-voice\"><span>\\b<\/span><\/code> in a pattern. If set, word boundaries are found according to the definitions of word found in Unicode UAX 29, Text Boundaries. By default, word boundaries are identified by means of a simple classification of characters as either “word” or “non-word”, which approximates traditional regular expression behavior. The results obtained with the two options can be quite different in runs of spaces and other non-word characters.<\/p><\/td><\/tr><\/tbody><\/table><\/div><\/div><\/figure><\/div><h3 id=\"1673763\">Performance<\/h3><div><p><code class=\"code-voice\"><span>NSRegular<wbr\/>Expression<\/span><\/code> implements a nondeterministic finite automaton matching engine. As such, complex regular expression patterns containing multiple <code class=\"code-voice\"><span>*<\/span><\/code> or <code class=\"code-voice\"><span>+<\/span><\/code> operators may result in poor performance when attempting to perform matches — particularly failing to match a given input. For more information, see the <a href=\"http:\/\/userguide.icu-project.org\/strings\/regexp#TOC-Performance-Tips\">“Performance Tips” section of the ICU User Guide<\/a>.<\/p><\/div><h3 id=\"1661156\">ICU License<\/h3><div><p><a href=\"\/documentation\/foundation\/nsregularexpression#1965589\">Table 1<\/a>, <a href=\"\/documentation\/foundation\/nsregularexpression#1965590\">Table 2<\/a>, <a href=\"\/documentation\/foundation\/nsregularexpression#1965591\">Table 3<\/a>, <a href=\"\/documentation\/foundation\/nsregularexpression#1965592\">Table 4<\/a> are reproduced from the ICU User Guide, Copyright (c) 2000 - 2009 IBM and Others, which are licensed under the following terms:<\/p><p>COPYRIGHT AND PERMISSION NOTICE<\/p><p>Copyright (c) 1995-2009 International Business Machines Corporation and others. All rights reserved.<\/p><p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, and\/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, provided that the above copyright notice(s) and this permission notice appear in all copies of the Software and that both the above copyright notice(s) and this permission notice appear in supporting documentation.<\/p><p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT OF THIRD PARTY RIGHTS. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR HOLDERS INCLUDED IN THIS NOTICE BE LIABLE FOR ANY CLAIM, OR ANY SPECIAL INDIRECT OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.<\/p><p>Except as contained in this notice, the name of a copyright holder shall not be used in advertising or otherwise to promote the sale, use or other dealings in this Software without prior written authorization of the copyright holder.<\/p><p>All trademarks and registered trademarks mentioned herein are the property of their respective owners. <\/p><\/div>","containingGroup":[{"id":2877899,"role":"task","paths":[],"symbols":[{"id":1414895,"role":"symbol","usr":"c:objc(cs)NSScanner","name":"NSScanner","domain":"swift","kind":"cl","availability":[{"platform":"iOS","introduced":"2.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">class <\/span><span class=\"identifier\">Scanner<\/span><\/code>","paths":["documentation\/foundation\/scanner"],"title":{"content":"Scanner"},"abstract":"<div><p>A string parser that scans for substrings or characters in a character set, and for numeric values from decimal, hexadecimal, and floating-point representations.<\/p><\/div>","hasChildren":true},{"id":1416747,"role":"symbol","usr":"c:objc(cs)NSRegularExpression","name":"NSRegularExpression","domain":"swift","kind":"cl","availability":[{"platform":"iOS","introduced":"4.0"},{"platform":"macOS","introduced":"10.7"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">class <\/span><span class=\"identifier\">NSRegular<wbr\/>Expression<\/span><\/code>","paths":["documentation\/foundation\/nsregularexpression"],"title":{"content":"NSRegularExpression"},"abstract":"<div><p>An immutable representation of a compiled regular expression that you apply to Unicode strings.  <\/p><\/div>","hasChildren":true},{"id":1415665,"role":"symbol","usr":"c:objc(cs)NSDataDetector","name":"NSDataDetector","domain":"swift","kind":"cl","availability":[{"platform":"iOS","introduced":"4.0"},{"platform":"macOS","introduced":"10.7"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">class <\/span><span class=\"identifier\">NSData<wbr\/>Detector<\/span><\/code>","paths":["documentation\/foundation\/nsdatadetector"],"title":{"content":"NSDataDetector"},"abstract":"<div><p>A specialized regular expression object that matches natural language text for predefined data patterns.<\/p><\/div>","hasChildren":true},{"id":1416629,"role":"symbol","usr":"c:objc(cs)NSTextCheckingResult","name":"NSTextCheckingResult","domain":"swift","kind":"cl","availability":[{"platform":"iOS","introduced":"4.0"},{"platform":"macOS","introduced":"10.6"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">class <\/span><span class=\"identifier\">NSText<wbr\/>Checking<wbr\/>Result<\/span><\/code>","paths":["documentation\/foundation\/nstextcheckingresult"],"title":{"content":"NSTextCheckingResult"},"abstract":"<div><p>An occurrence of textual content found during the analysis of a block of text, such as when matching a regular expression.<\/p><\/div>","hasChildren":true},{"id":1395239,"role":"symbol","usr":"c:@NSNotFound","name":"NSNotFound","domain":"swift","kind":"data","availability":[{"platform":"iOS","introduced":"9.0"},{"platform":"macOS","introduced":"10.11"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">let <\/span><span class=\"identifier\">NSNot<wbr\/>Found<\/span><span class=\"decorator\">: Int<\/span><\/code>","paths":["documentation\/foundation\/nsnotfound"],"title":{"content":"NSNotFound"},"abstract":"<div><p>A value indicating that a requested item couldn’t be found or doesn’t exist.<\/p><\/div>"}],"title":{"content":"Pattern Matching"}}],"usr":"c:objc(cs)NSRegularExpression","name":"NSRegularExpression","domain":"swift","kind":"cl","availability":[{"platform":"iOS","current":"13.3","introduced":"4.0"},{"platform":"macOS","current":"10.15.2","introduced":"10.7"},{"platform":"Mac Catalyst","current":"13.3","introduced":"13.0"},{"platform":"tvOS","current":"13.2","introduced":"9.0"},{"platform":"watchOS","current":"6.2","introduced":"2.0"}],"conformance":[{"id":1415638,"usr":"c:objc(pl)NSSecureCoding","name":"NSSecureCoding","domain":"swift","kind":"intf","role":"symbol","paths":["documentation\/foundation\/nssecurecoding"],"title":{"content":"NSSecureCoding"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1417041,"usr":"c:objc(pl)NSCopying","name":"NSCopying","domain":"swift","kind":"intf","role":"symbol","paths":["documentation\/foundation\/nscopying"],"title":{"content":"NSCopying"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1641507,"usr":"s:s7CVarArgP","name":"CVarArg","domain":"swift","kind":"intf","role":"symbol","paths":["documentation\/swift\/cvararg"],"title":{"content":"CVarArg"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1541213,"usr":"s:SQ","name":"Equatable","domain":"swift","kind":"intf","role":"symbol","paths":["documentation\/swift\/equatable"],"title":{"content":"Equatable"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1540942,"usr":"s:SH","name":"Hashable","domain":"swift","kind":"intf","role":"symbol","paths":["documentation\/swift\/hashable"],"title":{"content":"Hashable"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]}],"inheritance":[{"id":1418879,"usr":"c:objc(cs)NSObject","name":"NSObject","domain":"swift","kind":"cl","role":"symbol","paths":["documentation\/objectivec\/nsobject"],"title":{"content":"NSObject"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]}],"module":[{"title":{"content":"Foundation"},"importStatement":"<div><span class=\"syntax-identifier\">import<\/span> Foundation<\/div>","paths":["documentation\/foundation"],"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">class <\/span><span class=\"identifier\">NSRegular<wbr\/>Expression<\/span><\/code>","declaration":[{"content":"<span><span class=\"syntax-keyword\">class<\/span> <span class=\"syntax-identifier\">NSRegularExpression<\/span> : <a class=\"symbolref\" href=\"\/documentation\/objectivec\/nsobject\"><span>NSObject<\/span><\/a>\n<\/span>","platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"],"references":{"1418879":{"id":1418879,"role":"symbol","paths":["documentation\/objectivec\/nsobject"],"usr":"c:objc(cs)NSObject","kind":"cl","language":"swift","domain":"swift","name":"NSObject","languages":["occ","swift"],"title":{"content":"NSObject"}}}}],"role":"symbol","language":"swift","roleHeading":"Class","languages":["occ","swift"],"variants":{"occ":{"paths":["documentation\/foundation\/nsregularexpression"],"usr":"c:objc(cs)NSRegularExpression"},"swift":{"paths":["documentation\/foundation\/nsregularexpression"],"usr":"c:objc(cs)NSRegularExpression"}},"pid":424974,"paths":["documentation\/foundation\/nsregularexpression"],"hierarchy":[[{"id":1613013,"role":"collection","title":{"content":"Foundation"},"paths":["documentation\/foundation"]},{"id":2877743,"role":"collectionGroup","title":{"content":"Strings and Text"},"paths":["documentation\/foundation\/strings_and_text"]}]],"legalNotices":{"copyright":"Copyright &copy; 2019 Apple Inc. All rights reserved.","termsOfUse":"https:\/\/www.apple.com\/legal\/internet-services\/terms\/site.html","privacyPolicy":"https:\/\/www.apple.com\/privacy\/privacy-policy"},"tasks":[{"id":1661184,"role":"task","symbols":[{"id":1410900,"role":"symbol","usr":"c:objc(cs)NSRegularExpression(im)initWithPattern:options:error:","name":"init(pattern:options:)","domain":"swift","kind":"instctr","availability":[{"platform":"iOS","introduced":"4.0"},{"platform":"macOS","introduced":"10.7"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"identifier\">init<\/span><span class=\"decorator\">(<\/span><span class=\"identifier\">pattern<\/span><span class=\"decorator\">: String, <\/span><span class=\"identifier\">options<\/span><span class=\"decorator\">: NSRegular<wbr\/>Expression<wbr\/>.Options)<\/span><\/code>","paths":["documentation\/foundation\/nsregularexpression\/1410900-init"],"title":{"content":"init(pattern:options:)"},"abstract":"<div><p>Returns an initialized NSRegularExpression instance with the specified regular expression pattern and options.<\/p><\/div>"}],"title":{"content":"Creating Regular Expressions"}},{"id":1661213,"role":"task","symbols":[{"id":1414932,"role":"symbol","usr":"c:objc(cs)NSRegularExpression(py)pattern","name":"pattern","domain":"swift","kind":"instp","availability":[{"platform":"iOS","introduced":"4.0"},{"platform":"macOS","introduced":"10.7"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">var <\/span><span class=\"identifier\">pattern<\/span><span class=\"decorator\">: String<\/span><\/code>","paths":["documentation\/foundation\/nsregularexpression\/1414932-pattern"],"title":{"content":"pattern"},"abstract":"<div><p>Returns the regular expression pattern.<\/p><\/div>"},{"id":1408265,"role":"symbol","usr":"c:objc(cs)NSRegularExpression(py)options","name":"options","domain":"swift","kind":"instp","availability":[{"platform":"iOS","introduced":"4.0"},{"platform":"macOS","introduced":"10.7"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">var <\/span><span class=\"identifier\">options<\/span><span class=\"decorator\">: NSRegular<wbr\/>Expression<wbr\/>.Options<\/span><\/code>","paths":["documentation\/foundation\/nsregularexpression\/1408265-options"],"title":{"content":"options"},"abstract":"<div><p>Returns the options used when the regular expression option was created.<\/p><\/div>"},{"id":1415052,"role":"symbol","usr":"c:objc(cs)NSRegularExpression(py)numberOfCaptureGroups","name":"numberOfCaptureGroups","domain":"swift","kind":"instp","availability":[{"platform":"iOS","introduced":"4.0"},{"platform":"macOS","introduced":"10.7"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">var <\/span><span class=\"identifier\">number<wbr\/>Of<wbr\/>Capture<wbr\/>Groups<\/span><span class=\"decorator\">: Int<\/span><\/code>","paths":["documentation\/foundation\/nsregularexpression\/1415052-numberofcapturegroups"],"title":{"content":"numberOfCaptureGroups"},"abstract":"<div><p>Returns the number of capture groups in the regular expression.<\/p><\/div>"}],"title":{"content":"Getting the Regular Expression and Options"}},{"id":1661263,"role":"task","symbols":[{"id":1414308,"role":"symbol","usr":"c:objc(cs)NSRegularExpression(im)numberOfMatchesInString:options:range:","name":"numberOfMatchesInString(_:options:range:)","domain":"swift","kind":"instm","availability":[{"platform":"iOS","introduced":"4.0"},{"platform":"macOS","introduced":"10.7"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">number<wbr\/>Of<wbr\/>Matches<\/span><span class=\"decorator\">(<\/span><span class=\"identifier\">in<\/span><span class=\"decorator\">: String, <\/span><span class=\"identifier\">options<\/span><span class=\"decorator\">: NSRegular<wbr\/>Expression<wbr\/>.Matching<wbr\/>Options, <\/span><span class=\"identifier\">range<\/span><span class=\"decorator\">: NSRange) -&gt; Int<\/span><\/code>","paths":["documentation\/foundation\/nsregularexpression\/1414308-numberofmatches"],"title":{"content":"numberOfMatches(in:options:range:)"},"abstract":"<div><p>Returns the number of matches of the regular expression within the specified range of the string.<\/p><\/div>"},{"id":1409687,"role":"symbol","usr":"c:objc(cs)NSRegularExpression(im)enumerateMatchesInString:options:range:usingBlock:","name":"enumerateMatchesInString(_:options:range:usingBlock:)","domain":"swift","kind":"instm","availability":[{"platform":"iOS","introduced":"4.0"},{"platform":"macOS","introduced":"10.7"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">enumerate<wbr\/>Matches<\/span><span class=\"decorator\">(<\/span><span class=\"identifier\">in<\/span><span class=\"decorator\">: String, <\/span><span class=\"identifier\">options<\/span><span class=\"decorator\">: NSRegular<wbr\/>Expression<wbr\/>.Matching<wbr\/>Options, <\/span><span class=\"identifier\">range<\/span><span class=\"decorator\">: NSRange, <\/span><span class=\"identifier\">using<\/span><span class=\"decorator\">: (NSText<wbr\/>Checking<wbr\/>Result?, NSRegular<wbr\/>Expression<wbr\/>.Matching<wbr\/>Flags, Unsafe<wbr\/>Mutable<wbr\/>Pointer&lt;Obj<wbr\/>CBool&gt;) -&gt; Void)<\/span><\/code>","paths":["documentation\/foundation\/nsregularexpression\/1409687-enumeratematches"],"title":{"content":"enumerateMatches(in:options:range:using:)"},"abstract":"<div><p>Enumerates the string allowing the Block to handle each regular expression match.<\/p><\/div>"},{"id":1412446,"role":"symbol","usr":"c:objc(cs)NSRegularExpression(im)matchesInString:options:range:","name":"matchesInString(_:options:range:)","domain":"swift","kind":"instm","availability":[{"platform":"iOS","introduced":"4.0"},{"platform":"macOS","introduced":"10.7"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">matches<\/span><span class=\"decorator\">(<\/span><span class=\"identifier\">in<\/span><span class=\"decorator\">: String, <\/span><span class=\"identifier\">options<\/span><span class=\"decorator\">: NSRegular<wbr\/>Expression<wbr\/>.Matching<wbr\/>Options, <\/span><span class=\"identifier\">range<\/span><span class=\"decorator\">: NSRange) -&gt; [NSText<wbr\/>Checking<wbr\/>Result]<\/span><\/code>","paths":["documentation\/foundation\/nsregularexpression\/1412446-matches"],"title":{"content":"matches(in:options:range:)"},"abstract":"<div><p>Returns an array containing all the matches of the regular expression in the string.<\/p><\/div>"},{"id":1409838,"role":"symbol","usr":"c:objc(cs)NSRegularExpression(im)firstMatchInString:options:range:","name":"firstMatchInString(_:options:range:)","domain":"swift","kind":"instm","availability":[{"platform":"iOS","introduced":"4.0"},{"platform":"macOS","introduced":"10.7"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">first<wbr\/>Match<\/span><span class=\"decorator\">(<\/span><span class=\"identifier\">in<\/span><span class=\"decorator\">: String, <\/span><span class=\"identifier\">options<\/span><span class=\"decorator\">: NSRegular<wbr\/>Expression<wbr\/>.Matching<wbr\/>Options, <\/span><span class=\"identifier\">range<\/span><span class=\"decorator\">: NSRange) -&gt; NSText<wbr\/>Checking<wbr\/>Result?<\/span><\/code>","paths":["documentation\/foundation\/nsregularexpression\/1409838-firstmatch"],"title":{"content":"firstMatch(in:options:range:)"},"abstract":"<div><p>Returns the first match of the regular expression within the specified range of the string.<\/p><\/div>"},{"id":1411510,"role":"symbol","usr":"c:objc(cs)NSRegularExpression(im)rangeOfFirstMatchInString:options:range:","name":"rangeOfFirstMatchInString(_:options:range:)","domain":"swift","kind":"instm","availability":[{"platform":"iOS","introduced":"4.0"},{"platform":"macOS","introduced":"10.7"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">range<wbr\/>Of<wbr\/>First<wbr\/>Match<\/span><span class=\"decorator\">(<\/span><span class=\"identifier\">in<\/span><span class=\"decorator\">: String, <\/span><span class=\"identifier\">options<\/span><span class=\"decorator\">: NSRegular<wbr\/>Expression<wbr\/>.Matching<wbr\/>Options, <\/span><span class=\"identifier\">range<\/span><span class=\"decorator\">: NSRange) -&gt; NSRange<\/span><\/code>","paths":["documentation\/foundation\/nsregularexpression\/1411510-rangeoffirstmatch"],"title":{"content":"rangeOfFirstMatch(in:options:range:)"},"abstract":"<div><p>Returns the range of the first match of the regular expression within the specified range of the string.<\/p><\/div>"}],"title":{"content":"Searching Strings Using Regular Expressions"}},{"id":1661318,"role":"task","symbols":[{"id":1411139,"role":"symbol","usr":"c:objc(cs)NSRegularExpression(im)replaceMatchesInString:options:range:withTemplate:","name":"replaceMatchesInString(_:options:range:withTemplate:)","domain":"swift","kind":"instm","availability":[{"platform":"iOS","introduced":"4.0"},{"platform":"macOS","introduced":"10.7"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">replace<wbr\/>Matches<\/span><span class=\"decorator\">(<\/span><span class=\"identifier\">in<\/span><span class=\"decorator\">: NSMutable<wbr\/>String, <\/span><span class=\"identifier\">options<\/span><span class=\"decorator\">: NSRegular<wbr\/>Expression<wbr\/>.Matching<wbr\/>Options, <\/span><span class=\"identifier\">range<\/span><span class=\"decorator\">: NSRange, <\/span><span class=\"identifier\">with<wbr\/>Template<\/span><span class=\"decorator\">: String) -&gt; Int<\/span><\/code>","paths":["documentation\/foundation\/nsregularexpression\/1411139-replacematches"],"title":{"content":"replaceMatches(in:options:range:withTemplate:)"},"abstract":"<div><p>Replaces regular expression matches within the mutable string using the template string.<\/p><\/div>"},{"id":1413740,"role":"symbol","usr":"c:objc(cs)NSRegularExpression(im)stringByReplacingMatchesInString:options:range:withTemplate:","name":"stringByReplacingMatchesInString(_:options:range:withTemplate:)","domain":"swift","kind":"instm","availability":[{"platform":"iOS","introduced":"4.0"},{"platform":"macOS","introduced":"10.7"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">string<wbr\/>By<wbr\/>Replacing<wbr\/>Matches<\/span><span class=\"decorator\">(<\/span><span class=\"identifier\">in<\/span><span class=\"decorator\">: String, <\/span><span class=\"identifier\">options<\/span><span class=\"decorator\">: NSRegular<wbr\/>Expression<wbr\/>.Matching<wbr\/>Options, <\/span><span class=\"identifier\">range<\/span><span class=\"decorator\">: NSRange, <\/span><span class=\"identifier\">with<wbr\/>Template<\/span><span class=\"decorator\">: String) -&gt; String<\/span><\/code>","paths":["documentation\/foundation\/nsregularexpression\/1413740-stringbyreplacingmatches"],"title":{"content":"stringByReplacingMatches(in:options:range:withTemplate:)"},"abstract":"<div><p>Returns a new string containing matching regular expressions replaced with the template string.<\/p><\/div>"}],"title":{"content":"Replacing Strings Using Regular Expressions"}},{"id":1661355,"role":"task","symbols":[{"id":1410085,"role":"symbol","usr":"c:objc(cs)NSRegularExpression(cm)escapedTemplateForString:","name":"escapedTemplateForString(_:)","domain":"swift","kind":"clm","availability":[{"platform":"iOS","introduced":"4.0"},{"platform":"macOS","introduced":"10.7"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">class func <\/span><span class=\"identifier\">escaped<wbr\/>Template<\/span><span class=\"decorator\">(<\/span><span class=\"identifier\">for<\/span><span class=\"decorator\">: String) -&gt; String<\/span><\/code>","paths":["documentation\/foundation\/nsregularexpression\/1410085-escapedtemplate"],"title":{"content":"escapedTemplate(for:)"},"abstract":"<div><p>Returns a template string by adding backslash escapes as necessary to protect any characters that would match as pattern metacharacters<\/p><\/div>"},{"id":1408386,"role":"symbol","usr":"c:objc(cs)NSRegularExpression(cm)escapedPatternForString:","name":"escapedPatternForString(_:)","domain":"swift","kind":"clm","availability":[{"platform":"iOS","introduced":"4.0"},{"platform":"macOS","introduced":"10.7"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">class func <\/span><span class=\"identifier\">escaped<wbr\/>Pattern<\/span><span class=\"decorator\">(<\/span><span class=\"identifier\">for<\/span><span class=\"decorator\">: String) -&gt; String<\/span><\/code>","paths":["documentation\/foundation\/nsregularexpression\/1408386-escapedpattern"],"title":{"content":"escapedPattern(for:)"},"abstract":"<div><p>Returns a string by adding backslash escapes as necessary to protect any characters that would match as pattern metacharacters.<\/p><\/div>"}],"title":{"content":"Escaping Characters in a String"}},{"id":1661390,"role":"task","symbols":[{"id":1414859,"role":"symbol","usr":"c:objc(cs)NSRegularExpression(im)replacementStringForResult:inString:offset:template:","name":"replacementStringForResult(_:inString:offset:template:)","domain":"swift","kind":"instm","availability":[{"platform":"iOS","introduced":"4.0"},{"platform":"macOS","introduced":"10.7"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">replacement<wbr\/>String<\/span><span class=\"decorator\">(<\/span><span class=\"identifier\">for<\/span><span class=\"decorator\">: NSText<wbr\/>Checking<wbr\/>Result, <\/span><span class=\"identifier\">in<\/span><span class=\"decorator\">: String, <\/span><span class=\"identifier\">offset<\/span><span class=\"decorator\">: Int, <\/span><span class=\"identifier\">template<\/span><span class=\"decorator\">: String) -&gt; String<\/span><\/code>","paths":["documentation\/foundation\/nsregularexpression\/1414859-replacementstring"],"title":{"content":"replacementString(for:in:offset:template:)"},"abstract":"<div><p>Used to perform template substitution for a single result for clients implementing their own replace functionality.<\/p><\/div>"}],"title":{"content":"Custom Replace Functionality"}},{"id":1674026,"role":"task","symbols":[{"id":1415866,"role":"symbol","usr":"c:@E@NSRegularExpressionOptions","name":"NSRegularExpressionOptions","domain":"swift","kind":"struct","availability":[{"platform":"iOS","introduced":"4.0"},{"platform":"macOS","introduced":"10.7"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">struct <\/span><span class=\"identifier\">NSRegular<wbr\/>Expression<wbr\/>.Options<\/span><\/code>","paths":["documentation\/foundation\/nsregularexpression\/options"],"title":{"content":"NSRegularExpression.Options"},"abstract":"<div><p>These constants define the regular expression options. These constants are used by the property <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsregularexpression\/1408265-options\"><code><span>options<\/span><\/code><\/a>, <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsregularexpression\/1557374-regularexpressionwithpattern\"><code><span>regular<wbr\/>Expression<wbr\/>With<wbr\/>Pattern:<wbr\/>options:<wbr\/>error:<\/span><\/code><\/a>, and <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsregularexpression\/1410900-init\"><code><span>init(pattern:<wbr\/>options:)<\/span><\/code><\/a>.<\/p><\/div>","hasChildren":true},{"id":1409946,"role":"symbol","usr":"c:@E@NSMatchingFlags","name":"NSMatchingFlags","domain":"swift","kind":"struct","availability":[{"platform":"iOS","introduced":"4.0"},{"platform":"macOS","introduced":"10.7"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">struct <\/span><span class=\"identifier\">NSRegular<wbr\/>Expression<wbr\/>.Matching<wbr\/>Flags<\/span><\/code>","paths":["documentation\/foundation\/nsregularexpression\/matchingflags"],"title":{"content":"NSRegularExpression.MatchingFlags"},"abstract":"<div><p>Set by the Block as the matching progresses, completes, or fails. Used by the method <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsregularexpression\/1409687-enumeratematches\"><code><span>enumerate<wbr\/>Matches(in:<wbr\/>options:<wbr\/>range:<wbr\/>using:)<\/span><\/code><\/a>.<\/p><\/div>","hasChildren":true},{"id":1411628,"role":"symbol","usr":"c:@E@NSMatchingOptions","name":"NSMatchingOptions","domain":"swift","kind":"struct","availability":[{"platform":"iOS","introduced":"4.0"},{"platform":"macOS","introduced":"10.7"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">struct <\/span><span class=\"identifier\">NSRegular<wbr\/>Expression<wbr\/>.Matching<wbr\/>Options<\/span><\/code>","paths":["documentation\/foundation\/nsregularexpression\/matchingoptions"],"title":{"content":"NSRegularExpression.MatchingOptions"},"abstract":"<div><p>The matching options constants specify the reporting, completion and matching rules to the expression matching methods. These constants are used by all methods that search for, or replace values, using a regular expression.<\/p><\/div>","hasChildren":true}],"title":{"content":"Constants"}}]}</script></body></html>

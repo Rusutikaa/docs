@@ -10,11 +10,11 @@
     <meta name="author" content="Apple Inc." />
     <meta name="viewport" content="width=device-width initial-scale=1" />
     
-    <title>Automatic Reference Counting — The Swift Programming Language (Swift 5)</title>
+    <title>Automatic Reference Counting — The Swift Programming Language (Swift 5.1)</title>
     
     <link rel="license" href="/LICENSE.txt" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/tspl.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/application.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/tspl.css" />
     <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
@@ -41,7 +41,7 @@
 
     <div id="menu-toggle" class="menu-toggle open"></div>
 
-    <h2>The Swift Programming Language<div>Swift 5</div></h2>
+    <h2>The Swift Programming Language<div>Swift 5.1</div></h2>
 
     <ul>
     <ul class="current">
@@ -90,7 +90,7 @@
 クロージャ
 </span><!--end_jpstr-->
 </a></li>
-<li class="toctree-l2"><a class="reference internal" href="Enumerations.html"><span class="enstr">Enumeration</span><!--end_enstr-->
+<li class="toctree-l2"><a class="reference internal" href="Enumerations.html"><span class="enstr">Enumerations</span><!--end_enstr-->
 <span class="jpstr">
 列挙
 </span><!--end_jpstr-->
@@ -163,6 +163,11 @@
 <li class="toctree-l2"><a class="reference internal" href="Generics.html"><span class="enstr">Generics</span><!--end_enstr-->
 <span class="jpstr">
 総称体
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OpaqueTypes.html"><span class="enstr">Opaque Types</span><!--end_enstr-->
+<span class="jpstr">
+不透明型
 </span><!--end_jpstr-->
 </a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#"><span class="enstr">Automatic Reference Counting</span><!--end_enstr-->
@@ -505,7 +510,7 @@ ARCは、<code class="docutils literal notranslate"><span class="pre">Person</sp
 それらの２つのインスタンスの作成と代入の後に強い参照がどのように見えるかが、ここにあります。<code class="docutils literal notranslate"><span class="pre">john</span></code>変数は現在新しい<code class="docutils literal notranslate"><span class="pre">Person</span></code>インスタンスへの強い参照を持ちます、そして<code class="docutils literal notranslate"><span class="pre">unit4A</span></code>変数は新しい<code class="docutils literal notranslate"><span class="pre">Apartment</span></code>インスタンスへの強い参照を持ちます：
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/referenceCycle01_2x.png" class="align-center" src="../images/referenceCycle01_2x.png" style="width: 626px;" />
+<img alt="../_images/referenceCycle01_2x.png" class="align-center" src="../_images/referenceCycle01_2x.png" style="width: 626px;" />
 <p><span class="enstr">You can now link the two instances together so that the person has an apartment, and the apartment has a tenant. Note that an exclamation mark (<code class="docutils literal notranslate"><span class="pre">!</span></code>) is used to unwrap and access the instances stored inside the <code class="docutils literal notranslate"><span class="pre">john</span></code> and <code class="docutils literal notranslate"><span class="pre">unit4A</span></code> optional variables, so that the properties of those instances can be set:</span><!--end_enstr-->
 <span class="jpstr">
 あなたは次に人がアパートを持つように、２つのインスタンスを結びつけることができます、するとアパートには賃借人があります。感嘆符（<code class="docutils literal notranslate"><span class="pre">!</span></code>）が使われることに注意してください、そうすることでオプショナル変数の<code class="docutils literal notranslate"><span class="pre">john</span></code>と<code class="docutils literal notranslate"><span class="pre">unit4A</span></code>に格納されるインスタンスがアンラップされてアクセスされるようになります、それでそれらのインスタンスのプロパティが設定されることができます：
@@ -519,7 +524,7 @@ ARCは、<code class="docutils literal notranslate"><span class="pre">Person</sp
 あなたが２つのインスタンスを結びつけた後に強い参照がどのように見えるかが、ここにあります。
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/referenceCycle02_2x.png" class="align-center" src="../images/referenceCycle02_2x.png" style="width: 626px;" />
+<img alt="../_images/referenceCycle02_2x.png" class="align-center" src="../_images/referenceCycle02_2x.png" style="width: 626px;" />
 <p><span class="enstr">Unfortunately, linking these two instances creates a strong reference cycle between them. The <code class="docutils literal notranslate"><span class="pre">Person</span></code> instance now has a strong reference to the <code class="docutils literal notranslate"><span class="pre">Apartment</span></code> instance, and the <code class="docutils literal notranslate"><span class="pre">Apartment</span></code> instance has a strong reference to the <code class="docutils literal notranslate"><span class="pre">Person</span></code> instance. Therefore, when you break the strong references held by the <code class="docutils literal notranslate"><span class="pre">john</span></code> and <code class="docutils literal notranslate"><span class="pre">unit4A</span></code> variables, the reference counts do not drop to zero, and the instances are not deallocated by ARC:</span><!--end_enstr-->
 <span class="jpstr">
 残念なことに、これらの２つのインスタンスを結ぶことは、それらの間で強い参照循環をつくります。<code class="docutils literal notranslate"><span class="pre">Person</span></code>インスタンスは現在<code class="docutils literal notranslate"><span class="pre">Apartment</span></code>インスタンスへの強い参照を持ちます、そして、<code class="docutils literal notranslate"><span class="pre">Apartment</span></code>インスタンスは<code class="docutils literal notranslate"><span class="pre">Person</span></code>インスタンスへの強い参照を持ちます。したがって、あなたが<code class="docutils literal notranslate"><span class="pre">john</span></code>と<code class="docutils literal notranslate"><span class="pre">unit4A</span></code>変数によって保持される強い参照を壊すとき、参照総数はゼロに落ちません、なのでインスタンスはARCによって割り当て解除されません：
@@ -538,7 +543,7 @@ ARCは、<code class="docutils literal notranslate"><span class="pre">Person</sp
 あなたが<code class="docutils literal notranslate"><span class="pre">john</span></code>と<code class="docutils literal notranslate"><span class="pre">unit4A</span></code>変数を<code class="docutils literal notranslate"><span class="pre">nil</span></code>に設定したあと、強い参照がどのように見えるかは、ここにあります：
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/referenceCycle03_2x.png" class="align-center" src="../images/referenceCycle03_2x.png" style="width: 626px;" />
+<img alt="../_images/referenceCycle03_2x.png" class="align-center" src="../_images/referenceCycle03_2x.png" style="width: 626px;" />
 <p><span class="enstr">The strong references between the <code class="docutils literal notranslate"><span class="pre">Person</span></code> instance and the <code class="docutils literal notranslate"><span class="pre">Apartment</span></code> instance remain and cannot be broken.</span><!--end_enstr-->
 <span class="jpstr">
 <code class="docutils literal notranslate"><span class="pre">Person</span></code>インスタンスと<code class="docutils literal notranslate"><span class="pre">Apartment</span></code>インスタンスの間の強い参照は、残っていて、壊されることができません。
@@ -637,7 +642,7 @@ ARCは、<code class="docutils literal notranslate"><span class="pre">Person</sp
 あなたが２つのインスタンスを結びつけた今、参照がどのように見えるかは、ここにあります：
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/weakReference01_2x.png" class="align-center" src="../images/weakReference01_2x.png" style="width: 626px;" />
+<img alt="../_images/weakReference01_2x.png" class="align-center" src="../_images/weakReference01_2x.png" style="width: 626px;" />
 <p><span class="enstr">The <code class="docutils literal notranslate"><span class="pre">Person</span></code> instance still has a strong reference to the <code class="docutils literal notranslate"><span class="pre">Apartment</span></code> instance, but the <code class="docutils literal notranslate"><span class="pre">Apartment</span></code> instance now has a <em>weak</em> reference to the <code class="docutils literal notranslate"><span class="pre">Person</span></code> instance. This means that when you break the strong reference held by the <code class="docutils literal notranslate"><span class="pre">john</span></code> variable by setting it to <code class="docutils literal notranslate"><span class="pre">nil</span></code>, there are no more strong references to the <code class="docutils literal notranslate"><span class="pre">Person</span></code> instance:</span><!--end_enstr-->
 <span class="jpstr">
 <code class="docutils literal notranslate"><span class="pre">Person</span></code>インスタンスは依然として<code class="docutils literal notranslate"><span class="pre">Apartment</span></code>インスタンスへの強い参照を持ちます、しかし、<code class="docutils literal notranslate"><span class="pre">Apartment</span></code>インスタンスは現在は<code class="docutils literal notranslate"><span class="pre">Person</span></code>インスタンスへの<em>弱い</em>参照を持ちます。これは、あなたが<code class="docutils literal notranslate"><span class="pre">john</span></code>変数によって保持される強い参照を、それを<code class="docutils literal notranslate"><span class="pre">nil</span></code>に設定することによって壊すとき、<code class="docutils literal notranslate"><span class="pre">Person</span></code>インスタンスへの強い参照がもうそれ以上ないことを意味します：
@@ -651,7 +656,7 @@ ARCは、<code class="docutils literal notranslate"><span class="pre">Person</sp
 もうこれ以上<code class="docutils literal notranslate"><span class="pre">Person</span></code>インスタンスへの強い参照はないことから、それは割り当て解除されます、そして<code class="docutils literal notranslate"><span class="pre">tenant</span></code>特性は<code class="docutils literal notranslate"><span class="pre">nil</span></code>に設定されます：
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/weakReference02_2x.png" class="align-center" src="../images/weakReference02_2x.png" style="width: 626px;" />
+<img alt="../_images/weakReference02_2x.png" class="align-center" src="../_images/weakReference02_2x.png" style="width: 626px;" />
 <p><span class="enstr">The only remaining strong reference to the <code class="docutils literal notranslate"><span class="pre">Apartment</span></code> instance is from the <code class="docutils literal notranslate"><span class="pre">unit4A</span></code> variable. If you break <em>that</em> strong reference, there are no more strong references to the <code class="docutils literal notranslate"><span class="pre">Apartment</span></code> instance:</span><!--end_enstr-->
 <span class="jpstr">
 <code class="docutils literal notranslate"><span class="pre">Apartment</span></code>インスタンスへの唯一の残っている強い参照は、<code class="docutils literal notranslate"><span class="pre">unit4A</span></code>変数からです。あなたが<em>その</em>強い参照を壊すならば、<code class="docutils literal notranslate"><span class="pre">Apartment</span></code>インスタンスへの強い参照はもうこれ以上ありません：
@@ -665,7 +670,7 @@ ARCは、<code class="docutils literal notranslate"><span class="pre">Person</sp
 <code class="docutils literal notranslate"><span class="pre">Apartment</span></code>インスタンスへの強い参照はもうこれ以上ないので、それも割り当て解除されます：
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/weakReference03_2x.png" class="align-center" src="../images/weakReference03_2x.png" style="width: 626px;" />
+<img alt="../_images/weakReference03_2x.png" class="align-center" src="../_images/weakReference03_2x.png" style="width: 626px;" />
 <div class="admonition note">
 <p class="first admonition-title"><span class="enstr">Note</span><!--end_enstr-->
 <span class="jpstr">
@@ -783,7 +788,7 @@ ARCは、<code class="docutils literal notranslate"><span class="pre">Person</sp
 あなたが２つのインスタンスを結んだ今、これらの参照がどのように見えるかは、ここにあります：
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/unownedReference01_2x.png" class="align-center" src="../images/unownedReference01_2x.png" style="width: 626px;" />
+<img alt="../_images/unownedReference01_2x.png" class="align-center" src="../_images/unownedReference01_2x.png" style="width: 626px;" />
 <p><span class="enstr">The <code class="docutils literal notranslate"><span class="pre">Customer</span></code> instance now has a strong reference to the <code class="docutils literal notranslate"><span class="pre">CreditCard</span></code> instance, and the <code class="docutils literal notranslate"><span class="pre">CreditCard</span></code> instance has an unowned reference to the <code class="docutils literal notranslate"><span class="pre">Customer</span></code> instance.</span><!--end_enstr-->
 <span class="jpstr">
 <code class="docutils literal notranslate"><span class="pre">Customer</span></code>インスタンスは現在<code class="docutils literal notranslate"><span class="pre">CreditCard</span></code>インスタンスへの強い参照を持ちます、そして、<code class="docutils literal notranslate"><span class="pre">CreditCard</span></code>インスタンスは<code class="docutils literal notranslate"><span class="pre">Customer</span></code>インスタンスへの非所有参照を持ちます。
@@ -794,7 +799,7 @@ ARCは、<code class="docutils literal notranslate"><span class="pre">Person</sp
 非所有<code class="docutils literal notranslate"><span class="pre">customer</span></code>参照であることから、あなたが<code class="docutils literal notranslate"><span class="pre">john</span></code>変数によって保持される強い参照を壊すとき、<code class="docutils literal notranslate"><span class="pre">Customer</span></code>インスタンスへの強い参照はもうそれ以上ありません：
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/unownedReference02_2x.png" class="align-center" src="../images/unownedReference02_2x.png" style="width: 626px;" />
+<img alt="../_images/unownedReference02_2x.png" class="align-center" src="../_images/unownedReference02_2x.png" style="width: 626px;" />
 <p><span class="enstr">Because there are no more strong references to the <code class="docutils literal notranslate"><span class="pre">Customer</span></code> instance, it’s deallocated. After this happens, there are no more strong references to the <code class="docutils literal notranslate"><span class="pre">CreditCard</span></code> instance, and it too is deallocated:</span><!--end_enstr-->
 <span class="jpstr">
 <code class="docutils literal notranslate"><span class="pre">Customer</span></code>インスタンスへの強い参照はもうないので、それは割り当て解除されます。これが起こったあと、<code class="docutils literal notranslate"><span class="pre">CreditCard</span></code>インスタンスへの強い参照はもうありません、そして、それも割り当て解除されます：
@@ -1048,7 +1053,7 @@ ARCは、<code class="docutils literal notranslate"><span class="pre">Person</sp
 残念なことに、この<code class="docutils literal notranslate"><span class="pre">HTMLElement</span></code>クラスは、上で書かれるように、<code class="docutils literal notranslate"><span class="pre">HTMLElement</span></code>インスタンスとその省略時の<code class="docutils literal notranslate"><span class="pre">asHTML</span></code>値のために使われるクロージャとの間に強い参照循環をつくります。循環がどのように見えるかは、ここにあります：
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/closureReferenceCycle01_2x.png" class="align-center" src="../images/closureReferenceCycle01_2x.png" style="width: 626px;" />
+<img alt="../_images/closureReferenceCycle01_2x.png" class="align-center" src="../_images/closureReferenceCycle01_2x.png" style="width: 626px;" />
 <p><span class="enstr">The instance’s <code class="docutils literal notranslate"><span class="pre">asHTML</span></code> property holds a strong reference to its closure. However, because the closure refers to <code class="docutils literal notranslate"><span class="pre">self</span></code> within its body (as a way to reference <code class="docutils literal notranslate"><span class="pre">self.name</span></code> and <code class="docutils literal notranslate"><span class="pre">self.text</span></code>), the closure <em>captures</em> self, which means that it holds a strong reference back to the <code class="docutils literal notranslate"><span class="pre">HTMLElement</span></code> instance. A strong reference cycle is created between the two. (For more information about capturing values in a closure, see <a class="reference internal" href="Closures.html#ID103"><span class="std std-ref">Capturing Values</span></a>.)</span><!--end_enstr-->
 <span class="jpstr">
 このインスタンスの<code class="docutils literal notranslate"><span class="pre">asHTML</span></code>プロパティは、それのクロージャに対する強い参照を保持します。しかし、クロージャがその本文内で<code class="docutils literal notranslate"><span class="pre">self</span></code>に言及する（<code class="docutils literal notranslate"><span class="pre">self.name</span></code>と<code class="docutils literal notranslate"><span class="pre">self.text</span></code>を参照する方法として）ので、クロージャはselfを<em>捕獲</em>します、それは、今度は逆にそれが<code class="docutils literal notranslate"><span class="pre">HTMLElement</span></code>インスタンスへの強い参照を保持することを意味します。強い参照循環は、２つ作られます。（クロージャにおいて値を捕獲することに関する詳細は、<a class="reference internal" href="Closures.html#ID103"><span class="std std-ref">値を捕獲する</span></a>を見てください。）
@@ -1108,9 +1113,9 @@ ARCは、<code class="docutils literal notranslate"><span class="pre">Person</sp
 捕獲リストの定義<a class="headerlink" href="#ID58" title="Permalink to this headline">¶</a>
 </span><!--end_jpstr-->
 </h3>
-<p><span class="enstr">Each item in a capture list is a pairing of the <code class="docutils literal notranslate"><span class="pre">weak</span></code> or <code class="docutils literal notranslate"><span class="pre">unowned</span></code> keyword with a reference to a class instance (such as <code class="docutils literal notranslate"><span class="pre">self</span></code>) or a variable initialized with some value (such as <code class="docutils literal notranslate"><span class="pre">delegate</span> <span class="pre">=</span> <span class="pre">self.delegate!</span></code>). These pairings are written within a pair of square braces, separated by commas.</span><!--end_enstr-->
+<p><span class="enstr">Each item in a capture list is a pairing of the <code class="docutils literal notranslate"><span class="pre">weak</span></code> or <code class="docutils literal notranslate"><span class="pre">unowned</span></code> keyword with a reference to a class instance (such as <code class="docutils literal notranslate"><span class="pre">self</span></code>) or a variable initialized with some value (such as <code class="docutils literal notranslate"><span class="pre">delegate</span> <span class="pre">=</span> <span class="pre">self.delegate</span></code>). These pairings are written within a pair of square braces, separated by commas.</span><!--end_enstr-->
 <span class="jpstr">
-捕獲リストの各項目は、<code class="docutils literal notranslate"><span class="pre">weak</span></code>または<code class="docutils literal notranslate"><span class="pre">unowned</span></code>キーワードと、クラスインスタンスへの参照（例えば<code class="docutils literal notranslate"><span class="pre">self</span></code>）またはなんらかの値で初期化された変数（例えば<code class="docutils literal notranslate"><span class="pre">delegate</span> <span class="pre">=</span> <span class="pre">self.delegate!</span></code>）を対にしたものです。これらの組合せは、一対の角括弧内に書かれて、コンマで区切られます。
+捕獲リストの各項目は、<code class="docutils literal notranslate"><span class="pre">weak</span></code>または<code class="docutils literal notranslate"><span class="pre">unowned</span></code>キーワードと、クラスインスタンスへの参照（例えば<code class="docutils literal notranslate"><span class="pre">self</span></code>）またはなんらかの値で初期化された変数（例えば<code class="docutils literal notranslate"><span class="pre">delegate</span> <span class="pre">=</span> <span class="pre">self.delegate</span></code>）を対にしたものです。これらの組合せは、一対の角括弧内に書かれて、コンマで区切られます。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">Place the capture list before a closure’s parameter list and return type if they are provided:</span><!--end_enstr-->
@@ -1118,8 +1123,9 @@ ARCは、<code class="docutils literal notranslate"><span class="pre">Person</sp
 それらが提供されるならばクロージャのパラメータ・リストと戻り型の前に、捕獲リストを置いてください：
 </span><!--end_jpstr-->
 </p>
-<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">lazy</span> <span class="k">var</span> <span class="nv">someClosure</span>: (<span class="nc">Int</span>, <span class="nc">String</span>) -&gt; <span class="nc">String</span> = {
-</li><li>    [<span class="k">unowned</span> <span class="k">self</span>, <span class="k">weak</span> <span class="nv">delegate</span> = <span class="k">self</span>.<span class="nv">delegate</span>!] (<span class="nv">index</span>: <span class="nc">Int</span>, <span class="nv">stringToProcess</span>: <span class="nc">String</span>) -&gt; <span class="nc">String</span> <span class="k">in</span>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">lazy</span> <span class="k">var</span> <span class="nv">someClosure</span> = {
+</li><li>    [<span class="k">unowned</span> <span class="k">self</span>, <span class="k">weak</span> <span class="nv">delegate</span> = <span class="k">self</span>.<span class="nv">delegate</span>]
+</li><li>    (<span class="nv">index</span>: <span class="nc">Int</span>, <span class="nv">stringToProcess</span>: <span class="nc">String</span>) -&gt; <span class="nc">String</span> <span class="k">in</span>
 </li><li>    <span class="c"><span class="enstr">// closure body goes here</span><!--end_enstr--><span class="jpstr">（クロージャ本文が、ここにきます）</span><!--end_jpstr--></span>
 </li><li>}
 </li></ol></div></div></div>
@@ -1128,8 +1134,8 @@ ARCは、<code class="docutils literal notranslate"><span class="pre">Person</sp
 クロージャがパラメータ・リストまたは戻り型を、それらが前後関係から推論されることができるために指定しないならば、捕獲リストをクロージャのまさしくその始まりに、<code class="docutils literal notranslate"><span class="pre">in</span></code>キーワードに続けて置いてください：
 </span><!--end_jpstr-->
 </p>
-<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">lazy</span> <span class="k">var</span> <span class="nv">someClosure</span>: () -&gt; <span class="nc">String</span> = {
-</li><li>    [<span class="k">unowned</span> <span class="k">self</span>, <span class="k">weak</span> <span class="nv">delegate</span> = <span class="k">self</span>.<span class="nv">delegate</span>!] <span class="k">in</span>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">lazy</span> <span class="k">var</span> <span class="nv">someClosure</span> = {
+</li><li>    [<span class="k">unowned</span> <span class="k">self</span>, <span class="k">weak</span> <span class="nv">delegate</span> = <span class="k">self</span>.<span class="nv">delegate</span>] <span class="k">in</span>
 </li><li>    <span class="c"><span class="enstr">// closure body goes here</span><!--end_enstr--><span class="jpstr">（クロージャ本文が、ここにきます）</span><!--end_jpstr--></span>
 </li><li>}
 </li></ol></div></div></div>
@@ -1211,7 +1217,7 @@ ARCは、<code class="docutils literal notranslate"><span class="pre">Person</sp
 捕獲リストで適切にされた参照がどのように見えるかは、ここにあります：
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/closureReferenceCycle02_2x.png" class="align-center" src="../images/closureReferenceCycle02_2x.png" style="width: 626px;" />
+<img alt="../_images/closureReferenceCycle02_2x.png" class="align-center" src="../_images/closureReferenceCycle02_2x.png" style="width: 626px;" />
 <p><span class="enstr">This time, the capture of <code class="docutils literal notranslate"><span class="pre">self</span></code> by the closure is an unowned reference, and does not keep a strong hold on the <code class="docutils literal notranslate"><span class="pre">HTMLElement</span></code> instance it has captured. If you set the strong reference from the <code class="docutils literal notranslate"><span class="pre">paragraph</span></code> variable to <code class="docutils literal notranslate"><span class="pre">nil</span></code>, the <code class="docutils literal notranslate"><span class="pre">HTMLElement</span></code> instance is deallocated, as can be seen from the printing of its deinitializer message in the example below:</span><!--end_enstr-->
 <span class="jpstr">
 今度は、クロージャによる<code class="docutils literal notranslate"><span class="pre">self</span></code>の捕獲は非所有参照であって、それが捕獲している<code class="docutils literal notranslate"><span class="pre">HTMLElement</span></code>インスタンスに対する強い支配力を保ちません。あなたが強い参照である<code class="docutils literal notranslate"><span class="pre">paragraph</span></code>変数を<code class="docutils literal notranslate"><span class="pre">nil</span></code>に設定するならば、その<code class="docutils literal notranslate"><span class="pre">HTMLElement</span></code>インスタンスは、下の例におけるそれのデイニシャライザのメッセージの出力から分かるように、割り当て解除されます：
@@ -1232,9 +1238,9 @@ ARCは、<code class="docutils literal notranslate"><span class="pre">Person</sp
 
     </article>
     <div class="next_previous">
-        <p class="previous"><a href="Generics.html"><span class="enstr">Generics</span><!--end_enstr-->
+        <p class="previous"><a href="OpaqueTypes.html"><span class="enstr">Opaque Types</span><!--end_enstr-->
 <span class="jpstr">
-総称体
+不透明型
 </span><!--end_jpstr-->
 </a></p>
         <p class="next"><a href="MemorySafety.html"><span class="enstr">Memory Safety</span><!--end_enstr-->
@@ -1260,6 +1266,6 @@ ARCは、<code class="docutils literal notranslate"><span class="pre">Person</sp
   </p>
 </footer>
 <div id="jump_to_overlay"></div>
-<script src="../static/javascripts/application.js"></script>
+<script src="../_static/javascripts/application.js"></script>
   </body>
 </html>

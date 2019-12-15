@@ -10,11 +10,11 @@
     <meta name="author" content="Apple Inc." />
     <meta name="viewport" content="width=device-width initial-scale=1" />
     
-    <title>Expressions — The Swift Programming Language (Swift 5)</title>
+    <title>Expressions — The Swift Programming Language (Swift 5.1)</title>
     
     <link rel="license" href="/LICENSE.txt" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/tspl.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/application.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/tspl.css" />
     <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
@@ -41,7 +41,7 @@
 
     <div id="menu-toggle" class="menu-toggle open"></div>
 
-    <h2>The Swift Programming Language<div>Swift 5</div></h2>
+    <h2>The Swift Programming Language<div>Swift 5.1</div></h2>
 
     <ul>
     <ul class="current">
@@ -386,7 +386,7 @@ try演算子<a class="headerlink" href="#ID516" title="Permalink to this headlin
 ある二項演算子の左手側での式が<code class="docutils literal notranslate"><span class="pre">try</span></code>、<code class="docutils literal notranslate"><span class="pre">try?</span></code>、または<code class="docutils literal notranslate"><span class="pre">try!</span></code>で印される場合、その演算子は二項式全体に適用されます。とは言うものの、あなたは丸括弧を使って演算子の適用範囲について明確にすることができます。
 </span><!--end_jpstr-->
 </p>
-<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="nv">sum</span> = <span class="k">try</span> <span class="nv">someThrowingFunction</span>() + <span class="nv">anotherThrowingFunction</span>()<span class="enstr"><span class="c">// try applies to both function calls</span></span><!--end_enstr--><span class="jpstr"><span class="c">（tryは、両方の関数呼び出しに適用されます）</span></span><!--end_jpstr--></li><li><span class="nv">sum</span> = <span class="k">try</span> (<span class="nv">someThrowingFunction</span>() + <span class="nv">anotherThrowingFunction</span>())<span class="enstr"><span class="c">// try applies to both function calls</span></span><!--end_enstr--><span class="jpstr"><span class="c">（tryは、両方の関数呼び出しに適用されます）</span></span><!--end_jpstr--></li><li><span class="nv">sum</span> = (<span class="k">try</span> <span class="nv">someThrowingFunction</span>()) + <span class="nv">anotherThrowingFunction</span>()<span class="enstr"><span class="c">// Error: try applies only to the first function call</span></span><!--end_enstr--><span class="jpstr"><span class="c">（エラー：tryは、最初の関数呼び出しだけに適用されます）</span></span><!--end_jpstr--></li></ol></div></div></div>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="nv">sum</span> = <span class="k">try</span> <span class="nv">someThrowingFunction</span>() + <span class="nv">anotherThrowingFunction</span>()   <span class="enstr"><span class="c">// try applies to both function calls</span></span><!--end_enstr--><span class="jpstr"><span class="c">（tryは、両方の関数呼び出しに適用されます）</span></span><!--end_jpstr--></li><li><span class="nv">sum</span> = <span class="k">try</span> (<span class="nv">someThrowingFunction</span>() + <span class="nv">anotherThrowingFunction</span>()) <span class="enstr"><span class="c">// try applies to both function calls</span></span><!--end_enstr--><span class="jpstr"><span class="c">（tryは、両方の関数呼び出しに適用されます）</span></span><!--end_jpstr--></li><li><span class="nv">sum</span> = (<span class="k">try</span> <span class="nv">someThrowingFunction</span>()) + <span class="nv">anotherThrowingFunction</span>() <span class="enstr"><span class="c">// Error: try applies only to the first function call</span></span><!--end_enstr--><span class="jpstr"><span class="c">（エラー：tryは、最初の関数呼び出しだけに適用されます）</span></span><!--end_jpstr--></li></ol></div></div></div>
 <p><span class="enstr">A <code class="docutils literal notranslate"><span class="pre">try</span></code> expression can’t appear on the right-hand side of a binary operator, unless the binary operator is the assignment operator or the <code class="docutils literal notranslate"><span class="pre">try</span></code> expression is enclosed in parentheses.</span><!--end_enstr-->
 <span class="jpstr">
 <code class="docutils literal notranslate"><span class="pre">try</span></code>式が二項演算子の右手側に現れることは、その二項演算子が代入演算子であるか<code class="docutils literal notranslate"><span class="pre">try</span></code>式が丸括弧の中に入れられるかしない限りはできません。
@@ -942,7 +942,7 @@ self式の文法
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="nv">myFunction</span> { <span class="nv">print</span>(<span class="k">self</span>.<span class="nv">title</span>) }                    <span class="c">// implicit strong capture</span>
 </li><li><span class="nv">myFunction</span> { [<span class="k">self</span>] <span class="k">in</span> <span class="nv">print</span>(<span class="k">self</span>.<span class="nv">title</span>) }          <span class="c">// explicit strong capture</span>
-</li><li><span class="nv">myFunction</span> { [<span class="k">weak</span> <span class="k">self</span>] <span class="k">in</span> <span class="nv">print</span>(<span class="k">self</span>!.<span class="nv">title</span>) }<span class="enstr"><span class="c">// weak capture</span></span><!--end_enstr--><span class="jpstr"><span class="c">（弱いキャプチャ）</span></span><!--end_jpstr--></li><li><span class="nv">myFunction</span> { [<span class="k">unowned</span> <span class="k">self</span>] <span class="k">in</span> <span class="nv">print</span>(<span class="k">self</span>.<span class="nv">title</span>) }<span class="enstr"><span class="c">// unowned capture</span></span><!--end_enstr--><span class="jpstr"><span class="c">（非所有キャプチャ）</span></span><!--end_jpstr--></li></ol></div></div></div>
+</li><li><span class="nv">myFunction</span> { [<span class="k">weak</span> <span class="k">self</span>] <span class="k">in</span> <span class="nv">print</span>(<span class="k">self</span>!.<span class="nv">title</span>) }    <span class="enstr"><span class="c">// weak capture</span></span><!--end_enstr--><span class="jpstr"><span class="c">（弱いキャプチャ）</span></span><!--end_jpstr--></li><li><span class="nv">myFunction</span> { [<span class="k">unowned</span> <span class="k">self</span>] <span class="k">in</span> <span class="nv">print</span>(<span class="k">self</span>.<span class="nv">title</span>) }  <span class="enstr"><span class="c">// unowned capture</span></span><!--end_enstr--><span class="jpstr"><span class="c">（非所有キャプチャ）</span></span><!--end_jpstr--></li></ol></div></div></div>
 <p><span class="enstr">You can also bind an arbitrary expression to a named value in a capture list. The expression is evaluated when the closure is created, and the value is captured with the specified strength. For example:</span><!--end_enstr-->
 <span class="jpstr">
 あなたはまた、ある任意の式を、キャプチャリストの中の名前をつけられた値と結び付けることができます。その式は、クロージャが作成される時に評価されます、そしてその値は、指定された強さでキャプチャされます。例えば：
@@ -1017,6 +1017,11 @@ self式の文法
 </p>
 <div class="syntax-outline highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li>(<span class="gi">identifier 1</span>: <span class="gi">expression 1</span>, <span class="gi">identifier 2</span>: <span class="gi">expression 2</span>, <span class="gi">...</span>)
 </li></ol></div></div></div>
+<p><span class="enstr">Each identifier in a tuple expression must be unique within the scope of the tuple expression. In a nested tuple expression, identifiers at the same level of nesting must be unique. For example, <code class="docutils literal notranslate"><span class="pre">(a:</span> <span class="pre">10,</span> <span class="pre">a:</span> <span class="pre">20)</span></code> is invalid because the label <code class="docutils literal notranslate"><span class="pre">a</span></code> appears twice at the same level. However, <code class="docutils literal notranslate"><span class="pre">(a:</span> <span class="pre">10,</span> <span class="pre">b:</span> <span class="pre">(a:</span> <span class="pre">1,</span> <span class="pre">x:</span> <span class="pre">2))</span></code> is valid—although <code class="docutils literal notranslate"><span class="pre">a</span></code> appears twice, it appears once in the outer tuple and once in the inner tuple.</span><!--end_enstr-->
+<span class="jpstr">
+あるタプル式の中の各識別子は、そのタプル式のスコープ内で特有でなければなりません。入れ子にされたタプル式において、同じ水準の入れ子での識別子それらは特有でなければなりません。例えば、<code class="docutils literal notranslate"><span class="pre">(a:</span> <span class="pre">10,</span> <span class="pre">a:</span> <span class="pre">20)</span></code>は無効です、なぜならラベル<code class="docutils literal notranslate"><span class="pre">a</span></code>が同じ水準で二度現れるからです。しかしながら、<code class="docutils literal notranslate"><span class="pre">(a:</span> <span class="pre">10,</span> <span class="pre">b:</span> <span class="pre">(a:</span> <span class="pre">1,</span> <span class="pre">x:</span> <span class="pre">2))</span></code>は有効です — もっとも<code class="docutils literal notranslate"><span class="pre">a</span></code>が二度現れますが、それは一度だけ外側タプルに、そして一度だけ内側タプルに現れます。
+</span><!--end_jpstr-->
+</p>
 <p><span class="enstr">A tuple expression can contain zero expressions, or it can contain two or more expressions. A single expression inside parentheses is a parenthesized expression.</span><!--end_enstr-->
 <span class="jpstr">
 タプル式はゼロ個の式を含むことができます、またはそれは２つまたはそれ以上の式を含むことができます。丸括弧で囲まれたただ１つだけの式は、括弧で囲まれた式です。
@@ -1124,7 +1129,7 @@ self式の文法
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">var</span> <span class="nv">compoundValue</span> = (<span class="nv">a</span>: <span class="m">1</span>, <span class="nv">b</span>: <span class="m">2</span>)
-</li><li><span class="c">// Equivalent to compoundValue = (a: 10, b: 20)</span>
+</li><li><span class="c"><span class="enstr">// Equivalent to compoundValue = (a: 10, b: 20)</span><!--end_enstr--><span class="jpstr">（compoundValue = (a: 10, b: 20) に等しい）</span><!--end_jpstr--></span>
 </li><li><span class="nv">compoundValue</span>[<span class="nv">keyPath</span>: \.<span class="k">self</span>] = (<span class="nv">a</span>: <span class="m">10</span>, <span class="nv">b</span>: <span class="m">20</span>)
 </li></ol></div></div></div>
 <p><span class="enstr">The <em>path</em> can contain multiple property names, separated by periods, to refer to a property of a property’s value. This code uses the key path expression <code class="docutils literal notranslate"><span class="pre">\OuterStructure.outer.someValue</span></code> to access the <code class="docutils literal notranslate"><span class="pre">someValue</span></code> property of the <code class="docutils literal notranslate"><span class="pre">OuterStructure</span></code> type’s <code class="docutils literal notranslate"><span class="pre">outer</span></code> property:</span><!--end_enstr-->
@@ -1143,7 +1148,7 @@ self式の文法
 </li><li><span class="k">let</span> <span class="nv">nestedKeyPath</span> = \<span class="nv">OuterStructure</span>.<span class="nv">outer</span>.<span class="nv">someValue</span>
 </li><li>
 </li><li><span class="k">let</span> <span class="nv">nestedValue</span> = <span class="nv">nested</span>[<span class="nv">keyPath</span>: <span class="nv">nestedKeyPath</span>]
-</li><li><span class="c">// nestedValue is 24</span>
+</li><li><span class="c"><span class="enstr">// nestedValue is 24</span><!--end_enstr--><span class="jpstr">（nestedValue は 24 です）</span><!--end_jpstr--></span>
 </li></ol></div></div></div>
 <p><span class="enstr">The <em>path</em> can include subscripts using brackets, as long as the subscript’s parameter type conforms to the <code class="docutils literal notranslate"><span class="pre">Hashable</span></code> protocol. This example uses a subscript in a key path to access the second element of an array:</span><!--end_enstr-->
 <span class="jpstr">
@@ -1152,7 +1157,7 @@ self式の文法
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">let</span> <span class="nv">greetings</span> = [<span class="s">"hello"</span>, <span class="s">"hola"</span>, <span class="s">"bonjour"</span>, <span class="s">"안녕"</span>]
 </li><li><span class="k">let</span> <span class="nv">myGreeting</span> = <span class="nv">greetings</span>[<span class="nv">keyPath</span>: \[<span class="nv">String</span>].[<span class="m">1</span>]]
-</li><li><span class="c">// myGreeting is 'hola'</span>
+</li><li><span class="c"><span class="enstr">// myGreeting is 'hola'</span><!--end_enstr--><span class="jpstr">（myGreeting は 'hola' です）</span><!--end_jpstr--></span>
 </li></ol></div></div></div>
 <p><span class="enstr">The value used in a subscript can be a named value or a literal. Values are captured in key paths using value semantics. The following code uses the variable <code class="docutils literal notranslate"><span class="pre">index</span></code> in both a key-path expression and in a closure to access the third element of the <code class="docutils literal notranslate"><span class="pre">greetings</span></code> array. When <code class="docutils literal notranslate"><span class="pre">index</span></code> is modified, the key-path expression still references the third element, while the closure uses the new index.</span><!--end_enstr-->
 <span class="jpstr">
@@ -1324,7 +1329,7 @@ Objective-C APIと相互作用するSwiftコードにおけるセレクタの使
 </li><li><span class="k">if</span> <span class="k">let</span> <span class="nv">value</span> = <span class="nv">c</span>.<span class="nv">value</span>(<span class="nv">forKey</span>: <span class="nv">keyPath</span>) {
 </li><li>    <span class="nv">print</span>(<span class="nv">value</span>)
 </li><li>}
-</li><li><span class="c">// Prints "12"</span>
+</li><li><span class="c"><span class="enstr">// Prints "12"</span><!--end_enstr--><span class="jpstr">（「12」を出力します）</span><!--end_jpstr--></span>
 </li></ol></div></div></div>
 <p><span class="enstr">When you use a key-path string expression within a class, you can refer to a property of that class by writing just the property name, without the class name.</span><!--end_enstr-->
 <span class="jpstr">
@@ -1548,8 +1553,8 @@ Objective-C APIと相互作用するSwiftコードにおけるキーパスの使
 </li><li>}
 </li><li><span class="k">let</span> <span class="nv">instance</span> = <span class="nv">SomeClass</span>()
 </li><li>
-</li><li><span class="k">let</span> <span class="nv">a</span> = <span class="nv">instance</span>.<span class="nv">someMethod</span>              <span class="enstr"><span class="c">// Ambiguous</span></span><!--end_enstr--><span class="jpstr"><span class="c">（あいまい）</span></span><!--end_jpstr--></li><li><span class="k">let</span> <span class="nv">b</span> = <span class="nv">instance</span>.<span class="nv">someMethod</span>(<span class="nv">x</span>:<span class="nv">y</span>:)<span class="enstr"><span class="c">// Unambiguous</span></span><!--end_enstr--><span class="jpstr"><span class="c">（あいまいさ無し）</span></span><!--end_jpstr--></li><li>
-</li><li><span class="k">let</span> <span class="nv">d</span> = <span class="nv">instance</span>.<span class="nv">overloadedMethod</span>        <span class="enstr"><span class="c">// Ambiguous</span></span><!--end_enstr--><span class="jpstr"><span class="c">（あいまい）</span></span><!--end_jpstr--></li><li><span class="k">let</span> <span class="nv">d</span> = <span class="nv">instance</span>.<span class="nv">overloadedMethod</span>(<span class="nv">x</span>:<span class="nv">y</span>:)<span class="enstr"><span class="c">// Still ambiguous</span></span><!--end_enstr--><span class="jpstr"><span class="c">（依然あいまい）</span></span><!--end_jpstr--></li><li><span class="k">let</span> <span class="nv">d</span>: (<span class="nc">Int</span>, <span class="nc">Bool</span>) -&gt; <span class="nc">Void</span>  = <span class="nv">instance</span>.<span class="nv">overloadedMethod</span>(<span class="nv">x</span>:<span class="nv">y</span>:)  <span class="c">// Unambiguous</span>
+</li><li><span class="k">let</span> <span class="nv">a</span> = <span class="nv">instance</span>.<span class="nv">someMethod</span>              <span class="enstr"><span class="c">// Ambiguous</span></span><!--end_enstr--><span class="jpstr"><span class="c">（あいまい）</span></span><!--end_jpstr--></li><li><span class="k">let</span> <span class="nv">b</span> = <span class="nv">instance</span>.<span class="nv">someMethod</span>(<span class="nv">x</span>:<span class="nv">y</span>:)        <span class="enstr"><span class="c">// Unambiguous</span></span><!--end_enstr--><span class="jpstr"><span class="c">（あいまいさ無し）</span></span><!--end_jpstr--></li><li>
+</li><li><span class="k">let</span> <span class="nv">d</span> = <span class="nv">instance</span>.<span class="nv">overloadedMethod</span>        <span class="enstr"><span class="c">// Ambiguous</span></span><!--end_enstr--><span class="jpstr"><span class="c">（あいまい）</span></span><!--end_jpstr--></li><li><span class="k">let</span> <span class="nv">d</span> = <span class="nv">instance</span>.<span class="nv">overloadedMethod</span>(<span class="nv">x</span>:<span class="nv">y</span>:)  <span class="enstr"><span class="c">// Still ambiguous</span></span><!--end_enstr--><span class="jpstr"><span class="c">（依然あいまい）</span></span><!--end_jpstr--></li><li><span class="k">let</span> <span class="nv">d</span>: (<span class="nc">Int</span>, <span class="nc">Bool</span>) -&gt; <span class="nc">Void</span>  = <span class="nv">instance</span>.<span class="nv">overloadedMethod</span>(<span class="nv">x</span>:<span class="nv">y</span>:)  <span class="c">// Unambiguous</span>
 </li></ol></div></div></div>
 <p><span class="enstr">If a period appears at the beginning of a line, it is understood as part of an explicit member expression, not as an implicit member expression. For example, the following listing shows chained method calls split over several lines:</span><!--end_enstr-->
 <span class="jpstr">
@@ -1638,7 +1643,7 @@ Objective-C APIと相互作用するSwiftコードにおけるキーパスの使
 </li></ol></div></div></div>
 <p><span class="enstr">If the value of the <em>expression</em> is not <code class="docutils literal notranslate"><span class="pre">nil</span></code>, the optional value is unwrapped and returned with the corresponding non-optional type. Otherwise, a runtime error is raised.</span><!--end_enstr-->
 <span class="jpstr">
-<em>式</em>の値が<code class="docutils literal notranslate"><span class="pre">nil</span></code>でないならば、オプショナルの値は包装を取られて、対応する非オプショナル型で返されます。そうでなければ、実行時エラーが引き起こされます。
+<em>式</em>の値が<code class="docutils literal notranslate"><span class="pre">nil</span></code>でないならば、オプショナルの値は包装を取られて（アンラップされて）、対応する非オプショナル型で返されます。そうでなければ、実行時エラーが引き起こされます。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">The unwrapped value of a forced-value expression can be modified, either by mutating the value itself, or by assigning to one of the value’s members. For example:</span><!--end_enstr-->
@@ -1648,11 +1653,11 @@ Objective-C APIと相互作用するSwiftコードにおけるキーパスの使
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">var</span> <span class="nv">x</span>: <span class="nc">Int</span>? = <span class="m">0</span>
 </li><li><span class="nv">x</span>! += <span class="m">1</span>
-</li><li><span class="c">// x is now 1</span>
+</li><li><span class="c"><span class="enstr">// x is now 1</span><!--end_enstr--><span class="jpstr">（x は、現在 1 です）</span><!--end_jpstr--></span>
 </li><li>
 </li><li><span class="k">var</span> <span class="nv">someDictionary</span> = [<span class="s">"a"</span>: [<span class="m">1</span>, <span class="m">2</span>, <span class="m">3</span>], <span class="s">"b"</span>: [<span class="m">10</span>, <span class="m">20</span>]]
 </li><li><span class="nv">someDictionary</span>[<span class="s">"a"</span>]![<span class="m">0</span>] = <span class="m">100</span>
-</li><li><span class="c">// someDictionary is now ["a": [100, 2, 3], "b": [10, 20]]</span>
+</li><li><span class="c"><span class="enstr">// someDictionary is now ["a": [100, 2, 3], "b": [10, 20]]</span><!--end_enstr--><span class="jpstr">（someDictionary は、現在 ["a": [100, 2, 3], "b": [10, 20]] です）</span><!--end_jpstr--></span>
 </li></ol></div></div></div>
 <div class="admonition grammar"><p class="first admonition-title"><span class="enstr">Grammar of a forced-value expression</span><!--end_enstr-->
 <span class="jpstr">
@@ -1711,11 +1716,11 @@ Objective-C APIと相互作用するSwiftコードにおけるキーパスの使
 </li><li>
 </li><li><span class="nv">someDictionary</span>[<span class="s">"not here"</span>]?[<span class="m">0</span>] = <span class="nv">someFunctionWithSideEffects</span>()
 </li><li><span class="c"><span class="enstr">// someFunctionWithSideEffects is not evaluated</span><!--end_enstr--><span class="jpstr">（someFunctionWithSideEffectsは、評価されません。）</span><!--end_jpstr--></span>
-</li><li><span class="c">// someDictionary is still ["a": [1, 2, 3], "b": [10, 20]]</span>
+</li><li><span class="c"><span class="enstr">// someDictionary is still ["a": [1, 2, 3], "b": [10, 20]]</span><!--end_enstr--><span class="jpstr">（someDictionary は、まだ ["a": [1, 2, 3], "b": [10, 20]] です）</span><!--end_jpstr--></span>
 </li><li>
 </li><li><span class="nv">someDictionary</span>[<span class="s">"a"</span>]?[<span class="m">0</span>] = <span class="nv">someFunctionWithSideEffects</span>()
 </li><li><span class="c"><span class="enstr">// someFunctionWithSideEffects is evaluated and returns 42</span><!--end_enstr--><span class="jpstr">（someFunctionWithSideEffectsは、評価されて42を返します）</span><!--end_jpstr--></span>
-</li><li><span class="c">// someDictionary is now ["a": [42, 2, 3], "b": [10, 20]]</span>
+</li><li><span class="c"><span class="enstr">// someDictionary is now ["a": [42, 2, 3], "b": [10, 20]]</span><!--end_enstr--><span class="jpstr">（omeDictionary は、現在 ["a": [42, 2, 3], "b": [10, 20]] です）</span><!--end_jpstr--></span>
 </li></ol></div></div></div>
 <div class="admonition grammar"><p class="first admonition-title"><span class="enstr">Grammar of an optional-chaining expression</span><!--end_enstr-->
 <span class="jpstr">
@@ -1756,6 +1761,6 @@ Objective-C APIと相互作用するSwiftコードにおけるキーパスの使
   </p>
 </footer>
 <div id="jump_to_overlay"></div>
-<script src="../static/javascripts/application.js"></script>
+<script src="../_static/javascripts/application.js"></script>
   </body>
 </html>

@@ -10,11 +10,11 @@
     <meta name="author" content="Apple Inc." />
     <meta name="viewport" content="width=device-width initial-scale=1" />
     
-    <title>Functions — The Swift Programming Language (Swift 5)</title>
+    <title>Functions — The Swift Programming Language (Swift 5.1)</title>
     
     <link rel="license" href="/LICENSE.txt" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/tspl.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/application.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/tspl.css" />
     <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
@@ -41,7 +41,7 @@
 
     <div id="menu-toggle" class="menu-toggle open"></div>
 
-    <h2>The Swift Programming Language<div>Swift 5</div></h2>
+    <h2>The Swift Programming Language<div>Swift 5.1</div></h2>
 
     <ul>
     <ul class="current">
@@ -90,7 +90,7 @@
 クロージャ
 </span><!--end_jpstr-->
 </a></li>
-<li class="toctree-l2"><a class="reference internal" href="Enumerations.html"><span class="enstr">Enumeration</span><!--end_enstr-->
+<li class="toctree-l2"><a class="reference internal" href="Enumerations.html"><span class="enstr">Enumerations</span><!--end_enstr-->
 <span class="jpstr">
 列挙
 </span><!--end_jpstr-->
@@ -163,6 +163,11 @@
 <li class="toctree-l2"><a class="reference internal" href="Generics.html"><span class="enstr">Generics</span><!--end_enstr-->
 <span class="jpstr">
 総称体
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OpaqueTypes.html"><span class="enstr">Opaque Types</span><!--end_enstr-->
+<span class="jpstr">
+不透明型
 </span><!--end_jpstr-->
 </a></li>
 <li class="toctree-l2"><a class="reference internal" href="AutomaticReferenceCounting.html"><span class="enstr">Automatic Reference Counting</span><!--end_enstr-->
@@ -260,6 +265,7 @@
 </a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#ID607">Functions With an Implicit Return</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#ID166"><span class="enstr">Function Argument Labels and Parameter Names</span><!--end_enstr-->
@@ -678,6 +684,40 @@ In-Outパラメータ
 </li><li><span class="c"><span class="enstr">// Prints "min is -6 and max is 109"</span><!--end_enstr--><span class="jpstr">（「最小は-6で、最大は109です」を出力します）</span><!--end_jpstr--></span>
 </li></ol></div></div></div>
 </div>
+</div>
+<div class="section" id="ID607">
+<h3><span class="enstr">Functions With an Implicit Return<a class="headerlink" href="#ID607" title="Permalink to this headline">¶</a></span><!--end_enstr-->
+<span class="jpstr">
+暗黙的なreturnをもつ関数<a class="headerlink" href="#ID607" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">If the entire body of the function is a single expression, the function implicitly returns that expression. For example, both functions below have the same behavior:</span><!--end_enstr-->
+<span class="jpstr">
+関数の本文全体がある単一の式であるならば、その関数は暗黙的にその式を返します。例えば、下の両方の関数は同じ挙動を持ちます：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">func</span> <span class="nv">greeting</span>(<span class="nv">for</span> <span class="nv">person</span>: <span class="nc">String</span>) -&gt; <span class="nc">String</span> {
+</li><li>    <span class="s">"Hello, "</span> + <span class="nv">person</span> + <span class="s">"!"</span>
+</li><li>}
+</li><li><span class="nv">print</span>(<span class="nv">greeting</span>(<span class="nv">for</span>: <span class="s">"Dave"</span>))
+</li><li><span class="c">// Prints "Hello, Dave!"</span>
+</li><li>
+</li><li><span class="k">func</span> <span class="nv">anotherGreeting</span>(<span class="nv">for</span> <span class="nv">person</span>: <span class="nc">String</span>) -&gt; <span class="nc">String</span> {
+</li><li>    <span class="k">return</span> <span class="s">"Hello, "</span> + <span class="nv">person</span> + <span class="s">"!"</span>
+</li><li>}
+</li><li><span class="nv">print</span>(<span class="nv">anotherGreeting</span>(<span class="nv">for</span>: <span class="s">"Dave"</span>))
+</li><li><span class="c">// Prints "Hello, Dave!"</span>
+</li></ol></div></div></div>
+<p><span class="enstr">The entire definition of the <code class="docutils literal notranslate"><span class="pre">greeting(for:)</span></code> function is the greeting message that it returns, which means it can use this shorter form. The <code class="docutils literal notranslate"><span class="pre">anotherGreeting(for:)</span></code> function returns the same greeting message, using the <code class="docutils literal notranslate"><span class="pre">return</span></code> keyword like a longer function. Any function that you write as just one <code class="docutils literal notranslate"><span class="pre">return</span></code> line can omit the <code class="docutils literal notranslate"><span class="pre">return</span></code>.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">greeting(for:)</span></code>関数の全体の定義は、それが返す挨拶メッセージです、それは、それがこの省略形を使用できるのを意味します。<code class="docutils literal notranslate"><span class="pre">anotherGreeting(for:)</span></code>関数は、同じ挨拶メッセージを返します、もっと長い関数のように<code class="docutils literal notranslate"><span class="pre">return</span></code>キーワードを使って。あなたがただ１つだけの<code class="docutils literal notranslate"><span class="pre">return</span></code>行として書くあらゆる関数は、<code class="docutils literal notranslate"><span class="pre">return</span></code>を省略できます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">As you’ll see in <a class="reference internal" href="Properties.html#ID608"><span class="std std-ref">Shorthand Getter Declaration</span></a>, property getters can also use an implicit return.</span><!--end_enstr-->
+<span class="jpstr">
+あなたが<a class="reference internal" href="Properties.html#ID608"><span class="std std-ref">略記ゲッター宣言</span></a>で見るように、プロパティゲッターもまた暗黙的なreturnを使用できます。
+</span><!--end_jpstr-->
+</p>
 </div>
 </div>
 <div class="section" id="ID166">
@@ -1190,6 +1230,6 @@ in-outパラメータは、関数からある値が返されることと同じ�
   </p>
 </footer>
 <div id="jump_to_overlay"></div>
-<script src="../static/javascripts/application.js"></script>
+<script src="../_static/javascripts/application.js"></script>
   </body>
 </html>

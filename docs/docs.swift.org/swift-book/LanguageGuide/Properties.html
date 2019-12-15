@@ -10,11 +10,11 @@
     <meta name="author" content="Apple Inc." />
     <meta name="viewport" content="width=device-width initial-scale=1" />
     
-    <title>Properties — The Swift Programming Language (Swift 5)</title>
+    <title>Properties — The Swift Programming Language (Swift 5.1)</title>
     
     <link rel="license" href="/LICENSE.txt" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/tspl.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/application.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/tspl.css" />
     <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
@@ -41,7 +41,7 @@
 
     <div id="menu-toggle" class="menu-toggle open"></div>
 
-    <h2>The Swift Programming Language<div>Swift 5</div></h2>
+    <h2>The Swift Programming Language<div>Swift 5.1</div></h2>
 
     <ul>
     <ul class="current">
@@ -90,7 +90,7 @@
 クロージャ
 </span><!--end_jpstr-->
 </a></li>
-<li class="toctree-l2"><a class="reference internal" href="Enumerations.html"><span class="enstr">Enumeration</span><!--end_enstr-->
+<li class="toctree-l2"><a class="reference internal" href="Enumerations.html"><span class="enstr">Enumerations</span><!--end_enstr-->
 <span class="jpstr">
 列挙
 </span><!--end_jpstr-->
@@ -163,6 +163,11 @@
 <li class="toctree-l2"><a class="reference internal" href="Generics.html"><span class="enstr">Generics</span><!--end_enstr-->
 <span class="jpstr">
 総称体
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OpaqueTypes.html"><span class="enstr">Opaque Types</span><!--end_enstr-->
+<span class="jpstr">
+不透明型
 </span><!--end_jpstr-->
 </a></li>
 <li class="toctree-l2"><a class="reference internal" href="AutomaticReferenceCounting.html"><span class="enstr">Automatic Reference Counting</span><!--end_enstr-->
@@ -255,6 +260,7 @@
 短縮形セッター宣言
 </span><!--end_jpstr-->
 </a></li>
+<li><a class="reference internal" href="#ID608">Shorthand Getter Declaration</a></li>
 <li><a class="reference internal" href="#ID261"><span class="enstr">Read-Only Computed Properties</span><!--end_enstr-->
 <span class="jpstr">
 読み出し専用の計算プロパティ
@@ -267,6 +273,15 @@
 プロパティオブザーバー
 </span><!--end_jpstr-->
 </a></li>
+<li><a class="reference internal" href="#ID617"><span class="enstr">Property Wrappers</span><!--end_enstr-->
+<span class="jpstr">
+プロパティラッパー
+</span><!--end_jpstr-->
+</a><ul>
+<li><a class="reference internal" href="#ID618">Setting Initial Values for Wrapped Properties</a></li>
+<li><a class="reference internal" href="#ID619">Projecting a Value From a Property Wrapper</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#ID263"><span class="enstr">Global and Local Variables</span><!--end_enstr-->
 <span class="jpstr">
 グローバルおよびローカル変数
@@ -318,6 +333,11 @@
 <p><span class="enstr">In addition, you can define property observers to monitor changes in a property’s value, which you can respond to with custom actions. Property observers can be added to stored properties you define yourself, and also to properties that a subclass inherits from its superclass.</span><!--end_enstr-->
 <span class="jpstr">
 それに加えて、あなたはプロパティオブザーバーを定義して、あるプロパティの値の変化を監視することができて、あなたはあつらえの動作でそれに応答することができます。プロパティオブザーバーは、あなたがあなた自身で定義する格納プロパティに、そのうえにサブクラスがそのスーパークラスから継承するプロパティにも加えられることができます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">You can also use a property wrapper to reuse code in the getter and setter of multiple properties.</span><!--end_enstr-->
+<span class="jpstr">
+あなたはまたプロパティラッパーを使用して、複数のプロパティのゲッターとセッターでコードを再利用できます。
 </span><!--end_jpstr-->
 </p>
 <div class="section" id="ID255">
@@ -576,16 +596,16 @@
 <code class="docutils literal notranslate"><span class="pre">center</span></code>プロパティは、それから新しい値<code class="docutils literal notranslate"><span class="pre">(15,</span> <span class="pre">15)</span></code>に設定されます、それは、正方形を上にそして右に、下記の図においてオレンジの正方形によって示される新しい位置へと動かします。<code class="docutils literal notranslate"><span class="pre">center</span></code>プロパティを設定することは、<code class="docutils literal notranslate"><span class="pre">center</span></code>のためのセッターを呼び出します、そしてそれは、格納された<code class="docutils literal notranslate"><span class="pre">origin</span></code>プロパティの<code class="docutils literal notranslate"><span class="pre">x</span></code>と<code class="docutils literal notranslate"><span class="pre">y</span></code>値を修正して、正方形をその新しい位置へと動かします。
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/computedProperties_2x.png" class="align-center" src="../images/computedProperties_2x.png" style="width: 388px;" />
+<img alt="../_images/computedProperties_2x.png" class="align-center" src="../_images/computedProperties_2x.png" style="width: 388px;" />
 <div class="section" id="ID260">
 <h3><span class="enstr">Shorthand Setter Declaration<a class="headerlink" href="#ID260" title="Permalink to this headline">¶</a></span><!--end_enstr-->
 <span class="jpstr">
 短縮形セッター宣言<a class="headerlink" href="#ID260" title="Permalink to this headline">¶</a>
 </span><!--end_jpstr-->
 </h3>
-<p><span class="enstr">If a computed property’s setter does not define a name for the new value to be set, a default name of <code class="docutils literal notranslate"><span class="pre">newValue</span></code> is used. Here’s an alternative version of the <code class="docutils literal notranslate"><span class="pre">Rect</span></code> structure, which takes advantage of this shorthand notation:</span><!--end_enstr-->
+<p><span class="enstr">If a computed property’s setter doesn’t define a name for the new value to be set, a default name of <code class="docutils literal notranslate"><span class="pre">newValue</span></code> is used. Here’s an alternative version of the <code class="docutils literal notranslate"><span class="pre">Rect</span></code> structure that takes advantage of this shorthand notation:</span><!--end_enstr-->
 <span class="jpstr">
-計算プロパティのセッターが設定される新しい値の名前を定義しないならば、省略時の名前の<code class="docutils literal notranslate"><span class="pre">newValue</span></code>が使われます。この短縮形表記法を利用する<code class="docutils literal notranslate"><span class="pre">Rect</span></code>構造体の代替版が、ここにあります：
+計算プロパティのもつセッターがその設定される新しい値に名前を定義しないならば、<code class="docutils literal notranslate"><span class="pre">newValue</span></code>の省略時の値が使われます。ここに<code class="docutils literal notranslate"><span class="pre">Rect</span></code>構造体の代替のバージョンがあります、それはこの短縮形表記法を利用します：
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">struct</span> <span class="nv">AlternativeRect</span> {
@@ -604,6 +624,38 @@
 </li><li>    }
 </li><li>}
 </li></ol></div></div></div>
+</div>
+<div class="section" id="ID608">
+<h3><span class="enstr">Shorthand Getter Declaration<a class="headerlink" href="#ID608" title="Permalink to this headline">¶</a></span><!--end_enstr-->
+<span class="jpstr">
+短縮形ゲッター宣言<a class="headerlink" href="#ID608" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">If the entire body of a getter is a single expression, the getter implicitly returns that expression. Here’s an another version of the <code class="docutils literal notranslate"><span class="pre">Rect</span></code> structure that takes advantage of this shorthand notation and the shorthand notation for setters:</span><!--end_enstr-->
+<span class="jpstr">
+ゲッターの全本文が単一の式ならば、ゲッターは暗黙的にその式を返します。ここに<code class="docutils literal notranslate"><span class="pre">Rect</span></code>構造体の別のバージョンがあります、それはこの省略形表記法とセッターに対する省略形表記法を利用します：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">struct</span> <span class="nv">CompactRect</span> {
+</li><li>    <span class="k">var</span> <span class="nv">origin</span> = <span class="nv">Point</span>()
+</li><li>    <span class="k">var</span> <span class="nv">size</span> = <span class="nv">Size</span>()
+</li><li>    <span class="k">var</span> <span class="nv">center</span>: <span class="nc">Point</span> {
+</li><li>        <span class="k">get</span> {
+</li><li>            <span class="nv">Point</span>(<span class="nv">x</span>: <span class="nv">origin</span>.<span class="nv">x</span> + (<span class="nv">size</span>.<span class="nv">width</span> / <span class="m">2</span>),
+</li><li>                  <span class="nv">y</span>: <span class="nv">origin</span>.<span class="nv">y</span> + (<span class="nv">size</span>.<span class="nv">height</span> / <span class="m">2</span>))
+</li><li>        }
+</li><li>        <span class="k">set</span> {
+</li><li>            <span class="nv">origin</span>.<span class="nv">x</span> = <span class="nv">newValue</span>.<span class="nv">x</span> - (<span class="nv">size</span>.<span class="nv">width</span> / <span class="m">2</span>)
+</li><li>            <span class="nv">origin</span>.<span class="nv">y</span> = <span class="nv">newValue</span>.<span class="nv">y</span> - (<span class="nv">size</span>.<span class="nv">height</span> / <span class="m">2</span>)
+</li><li>        }
+</li><li>    }
+</li><li>}
+</li></ol></div></div></div>
+<p><span class="enstr">Omitting the <code class="docutils literal notranslate"><span class="pre">return</span></code> from a getter follows the same rules as omitting <code class="docutils literal notranslate"><span class="pre">return</span></code> from a function, as described in <a class="reference internal" href="Functions.html#ID607"><span class="std std-ref">Functions With an Implicit Return</span></a>.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">return</span></code>をゲッターから省くことは、<code class="docutils literal notranslate"><span class="pre">return</span></code>を関数から省くのと同じ規則に従います、<a class="reference internal" href="Functions.html#ID607"><span class="std std-ref">暗黙的なreturnをもつ関数</span></a>で記述されるように。
+</span><!--end_jpstr-->
+</p>
 </div>
 <div class="section" id="ID261">
 <h3><span class="enstr">Read-Only Computed Properties<a class="headerlink" href="#ID261" title="Permalink to this headline">¶</a></span><!--end_enstr-->
@@ -767,6 +819,318 @@
 <p class="last"><span class="enstr">If you pass a property that has observers to a function as an in-out parameter, the <code class="docutils literal notranslate"><span class="pre">willSet</span></code> and <code class="docutils literal notranslate"><span class="pre">didSet</span></code> observers are always called. This is because of the copy-in copy-out memory model for in-out parameters: The value is always written back to the property at the end of the function. For a detailed discussion of the behavior of in-out parameters, see <a class="reference internal" href="../ReferenceManual/Declarations.html#ID545"><span class="std std-ref">In-Out Parameters</span></a>.</span><!--end_enstr-->
 <span class="jpstr">
 あなたがオブザーバーを持つプロパティをある関数へin-outパラメータとして渡すならば、<code class="docutils literal notranslate"><span class="pre">willSet</span></code>と<code class="docutils literal notranslate"><span class="pre">didSet</span></code>オブザーバーは常に呼び出されます。これは、in-outパラメータのための「コピーイン、コピーアウト」メモリーモデルが理由です：値は常に、その関数の終わりでプロパティへと書き込まれて戻されます。in-outパラメータの振る舞いの詳細な議論のために、<a class="reference internal" href="../ReferenceManual/Declarations.html#ID545"><span class="std std-ref">in-outパラメータ</span></a>を見てください。
+</span><!--end_jpstr-->
+</p>
+</div>
+</div>
+<div class="section" id="ID617">
+<h2><span class="enstr">Property Wrappers<a class="headerlink" href="#ID617" title="Permalink to this headline">¶</a></span><!--end_enstr-->
+<span class="jpstr">
+プロパティラッパー<a class="headerlink" href="#ID617" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h2>
+<p><span class="enstr">A property wrapper adds a layer of separation between code that manages how a property is stored and the code that defines a property. For example, if you have properties that provide thread-safety checks or store their underlying data in a database, you have to write that code on every property. When you use a property wrapper, you write the management code once when you define the wrapper, and then reuse that management code by applying it to multiple properties.</span><!--end_enstr-->
+<span class="jpstr">
+プロパティラッパーは、プロパティが格納される方法を管理するコードとプロパティを定義するコードとの間に分離のレイヤー（層）を加えます。例えば、あなたがスレッド安全検査を提供するまたはそれらの基礎をなすデータをデータベースに格納するプロパティそれらを持つならば、あなたはそのコードをあらゆるプロパティ上で書かなければなりません。あなたがプロパティラッパーを使う場合、あなたは管理コードを一度だけあなたがラッパーを定義する時に書きます、そしてそれからその管理コードを、それを複数のプロパティに適用することによって再利用します。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">To define a property wrapper, you make a structure, enumeration, or class that defines a <code class="docutils literal notranslate"><span class="pre">wrappedValue</span></code> property. In the code below, the <code class="docutils literal notranslate"><span class="pre">TwelveOrLess</span></code> structure ensures that the value it wraps always contains a number less than or equal to 12. If you ask it to store a larger number, it stores 12 instead.</span><!--end_enstr-->
+<span class="jpstr">
+プロパティラッパーを定義するには、あなたはある<code class="docutils literal notranslate"><span class="pre">wrappedValue</span></code>プロパティを定義する構造体、列挙、またはクラスを作ります。下のコードにおいて、<code class="docutils literal notranslate"><span class="pre">TwelveOrLess</span></code>構造体は、それがラップする値が常に12より少ないか等しいある数を含むことを保証します。あなたがそれにより大きな数を格納するように頼むならば、それは代わりに12を格納します。
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li>@<span class="nv">propertyWrapper</span>
+</li><li><span class="k">struct</span> <span class="nv">TwelveOrLess</span> {
+</li><li>    <span class="k">private</span> <span class="k">var</span> <span class="nv">number</span> = <span class="m">0</span>
+</li><li>    <span class="k">var</span> <span class="nv">wrappedValue</span>: <span class="nc">Int</span> {
+</li><li>        <span class="k">get</span> { <span class="k">return</span> <span class="nv">number</span> }
+</li><li>        <span class="k">set</span> { <span class="nv">number</span> = <span class="nv">min</span>(<span class="nv">newValue</span>, <span class="m">12</span>) }
+</li><li>    }
+</li><li>}
+</li></ol></div></div></div>
+<p><span class="enstr">The setter ensures that new values are less than 12, and the getter returns the stored value.</span><!--end_enstr-->
+<span class="jpstr">
+セッターは、新しい値が12より少ないことを保証します、そしてゲッターは格納された値を返します。
+</span><!--end_jpstr-->
+</p>
+<div class="admonition note">
+<p class="first admonition-title"><span class="enstr">Note</span><!--end_enstr-->
+<span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+<p class="last"><span class="enstr">The declaration for <code class="docutils literal notranslate"><span class="pre">number</span></code> in the example above marks the variable as <code class="docutils literal notranslate"><span class="pre">private</span></code>, which ensures <code class="docutils literal notranslate"><span class="pre">number</span></code> is used only in the implementation of <code class="docutils literal notranslate"><span class="pre">TwelveOrLess</span></code>. Code that’s written anywhere else accesses the value using the getter and setter for <code class="docutils literal notranslate"><span class="pre">wrappedValue</span></code>, and can’t use <code class="docutils literal notranslate"><span class="pre">number</span></code> directly. For information about <code class="docutils literal notranslate"><span class="pre">private</span></code>, see <a class="reference internal" href="AccessControl.html"><span class="doc">Access Control</span></a>.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">number</span></code>に対する宣言は上の例において、変数を<code class="docutils literal notranslate"><span class="pre">private</span></code>として印します、それは<code class="docutils literal notranslate"><span class="pre">number</span></code>が<code class="docutils literal notranslate"><span class="pre">TwelveOrLess</span></code>の実装においてのみ使われることを保証します。どこか他で書かれるコードは、<code class="docutils literal notranslate"><span class="pre">wrappedValue</span></code>に対するゲッターとセッターを使って値にアクセスします、そして<code class="docutils literal notranslate"><span class="pre">number</span></code>を直接に使用できません。<code class="docutils literal notranslate"><span class="pre">private</span></code>に対する情報として、<a class="reference internal" href="AccessControl.html"><span class="doc">アクセス制御</span></a>を見てください。
+</span><!--end_jpstr-->
+</p>
+</div>
+<p><span class="enstr">You apply a wrapper to a property by writing the wrapper’s name before the property as an attribute. Here’s a structure that stores a small rectangle, using the same (rather arbitrary) definition of “small” that’s implemented by the <code class="docutils literal notranslate"><span class="pre">TwelveOrLess</span></code> property wrapper:</span><!--end_enstr-->
+<span class="jpstr">
+あなたは、ラッパーのもつ名前をそのプロパティの前に属性として書くことによって、ラッパーをプロパティに適用します。ここにある構造体があります、それは小さな矩形を格納します、<code class="docutils literal notranslate"><span class="pre">TwelveOrLess</span></code>プロパティラッパーによって実装されるのと同じ “小さい” の定義を使います：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">struct</span> <span class="nv">SmallRectangle</span> {
+</li><li>    @<span class="nv">TwelveOrLess</span> <span class="k">var</span> <span class="nv">height</span>: <span class="nc">Int</span>
+</li><li>    @<span class="nv">TwelveOrLess</span> <span class="k">var</span> <span class="nv">width</span>: <span class="nc">Int</span>
+</li><li>}
+</li><li>
+</li><li><span class="k">var</span> <span class="nv">rectangle</span> = <span class="nv">SmallRectangle</span>()
+</li><li><span class="nv">print</span>(<span class="nv">rectangle</span>.<span class="nv">height</span>)
+</li><li><span class="c"><span class="enstr">// Prints "0"</span><!--end_enstr--><span class="jpstr">（「0」を出力します）</span><!--end_jpstr--></span>
+</li><li>
+</li><li><span class="nv">rectangle</span>.<span class="nv">height</span> = <span class="m">10</span>
+</li><li><span class="nv">print</span>(<span class="nv">rectangle</span>.<span class="nv">height</span>)
+</li><li><span class="c"><span class="enstr">// Prints "10"</span><!--end_enstr--><span class="jpstr">（「10」を出力します）</span><!--end_jpstr--></span>
+</li><li>
+</li><li><span class="nv">rectangle</span>.<span class="nv">height</span> = <span class="m">24</span>
+</li><li><span class="nv">print</span>(<span class="nv">rectangle</span>.<span class="nv">height</span>)
+</li><li><span class="c"><span class="enstr">// Prints "12"</span><!--end_enstr--><span class="jpstr">（「12」を出力します）</span><!--end_jpstr--></span>
+</li></ol></div></div></div>
+<p><span class="enstr">The <code class="docutils literal notranslate"><span class="pre">height</span></code> and <code class="docutils literal notranslate"><span class="pre">width</span></code> properties get their initial values from the definition of <code class="docutils literal notranslate"><span class="pre">TwelveOrLess</span></code>, which sets <code class="docutils literal notranslate"><span class="pre">TwelveOrLess.number</span></code> to zero. Storing the number 10 into <code class="docutils literal notranslate"><span class="pre">rectangle.height</span></code> succeeds because it’s a small number. Trying to store 24 actually stores a value of 12 instead, because 24 is too large for the property setter’s rule.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">height</span></code>と<code class="docutils literal notranslate"><span class="pre">width</span></code>プロパティは、それらの初期値を<code class="docutils literal notranslate"><span class="pre">TwelveOrLess</span></code>の定義から取得します、それは<code class="docutils literal notranslate"><span class="pre">TwelveOrLess.number</span></code>をゼロに設定します。数10を<code class="docutils literal notranslate"><span class="pre">rectangle.height</span></code>へと格納することは成功します、なぜならそれは小さな数だからです。24を格納する試みは、実際には12の値を代わりに格納します、なぜなら24はプロパティのセッターのもつ規則には大きすぎるからです。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">When you apply a wrapper to a property, the compiler synthesizes code that provides storage for the wrapper and code that provides access to the property through the wrapper. (The property wrapper is responsible for storing the wrapped value, so there’s no synthesized code for that.) You could write code that uses the behavior of a property wrapper, without taking advantage of the special attribute syntax. For example, here’s a version of <code class="docutils literal notranslate"><span class="pre">SmallRectangle</span></code> from the previous code listing that wraps its properties in the <code class="docutils literal notranslate"><span class="pre">TwelveOrLess</span></code> structure explicitly, instead of writing <code class="docutils literal notranslate"><span class="pre">@TwelveOrLess</span></code> as an attribute:</span><!--end_enstr-->
+<span class="jpstr">
+あなたがあるラッパーをプロパティに適用する場合、コンパイラは、そのラッパーに対するストレージを提供するコードそしてそのラッパーに通してプロパティへのアクセスを提供するコードを合成します。（プロパティラッパーは、ラップ値を格納することに責任があります、それでそれに対する合成コードはありません。）あなたはプロパティラッパーの挙動を使うコードを、この特別な属性構文を利用することなく記述できます。例えば、ここに前のコード出力からの<code class="docutils literal notranslate"><span class="pre">SmallRectangle</span></code>の変形版があります、それはそれのプロパティを<code class="docutils literal notranslate"><span class="pre">TwelveOrLess</span></code>構造体の中に明示的にラップします、<code class="docutils literal notranslate"><span class="pre">@TwelveOrLess</span></code>を属性として書く代わりに。
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">struct</span> <span class="nv">SmallRectangle</span> {
+</li><li>    <span class="k">private</span> <span class="k">var</span> <span class="nv">_height</span> = <span class="nv">TwelveOrLess</span>()
+</li><li>    <span class="k">private</span> <span class="k">var</span> <span class="nv">_width</span> = <span class="nv">TwelveOrLess</span>()
+</li><li>    <span class="k">var</span> <span class="nv">height</span>: <span class="nc">Int</span> {
+</li><li>        <span class="k">get</span> { <span class="k">return</span> <span class="nv">_height</span>.<span class="nv">wrappedValue</span> }
+</li><li>        <span class="k">set</span> { <span class="nv">_height</span>.<span class="nv">wrappedValue</span> = <span class="nv">newValue</span> }
+</li><li>    }
+</li><li>    <span class="k">var</span> <span class="nv">width</span>: <span class="nc">Int</span> {
+</li><li>        <span class="k">get</span> { <span class="k">return</span> <span class="nv">_width</span>.<span class="nv">wrappedValue</span> }
+</li><li>        <span class="k">set</span> { <span class="nv">_width</span>.<span class="nv">wrappedValue</span> = <span class="nv">newValue</span> }
+</li><li>    }
+</li><li>}
+</li></ol></div></div></div>
+<p><span class="enstr">The <code class="docutils literal notranslate"><span class="pre">_height</span></code> and <code class="docutils literal notranslate"><span class="pre">_width</span></code> properties store an instance of the property wrapper, <code class="docutils literal notranslate"><span class="pre">TwelveOrLess</span></code>. The getter and setter for <code class="docutils literal notranslate"><span class="pre">height</span></code> and <code class="docutils literal notranslate"><span class="pre">width</span></code> wrap access to the <code class="docutils literal notranslate"><span class="pre">wrappedValue</span></code> property.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">_height</span></code>と<code class="docutils literal notranslate"><span class="pre">_width</span></code>プロパティは、プロパティラッパー、<code class="docutils literal notranslate"><span class="pre">TwelveOrLess</span></code>のインスタンスを格納します。<code class="docutils literal notranslate"><span class="pre">height</span></code>と<code class="docutils literal notranslate"><span class="pre">width</span></code>に対するゲッターとセッターは、<code class="docutils literal notranslate"><span class="pre">wrappedValue</span></code>プロパティへのアクセスをラップします。
+</span><!--end_jpstr-->
+</p>
+<div class="section" id="ID618">
+<h3><span class="enstr">Setting Initial Values for Wrapped Properties<a class="headerlink" href="#ID618" title="Permalink to this headline">¶</a></span><!--end_enstr-->
+<span class="jpstr">
+ラップされたプロパティに初期値を設定する<a class="headerlink" href="#ID618" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">The code in the examples above sets the initial value for the wrapped property by giving <code class="docutils literal notranslate"><span class="pre">number</span></code> an initial value in the definition of <code class="docutils literal notranslate"><span class="pre">TwelveOrLess</span></code>. Code that uses this property wrapper, can’t specify a different initial value for a property that’s wrapped by <code class="docutils literal notranslate"><span class="pre">TwelveOrLess</span></code>—for example, the definition of <code class="docutils literal notranslate"><span class="pre">SmallRectangle</span></code> can’t give <code class="docutils literal notranslate"><span class="pre">height</span></code> or <code class="docutils literal notranslate"><span class="pre">width</span></code> initial values. To support setting an initial value or other customization, the property wrapper needs to add an initializer. Here’s an expanded version of <code class="docutils literal notranslate"><span class="pre">TwelveOrLess</span></code> called <code class="docutils literal notranslate"><span class="pre">SmallNumber</span></code> that defines initializers that set the wrapped and maximum value:</span><!--end_enstr-->
+<span class="jpstr">
+上の例におけるコードは、ラップされたプロパティに初期値を設定することを、<code class="docutils literal notranslate"><span class="pre">number</span></code>を初期値に与えることによって、<code class="docutils literal notranslate"><span class="pre">TwelveOrLess</span></code>の定義の中で、行います。このプロパティラッパーを使うコードは、<code class="docutils literal notranslate"><span class="pre">TwelveOrLess</span></code>によってラップされるプロパティに対して異なる初期値を指定できません — 例えば、<code class="docutils literal notranslate"><span class="pre">SmallRectangle</span></code>に対する定義は<code class="docutils literal notranslate"><span class="pre">height</span></code>や<code class="docutils literal notranslate"><span class="pre">width</span></code>に初期値を与えることができません。初期値の設定または他のカスタマイゼーションをサポートするには、プロパティラッパーはイニシャライザの追加を必要とします。ここにある拡張されたバージョンの<code class="docutils literal notranslate"><span class="pre">TwelveOrLess</span></code>、<code class="docutils literal notranslate"><span class="pre">SmallNumber</span></code>と呼ばれるものがあります、それはラップされたそして最大限の値を設定するイニシャライザそれらを定義します：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li>@<span class="nv">propertyWrapper</span>
+</li><li><span class="k">struct</span> <span class="nv">SmallNumber</span> {
+</li><li>    <span class="k">private</span> <span class="k">var</span> <span class="nv">maximum</span>: <span class="nc">Int</span>
+</li><li>    <span class="k">private</span> <span class="k">var</span> <span class="nv">number</span>: <span class="nc">Int</span>
+</li><li>
+</li><li>    <span class="k">var</span> <span class="nv">wrappedValue</span>: <span class="nc">Int</span> {
+</li><li>        <span class="k">get</span> { <span class="k">return</span> <span class="nv">number</span> }
+</li><li>        <span class="k">set</span> { <span class="nv">number</span> = <span class="nv">min</span>(<span class="nv">newValue</span>, <span class="nv">maximum</span>) }
+</li><li>    }
+</li><li>
+</li><li>    <span class="k">init</span>() {
+</li><li>        <span class="nv">maximum</span> = <span class="m">12</span>
+</li><li>        <span class="nv">number</span> = <span class="m">0</span>
+</li><li>    }
+</li><li>    <span class="k">init</span>(<span class="nv">wrappedValue</span>: <span class="nc">Int</span>) {
+</li><li>        <span class="nv">maximum</span> = <span class="m">12</span>
+</li><li>        <span class="nv">number</span> = <span class="nv">min</span>(<span class="nv">wrappedValue</span>, <span class="nv">maximum</span>)
+</li><li>    }
+</li><li>    <span class="k">init</span>(<span class="nv">wrappedValue</span>: <span class="nc">Int</span>, <span class="nv">maximum</span>: <span class="nc">Int</span>) {
+</li><li>        <span class="k">self</span>.<span class="nv">maximum</span> = <span class="nv">maximum</span>
+</li><li>        <span class="nv">number</span> = <span class="nv">min</span>(<span class="nv">wrappedValue</span>, <span class="nv">maximum</span>)
+</li><li>    }
+</li><li>}
+</li></ol></div></div></div>
+<p><span class="enstr">The definition of <code class="docutils literal notranslate"><span class="pre">SmallNumber</span></code> includes three initializers—<code class="docutils literal notranslate"><span class="pre">init()</span></code>, <code class="docutils literal notranslate"><span class="pre">init(wrappedValue:)</span></code>, and <code class="docutils literal notranslate"><span class="pre">init(wrappedValue:maximum:)</span></code>—which the examples below use to set the wrapped value and the maximum value. For information about initialization and initializer syntax, see <a class="reference internal" href="Initialization.html"><span class="doc">Initialization</span></a>.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">SmallNumber</span></code>の定義は３つのイニシャライザを含みます — <code class="docutils literal notranslate"><span class="pre">init()</span></code>、<code class="docutils literal notranslate"><span class="pre">init(wrappedValue:)</span></code>、そして<code class="docutils literal notranslate"><span class="pre">init(wrappedValue:maximum:)</span></code> — それらは、下の例がラップ値と最大値を設定するのに使用します。初期化とイニシャライザ構文についての情報として、<a class="reference internal" href="Initialization.html"><span class="doc">初期化</span></a>を見てください。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">When you apply a wrapper to a property and you don’t specify an initial value, Swift uses the <code class="docutils literal notranslate"><span class="pre">init()</span></code> initializer to set up the wrapper. For example:</span><!--end_enstr-->
+<span class="jpstr">
+あなたがラッパーをプロパティに適用するそしてあなたが初期値を指定しないならば、スウィフトは<code class="docutils literal notranslate"><span class="pre">init()</span></code>イニシャライザを使ってラッパーを準備します。例えば：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">struct</span> <span class="nv">ZeroRectangle</span> {
+</li><li>    @<span class="nv">SmallNumber</span> <span class="k">var</span> <span class="nv">height</span>: <span class="nc">Int</span>
+</li><li>    @<span class="nv">SmallNumber</span> <span class="k">var</span> <span class="nv">width</span>: <span class="nc">Int</span>
+</li><li>}
+</li><li>
+</li><li><span class="k">var</span> <span class="nv">zeroRectangle</span> = <span class="nv">ZeroRectangle</span>()
+</li><li><span class="nv">print</span>(<span class="nv">zeroRectangle</span>.<span class="nv">height</span>, <span class="nv">zeroRectangle</span>.<span class="nv">width</span>)
+</li><li><span class="c">// Prints "0 0"</span>
+</li></ol></div></div></div>
+<p><span class="enstr">The instances of <code class="docutils literal notranslate"><span class="pre">SmallNumber</span></code> that wrap <code class="docutils literal notranslate"><span class="pre">height</span></code> and <code class="docutils literal notranslate"><span class="pre">width</span></code> are created by calling <code class="docutils literal notranslate"><span class="pre">SmallNumber()</span></code>. The code inside that initializer sets the initial wrapped value and the initial maximum value, using the default values of zero and 12. The property wrapper still provides all of the initial values, like the earlier example that used <code class="docutils literal notranslate"><span class="pre">TwelveOrLess</span></code> in <code class="docutils literal notranslate"><span class="pre">SmallRectangle</span></code>. Unlike that example, <code class="docutils literal notranslate"><span class="pre">SmallNumber</span></code> also supports writing those initial values as part of declaring the property.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">height</span></code>と<code class="docutils literal notranslate"><span class="pre">width</span></code>をラップする<code class="docutils literal notranslate"><span class="pre">SmallNumber</span></code>のインスタンスは、<code class="docutils literal notranslate"><span class="pre">SmallNumber()</span></code>を呼び出すことによって作成されます。そのイニシャライザの内側のコードは、初期ラップ値と初期最大値を設定します、ゼロと12の省略時の値を使って。プロパティラッパーは、依然として初期値のすべてを提供します、<code class="docutils literal notranslate"><span class="pre">SmallRectangle</span></code>での<code class="docutils literal notranslate"><span class="pre">TwelveOrLess</span></code>を使った前の例のように。その例とは違い、<code class="docutils literal notranslate"><span class="pre">SmallNumber</span></code>は、それら初期値を書き込むこともプロパティの宣言の一部としてサポートします。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">When you specify an initial value for the property, Swift uses the <code class="docutils literal notranslate"><span class="pre">init(wrappedValue:)</span></code> initializer to set up the wrapper. For example:</span><!--end_enstr-->
+<span class="jpstr">
+あなたが初期値をプロパティに対して指定する場合、スウィフトは<code class="docutils literal notranslate"><span class="pre">init(wrappedValue:)</span></code>イニシャライザを使ってラッパーを準備します。例えば：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">struct</span> <span class="nv">UnitRectangle</span> {
+</li><li>    @<span class="nv">SmallNumber</span> <span class="k">var</span> <span class="nv">height</span>: <span class="nc">Int</span> = <span class="m">1</span>
+</li><li>    @<span class="nv">SmallNumber</span> <span class="k">var</span> <span class="nv">width</span>: <span class="nc">Int</span> = <span class="m">1</span>
+</li><li>}
+</li><li>
+</li><li><span class="k">var</span> <span class="nv">unitRectangle</span> = <span class="nv">UnitRectangle</span>()
+</li><li><span class="nv">print</span>(<span class="nv">unitRectangle</span>.<span class="nv">height</span>, <span class="nv">unitRectangle</span>.<span class="nv">width</span>)
+</li><li><span class="c">// Prints "1 1"</span>
+</li></ol></div></div></div>
+<p><span class="enstr">When you write <code class="docutils literal notranslate"><span class="pre">=</span> <span class="pre">1</span></code> on a property with a wrapper, that’s translated into a call to the <code class="docutils literal notranslate"><span class="pre">init(wrappedValue:)</span></code> initializer. The instances of <code class="docutils literal notranslate"><span class="pre">SmallNumber</span></code> that wrap <code class="docutils literal notranslate"><span class="pre">height</span></code> and <code class="docutils literal notranslate"><span class="pre">width</span></code> are created by calling <code class="docutils literal notranslate"><span class="pre">SmallNumber(wrappedValue:</span> <span class="pre">1)</span></code>. The initializer uses the wrapped value that’s specified here, and it uses the default maximum value of 12.</span><!--end_enstr-->
+<span class="jpstr">
+あなたが<code class="docutils literal notranslate"><span class="pre">=</span> <span class="pre">1</span></code>をラッパーをもつプロパティ上で記述する場合、それは<code class="docutils literal notranslate"><span class="pre">init(wrappedValue:)</span></code>イニシャライザへの呼び出しに変換されます。<code class="docutils literal notranslate"><span class="pre">height</span></code>と<code class="docutils literal notranslate"><span class="pre">width</span></code>をラップする<code class="docutils literal notranslate"><span class="pre">SmallNumber</span></code>のインスタンスは、<code class="docutils literal notranslate"><span class="pre">SmallNumber(wrappedValue:</span> <span class="pre">1)</span></code>を呼び出すことによって作成されます。イニシャライザは、ここで指定されるラップ値を使います、そしてそれは省略時の最大値限の12を使います。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">When you write arguments in parentheses after the custom attribute, Swift uses the initializer that accepts those arguments to set up the wrapper. For example, if you provide an initial value and a maximum value, Swift uses the <code class="docutils literal notranslate"><span class="pre">init(wrappedValue:maximum:)</span></code> initializer:</span><!--end_enstr-->
+<span class="jpstr">
+あなたが引数を丸括弧の中であつらえの属性の後に書く場合、スウィフトはそれらの引数を受け入れるイニシャライザを使ってそのラッパーを準備します。例えば、あなたが初期値と最大値を提供するならば、スウィフトは<code class="docutils literal notranslate"><span class="pre">init(wrappedValue:maximum:)</span></code>イニシャライザを使います：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">struct</span> <span class="nv">NarrowRectangle</span> {
+</li><li>    @<span class="nv">SmallNumber</span>(<span class="nv">wrappedValue</span>: <span class="m">2</span>, <span class="nv">maximum</span>: <span class="m">5</span>) <span class="k">var</span> <span class="nv">height</span>: <span class="nc">Int</span>
+</li><li>    @<span class="nv">SmallNumber</span>(<span class="nv">wrappedValue</span>: <span class="m">3</span>, <span class="nv">maximum</span>: <span class="m">4</span>) <span class="k">var</span> <span class="nv">width</span>: <span class="nc">Int</span>
+</li><li>}
+</li><li>
+</li><li><span class="k">var</span> <span class="nv">narrowRectangle</span> = <span class="nv">NarrowRectangle</span>()
+</li><li><span class="nv">print</span>(<span class="nv">narrowRectangle</span>.<span class="nv">height</span>, <span class="nv">narrowRectangle</span>.<span class="nv">width</span>)
+</li><li><span class="c">// Prints "2 3"</span>
+</li><li>
+</li><li><span class="nv">narrowRectangle</span>.<span class="nv">height</span> = <span class="m">100</span>
+</li><li><span class="nv">narrowRectangle</span>.<span class="nv">width</span> = <span class="m">100</span>
+</li><li><span class="nv">print</span>(<span class="nv">narrowRectangle</span>.<span class="nv">height</span>, <span class="nv">narrowRectangle</span>.<span class="nv">width</span>)
+</li><li><span class="c">// Prints "5 4"</span>
+</li></ol></div></div></div>
+<p><span class="enstr">The instance of <code class="docutils literal notranslate"><span class="pre">SmallNumber</span></code> that wraps <code class="docutils literal notranslate"><span class="pre">height</span></code> is created by calling <code class="docutils literal notranslate"><span class="pre">SmallNumber(wrappedValue:</span> <span class="pre">2,</span> <span class="pre">maximum:</span> <span class="pre">5)</span></code>, and the instance that wraps <code class="docutils literal notranslate"><span class="pre">width</span></code> is created by calling <code class="docutils literal notranslate"><span class="pre">SmallNumber(wrappedValue:</span> <span class="pre">3,</span> <span class="pre">maximum:</span> <span class="pre">4)</span></code>.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">height</span></code>をラップする<code class="docutils literal notranslate"><span class="pre">SmallNumber</span></code>インスタンスは、<code class="docutils literal notranslate"><span class="pre">SmallNumber(wrappedValue:</span> <span class="pre">2,</span> <span class="pre">maximum:</span> <span class="pre">5)</span></code>を呼び出すことによって作成されます、<code class="docutils literal notranslate"><span class="pre">width</span></code>をラップするインスタンスは、<code class="docutils literal notranslate"><span class="pre">SmallNumber(wrappedValue:</span> <span class="pre">3,</span> <span class="pre">maximum:</span> <span class="pre">4)</span></code>を呼び出すことによって作成されます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">By including arguments to the property wrapper, you can set up the initial state in the wrapper or pass other options to the wrapper when it’s created. This syntax is the most general way to use a property wrapper. You can provide whatever arguments you need to the attribute, and they’re passed to the initializer.</span><!--end_enstr-->
+<span class="jpstr">
+引数をプロパティラッパーに含めることによって、あなたは初期状態をラッパーにおいて準備することまたは他のオプションをラッパーに渡すことが、それが作成される時に可能です。この構文は、プロバティラッパーを使う最も一般的な方法です。あなたは、どんなものでもあなたが必要とする引数それらを属性に提供できます、そしてそれらはイニシャライザに渡されます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">When you include property wrapper arguments, you can also specify an initial value using assignment. Swift treats the assignment like a <code class="docutils literal notranslate"><span class="pre">wrappedValue</span></code> argument and uses the initializer that accepts the arguments you include. For example:</span><!--end_enstr-->
+<span class="jpstr">
+あなたがプロパティラッパー引数を含める場合、あなたはまた代入を使って初期値を指定できます。スウィフトは、その代入を<code class="docutils literal notranslate"><span class="pre">wrappedValue</span></code>引数のように扱います、そしてあなたが含める引数を受け入れるイニシャライザを使います。例えば：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">struct</span> <span class="nv">MixedRectangle</span> {
+</li><li>    @<span class="nv">SmallNumber</span> <span class="k">var</span> <span class="nv">height</span>: <span class="nc">Int</span> = <span class="m">1</span>
+</li><li>    @<span class="nv">SmallNumber</span>(<span class="nv">maximum</span>: <span class="m">9</span>) <span class="k">var</span> <span class="nv">width</span>: <span class="nc">Int</span> = <span class="m">2</span>
+</li><li>}
+</li><li>
+</li><li><span class="k">var</span> <span class="nv">mixedRectangle</span> = <span class="nv">MixedRectangle</span>()
+</li><li><span class="nv">print</span>(<span class="nv">mixedRectangle</span>.<span class="nv">height</span>)
+</li><li><span class="c">// Prints "1"</span>
+</li><li>
+</li><li><span class="nv">mixedRectangle</span>.<span class="nv">height</span> = <span class="m">20</span>
+</li><li><span class="nv">print</span>(<span class="nv">mixedRectangle</span>.<span class="nv">height</span>)
+</li><li><span class="c"><span class="enstr">// Prints "12"</span><!--end_enstr--><span class="jpstr">（「12」を出力します）</span><!--end_jpstr--></span>
+</li></ol></div></div></div>
+<p><span class="enstr">The instance of <code class="docutils literal notranslate"><span class="pre">SmallNumber</span></code> that wraps <code class="docutils literal notranslate"><span class="pre">height</span></code> is created by calling <code class="docutils literal notranslate"><span class="pre">SmallNumber(wrappedValue:</span> <span class="pre">1)</span></code>, which uses the default maximum value of 12. The instance that wraps <code class="docutils literal notranslate"><span class="pre">width</span></code> is created by calling <code class="docutils literal notranslate"><span class="pre">SmallNumber(wrappedValue:</span> <span class="pre">2,</span> <span class="pre">maximum:</span> <span class="pre">9)</span></code>.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">height</span></code>をラップする<code class="docutils literal notranslate"><span class="pre">SmallNumber</span></code>のインスタンスは、<code class="docutils literal notranslate"><span class="pre">SmallNumber(wrappedValue:</span> <span class="pre">1)</span></code>を呼び出すことによって作成されます、それは省略時の最大値の12を使います。<code class="docutils literal notranslate"><span class="pre">width</span></code>をラップするインスタンスは、<code class="docutils literal notranslate"><span class="pre">SmallNumber(wrappedValue:</span> <span class="pre">2,</span> <span class="pre">maximum:</span> <span class="pre">9)</span></code>を呼び出すことによって作成されます。
+</span><!--end_jpstr-->
+</p>
+</div>
+<div class="section" id="ID619">
+<h3><span class="enstr">Projecting a Value From a Property Wrapper<a class="headerlink" href="#ID619" title="Permalink to this headline">¶</a></span><!--end_enstr-->
+<span class="jpstr">
+値をプロパティラッパーから予測する
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">In addition to the wrapped value, a property wrapper can expose additional functionality by defining a <em>projected value</em>—for example, a property wrapper that manages access to a database can expose a <code class="docutils literal notranslate"><span class="pre">flushDatabaseConnection()</span></code> method on its projected value. The name of the projected value is the same as the wrapped value, except it begins with a dollar sign (<code class="docutils literal notranslate"><span class="pre">$</span></code>). Because your code can’t define properties that start with <code class="docutils literal notranslate"><span class="pre">$</span></code> the projected value never interferes with properties you define.</span><!--end_enstr-->
+<span class="jpstr">
+ラップ値に加えて、プロパティラッパーは<em>予測値</em>を定義することによっていっそうの機能性を露出できます — 例えば、データベースへのアクセスを管理するプロパティラッパーは、<code class="docutils literal notranslate"><span class="pre">flushDatabaseConnection()</span></code>メソッドをそれの見込値に関して露出できます。予測値の名前は、ラップ値と同じです、それがドル記号（<code class="docutils literal notranslate"><span class="pre">$</span></code>）で始まることを除いて。あなたのコードが<code class="docutils literal notranslate"><span class="pre">$</span></code>で始まるプロパティを定義できないことから予測値は決してあなたが定義するプロパティと干渉しません。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">In the <code class="docutils literal notranslate"><span class="pre">SmallNumber</span></code> example above, if you try to set the property to a number that’s too large, the property wrapper adjusts the number before storing it. The code below adds a <code class="docutils literal notranslate"><span class="pre">projectedValue</span></code> property to the <code class="docutils literal notranslate"><span class="pre">SmallNumber</span></code> structure to keep track of whether the property wrapper adjusted the new value for the property before storing that new value.</span><!--end_enstr-->
+<span class="jpstr">
+上の<code class="docutils literal notranslate"><span class="pre">SmallNumber</span></code>例において、あなたがプロパティを大きすぎる数に設定しようとするならば、プロパティラッパーはその数を調節します、それを格納する前に。下のコードは、<code class="docutils literal notranslate"><span class="pre">projectedValue</span></code>プロパティを<code class="docutils literal notranslate"><span class="pre">SmallNumber</span></code>構造体に加えることで、プロパティラッパーがプロパティに対する新しい値を、その新しい値を格納する前に調節したかどうかを追跡します。
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li>@<span class="nv">propertyWrapper</span>
+</li><li><span class="k">struct</span> <span class="nv">SmallNumber</span> {
+</li><li>    <span class="k">private</span> <span class="k">var</span> <span class="nv">number</span> = <span class="m">0</span>
+</li><li>    <span class="k">var</span> <span class="nv">projectedValue</span> = <span class="k">false</span>
+</li><li>    <span class="k">var</span> <span class="nv">wrappedValue</span>: <span class="nc">Int</span> {
+</li><li>        <span class="k">get</span> { <span class="k">return</span> <span class="nv">number</span> }
+</li><li>        <span class="k">set</span> {
+</li><li>            <span class="k">if</span> <span class="nv">newValue</span> &gt; <span class="m">12</span> {
+</li><li>                <span class="nv">number</span> = <span class="m">12</span>
+</li><li>                <span class="nv">projectedValue</span> = <span class="k">true</span>
+</li><li>            } <span class="k">else</span> {
+</li><li>                <span class="nv">number</span> = <span class="nv">newValue</span>
+</li><li>                <span class="nv">projectedValue</span> = <span class="k">false</span>
+</li><li>            }
+</li><li>        }
+</li><li>    }
+</li><li>}
+</li><li><span class="k">struct</span> <span class="nv">SomeStructure</span> {
+</li><li>    @<span class="nv">SmallNumber</span> <span class="k">var</span> <span class="nv">someNumber</span>: <span class="nc">Int</span>
+</li><li>}
+</li><li><span class="k">var</span> <span class="nv">someStructure</span> = <span class="nv">SomeStructure</span>()
+</li><li>
+</li><li><span class="nv">someStructure</span>.<span class="nv">someNumber</span> = <span class="m">4</span>
+</li><li><span class="nv">print</span>(<span class="nv">someStructure</span>.<span class="nv">$someNumber</span>)
+</li><li><span class="c"><span class="enstr">// Prints "false"</span><!--end_enstr--><span class="jpstr">（「false」を出力します）</span><!--end_jpstr--></span>
+</li><li>
+</li><li><span class="nv">someStructure</span>.<span class="nv">someNumber</span> = <span class="m">55</span>
+</li><li><span class="nv">print</span>(<span class="nv">someStructure</span>.<span class="nv">$someNumber</span>)
+</li><li><span class="c"><span class="enstr">// Prints "true"</span><!--end_enstr--><span class="jpstr">（「true」を出力します）</span><!--end_jpstr--></span>
+</li></ol></div></div></div>
+<p><span class="enstr">Writing <code class="docutils literal notranslate"><span class="pre">s.$someNumber</span></code> accesses the wrapper’s projected value. After storing a small number like four, the value of <code class="docutils literal notranslate"><span class="pre">s.$someNumber</span></code> is <code class="docutils literal notranslate"><span class="pre">false</span></code>. However, the projected value is <code class="docutils literal notranslate"><span class="pre">true</span></code> after trying to store a number that’s too large, like 55.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">s.$someNumber</span></code>を書くことは、ラッパーのもつ予測値にアクセスします。４のような小さい値を格納後、<code class="docutils literal notranslate"><span class="pre">s.$someNumber</span></code>の値は<code class="docutils literal notranslate"><span class="pre">false</span></code>です。しかしながら、予測値は、55のような大きすぎる数を格納しようとする後は<code class="docutils literal notranslate"><span class="pre">true</span></code>です。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">A property wrapper can return a value of any type as its projected value. In this example, the property wrapper exposes only one piece of information—whether the number was adjusted—so it exposes that Boolean value as its projected value. A wrapper that needs to expose more information can return an instance of some other data type, or it can return <code class="docutils literal notranslate"><span class="pre">self</span></code> to expose the instance of the wrapper as its projected value.</span><!--end_enstr-->
+<span class="jpstr">
+プロパティラッパーは、あらゆる型の値をそれの予測値として返せます。この例では、プロパティラッパーは情報の一片だけを露出します — その数が調節されたかどうか — それでそれはそのブール値をそれの予測値として露出します。さらに情報を露出する必要があるラッパーは、何らかの他のデータ型のインスタンスを返せます、またはそれは、<code class="docutils literal notranslate"><span class="pre">self</span></code>を返すことでラッパーのインスタンスをそれの予測値として露出できます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">When you access a projected value from code that’s part of the type, like a property getter or an instance method, you can omit <code class="docutils literal notranslate"><span class="pre">self.</span></code> before the property name, just like accessing other properties. The code in the following example refers to the projected value of the wrapper around <code class="docutils literal notranslate"><span class="pre">height</span></code> and <code class="docutils literal notranslate"><span class="pre">width</span></code> as <code class="docutils literal notranslate"><span class="pre">$height</span></code> and <code class="docutils literal notranslate"><span class="pre">$width</span></code>:</span><!--end_enstr-->
+<span class="jpstr">
+あなたがある予測値に、プロパティゲッターやインスタンスメソッドのようなその型の一部であるコードからアクセスする場合、あなたは<code class="docutils literal notranslate"><span class="pre">self.</span></code>をプロパティ名の前で省略できます、ちょうど他のプロパティにアクセスするように。次の例におけるコードは、<code class="docutils literal notranslate"><span class="pre">height</span></code>と<code class="docutils literal notranslate"><span class="pre">width</span></code>のまわりのラッパーの予測値を、<code class="docutils literal notranslate"><span class="pre">$height</span></code>と<code class="docutils literal notranslate"><span class="pre">$width</span></code>として参照します：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">enum</span> <span class="nv">Size</span> {
+</li><li>    <span class="k">case</span> <span class="nv">small</span>, <span class="nv">large</span>
+</li><li>}
+</li><li>
+</li><li><span class="k">struct</span> <span class="nv">SizedRectangle</span> {
+</li><li>    @<span class="nv">SmallNumber</span> <span class="k">var</span> <span class="nv">height</span>: <span class="nc">Int</span>
+</li><li>    @<span class="nv">SmallNumber</span> <span class="k">var</span> <span class="nv">width</span>: <span class="nc">Int</span>
+</li><li>
+</li><li>    <span class="k">mutating</span> <span class="k">func</span> <span class="nv">resize</span>(<span class="nv">to</span> <span class="nv">size</span>: <span class="nc">Size</span>) -&gt; <span class="nc">Bool</span> {
+</li><li>        <span class="k">switch</span> <span class="nv">size</span> {
+</li><li>        <span class="k">case</span> .<span class="nv">small</span>:
+</li><li>            <span class="nv">height</span> = <span class="m">10</span>
+</li><li>            <span class="nv">width</span> = <span class="m">20</span>
+</li><li>        <span class="k">case</span> .<span class="nv">large</span>:
+</li><li>            <span class="nv">height</span> = <span class="m">100</span>
+</li><li>            <span class="nv">width</span> = <span class="m">100</span>
+</li><li>        }
+</li><li>        <span class="k">return</span> <span class="nv">$height</span> || <span class="nv">$width</span>
+</li><li>    }
+</li><li>}
+</li></ol></div></div></div>
+<p><span class="enstr">Because property wrapper syntax is just syntactic sugar for a property with a getter and a setter, accessing <code class="docutils literal notranslate"><span class="pre">height</span></code> and <code class="docutils literal notranslate"><span class="pre">width</span></code> behaves the same as accessing any other property. For example, the code in <code class="docutils literal notranslate"><span class="pre">resize(to:)</span></code> accesses <code class="docutils literal notranslate"><span class="pre">height</span></code> and <code class="docutils literal notranslate"><span class="pre">width</span></code> using their property wrapper. If you call <code class="docutils literal notranslate"><span class="pre">resize(to:</span> <span class="pre">.large)</span></code>, the switch case for <code class="docutils literal notranslate"><span class="pre">.large</span></code> sets the rectangle’s height and width to 100. The wrapper prevents the value of those properties from being larger than 12, and it sets the projected value to <code class="docutils literal notranslate"><span class="pre">true</span></code>, to record the fact that it adjusted their values. At the end of <code class="docutils literal notranslate"><span class="pre">resize(to:)</span></code>, the return statement checks <code class="docutils literal notranslate"><span class="pre">$height</span></code> and <code class="docutils literal notranslate"><span class="pre">$width</span></code> to determine whether the property wrapper adjusted either <code class="docutils literal notranslate"><span class="pre">height</span></code> or <code class="docutils literal notranslate"><span class="pre">width</span></code>.</span><!--end_enstr-->
+<span class="jpstr">
+プロパティラッパー構文がゲッターとセッターをもつプロパティに対する単なる糖衣構文であることから、<code class="docutils literal notranslate"><span class="pre">height</span></code>と<code class="docutils literal notranslate"><span class="pre">width</span></code>にアクセスすることは、何か他のプロパティと同じ挙動をします。例えば、<code class="docutils literal notranslate"><span class="pre">resize(to:)</span></code>でのコードは、<code class="docutils literal notranslate"><span class="pre">height</span></code>と<code class="docutils literal notranslate"><span class="pre">width</span></code>にそれらのプロパティラッパーを使ってアクセスします。あなたが<code class="docutils literal notranslate"><span class="pre">resize(to:</span> <span class="pre">.large)</span></code>を呼び出すならば、<code class="docutils literal notranslate"><span class="pre">.large</span></code>に対するスイッチケース節は、矩形のもつ高さと幅を100に設定します。ラッパーは、それらプロパティの値が12より大きくなることを防ぎます、そしてそれは予測値を<code class="docutils literal notranslate"><span class="pre">true</span></code>に設定します、それがそれらの値を調節したという事実を記録するために。<code class="docutils literal notranslate"><span class="pre">resize(to:)</span></code>の終わりで、return文は<code class="docutils literal notranslate"><span class="pre">$height</span></code>と<code class="docutils literal notranslate"><span class="pre">$width</span></code>を確認して、プロパティラッパーが<code class="docutils literal notranslate"><span class="pre">height</span></code>または<code class="docutils literal notranslate"><span class="pre">width</span></code>のどちらを調節したかを決定します。
 </span><!--end_jpstr-->
 </p>
 </div>
@@ -935,7 +1299,7 @@ CとObjective-Cでは、あなたは静的定数および<em>グローバルな<
 下の図は、これらの音声のチャンネルのうちの２つがステレオ音声のレベル・メーターをモデル化するために結合されることができる方法を図示します。チャンネルの音声のレベルが<code class="docutils literal notranslate"><span class="pre">0</span></code>であるとき、そのチャンネルのための光のどれも点灯されません。音声のレベルが<code class="docutils literal notranslate"><span class="pre">10</span></code>であるとき、そのチャンネルのための光の全ては点灯されます。この図には、左のチャンネルに現在<code class="docutils literal notranslate"><span class="pre">9</span></code>のレベルがあり、右のチャンネルに現在<code class="docutils literal notranslate"><span class="pre">7</span></code>のレベルがあります：
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/staticPropertiesVUMeter_2x.png" class="align-center" src="../images/staticPropertiesVUMeter_2x.png" style="width: 243px;" />
+<img alt="../_images/staticPropertiesVUMeter_2x.png" class="align-center" src="../_images/staticPropertiesVUMeter_2x.png" style="width: 243px;" />
 <p><span class="enstr">The audio channels described above are represented by instances of the <code class="docutils literal notranslate"><span class="pre">AudioChannel</span></code> structure:</span><!--end_enstr-->
 <span class="jpstr">
 上で記述される音声のチャンネルは、<code class="docutils literal notranslate"><span class="pre">AudioChannel</span></code>構造体のインスタンスによって表されます：
@@ -1067,6 +1431,6 @@ CとObjective-Cでは、あなたは静的定数および<em>グローバルな<
   </p>
 </footer>
 <div id="jump_to_overlay"></div>
-<script src="../static/javascripts/application.js"></script>
+<script src="../_static/javascripts/application.js"></script>
   </body>
 </html>

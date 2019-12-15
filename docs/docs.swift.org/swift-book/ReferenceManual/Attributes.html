@@ -10,11 +10,11 @@
     <meta name="author" content="Apple Inc." />
     <meta name="viewport" content="width=device-width initial-scale=1" />
     
-    <title>Attributes — The Swift Programming Language (Swift 5)</title>
+    <title>Attributes — The Swift Programming Language (Swift 5.1)</title>
     
     <link rel="license" href="/LICENSE.txt" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/tspl.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/application.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/tspl.css" />
     <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
@@ -41,7 +41,7 @@
 
     <div id="menu-toggle" class="menu-toggle open"></div>
 
-    <h2>The Swift Programming Language<div>Swift 5</div></h2>
+    <h2>The Swift Programming Language<div>Swift 5.1</div></h2>
 
     <ul>
     <ul class="current">
@@ -152,6 +152,7 @@
 <li><a class="reference internal" href="#ID584">discardableResult</a></li>
 <li><a class="reference internal" href="#ID603">dynamicCallable</a></li>
 <li><a class="reference internal" href="#ID585">dynamicMemberLookup</a></li>
+<li><a class="reference internal" href="#ID620">frozen</a></li>
 <li><a class="reference internal" href="#ID586">GKInspectable</a></li>
 <li><a class="reference internal" href="#ID587">inlinable</a></li>
 <li><a class="reference internal" href="#ID588">nonobjc</a></li>
@@ -160,6 +161,7 @@
 <li><a class="reference internal" href="#ID591">NSManaged</a></li>
 <li><a class="reference internal" href="#ID592">objc</a></li>
 <li><a class="reference internal" href="#ID593">objcMembers</a></li>
+<li><a class="reference internal" href="#ID621">propertyWrapper</a></li>
 <li><a class="reference internal" href="#ID594">requires_stored_property_inits</a></li>
 <li><a class="reference internal" href="#ID595">testable</a></li>
 <li><a class="reference internal" href="#ID596">UIApplicationMain</a></li>
@@ -429,10 +431,10 @@
 </li><li>
 </li><li><span class="c">// Use a dynamic method call.</span>
 </li><li><span class="nv">dial</span>(<span class="m">4</span>, <span class="m">1</span>, <span class="m">1</span>)
-</li><li><span class="c">// Prints "Get Swift help on forums.swift.org".</span>
+</li><li><span class="c">// Prints "Get Swift help on forums.swift.org"</span>
 </li><li>
 </li><li><span class="nv">dial</span>(<span class="m">8</span>, <span class="m">6</span>, <span class="m">7</span>, <span class="m">5</span>, <span class="m">3</span>, <span class="m">0</span>, <span class="m">9</span>)
-</li><li><span class="c">// Prints "Unrecognized number".</span>
+</li><li><span class="c">// Prints "Unrecognized number"</span>
 </li><li>
 </li><li><span class="c">// Call the underlying method directly.</span>
 </li><li><span class="nv">dial</span>.<span class="nv">dynamicallyCall</span>(<span class="nv">withArguments</span>: [<span class="m">4</span>, <span class="m">1</span>, <span class="m">1</span>])
@@ -491,9 +493,19 @@
 この属性をクラス、構造体、列挙、またはプロトコルに適用して、メンバが実行時に名前で検索されることを可能にしてください。この型は、<code class="docutils literal notranslate"><span class="pre">subscript(dynamicMemberLookup:)</span></code>添え字を実装しなければなりません。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">In an explicit member expression, if there isn’t a corresponding declaration for the named member, the expression is understood as a call to the type’s <code class="docutils literal notranslate"><span class="pre">subscript(dynamicMemberLookup:)</span></code> subscript, passing a string literal that contains the member’s name as the argument. The subscript’s parameter type can be any type that conforms to the <code class="docutils literal notranslate"><span class="pre">ExpressibleByStringLiteral</span></code> protocol, and its return type can be any type. In most cases, the subscript’s parameter is a <code class="docutils literal notranslate"><span class="pre">String</span></code> value. For example:</span><!--end_enstr-->
+<p><span class="enstr">In an explicit member expression, if there isn’t a corresponding declaration for the named member, the expression is understood as a call to the type’s <code class="docutils literal notranslate"><span class="pre">subscript(dynamicMemberLookup:)</span></code> subscript, passing information about the member as the argument. The subscript can accept a parameter that’s either a key path or a member name; if you implement both subscripts, the subscript that takes key path argument is used.</span><!--end_enstr-->
 <span class="jpstr">
-明示的メンバ式において、名前付きメンバに対して対応する宣言がないならば、式は型の持つ<code class="docutils literal notranslate"><span class="pre">subscript(dynamicMemberLookup:)</span></code>添え字に対する呼び出しとして理解されます、メンバの名前を含む文字列リテラルを引数として渡します。添え字の持つパラメータ型は、<code class="docutils literal notranslate"><span class="pre">ExpressibleByStringLiteral</span></code>プロトコルに準拠するあらゆる型が可能です、そしてそれの戻り型はどんな型でも構いません。ほとんどの場合には、添え字の持つパラメータは、<code class="docutils literal notranslate"><span class="pre">String</span></code>値です。例えば：
+明示的なメンバ式において、名前付きメンバに対して対応する宣言がないならば、式は型の持つ<code class="docutils literal notranslate"><span class="pre">subscript(dynamicMemberLookup:)</span></code>添え字に対する呼び出しとして理解されます、メンバについての情報を引数として渡します。添え字は、あるパラメータを受け入れます、それはキーパスまたはメンバ名のどちらかです；あなたが両方の添え字を実装するならば、キーパス引数をとる添え字が使われます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">An implementation of <code class="docutils literal notranslate"><span class="pre">subscript(dynamicMemberLookup:)</span></code> can accept key paths using an argument of type <a class="reference external" href="https://developer.apple.com/documentation/swift/keypath"><code class="docutils literal notranslate"><span class="pre">KeyPath</span></code></a>, <a class="reference external" href="https://developer.apple.com/documentation/swift/writablekeypath"><code class="docutils literal notranslate"><span class="pre">WritableKeyPath</span></code></a>, or <a class="reference external" href="https://developer.apple.com/documentation/swift/referencewritablekeypath"><code class="docutils literal notranslate"><span class="pre">ReferenceWritableKeyPath</span></code></a>. It can accept member names using an argument of a type that conforms to the <a class="reference external" href="https://developer.apple.com/documentation/swift/expressiblebystringliteral"><code class="docutils literal notranslate"><span class="pre">ExpressibleByStringLiteral</span></code></a> protocol—in most cases, <code class="docutils literal notranslate"><span class="pre">String</span></code>. The subscript’s return type can be any type.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">subscript(dynamicMemberLookup:)</span></code>の実装はキーパスを、型<a class="reference external" href="https://developer.apple.com/documentation/swift/keypath"><code class="docutils literal notranslate"><span class="pre">KeyPath</span></code></a>、<a class="reference external" href="https://developer.apple.com/documentation/swift/writablekeypath"><code class="docutils literal notranslate"><span class="pre">WritableKeyPath</span></code></a>、または<a class="reference external" href="https://developer.apple.com/documentation/swift/referencewritablekeypath"><code class="docutils literal notranslate"><span class="pre">ReferenceWritableKeyPath</span></code></a>の引数を使って受け入れ可能です。それはメンバー名を、<a class="reference external" href="https://developer.apple.com/documentation/swift/expressiblebystringliteral"><code class="docutils literal notranslate"><span class="pre">ExpressibleByStringLiteral</span></code></a>プロトコルに準拠する型 — ほとんどの場合、<code class="docutils literal notranslate"><span class="pre">String</span></code> — の引数を使って受け入れ可能です。添え字のもつ戻り型は、どんな型でも可能です。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">Dynamic member lookup by member name can be used to create a wrapper type around data that can’t be type checked at compile time, such as when bridging data from other languages into Swift. For example:</span><!--end_enstr-->
+<span class="jpstr">
+メンバー名による動的メンバー検索は、コンパイル時に型検査されることができないデータを取り囲むラッパー型を作成するために使用できます、たとえば他の言語からスウィフトへとブリッジしている時など。例えば：
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">@dynamicMemberLookup</span>
@@ -509,13 +521,72 @@
 </li><li><span class="c">// Use dynamic member lookup.</span>
 </li><li><span class="k">let</span> <span class="nv">dynamic</span> = <span class="nv">s</span>.<span class="nv">someDynamicMember</span>
 </li><li><span class="nv">print</span>(<span class="nv">dynamic</span>)
-</li><li><span class="c">// Prints "325"</span>
+</li><li><span class="c"><span class="enstr">// Prints "325"</span><!--end_enstr--><span class="jpstr">（ "325" を出力する）</span><!--end_jpstr--></span>
 </li><li>
-</li><li><span class="c">// Call the underlying subscript directly.</span>
+</li><li><span class="c"><span class="enstr">// Call the underlying subscript directly.</span><!--end_enstr--><span class="jpstr">（基礎をなす添え字を直接に呼び出す。）</span><!--end_jpstr--></span>
 </li><li><span class="k">let</span> <span class="nv">equivalent</span> = <span class="nv">s</span>[<span class="nv">dynamicMember</span>: <span class="s">"someDynamicMember"</span>]
 </li><li><span class="nv">print</span>(<span class="nv">dynamic</span> == <span class="nv">equivalent</span>)
 </li><li><span class="c"><span class="enstr">// Prints "true"</span><!--end_enstr--><span class="jpstr">（「true」を出力します）</span><!--end_jpstr--></span>
 </li></ol></div></div></div>
+<p><span class="enstr">Dynamic member lookup by key path can be used to implement a wrapper type in a way that supports compile-time type checking. For example:</span><!--end_enstr-->
+<span class="jpstr">
+キーパスによる動的メンバー検索は、ラッパー型を、コンバイル時型検査をサポートするある方法で実装するために使用できます。例えば：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">struct</span> <span class="nv">Point</span> { <span class="k">var</span> <span class="nv">x</span>, <span class="nv">y</span>: <span class="nc">Int</span> }
+</li><li>
+</li><li><span class="k">@dynamicMemberLookup</span>
+</li><li><span class="k">struct</span> <span class="nv">PassthroughWrapper</span>&lt;<span class="nv">Value</span>&gt; {
+</li><li>    <span class="k">var</span> <span class="nv">value</span>: <span class="nc">Value</span>
+</li><li>    <span class="k">subscript</span>&lt;<span class="nv">T</span>&gt;(<span class="nv">dynamicMember</span> <span class="nv">member</span>: <span class="nc">KeyPath</span>&lt;<span class="nc">Value</span>, <span class="nc">T</span>&gt;) -&gt; <span class="nc">T</span> {
+</li><li>        <span class="k">get</span> { <span class="k">return</span> <span class="nv">value</span>[<span class="nv">keyPath</span>: <span class="nv">member</span>] }
+</li><li>    }
+</li><li>}
+</li><li>
+</li><li><span class="k">let</span> <span class="nv">point</span> = <span class="nv">Point</span>(<span class="nv">x</span>: <span class="m">381</span>, <span class="nv">y</span>: <span class="m">431</span>)
+</li><li><span class="k">let</span> <span class="nv">wrapper</span> = <span class="nv">PassthroughWrapper</span>(<span class="nv">value</span>: <span class="nv">point</span>)
+</li><li><span class="nv">print</span>(<span class="nv">wrapper</span>.<span class="nv">x</span>)
+</li></ol></div></div></div>
+</div>
+<div class="section" id="ID620">
+<h3>frozen<a class="headerlink" href="#ID620" title="Permalink to this headline">¶</a></h3>
+<p><span class="enstr">Apply this attribute to a structure or enumeration declaration to restrict the kinds of changes you can make to the type. This attribute is allowed only when compiling in library evolution mode. Future versions of the library can’t change the declaration by adding, removing, or reordering an enumeration’s cases or a structure’s stored instance properties. These changes are allowed on nonfrozen types, but they break ABI compatibility for frozen types.</span><!--end_enstr-->
+<span class="jpstr">
+この属性を構造体または列挙宣言に適用して、あなたがその型にすることが出来る変更の種類を制約してください。この属性は、ライブラリ進化モードでコンパイルしている場合にのみ許可されます。ライブラリの将来のバージョンは、追加、削除、または列挙のもつケース節や構造体のもつ格納インスタンスプロパティの再配列によって宣言を変更できません。これらの変更は、非凍結型の上では許可されます、しかしそれらは凍結型に対するABI互換性を破壊します。
+</span><!--end_jpstr-->
+</p>
+<div class="admonition note">
+<p class="first admonition-title"><span class="enstr">Note</span><!--end_enstr-->
+<span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+<p class="last"><span class="enstr">When the compiler isn’t in library evolution mode, all structures and enumerations are implicitly frozen, and you can’t use this attribute.</span><!--end_enstr-->
+<span class="jpstr">
+コンパイラがライブラリ進化モードではない場合、全ての構造体と列挙は暗黙的に凍結されます、そしてあなたはこの属性を使用できません。
+</span><!--end_jpstr-->
+</p>
+</div>
+<p><span class="enstr">In library evolution mode, code that interacts with members of nonfrozen structures and enumerations is compiled in a way that allows it to continue working without recompiling even if a future version of the library adds, removes, or reorders some of that type’s members. The compiler makes this possible using techniques like looking up information at runtime and adding a layer of indirection. Marking a structure or enumeration as frozen gives up this flexibility to gain performance: Future versions of the library can make only limited changes to the type, but the compiler can make additional optimizations in code that interacts with the type’s members.</span><!--end_enstr-->
+<span class="jpstr">
+ライブラリ進化モードでは、非凍結の構造体および列挙のメンバーと相互作用するコードは、ある方法でコンパイルされます、それは、再コンパイルすることなしにそれに仕事を継続させます、たとえ将来のバージョンのライブラリが追加する、削除する、またはその型のもつメンバーのいくつかを再配置するとしてもです。コンパイラは、これを、実行時に情報を検索することそして間接参照のレイヤーを加えることのような技術いくつかを使って可能にします。構造体または列挙を凍結されると印することは、この柔軟性を諦めることで性能を手に入れます：ライブラリの将来のバージョンは、制限された変更だけしか型に対して出来ません、しかしコンパイラは追加的な最適化を、型のもつメンバーと相互作用するコードにすることが出来ます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">Frozen types, the types of the stored properties of frozen structures, and the associated values of frozen enumeration cases must be public or marked with the <code class="docutils literal notranslate"><span class="pre">usableFromInline</span></code> attribute. The properties of a frozen structure can’t have property observers, and expressions that provide the initial value for stored instance properties must follow the same restrictions as inlinable functions, as discussed in <a class="reference internal" href="#ID587"><span class="std std-ref">inlinable</span></a>.</span><!--end_enstr-->
+<span class="jpstr">
+凍結型、凍結構造体の格納プロパティの型、そして凍結列挙ケース節の関連値は、パブリックであるか<code class="docutils literal notranslate"><span class="pre">usableFromInline</span></code>属性で印されなければなりません。凍結構造体のプロパティは、ブロパティオブザーバを持つことが出来ません、そして格納インスタンスプロパティに初期値を提供する式は、インライン可能関数と同じ制約に従わなければなりません、<a class="reference internal" href="#ID587"><span class="std std-ref">inlinable</span></a>で記述されるように。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">To enable library evolution mode on the command line, pass the <code class="docutils literal notranslate"><span class="pre">-enable-library-evolution</span></code> option to the Swift compiler. To enable it in Xcode, set the “Build Libraries for Distribution” build setting (<code class="docutils literal notranslate"><span class="pre">BUILD_LIBRARY_FOR_DISTRIBUTION</span></code>) to Yes, as described in <a class="reference external" href="https://help.apple.com/xcode/mac/current/#/dev04b3a04ba">Xcode Help</a>.</span><!--end_enstr-->
+<span class="jpstr">
+ライブラリ進化モードをコマンドライン上で可能にするには、<code class="docutils literal notranslate"><span class="pre">-enable-library-evolution</span></code>オプションをスウィフトコンパイラに渡してください。それをXcodeで可能にするには、“Build Libraries for Distribution” ビルド設定（<code class="docutils literal notranslate"><span class="pre">BUILD_LIBRARY_FOR_DISTRIBUTION</span></code>）を Yes に設定してください、<a class="reference external" href="https://help.apple.com/xcode/mac/current/#/dev04b3a04ba">Xcode Help</a>で記述されるとおりに。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">A switch statement over a frozen enumeration doesn’t require a <code class="docutils literal notranslate"><span class="pre">default</span></code> case, as discussed in <a class="reference internal" href="Statements.html#ID602"><span class="std std-ref">Switching Over Future Enumeration Cases</span></a>. Including a <code class="docutils literal notranslate"><span class="pre">default</span></code> or <code class="docutils literal notranslate"><span class="pre">@unknown</span> <span class="pre">default</span></code> case when switching over a frozen enumeration produces a warning because that code is never executed.</span><!--end_enstr-->
+<span class="jpstr">
+凍結列挙に対するスイッチ文は、<code class="docutils literal notranslate"><span class="pre">default</span></code>ケース節を必要しません、<a class="reference internal" href="Statements.html#ID602"><span class="std std-ref">未来列挙ケース節に対してスイッチする</span></a>で議論されるように。<code class="docutils literal notranslate"><span class="pre">default</span></code>または<code class="docutils literal notranslate"><span class="pre">@unknown</span> <span class="pre">default</span></code>ケース節を、凍結列挙に対してスイッチしている時に含めることは、警告を生成します、なぜならそのコードは決して遂行されないからです。
+</span><!--end_jpstr-->
+</p>
 </div>
 <div class="section" id="ID586">
 <h3>GKInspectable<a class="headerlink" href="#ID586" title="Permalink to this headline">¶</a></h3>
@@ -636,9 +707,9 @@
 その宣言は、<code class="docutils literal notranslate"><span class="pre">objc</span></code>属性を持つあるプロトコルからの要件を満たす。
 </span><!--end_jpstr-->
 </li>
-<li><span class="enstr">The declaration has the <code class="docutils literal notranslate"><span class="pre">IBAction</span></code>, <code class="docutils literal notranslate"><span class="pre">IBOutlet</span></code>, <code class="docutils literal notranslate"><span class="pre">IBDesignable</span></code>, <code class="docutils literal notranslate"><span class="pre">IBInspectable</span></code>, <code class="docutils literal notranslate"><span class="pre">NSManaged</span></code>, or <code class="docutils literal notranslate"><span class="pre">GKInspectable</span></code> attribute.</span><!--end_enstr-->
+<li><span class="enstr">The declaration has the <code class="docutils literal notranslate"><span class="pre">IBAction</span></code>, <code class="docutils literal notranslate"><span class="pre">IBSegueAction</span></code>, <code class="docutils literal notranslate"><span class="pre">IBOutlet</span></code>, <code class="docutils literal notranslate"><span class="pre">IBDesignable</span></code>, <code class="docutils literal notranslate"><span class="pre">IBInspectable</span></code>, <code class="docutils literal notranslate"><span class="pre">NSManaged</span></code>, or <code class="docutils literal notranslate"><span class="pre">GKInspectable</span></code> attribute.</span><!--end_enstr-->
 <span class="jpstr">
-その宣言は、<code class="docutils literal notranslate"><span class="pre">IBAction</span></code>、<code class="docutils literal notranslate"><span class="pre">IBOutlet</span></code>、<code class="docutils literal notranslate"><span class="pre">IBDesignable</span></code>、<code class="docutils literal notranslate"><span class="pre">IBInspectable</span></code>、<code class="docutils literal notranslate"><span class="pre">NSManaged</span></code>、または<code class="docutils literal notranslate"><span class="pre">GKInspectable</span></code>を持つ。
+その宣言は、<code class="docutils literal notranslate"><span class="pre">IBAction</span></code>、<code class="docutils literal notranslate"><span class="pre">IBSegueAction</span></code>、<code class="docutils literal notranslate"><span class="pre">IBOutlet</span></code>、<code class="docutils literal notranslate"><span class="pre">IBDesignable</span></code>、<code class="docutils literal notranslate"><span class="pre">IBInspectable</span></code>、<code class="docutils literal notranslate"><span class="pre">NSManaged</span></code>、または<code class="docutils literal notranslate"><span class="pre">GKInspectable</span></code>を持つ。
 </span><!--end_jpstr-->
 </li>
 </ul>
@@ -674,6 +745,83 @@
 </span><!--end_jpstr-->
 </p>
 </div>
+<div class="section" id="ID621">
+<h3>propertyWrapper<a class="headerlink" href="#ID621" title="Permalink to this headline">¶</a></h3>
+<p><span class="enstr">Apply this attribute to a class, structure, or enumeration declaration to use that type as a property wrapper. When you apply this attribute to a type, you create a custom attribute with the same name as the type. Apply that new attribute to a property of a class, structure, or enumeration to wrap access to the property through an instance of the wrapper type. Local and global variables can’t use property wrappers.</span><!--end_enstr-->
+<span class="jpstr">
+この属性をクラス、構造体、または列挙の宣言に適用して、その型をプロパティラッパーとして使ってください。あなたがこの属性をある型に適用する場合、あなたはあるあつらえの属性をその型と同じ名前で作成します。その新しい属性をクラス、構造体、または列挙のあるプロパティに適用することで、ラッパー型のインスタンスによって、そのプロパティに対するアクセスをラップしてください。ローカルおよびグローバル変数は、プロパティラッパーを使用できません。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">The wrapper must define a <code class="docutils literal notranslate"><span class="pre">wrappedValue</span></code> instance property. The <em>wrapped value</em> of the property is the value that the getter and setter for this property expose. In most cases, <code class="docutils literal notranslate"><span class="pre">wrappedValue</span></code> is a computed value, but it can be a stored value instead. The wrapper is responsible for defining and managing any underlying storage needed by its wrapped value. The compiler synthesizes storage for the instance of the wrapper type by prefixing the name of the wrapped property with an underscore (<code class="docutils literal notranslate"><span class="pre">_</span></code>)—for example, the wrapper for <code class="docutils literal notranslate"><span class="pre">someProperty</span></code> is stored as <code class="docutils literal notranslate"><span class="pre">_someProperty</span></code>. The synthesized storage for the wrapper has an access control level of <code class="docutils literal notranslate"><span class="pre">private</span></code>.</span><!--end_enstr-->
+<span class="jpstr">
+ラッパーは、ある<code class="docutils literal notranslate"><span class="pre">wrappedValue</span></code>インスタンスプロパティを定義しなければなりません。そのプロパティの<em>ラップされた値</em>は、このプロパティに対するゲッターとセッターが露出する値です。ほとんどの場合には、<code class="docutils literal notranslate"><span class="pre">wrappedValue</span></code>は計算される値です、しかしそれは代わりに格納される値であることもできます。ラッパーは、それのラップされた値によって必要とされるあらゆる基礎をなすストレージの定義と管理に責任を持ちます。コンパイラは、ラッパー型のインスタンスのためにストレージを合成します、ラップされたプロパティの名前にアンダースコア（<code class="docutils literal notranslate"><span class="pre">_</span></code>）で接頭辞をつけることによって — 例えば、<code class="docutils literal notranslate"><span class="pre">someProperty</span></code>に対するラッパーは、<code class="docutils literal notranslate"><span class="pre">_someProperty</span></code>として格納されます。ラッパーのために合成されたストレージは、<code class="docutils literal notranslate"><span class="pre">private</span></code>のアクセス制御水準を持ちます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">A property that has a property wrapper can include <code class="docutils literal notranslate"><span class="pre">willSet</span></code> and <code class="docutils literal notranslate"><span class="pre">didSet</span></code> blocks, but it can’t override the compiler-synthesized <code class="docutils literal notranslate"><span class="pre">get</span></code> or <code class="docutils literal notranslate"><span class="pre">set</span></code> blocks.</span><!--end_enstr-->
+<span class="jpstr">
+プロパティラッパーを持つプロパティは、<code class="docutils literal notranslate"><span class="pre">willSet</span></code>と<code class="docutils literal notranslate"><span class="pre">didSet</span></code>ブロックを含むことができます、しかしそれはコンパイラが合成した<code class="docutils literal notranslate"><span class="pre">get</span></code>または<code class="docutils literal notranslate"><span class="pre">set</span></code>ブロックをオーバーライドできません。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">Swift provides two forms of syntactic sugar for initialization of a property wrapper. You can use assignment syntax in the definition of a wrapped value to pass the expression on the right-hand side of the assignment as the argument to the <code class="docutils literal notranslate"><span class="pre">wrappedValue</span></code> parameter of the property wrapper’s initializer. You can also provide arguments to the attribute when you apply it to a property, and those arguments are passed to the property wrapper’s initializer. For example, in the code below, <code class="docutils literal notranslate"><span class="pre">SomeStruct</span></code> calls each of the initializers that <code class="docutils literal notranslate"><span class="pre">SomeWrapper</span></code> defines.</span><!--end_enstr-->
+<span class="jpstr">
+スウィフトは、２つの形式の糖衣構文をプロパティラッパーの初期化に対して提供します。あなたは、代入構文をラップ値の定義において使用して、代入の右手側での式を、プロパティラッパーのもつイニシャライザの<code class="docutils literal notranslate"><span class="pre">wrappedValue</span></code>パラメータに対する引数として渡せます。あなたはまた引数いくつかを、属性に対して提供することが、それをあなたがプロパティに適用する時に行えます、そしてそれら引数は、プロパティラッパーのもつイニシャライザに渡されます。例えば、下のコードにおいて、<code class="docutils literal notranslate"><span class="pre">SomeStruct</span></code>は、<code class="docutils literal notranslate"><span class="pre">SomeWrapper</span></code>が定義するイニシャライザそれぞれを呼び出します。
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li>@<span class="nv">propertyWrapper</span>
+</li><li><span class="k">struct</span> <span class="nv">SomeWrapper</span> {
+</li><li>    <span class="k">var</span> <span class="nv">wrappedValue</span>: <span class="nc">Int</span>
+</li><li>    <span class="k">var</span> <span class="nv">someValue</span>: <span class="nc">Double</span>
+</li><li>    <span class="k">init</span>() {
+</li><li>        <span class="k">self</span>.<span class="nv">wrappedValue</span> = <span class="m">100</span>
+</li><li>        <span class="k">self</span>.<span class="nv">someValue</span> = <span class="m">12.3</span>
+</li><li>    }
+</li><li>    <span class="k">init</span>(<span class="nv">wrappedValue</span>: <span class="nc">Int</span>) {
+</li><li>        <span class="k">self</span>.<span class="nv">wrappedValue</span> = <span class="nv">wrappedValue</span>
+</li><li>        <span class="k">self</span>.<span class="nv">someValue</span> = <span class="m">45.6</span>
+</li><li>    }
+</li><li>    <span class="k">init</span>(<span class="nv">wrappedValue</span> <span class="nv">value</span>: <span class="nc">Int</span>, <span class="nv">custom</span>: <span class="nc">Double</span>) {
+</li><li>        <span class="k">self</span>.<span class="nv">wrappedValue</span> = <span class="nv">value</span>
+</li><li>        <span class="k">self</span>.<span class="nv">someValue</span> = <span class="nv">custom</span>
+</li><li>    }
+</li><li>}
+</li><li>
+</li><li><span class="k">struct</span> <span class="nv">SomeStruct</span> {
+</li><li>    <span class="c">// Uses init()</span>
+</li><li>    @<span class="nv">SomeWrapper</span> <span class="k">var</span> <span class="nv">a</span>: <span class="nc">Int</span>
+</li><li>
+</li><li>    <span class="c">// Uses init(wrappedValue:)</span>
+</li><li>    @<span class="nv">SomeWrapper</span> <span class="k">var</span> <span class="nv">b</span> = <span class="m">10</span>
+</li><li>
+</li><li>    <span class="c">// Both use init(wrappedValue:custom:)</span>
+</li><li>    @<span class="nv">SomeWrapper</span>(<span class="nv">custom</span>: <span class="m">98.7</span>) <span class="k">var</span> <span class="nv">c</span> = <span class="m">30</span>
+</li><li>    @<span class="nv">SomeWrapper</span>(<span class="nv">wrappedValue</span>: <span class="m">30</span>, <span class="nv">custom</span>: <span class="m">98.7</span>) <span class="k">var</span> <span class="nv">d</span>
+</li><li>}
+</li></ol></div></div></div>
+<p><span class="enstr">The <em>projected value</em> for a wrapped property is a second value that a property wrapper can use to expose additional functionality. The author of a property wrapper type is responsible for determining the meaning of its projected value and defining the interface that the projected value exposes. To project a value from a property wrapper, define a <code class="docutils literal notranslate"><span class="pre">projectedValue</span></code> instance property on the wrapper type. The compiler synthesizes an identifier for the projected value by prefixing the name of the wrapped property with a dollar sign (<code class="docutils literal notranslate"><span class="pre">$</span></code>)—for example, the projected value for <code class="docutils literal notranslate"><span class="pre">someProperty</span></code> is <code class="docutils literal notranslate"><span class="pre">$someProperty</span></code>. The projected value has the same access control level as the original wrapped property.</span><!--end_enstr-->
+<span class="jpstr">
+あるラップされたプロパティに対する<em>予測値</em>は、２番目の値です、それはプロパティラッパーが使用することで追加的機能性を露出できるものです。プロパティラッパー型の作者は、その予測値の意味の決定にそして予測値を露出するインターフェイスの定義に責任があります。ある値をプロパティラッパーから見積もるには、<code class="docutils literal notranslate"><span class="pre">projectedValue</span></code>インスタンスプロパティをそのラッパー型上で定義してください。コンパイラは、ある識別子を予測値に対して合成します、ラップされたプロパティの名前にドル記号（<code class="docutils literal notranslate"><span class="pre">$</span></code>）で接頭辞をつけることによって — 例えば、<code class="docutils literal notranslate"><span class="pre">someProperty</span></code>に対する見込値は<code class="docutils literal notranslate"><span class="pre">$someProperty</span></code>です。予測値は、元のラップされたプロパティと同じアクセス制御水準を持ちます。
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li>@<span class="nv">propertyWrapper</span>
+</li><li><span class="k">struct</span> <span class="nv">WrapperWithProjection</span> {
+</li><li>    <span class="k">var</span> <span class="nv">wrappedValue</span>: <span class="nc">Int</span>
+</li><li>    <span class="k">var</span> <span class="nv">projectedValue</span>: <span class="nc">SomeProjection</span> {
+</li><li>        <span class="k">return</span> <span class="nv">SomeProjection</span>(<span class="nv">wrapper</span>: <span class="k">self</span>)
+</li><li>    }
+</li><li>}
+</li><li><span class="k">struct</span> <span class="nv">SomeProjection</span> {
+</li><li>    <span class="k">var</span> <span class="nv">wrapper</span>: <span class="nc">WrapperWithProjection</span>
+</li><li>}
+</li><li>
+</li><li><span class="k">struct</span> <span class="nv">SomeStruct</span> {
+</li><li>    @<span class="nv">WrapperWithProjection</span> <span class="k">var</span> <span class="nv">x</span> = <span class="m">123</span>
+</li><li>}
+</li><li><span class="k">let</span> <span class="nv">s</span> = <span class="nv">SomeStruct</span>()
+</li><li><span class="nv">s</span>.<span class="nv">x</span>           <span class="c">// Int value</span>
+</li><li><span class="nv">s</span>.<span class="nv">$x</span>          <span class="c">// SomeProjection value</span>
+</li><li><span class="nv">s</span>.<span class="nv">$x</span>.<span class="nv">wrapper</span>  <span class="c">// WrapperWithProjection value</span>
+</li></ol></div></div></div>
+</div>
 <div class="section" id="ID594">
 <h3>requires_stored_property_inits<a class="headerlink" href="#ID594" title="Permalink to this headline">¶</a></h3>
 <p><span class="enstr">Apply this attribute to a class declaration to require all stored properties within the class to provide default values as part of their definitions. This attribute is inferred for any class that inherits from <code class="docutils literal notranslate"><span class="pre">NSManagedObject</span></code>.</span><!--end_enstr-->
@@ -705,9 +853,9 @@
 </div>
 <div class="section" id="ID597">
 <h3>usableFromInline<a class="headerlink" href="#ID597" title="Permalink to this headline">¶</a></h3>
-<p><span class="enstr">Apply this attribute to a function, method, computed property, subscript, initializer, or deinitializer declaration to allow that symbol to be used in inlinable code that’s defined in the same module as the declaration. The declaration must have the <code class="docutils literal notranslate"><span class="pre">internal</span></code> access level modifier.</span><!--end_enstr-->
+<p><span class="enstr">Apply this attribute to a function, method, computed property, subscript, initializer, or deinitializer declaration to allow that symbol to be used in inlinable code that’s defined in the same module as the declaration. The declaration must have the <code class="docutils literal notranslate"><span class="pre">internal</span></code> access level modifier. A structure or class marked <code class="docutils literal notranslate"><span class="pre">usableFromInline</span></code> can use only types that are public or <code class="docutils literal notranslate"><span class="pre">usableFromInline</span></code> for its properties. An enumeration marked <code class="docutils literal notranslate"><span class="pre">usableFromInline</span></code> can use only types that are public or <code class="docutils literal notranslate"><span class="pre">usableFromInline</span></code> for the raw values and associated values of its cases.</span><!--end_enstr-->
 <span class="jpstr">
-この属性を関数、メソッド、計算プロパティ、添え字、便宜イニシャライザ、またはデイニシャライザ宣言に適用することで、そのシンボルが、同じモジュールの中で宣言として定義されるインライン可能コードにおいて使用できるようにしてください。。宣言は、<code class="docutils literal notranslate"><span class="pre">internal</span></code>アクセス水準修飾子を持たなければなりません。
+この属性を関数、メソッド、計算プロパティ、添え字、便宜イニシャライザ、またはデイニシャライザ宣言に適用することで、そのシンボルが、同じモジュールの中で宣言として定義されるインライン可能コードにおいて使用できるようにしてください。宣言は、<code class="docutils literal notranslate"><span class="pre">internal</span></code>アクセス水準修飾子を持たなければなりません。<code class="docutils literal notranslate"><span class="pre">usableFromInline</span></code>で印される構造体またはクラスは、それのプロパティに対してパブリックまたは<code class="docutils literal notranslate"><span class="pre">usableFromInline</span></code>である型のみに使用できます。<code class="docutils literal notranslate"><span class="pre">usableFromInline</span></code>で印される列挙は、生の値およびそれの列挙節の関連値に対してパブリックまたは<code class="docutils literal notranslate"><span class="pre">usableFromInline</span></code>である型のみに使用できます。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">Like the <code class="docutils literal notranslate"><span class="pre">public</span></code> access level modifier, this attribute exposes the declaration as part of the module’s public interface. Unlike <code class="docutils literal notranslate"><span class="pre">public</span></code>, the compiler doesn’t allow declarations marked with <code class="docutils literal notranslate"><span class="pre">usableFromInline</span></code> to be referenced by name in code outside the module, even though the declaration’s symbol is exported. However, code outside the module might still be able to interact with the declaration’s symbol by using runtime behavior.</span><!--end_enstr-->
@@ -740,19 +888,19 @@
 インターフェイスビルダーで使用される宣言属性<a class="headerlink" href="#ID349" title="Permalink to this headline">¶</a>
 </span><!--end_jpstr-->
 </h3>
-<p><span class="enstr">Interface Builder attributes are declaration attributes used by Interface Builder to synchronize with Xcode. Swift provides the following Interface Builder attributes: <code class="docutils literal notranslate"><span class="pre">IBAction</span></code>, <code class="docutils literal notranslate"><span class="pre">IBOutlet</span></code>, <code class="docutils literal notranslate"><span class="pre">IBDesignable</span></code>, and <code class="docutils literal notranslate"><span class="pre">IBInspectable</span></code>. These attributes are conceptually the same as their Objective-C counterparts.</span><!--end_enstr-->
+<p><span class="enstr">Interface Builder attributes are declaration attributes used by Interface Builder to synchronize with Xcode. Swift provides the following Interface Builder attributes: <code class="docutils literal notranslate"><span class="pre">IBAction</span></code>, <code class="docutils literal notranslate"><span class="pre">IBSegueAction</span></code>, <code class="docutils literal notranslate"><span class="pre">IBOutlet</span></code>, <code class="docutils literal notranslate"><span class="pre">IBDesignable</span></code>, and <code class="docutils literal notranslate"><span class="pre">IBInspectable</span></code>. These attributes are conceptually the same as their Objective-C counterparts.</span><!--end_enstr-->
 <span class="jpstr">
-いくつかのインターフェイスビルダー属性は、Xcodeと同期するためにインターフェイスビルダーによって使用される宣言属性です。スウィフトは、以下のインターフェイスビルダー属性を提供します：<code class="docutils literal notranslate"><span class="pre">IBAction</span></code>、<code class="docutils literal notranslate"><span class="pre">IBOutlet</span></code>、<code class="docutils literal notranslate"><span class="pre">IBDesignable</span></code>、そして<code class="docutils literal notranslate"><span class="pre">IBInspectable</span></code>。これらの属性は、概念的にそれらのObjective-Cでの対応物と同じものです。
+いくつかのインターフェイスビルダー属性は、Xcodeと同期するためにインターフェイスビルダーによって使用される宣言属性です。スウィフトは、以下のインターフェイスビルダー属性を提供します：<code class="docutils literal notranslate"><span class="pre">IBAction</span></code>、<code class="docutils literal notranslate"><span class="pre">IBSegueAction</span></code>、<code class="docutils literal notranslate"><span class="pre">IBOutlet</span></code>、<code class="docutils literal notranslate"><span class="pre">IBDesignable</span></code>、そして<code class="docutils literal notranslate"><span class="pre">IBInspectable</span></code>。これらの属性は、概念的にそれらのObjective-Cでの対応物と同じものです。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">You apply the <code class="docutils literal notranslate"><span class="pre">IBOutlet</span></code> and <code class="docutils literal notranslate"><span class="pre">IBInspectable</span></code> attributes to property declarations of a class. You apply the <code class="docutils literal notranslate"><span class="pre">IBAction</span></code> attribute to method declarations of a class and the <code class="docutils literal notranslate"><span class="pre">IBDesignable</span></code> attribute to class declarations.</span><!--end_enstr-->
+<p><span class="enstr">You apply the <code class="docutils literal notranslate"><span class="pre">IBOutlet</span></code> and <code class="docutils literal notranslate"><span class="pre">IBInspectable</span></code> attributes to property declarations of a class. You apply the <code class="docutils literal notranslate"><span class="pre">IBAction</span></code> and <code class="docutils literal notranslate"><span class="pre">IBSegueAction</span></code> attribute to method declarations of a class and the <code class="docutils literal notranslate"><span class="pre">IBDesignable</span></code> attribute to class declarations.</span><!--end_enstr-->
 <span class="jpstr">
-あなたは、<code class="docutils literal notranslate"><span class="pre">IBOutlet</span></code>と<code class="docutils literal notranslate"><span class="pre">IBInspectable</span></code>属性をクラスのプロパティ宣言に適用します。あなたは、<code class="docutils literal notranslate"><span class="pre">IBAction</span></code>属性をクラスのメソッド宣言に、そして<code class="docutils literal notranslate"><span class="pre">IBDesignable</span></code>属性をクラス宣言に適用します。
+あなたは、<code class="docutils literal notranslate"><span class="pre">IBOutlet</span></code>と<code class="docutils literal notranslate"><span class="pre">IBInspectable</span></code>属性をクラスのプロパティ宣言に適用します。あなたは、<code class="docutils literal notranslate"><span class="pre">IBAction</span></code>と<code class="docutils literal notranslate"><span class="pre">IBSegueAction</span></code>属性をクラスのメソッド宣言に、そして<code class="docutils literal notranslate"><span class="pre">IBDesignable</span></code>属性をクラス宣言に適用します。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">Applying the <code class="docutils literal notranslate"><span class="pre">IBAction</span></code>, <code class="docutils literal notranslate"><span class="pre">IBOutlet</span></code>, <code class="docutils literal notranslate"><span class="pre">IBDesignable</span></code>, or <code class="docutils literal notranslate"><span class="pre">IBInspectable</span></code> attribute also implies the <code class="docutils literal notranslate"><span class="pre">objc</span></code> attribute.</span><!--end_enstr-->
+<p><span class="enstr">Applying the <code class="docutils literal notranslate"><span class="pre">IBAction</span></code>, <code class="docutils literal notranslate"><span class="pre">IBSegueAction</span></code>, <code class="docutils literal notranslate"><span class="pre">IBOutlet</span></code>, <code class="docutils literal notranslate"><span class="pre">IBDesignable</span></code>, or <code class="docutils literal notranslate"><span class="pre">IBInspectable</span></code> attribute also implies the <code class="docutils literal notranslate"><span class="pre">objc</span></code> attribute.</span><!--end_enstr-->
 <span class="jpstr">
-<code class="docutils literal notranslate"><span class="pre">IBAction</span></code>、<code class="docutils literal notranslate"><span class="pre">IBOutlet</span></code>、<code class="docutils literal notranslate"><span class="pre">IBDesignable</span></code>、または<code class="docutils literal notranslate"><span class="pre">IBInspectable</span></code>を適用することはまた、<code class="docutils literal notranslate"><span class="pre">objc</span></code>も適用します。
+<code class="docutils literal notranslate"><span class="pre">IBAction</span></code>、<code class="docutils literal notranslate"><span class="pre">IBSegueAction</span></code>、<code class="docutils literal notranslate"><span class="pre">IBOutlet</span></code>、<code class="docutils literal notranslate"><span class="pre">IBDesignable</span></code>、または<code class="docutils literal notranslate"><span class="pre">IBInspectable</span></code>属性を適用することはまた、暗黙的に<code class="docutils literal notranslate"><span class="pre">objc</span></code>属性を伴います。
 </span><!--end_jpstr-->
 </p>
 </div>
@@ -885,6 +1033,6 @@
   </p>
 </footer>
 <div id="jump_to_overlay"></div>
-<script src="../static/javascripts/application.js"></script>
+<script src="../_static/javascripts/application.js"></script>
   </body>
 </html>
