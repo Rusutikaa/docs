@@ -175,7 +175,11 @@ iCloudに格納されるこの指定された項目のローカルコピーを�
 <span class="jpstr">
 パラメータ 
 </span><!--end_jpstr-->
-</h2><dl class="datalist"><dt class="datalist-term"><code>url</code></dt><dd class="datalist-description"><div class="formatted-content"><div><p>The URL to a file or directory in iCloud storage. </p></div></div></dd></dl></section><section id="return-value" class="section"><h2><span class="enstr">Return Value</span><!--end_enstr-->
+</h2><dl class="datalist"><dt class="datalist-term"><code>url</code></dt><dd class="datalist-description"><div class="formatted-content"><div><p><span class="enstr">The URL to a file or directory in iCloud storage.</span><!--end_enstr-->
+<span class="jpstr">
+iCloudストレージの中のファイルまたは辞書へのURL。
+</span><!--end_jpstr-->
+ </p></div></div></dd></dl></section><section id="return-value" class="section"><h2><span class="enstr">Return Value</span><!--end_enstr-->
 <span class="jpstr">
 戻り値
 </span><!--end_jpstr-->
@@ -187,21 +191,17 @@ iCloudに格納されるこの指定された項目のローカルコピーを�
 <span class="jpstr">
 議論
 </span><!--end_jpstr-->
-</h2><div class="formatted-content"><div><p>Don’t use a coordinated write to perform this operation. <span class="enstr">In macOS 10.7 or earlier, the framework takes a coordinated write in its implementation of this method, so taking one in your app causes a deadlock. In macOS 10.8 and later, the framework detects coordination done by your app on the same thread as the call to this method, to avoid deadlocking.</span><!--end_enstr-->
+</h2><div class="formatted-content"><div><p><span class="enstr">Don’t use a coordinated write to perform this operation. In macOS 10.7 or earlier, the framework takes a coordinated write in its implementation of this method, so taking one in your app causes a deadlock. In macOS 10.8 and later, the framework detects coordination done by your app on the same thread as the call to this method, to avoid deadlocking.</span><!--end_enstr-->
 <span class="jpstr">
-macOS 10.7以前において、フレームワークは協調書き込みをこのメソッドのそれの実装において取ります、それであなたのアプリにおいてそれを取ることはデッドロックの原因となります。macOS 10.8以降では、フレームワークは、あなたのアプリによって同じスレッド上でこのメソッドに対する呼び出しとして行われる協調を検知します、デッドロックを避けるために。
+強調書き込みを使ってこの演算を実行しないでください。macOS 10.7以前において、フレームワークは協調書き込みをこのメソッドのそれの実装において取ります、それであなたのアプリにおいてそれを取ることはデッドロックの原因となります。macOS 10.8以降では、フレームワークは、あなたのアプリによって同じスレッド上でこのメソッドに対する呼び出しとして行われる協調を検知します、デッドロックを避けるために。
 </span><!--end_jpstr-->
-</p><p>This method doesn’t remove the item from iCloud. <span class="enstr">It removes only the local version.</span><!--end_enstr-->
+</p><p><span class="enstr">This method doesn’t remove the item from iCloud. It removes only the local version. You can then use <a class="symbol-name" href="../../../documentation/foundation/filemanager/1410377-startdownloadingubiquitousitem.html"><code><span>start<wbr/>Downloading<wbr/>Ubiquitous<wbr/>Item(at:)</span></code></a> to force iCloud to download a new version of the file or directory from the server.</span><!--end_enstr-->
 <span class="jpstr">
-それはローカル版だけを除去します。
+このメソッドは、項目をiCloudから取り除きません。それはローカル版だけを除去します。あなたはそれから<a class="symbol-name" href="../../../documentation/foundation/filemanager/1410377-startdownloadingubiquitousitem.html"><code><span>start<wbr/>Downloading<wbr/>Ubiquitous<wbr/>Item(at:)</span></code></a>を使って、iCloudにファイルやディレクトリの新しいバージョンをサーバーからダウンロードするよう強制できます。
 </span><!--end_jpstr-->
-You can then use <a class="symbol-name" href="../../../documentation/foundation/filemanager/1410377-startdownloadingubiquitousitem.html"><code><span>start<wbr/>Downloading<wbr/>Ubiquitous<wbr/>Item(at:)</span></code></a> to force iCloud to download a new version of the file or directory from the server.</p><p><span class="enstr">To delete a file permanently from the user’s iCloud storage, use the regular <a class="symbol-name" href="../../../documentation/foundation/filemanager.html"><code><span>File<wbr/>Manager</span></code></a> routines for deleting files and directories.</span><!--end_enstr-->
+</p><p><span class="enstr">To delete a file permanently from the user’s iCloud storage, use the regular <a class="symbol-name" href="../../../documentation/foundation/filemanager.html"><code><span>File<wbr/>Manager</span></code></a> routines for deleting files and directories. Remember that deleting items from iCloud can’t be undone. Once deleted, the item is gone forever.</span><!--end_enstr-->
 <span class="jpstr">
-ファイルを永久にユーザのiCloudストレージから削除するには、通常の<a class="symbol-name" href="../../../documentation/foundation/filemanager.html"><code><span>File<wbr/>Manager</span></code></a>ルーチンをファイルとディレクトリの削除に対して使ってください。
-</span><!--end_jpstr-->
-Remember that deleting items from iCloud can’t be undone. <span class="enstr">Once deleted, the item is gone forever.</span><!--end_enstr-->
-<span class="jpstr">
-一旦削除したならば、項目は永遠に失われます。
+ファイルを永久にユーザのiCloudストレージから削除するには、通常の<a class="symbol-name" href="../../../documentation/foundation/filemanager.html"><code><span>File<wbr/>Manager</span></code></a>ルーチンをファイルとディレクトリの削除に対して使ってください。項目のiCloudからの削除は、取り消しできないのを忘れないでください。一旦削除したならば、項目は永遠に失われます。
 </span><!--end_jpstr-->
 </p><p></p><aside class="aside aside-note" role="note"><p class="aside-name"><span class="enstr">Handling Errors in Swift:</span><!--end_enstr-->
 <span class="jpstr">
@@ -213,7 +213,7 @@ Swiftでは、このメソッドは<code class="code-voice"><span>Void</span></c
 </span><!--end_jpstr-->
 </p><p><span class="enstr">You call this method in a <code class="code-voice"><span>try</span></code> expression and handle any errors in the <code class="code-voice"><span>catch</span></code> clauses of a <code class="code-voice"><span>do</span></code> statement, as described in <a href="https://docs.swift.org/swift-book/LanguageGuide/ErrorHandling.html">Error Handling</a> in <a href="https://docs.swift.org/swift-book/">The Swift Programming Language</a> and <a href="../../../documentation/swift/cocoa_design_patterns/about_imported_cocoa_error_parameters.html">About Imported Cocoa Error Parameters</a>.</span><!--end_enstr-->
 <span class="jpstr">
-あなたはこのメソッドを<code class="code-voice"><span>try</span></code>式の中で呼び出して、あらゆるエラーを<code class="code-voice"><span>do</span></code>文の<code class="code-voice"><span>catch</span></code>節で取り扱います、<a href="https://docs.swift.org/swift-book/">The Swift Programming Language</a>の<a href="https://docs.swift.org/swift-book/LanguageGuide/ErrorHandling.html">エラー処理</a>そして<a href="../../../documentation/swift/cocoa_design_patterns/about_imported_cocoa_error_parameters.html">インポートされるCocoaエラーパラメータについて</a>で記述されるように。
+あなたはこのメソッドを<code class="code-voice"><span>try</span></code>式の中で呼び出して、あらゆるエラーを<code class="code-voice"><span>do</span></code>文の<code class="code-voice"><span>catch</span></code>節で取り扱います、<a href="../../../../docs.swift.org/swift-book/index.html">The Swift Programming Language</a>の<a href="../../../../docs.swift.org/swift-book/LanguageGuide/ErrorHandling.html">エラー処理</a>そして<a href="../../../documentation/swift/cocoa_design_patterns/about_imported_cocoa_error_parameters.html">インポートされるCocoaエラーパラメータについて</a>で記述されるように。
 </span><!--end_jpstr-->
 </p></aside></div></div></section></div></div><section id="see-also" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><span class="enstr">See Also</span><!--end_enstr-->
 <span class="jpstr">
@@ -223,7 +223,11 @@ Swiftでは、このメソッドは<code class="code-voice"><span>Void</span></c
 <span class="jpstr">
 iCloud基盤の項目を管理する
 </span><!--end_jpstr-->
-</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/filemanager/1408036-ubiquityidentitytoken.html"><code class="display-name"><span class="decorator">var </span><span class="identifier">ubiquity<wbr/>Identity<wbr/>Token</span><span class="decorator">: (NSCoding &amp; NSCopying &amp; NSObject<wbr/>Protocol)?</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p>An opaque token that represents the current user’s iCloud Drive Documents identity.</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/filemanager/1411653-url.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">url</span><span class="decorator">(</span><span class="identifier">for<wbr/>Ubiquity<wbr/>Container<wbr/>Identifier</span><span class="decorator">: String?) -&gt; URL?</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns the URL for the iCloud container associated with the specified identifier and establishes access to that container.</span><!--end_enstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/filemanager/1408036-ubiquityidentitytoken.html"><code class="display-name"><span class="decorator">var </span><span class="identifier">ubiquity<wbr/>Identity<wbr/>Token</span><span class="decorator">: (NSCoding &amp; NSCopying &amp; NSObject<wbr/>Protocol)?</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">An opaque token that represents the current user’s iCloud Drive Documents identity.</span><!--end_enstr-->
+<span class="jpstr">
+ある不透明トークン、それは現在のユーザのもつiCloud Drive Documents同一性を表します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/filemanager/1411653-url.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">url</span><span class="decorator">(</span><span class="identifier">for<wbr/>Ubiquity<wbr/>Container<wbr/>Identifier</span><span class="decorator">: String?) -&gt; URL?</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns the URL for the iCloud container associated with the specified identifier and establishes access to that container.</span><!--end_enstr-->
 <span class="jpstr">
 指定された識別子と結び付けられたiCloudコンテナに対するURLを返します、そしてそのコンテナに対するアクセスを確立します。
 </span><!--end_jpstr-->

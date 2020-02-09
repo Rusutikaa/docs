@@ -179,17 +179,17 @@
 <span class="jpstr">
 <code class="code-voice"><span>i</span></code>を補う間隔。
 </span><!--end_jpstr-->
-</p></div></div></dd><dt class="datalist-term"><code>limit</code></dt><dd class="datalist-description"><div class="formatted-content"><div><p><span class="enstr">A valid index of the collection to use as a limit.</span><!--end_enstr-->
+</p></div></div></dd><dt class="datalist-term"><code>limit</code></dt><dd class="datalist-description"><div class="formatted-content"><div><p><span class="enstr">A valid index of the collection to use as a limit. If <code class="code-voice"><span>distance &gt; 0</span></code>, <code class="code-voice"><span>limit</span></code> should be greater than <code class="code-voice"><span>i</span></code> to have any effect. Likewise, if <code class="code-voice"><span>distance &lt; 0</span></code>, <code class="code-voice"><span>limit</span></code> should be less than <code class="code-voice"><span>i</span></code> to have any effect.</span><!--end_enstr-->
 <span class="jpstr">
-限度として使うためのコレクションの有効なインデックス。
+限度として使うためのコレクションの有効なインデックス。もし<code class="code-voice"><span>distance &gt; 0</span></code>ならば、<code class="code-voice"><span>limit</span></code>は、何らかの効果を持つために<code class="code-voice"><span>i</span></code>より大きくあるべきです。同様に、もし<code class="code-voice"><span>distance &lt; 0</span></code>ならば、<code class="code-voice"><span>limit</span></code>は、何らかの効果を持つために<code class="code-voice"><span>i</span></code>より小さくあるべきです。
 </span><!--end_jpstr-->
-If <code class="code-voice"><span>distance &gt; 0</span></code>, <code class="code-voice"><span>limit</span></code> should be greater than <code class="code-voice"><span>i</span></code> to have any effect. Likewise, if <code class="code-voice"><span>distance &lt; 0</span></code>, <code class="code-voice"><span>limit</span></code> should be less than <code class="code-voice"><span>i</span></code> to have any effect.</p></div></div></dd></dl></section><section id="return-value" class="section"><h2><span class="enstr">Return Value</span><!--end_enstr-->
+</p></div></div></dd></dl></section><section id="return-value" class="section"><h2><span class="enstr">Return Value</span><!--end_enstr-->
 <span class="jpstr">
 戻り値
 </span><!--end_jpstr-->
-</h2><div class="formatted-content"><div><p>An index offset by <code class="code-voice"><span>distance</span></code> from the index <code class="code-voice"><span>i</span></code>, unless that index would be beyond <code class="code-voice"><span>limit</span></code> in the direction of movement. <span class="enstr">In that case, the method returns <code class="code-voice"><span>nil</span></code>.</span><!--end_enstr-->
+</h2><div class="formatted-content"><div><p><span class="enstr">An index offset by <code class="code-voice"><span>distance</span></code> from the index <code class="code-voice"><span>i</span></code>, unless that index would be beyond <code class="code-voice"><span>limit</span></code> in the direction of movement. In that case, the method returns <code class="code-voice"><span>nil</span></code>.</span><!--end_enstr-->
 <span class="jpstr">
-その場合には、このメソッドは<code class="code-voice"><span>nil</span></code>を返します。
+<code class="code-voice"><span>distance</span></code>だけインデックス<code class="code-voice"><span>i</span></code>から埋め合わされるあるインデックス、そのインデックスがその動く方向において<code class="code-voice"><span>limit</span></code>を越えない限り。その場合には、このメソッドは<code class="code-voice"><span>nil</span></code>を返します。
 </span><!--end_jpstr-->
 </p></div></div></section><section id="discussion" class="section"><h2><span class="enstr">Discussion</span><!--end_enstr-->
 <span class="jpstr">
@@ -212,7 +212,11 @@ print(numbers[i])
                       limitedBy: numbers.endIndex)
 print(j)
 // Prints "nil"
-</code></pre></div></div></figure><p>The value passed as <code class="code-voice"><span>distance</span></code> must not offset <code class="code-voice"><span>i</span></code> beyond the bounds of the collection, unless the index passed as <code class="code-voice"><span>limit</span></code> prevents offsetting beyond those bounds.</p><p><span class="enstr">Complexity: O(1)</span><!--end_enstr-->
+</code></pre></div></div></figure><p><span class="enstr">The value passed as <code class="code-voice"><span>distance</span></code> must not offset <code class="code-voice"><span>i</span></code> beyond the bounds of the collection, unless the index passed as <code class="code-voice"><span>limit</span></code> prevents offsetting beyond those bounds.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="code-voice"><span>distance</span></code>として渡される値は、このコレクションの境界を越えて<code class="code-voice"><span>i</span></code>を補ってはいけません、<code class="code-voice"><span>limit</span></code>として渡されるインデックスがそれらの境界を越えて補うのを防止するのでない限りは。
+</span><!--end_jpstr-->
+</p><p><span class="enstr">Complexity: O(1)</span><!--end_enstr-->
 <span class="jpstr">
 計算量：O(1)
 </span><!--end_jpstr-->

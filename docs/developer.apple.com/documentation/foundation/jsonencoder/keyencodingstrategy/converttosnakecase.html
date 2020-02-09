@@ -167,15 +167,51 @@
 <span class="jpstr">
 議論
 </span><!--end_jpstr-->
-</h2><div class="formatted-content"><div><p>Camel-case and snake-case are two common approaches for combining words when naming parts of an API. <span class="enstr">The Swift <a href="https://swift.org/documentation/api-design-guidelines/#general-conventions">API Design Guidelines</a> recommend using camel-case names. Some JSON APIs adopt snake-case; use this strategy when you encounter such an API.</span><!--end_enstr-->
+</h2><div class="formatted-content"><div><p><span class="enstr">Camel-case and snake-case are two common approaches for combining words when naming parts of an API. The Swift <a href="https://swift.org/documentation/api-design-guidelines/#general-conventions">API Design Guidelines</a> recommend using camel-case names. Some JSON APIs adopt snake-case; use this strategy when you encounter such an API.</span><!--end_enstr-->
 <span class="jpstr">
-Swift <a href="https://swift.org/documentation/api-design-guidelines/#general-conventions">API Design Guidelines</a>は、キャメルケース名を使うことを推奨します。いくつかのJSON APIはスネークケースを採用します；あなたがそのようなAPIに出くわす場合はこの戦略を使ってください。
+キャメルケースとスネークケースは、APIの部品に名前を付ける場合に単語を結合するための２つの一般的な取り組み方です。Swift <a href="https://swift.org/documentation/api-design-guidelines/#general-conventions">API Design Guidelines</a>は、キャメルケース名を使うことを推奨します。いくつかのJSON APIはスネークケースを採用します；あなたがそのようなAPIに出くわす場合はこの戦略を使ってください。
 </span><!--end_jpstr-->
-</p><p>This strategy uses <a class="symbol-name" href="../../../../documentation/foundation/characterset/1779880-uppercaseletters.html"><code><span>uppercase<wbr/>Letters</span></code></a> and <a class="symbol-name" href="../../../../documentation/foundation/characterset/1779790-lowercaseletters.html"><code><span>lowercase<wbr/>Letters</span></code></a> to determine the boundaries between words, and the <a class="symbol-name" href="../../../../documentation/foundation/nslocale/1407691-system.html"><code><span>system</span></code></a> locale when converting uppercase letters to lowercase letters.</p><p></p><p>This strategy follows these steps to convert key names to snake-case:</p><ol><li><p>Split the name into words, preserving leading or trailing underscores.</p></li><li><p>Insert an underscore between each word.</p></li><li><p>Convert the resulting string to lowercase.</p></li></ol><p></p><p><span class="enstr">The following examples show the result of applying this strategy:</span><!--end_enstr-->
+</p><p><span class="enstr">This strategy uses <a class="symbol-name" href="../../../../documentation/foundation/characterset/1779880-uppercaseletters.html"><code><span>uppercase<wbr/>Letters</span></code></a> and <a class="symbol-name" href="../../../../documentation/foundation/characterset/1779790-lowercaseletters.html"><code><span>lowercase<wbr/>Letters</span></code></a> to determine the boundaries between words, and the <a class="symbol-name" href="../../../../documentation/foundation/nslocale/1407691-system.html"><code><span>system</span></code></a> locale when converting uppercase letters to lowercase letters.</span><!--end_enstr-->
+<span class="jpstr">
+この戦略は、単語間の境界を決めるのに<a class="symbol-name" href="../../../../documentation/foundation/characterset/1779880-uppercaseletters.html"><code><span>uppercase<wbr/>Letters</span></code></a>と<a class="symbol-name" href="../../../../documentation/foundation/characterset/1779790-lowercaseletters.html"><code><span>lowercase<wbr/>Letters</span></code></a>を、そしてアッパーケースをローワケース表音文字に変換している時に<a class="symbol-name" href="../../../../documentation/foundation/nslocale/1407691-system.html"><code><span>system</span></code></a>ロケールを使います。
+</span><!--end_jpstr-->
+</p><p></p><p><span class="enstr">This strategy follows these steps to convert key names to snake-case:</span><!--end_enstr-->
+<span class="jpstr">
+この戦略は、以下の３つの段階に従ってキー名をスネークケースに変換します：
+</span><!--end_jpstr-->
+</p><ol><li><p><span class="enstr">Split the name into words, preserving leading or trailing underscores.</span><!--end_enstr-->
+<span class="jpstr">
+名前を単語へと分割します、先導するまたは後続するアンダースコアを保全します。
+</span><!--end_jpstr-->
+</p></li><li><p><span class="enstr">Insert an underscore between each word.</span><!--end_enstr-->
+<span class="jpstr">
+１つのアンダースコアを各単語の間に挿入します。
+</span><!--end_jpstr-->
+</p></li><li><p><span class="enstr">Convert the resulting string to lowercase.</span><!--end_enstr-->
+<span class="jpstr">
+結果文字列をローワケースに変換します。
+</span><!--end_jpstr-->
+</p></li></ol><p></p><p><span class="enstr">The following examples show the result of applying this strategy:</span><!--end_enstr-->
 <span class="jpstr">
 以下の例は、この戦略を適用する結果を示します：
 </span><!--end_jpstr-->
-</p><dl class="terms"><dt><code class="code-voice"><span>fee<wbr/>Fi<wbr/>Fo<wbr/>Fum</span></code></dt><dd><p>Converts to: <code class="code-voice"><span>fee<wbr/>_fi<wbr/>_fo<wbr/>_fum</span></code></p></dd><dt><code class="code-voice"><span>fee<wbr/>_fi<wbr/>_fo<wbr/>_fum</span></code></dt><dd><p>Converts to: <code class="code-voice"><span>fee<wbr/>_fi<wbr/>_fo<wbr/>_fum</span></code></p></dd><dt><code class="code-voice"><span>xml<wbr/>Contents</span></code></dt><dd><p>Converts to: <code class="code-voice"><span>xml<wbr/>_contents</span></code></p></dd></dl><p></p><p>The example below shows how properties on the <code class="code-voice"><span>Olympic<wbr/>Event<wbr/>Result</span></code> structure are converted to snake-case when encoded as keys in a JSON object.</p><figure id="2950676"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>struct OlympicEventResult: Codable {
+</p><dl class="terms"><dt><code class="code-voice"><span>fee<wbr/>Fi<wbr/>Fo<wbr/>Fum</span></code></dt><dd><p><span class="enstr">Converts to: <code class="code-voice"><span>fee<wbr/>_fi<wbr/>_fo<wbr/>_fum</span></code></span><!--end_enstr-->
+<span class="jpstr">
+次に変換: <code class="code-voice"><span>fee<wbr/>_fi<wbr/>_fo<wbr/>_fum</span></code>
+</span><!--end_jpstr-->
+</p></dd><dt><code class="code-voice"><span>fee<wbr/>_fi<wbr/>_fo<wbr/>_fum</span></code></dt><dd><p><span class="enstr">Converts to: <code class="code-voice"><span>fee<wbr/>_fi<wbr/>_fo<wbr/>_fum</span></code></span><!--end_enstr-->
+<span class="jpstr">
+次に変換: <code class="code-voice"><span>fee<wbr/>_fi<wbr/>_fo<wbr/>_fum</span></code>
+</span><!--end_jpstr-->
+</p></dd><dt><code class="code-voice"><span>xml<wbr/>Contents</span></code></dt><dd><p><span class="enstr">Converts to: <code class="code-voice"><span>xml<wbr/>_contents</span></code></span><!--end_enstr-->
+<span class="jpstr">
+次に変換: <code class="code-voice"><span>xml<wbr/>_contents</span></code>
+</span><!--end_jpstr-->
+</p></dd></dl><p></p><p><span class="enstr">The example below shows how properties on the <code class="code-voice"><span>Olympic<wbr/>Event<wbr/>Result</span></code> structure are converted to snake-case when encoded as keys in a JSON object.</span><!--end_enstr-->
+<span class="jpstr">
+下の例は、<code class="code-voice"><span>Olympic<wbr/>Event<wbr/>Result</span></code>構造体上のプロパティーそれらが、JSONオブジェクトの中のキーとして符号化される時に、スネークケースに変換されるかを示します
+</span><!--end_jpstr-->
+</p><figure id="2950676"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>struct OlympicEventResult: Codable {
     var goldWinner: String
     var silverWinner: String
     var bronzeWinner: String

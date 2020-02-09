@@ -167,11 +167,11 @@ URLリクエストをキャッシュされた応答オブジェクトにマッ�
 <span class="jpstr">
 概要
 </span><!--end_jpstr-->
-</h2><div class="formatted-content"><div><p>The <code class="code-voice"><span>URLCache</span></code> class implements the caching of responses to URL load requests, by mapping <a class="symbol-name" href="../../documentation/foundation/nsurlrequest.html"><code><span>NSURLRequest</span></code></a> objects to <a class="symbol-name" href="../../documentation/foundation/cachedurlresponse.html"><code><span>Cached<wbr/>URLResponse</span></code></a> objects. <span class="enstr">It provides a composite in-memory and on-disk cache, and lets you manipulate the sizes of both the in-memory and on-disk portions.</span><!--end_enstr-->
+</h2><div class="formatted-content"><div><p><span class="enstr">The <code class="code-voice"><span>URLCache</span></code> class implements the caching of responses to URL load requests, by mapping <a class="symbol-name" href="../../documentation/foundation/nsurlrequest.html"><code><span>NSURLRequest</span></code></a> objects to <a class="symbol-name" href="../../documentation/foundation/cachedurlresponse.html"><code><span>Cached<wbr/>URLResponse</span></code></a> objects. It provides a composite in-memory and on-disk cache, and lets you manipulate the sizes of both the in-memory and on-disk portions. You can also control the path where cache data is persistently stored.</span><!--end_enstr-->
 <span class="jpstr">
-それは、メモリ内およびディスク上キャッシュの複合物を提供します、そしてあなたにインメモリおよびオンディスク部分の両方のサイズを操作させます。
+<code class="code-voice"><span>URLCache</span></code>クラスは、URLロードリクエストに対する応答のキャッシュを実装します、<a class="symbol-name" href="../../documentation/foundation/nsurlrequest.html"><code><span>NSURLRequest</span></code></a>オブジェクトを<a class="symbol-name" href="../../documentation/foundation/cachedurlresponse.html"><code><span>Cached<wbr/>URLResponse</span></code></a>オブジェクトにマッピングすることによって。それは、メモリ内およびディスク上キャッシュの複合物を提供します、そしてあなたにインメモリおよびオンディスク部分の両方のサイズを操作させます。あなたはまた、そこにおいてキャッシュデータが永続的に格納されるところのパスを制御できます。
 </span><!--end_jpstr-->
-You can also control the path where cache data is persistently stored.</p><aside class="aside aside-note" role="note"><p class="aside-name"><span class="enstr">Note</span><!--end_enstr-->
+</p><aside class="aside aside-note" role="note"><p class="aside-name"><span class="enstr">Note</span><!--end_enstr-->
 <span class="jpstr">
 注意
 </span><!--end_jpstr-->
@@ -191,13 +191,17 @@ iOS 8以降、そしてmacOS 10.10以降では、<code class="code-voice"><span>
 <span class="jpstr">
 <code class="code-voice"><span>URLCache</span></code>インスタンスメソッドが安全に複数の遂行文脈から同時に呼び出されることができるとはいえ、<a class="symbol-name" href="../../documentation/foundation/urlcache/1411817-cachedresponse.html"><code><span>cached<wbr/>Response(for:)</span></code></a>と<a class="symbol-name" href="../../documentation/foundation/urlcache/1410340-storecachedresponse.html"><code><span>store<wbr/>Cached<wbr/>Response(_:<wbr/>for:)</span></code></a>のようなメソッドは不可避の競合状態を、同じリクエストに対する読み出しまたは書き出しを試みている時に持つことを意識してください。
 </span><!--end_jpstr-->
-</p><p>Subclasses of <code class="code-voice"><span>URLCache</span></code> must implement overridden methods in such a thread-safe manner.</p></div><h3 id="2940723"><span class="enstr">Subclassing Notes</span><!--end_enstr-->
+</p><p><span class="enstr">Subclasses of <code class="code-voice"><span>URLCache</span></code> must implement overridden methods in such a thread-safe manner.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="code-voice"><span>URLCache</span></code>のサブクラスは、オーバーライドされたメソッドをそのようなスレッド安全な流儀で実装しなければなりません。
+</span><!--end_jpstr-->
+</p></div><h3 id="2940723"><span class="enstr">Subclassing Notes</span><!--end_enstr-->
 <span class="jpstr">
 サブクラス作成の注意
 </span><!--end_jpstr-->
-</h3><div><p>The <code class="code-voice"><span>URLCache</span></code> class is meant to be used as-is, but you can subclass it when you have specific needs. <span class="enstr">For example, you might want to screen which responses are cached, or reimplement the storage mechanism for security or other reasons.</span><!--end_enstr-->
+</h3><div><p><span class="enstr">The <code class="code-voice"><span>URLCache</span></code> class is meant to be used as-is, but you can subclass it when you have specific needs. For example, you might want to screen which responses are cached, or reimplement the storage mechanism for security or other reasons.</span><!--end_enstr-->
 <span class="jpstr">
-例えば、あなたはどの応答がキャッシュされるか選別したい、または保安または他の理由のために貯蔵の仕組みを再実装したいかもしれません。
+<code class="code-voice"><span>URLCache</span></code>クラスは、そのままで使われることを意図されます、しかしあなたはそれのサブクラスを作ることができます、もしあなたが特別な需要を持つ時は。例えば、あなたはどの応答がキャッシュされるか選別したい、または保安または他の理由のために貯蔵の仕組みを再実装したいかもしれません。
 </span><!--end_jpstr-->
 </p><p><span class="enstr">When overriding methods of this class, be aware that methods that take a <code class="code-voice"><span>task</span></code> parameter are preferred by the system to those that do not. Therefore, you should override the task-based methods when subclassing, as follows:</span><!--end_enstr-->
 <span class="jpstr">
@@ -231,7 +235,15 @@ iOS 8以降、そしてmacOS 10.10以降では、<code class="code-voice"><span>
 <span class="jpstr">
 新たしいキャッシュオブジェクトを作成する
 </span><!--end_jpstr-->
-</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/urlcache/3329590-init.html"><code class="display-name"><span class="identifier">init</span><span class="decorator">(</span><span class="identifier">memory<wbr/>Capacity</span><span class="decorator">: Int, </span><span class="identifier">disk<wbr/>Capacity</span><span class="decorator">: Int, </span><span class="identifier">directory</span><span class="decorator">: URL?)</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p>Creates a URL cache object with the specified memory and disk capacities, in the specified directory.</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="task-topic-deprecated has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/urlcache/1415637-init.html"><code class="display-name"><span class="identifier">init</span><span class="decorator">(</span><span class="identifier">memory<wbr/>Capacity</span><span class="decorator">: Int, </span><span class="identifier">disk<wbr/>Capacity</span><span class="decorator">: Int, </span><span class="identifier">disk<wbr/>Path</span><span class="decorator">: String?)</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p>Creates a URL cache object with the specified values.</p></div></div><span class="violator violator-inline violator-deprecated task-topic-violator task-topic-data" role="presentation"><span class="enstr">Deprecated</span><!--end_enstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/urlcache/3329590-init.html"><code class="display-name"><span class="identifier">init</span><span class="decorator">(</span><span class="identifier">memory<wbr/>Capacity</span><span class="decorator">: Int, </span><span class="identifier">disk<wbr/>Capacity</span><span class="decorator">: Int, </span><span class="identifier">directory</span><span class="decorator">: URL?)</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Creates a URL cache object with the specified memory and disk capacities, in the specified directory.</span><!--end_enstr-->
+<span class="jpstr">
+URLキャッシュオブジェクトをこの指定されたメモリとディスク容量で、指定されたディレクトリにおいて作成します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="task-topic-deprecated has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/urlcache/1415637-init.html"><code class="display-name"><span class="identifier">init</span><span class="decorator">(</span><span class="identifier">memory<wbr/>Capacity</span><span class="decorator">: Int, </span><span class="identifier">disk<wbr/>Capacity</span><span class="decorator">: Int, </span><span class="identifier">disk<wbr/>Path</span><span class="decorator">: String?)</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Creates a URL cache object with the specified values.</span><!--end_enstr-->
+<span class="jpstr">
+URLキャッシュオブジェクトをこれら指定された値で作成します。
+</span><!--end_jpstr-->
+</p></div></div><span class="violator violator-inline violator-deprecated task-topic-violator task-topic-data" role="presentation"><span class="enstr">Deprecated</span><!--end_enstr-->
 <span class="jpstr">
 非推奨
 </span><!--end_jpstr-->

@@ -175,21 +175,25 @@
 <span class="jpstr">
 議論
 </span><!--end_jpstr-->
-</h2><div class="formatted-content"><div><p><span class="enstr">Use this method to convert <code class="code-voice"><span>data://</span></code> URLs to <span class="reference">NSData</span> objects. You can also use it to read <em>short</em> files synchronously.</span><!--end_enstr-->
+</h2><div class="formatted-content"><div><p><span class="enstr">Use this method to convert <code class="code-voice"><span>data://</span></code> URLs to <span class="reference">NSData</span> objects. You can also use it to read <em>short</em> files synchronously. If you need to read potentially large files, initialize an <a class="symbol-name" href="../../../documentation/foundation/inputstream.html"><code><span>Input<wbr/>Stream</span></code></a> with <a class="symbol-name" href="../../../documentation/foundation/nsinputstream/1564838-inputstreamwithurl.html"><code><span>input<wbr/>Stream<wbr/>With<wbr/>URL:</span></code></a>, then read the file incrementally.</span><!--end_enstr-->
 <span class="jpstr">
-このメソッドを使って<code class="code-voice"><span>data://</span></code>URLを<span class="reference">NSData</span>オブジェクトに変換してください。あなたはまたそれを使って<em>短い</em>ファイルそれらを同期的に読み出せます。
+このメソッドを使って<code class="code-voice"><span>data://</span></code>URLを<span class="reference">NSData</span>オブジェクトに変換してください。あなたはまたそれを使って<em>短い</em>ファイルそれらを同期的に読み出せます。あなたが潜在的に大きなファイルを読み出す必要があるならば、<a class="symbol-name" href="../../../documentation/foundation/inputstream.html"><code><span>Input<wbr/>Stream</span></code></a>を<a class="symbol-name" href="../../../documentation/foundation/nsinputstream/1564838-inputstreamwithurl.html"><code><span>input<wbr/>Stream<wbr/>With<wbr/>URL:</span></code></a>で初期化して、その後でファイルを徐々に読み出してください。
 </span><!--end_jpstr-->
-If you need to read potentially large files, initialize an <a class="symbol-name" href="../../../documentation/foundation/inputstream.html"><code><span>Input<wbr/>Stream</span></code></a> with <a class="symbol-name" href="../../../documentation/foundation/nsinputstream/1564838-inputstreamwithurl.html"><code><span>input<wbr/>Stream<wbr/>With<wbr/>URL:</span></code></a>, then read the file incrementally.</p><p>This initializer may fail and return <code class="code-voice"><span>nil</span></code> for various reasons, like bad URLs and file-not-found errors. If you want to handle these errors, use <a class="symbol-name" href="../../../documentation/foundation/nsdata/1407864-init.html"><code><span>init(contents<wbr/>Of:<wbr/>options:)</span></code></a> instead and catch the error it throws.</p><aside class="aside aside-important" aria-label="important"><p class="aside-name"><span class="enstr">Important</span><!--end_enstr-->
+</p><p><span class="enstr">This initializer may fail and return <code class="code-voice"><span>nil</span></code> for various reasons, like bad URLs and file-not-found errors. If you want to handle these errors, use <a class="symbol-name" href="../../../documentation/foundation/nsdata/1407864-init.html"><code><span>init(contents<wbr/>Of:<wbr/>options:)</span></code></a> instead and catch the error it throws.</span><!--end_enstr-->
+<span class="jpstr">
+このイニシャライザは、不正なURLそしてファイルが見つからないエラーのような、さまざまな理由のために失敗して、<code class="code-voice"><span>nil</span></code>を返すかもしれません。あなたがこれらエラーを取り扱いたいならば、<a class="symbol-name" href="../../../documentation/foundation/nsdata/1407864-init.html"><code><span>init(contents<wbr/>Of:<wbr/>options:)</span></code></a>を代わりに使ってください、そしてそれがスローするエラーを捕らえてください。
+</span><!--end_jpstr-->
+</p><aside class="aside aside-important" aria-label="important"><p class="aside-name"><span class="enstr">Important</span><!--end_enstr-->
 <span class="jpstr">
 重要
 </span><!--end_jpstr-->
-</p><p>Don't use this synchronous initializer to request network-based URLs. <span class="enstr">For network-based URLs, this method can block the current thread for tens of seconds on a slow network, resulting in a poor user experience, and in iOS, may cause your app to be terminated.</span><!--end_enstr-->
+</p><p><span class="enstr">Don't use this synchronous initializer to request network-based URLs. For network-based URLs, this method can block the current thread for tens of seconds on a slow network, resulting in a poor user experience, and in iOS, may cause your app to be terminated.</span><!--end_enstr-->
 <span class="jpstr">
-ネットワーク基盤のURLに対して、このメソッドは低速なネットワーク上で10秒の間現在のスレッドをブロックして、劣悪なユーザ体験という結果になる可能性があります、そしてiOSでは、あなたのアプリは終了させられるかもしれません。
+この同期的イニシャライザを使って、ネートワーク基盤のURLを要請しないでください。ネットワーク基盤のURLに対して、このメソッドは低速なネットワーク上で10秒の間現在のスレッドをブロックして、劣悪なユーザ体験という結果になる可能性があります、そしてiOSでは、あなたのアプリは終了させられるかもしれません。
 </span><!--end_jpstr-->
 </p><p><span class="enstr">Instead, for non-file URLs, consider using the <a class="symbol-name" href="../../../documentation/foundation/urlsession/1410330-datatask.html"><code><span>data<wbr/>Task(with:<wbr/>completion<wbr/>Handler:)</span></code></a> method of the <a class="symbol-name" href="../../../documentation/foundation/urlsession.html"><code><span>URLSession</span></code></a> class. See <a href="../../../documentation/foundation/url_loading_system/fetching_website_data_into_memory.html">Fetching Website Data into Memory</a> for an example.</span><!--end_enstr-->
 <span class="jpstr">
-代わりに、非ファイルURLに対して、<a class="symbol-name" href="../../../documentation/foundation/urlsession.html"><code><span>URLSession</span></code></a>クラスの<a class="symbol-name" href="../../../documentation/foundation/urlsession/1410330-datatask.html"><code><span>data<wbr/>Task(with:<wbr/>completion<wbr/>Handler:)</span></code></a>メソッドの使用を考えてください。<a href="../../../documentation/foundation/url_loading_system/fetching_website_data_into_memory.html">Fetching Website Data into Memory</a>をひとつの例として見てください。
+代わりに、非ファイルURLに対して、<a class="symbol-name" href="../../../documentation/foundation/urlsession.html"><code><span>URLSession</span></code></a>クラスの<a class="symbol-name" href="../../../documentation/foundation/urlsession/1410330-datatask.html"><code><span>data<wbr/>Task(with:<wbr/>completion<wbr/>Handler:)</span></code></a>メソッドの使用を考えてください。<a href="../../../documentation/foundation/url_loading_system/fetching_website_data_into_memory.html">ウェブサイトデータをメモリへと取ってくる</a>をひとつの例として見てください。
 </span><!--end_jpstr-->
 </p></aside></div></div></section></div></div><section id="see-also" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><span class="enstr">See Also</span><!--end_enstr-->
 <span class="jpstr">
@@ -223,7 +227,11 @@ If you need to read potentially large files, initialize an <a class="symbol-name
 <span class="jpstr">
 非推奨
 </span><!--end_jpstr-->
-</span></div></div><div class="task-topic"><div class="task-topic-info"><a class="task-topic-deprecated has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/nsdata/1409012-datawithcontentsofmappedfile.html"><code class="display-name"><span class="decorator">class func </span><span class="identifier">data<wbr/>With<wbr/>Contents<wbr/>Of<wbr/>Mapped<wbr/>File</span><span class="decorator">(String) -&gt; Any?</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p>Creates a data object from the mapped file at a given path.</p></div></div><span class="violator violator-inline violator-deprecated task-topic-violator task-topic-data" role="presentation"><span class="enstr">Deprecated</span><!--end_enstr-->
+</span></div></div><div class="task-topic"><div class="task-topic-info"><a class="task-topic-deprecated has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/nsdata/1409012-datawithcontentsofmappedfile.html"><code class="display-name"><span class="decorator">class func </span><span class="identifier">data<wbr/>With<wbr/>Contents<wbr/>Of<wbr/>Mapped<wbr/>File</span><span class="decorator">(String) -&gt; Any?</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Creates a data object from the mapped file at a given path.</span><!--end_enstr-->
+<span class="jpstr">
+与えられたパスでのマップファイルからデータオブジェクトを作成します。
+</span><!--end_jpstr-->
+</p></div></div><span class="violator violator-inline violator-deprecated task-topic-violator task-topic-data" role="presentation"><span class="enstr">Deprecated</span><!--end_enstr-->
 <span class="jpstr">
 非推奨
 </span><!--end_jpstr-->
