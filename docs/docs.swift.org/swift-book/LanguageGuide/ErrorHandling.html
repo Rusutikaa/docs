@@ -10,11 +10,11 @@
     <meta name="author" content="Apple Inc." />
     <meta name="viewport" content="width=device-width initial-scale=1" />
     
-    <title>Error Handling — The Swift Programming Language (Swift 5.1)</title>
+    <title>Error Handling — The Swift Programming Language (Swift 5.2)</title>
     
     <link rel="license" href="/LICENSE.txt" />
-    <link rel="stylesheet" media="all" href="../_static/stylesheets/application.css" />
-    <link rel="stylesheet" media="all" href="../_static/stylesheets/tspl.css" />
+    <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
+    <link rel="stylesheet" media="all" href="../static/stylesheets/tspl.css" />
     <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
@@ -41,7 +41,7 @@
 
     <div id="menu-toggle" class="menu-toggle open"></div>
 
-    <h2>The Swift Programming Language<div>Swift 5.1</div></h2>
+    <h2>The Swift Programming Language<div>Swift 5.2</div></h2>
 
     <ul>
     <ul class="current">
@@ -302,9 +302,9 @@ do-catchを使ってエラーを処理する
 注意
 </span><!--end_jpstr-->
 </p>
-<p class="last"><span class="enstr">Error handling in Swift interoperates with error handling patterns that use the <code class="docutils literal notranslate"><span class="pre">NSError</span></code> class in Cocoa and Objective-C. For more information about this class, see <a class="reference external" href="https://developer.apple.com/documentation/swift/cocoa_design_patterns/handling_cocoa_errors_in_swift">Handling Cocoa Errors in Swift</a>.</span><!--end_enstr-->
+<p class="last"><span class="enstr">Error handling in Swift interoperates with error handling patterns that use the <code class="docutils literal notranslate"><span class="pre">NSError</span></code> class in Cocoa and Objective-C. For more information about this class, see <a class="reference external" href="../../../developer.apple.com/documentation/swift/cocoa_design_patterns/handling_cocoa_errors_in_swift.html">Handling Cocoa Errors in Swift</a>.</span><!--end_enstr-->
 <span class="jpstr">
-スウィフトでのエラー処理は、CocoaとObjective-Cでの<code class="docutils literal notranslate"><span class="pre">NSError</span></code>クラスを使うエラー処理パターンと相互運用性があります。このクラスについてのさらなる情報として、<a class="reference external" href="https://developer.apple.com/documentation/swift/cocoa_design_patterns/handling_cocoa_errors_in_swift">CocoaエラーをSwiftにおいて処理する</a>を見てください。
+スウィフトでのエラー処理は、CocoaとObjective-Cでの<code class="docutils literal notranslate"><span class="pre">NSError</span></code>クラスを使うエラー処理パターンと相互運用性があります。このクラスについてのさらなる情報として、<a class="reference external" href="../../../developer.apple.com/documentation/swift/cocoa_design_patterns/handling_cocoa_errors_in_swift.html">CocoaエラーをSwiftにおいて処理する</a>を見てください。
 </span><!--end_jpstr-->
 </p>
 </div>
@@ -541,9 +541,9 @@ do-catchを使ってエラーを処理する<a class="headerlink" href="#ID541" 
 上の例において、<code class="docutils literal notranslate"><span class="pre">buyFavoriteSnack(person:vendingMachine:)</span></code>関数は<code class="docutils literal notranslate"><span class="pre">try</span></code>式の中で呼び出されます、それがエラーをスローできるからです。エラーがスローされるならば、実行は直ちに<code class="docutils literal notranslate"><span class="pre">catch</span></code>節に移ります、それは伝達を継続させるかどうか結論を下します。パターンが適合することが全く無いならば、エラーは最後の<code class="docutils literal notranslate"><span class="pre">catch</span></code>節によってキャッチされて、あるローカル<code class="docutils literal notranslate"><span class="pre">error</span></code>定数に束縛されます。エラーがスローされることが全く無いならば、<code class="docutils literal notranslate"><span class="pre">do</span></code>文に残っている文が遂行されます。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">The <code class="docutils literal notranslate"><span class="pre">catch</span></code> clauses don’t have to handle every possible error that the code in the <code class="docutils literal notranslate"><span class="pre">do</span></code> clause can throw. If none of the <code class="docutils literal notranslate"><span class="pre">catch</span></code> clauses handle the error, the error propagates to the surrounding scope. However, the propagated error must be handled by <em>some</em> surrounding scope. In a nonthrowing function, an enclosing <code class="docutils literal notranslate"><span class="pre">do</span></code>-<code class="docutils literal notranslate"><span class="pre">catch</span></code> clause must handle the error. In a throwing function, either an enclosing <code class="docutils literal notranslate"><span class="pre">do</span></code>-<code class="docutils literal notranslate"><span class="pre">catch</span></code> clause or the caller must handle the error. If the error propagates to the top-level scope without being handled, you’ll get a runtime error.</span><!--end_enstr-->
+<p><span class="enstr">The <code class="docutils literal notranslate"><span class="pre">catch</span></code> clauses don’t have to handle every possible error that the code in the <code class="docutils literal notranslate"><span class="pre">do</span></code> clause can throw. If none of the <code class="docutils literal notranslate"><span class="pre">catch</span></code> clauses handle the error, the error propagates to the surrounding scope. However, the propagated error must be handled by <em>some</em> surrounding scope. In a nonthrowing function, an enclosing <code class="docutils literal notranslate"><span class="pre">do</span></code>-<code class="docutils literal notranslate"><span class="pre">catch</span></code> statement must handle the error. In a throwing function, either an enclosing <code class="docutils literal notranslate"><span class="pre">do</span></code>-<code class="docutils literal notranslate"><span class="pre">catch</span></code> statement or the caller must handle the error. If the error propagates to the top-level scope without being handled, you’ll get a runtime error.</span><!--end_enstr-->
 <span class="jpstr">
-<code class="docutils literal notranslate"><span class="pre">catch</span></code>節は、<code class="docutils literal notranslate"><span class="pre">do</span></code>節の中のコードがスロー可能なすべての起こりうるエラーを取り扱う必要はありません。どの<code class="docutils literal notranslate"><span class="pre">catch</span></code>節もエラーを処理しないならば、エラーは取り囲んでいるスコープへと伝えられます。しかしながら、伝えられるエラーは取り囲んでいるスコープの<em>何れか</em>によって処理される必要があります非スロー関数では、取り囲んでいる<code class="docutils literal notranslate"><span class="pre">do</span></code>-<code class="docutils literal notranslate"><span class="pre">catch</span></code>節がエラーを処理しなければなりません。スロー関数では、取り囲んでいる<code class="docutils literal notranslate"><span class="pre">do</span></code>-<code class="docutils literal notranslate"><span class="pre">catch</span></code>節または呼び出し側のどちらかがエラーを処理しなければなりません。エラーが取り扱われることなくトップレベルスコープに伝わるならば、あなたは実行時エラーを得るでしょう。
+<code class="docutils literal notranslate"><span class="pre">catch</span></code>節は、<code class="docutils literal notranslate"><span class="pre">do</span></code>節の中のコードがスロー可能なすべての起こりうるエラーを取り扱う必要はありません。どの<code class="docutils literal notranslate"><span class="pre">catch</span></code>節もエラーを処理しないならば、エラーは取り囲んでいるスコープへと伝えられます。しかしながら、伝えられるエラーは取り囲んでいるスコープの<em>何れか</em>によって処理される必要があります。非スロー関数では、取り囲んでいる<code class="docutils literal notranslate"><span class="pre">do</span></code>-<code class="docutils literal notranslate"><span class="pre">catch</span></code>文がエラーを処理しなければなりません。スロー関数では、取り囲んでいる<code class="docutils literal notranslate"><span class="pre">do</span></code>-<code class="docutils literal notranslate"><span class="pre">catch</span></code>文または呼び出し側のどちらかがエラーを処理しなければなりません。エラーが取り扱われることなくトップレベルスコープに伝わるならば、あなたは実行時エラーを得るでしょう。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">For example, the above example can be written so any error that isn’t a <code class="docutils literal notranslate"><span class="pre">VendingMachineError</span></code> is instead caught by the calling function:</span><!--end_enstr-->
@@ -641,12 +641,12 @@ do-catchを使ってエラーを処理する<a class="headerlink" href="#ID541" 
 </h2>
 <p><span class="enstr">You use a <code class="docutils literal notranslate"><span class="pre">defer</span></code> statement to execute a set of statements just before code execution leaves the current block of code. This statement lets you do any necessary cleanup that should be performed regardless of <em>how</em> execution leaves the current block of code—whether it leaves because an error was thrown or because of a statement such as <code class="docutils literal notranslate"><span class="pre">return</span></code> or <code class="docutils literal notranslate"><span class="pre">break</span></code>. For example, you can use a <code class="docutils literal notranslate"><span class="pre">defer</span></code> statement to ensure that file descriptors are closed and manually allocated memory is freed.</span><!--end_enstr-->
 <span class="jpstr">
-あなたは<code class="docutils literal notranslate"><span class="pre">defer</span></code>文を使うことで、コード実行が現在のコードブロックから離れる直前に一揃いの文を実行するようにします。この文は、あなたに何らかの不可欠なクリーンアップを行わせます、それは<em>どうやって</em>実行が現在のコードプロックから離れるか ― それがエラーがスローされたためにまたは<code class="docutils literal notranslate"><span class="pre">return</span></code>または<code class="docutils literal notranslate"><span class="pre">break</span></code>のような文を理由に離れるかどうかに関係なく実行されるべきものです。例えば、あなたは<code class="docutils literal notranslate"><span class="pre">defer</span></code>文を使ってファイル記述子が閉じられて手動割り当てメモリが解放されることを確実にします。
+あなたは<code class="docutils literal notranslate"><span class="pre">defer</span></code>文を使うことで、コード実行が現在のコードブロックから離れる直前に一揃いの文を実行するようにします。この文は、あなたに何らかの不可欠なクリーンアップを行わせます、それは<em>どうやって</em>実行が現在のコードブロックから離れるか ― それがエラーがスローされたためにまたは<code class="docutils literal notranslate"><span class="pre">return</span></code>または<code class="docutils literal notranslate"><span class="pre">break</span></code>のような文を理由に離れるかどうかに関係なく実行されるべきものです。例えば、あなたは<code class="docutils literal notranslate"><span class="pre">defer</span></code>文を使ってファイル記述子が閉じられて手動割り当てメモリが解放されることを確実にします。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">A <code class="docutils literal notranslate"><span class="pre">defer</span></code> statement defers execution until the current scope is exited. This statement consists of the <code class="docutils literal notranslate"><span class="pre">defer</span></code> keyword and the statements to be executed later. The deferred statements may not contain any code that would transfer control out of the statements, such as a <code class="docutils literal notranslate"><span class="pre">break</span></code> or a <code class="docutils literal notranslate"><span class="pre">return</span></code> statement, or by throwing an error. Deferred actions are executed in the reverse of the order that they’re written in your source code. That is, the code in the first <code class="docutils literal notranslate"><span class="pre">defer</span></code> statement executes last, the code in the second <code class="docutils literal notranslate"><span class="pre">defer</span></code> statement executes second to last, and so on. The last <code class="docutils literal notranslate"><span class="pre">defer</span></code> statement in source code order executes first.</span><!--end_enstr-->
 <span class="jpstr">
-<code class="docutils literal notranslate"><span class="pre">defer</span></code>文は、現在のスコープが終了されるまで実行を延期します。この文は、<code class="docutils literal notranslate"><span class="pre">defer</span></code>キーワードと後で実行される文から成ります。延期される文は、制御をその文の外に、例えば<code class="docutils literal notranslate"><span class="pre">break</span></code>や<code class="docutils literal notranslate"><span class="pre">return</span></code>文、またはエラーをスローすることによって移すいかなるコードも含んではいけません。延期された動作は、それらがあなたのソースコードに書かれた順序の逆に実行されますすなわち、最初の<code class="docutils literal notranslate"><span class="pre">defer</span></code>文のコードが最後に実行され、２番目の<code class="docutils literal notranslate"><span class="pre">defer</span></code>文のコードが最後から２番目に実行され、等々。ソースコード順序での最後の<code class="docutils literal notranslate"><span class="pre">defer</span></code>文は最初に実行されます。
+<code class="docutils literal notranslate"><span class="pre">defer</span></code>文は、現在のスコープが終了されるまで実行を延期します。この文は、<code class="docutils literal notranslate"><span class="pre">defer</span></code>キーワードと後で実行される文から成ります。延期される文は、制御をその文の外に、例えば<code class="docutils literal notranslate"><span class="pre">break</span></code>や<code class="docutils literal notranslate"><span class="pre">return</span></code>文、またはエラーをスローすることによって移すいかなるコードも含んではいけません。延期された動作は、それらがあなたのソースコードに書かれた順序の逆に実行されます。すなわち、最初の<code class="docutils literal notranslate"><span class="pre">defer</span></code>文のコードが最後に実行され、２番目の<code class="docutils literal notranslate"><span class="pre">defer</span></code>文のコードが最後から２番目に実行され、等々。ソースコード順序での最後の<code class="docutils literal notranslate"><span class="pre">defer</span></code>文は最初に実行されます。
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">func</span> <span class="nv">processFile</span>(<span class="nv">filename</span>: <span class="nc">String</span>) <span class="k">throws</span> {
@@ -705,7 +705,7 @@ do-catchを使ってエラーを処理する<a class="headerlink" href="#ID541" 
     <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter">Twitter</i></a>
   </aside>
 
-  <p class="copyright">Copyright © 2019 Apple Inc. All rights reserved.</p>
+  <p class="copyright">Copyright © 2020 Apple Inc. All rights reserved.</p>
   <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
   <p class="privacy">
     <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
@@ -713,6 +713,6 @@ do-catchを使ってエラーを処理する<a class="headerlink" href="#ID541" 
   </p>
 </footer>
 <div id="jump_to_overlay"></div>
-<script src="../_static/javascripts/application.js"></script>
+<script src="../static/javascripts/application.js"></script>
   </body>
 </html>

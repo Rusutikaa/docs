@@ -1,8 +1,8 @@
-﻿* [Framework Swift 2019.12.12 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com/documentation/swift.html)
+﻿* [The Swift Programming Language 2020.3.24 日本語訳](https://rusutikaa.github.io/docs/docs.swift.org/swift-book/index.html)
+
+* [Framework Swift 2019.12.12 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com/documentation/swift.html)
 
 * [Framework Foundation（Swift）2019.12.12 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com/documentation/foundation.html)
-
-* [The Swift Programming Language 2019.9.10 日本語訳](https://rusutikaa.github.io/docs/docs.swift.org/swift-book/index.html)
 
 以下は更新されない
 

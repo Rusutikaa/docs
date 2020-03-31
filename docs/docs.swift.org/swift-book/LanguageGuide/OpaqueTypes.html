@@ -10,11 +10,11 @@
     <meta name="author" content="Apple Inc." />
     <meta name="viewport" content="width=device-width initial-scale=1" />
     
-    <title>Opaque Types — The Swift Programming Language (Swift 5.1)</title>
+    <title>Opaque Types — The Swift Programming Language (Swift 5.2)</title>
     
     <link rel="license" href="/LICENSE.txt" />
-    <link rel="stylesheet" media="all" href="../_static/stylesheets/application.css" />
-    <link rel="stylesheet" media="all" href="../_static/stylesheets/tspl.css" />
+    <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
+    <link rel="stylesheet" media="all" href="../static/stylesheets/tspl.css" />
     <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
@@ -41,7 +41,7 @@
 
     <div id="menu-toggle" class="menu-toggle open"></div>
 
-    <h2>The Swift Programming Language<div>Swift 5.1</div></h2>
+    <h2>The Swift Programming Language<div>Swift 5.2</div></h2>
 
     <ul>
     <ul class="current">
@@ -479,9 +479,9 @@
 不透明型を返すことは、プロトコル型を関数の戻り型として使うことと大変よく似て見えます、しかしこれら２つの種類の戻り型は、それらが型同一性を保全するかどうかにおいて異なります。不透明型は１つの特定の型を参照します、とはいえ関数の呼び出し側はどの型か知ることができません；プロトコル型はそのプロトコルに準拠するどんな型でも参照できます。一般的に言えば、プロトコル型はそれらが格納する値の基礎をなす型についてあなたにより柔軟性を与えます、そして不透明型はそれらの基礎をなす型についてあなたにより確固とした保証をさせます。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">For example, here’s a version of <code class="docutils literal notranslate"><span class="pre">flip(_:)</span></code> that returns a value of protocol type instead of using an opaque return type:</span><!--end_enstr-->
+<p><span class="enstr">For example, here’s a version of <code class="docutils literal notranslate"><span class="pre">flip(_:)</span></code> that uses a protocol type as its return type instead of an opaque return type:</span><!--end_enstr-->
 <span class="jpstr">
-例えば、ここに<code class="docutils literal notranslate"><span class="pre">flip(_:)</span></code>のあるバージョンがあります、それはプロトコル型の値を返します、不透明戻り型を使う代わりに。
+例えば、ここに<code class="docutils literal notranslate"><span class="pre">flip(_:)</span></code>のあるバージョンがあります、それはあるプロトコル型をそれの戻り型として使います、不透明戻り型の代わりに：
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">func</span> <span class="nv">protoFlip</span>&lt;<span class="nv">T</span>: <span class="nc">Shape</span>&gt;(<span class="k">_</span> <span class="nv">shape</span>: <span class="nc">T</span>) -&gt; <span class="nc">Shape</span> {
@@ -503,7 +503,7 @@
 </li></ol></div></div></div>
 <p><span class="enstr">The revised version of the code returns an instance of <code class="docutils literal notranslate"><span class="pre">Square</span></code> or an instance of <code class="docutils literal notranslate"><span class="pre">FlippedShape</span></code>, depending on what shape is passed in. Two flipped shapes returned by this function might have completely different types. Other valid versions of this function could return values of different types when flipping multiple instances of the same shape. The less specific return type information from <code class="docutils literal notranslate"><span class="pre">protoFlip(_:)</span></code> means that many operations that depend on type information aren’t available on the returned value. For example, it’s not possible to write an <code class="docutils literal notranslate"><span class="pre">==</span></code> operator comparing results returned by this function.</span><!--end_enstr-->
 <span class="jpstr">
-この改訂版のコードは、<code class="docutils literal notranslate"><span class="pre">Square</span></code>のインスタンスまたは<code class="docutils literal notranslate"><span class="pre">FlippedShape</span></code>のインスタンスを返します、どの形状が渡されるかに依存して。この関数によって返される２つの裏返された形状は、完全に異なる型を持つかもしれませんでした。この関数の他の有効なバージョンは、異なる型の値を返すことが、同じ形状の複数のインスタンスを裏返している時にできました。<code class="docutils literal notranslate"><span class="pre">protoFlip(_:)</span></code>からの具体性のより少ない戻り型情報は、型情報に依存する多くの演算が、その返された値に関して利用可能でないことを意味します。例えば、この関数によって返される結果を比較している<code class="docutils literal notranslate"><span class="pre">==</span></code>演算子を書くことは可能ではありません。
+この改訂版のコードは、<code class="docutils literal notranslate"><span class="pre">Square</span></code>のインスタンスまたは<code class="docutils literal notranslate"><span class="pre">FlippedShape</span></code>のインスタンスを返します、どの形状が渡されるかに依存して。この関数によって返される２つの裏返された形状が、完全に異なる型を持つかもしれません。この関数の他の有効なバージョンそれらは、異なる型の値を返すことが、同じ形状の複数のインスタンスを裏返す時にありえます。<code class="docutils literal notranslate"><span class="pre">protoFlip(_:)</span></code>からの具体性のより少ない戻り型情報は、型情報に依存する多くの演算が、その返された値の上で利用可能でないことを意味します。例えば、この関数によって返される結果を比較する<code class="docutils literal notranslate"><span class="pre">==</span></code>演算子を書くことは可能ではありません。
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">let</span> <span class="nv">protoFlippedTriangle</span> = <span class="nv">protoFlip</span>(<span class="nv">smallTriangle</span>)
@@ -511,22 +511,22 @@
 </li><li><span class="nv">protoFlippedTriangle</span> == <span class="nv">sameThing</span>  <span class="enstr"><span class="c">// Error</span></span><!--end_enstr--><span class="jpstr"><span class="c">（エラー）</span></span><!--end_jpstr--></li></ol></div></div></div>
 <p><span class="enstr">The error on the last line of the example occurs for several reasons. The immediate issue is that the <code class="docutils literal notranslate"><span class="pre">Shape</span></code> doesn’t include an <code class="docutils literal notranslate"><span class="pre">==</span></code> operator as part of its protocol requirements. If you try adding one, the next issue you’ll encounter is that the <code class="docutils literal notranslate"><span class="pre">==</span></code> operator needs to know the types of its left-hand and right-hand arguments. This sort of operator usually takes arguments of type <code class="docutils literal notranslate"><span class="pre">Self</span></code>, matching whatever concrete type adopts the protocol, but adding a <code class="docutils literal notranslate"><span class="pre">Self</span></code> requirement to the protocol doesn’t allow for the type erasure that happens when you use the protocol as a type.</span><!--end_enstr-->
 <span class="jpstr">
-この例の最後の行でのエラーは、いくつかの理由で発生します。当面の問題は、<code class="docutils literal notranslate"><span class="pre">Shape</span></code>がそれのプロトコル要件として<code class="docutils literal notranslate"><span class="pre">==</span></code>演算子を含まないことです。あなたがそれを加えることを試みるならば、あなたがぶつかる次の問題は、<code class="docutils literal notranslate"><span class="pre">==</span></code>演算子はそれの左手および右手の引数の型を知る必要があることです。この種の演算子は、通常は型<code class="docutils literal notranslate"><span class="pre">Self</span></code>の引数を取ります、どんな具象型がそのプロトコルを採用しても合うように、しかし<code class="docutils literal notranslate"><span class="pre">Self</span></code>要件をプロトコルに加えることは、あなたがプロトコルを型として使うときに起こる型消去を考慮しません。
+この例の最後の行でのエラーは、いくつかの理由で発生します。当面の問題は、<code class="docutils literal notranslate"><span class="pre">Shape</span></code>がそれのプロトコル要件として<code class="docutils literal notranslate"><span class="pre">==</span></code>演算子を含まないことです。あなたがそれを加えることを試みるならば、あなたがぶつかる次の問題は、<code class="docutils literal notranslate"><span class="pre">==</span></code>演算子はそれの左手および右手の引数の型を知る必要があることです。この種の演算子は通常は、どんな具象型がそのプロトコルを採用しても合う、型<code class="docutils literal notranslate"><span class="pre">Self</span></code>の引数を取ります、しかし<code class="docutils literal notranslate"><span class="pre">Self</span></code>要件をプロトコルに加えることは型消去を想定しません、それはあなたがプロトコルをひとつの型として使う場合に予期せず起こります。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">Using a protocol type as the return type for a function gives you the flexibility to return any type that conforms to the protocol. However, the cost of that flexibility is that some operations aren’t possible on the returned values. The example shows how the <code class="docutils literal notranslate"><span class="pre">==</span></code> operator isn’t available—it depends on specific type information that isn’t preserved by using a protocol type.</span><!--end_enstr-->
 <span class="jpstr">
-プロトコル型を戻り型として関数に使うことは、あなたにそのプロトコルに準拠するどんな型でも返す柔軟性を与えます。しかしながら、その柔軟性の対価は、いくつかの演算が返される値で可能でないということです。例は、どのように<code class="docutils literal notranslate"><span class="pre">==</span></code>演算子が利用可能でないか示します — それは特定の型情報に依存します、それはプロトコル型を使うことによって保全されません。
+プロトコル型を戻り型として関数に使うことは、あなたに、そのプロトコルに準拠するどんな型でも返す柔軟性を与えます。しかしながら、その柔軟性の対価は、いくつかの演算がその返される値の上で可能でないということです。この例は、どのように<code class="docutils literal notranslate"><span class="pre">==</span></code>演算子が利用可能でないか示します — それは具体的な型情報に依存します、それはプロトコル型を使うことでは保全されないものです。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">Another problem with this approach is that the shape transformations don’t nest. The result of flipping a triangle is a value of type <code class="docutils literal notranslate"><span class="pre">Shape</span></code>, and the <code class="docutils literal notranslate"><span class="pre">protoFlip(_:)</span></code> function takes an argument of some type that conforms to the <code class="docutils literal notranslate"><span class="pre">Shape</span></code> protocol. However, a value of a protocol type doesn’t conform to that protocol; the value returned by <code class="docutils literal notranslate"><span class="pre">protoFlip(_:)</span></code> doesn’t conform to <code class="docutils literal notranslate"><span class="pre">Shape</span></code>. This means code like <code class="docutils literal notranslate"><span class="pre">protoFlip(protoFlip(smallTriange))</span></code> that applies multiple transformations is invalid because the flipped shape isn’t a valid argument to <code class="docutils literal notranslate"><span class="pre">protoFlip(_:)</span></code>.</span><!--end_enstr-->
 <span class="jpstr">
-この取り組みの別の問題は、形状変換が入れ子にされないことです。三角形を裏返すことの結果は、型<code class="docutils literal notranslate"><span class="pre">Shape</span></code>の値です、そして<code class="docutils literal notranslate"><span class="pre">protoFlip(_:)</span></code>関数は<code class="docutils literal notranslate"><span class="pre">Shape</span></code>プロトコルに準拠するある型の引数を取ります。しかしながら、あるプロトコル型のある値は、そのプロトコルに準拠しません；<code class="docutils literal notranslate"><span class="pre">protoFlip(_:)</span></code>によって返される値は、<code class="docutils literal notranslate"><span class="pre">Shape</span></code>に準拠しません。これは、複数の変換を適用する<code class="docutils literal notranslate"><span class="pre">protoFlip(protoFlip(smallTriange))</span></code>のようなコードが無効であることを意味します、なぜなら裏返された形状は<code class="docutils literal notranslate"><span class="pre">protoFlip(_:)</span></code>への有効な引数ではないからです。
+この取り組みの別の問題は、形状変換が入れ子にされないことです。三角形を裏返すことの結果は、型<code class="docutils literal notranslate"><span class="pre">Shape</span></code>の値です、そして<code class="docutils literal notranslate"><span class="pre">protoFlip(_:)</span></code>関数は<code class="docutils literal notranslate"><span class="pre">Shape</span></code>プロトコルに準拠する型の引数を取ります。しかしながら、あるプロトコル型からなるある値は、そのプロトコルに準拠しません；<code class="docutils literal notranslate"><span class="pre">protoFlip(_:)</span></code>によって返される値は、<code class="docutils literal notranslate"><span class="pre">Shape</span></code>に準拠しません。これは、複数の変換を適用する<code class="docutils literal notranslate"><span class="pre">protoFlip(protoFlip(smallTriange))</span></code>のようなコードが無効であることを意味します、なぜなら裏返された形状は<code class="docutils literal notranslate"><span class="pre">protoFlip(_:)</span></code>への有効な引数ではないからです。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">In contrast, opaque types preserve the identity of the underlying type. Swift can infer associated types, which lets you use an opaque return value in places where a protocol type can’t be used as a return value. For example, here’s a version of the <code class="docutils literal notranslate"><span class="pre">Container</span></code> protocol from <a class="reference internal" href="Generics.html"><span class="doc">Generics</span></a>:</span><!--end_enstr-->
 <span class="jpstr">
-対照的に、不透明型は基礎をなす型の同一性を保全します。スウィフトは、関連型を推論できます、それはあなたに不透明戻り値を、プロトコル型が戻り値として使われることができないところあちこちで使用させます例えば、ここに<a class="reference internal" href="Generics.html"><span class="doc">Generics</span></a>からの<code class="docutils literal notranslate"><span class="pre">Container</span></code>プロトコルのあるバージョンがあります：
+対照的に、不透明型は基礎をなす型の同一性を保全します。スウィフトは関連型を推論できます、それはあなたに不透明戻り値を、プロトコル型が戻り値として使われることができないところあちこちで使用させます。例えば、ここに<a class="reference internal" href="Generics.html"><span class="doc">総称体</span></a>からの、<code class="docutils literal notranslate"><span class="pre">Container</span></code>プロトコルのあるバージョンがあります：
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">protocol</span> <span class="nv">Container</span> {
@@ -536,9 +536,9 @@
 </li><li>}
 </li><li><span class="k">extension</span> <span class="nc">Array</span>: <span class="nc">Container</span> { }
 </li></ol></div></div></div>
-<p><span class="enstr">You can’t use <code class="docutils literal notranslate"><span class="pre">Container</span></code> as the return type of a function because that protocol has an associated type. You also can’t use it as constraint a generic return type because there isn’t enough information outside the function body to infer what the generic type needs to be.</span><!--end_enstr-->
+<p><span class="enstr">You can’t use <code class="docutils literal notranslate"><span class="pre">Container</span></code> as the return type of a function because that protocol has an associated type. You also can’t use it as constraint in a generic return type because there isn’t enough information outside the function body to infer what the generic type needs to be.</span><!--end_enstr-->
 <span class="jpstr">
-あなたは<code class="docutils literal notranslate"><span class="pre">Container</span></code>を関数の戻り型として使用できません、なぜならそのプロトコルは関連型を持つからです。あなたはまた、それを制約として総称体戻り型に使用できません、なぜなら関数本文の外側からどんな総称体型が必要であるか推論するのに十分な情報がないからです。
+あなたは<code class="docutils literal notranslate"><span class="pre">Container</span></code>を関数の戻り型として使用できません、なぜならそのプロトコルが関連型を持つからです。あなたはまたそれを制約として総称体戻り型において使用できません、なぜならどうあることをその総称体型が必要とするか推論するのに十分な情報が関数本文の外側にないからです。
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="c"><span class="enstr">// Error: Protocol with associated types can't be used as a return type.</span><!--end_enstr--><span class="jpstr">（Error: 関連型を持つプロトコルは戻り型として使われることができません。）</span><!--end_jpstr--></span>
@@ -546,7 +546,7 @@
 </li><li>    <span class="k">return</span> [<span class="nv">item</span>]
 </li><li>}
 </li><li>
-</li><li><span class="c"><span class="enstr">// Error: Not enough information to infer C.</span><!--end_enstr--><span class="jpstr">（Error: Cを推論する情報が十分でない。）</span><!--end_jpstr--></span>
+</li><li><span class="c"><span class="enstr">// Error: Not enough information to infer C.</span><!--end_enstr--><span class="jpstr">（Error: Cを推論するための情報が十分でない。）</span><!--end_jpstr--></span>
 </li><li><span class="k">func</span> <span class="nv">makeProtocolContainer</span>&lt;<span class="nv">T</span>, <span class="nv">C</span>: <span class="nc">Container</span>&gt;(<span class="nv">item</span>: <span class="nc">T</span>) -&gt; <span class="nc">C</span> {
 </li><li>    <span class="k">return</span> [<span class="nv">item</span>]
 </li><li>}
@@ -566,7 +566,7 @@
 </li></ol></div></div></div>
 <p><span class="enstr">The type of <code class="docutils literal notranslate"><span class="pre">twelve</span></code> is inferred to be <code class="docutils literal notranslate"><span class="pre">Int</span></code>, which illustrates the fact that type inference works with opaque types. In the implementation of <code class="docutils literal notranslate"><span class="pre">makeOpaqueContainer(item:)</span></code>, the underlying type of the opaque container is <code class="docutils literal notranslate"><span class="pre">[T]</span></code>. In this case, <code class="docutils literal notranslate"><span class="pre">T</span></code> is <code class="docutils literal notranslate"><span class="pre">Int</span></code>, so the return value is an array of integers and the <code class="docutils literal notranslate"><span class="pre">Item</span></code> associated type is inferred to be <code class="docutils literal notranslate"><span class="pre">Int</span></code>. The subscript on <code class="docutils literal notranslate"><span class="pre">Container</span></code> returns <code class="docutils literal notranslate"><span class="pre">Item</span></code>, which means that the type of <code class="docutils literal notranslate"><span class="pre">twelve</span></code> is also inferred to be <code class="docutils literal notranslate"><span class="pre">Int</span></code>.</span><!--end_enstr-->
 <span class="jpstr">
-<code class="docutils literal notranslate"><span class="pre">twelve</span></code>の型は、<code class="docutils literal notranslate"><span class="pre">Int</span></code>であると推論されます、それは型推論が不透明型を扱うという事実を明らかにします。<code class="docutils literal notranslate"><span class="pre">makeOpaqueContainer(item:)</span></code>の実装において、不透明コンテナの基礎をなす型は、<code class="docutils literal notranslate"><span class="pre">[T]</span></code>です。この場合では、<code class="docutils literal notranslate"><span class="pre">T</span></code>は<code class="docutils literal notranslate"><span class="pre">Int</span></code>です、それで戻り値は整数の配列です、そして<code class="docutils literal notranslate"><span class="pre">Item</span></code>関連型は<code class="docutils literal notranslate"><span class="pre">Int</span></code>であると推論されます。<code class="docutils literal notranslate"><span class="pre">Container</span></code>上での添え字は、 <code class="docutils literal notranslate"><span class="pre">Item</span></code>を返します、それは<code class="docutils literal notranslate"><span class="pre">twelve</span></code>の型もまた<code class="docutils literal notranslate"><span class="pre">Int</span></code>であると推論されることを意味します。
+<code class="docutils literal notranslate"><span class="pre">twelve</span></code>の型は、<code class="docutils literal notranslate"><span class="pre">Int</span></code>であると推論されます、それは型推論が不透明型を扱うという事実を例示します。<code class="docutils literal notranslate"><span class="pre">makeOpaqueContainer(item:)</span></code>の実装において、不透明コンテナの基礎をなす型は、<code class="docutils literal notranslate"><span class="pre">[T]</span></code>です。この場合に、<code class="docutils literal notranslate"><span class="pre">T</span></code>は<code class="docutils literal notranslate"><span class="pre">Int</span></code>です、それで戻り値は整数からなるある配列です、そして<code class="docutils literal notranslate"><span class="pre">Item</span></code>関連型は<code class="docutils literal notranslate"><span class="pre">Int</span></code>と推論されます。<code class="docutils literal notranslate"><span class="pre">Container</span></code>上での添え字は、 <code class="docutils literal notranslate"><span class="pre">Item</span></code>を返します、それは<code class="docutils literal notranslate"><span class="pre">twelve</span></code>の型もまた<code class="docutils literal notranslate"><span class="pre">Int</span></code>に推論されることを意味します。
 </span><!--end_jpstr-->
 </p>
 </div>
@@ -595,7 +595,7 @@
     <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter">Twitter</i></a>
   </aside>
 
-  <p class="copyright">Copyright © 2019 Apple Inc. All rights reserved.</p>
+  <p class="copyright">Copyright © 2020 Apple Inc. All rights reserved.</p>
   <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
   <p class="privacy">
     <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
@@ -603,6 +603,6 @@
   </p>
 </footer>
 <div id="jump_to_overlay"></div>
-<script src="../_static/javascripts/application.js"></script>
+<script src="../static/javascripts/application.js"></script>
   </body>
 </html>

@@ -10,11 +10,11 @@
     <meta name="author" content="Apple Inc." />
     <meta name="viewport" content="width=device-width initial-scale=1" />
     
-    <title>Memory Safety — The Swift Programming Language (Swift 5.1)</title>
+    <title>Memory Safety — The Swift Programming Language (Swift 5.2)</title>
     
     <link rel="license" href="/LICENSE.txt" />
-    <link rel="stylesheet" media="all" href="../_static/stylesheets/application.css" />
-    <link rel="stylesheet" media="all" href="../_static/stylesheets/tspl.css" />
+    <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
+    <link rel="stylesheet" media="all" href="../static/stylesheets/tspl.css" />
     <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
@@ -41,7 +41,7 @@
 
     <div id="menu-toggle" class="menu-toggle open"></div>
 
-    <h2>The Swift Programming Language<div>Swift 5.1</div></h2>
+    <h2>The Swift Programming Language<div>Swift 5.2</div></h2>
 
     <ul>
     <ul class="current">
@@ -292,10 +292,10 @@ in-outパラメータに対するアクセスの衝突
 メモリへのアクセスは、あなたが変数の値を設定するまたは関数に引数を渡すといったような事を行う時にあなたのコードで起こります。例えば、以下のコードは読み出しアクセスと書き込みアクセスの両方を含みます：
 </span><!--end_jpstr-->
 </p>
-<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="c"><span class="enstr">// A write access to the memory where one is stored.</span><!--end_enstr--><span class="jpstr">（oneが格納されるところのメモリに対する書き込みアクセス）</span><!--end_jpstr--></span>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="c"><span class="enstr">// A write access to the memory where one is stored.</span><!--end_enstr--><span class="jpstr">（oneが格納されるところのメモリに対する書き込みアクセス。）</span><!--end_jpstr--></span>
 </li><li><span class="k">var</span> <span class="nv">one</span> = <span class="m">1</span>
 </li><li>
-</li><li><span class="c"><span class="enstr">// A read access from the memory where one is stored.</span><!--end_enstr--><span class="jpstr">（oneが格納されるところのメモリから読み出しアクセス）</span><!--end_jpstr--></span>
+</li><li><span class="c"><span class="enstr">// A read access from the memory where one is stored.</span><!--end_enstr--><span class="jpstr">（oneが格納されるところのメモリから読み出しアクセス。）</span><!--end_jpstr--></span>
 </li><li><span class="nv">print</span>(<span class="s">"We're number </span>\<span class="p">(</span><span class="nv">one</span><span class="p">)</span><span class="s">!"</span>)
 </li></ol></div></div></div>
 <p><span class="enstr">A conflicting access to memory can occur when different parts of your code are trying to access the same location in memory at the same time. Multiple accesses to a location in memory at the same time can produce unpredictable or inconsistent behavior. In Swift, there are ways to modify a value that span several lines of code, making it possible to attempt to access a value in the middle of its own modification.</span><!--end_enstr-->
@@ -308,10 +308,10 @@ in-outパラメータに対するアクセスの衝突
 あなたは、一片の紙に書かれる予算案を更新する方法について考えることによって、同種の問題を調べられます。予算案の更新は２段階の処理です：最初にあなたはその項目の名前と値段を加えます、それからあなたは総支出額を変更してそれら項目の現在をリスト上に反映します。更新の前後で、あなたはあらゆる情報を予算案から読み出して正しい答えを得ることができます、下の図で示すように。
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/memory_shopping_2x.png" class="align-center" src="../_images/memory_shopping_2x.png" style="width: 430px;" />
+<img alt="../_images/memory_shopping_2x.png" class="align-center" src="../images/memory_shopping_2x.png" style="width: 430px;" />
 <p><span class="enstr">While you’re adding items to the budget, it’s in a temporary, invalid state because the total amount hasn’t been updated to reflect the newly added items. Reading the total amount during the process of adding an item gives you incorrect information.</span><!--end_enstr-->
 <span class="jpstr">
-あなたが項目を予算案に加えている間、それは一時的な、無効な状態にあります、なぜなら総支出額は新しく追加された項目を反映するよう更新されていないからです、ある項目を追加する処理の間に総支出額を読み出すことは、あなたに正しくない情報を与えます。
+あなたが項目を予算案に加えている間、それは一時的な、無効な状態にあります、なぜなら総支出額は新しく追加された項目を反映するよう更新されていないからです。ある項目を追加する処理の間に総支出額を読み出すことは、あなたに正しくない情報を与えます。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">This example also demonstrates a challenge you may encounter when fixing conflicting access to memory: There are sometimes multiple ways to fix the conflict that produce different answers, and it’s not always obvious which answer is correct. In this example, depending on whether you wanted the original total amount or the updated total amount, either $5 or $320 could be the correct answer. Before you can fix the conflicting access, you have to determine what it was intended to do.</span><!--end_enstr-->
@@ -344,7 +344,7 @@ in-outパラメータに対するアクセスの衝突
 </h3>
 <p><span class="enstr">There are three characteristics of memory access to consider in the context of conflicting access: whether the access is a read or a write, the duration of the access, and the location in memory being accessed. Specifically, a conflict occurs if you have two accesses that meet all of the following conditions:</span><!--end_enstr-->
 <span class="jpstr">
-アクセス衝突の文脈において考慮すべき３つのメモリアクセスの特徴があります：アクセスが読み出しか書き込みか、アクセスの期間、そしてメモリの中のアクセスされる位置とりわけ、あなたが２つのアクセスを持ち以下の条件のすべてに出会う場合に、ある衝突が起こります：
+アクセス衝突の文脈において考慮すべき３つのメモリアクセスの特徴があります：アクセスが読み出しか書き込みか、アクセスの期間、そしてメモリの中のアクセスされる位置。とりわけ、あなたが２つのアクセスを持ち以下の条件のすべてに出会う場合に、ある衝突が起こります：
 </span><!--end_jpstr-->
 </p>
 <ul class="simple">
@@ -425,17 +425,17 @@ in-outパラメータに対するアクセスの衝突<a class="headerlink" href
 上のコードにおいて、<code class="docutils literal notranslate"><span class="pre">stepSize</span></code>はグローバル変数です、そしてそれは通常は<code class="docutils literal notranslate"><span class="pre">increment(_:)</span></code>内部からアクセス可能です。しかしながら、<code class="docutils literal notranslate"><span class="pre">stepSize</span></code>に対する読み出しアクセスは<code class="docutils literal notranslate"><span class="pre">number</span></code>に対する書き込みアクセスとオーバーラップします（重なります）。下の図で示すように、<code class="docutils literal notranslate"><span class="pre">number</span></code>と<code class="docutils literal notranslate"><span class="pre">stepSize</span></code>の両方ともメモリ中の同じ位置を参照します。読み出しと書き込みアクセスは同じメモリを参照してそれらはオーバーラッブして、衝突を生み出しています。
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/memory_increment_2x.png" class="align-center" src="../_images/memory_increment_2x.png" style="width: 384px;" />
+<img alt="../_images/memory_increment_2x.png" class="align-center" src="../images/memory_increment_2x.png" style="width: 384px;" />
 <p><span class="enstr">One way to solve this conflict is to make an explicit copy of <code class="docutils literal notranslate"><span class="pre">stepSize</span></code>:</span><!--end_enstr-->
 <span class="jpstr">
 この衝突を解決する１つの方法は、明示的に<code class="docutils literal notranslate"><span class="pre">stepSize</span></code>のコピーを作ることです：
 </span><!--end_jpstr-->
 </p>
-<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="c"><span class="enstr">// Make an explicit copy.</span><!--end_enstr--><span class="jpstr">（明示的なコピーを作る）</span><!--end_jpstr--></span>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="c"><span class="enstr">// Make an explicit copy.</span><!--end_enstr--><span class="jpstr">（明示的なコピーを作る。）</span><!--end_jpstr--></span>
 </li><li><span class="k">var</span> <span class="nv">copyOfStepSize</span> = <span class="nv">stepSize</span>
 </li><li><span class="nv">increment</span>(&amp;<span class="nv">copyOfStepSize</span>)
 </li><li>
-</li><li><span class="c"><span class="enstr">// Update the original.</span><!--end_enstr--><span class="jpstr">（元のものを更新する）</span><!--end_jpstr--></span>
+</li><li><span class="c"><span class="enstr">// Update the original.</span><!--end_enstr--><span class="jpstr">（元のものを更新する。）</span><!--end_jpstr--></span>
 </li><li><span class="nv">stepSize</span> = <span class="nv">copyOfStepSize</span>
 </li><li><span class="c"><span class="enstr">// stepSize is now 2</span><!--end_enstr--><span class="jpstr">（stepSize は現在 2 です）</span><!--end_jpstr--></span>
 </li></ol></div></div></div>
@@ -520,7 +520,7 @@ in-outパラメータに対する長期書き込みアクセスの別の帰着�
 上の例において、<code class="docutils literal notranslate"><span class="pre">shareHealth(with:)</span></code>メソッドをOscarのプレイヤーに対して呼びだしてMariaのプレイヤーと体力を共有することは、衝突を引き起こしません。<code class="docutils literal notranslate"><span class="pre">oscar</span></code>への書き込みアクセスがメソッド呼び出しの間にあります、なぜなら<code class="docutils literal notranslate"><span class="pre">oscar</span></code>は変更メソッドの中の<code class="docutils literal notranslate"><span class="pre">self</span></code>の値であるからです、そして<code class="docutils literal notranslate"><span class="pre">maria</span></code>への書き込みアクセスが同じ期間にあります、なぜなら<code class="docutils literal notranslate"><span class="pre">maria</span></code>がin-outパラメータとして渡されたからです。下の図で示すように、それらはメモリ中の異なる位置を参照します。たとえ２つの書き込みアクセスが時間内にオーバーラップしても、それらは衝突しません。
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/memory_share_health_maria_2x.png" class="align-center" src="../_images/memory_share_health_maria_2x.png" style="width: 506px;" />
+<img alt="../_images/memory_share_health_maria_2x.png" class="align-center" src="../images/memory_share_health_maria_2x.png" style="width: 506px;" />
 <p><span class="enstr">However, if you pass <code class="docutils literal notranslate"><span class="pre">oscar</span></code> as the argument to <code class="docutils literal notranslate"><span class="pre">shareHealth(with:)</span></code>, there’s a conflict:</span><!--end_enstr-->
 <span class="jpstr">
 しかしながら、あなたが<code class="docutils literal notranslate"><span class="pre">oscar</span></code>を引数として<code class="docutils literal notranslate"><span class="pre">shareHealth(with:)</span></code>に渡すならば、衝突が存在します。
@@ -534,7 +534,7 @@ in-outパラメータに対する長期書き込みアクセスの別の帰着�
 変更メソッドは、<code class="docutils literal notranslate"><span class="pre">self</span></code>に対する書き込みアクセスをメソッドの期間中に必要とします、そしてin-outパラメータは<code class="docutils literal notranslate"><span class="pre">teammate</span></code>に対する書き込みアクセスを同じ期間に必要とします。メソッド内部で、<code class="docutils literal notranslate"><span class="pre">self</span></code>および<code class="docutils literal notranslate"><span class="pre">teammate</span></code>の両方がメモリ中の同じ位置を参照します — 下の図で示すように。２つの書き込みアクセスは同じメモリを参照してそれらはオーバーラッブして、衝突を生み出しています。
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/memory_share_health_oscar_2x.png" class="align-center" src="../_images/memory_share_health_oscar_2x.png" style="width: 506px;" />
+<img alt="../_images/memory_share_health_oscar_2x.png" class="align-center" src="../images/memory_share_health_oscar_2x.png" style="width: 506px;" />
 </div>
 <div class="section" id="ID571">
 <h2><span class="enstr">Conflicting Access to Properties<a class="headerlink" href="#ID571" title="Permalink to this headline">¶</a></span><!--end_enstr-->
@@ -632,7 +632,7 @@ in-outパラメータに対する長期書き込みアクセスの別の帰着�
     <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter">Twitter</i></a>
   </aside>
 
-  <p class="copyright">Copyright © 2019 Apple Inc. All rights reserved.</p>
+  <p class="copyright">Copyright © 2020 Apple Inc. All rights reserved.</p>
   <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
   <p class="privacy">
     <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
@@ -640,6 +640,6 @@ in-outパラメータに対する長期書き込みアクセスの別の帰着�
   </p>
 </footer>
 <div id="jump_to_overlay"></div>
-<script src="../_static/javascripts/application.js"></script>
+<script src="../static/javascripts/application.js"></script>
   </body>
 </html>

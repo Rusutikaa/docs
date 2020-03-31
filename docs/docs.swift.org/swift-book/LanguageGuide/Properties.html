@@ -10,11 +10,11 @@
     <meta name="author" content="Apple Inc." />
     <meta name="viewport" content="width=device-width initial-scale=1" />
     
-    <title>Properties — The Swift Programming Language (Swift 5.1)</title>
+    <title>Properties — The Swift Programming Language (Swift 5.2)</title>
     
     <link rel="license" href="/LICENSE.txt" />
-    <link rel="stylesheet" media="all" href="../_static/stylesheets/application.css" />
-    <link rel="stylesheet" media="all" href="../_static/stylesheets/tspl.css" />
+    <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
+    <link rel="stylesheet" media="all" href="../static/stylesheets/tspl.css" />
     <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
@@ -41,7 +41,7 @@
 
     <div id="menu-toggle" class="menu-toggle open"></div>
 
-    <h2>The Swift Programming Language<div>Swift 5.1</div></h2>
+    <h2>The Swift Programming Language<div>Swift 5.2</div></h2>
 
     <ul>
     <ul class="current">
@@ -596,7 +596,7 @@
 <code class="docutils literal notranslate"><span class="pre">center</span></code>プロパティは、それから新しい値<code class="docutils literal notranslate"><span class="pre">(15,</span> <span class="pre">15)</span></code>に設定されます、それは、正方形を上にそして右に、下記の図においてオレンジの正方形によって示される新しい位置へと動かします。<code class="docutils literal notranslate"><span class="pre">center</span></code>プロパティを設定することは、<code class="docutils literal notranslate"><span class="pre">center</span></code>のためのセッターを呼び出します、そしてそれは、格納された<code class="docutils literal notranslate"><span class="pre">origin</span></code>プロパティの<code class="docutils literal notranslate"><span class="pre">x</span></code>と<code class="docutils literal notranslate"><span class="pre">y</span></code>値を修正して、正方形をその新しい位置へと動かします。
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/computedProperties_2x.png" class="align-center" src="../_images/computedProperties_2x.png" style="width: 388px;" />
+<img alt="../_images/computedProperties_2x.png" class="align-center" src="../images/computedProperties_2x.png" style="width: 388px;" />
 <div class="section" id="ID260">
 <h3><span class="enstr">Shorthand Setter Declaration<a class="headerlink" href="#ID260" title="Permalink to this headline">¶</a></span><!--end_enstr-->
 <span class="jpstr">
@@ -841,7 +841,8 @@
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li>@<span class="nv">propertyWrapper</span>
 </li><li><span class="k">struct</span> <span class="nv">TwelveOrLess</span> {
-</li><li>    <span class="k">private</span> <span class="k">var</span> <span class="nv">number</span> = <span class="m">0</span>
+</li><li>    <span class="k">private</span> <span class="k">var</span> <span class="nv">number</span>: <span class="nc">Int</span>
+</li><li>    <span class="k">init</span>() { <span class="k">self</span>.<span class="nv">number</span> = <span class="m">0</span> }
 </li><li>    <span class="k">var</span> <span class="nv">wrappedValue</span>: <span class="nc">Int</span> {
 </li><li>        <span class="k">get</span> { <span class="k">return</span> <span class="nv">number</span> }
 </li><li>        <span class="k">set</span> { <span class="nv">number</span> = <span class="nv">min</span>(<span class="nv">newValue</span>, <span class="m">12</span>) }
@@ -1054,18 +1055,22 @@
 </h3>
 <p><span class="enstr">In addition to the wrapped value, a property wrapper can expose additional functionality by defining a <em>projected value</em>—for example, a property wrapper that manages access to a database can expose a <code class="docutils literal notranslate"><span class="pre">flushDatabaseConnection()</span></code> method on its projected value. The name of the projected value is the same as the wrapped value, except it begins with a dollar sign (<code class="docutils literal notranslate"><span class="pre">$</span></code>). Because your code can’t define properties that start with <code class="docutils literal notranslate"><span class="pre">$</span></code> the projected value never interferes with properties you define.</span><!--end_enstr-->
 <span class="jpstr">
-ラップ値に加えて、プロパティラッパーは<em>予測値</em>を定義することによっていっそうの機能性を露出できます — 例えば、データベースへのアクセスを管理するプロパティラッパーは、<code class="docutils literal notranslate"><span class="pre">flushDatabaseConnection()</span></code>メソッドをそれの見込値に関して露出できます。予測値の名前は、ラップ値と同じです、それがドル記号（<code class="docutils literal notranslate"><span class="pre">$</span></code>）で始まることを除いて。あなたのコードが<code class="docutils literal notranslate"><span class="pre">$</span></code>で始まるプロパティを定義できないことから予測値は決してあなたが定義するプロパティと干渉しません。
+そのラップされた値に加えて、プロパティラッパーは<em>予測値</em>を定義することによっていっそうの機能性を露出できます — 例えば、データベースへのアクセスを管理するプロパティラッパーは、<code class="docutils literal notranslate"><span class="pre">flushDatabaseConnection()</span></code>メソッドをそれの見込値に関して露出できます。予測値の名前は、ラップされた値と同じです、それがドル記号（<code class="docutils literal notranslate"><span class="pre">$</span></code>）で始まることを除いては。あなたのコードが<code class="docutils literal notranslate"><span class="pre">$</span></code>で始まるプロパティを定義できないことから予測値は決してあなたが定義するプロパティと干渉しません。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">In the <code class="docutils literal notranslate"><span class="pre">SmallNumber</span></code> example above, if you try to set the property to a number that’s too large, the property wrapper adjusts the number before storing it. The code below adds a <code class="docutils literal notranslate"><span class="pre">projectedValue</span></code> property to the <code class="docutils literal notranslate"><span class="pre">SmallNumber</span></code> structure to keep track of whether the property wrapper adjusted the new value for the property before storing that new value.</span><!--end_enstr-->
 <span class="jpstr">
-上の<code class="docutils literal notranslate"><span class="pre">SmallNumber</span></code>例において、あなたがプロパティを大きすぎる数に設定しようとするならば、プロパティラッパーはその数を調節します、それを格納する前に。下のコードは、<code class="docutils literal notranslate"><span class="pre">projectedValue</span></code>プロパティを<code class="docutils literal notranslate"><span class="pre">SmallNumber</span></code>構造体に加えることで、プロパティラッパーがプロパティに対する新しい値を、その新しい値を格納する前に調節したかどうかを追跡します。
+上の<code class="docutils literal notranslate"><span class="pre">SmallNumber</span></code>例において、あなたがプロパティをある大きすぎる数へと設定しようとするならば、プロパティラッパーはその数を調節します、それを格納する前に。下のコードは、<code class="docutils literal notranslate"><span class="pre">projectedValue</span></code>プロパティを<code class="docutils literal notranslate"><span class="pre">SmallNumber</span></code>構造体に加えることで、プロパティラッパーがプロパティに対する新しい値を、その新しい値を格納する前に調節したかどうかを追跡します。
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li>@<span class="nv">propertyWrapper</span>
 </li><li><span class="k">struct</span> <span class="nv">SmallNumber</span> {
-</li><li>    <span class="k">private</span> <span class="k">var</span> <span class="nv">number</span> = <span class="m">0</span>
-</li><li>    <span class="k">var</span> <span class="nv">projectedValue</span> = <span class="k">false</span>
+</li><li>    <span class="k">private</span> <span class="k">var</span> <span class="nv">number</span>: <span class="nc">Int</span>
+</li><li>    <span class="k">var</span> <span class="nv">projectedValue</span>: <span class="nc">Bool</span>
+</li><li>    <span class="k">init</span>() {
+</li><li>        <span class="k">self</span>.<span class="nv">number</span> = <span class="m">0</span>
+</li><li>        <span class="k">self</span>.<span class="nv">projectedValue</span> = <span class="k">false</span>
+</li><li>    }
 </li><li>    <span class="k">var</span> <span class="nv">wrappedValue</span>: <span class="nc">Int</span> {
 </li><li>        <span class="k">get</span> { <span class="k">return</span> <span class="nv">number</span> }
 </li><li>        <span class="k">set</span> {
@@ -1092,9 +1097,9 @@
 </li><li><span class="nv">print</span>(<span class="nv">someStructure</span>.<span class="nv">$someNumber</span>)
 </li><li><span class="c"><span class="enstr">// Prints "true"</span><!--end_enstr--><span class="jpstr">（「true」を出力します）</span><!--end_jpstr--></span>
 </li></ol></div></div></div>
-<p><span class="enstr">Writing <code class="docutils literal notranslate"><span class="pre">s.$someNumber</span></code> accesses the wrapper’s projected value. After storing a small number like four, the value of <code class="docutils literal notranslate"><span class="pre">s.$someNumber</span></code> is <code class="docutils literal notranslate"><span class="pre">false</span></code>. However, the projected value is <code class="docutils literal notranslate"><span class="pre">true</span></code> after trying to store a number that’s too large, like 55.</span><!--end_enstr-->
+<p><span class="enstr">Writing <code class="docutils literal notranslate"><span class="pre">someStructure.$someNumber</span></code> accesses the wrapper’s projected value. After storing a small number like four, the value of <code class="docutils literal notranslate"><span class="pre">someStructure.$someNumber</span></code> is <code class="docutils literal notranslate"><span class="pre">false</span></code>. However, the projected value is <code class="docutils literal notranslate"><span class="pre">true</span></code> after trying to store a number that’s too large, like 55.</span><!--end_enstr-->
 <span class="jpstr">
-<code class="docutils literal notranslate"><span class="pre">s.$someNumber</span></code>を書くことは、ラッパーのもつ予測値にアクセスします。４のような小さい値を格納後、<code class="docutils literal notranslate"><span class="pre">s.$someNumber</span></code>の値は<code class="docutils literal notranslate"><span class="pre">false</span></code>です。しかしながら、予測値は、55のような大きすぎる数を格納しようとする後は<code class="docutils literal notranslate"><span class="pre">true</span></code>です。
+<code class="docutils literal notranslate"><span class="pre">someStructure.$someNumber</span></code>を書くことは、ラッパーのもつ予測値にアクセスします。４のような小さい値を格納後、<code class="docutils literal notranslate"><span class="pre">someStructure.$someNumber</span></code>の値は<code class="docutils literal notranslate"><span class="pre">false</span></code>です。しかしながら、予測値は、55のような大きすぎる数を格納しようとする後は<code class="docutils literal notranslate"><span class="pre">true</span></code>です。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">A property wrapper can return a value of any type as its projected value. In this example, the property wrapper exposes only one piece of information—whether the number was adjusted—so it exposes that Boolean value as its projected value. A wrapper that needs to expose more information can return an instance of some other data type, or it can return <code class="docutils literal notranslate"><span class="pre">self</span></code> to expose the instance of the wrapper as its projected value.</span><!--end_enstr-->
@@ -1299,7 +1304,7 @@ CとObjective-Cでは、あなたは静的定数および<em>グローバルな<
 下の図は、これらの音声のチャンネルのうちの２つがステレオ音声のレベル・メーターをモデル化するために結合されることができる方法を図示します。チャンネルの音声のレベルが<code class="docutils literal notranslate"><span class="pre">0</span></code>であるとき、そのチャンネルのための光のどれも点灯されません。音声のレベルが<code class="docutils literal notranslate"><span class="pre">10</span></code>であるとき、そのチャンネルのための光の全ては点灯されます。この図には、左のチャンネルに現在<code class="docutils literal notranslate"><span class="pre">9</span></code>のレベルがあり、右のチャンネルに現在<code class="docutils literal notranslate"><span class="pre">7</span></code>のレベルがあります：
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/staticPropertiesVUMeter_2x.png" class="align-center" src="../_images/staticPropertiesVUMeter_2x.png" style="width: 243px;" />
+<img alt="../_images/staticPropertiesVUMeter_2x.png" class="align-center" src="../images/staticPropertiesVUMeter_2x.png" style="width: 243px;" />
 <p><span class="enstr">The audio channels described above are represented by instances of the <code class="docutils literal notranslate"><span class="pre">AudioChannel</span></code> structure:</span><!--end_enstr-->
 <span class="jpstr">
 上で記述される音声のチャンネルは、<code class="docutils literal notranslate"><span class="pre">AudioChannel</span></code>構造体のインスタンスによって表されます：
@@ -1423,7 +1428,7 @@ CとObjective-Cでは、あなたは静的定数および<em>グローバルな<
     <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter">Twitter</i></a>
   </aside>
 
-  <p class="copyright">Copyright © 2019 Apple Inc. All rights reserved.</p>
+  <p class="copyright">Copyright © 2020 Apple Inc. All rights reserved.</p>
   <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
   <p class="privacy">
     <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
@@ -1431,6 +1436,6 @@ CとObjective-Cでは、あなたは静的定数および<em>グローバルな<
   </p>
 </footer>
 <div id="jump_to_overlay"></div>
-<script src="../_static/javascripts/application.js"></script>
+<script src="../static/javascripts/application.js"></script>
   </body>
 </html>
