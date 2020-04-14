@@ -1,0 +1,387 @@
+<!DOCTYPE html><html lang="en" data-reactroot=""><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>Composing SwiftUI Gestures | Apple Developer Documentation</title><!-- link href="https://www.apple.com/wss/fonts?families=SF+Pro,v1|SF+Mono,v1|SF+Pro+Icons,v1" media="all" rel="stylesheet" type="text/css"/ --><meta content="width=device-width, initial-scale=1 viewport-fit=cover" name="viewport"/><meta data-pid="463568"/><link href="../../../documentation/assets/application-e5bb1544.css" media="all" rel="stylesheet" type="text/css"/><noscript><link href="../../../documentation/assets/nojs-c6be9131.css" media="all" rel="stylesheet" type="text/css"/></noscript><link rel="mask-icon" href="../../../documentation/assets/apple-logo.svg" color="#000"/><link rel="shortcut icon" href="../../../documentation/assets/favicon.ico"/><script src="../../../documentation/assets/shared-b7676010.js"></script></head><body><div id="_omniture_top">
+      <script>
+        var s_account="awdappledeveloper"
+      </script><!-- script src="https://developer.apple.com/assets/metrics/scripts/analytics.js" -->
+      </script>
+      <script>
+        s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
+        s.channel="www.documentation.developer"
+
+        var s_code=s.t();if(s_code)document.write(s_code)
+      </script>
+    </div><div id="app"><div><a href="#main" id="skip-localnav" class="showonfocus hidden">Skip Navigation</a><aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"/><nav id="ac-globalnav" class="no-js" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions/">
+      <div class="ac-gn-content">
+        <ul class="ac-gn-header">
+          <li class="ac-gn-item ac-gn-menuicon">
+            <label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true">
+              <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top">
+                <span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span>
+              </span>
+              <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom">
+                <span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span>
+              </span>
+            </label>
+            <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open">
+              <span class="ac-gn-menuanchor-label">Global Nav Open Menu</span>
+            </a>
+            <a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close">
+              <span class="ac-gn-menuanchor-label">Global Nav Close Menu</span>
+            </a>
+          </li>
+          <li class="ac-gn-item ac-gn-apple">
+            <a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small">
+              <span class="ac-gn-link-text">Apple Developer</span>
+            </a>
+          </li>
+        </ul>
+        <div class="ac-gn-search-placeholder-container" role="search">
+          <div class="ac-gn-search ac-gn-search-small">
+            <a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link aria-label="Search Developer">
+              </a><div class="ac-gn-search-placeholder-bar">
+                <div class="ac-gn-search-placeholder-input">
+                  <div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
+                    <div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
+                    <span class="ac-gn-search-placeholder">Search Developer</span>
+                  </div>
+                </div>
+                <div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close">
+                  <span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <ul class="ac-gn-list">
+          <li class="ac-gn-item ac-gn-apple">
+            <a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus">
+              <span class="ac-gn-link-text">Apple Developer</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-discover">
+            <a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover">
+              <span class="ac-gn-link-text">Discover</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-design">
+            <a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design">
+              <span class="ac-gn-link-text">Design</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-develop">
+            <a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop">
+              <span class="ac-gn-link-text">Develop</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-distribute">
+            <a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute">
+              <span class="ac-gn-link-text">Distribute</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport">
+            <a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport">
+              <span class="ac-gn-link-text">Support</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-account">
+            <a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account">
+              <span class="ac-gn-link-text">Account</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search">
+            <a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link aria-label="Search Developer"></a>
+          </li>
+        </ul>
+        <aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search">
+          <div class="ac-gn-searchview-content">
+            <div class="ac-gn-searchview-bar">
+              <div class="ac-gn-searchview-bar-wrapper">
+                <form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get">
+                  <div class="ac-gn-searchform-wrapper">
+                    <input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions" />
+                    <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button>
+                    <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search">
+                        <span class="ac-gn-searchform-reset-background"></span>
+                      </button>
+                  </div>
+                </form>
+                <button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search">
+                    <span class="ac-gn-searchview-close-cancel" aria-hidden="true">
+                      Cancel
+                    </span>
+                  </button>
+              </div>
+            </div>
+            <aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
+          </div>
+          <button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search">
+              <span class="ac-gn-searchview-close-wrapper">
+                <span class="ac-gn-searchview-close-left"></span>
+                <span class="ac-gn-searchview-close-right"></span>
+              </span>
+            </button>
+        </aside>
+          </div>
+    </nav><div class="ac-gn-blur"></div><div id="ac-gn-curtain" class="ac-gn-curtain"></div><div id="ac-gn-placeholder" class="ac-nav-placeholder"></div><input type="checkbox" id="localnav-menustate" class="localnav-menustate" aria-hidden="true"/><nav id="localnav" class="localnav localnav-dark theme-dark localnav-scrim localnav-noborder" role="navigation" aria-label="API Reference" data-sticky="true"><div class="localnav-wrapper"><div class="referencenav"><div class="localnav-background"></div><div class="localnav-content"><a href="../../../index.html" class="localnav-title">Documentation</a><div class="localnav-menu"><a href="#localnav-menustate" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span class="localnav-menucta-anchor-label" aria-hidden="true">Open Menu</span></a><a href="#" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span class="localnav-menucta-anchor-label" aria-hidden="true">Close Menu</span></a><div class="localnav-menu-tray"><ul aria-label="Breadcrumbs" class="localnav-menu-items localnav-menu-breadcrumbs"><li class="localnav-menu-item localnav-menu-breadcrumb-item"><a class="localnav-menu-link" href="../../../documentation/swiftui.html">SwiftUI</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item"><a class="localnav-menu-link" href="../../../documentation/swiftui/gestures.html"><span class="enstr">Gestures</span><!--end_enstr-->
+<span class="jpstr">
+ジェスチャ
+</span><!--end_jpstr-->
+</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item"><div class="localnav-menu-breadcrumb-current-container localnav-menu-link current"><span aria-current="page" class="localnav-menu-breadcrumb-current">Composing SwiftUI Gestures</span></div></li></ul><ul class="localnav-menu-items localnav-menu-settings" data-breadcrumbs-count="3"><li class="localnav-menu-setting language-container"><span class="localnav-menu-setting-label">Language:</span><span class="localnav-menu-toggle-none current-language" aria-current="page">Swift</span></li><li class="localnav-menu-setting"><span class="localnav-menu-setting-label">API Changes:</span><span class="changes-toggle">None</span></li></ul></div><div class="localnav-actions"><div class="localnav-action localnav-action-menucta" aria-hidden="true"><label for="localnav-menustate" class="localnav-menucta"><span class="localnav-menucta-chevron"></span></label></div></div></div></div></div></div></nav><label for="localnav-menustate" id="localnav-curtain" aria-hidden="true"></label><main role="main" id="main" class="main" tabindex="0"><div class="topic-title"><span class="eyebrow">Article</span><h1 class="topic-heading"><span><span class="enstr">Composing Swift<wbr/>UI Gestures</span><!--end_enstr-->
+<span class="jpstr">
+Swift<wbr/>UIシェスチャを合成する
+</span><!--end_jpstr-->
+</span></h1></div><div class="topic-container section-content row"><div class="topic-description column large-9 medium-9 small-12"><div class="topic-abstract abstract formatted-content"><div><p><span class="enstr">Combine gestures to create complex interactions.</span><!--end_enstr-->
+<span class="jpstr">
+ジェスチャそれらを結合して複雑な相互作用を作成します。
+</span><!--end_jpstr-->
+</p></div></div></div><div class="topic-summary column large-3 medium-3 small-12"><div class="topic-summary-section frameworks" role="complementary" aria-label="Framework"><p class="topic-summary-section-label subsection-label"><span class="enstr">Framework</span><!--end_enstr-->
+<span class="jpstr">
+フレームワーク
+</span><!--end_jpstr-->
+</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item"><span>Swift<wbr/>UI</span></li></ul></div><div class="topic-summary-section onthispage"><nav class="onthispage-nav" aria-labelledby="onthispage-title"><p id="onthispage-title" class="topic-summary-section-label subsection-label"><span class="enstr">On This Page</span><!--end_enstr-->
+<span class="jpstr">
+この項には
+</span><!--end_jpstr-->
+</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item"><a href="#overview" class="icon icon-after icon-chevrondowncircle"><span class="enstr">Overview</span><!--end_enstr-->
+<span class="jpstr">
+概要
+</span><!--end_jpstr-->
+</a></li><li class="topic-summary-section-item"><a href="#see-also" class="icon icon-after icon-chevrondowncircle"><span class="enstr">See Also</span><!--end_enstr-->
+<span class="jpstr">
+参照
+</span><!--end_jpstr-->
+</a></li></ul></nav></div></div><div class="topic-content column large-9 medium-9 small-12" id="topic-content"><section id="overview" class="section"><h2><span class="enstr">Overview</span><!--end_enstr-->
+<span class="jpstr">
+概要
+</span><!--end_jpstr-->
+</h2><div class="formatted-content"><div><p><span class="enstr">When you add multiple gestures to your app’s view hierarchy, you need to decide how the gestures interact with each other. You use gesture composition to define the order SwiftUI recognizes gestures. There are three gesture composition types:</span><!--end_enstr-->
+<span class="jpstr">
+あなたが複数のジェスチャをあなたのアプリのもつビュー階層に加える場合、あなたはどのようにジェスチャそれらがお互いと相互作用するか決定する必要があります。あなたはジェスチャ合成を使って、より古いSwiftUIが認識するジェスチャを定義します。３つのジェスチャ合成型があります：
+</span><!--end_jpstr-->
+</p><ul><li><p><span class="enstr">Simultaneous</span><!--end_enstr-->
+<span class="jpstr">
+同時に
+</span><!--end_jpstr-->
+</p></li><li><p><span class="enstr">Sequenced</span><!--end_enstr-->
+<span class="jpstr">
+順番に
+</span><!--end_jpstr-->
+</p></li><li><p><span class="enstr">Exclusive</span><!--end_enstr-->
+<span class="jpstr">
+排他的に
+</span><!--end_jpstr-->
+</p></li></ul><p><span class="enstr">When you combine gesture modifiers simultaneously, SwiftUI must recognize all subgesture patterns at the same time for it to recognize the combining gesture. When you sequence gesture modifiers one after the other, SwiftUI must recognize each subgesture in order. Finally, when you combine gestures exclusively, SwiftUI recognizes the entire gesture pattern when SwiftUI only recognizes one subgesture but not the others.</span><!--end_enstr-->
+<span class="jpstr">
+あなたがジェスチャ修飾子を同時に結合する場合、SwiftUIは、結合ジェスチャを認識するために、それに対して全てのサブジェスチャパターンを同時に認識する必要があります。あなたがジェスチャ識別子を順々に並べる場合、SwiftUIはそれぞれの下位ジェスチャを順番に認識しなければなりません。最後に、あなたがジェスチャを排他的に結合する場合、SwiftUIが１つの下位ジェスチャを認識するだけで他のものをしない時にSwiftUIは全体のジェスチャパターンを認識します。
+</span><!--end_jpstr-->
+</p></div><h3 id="3314580"><span class="enstr">Sequence One Gesture After Another</span><!--end_enstr-->
+<span class="jpstr">
+１つのジェスチャを他のものの後に配列する
+</span><!--end_jpstr-->
+</h3><div><p><span class="enstr">When you sequence one gesture after another, SwiftUI recognizes the first gesture before it recognizes the second. For example, to require a long press before the user can drag a view, you sequence a <a class="symbol-name" href="../../../documentation/swiftui/draggesture.html"><code><span>Drag<wbr/>Gesture</span></code></a> after a <a class="symbol-name" href="../../../documentation/swiftui/longpressgesture.html"><code><span>Long<wbr/>Press<wbr/>Gesture</span></code></a>.</span><!--end_enstr-->
+<span class="jpstr">
+あなたが１つのジェスチャを他のものの後に配列する場合、SwiftUIは最初のジェスチャを認識します、それが２番目のものを認識する前に。例えば、ユーザがビューをドラッグできる前に長押しを要求するには、あなたは<a class="symbol-name" href="../../../documentation/swiftui/draggesture.html"><code><span>Drag<wbr/>Gesture</span></code></a>を<a class="symbol-name" href="../../../documentation/swiftui/longpressgesture.html"><code><span>Long<wbr/>Press<wbr/>Gesture</span></code></a>の後に配列します。
+</span><!--end_jpstr-->
+</p></div><h4 id="3314577"><span class="enstr">Model Sequenced Gesture States</span><!--end_enstr-->
+<span class="jpstr">
+配列されたジェスチャ状態それらを形作る
+</span><!--end_jpstr-->
+</h4><div><p><span class="enstr">To make it easier to track complicated states, use an enumeration that captures all of the states you need to configure your views. In the following example, there are three important states: no interaction (<code class="code-voice"><span>inactive</span></code>), long press in progress (<code class="code-voice"><span>pressing</span></code>), and dragging (<code class="code-voice"><span>dragging</span></code>).</span><!--end_enstr-->
+<span class="jpstr">
+入り組んだ状態の追跡をより簡単にするために、ある列挙を使ってください、それはあなたのビューを構成設定するのにあなたが必要とする状態の全てをキャプチャするものです。以下の例において、３つの重要な状態があります：相互作用なし（<code class="code-voice"><span>inactive</span></code>）、進行中の長押し（<code class="code-voice"><span>pressing</span></code>）、そしてドラッグ（<code class="code-voice"><span>dragging</span></code>）。
+</span><!--end_jpstr-->
+</p><figure id="3314578"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>struct DraggableCircle: View {
+
+    enum DragState {
+        case inactive
+        case pressing
+        case dragging(translation: CGSize)
+        
+        var translation: CGSize {
+            switch self {
+            case .inactive, .pressing:
+                return .zero
+            case .dragging(let translation):
+                return translation
+            }
+        }
+        
+        var isActive: Bool {
+            switch self {
+            case .inactive:
+                return false
+            case .pressing, .dragging:
+                return true
+            }
+        }
+        
+        var isDragging: Bool {
+            switch self {
+            case .inactive, .pressing:
+                return false
+            case .dragging:
+                return true
+            }
+        }
+    }
+    
+    @GestureState var dragState = DragState.inactive
+    @State var viewState = CGSize.zero
+</code></pre></div></div></figure></div><h4 id="3314579"><span class="enstr">Create Gestures and Update the UI State</span><!--end_enstr-->
+<span class="jpstr">
+ジェスチャを作成するそしてUI状態を更新する
+</span><!--end_jpstr-->
+</h4><div><p><span class="enstr">When you sequence two gestures, the callbacks capture the state of both gestures. In the update callback, the new <code class="code-voice"><span>value</span></code> uses an enumeration to represent the combination of the possible gesture states. The code below converts the underlying gesture states into the high-level <code class="code-voice"><span>Drag<wbr/>State</span></code> enumeration defined above.</span><!--end_enstr-->
+<span class="jpstr">
+あなたが２つのジェスチャを配列する場合、コールバックは両方のジェスチャの状態をキャプチャします。更新コールバックにおいて、新しい<code class="code-voice"><span>value</span></code>は列挙を使って可能なジェスチャ状態の組み合わせを表します。下のコードは、基礎をなすジェスチャ状態を、上で定義される高水準<code class="code-voice"><span>Drag<wbr/>State</span></code>列挙へと変換します。
+</span><!--end_jpstr-->
+</p><figure id="3314583"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>var body: some View {
+        let minimumLongPressDuration = 0.5
+        let longPressDrag = LongPressGesture(minimumDuration: minimumLongPressDuration)
+            .sequenced(before: DragGesture())
+            .updating($dragState) { value, state, transaction in
+                switch value {
+                // Long press begins.
+                case .first(true):
+                    state = .pressing
+                // Long press confirmed, dragging may begin.
+                case .second(true, let drag):
+                    state = .dragging(translation: drag?.translation ?? .zero)
+                // Dragging ended or the long press cancelled.
+                default:
+                    state = .inactive
+                }
+            }
+            .onEnded { value in
+                guard case .second(true, let drag?) = value else { return }
+                self.viewState.width += drag.translation.width
+                self.viewState.height += drag.translation.height
+            }
+</code></pre></div></div></figure><p><span class="enstr">When the user begins pressing the view, the drag state changes to <code class="code-voice"><span>pressing</span></code> and a shadow animates under the shape. After the user finishes the long press and the drag state changes to <code class="code-voice"><span>dragging</span></code>, a border appears around the shape to indicate that the user may begin moving the view.</span><!--end_enstr-->
+<span class="jpstr">
+ユーザがビューを押すことを始める時、ドラッグ状態は<code class="code-voice"><span>pressing</span></code>に変わります、そして影が形状の下に生気を与えます。ユーザが長押しを終了するそしてドラッグ状態が<code class="code-voice"><span>dragging</span></code>に変化する後に、境界線が形状の周りに現れて、ユーザがビューの移動を始めるかもしれないことを指し示します。
+</span><!--end_jpstr-->
+</p><figure id="3314581"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>        return Circle()
+            .fill(Color.blue)
+            .overlay(dragState.isDragging ? Circle().stroke(Color.white, lineWidth: 2) : nil)
+            .frame(width: 100, height: 100, alignment: .center)
+            .offset(
+                x: viewState.width + dragState.translation.width,
+                y: viewState.height + dragState.translation.height
+            )
+            .animation(nil)
+            .shadow(radius: dragState.isActive ? 8 : 0)
+            .animation(.linear(duration: minimumLongPressDuration))
+            .gesture(longPressDrag)
+    }
+}
+</code></pre></div></div></figure></div></div></section></div></div><section id="see-also" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><span class="enstr">See Also</span><!--end_enstr-->
+<span class="jpstr">
+参照
+</span><!--end_jpstr-->
+</h2><section id="3126476" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Combined Gestures</span><!--end_enstr-->
+<span class="jpstr">
+結合されたジェスチャ
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/swiftui/sequencegesture.html"><code class="display-name"><span class="decorator">struct </span><span class="identifier">Sequence<wbr/>Gesture</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p>A gesture that’s a sequence of two gestures.</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/swiftui/simultaneousgesture.html"><code class="display-name"><span class="decorator">struct </span><span class="identifier">Simultaneous<wbr/>Gesture</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p>A gesture containing two gestures that can happen at the same time with neither of them preceeding the other.</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/swiftui/exclusivegesture.html"><code class="display-name"><span class="decorator">struct </span><span class="identifier">Exclusive<wbr/>Gesture</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p>A gesture that consists of two gestures where only one of them can succeed.</p></div></div></div></div></div></div></div></section></div></div></section></main><section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo">
+        <nav class="footer-breadory">
+          <a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a>
+          <section class="breadcrumbs">
+            <ol class="breadcrumbs-list">
+              <li><a href=/documentation>Documentation</a></li>
+            </ol>
+          </section>
+          <div id="directorynav" class="directorynav">
+            <div id="dn-cola" class="column">
+              <h3><a href="/discover/">Discover</a></h3>
+              <ul>
+                <li><a href="/macos/">macOS</a></li>
+                <li><a href="/ios/">iOS</a></li>
+                <li><a href="/watchos/">watchOS</a></li>
+                <li><a href="/tvos/">tvOS</a></li>
+                <li><a href="/safari/">Safari and Web</a></li>
+                <li><a href="/games/">Games</a></li>
+                <li><a href="/business/">Business</a></li>
+                <li><a href="/education/">Education</a></li>
+                <li><a href="/wwdc/">WWDC</a></li>
+              </ul>
+            </div>
+            <div id="dn-colb" class="column">
+              <h3><a href="/design/">Design</a></h3>
+              <ul>
+                <li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
+                <li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
+<span class="jpstr">
+リソース
+</span><!--end_jpstr-->
+</a></li>
+                <li><a href="/videos/design/">Videos</a></li>
+                <li><a href="/design/awards/">Apple Design Awards</a></li>
+                <li><a href="/accessibility/">Accessibility</a></li>
+                <li><a href="/internationalization/"><span class="enstr">Internationalization</span><!--end_enstr-->
+<span class="jpstr">
+国際化
+</span><!--end_jpstr-->
+</a></li>
+                <li><a href="/accessories/">Accessories</a></li>
+              </ul>
+            </div>
+            <div id="dn-colc" class="column">
+              <h3><a href="/develop/">Develop</a></h3>
+              <ul>
+                <li><a href="/xcode/">Xcode</a></li>
+                <li><a href="/swift/">Swift</a></li>
+                <li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
+                <li><a href="/testflight/">TestFlight</a></li>
+                <li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
+                <li><a href="/videos/">Videos</a></li>
+                <li><a href="/download/">Downloads</a></li>
+              </ul>
+            </div>
+            <div id="dn-cold" class="column">
+              <h3><a href="/distribute/">Distribute</a></h3>
+              <ul>
+                <li><a href="/programs/">Developer Program</a></li>
+                <li><a href="/app-store/">App Store</a></li>
+                <li><a href="/app-store/review/">App Review</a></li>
+                <li><a href="/macos/distribution/">Mac Software</a></li>
+                <li><a href="/business/distribute/">Apps for Business</a></li>
+                <li><a href="/safari/extensions/">Safari Extensions</a></li>
+                <li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
+                <li><a href="/softwarelicensing/">Trademark Licensing</a></li>
+              </ul>
+            </div>
+            <div id="dn-cole" class="column">
+              <h3><a href="/support/">Support</a></h3>
+              <ul>
+                <li><a href="https://forums.developer.apple.com">Developer Forums</a></li>
+                <li><a href="/bug-reporting/">Bug Reporting</a></li>
+                <li><a href="/terms/">License Agreements</a></li>
+                <li><a href="/system-status/">System Status</a></li>
+                <li><a href="/contact/">Contact Us</a></li>
+              </ul>
+              <h3><a href="/account/">Account</a></h3>
+              <ul>
+                <li><a href="/account/ios/certificate/">Certificates, IDs &amp; Profiles</a></li>
+                <li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="ac-gf-footer-legal">
+          <div class="ac-gf-footer-news"> To receive the latest developer news, visit and subscribe to our <a href="/news/">News and Updates</a>.
+          </div>
+          <div class="ac-gf-footer-legal-copyright">Copyright © 2020 Apple Inc. All rights reserved.</div>
+          <div class="ac-gf-footer-legal-links">
+            <a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a>
+            <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+            <a href="/bug-reporting/">Report Bugs</a>
+            <a href="/contact/submit/?subject=website-feedback">Feedback</a>
+          </div>
+          <div class="ac-gf-footer-language-links">
+            <a href="/cn/" class="first">简体中文</a>
+            <a href="/jp/">日本語</a>
+            <a href="/kr/">한국어</a>
+          </div>
+        </div>
+      </footer></section></div></div><script id="bootstrap-data" type="application/json">{"id":3314582,"title":{"content":"Composing SwiftUI Gestures"},"abstract":"<div><p>Combine gestures to create complex interactions.<\/p><\/div>","discussion":"<div><p>When you add multiple gestures to your app’s view hierarchy, you need to decide how the gestures interact with each other. You use gesture composition to define the order SwiftUI recognizes gestures. There are three gesture composition types:<\/p><ul><li><p>Simultaneous<\/p><\/li><li><p>Sequenced<\/p><\/li><li><p>Exclusive<\/p><\/li><\/ul><p>When you combine gesture modifiers simultaneously, SwiftUI must recognize all subgesture patterns at the same time for it to recognize the combining gesture. When you sequence gesture modifiers one after the other, SwiftUI must recognize each subgesture in order. Finally, when you combine gestures exclusively, SwiftUI recognizes the entire gesture pattern when SwiftUI only recognizes one subgesture but not the others.<\/p><\/div><h3 id=\"3314580\">Sequence One Gesture After Another<\/h3><div><p>When you sequence one gesture after another, SwiftUI recognizes the first gesture before it recognizes the second. For example, to require a long press before the user can drag a view, you sequence a <a class=\"symbol-name\" href=\"\/documentation\/swiftui\/draggesture\"><code><span>Drag<wbr\/>Gesture<\/span><\/code><\/a> after a <a class=\"symbol-name\" href=\"\/documentation\/swiftui\/longpressgesture\"><code><span>Long<wbr\/>Press<wbr\/>Gesture<\/span><\/code><\/a>.<\/p><\/div><h4 id=\"3314577\">Model Sequenced Gesture States<\/h4><div><p>To make it easier to track complicated states, use an enumeration that captures all of the states you need to configure your views. In the following example, there are three important states: no interaction (<code class=\"code-voice\"><span>inactive<\/span><\/code>), long press in progress (<code class=\"code-voice\"><span>pressing<\/span><\/code>), and dragging (<code class=\"code-voice\"><span>dragging<\/span><\/code>).<\/p><figure id=\"3314578\"><div class=\"formatted-content\"><div class=\"code-listing\"><pre class=\"code-source\" data-language=\"swift\"><code>struct DraggableCircle: View {\n\n    enum DragState {\n        case inactive\n        case pressing\n        case dragging(translation: CGSize)\n        \n        var translation: CGSize {\n            switch self {\n            case .inactive, .pressing:\n                return .zero\n            case .dragging(let translation):\n                return translation\n            }\n        }\n        \n        var isActive: Bool {\n            switch self {\n            case .inactive:\n                return false\n            case .pressing, .dragging:\n                return true\n            }\n        }\n        \n        var isDragging: Bool {\n            switch self {\n            case .inactive, .pressing:\n                return false\n            case .dragging:\n                return true\n            }\n        }\n    }\n    \n    @GestureState var dragState = DragState.inactive\n    @State var viewState = CGSize.zero\n<\/code><\/pre><\/div><\/div><\/figure><\/div><h4 id=\"3314579\">Create Gestures and Update the UI State<\/h4><div><p>When you sequence two gestures, the callbacks capture the state of both gestures. In the update callback, the new <code class=\"code-voice\"><span>value<\/span><\/code> uses an enumeration to represent the combination of the possible gesture states. The code below converts the underlying gesture states into the high-level <code class=\"code-voice\"><span>Drag<wbr\/>State<\/span><\/code> enumeration defined above.<\/p><figure id=\"3314583\"><div class=\"formatted-content\"><div class=\"code-listing\"><pre class=\"code-source\" data-language=\"swift\"><code>var body: some View {\n        let minimumLongPressDuration = 0.5\n        let longPressDrag = LongPressGesture(minimumDuration: minimumLongPressDuration)\n            .sequenced(before: DragGesture())\n            .updating($dragState) { value, state, transaction in\n                switch value {\n                \/\/ Long press begins.\n                case .first(true):\n                    state = .pressing\n                \/\/ Long press confirmed, dragging may begin.\n                case .second(true, let drag):\n                    state = .dragging(translation: drag?.translation ?? .zero)\n                \/\/ Dragging ended or the long press cancelled.\n                default:\n                    state = .inactive\n                }\n            }\n            .onEnded { value in\n                guard case .second(true, let drag?) = value else { return }\n                self.viewState.width += drag.translation.width\n                self.viewState.height += drag.translation.height\n            }\n<\/code><\/pre><\/div><\/div><\/figure><p>When the user begins pressing the view, the drag state changes to <code class=\"code-voice\"><span>pressing<\/span><\/code> and a shadow animates under the shape. After the user finishes the long press and the drag state changes to <code class=\"code-voice\"><span>dragging<\/span><\/code>, a border appears around the shape to indicate that the user may begin moving the view.<\/p><figure id=\"3314581\"><div class=\"formatted-content\"><div class=\"code-listing\"><pre class=\"code-source\" data-language=\"swift\"><code>        return Circle()\n            .fill(Color.blue)\n            .overlay(dragState.isDragging ? Circle().stroke(Color.white, lineWidth: 2) : nil)\n            .frame(width: 100, height: 100, alignment: .center)\n            .offset(\n                x: viewState.width + dragState.translation.width,\n                y: viewState.height + dragState.translation.height\n            )\n            .animation(nil)\n            .shadow(radius: dragState.isActive ? 8 : 0)\n            .animation(.linear(duration: minimumLongPressDuration))\n            .gesture(longPressDrag)\n    }\n}\n<\/code><\/pre><\/div><\/div><\/figure><\/div>","containingGroup":[{"id":3126476,"role":"task","paths":[],"symbols":[{"id":3314582,"role":"article","paths":["documentation\/swiftui\/gestures\/composing_swiftui_gestures"],"abstract":"<div><p>Combine gestures to create complex interactions.<\/p><\/div>","title":{"content":"Composing SwiftUI Gestures"}},{"id":3078789,"role":"symbol","usr":"s:7SwiftUI15SequenceGestureV","name":"SequenceGesture","domain":"swift","kind":"struct","availability":[{"platform":"iOS","introduced":"13.0"},{"platform":"macOS","introduced":"10.15"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"13.0"},{"platform":"watchOS","introduced":"6.0"},{"platform":"Xcode","introduced":"11.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">struct <\/span><span class=\"identifier\">Sequence<wbr\/>Gesture<\/span><\/code>","paths":["documentation\/swiftui\/sequencegesture"],"title":{"content":"SequenceGesture"},"abstract":"<div><p>A gesture that’s a sequence of two gestures.<\/p><\/div>","hasChildren":true},{"id":3078896,"role":"symbol","usr":"s:7SwiftUI19SimultaneousGestureV","name":"SimultaneousGesture","domain":"swift","kind":"struct","availability":[{"platform":"iOS","introduced":"13.0"},{"platform":"macOS","introduced":"10.15"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"13.0"},{"platform":"watchOS","introduced":"6.0"},{"platform":"Xcode","introduced":"11.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">struct <\/span><span class=\"identifier\">Simultaneous<wbr\/>Gesture<\/span><\/code>","paths":["documentation\/swiftui\/simultaneousgesture"],"title":{"content":"SimultaneousGesture"},"abstract":"<div><p>A gesture containing two gestures that can happen at the same time with neither of them preceeding the other.<\/p><\/div>","hasChildren":true},{"id":3077425,"role":"symbol","usr":"s:7SwiftUI16ExclusiveGestureV","name":"ExclusiveGesture","domain":"swift","kind":"struct","availability":[{"platform":"iOS","introduced":"13.0"},{"platform":"macOS","introduced":"10.15"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"13.0"},{"platform":"watchOS","introduced":"6.0"},{"platform":"Xcode","introduced":"11.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">struct <\/span><span class=\"identifier\">Exclusive<wbr\/>Gesture<\/span><\/code>","paths":["documentation\/swiftui\/exclusivegesture"],"title":{"content":"ExclusiveGesture"},"abstract":"<div><p>A gesture that consists of two gestures where only one of them can succeed.<\/p><\/div>","hasChildren":true}],"title":{"content":"Combined Gestures"}}],"modules":[{"title":{"content":"SwiftUI"},"paths":["documentation\/swiftui"],"importStatement":"<import xml:space=\"preserve\"><keyWord>import<\/keyWord> SwiftUI<\/import>","availability":[{"platform":"watchOS","introduced":"6.0"},{"platform":"macOS","introduced":"10.15"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"13.0"},{"platform":"iOS","introduced":"13.0"}]}],"role":"article","language":"swift","roleHeading":"Article","languages":["swift"],"variants":{"swift":{"paths":["documentation\/swiftui\/gestures\/composing_swiftui_gestures"]}},"pid":463568,"paths":["documentation\/swiftui\/gestures\/composing_swiftui_gestures"],"hierarchy":[[{"id":3071394,"role":"collection","title":{"content":"SwiftUI"},"paths":["documentation\/swiftui"]},{"id":3126470,"role":"collectionGroup","title":{"content":"Gestures"},"paths":["documentation\/swiftui\/gestures"]}]],"legalNotices":{"copyright":"Copyright &copy; 2020 Apple Inc. All rights reserved.","termsOfUse":"https:\/\/www.apple.com\/legal\/internet-services\/terms\/site.html","privacyPolicy":"https:\/\/www.apple.com\/privacy\/privacy-policy"}}</script></body></html>
