@@ -8,7 +8,7 @@
 
 * [Framework Foundation（ObjC）2020.6.10 日本語訳](https://rusutikaa.github.io/docs//docs2/developer.apple.com/documentation/foundation_language-objc.html)
 
-* [Framework Objective-C Runtime 2020.6.7 日本語訳](https://rusutikaa.github.io/docs/docs2/developer.apple.com/documentation/objectivec.html)
+* [Framework Objective-C Runtime (Swift) 2020.6.7 日本語訳](https://rusutikaa.github.io/docs/docs2/developer.apple.com/documentation/objectivec.html)
 
 以下は更新されない
 
