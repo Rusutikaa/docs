@@ -1,0 +1,692 @@
+<!DOCTYPE html><html lang="en" data-reactroot=""><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>NSURLSession - Foundation | Apple Developer Documentation</title><!-- link href="https://www.apple.com/wss/fonts?families=SF+Pro,v1|SF+Mono,v1|SF+Pro+Icons,v1" media="all" rel="stylesheet" type="text/css"/ --><meta content="width=device-width, initial-scale=1 viewport-fit=cover" name="viewport"/><meta data-pid="492847"/><link href="../../documentation/assets/application-e5bb1544.css" media="all" rel="stylesheet" type="text/css"/><noscript><link href="../../documentation/assets/nojs-c6be9131.css" media="all" rel="stylesheet" type="text/css"/></noscript><link rel="mask-icon" href="../../documentation/assets/apple-logo.svg" color="#000"/><link rel="shortcut icon" href="../../documentation/assets/favicon.ico"/><script src="../../documentation/assets/shared-b7676010.js"></script></head><body><div id="app"><div><a href="#main" id="skip-localnav" class="showonfocus hidden">Skip Navigation</a><aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"/><nav id="ac-globalnav" class="no-js" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions/">
+      <div class="ac-gn-content">
+        <ul class="ac-gn-header">
+          <li class="ac-gn-item ac-gn-menuicon">
+            <label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true">
+              <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top">
+                <span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span>
+              </span>
+              <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom">
+                <span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span>
+              </span>
+            </label>
+            <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open">
+              <span class="ac-gn-menuanchor-label">Global Nav Open Menu</span>
+            </a>
+            <a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close">
+              <span class="ac-gn-menuanchor-label">Global Nav Close Menu</span>
+            </a>
+          </li>
+          <li class="ac-gn-item ac-gn-apple">
+            <a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small">
+              <span class="ac-gn-link-text">Apple Developer</span>
+            </a>
+          </li>
+        </ul>
+        <div class="ac-gn-search-placeholder-container" role="search">
+          <div class="ac-gn-search ac-gn-search-small">
+            <a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link aria-label="Search Developer">
+              </a><div class="ac-gn-search-placeholder-bar">
+                <div class="ac-gn-search-placeholder-input">
+                  <div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
+                    <div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
+                    <span class="ac-gn-search-placeholder">Search Developer</span>
+                  </div>
+                </div>
+                <div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close">
+                  <span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <ul class="ac-gn-list">
+          <li class="ac-gn-item ac-gn-apple">
+            <a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus">
+              <span class="ac-gn-link-text">Apple Developer</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-discover">
+            <a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover">
+              <span class="ac-gn-link-text">Discover</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-design">
+            <a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design">
+              <span class="ac-gn-link-text">Design</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-develop">
+            <a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop">
+              <span class="ac-gn-link-text">Develop</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-distribute">
+            <a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute">
+              <span class="ac-gn-link-text">Distribute</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport">
+            <a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport">
+              <span class="ac-gn-link-text">Support</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-account">
+            <a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account">
+              <span class="ac-gn-link-text">Account</span>
+              </a>
+          </li>
+          <li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search">
+            <a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link aria-label="Search Developer"></a>
+          </li>
+        </ul>
+        <aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search">
+          <div class="ac-gn-searchview-content">
+            <div class="ac-gn-searchview-bar">
+              <div class="ac-gn-searchview-bar-wrapper">
+                <form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get">
+                  <div class="ac-gn-searchform-wrapper">
+                    <input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions" />
+                    <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button>
+                    <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search">
+                        <span class="ac-gn-searchform-reset-background"></span>
+                      </button>
+                  </div>
+                </form>
+                <button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search">
+                    <span class="ac-gn-searchview-close-cancel" aria-hidden="true">
+                      Cancel
+                    </span>
+                  </button>
+              </div>
+            </div>
+            <aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
+          </div>
+          <button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search">
+              <span class="ac-gn-searchview-close-wrapper">
+                <span class="ac-gn-searchview-close-left"></span>
+                <span class="ac-gn-searchview-close-right"></span>
+              </span>
+            </button>
+        </aside>
+          </div>
+    </nav><div class="ac-gn-blur"></div><div id="ac-gn-curtain" class="ac-gn-curtain"></div><div id="ac-gn-placeholder" class="ac-nav-placeholder"></div><input type="checkbox" id="localnav-menustate" class="localnav-menustate" aria-hidden="true"/><nav id="localnav" class="localnav localnav-dark theme-dark localnav-scrim localnav-noborder" role="navigation" aria-label="API Reference" data-sticky="true"><div class="localnav-wrapper"><div class="referencenav"><div class="localnav-background"></div><div class="localnav-content"><a href="../../index.html" class="localnav-title">Documentation</a><div class="localnav-menu"><a href="#localnav-menustate" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span class="localnav-menucta-anchor-label" aria-hidden="true">Open Menu</span></a><a href="#" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span class="localnav-menucta-anchor-label" aria-hidden="true">Close Menu</span></a><div class="localnav-menu-tray"><ul aria-label="Breadcrumbs" class="localnav-menu-items localnav-menu-breadcrumbs"><li class="localnav-menu-item localnav-menu-breadcrumb-item"><a class="localnav-menu-link" href="../../documentation/foundation_language-objc.html"><span class="enstr">Foundation</span><!--end_enstr-->
+<span class="jpstr">
+ファウンデーション
+</span><!--end_jpstr-->
+</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item"><a class="localnav-menu-link" href="../../documentation/foundation/url_loading_system_language-objc.html"><span class="enstr">URL Loading System</span><!--end_enstr-->
+<span class="jpstr">
+URLローディングシステム
+</span><!--end_jpstr-->
+</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item"><div class="localnav-menu-breadcrumb-current-container localnav-menu-link current"><span aria-current="page" class="localnav-menu-breadcrumb-current">NSURLSession</span></div></li></ul><ul class="localnav-menu-items localnav-menu-settings" data-breadcrumbs-count="3"><li class="localnav-menu-setting language-container"><div class="language-toggle-container"><label for="language-toggle" class="language-toggle-label">Language:</label><select id="language-toggle" class="language-dropdown localnav-menu-link" style="width:auto"><option value="swift">Swift</option><option selected="" value="occ">Objective-C</option></select></div><div class="language-list-container"><span class="localnav-menu-setting-label">Language:</span><ul class="language-list"><li class="language-list-item"><a href="../../documentation/foundation/urlsession.html" class="localnav-menu-setting-link">Swift</a></li><li class="language-list-item"><span data-language="objc" aria-current="page" class="current-language">Objective-C</span></li></ul></div></li><li class="localnav-menu-setting"><span class="localnav-menu-setting-label">API Changes:</span><a href="../../documentation/foundation/nsurlsession?changes=latest_minor&amp;language=objc.html" class="localnav-menu-setting-link changes-toggle changes-toggle-show" aria-label="Show API Changes">Show</a></li></ul></div><div class="localnav-actions"><div class="localnav-action localnav-action-menucta" aria-hidden="true"><label for="localnav-menustate" class="localnav-menucta"><span class="localnav-menucta-chevron"></span></label></div></div></div></div></div></div></nav><label for="localnav-menustate" id="localnav-curtain" aria-hidden="true"></label><main role="main" id="main" class="main" tabindex="0"><div class="topic-title"><span class="eyebrow">Class</span><h1 class="topic-heading"><span>NSURLSession</span></h1></div><div class="topic-container section-content row"><div class="topic-description column large-9 medium-9 small-12"><div class="topic-abstract abstract formatted-content"><div><p><span class="enstr">An object that coordinates a group of related, network data-transfer tasks.</span><!--end_enstr-->
+<span class="jpstr">
+一群の関連した、ネットワーク「データ転送」タスクをうまく調整するオブジェクト。
+</span><!--end_jpstr-->
+</p></div></div></div><div class="topic-summary column large-3 medium-3 small-12"><div class="topic-summary-section sdks" role="complementary" aria-label="SDKs"><p class="topic-summary-section-label subsection-label">SDKs</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item sdk"><span aria-label="iOS 7.0+, Available on iOS 7.0 and later" role="text" title="Available on iOS 7.0 and later">iOS 7.0+</span></li><li class="topic-summary-section-item sdk"><span aria-label="macOS 10.9+, Available on macOS 10.9 and later" role="text" title="Available on macOS 10.9 and later">macOS 10.9+</span></li><li class="topic-summary-section-item sdk"><span aria-label="Mac Catalyst 13.0+, Available on Mac Catalyst 13.0 and later" role="text" title="Available on Mac Catalyst 13.0 and later">Mac Catalyst 13.0+</span></li><li class="topic-summary-section-item sdk"><span aria-label="tvOS 9.0+, Available on tvOS 9.0 and later" role="text" title="Available on tvOS 9.0 and later">tvOS 9.0+</span></li><li class="topic-summary-section-item sdk"><span aria-label="watchOS 2.0+, Available on watchOS 2.0 and later" role="text" title="Available on watchOS 2.0 and later">watchOS 2.0+</span></li></ul></div><div class="topic-summary-section frameworks" role="complementary" aria-label="Framework"><p class="topic-summary-section-label subsection-label"><span class="enstr">Framework</span><!--end_enstr-->
+<span class="jpstr">
+フレームワーク
+</span><!--end_jpstr-->
+</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item"><span><span class="enstr">Foundation</span><!--end_enstr-->
+<span class="jpstr">
+ファウンデーション
+</span><!--end_jpstr-->
+</span></li></ul></div><div class="topic-summary-section onthispage"><nav class="onthispage-nav" aria-labelledby="onthispage-title"><p id="onthispage-title" class="topic-summary-section-label subsection-label"><span class="enstr">On This Page</span><!--end_enstr-->
+<span class="jpstr">
+この項には
+</span><!--end_jpstr-->
+</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item"><a href="#declarations" class="icon icon-after icon-chevrondowncircle"><span class="enstr">Declaration</span><!--end_enstr-->
+<span class="jpstr">
+宣言
+</span><!--end_jpstr-->
+</a></li><li class="topic-summary-section-item"><a href="#overview" class="icon icon-after icon-chevrondowncircle"><span class="enstr">Overview</span><!--end_enstr-->
+<span class="jpstr">
+概要
+</span><!--end_jpstr-->
+</a></li><li class="topic-summary-section-item"><a href="#topics" class="icon icon-after icon-chevrondowncircle"><span class="enstr">Topics</span><!--end_enstr-->
+<span class="jpstr">
+話題
+</span><!--end_jpstr-->
+</a></li><li class="topic-summary-section-item"><a href="#relationships" class="icon icon-after icon-chevrondowncircle"><span class="enstr">Relationships</span><!--end_enstr-->
+<span class="jpstr">
+関係
+</span><!--end_jpstr-->
+</a></li><li class="topic-summary-section-item"><a href="#see-also" class="icon icon-after icon-chevrondowncircle"><span class="enstr">See Also</span><!--end_enstr-->
+<span class="jpstr">
+参照
+</span><!--end_jpstr-->
+</a></li></ul></nav></div></div><div class="topic-content column large-9 medium-9 small-12" id="topic-content"><section id="declarations" class="section"><h2><span class="enstr">Declaration</span><!--end_enstr-->
+<span class="jpstr">
+宣言
+</span><!--end_jpstr-->
+</h2><figure class="declaration"><div class="code-listing"><pre class="code-source" data-language="occ"><code><span><span class="syntax-keyword">@interface</span> <span class="syntax-identifier">NSURLSession</span> : <a class="symbolref" href="https://developer.apple.com/documentation/objectivec/nsobject_language-objc"><span>NSObject</span></a>
+</span></code></pre></div></figure></section><section id="overview" class="section"><h2><span class="enstr">Overview</span><!--end_enstr-->
+<span class="jpstr">
+概要
+</span><!--end_jpstr-->
+</h2><div class="formatted-content"><div><p>The <a class="symbol-name" href="../../documentation/foundation/nsurlsession_language-objc.html"><code><span>NSURLSession</span></code></a> class and related classes provide an API for downloading data from and uploading data to endpoints indicated by URLs. <span class="enstr">Your app can also use this API to perform background downloads when your app isn’t running or, in iOS, while your app is suspended.</span><!--end_enstr-->
+<span class="jpstr">
+あなたのアプリはまたこのAPIを使ってバックグラウンドダウンロードを実行できるようにします、あなたのアプリが動作している時にまたは、iOSでは、あなたのアプリが一時停止される間に。
+</span><!--end_jpstr-->
+You can use the related <a class="symbol-name" href="../../documentation/foundation/nsurlsessiondelegate_language-objc.html"><code><span>NSURLSession<wbr/>Delegate</span></code></a> and <a class="symbol-name" href="../../documentation/foundation/nsurlsessiontaskdelegate_language-objc.html"><code><span>NSURLSession<wbr/>Task<wbr/>Delegate</span></code></a> to support authentication and receive events like redirection and task completion.</p><aside class="aside aside-note" role="note"><p class="aside-name"><span class="enstr">Note</span><!--end_enstr-->
+<span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p><p>The <code class="code-voice"><span>NSURLSession</span></code> API involves many different classes that work together in a fairly complex way which may not be obvious if you read the reference documentation by itself. <span class="enstr">Before using the API, read the overview in the <a href="../../documentation/foundation/url_loading_system_language-objc.html">URL Loading System</a> topic.</span><!--end_enstr-->
+<span class="jpstr">
+このAPIを使う前に、<a href="../../documentation/foundation/url_loading_system_language-objc.html">URLローディングシステム</a>概論において概要を読んでください。
+</span><!--end_jpstr-->
+The articles in the <a href="../../documentation/foundation/url_loading_system_language-objc.html#2878017">Essentials</a>, <a href="../../documentation/foundation/url_loading_system_language-objc.html#3038363">Uploading</a>, and <a href="../../documentation/foundation/url_loading_system_language-objc.html#3038364">Downloading</a> sections offer examples of performing common tasks with <code class="code-voice"><span>NSURLSession</span></code>.</p></aside><p>Your app creates one or more <code class="code-voice"><span>NSURLSession</span></code> instances, each of which coordinates a group of related data-transfer tasks. <span class="enstr">For example, if you’re creating a web browser, your app might create one session per tab or window, or one session for interactive use and another for background downloads. Within each session, your app adds a series of tasks, each of which represents a request for a specific URL (following HTTP redirects, if necessary).</span><!--end_enstr-->
+<span class="jpstr">
+例えば、あなたがウェブブラウザを作成しているならば、あなたのアプリはタブまたはウインドウごとに１つのセッション、または相互作用利用に対して１つのセッションそしてバックグラウンドダウンロードに対してもう１つのものを作成するかもしれません。各セッション内で、あなたのアプリは一連のタスクを加えます、そのそれぞれは特定のURLに対するリクエストを表します（HTTPリダイレクトに従って、必要ならば）。
+</span><!--end_jpstr-->
+</p></div><h3 id="2934755"><span class="enstr">Types of URL Sessions</span><!--end_enstr-->
+<span class="jpstr">
+URLセッションの型
+</span><!--end_jpstr-->
+</h3><div><p><span class="enstr">The tasks within a given URL session share a common session configuration object, which defines connection behavior, like the maximum number of simultaneous connections to make to a single host, whether connections can use the cellular network, and so on.</span><!--end_enstr-->
+<span class="jpstr">
+ある与えられたURLセッション内のタスクそれらは、ある共通セッション構成設定オブジェクトを共有します、それは接続挙動を定義します、たとえば単一のホストに行う同時接続の最大限の数、接続がセルラーネットワークを使うかどうか、など。
+</span><!--end_jpstr-->
+</p><p><code class="code-voice"><span>NSURLSession</span></code> has a singleton <a class="symbol-name" href="../../documentation/foundation/nsurlsession/1409000-sharedsession_language-objc.html"><code><span>shared<wbr/>Session</span></code></a> session (which doesn’t have a configuration object) for basic requests. <span class="enstr">It’s not as customizable as sessions you create, but it serves as a good starting point if you have very limited requirements. You access this session by calling the shared class method.</span><!--end_enstr-->
+<span class="jpstr">
+それはあなたが作成するセッションと同じようにカスタマイズ可能ではありません、しかしそれはあなたが非常に制限された要件を持つならばひとつの良いスタート地点として用をなします。あなたはこのセッションに、共有クラスメソッドを呼び出すことによってアクセスします。
+</span><!--end_jpstr-->
+For other kinds of sessions, you create a <a class="symbol-name" href="../../documentation/foundation/nsurlsession_language-objc.html"><code><span>NSURLSession</span></code></a> with one of three kinds of configurations:</p><ul><li><p><span class="enstr">A default session behaves much like the shared session, but lets you configure it. You can also assign a delegate to the default session to obtain data incrementally.</span><!--end_enstr-->
+<span class="jpstr">
+省略時のセッションは、ほとんど共有セッションのように振る舞います、しかしあなたがそれを構成設定するのを許可しません。あなたはまた、ある委任先を省略時のセッションに対して割り当てて、データを漸増的に入手できます。
+</span><!--end_jpstr-->
+</p></li><li><p><span class="enstr">Ephemeral sessions are similar to shared sessions, but don’t write caches, cookies, or credentials to disk.</span><!--end_enstr-->
+<span class="jpstr">
+短命セッションは、共有セッションに似ています、しかしキャッシュ、クッキー、または資格情報をディスクに書き出しません。
+</span><!--end_jpstr-->
+</p></li><li><p><span class="enstr">Background sessions let you perform uploads and downloads of content in the background while your app isn't running.</span><!--end_enstr-->
+<span class="jpstr">
+バックグラウンドセッションは、あなたに内容のアップロードとダウンロードをあなたのアプリが動作していない間にバックグラウンドで実行させます。
+</span><!--end_jpstr-->
+</p></li></ul><p>See <a href="../../documentation/foundation/nsurlsessionconfiguration_language-objc.html#1660412">Creating a Session Configuration Object</a> in the <a class="symbol-name" href="../../documentation/foundation/nsurlsessionconfiguration_language-objc.html"><code><span>NSURLSession<wbr/>Configuration</span></code></a> class for details on creating each type of configuration.</p></div><h3 id="2934756"><span class="enstr">Types of URL Session Tasks</span><!--end_enstr-->
+<span class="jpstr">
+URLセッションタスクの型
+</span><!--end_jpstr-->
+</h3><div><p><span class="enstr">Within a session, you create tasks that optionally upload data to a server and then retrieve data from the server either as a file on disk or as one or more <a class="symbol-name" href="../../documentation/foundation/nsdata_language-objc.html"><code><span>NSData</span></code></a> objects in memory.</span><!--end_enstr-->
+<span class="jpstr">
+あるセッション内で、あなたはタスクそれらを作成します、それらは、随意にデータをサーバにアップロードします、そしてそれからデータをサーバから、ディスク上のファイルとしてまたはメモリ中の１つ以上の<a class="symbol-name" href="../../documentation/foundation/nsdata_language-objc.html"><code><span>NSData</span></code></a>オブジェクトとして取って来ます。
+</span><!--end_jpstr-->
+The <code class="code-voice"><span>NSURLSession</span></code> API provides four types of tasks:</p><ul><li><p><span class="enstr">Data tasks send and receive data using <code class="code-voice"><span>NSData</span></code> objects. Data tasks are intended for short, often interactive requests to a server.</span><!--end_enstr-->
+<span class="jpstr">
+データタスクは、データを<code class="code-voice"><span>NSData</span></code>オブジェクトを使って送信および受信します。データタスクは、短い、多くの場合サーバへの対話型リクエストを期待されます。
+</span><!--end_jpstr-->
+</p></li><li><p><span class="enstr">Upload tasks are similar to data tasks, but they also send data (often in the form of a file), and support background uploads while the app isn’t running.</span><!--end_enstr-->
+<span class="jpstr">
+アップロードタスクは、データタスクに似ています、しかしそれらはまたデータを送信します（しばしばファイルの形式で）、そしてバックグラウンドアップロードをアプリが動作していない間にサポートします。
+</span><!--end_jpstr-->
+</p></li><li><p><span class="enstr">Download tasks retrieve data in the form of a file, and support background downloads and uploads while the app isn’t running.</span><!--end_enstr-->
+<span class="jpstr">
+ダウンロードタスクは、データをファイルの形式で撮ってきます、そしてバックグラウンドダウンロードとアップロードをアプリが動作していない間にサポートします。
+</span><!--end_jpstr-->
+</p></li><li><p><span class="enstr">WebSocket tasks exchange messages over TCP and TLS, using the WebSocket protocol defined in <a href="https://tools.ietf.org/html/rfc6455">RFC 6455</a>.</span><!--end_enstr-->
+<span class="jpstr">
+WebSocketタスクは、メッセージをTCPおよびTLS越しに交換します、<a href="https://tools.ietf.org/html/rfc6455">RFC 6455</a>で定義されるWebSocketプロトコルを使います。
+</span><!--end_jpstr-->
+</p></li></ul><p></p></div><h3 id="2934758"><span class="enstr">Using a Session Delegate</span><!--end_enstr-->
+<span class="jpstr">
+セッション委任先を使う
+</span><!--end_jpstr-->
+</h3><div><p><span class="enstr">Tasks in a session also share a common delegate object. You implement this delegate to provide and obtain information when various events occur, including when:</span><!--end_enstr-->
+<span class="jpstr">
+あるセッションの中のタスクそれらはまた、ある共通委任先オブジェクトを共有します。あなたは、この委任先を実装して、さまざまなイベントが発生する場合に情報を提供および入手します、以下の場合を含みます：
+</span><!--end_jpstr-->
+</p><ul><li><p><span class="enstr">Authentication fails.</span><!--end_enstr-->
+<span class="jpstr">
+認証が失敗する。
+</span><!--end_jpstr-->
+</p></li><li><p><span class="enstr">Data arrives from the server.</span><!--end_enstr-->
+<span class="jpstr">
+データがサーバーから到着する。
+</span><!--end_jpstr-->
+</p></li><li><p><span class="enstr">Data becomes available for caching.</span><!--end_enstr-->
+<span class="jpstr">
+データがキャッシュするために利用可能になる。
+</span><!--end_jpstr-->
+</p></li></ul><p><span class="enstr">If you don’t need the features provided by a delegate, you can use this API without providing one by passing <code class="code-voice"><span>nil</span></code> when you create a session.</span><!--end_enstr-->
+<span class="jpstr">
+あなたが委任先によって提供される機能を必要としないならば、あなたはそれを提供することなしにこのAPIを使用することが、あなたがあるセッションを作成する時に<code class="code-voice"><span>nil</span></code>を渡すことによって可能です。
+</span><!--end_jpstr-->
+ </p><aside class="aside aside-important" aria-label="important"><p class="aside-name"><span class="enstr">Important</span><!--end_enstr-->
+<span class="jpstr">
+重要
+</span><!--end_jpstr-->
+</p><p><span class="enstr">The session object keeps a strong reference to the delegate until your app exits or explicitly invalidates the session. If you don’t invalidate the session, your app leaks memory until the app terminates.</span><!--end_enstr-->
+<span class="jpstr">
+セッションオブジェクトは、委任先への強い参照を保ちます、あなたのアプリが退出または明示的にそのセッションを無効にするまで。あなたがセッションを無効にしないならば、あなたのアプリはメモリを漏洩します、そのアプリが終了するまで。
+</span><!--end_jpstr-->
+</p></aside><p></p></div><h3 id="2934757"><span class="enstr">Asynchronicity and URL Sessions</span><!--end_enstr-->
+<span class="jpstr">
+非同時性とURLセッション
+</span><!--end_jpstr-->
+</h3><div><p>Like most networking APIs, the <code class="code-voice"><span>NSURLSession</span></code> API is highly asynchronous. <span class="enstr">It returns data to your app in one of two ways, depending on the methods you call:</span><!--end_enstr-->
+<span class="jpstr">
+それは、あなたが呼び出すメソッドに依存して、データをあなたのアプリに２つの方法のうちの１つで返します：
+</span><!--end_jpstr-->
+</p><ul><li><p><span class="enstr">By calling a completion handler block when a transfer finishes successfully or with an error.</span><!--end_enstr-->
+<span class="jpstr">
+転送がうまくまたはエラーで終了する時に、ある完了ハンドラブロックを呼び出すことによって。
+</span><!--end_jpstr-->
+</p></li><li><p><span class="enstr">By calling methods on the session’s delegate as data arrives and when the transfer is complete.</span><!--end_enstr-->
+<span class="jpstr">
+データが到着するにつれてそして転送が完了する時に、メソッドをセッションのもつ委任先の上で呼び出すことによって。
+</span><!--end_jpstr-->
+</p></li></ul><p>In addition to delivering this information to delegates, the <code class="code-voice"><span>NSURLSession</span></code> provides status and progress properties that you can query if you need to make programmatic decisions based on the current state of the task (with the caveat that its state can change at any time). </p></div><h3 id="2934752"><span class="enstr">Protocol Support</span><!--end_enstr-->
+<span class="jpstr">
+プロトコルサポート
+</span><!--end_jpstr-->
+</h3><div><p>The <code class="code-voice"><span>NSURLSession</span></code> class natively supports the <code class="code-voice"><span>data</span></code>, <code class="code-voice"><span>file</span></code>, <code class="code-voice"><span>ftp</span></code>, <code class="code-voice"><span>http</span></code>, and <code class="code-voice"><span>https</span></code> URL schemes, with transparent support for proxy servers and SOCKS gateways, as configured in the user’s system preferences.</p><p><code class="code-voice"><span>NSURLSession</span></code> supports the HTTP/1.1 and HTTP/2 protocols. <span class="enstr">HTTP/2 support, as described by <a href="https://tools.ietf.org/html/rfc7540">RFC 7540</a>, requires a server that supports Application-Layer Protocol Negotiation (ALPN).</span><!--end_enstr-->
+<span class="jpstr">
+HTTP/2サポートは、<a href="https://tools.ietf.org/html/rfc7540">RFC 7540</a>で記述されるように、Application-Layer Protocol Negotiation (ALPN) をサポートするサーバーを必要とします。
+</span><!--end_jpstr-->
+</p><p>You can also add support for your own custom networking protocols and URL schemes (for your app’s private use) by subclassing <a class="symbol-name" href="../../documentation/foundation/nsurlprotocol_language-objc.html"><code><span>NSURLProtocol</span></code></a>.</p></div><h3 id="1776695">App Transport Security (ATS)</h3><div><p>iOS 9.0 and macOS 10.11 and later use App Transport Security (ATS) for all HTTP connections made with <code class="code-voice"><span>NSURLSession</span></code>. <span class="enstr">ATS requires that HTTP connections use HTTPS (<a href="https://tools.ietf.org/html/rfc2818">RFC 2818</a>).</span><!--end_enstr-->
+<span class="jpstr">
+ATSは、HTTP接続がHTTPS（<a href="https://tools.ietf.org/html/rfc2818">RFC 2818</a>）を使うことを必要とします。
+</span><!--end_jpstr-->
+</p><p><span class="enstr">For more information, see <a href="https://developer.apple.com/documentation/bundleresources/information_property_list/nsapptransportsecurity_language-objc">NSAppTransportSecurity</a>.</span><!--end_enstr-->
+<span class="jpstr">
+さらなる情報として、<a href="https://developer.apple.com/documentation/bundleresources/information_property_list/nsapptransportsecurity_language-objc">NSAppTransportSecurity</a>を見てください。
+</span><!--end_jpstr-->
+</p></div><h3 id="1660588"><span class="enstr">Foundation Copying Behavior</span><!--end_enstr-->
+<span class="jpstr">
+Foundationコピー挙動
+</span><!--end_jpstr-->
+</h3><div><p><span class="enstr">Session and task objects conform to the <a class="symbol-name" href="../../documentation/foundation/nscopying_language-objc.html"><code><span>NSCopying</span></code></a> protocol as follows:</span><!--end_enstr-->
+<span class="jpstr">
+セッションおよびタスクオブジェクトは、<a class="symbol-name" href="../../documentation/foundation/nscopying_language-objc.html"><code><span>NSCopying</span></code></a>プロトコルに以下のように準拠します：
+</span><!--end_jpstr-->
+</p><ul><li><p><span class="enstr">When your app copies a session or task object, you get the same object back.</span><!--end_enstr-->
+<span class="jpstr">
+あなたのアプリがセッションまたはタスクオブジェクトをコピーする時、あなたは同じオブジェクトを取り戻します。
+</span><!--end_jpstr-->
+</p></li><li><p><span class="enstr">When your app copies a configuration object, you get a new copy you can independently modify.</span><!--end_enstr-->
+<span class="jpstr">
+あなたのアプリが構成設定オブジェクトをコピーする時、あなたは、あなたが独立して修正できるある新しい複製を得ます。
+</span><!--end_jpstr-->
+</p></li></ul></div><h3 id="1660621"><span class="enstr">Thread Safety</span><!--end_enstr-->
+<span class="jpstr">
+スレッド安全
+</span><!--end_jpstr-->
+</h3><div><p><span class="enstr">The URL session API is thread-safe. You can freely create sessions and tasks in any thread context. When your delegate methods call the provided completion handlers, the work is automatically scheduled on the correct delegate queue.</span><!--end_enstr-->
+<span class="jpstr">
+URLセッションAPIは、スレッド安全です。あなたは、自由にセッションとタスクをあらゆるスレッドコンテキストにおいて作成できます。あなたの委任先メソッドがその提供された完了ハンドラを呼び出す時、その仕事は自動的に正しい委任先キュー上で予定されます。
+</span><!--end_jpstr-->
+</p></div></div></section></div></div><section id="topics" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><span class="enstr">Topics</span><!--end_enstr-->
+<span class="jpstr">
+話題
+</span><!--end_jpstr-->
+</h2><section id="3038362" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Using the Shared Session</span><!--end_enstr-->
+<span class="jpstr">
+共有セッションを使う
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../documentation/foundation/nsurlsession/1409000-sharedsession_language-objc.html"><code><span>shared<wbr/>Session</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The shared singleton session object.</span><!--end_enstr-->
+<span class="jpstr">
+共有シングルトンセッションオブジェクト。
+</span><!--end_jpstr-->
+</p></div></div></div></div></div></div></div></section><section id="1660660" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Creating a Session</span><!--end_enstr-->
+<span class="jpstr">
+セッションを作成する
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsurlsession/1411474-sessionwithconfiguration_language-objc.html"><code class="display-name"><span class="decorator">+<!-- --> </span><span class="identifier">session<wbr/>With<wbr/>Configuration:</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Creates a session with the specified session configuration.</span><!--end_enstr-->
+<span class="jpstr">
+セッションをこの指定されたセッション構成設定で作成します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsurlsession/1411597-sessionwithconfiguration_language-objc.html"><code class="display-name"><span class="decorator">+<!-- --> </span><span class="identifier">session<wbr/>With<wbr/>Configuration:<wbr/>delegate:<wbr/>delegate<wbr/>Queue:</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Creates a session with the specified session configuration, delegate, and operation queue.</span><!--end_enstr-->
+<span class="jpstr">
+セッションをこの指定されたセッション構成設定、委任先、そしてオペレーションキューで作成します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../documentation/foundation/nsurlsessionconfiguration_language-objc.html"><code><span>NSURLSession<wbr/>Configuration</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A configuration object that defines behavior and policies for a URL session.</span><!--end_enstr-->
+<span class="jpstr">
+ある構成設定オブジェクト、それはあるURLセッションに対する挙動と方針を定義します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../documentation/foundation/nsurlsession/1411477-configuration_language-objc.html"><code><span>configuration</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A copy of the configuration object for this session.</span><!--end_enstr-->
+<span class="jpstr">
+このセッションに対する構成設定オブジェクトのあるコピー。
+</span><!--end_jpstr-->
+</p></div></div></div></div></div></div></div></section><section id="1660744" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Working with a Delegate</span><!--end_enstr-->
+<span class="jpstr">
+委任先を扱う
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../documentation/foundation/nsurlsession/1411530-delegate_language-objc.html"><code><span>delegate</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The delegate assigned when this object was created.</span><!--end_enstr-->
+<span class="jpstr">
+このオブジェクトが作成された時に割り当てられた委任先。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../documentation/foundation/nsurlsessiondelegate_language-objc.html"><code><span>NSURLSession<wbr/>Delegate</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A protocol that defines methods that URL session instances call on their delegates to handle session-level events, like session life cycle changes.</span><!--end_enstr-->
+<span class="jpstr">
+あるプロトコル、それはいくつかのメソッドを定義します、それらはURLセッションインスタンスがそれらの委任先上で呼び出して、セッションライフサイクル変化のようなセッション水準イベントを取り扱うものです。
+</span><!--end_jpstr-->
+ </p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../documentation/foundation/nsurlsessiontaskdelegate_language-objc.html"><code><span>NSURLSession<wbr/>Task<wbr/>Delegate</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A protocol that defines methods that URL session instances call on their delegates to handle task-level events.</span><!--end_enstr-->
+<span class="jpstr">
+あるプロトコル、それはいくつかのメソッドを定義します、それらはURLセッションインスタンスがそれらの委任先上で呼び出してタスク水準イベントを取り扱うものです。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../documentation/foundation/nsurlsession/1411571-delegatequeue_language-objc.html"><code><span>delegate<wbr/>Queue</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The operation queue provided when this object was created.</span><!--end_enstr-->
+<span class="jpstr">
+このオブジェクトが作成された時に提供されたオペレーションキュー。
+</span><!--end_jpstr-->
+</p></div></div></div></div></div></div></div></section><section id="1660851" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Adding Data Tasks to a Session</span><!--end_enstr-->
+<span class="jpstr">
+データタスクをセッションに加える
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsurlsession/1411554-datataskwithurl_language-objc.html"><code class="display-name"><span class="decorator">-<!-- --> </span><span class="identifier">data<wbr/>Task<wbr/>With<wbr/>URL:</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Creates a task that retrieves the contents of the specified URL.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたURLの内容を取ってくるタスクを作成します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsurlsession/1410330-datataskwithurl_language-objc.html"><code class="display-name"><span class="decorator">-<!-- --> </span><span class="identifier">data<wbr/>Task<wbr/>With<wbr/>URL:<wbr/>completion<wbr/>Handler:</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Creates a task that retrieves the contents of the specified URL, then calls a handler upon completion.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたURLの内容を取ってきて、それからあるハンドラを完了に関して呼び出すタスクを作成します。
+</span><!--end_jpstr-->
+ </p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsurlsession/1410592-datataskwithrequest_language-objc.html"><code class="display-name"><span class="decorator">-<!-- --> </span><span class="identifier">data<wbr/>Task<wbr/>With<wbr/>Request:</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Creates a task that retrieves the contents of a URL based on the specified URL request object.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたURLリクエストオブジェクトに基づいてあるURLの内容を取ってくるタスクを作成します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsurlsession/1407613-datataskwithrequest_language-objc.html"><code class="display-name"><span class="decorator">-<!-- --> </span><span class="identifier">data<wbr/>Task<wbr/>With<wbr/>Request:<wbr/>completion<wbr/>Handler:</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Creates a task that retrieves the contents of a URL based on the specified URL request object, and calls a handler upon completion.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたURLリクエストオブジェクトに基づいてあるURLの内容を取ってくるタスクを作成します、そしてあるハンドラを完了に関して呼び出します。
+</span><!--end_jpstr-->
+ </p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../documentation/foundation/nsurlsessiondatatask_language-objc.html"><code><span>NSURLSession<wbr/>Data<wbr/>Task</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A URL session task that returns downloaded data directly to the app in memory.</span><!--end_enstr-->
+<span class="jpstr">
+ダウンロードされたデータを直接にアプリへとメモリ中に返すURLセッションタスク。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../documentation/foundation/nsurlsessiondatadelegate_language-objc.html"><code><span>NSURLSession<wbr/>Data<wbr/>Delegate</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A protocol that defines methods that URL session instances call on their delegates to handle task-level events specific to data and upload tasks.</span><!--end_enstr-->
+<span class="jpstr">
+あるプロトコル、それはいくつかのメソッドを定義します、それらはURLセッションインスタンスがそれらの委任先上で呼び出して、データおよびアップロードタスクに特有なタスク水準イベントを取り扱うものです。
+</span><!--end_jpstr-->
+ </p></div></div></div></div></div></div></div></section><section id="1660943" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Adding Download Tasks to a Session</span><!--end_enstr-->
+<span class="jpstr">
+ダウンロードタスクをセッションに加える
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsurlsession/1411482-downloadtaskwithurl_language-objc.html"><code class="display-name"><span class="decorator">-<!-- --> </span><span class="identifier">download<wbr/>Task<wbr/>With<wbr/>URL:</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Creates a download task that retrieves the contents of the specified URL and saves the results to a file.</span><!--end_enstr-->
+<span class="jpstr">
+あるダウンロードタスクを作成します、それは指定されたURLの内容を取ってきます、そして結果をファイルに保存します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsurlsession/1411608-downloadtaskwithurl_language-objc.html"><code class="display-name"><span class="decorator">-<!-- --> </span><span class="identifier">download<wbr/>Task<wbr/>With<wbr/>URL:<wbr/>completion<wbr/>Handler:</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Creates a download task that retrieves the contents of the specified URL, saves the results to a file, and calls a handler upon completion.</span><!--end_enstr-->
+<span class="jpstr">
+あるダウンロードタスクを作成します、それは指定されたURLの内容を取ってきます、その結果をファイルに保存します、そしてあるハンドラを完了に関して呼び出します。
+</span><!--end_jpstr-->
+ </p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsurlsession/1411481-downloadtaskwithrequest_language-objc.html"><code class="display-name"><span class="decorator">-<!-- --> </span><span class="identifier">download<wbr/>Task<wbr/>With<wbr/>Request:</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Creates a download task that retrieves the contents of a URL based on the specified URL request object and saves the results to a file.</span><!--end_enstr-->
+<span class="jpstr">
+あるダウンロードタスクを作成します、それは指定されたURLリクエストオブジェクトに基づいてあるURLの内容を取ってきます、そして結果をファイルに保存します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsurlsession/1411511-downloadtaskwithrequest_language-objc.html"><code class="display-name"><span class="decorator">-<!-- --> </span><span class="identifier">download<wbr/>Task<wbr/>With<wbr/>Request:<wbr/>completion<wbr/>Handler:</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Creates a download task that retrieves the contents of a URL based on the specified URL request object, saves the results to a file, and calls a handler upon completion.</span><!--end_enstr-->
+<span class="jpstr">
+あるダウンロードタスクを作成します、それは指定されたURLリクエストオブジェクトに基づいてあるURLの内容を取ってきます、その結果をファイルに保存します、そしてあるハンドラを完了に関して呼び出します。
+</span><!--end_jpstr-->
+ </p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsurlsession/1409226-downloadtaskwithresumedata_language-objc.html"><code class="display-name"><span class="decorator">-<!-- --> </span><span class="identifier">download<wbr/>Task<wbr/>With<wbr/>Resume<wbr/>Data:</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Creates a download task to resume a previously canceled or failed download.</span><!--end_enstr-->
+<span class="jpstr">
+あるダウンロードタスクを作成して、以前に取り消されたまたは失敗したダウンロードを再開します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsurlsession/1411598-downloadtaskwithresumedata_language-objc.html"><code class="display-name"><span class="decorator">-<!-- --> </span><span class="identifier">download<wbr/>Task<wbr/>With<wbr/>Resume<wbr/>Data:<wbr/>completion<wbr/>Handler:</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Creates a download task to resume a previously canceled or failed download and calls a handler upon completion.</span><!--end_enstr-->
+<span class="jpstr">
+あるダウンロードタスクを作成して、以前に取り消されたまたは失敗したダウンロードを再開します、そしてあるハンドラを完了に関して呼び出します。
+</span><!--end_jpstr-->
+ </p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../documentation/foundation/nsurlsessiondownloadtask_language-objc.html"><code><span>NSURLSession<wbr/>Download<wbr/>Task</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p>A URL session task that stores downloaded data to a file.</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../documentation/foundation/nsurlsessiondownloaddelegate_language-objc.html"><code><span>NSURLSession<wbr/>Download<wbr/>Delegate</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A protocol that defines methods that URL session instances call on their delegates to handle task-level events specific to download tasks.</span><!--end_enstr-->
+<span class="jpstr">
+あるプロトコル、それはいくつかのメソッドを定義します、それらはURLセッションインスタンスがそれらの委任先上で呼び出して、ダウンロードタスクに特有なタスク水準イベントを取り扱うものです。
+</span><!--end_jpstr-->
+</p></div></div></div></div></div></div></div></section><section id="1661056" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Adding Upload Tasks to a Session</span><!--end_enstr-->
+<span class="jpstr">
+アップロードタスクをセッションに加える
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsurlsession/1409763-uploadtaskwithrequest_language-objc.html"><code class="display-name"><span class="decorator">-<!-- --> </span><span class="identifier">upload<wbr/>Task<wbr/>With<wbr/>Request:<wbr/>from<wbr/>Data:</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Creates a task that performs an HTTP request for the specified URL request object and uploads the provided data.</span><!--end_enstr-->
+<span class="jpstr">
+あるタスクを作成します、それはあるHTTPリクエストをこの指定されたURLリクエストオブジェクトに対して実行します、そして提供されたデータをアップロードします。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsurlsession/1411518-uploadtaskwithrequest_language-objc.html"><code class="display-name"><span class="decorator">-<!-- --> </span><span class="identifier">upload<wbr/>Task<wbr/>With<wbr/>Request:<wbr/>from<wbr/>Data:<wbr/>completion<wbr/>Handler:</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Creates a task that performs an HTTP request for the specified URL request object, uploads the provided data, and calls a handler upon completion.</span><!--end_enstr-->
+<span class="jpstr">
+あるタスクを作成します、それはあるHTTPリクエストをこの指定されたURLリクエストオブジェクトに対して実行します、そして提供されたデータをアップロードします、そしてあるハンドラを完了に際して呼び出します。
+</span><!--end_jpstr-->
+ </p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsurlsession/1411550-uploadtaskwithrequest_language-objc.html"><code class="display-name"><span class="decorator">-<!-- --> </span><span class="identifier">upload<wbr/>Task<wbr/>With<wbr/>Request:<wbr/>from<wbr/>File:</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Creates a task that performs an HTTP request for uploading the specified file.</span><!--end_enstr-->
+<span class="jpstr">
+あるタスクを作成します、それはあるHTTPリクエストをこの指定されたファイルをアップロードするために実行します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsurlsession/1411638-uploadtaskwithrequest_language-objc.html"><code class="display-name"><span class="decorator">-<!-- --> </span><span class="identifier">upload<wbr/>Task<wbr/>With<wbr/>Request:<wbr/>from<wbr/>File:<wbr/>completion<wbr/>Handler:</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Creates a task that performs an HTTP request for uploading the specified file, then calls a handler upon completion.</span><!--end_enstr-->
+<span class="jpstr">
+あるタスクを作成します、それはあるHTTPリクエストをこの指定されたファイルをアップロードするために実行します、それからあるハンドラを完了に際して呼び出します。
+</span><!--end_jpstr-->
+ </p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsurlsession/1410934-uploadtaskwithstreamedrequest_language-objc.html"><code class="display-name"><span class="decorator">-<!-- --> </span><span class="identifier">upload<wbr/>Task<wbr/>With<wbr/>Streamed<wbr/>Request:</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Creates a task that performs an HTTP request for uploading data based on the specified URL request.</span><!--end_enstr-->
+<span class="jpstr">
+あるタスクを作成します、それはあるHTTPリクエストをこの指定されたURLリクエストに基づくデータをアップロードするために実行します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../documentation/foundation/nsurlsessionuploadtask_language-objc.html"><code><span>NSURLSession<wbr/>Upload<wbr/>Task</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A URL session task that uploads data to the network in a request body.</span><!--end_enstr-->
+<span class="jpstr">
+あるURLセッションタスク、それはデータをネットワークに、あるリクエストボディにおいてアップロードします。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../documentation/foundation/nsurlsessiondatadelegate_language-objc.html"><code><span>NSURLSession<wbr/>Data<wbr/>Delegate</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A protocol that defines methods that URL session instances call on their delegates to handle task-level events specific to data and upload tasks.</span><!--end_enstr-->
+<span class="jpstr">
+あるプロトコル、それはいくつかのメソッドを定義します、それらはURLセッションインスタンスがそれらの委任先上で呼び出して、データおよびアップロードタスクに特有なタスク水準イベントを取り扱うものです。
+</span><!--end_jpstr-->
+ </p></div></div></div></div></div></div></div></section><section id="1674426" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Adding Stream Tasks to a Session</span><!--end_enstr-->
+<span class="jpstr">
+ストリームタスクをセッションに加える
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsurlsession/1411587-streamtaskwithhostname_language-objc.html"><code class="display-name"><span class="decorator">-<!-- --> </span><span class="identifier">stream<wbr/>Task<wbr/>With<wbr/>Host<wbr/>Name:<wbr/>port:</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Creates a task that establishes a bidirectional TCP/IP connection to a specified hostname and port.</span><!--end_enstr-->
+<span class="jpstr">
+あるタスクを作成します、それはある双方向のTCP/IP接続をある指定されたホスト名とポートへと確立します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsurlsession/1411545-streamtaskwithnetservice_language-objc.html"><code class="display-name"><span class="decorator">-<!-- --> </span><span class="identifier">stream<wbr/>Task<wbr/>With<wbr/>Net<wbr/>Service:</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Creates a task that establishes a bidirectional TCP/IP connection using a specified network service.</span><!--end_enstr-->
+<span class="jpstr">
+あるタスクを作成します、それはある双方向のTCP/IP接続をある指定されたネットワークサービスを使って確立します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../documentation/foundation/nsurlsessionstreamtask_language-objc.html"><code><span>NSURLSession<wbr/>Stream<wbr/>Task</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A URL session task that is stream-based.</span><!--end_enstr-->
+<span class="jpstr">
+あるURLセッションタスク、それはストリーム基盤です。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../documentation/foundation/nsurlsessionstreamdelegate_language-objc.html"><code><span>NSURLSession<wbr/>Stream<wbr/>Delegate</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A protocol that defines methods that URL session instances call on their delegates to handle task-level events specific to stream tasks.</span><!--end_enstr-->
+<span class="jpstr">
+あるプロトコル、それはいくつかのメソッドを定義します、それらはURLセッションインスタンスがそれらの委任先上で呼び出して、ストリームタスクに特有なタスク水準イベントを取り扱うものです。
+</span><!--end_jpstr-->
+</p></div></div></div></div></div></div></div></section><section id="3382576" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Adding WebSocket Tasks to a Session</span><!--end_enstr-->
+<span class="jpstr">
+WebSocketタスクをセッションに加える
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsurlsession/3181171-websockettaskwithurl_language-objc.html"><code class="display-name"><span class="decorator">-<!-- --> </span><span class="identifier">web<wbr/>Socket<wbr/>Task<wbr/>With<wbr/>URL:</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Creates a WebSocket task for the provided URL.</span><!--end_enstr-->
+<span class="jpstr">
+WebSocketタスクをこの提供されたURLに対して作成します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsurlsession/3235750-websockettaskwithrequest_language-objc.html"><code class="display-name"><span class="decorator">-<!-- --> </span><span class="identifier">web<wbr/>Socket<wbr/>Task<wbr/>With<wbr/>Request:</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Creates a WebSocket task for the provided URL request.</span><!--end_enstr-->
+<span class="jpstr">
+WebSocketタスクをこの提供されたURLリクエストに対して作成します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsurlsession/3181172-websockettaskwithurl_language-objc.html"><code class="display-name"><span class="decorator">-<!-- --> </span><span class="identifier">web<wbr/>Socket<wbr/>Task<wbr/>With<wbr/>URL:<wbr/>protocols:</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Creates a WebSocket task given a URL and an array of protocols.</span><!--end_enstr-->
+<span class="jpstr">
+WebSocketタスクを、与えられたあるURLとある配列のプロトコルで作成します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../documentation/foundation/nsurlsessionwebsockettask_language-objc.html"><code><span>NSURLSession<wbr/>Web<wbr/>Socket<wbr/>Task</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A URL session task that communicates over the WebSockets protocol standard.</span><!--end_enstr-->
+<span class="jpstr">
+WebSocketsプロトコル標準越しに通信するあるURLセッションタスク。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../documentation/foundation/nsurlsessionwebsocketdelegate_language-objc.html"><code><span>NSURLSession<wbr/>Web<wbr/>Socket<wbr/>Delegate</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A protocol that defines methods that URL session instances call on their delegates to handle task-level events specific to WebSocket tasks.</span><!--end_enstr-->
+<span class="jpstr">
+あるプロトコル、それはいくつかのメソッドを定義します、それらはURLセッションインスタンスがそれらの委任先上で呼び出して、WebSocketタスクに特有なタスク水準イベントを取り扱うものです。
+</span><!--end_jpstr-->
+</p></div></div></div></div></div></div></div></section><section id="1661178" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Managing the Session</span><!--end_enstr-->
+<span class="jpstr">
+セッションを管理する
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsurlsession/1407428-finishtasksandinvalidate_language-objc.html"><code class="display-name"><span class="decorator">-<!-- --> </span><span class="identifier">finish<wbr/>Tasks<wbr/>And<wbr/>Invalidate</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Invalidates the session, allowing any outstanding tasks to finish.</span><!--end_enstr-->
+<span class="jpstr">
+セッションを無効にします、あらゆる未解決タスクの終了を許可します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsurlsession/1411622-flushwithcompletionhandler_language-objc.html"><code class="display-name"><span class="decorator">-<!-- --> </span><span class="identifier">flush<wbr/>With<wbr/>Completion<wbr/>Handler:</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Flushes cookies and credentials to disk, clears transient caches, and ensures that future requests occur on a new TCP connection.</span><!--end_enstr-->
+<span class="jpstr">
+クッキーと資格情報をディスクへと排出します、短期キャッシュをきれいにします、そして将来のリクエストが新しいTCP接続上で発生することを保証します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsurlsession/1411578-gettaskswithcompletionhandler_language-objc.html"><code class="display-name"><span class="decorator">-<!-- --> </span><span class="identifier">get<wbr/>Tasks<wbr/>With<wbr/>Completion<wbr/>Handler:</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Asynchronously calls a completion callback with all data, upload, and download tasks in a session.</span><!--end_enstr-->
+<span class="jpstr">
+非同期に、ある完了コールバックをあるセッションにおけるデータ、アップロード、そしてダウンロードタスク全てをつかって呼び出します、
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsurlsession/1411618-getalltaskswithcompletionhandler_language-objc.html"><code class="display-name"><span class="decorator">-<!-- --> </span><span class="identifier">get<wbr/>All<wbr/>Tasks<wbr/>With<wbr/>Completion<wbr/>Handler:</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Asynchronously calls a completion callback with all tasks in a session</span><!--end_enstr-->
+<span class="jpstr">
+非同期に、ある完了コールバックを全てのタスクで、あるセッションにおいて呼び出します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsurlsession/1411538-invalidateandcancel_language-objc.html"><code class="display-name"><span class="decorator">-<!-- --> </span><span class="identifier">invalidate<wbr/>And<wbr/>Cancel</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Cancels all outstanding tasks and then invalidates the session.</span><!--end_enstr-->
+<span class="jpstr">
+全ての未解決タスクを取り消します、それからセッションを無効にします。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/foundation/nsurlsession/1411479-resetwithcompletionhandler_language-objc.html"><code class="display-name"><span class="decorator">-<!-- --> </span><span class="identifier">reset<wbr/>With<wbr/>Completion<wbr/>Handler:</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Empties all cookies, caches and credential stores, removes disk files, flushes in-progress downloads to disk, and ensures that future requests occur on a new socket.</span><!--end_enstr-->
+<span class="jpstr">
+全てのクッキー、キャッシュ、そして資格情報ストアを空にします、ディスクファイルを取り除きます、進行中のダウンロードをディスクへと一掃します、そして将来のリクエストが新しいソケット上で発生することを保証します。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../documentation/foundation/nsurlsession/1408277-sessiondescription_language-objc.html"><code><span>session<wbr/>Description</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">An app-defined descriptive label for the session.</span><!--end_enstr-->
+<span class="jpstr">
+セッションに対するアプリ定義の記述的なラベル。
+</span><!--end_jpstr-->
+</p></div></div></div></div></div></div></div></section><section id="1674460" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Handling Errors</span><!--end_enstr-->
+<span class="jpstr">
+エラーを取り扱う
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../documentation/foundation/nsurlsession/url_session_error_dictionary_keys_language-objc.html"><svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 15 16" class="svg-icon symbol-name-icon" aria-hidden="true"><title>API Collection</title><g class="svg-icon-small" fill-rule="evenodd"><path fill-rule="nonzero" d="M0,0 L15,0 L15,15 L0,15 L0,0 Z M1,14 L14,14 L14,1 L1,1 L1,14 Z"></path><polygon points="4 11 3 11 3 10 4 10"></polygon><polygon points="4 8 3 8 3 7 4 7"></polygon><polygon points="4 5 3 5 3 4 4 4"></polygon><polygon points="12 11 5 11 5 10 12 10"></polygon><polygon points="12 8 5 8 5 7 12 7"></polygon><polygon points="12 5 5 5 5 4 12 4"></polygon></g></svg><span><span class="enstr">URL Session Error Dictionary Keys</span><!--end_enstr-->
+<span class="jpstr">
+URLセッションエラー辞書キー
+</span><!--end_jpstr-->
+</span></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Keys used in conjunction with error objects returned by URL sessions and tasks.</span><!--end_enstr-->
+<span class="jpstr">
+URLセッションおよびタスクによって返されるエラーオブジェクトと連帯して使われるキー。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../documentation/foundation/1508626-background_task_cancellation_language-objc.html"><span><span class="enstr">Background Task Cancellation</span><!--end_enstr-->
+<span class="jpstr">
+バックグラウンドタスク取り消し
+</span><!--end_jpstr-->
+</span></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Constants that indicate why a background task was canceled.</span><!--end_enstr-->
+<span class="jpstr">
+なぜバックグラウンドタスクが取り消されたかを指し示している定数。
+</span><!--end_jpstr-->
+</p></div></div></div></div></div></div></div></section><section id="3256446" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Initializers</span><!--end_enstr-->
+<span class="jpstr">
+イニシャライザ
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info has-inline-element"><a class="task-topic-deprecated symbol-name symbol-name-decorated" href="../../documentation/foundation/nsurlsession/3240614-init_language-objc.html"><code class="display-name"><span class="decorator">-<!-- --> </span><span class="identifier">init</span></code></a><span class="violator violator-inline violator-deprecated task-topic-violator task-topic-data task-topic-data-inline" role="presentation">Deprecated</span></div></div></div></div></div></section><section id="3256447" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Type Methods</span><!--end_enstr-->
+<span class="jpstr">
+型メソッド
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info has-inline-element"><a class="task-topic-deprecated symbol-name symbol-name-decorated" href="../../documentation/foundation/nsurlsession/3240615-new_language-objc.html"><code class="display-name"><span class="decorator">+<!-- --> </span><span class="identifier">new</span></code></a><span class="violator violator-inline violator-deprecated task-topic-violator task-topic-data task-topic-data-inline" role="presentation">Deprecated</span></div></div></div></div></div></section></div></div></section><section id="relationships" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><span class="enstr">Relationships</span><!--end_enstr-->
+<span class="jpstr">
+関係
+</span><!--end_jpstr-->
+</h2><section id="inherits-from" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Inherits From</span><!--end_enstr-->
+<span class="jpstr">
+継承元
+</span><!--end_jpstr-->
+</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div><a class="symbol-name" href="https://developer.apple.com/documentation/objectivec/nsobject_language-objc"><code><span>NSObject</span></code></a></div></div></div></section></div></div></section><section id="see-also" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><span class="enstr">See Also</span><!--end_enstr-->
+<span class="jpstr">
+参照
+</span><!--end_jpstr-->
+</h2><section id="2878017" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title">Essentials</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../documentation/foundation/url_loading_system/fetching_website_data_into_memory_language-objc.html"><svg xmlns="http://www.w3.org/2000/svg" height="15" viewBox="0 0 22 30" class="svg-icon symbol-name-icon" aria-hidden="true"><title>Article</title><g id="Article" class="svg-icon-small"><path d="M12.87,0H0V2H0V28H0v2H22V9.13ZM20,28H2V2h9V12h9Zm0-18H13V3l7,7Z"></path></g></svg><span><span class="enstr">Fetching Website Data into Memory</span><!--end_enstr-->
+<span class="jpstr">
+ウェブサイトデータをメモリへと取ってくる
+</span><!--end_jpstr-->
+</span></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Receive data directly into memory by creating a data task from a URL session.</span><!--end_enstr-->
+<span class="jpstr">
+データを直接にメモリへと、あるデータタスクをURLセッションから作成することによって、受け取ります。
+</span><!--end_jpstr-->
+</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../documentation/foundation/nsurlsessiontask_language-objc.html"><code><span>NSURLSession<wbr/>Task</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A task, like downloading a specific resource, performed in a URL session.</span><!--end_enstr-->
+<span class="jpstr">
+URLセッションにおいて実行される、特定のリソースをダウンロードするような、あるタスク。
+</span><!--end_jpstr-->
+</p></div></div></div></div></div></div></div></section></div></div></section></main><section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo">
+        <nav class="footer-breadory">
+          <a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a>
+          <section class="breadcrumbs">
+            <ol class="breadcrumbs-list">
+              <li><a href=/documentation>Documentation</a></li>
+            </ol>
+          </section>
+          <div id="directorynav" class="directorynav">
+            <div id="dn-cola" class="column">
+              <h3><a href="/discover/">Discover</a></h3>
+              <ul>
+                <li><a href="/macos/">macOS</a></li>
+                <li><a href="/ios/">iOS</a></li>
+                <li><a href="/watchos/">watchOS</a></li>
+                <li><a href="/tvos/">tvOS</a></li>
+                <li><a href="/safari/">Safari and Web</a></li>
+                <li><a href="/games/">Games</a></li>
+                <li><a href="/business/">Business</a></li>
+                <li><a href="/education/">Education</a></li>
+                <li><a href="/wwdc/">WWDC</a></li>
+              </ul>
+            </div>
+            <div id="dn-colb" class="column">
+              <h3><a href="/design/">Design</a></h3>
+              <ul>
+                <li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
+                <li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
+<span class="jpstr">
+リソース
+</span><!--end_jpstr-->
+</a></li>
+                <li><a href="/videos/design/">Videos</a></li>
+                <li><a href="/design/awards/">Apple Design Awards</a></li>
+                <li><a href="/accessibility/">Accessibility</a></li>
+                <li><a href="/internationalization/"><span class="enstr">Internationalization</span><!--end_enstr-->
+<span class="jpstr">
+国際化
+</span><!--end_jpstr-->
+</a></li>
+                <li><a href="/accessories/">Accessories</a></li>
+              </ul>
+            </div>
+            <div id="dn-colc" class="column">
+              <h3><a href="/develop/">Develop</a></h3>
+              <ul>
+                <li><a href="/xcode/">Xcode</a></li>
+                <li><a href="/swift/">Swift</a></li>
+                <li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
+                <li><a href="/testflight/">TestFlight</a></li>
+                <li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
+                <li><a href="/videos/">Videos</a></li>
+                <li><a href="/download/">Downloads</a></li>
+              </ul>
+            </div>
+            <div id="dn-cold" class="column">
+              <h3><a href="/distribute/">Distribute</a></h3>
+              <ul>
+                <li><a href="/programs/">Developer Program</a></li>
+                <li><a href="/app-store/">App Store</a></li>
+                <li><a href="/app-store/review/">App Review</a></li>
+                <li><a href="/macos/distribution/">Mac Software</a></li>
+                <li><a href="/business/distribute/">Apps for Business</a></li>
+                <li><a href="/safari/extensions/">Safari Extensions</a></li>
+                <li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
+                <li><a href="/softwarelicensing/">Trademark Licensing</a></li>
+              </ul>
+            </div>
+            <div id="dn-cole" class="column">
+              <h3><a href="/support/">Support</a></h3>
+              <ul>
+                <li><a href="https://forums.developer.apple.com">Developer Forums</a></li>
+                <li><a href="/bug-reporting/">Bug Reporting</a></li>
+                <li><a href="/terms/">License Agreements</a></li>
+                <li><a href="/system-status/">System Status</a></li>
+                <li><a href="/contact/">Contact Us</a></li>
+              </ul>
+              <h3><a href="/account/">Account</a></h3>
+              <ul>
+                <li><a href="/account/ios/certificate/">Certificates, IDs &amp; Profiles</a></li>
+                <li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="ac-gf-footer-legal">
+          <div class="ac-gf-footer-news"> To receive the latest developer news, visit and subscribe to our <a href="/news/">News and Updates</a>.
+          </div>
+          <div class="ac-gf-footer-legal-copyright">Copyright © 2020 Apple Inc. All rights reserved.</div>
+          <div class="ac-gf-footer-legal-links">
+            <a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a>
+            <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+            <a href="/bug-reporting/">Report Bugs</a>
+            <a href="/contact/submit/?subject=website-feedback">Feedback</a>
+          </div>
+          <div class="ac-gf-footer-language-links">
+            <a href="/cn/" class="first">简体中文</a>
+            <a href="/jp/">日本語</a>
+            <a href="/kr/">한국어</a>
+          </div>
+        </div>
+      </footer></section></div></div><script id="bootstrap-data" type="application/json">{"id":1411632,"title":{"content":"NSURLSession"},"discussion":"<div><p>The <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsurlsession_language-objc\"><code><span>NSURLSession<\/span><\/code><\/a> class and related classes provide an API for downloading data from and uploading data to endpoints indicated by URLs. Your app can also use this API to perform background downloads when your app isn’t running or, in iOS, while your app is suspended. You can use the related <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsurlsessiondelegate_language-objc\"><code><span>NSURLSession<wbr\/>Delegate<\/span><\/code><\/a> and <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsurlsessiontaskdelegate_language-objc\"><code><span>NSURLSession<wbr\/>Task<wbr\/>Delegate<\/span><\/code><\/a> to support authentication and receive events like redirection and task completion.<\/p><aside class=\"aside aside-note\" role=\"note\"><p class=\"aside-name\">Note<\/p><p>The <code class=\"code-voice\"><span>NSURLSession<\/span><\/code> API involves many different classes that work together in a fairly complex way which may not be obvious if you read the reference documentation by itself. Before using the API, read the overview in the <a href=\"\/documentation\/foundation\/url_loading_system_language-objc\">URL Loading System<\/a> topic. The articles in the <a href=\"\/documentation\/foundation\/url_loading_system_language-objc#2878017\">Essentials<\/a>, <a href=\"\/documentation\/foundation\/url_loading_system_language-objc#3038363\">Uploading<\/a>, and <a href=\"\/documentation\/foundation\/url_loading_system_language-objc#3038364\">Downloading<\/a> sections offer examples of performing common tasks with <code class=\"code-voice\"><span>NSURLSession<\/span><\/code>.<\/p><\/aside><p>Your app creates one or more <code class=\"code-voice\"><span>NSURLSession<\/span><\/code> instances, each of which coordinates a group of related data-transfer tasks. For example, if you’re creating a web browser, your app might create one session per tab or window, or one session for interactive use and another for background downloads. Within each session, your app adds a series of tasks, each of which represents a request for a specific URL (following HTTP redirects, if necessary).<\/p><\/div><h3 id=\"2934755\">Types of URL Sessions<\/h3><div><p>The tasks within a given URL session share a common session configuration object, which defines connection behavior, like the maximum number of simultaneous connections to make to a single host, whether connections can use the cellular network, and so on.<\/p><p><code class=\"code-voice\"><span>NSURLSession<\/span><\/code> has a singleton <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsurlsession\/1409000-sharedsession_language-objc\"><code><span>shared<wbr\/>Session<\/span><\/code><\/a> session (which doesn’t have a configuration object) for basic requests. It’s not as customizable as sessions you create, but it serves as a good starting point if you have very limited requirements. You access this session by calling the shared class method. For other kinds of sessions, you create a <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsurlsession_language-objc\"><code><span>NSURLSession<\/span><\/code><\/a> with one of three kinds of configurations:<\/p><ul><li><p>A default session behaves much like the shared session, but lets you configure it. You can also assign a delegate to the default session to obtain data incrementally.<\/p><\/li><li><p>Ephemeral sessions are similar to shared sessions, but don’t write caches, cookies, or credentials to disk.<\/p><\/li><li><p>Background sessions let you perform uploads and downloads of content in the background while your app isn&#x27;t running.<\/p><\/li><\/ul><p>See <a href=\"\/documentation\/foundation\/nsurlsessionconfiguration_language-objc#1660412\">Creating a Session Configuration Object<\/a> in the <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsurlsessionconfiguration_language-objc\"><code><span>NSURLSession<wbr\/>Configuration<\/span><\/code><\/a> class for details on creating each type of configuration.<\/p><\/div><h3 id=\"2934756\">Types of URL Session Tasks<\/h3><div><p>Within a session, you create tasks that optionally upload data to a server and then retrieve data from the server either as a file on disk or as one or more <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsdata_language-objc\"><code><span>NSData<\/span><\/code><\/a> objects in memory. The <code class=\"code-voice\"><span>NSURLSession<\/span><\/code> API provides four types of tasks:<\/p><ul><li><p>Data tasks send and receive data using <code class=\"code-voice\"><span>NSData<\/span><\/code> objects. Data tasks are intended for short, often interactive requests to a server.<\/p><\/li><li><p>Upload tasks are similar to data tasks, but they also send data (often in the form of a file), and support background uploads while the app isn’t running.<\/p><\/li><li><p>Download tasks retrieve data in the form of a file, and support background downloads and uploads while the app isn’t running.<\/p><\/li><li><p>WebSocket tasks exchange messages over TCP and TLS, using the WebSocket protocol defined in <a href=\"https:\/\/tools.ietf.org\/html\/rfc6455\">RFC 6455<\/a>.<\/p><\/li><\/ul><p><\/p><\/div><h3 id=\"2934758\">Using a Session Delegate<\/h3><div><p>Tasks in a session also share a common delegate object. You implement this delegate to provide and obtain information when various events occur, including when:<\/p><ul><li><p>Authentication fails.<\/p><\/li><li><p>Data arrives from the server.<\/p><\/li><li><p>Data becomes available for caching.<\/p><\/li><\/ul><p>If you don’t need the features provided by a delegate, you can use this API without providing one by passing <code class=\"code-voice\"><span>nil<\/span><\/code> when you create a session. <\/p><aside class=\"aside aside-important\" aria-label=\"important\"><p class=\"aside-name\">Important<\/p><p>The session object keeps a strong reference to the delegate until your app exits or explicitly invalidates the session. If you don’t invalidate the session, your app leaks memory until the app terminates.<\/p><\/aside><p><\/p><\/div><h3 id=\"2934757\">Asynchronicity and URL Sessions<\/h3><div><p>Like most networking APIs, the <code class=\"code-voice\"><span>NSURLSession<\/span><\/code> API is highly asynchronous. It returns data to your app in one of two ways, depending on the methods you call:<\/p><ul><li><p>By calling a completion handler block when a transfer finishes successfully or with an error.<\/p><\/li><li><p>By calling methods on the session’s delegate as data arrives and when the transfer is complete.<\/p><\/li><\/ul><p>In addition to delivering this information to delegates, the <code class=\"code-voice\"><span>NSURLSession<\/span><\/code> provides status and progress properties that you can query if you need to make programmatic decisions based on the current state of the task (with the caveat that its state can change at any time). <\/p><\/div><h3 id=\"2934752\">Protocol Support<\/h3><div><p>The <code class=\"code-voice\"><span>NSURLSession<\/span><\/code> class natively supports the <code class=\"code-voice\"><span>data<\/span><\/code>, <code class=\"code-voice\"><span>file<\/span><\/code>, <code class=\"code-voice\"><span>ftp<\/span><\/code>, <code class=\"code-voice\"><span>http<\/span><\/code>, and <code class=\"code-voice\"><span>https<\/span><\/code> URL schemes, with transparent support for proxy servers and SOCKS gateways, as configured in the user’s system preferences.<\/p><p><code class=\"code-voice\"><span>NSURLSession<\/span><\/code> supports the HTTP\/1.1 and HTTP\/2 protocols. HTTP\/2 support, as described by <a href=\"https:\/\/tools.ietf.org\/html\/rfc7540\">RFC 7540<\/a>, requires a server that supports Application-Layer Protocol Negotiation (ALPN).<\/p><p>You can also add support for your own custom networking protocols and URL schemes (for your app’s private use) by subclassing <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nsurlprotocol_language-objc\"><code><span>NSURLProtocol<\/span><\/code><\/a>.<\/p><\/div><h3 id=\"1776695\">App Transport Security (ATS)<\/h3><div><p>iOS 9.0 and macOS 10.11 and later use App Transport Security (ATS) for all HTTP connections made with <code class=\"code-voice\"><span>NSURLSession<\/span><\/code>. ATS requires that HTTP connections use HTTPS (<a href=\"https:\/\/tools.ietf.org\/html\/rfc2818\">RFC 2818<\/a>).<\/p><p>For more information, see <a href=\"\/documentation\/bundleresources\/information_property_list\/nsapptransportsecurity_language-objc\">NSAppTransportSecurity<\/a>.<\/p><\/div><h3 id=\"1660588\">Foundation Copying Behavior<\/h3><div><p>Session and task objects conform to the <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nscopying_language-objc\"><code><span>NSCopying<\/span><\/code><\/a> protocol as follows:<\/p><ul><li><p>When your app copies a session or task object, you get the same object back.<\/p><\/li><li><p>When your app copies a configuration object, you get a new copy you can independently modify.<\/p><\/li><\/ul><\/div><h3 id=\"1660621\">Thread Safety<\/h3><div><p>The URL session API is thread-safe. You can freely create sessions and tasks in any thread context. When your delegate methods call the provided completion handlers, the work is automatically scheduled on the correct delegate queue.<\/p><\/div>","abstract":"<div><p>An object that coordinates a group of related, network data-transfer tasks.<\/p><\/div>","containingGroup":[{"id":2878017,"role":"task","paths":[],"abstract":"<div><p>Configure and create sessions, then use them to create tasks that interact with URLs.<\/p><\/div>","symbols":[{"id":2919362,"role":"article","paths":["documentation\/foundation\/url_loading_system\/fetching_website_data_into_memory"],"abstract":"<div><p>Receive data directly into memory by creating a data task from a URL session.<\/p><\/div>","title":{"content":"Fetching Website Data into Memory"}},{"id":1411632,"role":"symbol","usr":"c:objc(cs)NSURLSession","name":"NSURLSession","domain":"occ","kind":"cl","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsession"],"title":{"content":"NSURLSession"},"abstract":"<div><p>An object that coordinates a group of related, network data-transfer tasks.<\/p><\/div>","hasChildren":true},{"id":1410455,"role":"symbol","usr":"c:objc(cs)NSURLSessionTask","name":"NSURLSessionTask","domain":"occ","kind":"cl","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsessiontask"],"title":{"content":"NSURLSessionTask"},"abstract":"<div><p>A task, like downloading a specific resource, performed in a URL session.<\/p><\/div>","hasChildren":true}],"title":{"content":"Essentials"}}],"usr":"c:objc(cs)NSURLSession","name":"NSURLSession","domain":"occ","kind":"cl","availability":[{"platform":"iOS","current":"13.5","introduced":"7.0"},{"platform":"macOS","current":"10.15.4","introduced":"10.9"},{"platform":"Mac Catalyst","current":"13.4","introduced":"13.0"},{"platform":"tvOS","current":"13.4","introduced":"9.0"},{"platform":"watchOS","current":"6.2","introduced":"2.0"}],"inheritance":[{"id":1418879,"usr":"c:objc(cs)NSObject","name":"NSObject","domain":"occ","kind":"cl","role":"symbol","paths":["documentation\/objectivec\/nsobject"],"title":{"content":"NSObject"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]}],"module":[{"title":{"content":"Foundation"},"importStatement":"<div><span class=\"syntax-identifier\">@import<\/span> Foundation<\/div>","paths":["documentation\/foundation"],"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]}],"declaration":[{"content":"<span><span class=\"syntax-keyword\">@interface<\/span> <span class=\"syntax-identifier\">NSURLSession<\/span> : <a class=\"symbolref\" href=\"\/documentation\/objectivec\/nsobject_language-objc\"><span>NSObject<\/span><\/a>\n<\/span>","platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"],"references":{"1418879":{"id":1418879,"role":"symbol","paths":["documentation\/objectivec\/nsobject"],"usr":"c:objc(cs)NSObject","kind":"cl","language":"occ","domain":"occ","name":"NSObject","languages":["occ","swift"],"title":{"content":"NSObject"}}}}],"role":"symbol","language":"occ","roleHeading":"Class","languages":["occ","swift"],"variants":{"occ":{"paths":["documentation\/foundation\/nsurlsession"],"usr":"c:objc(cs)NSURLSession"},"swift":{"paths":["documentation\/foundation\/urlsession"],"usr":"c:objc(cs)NSURLSession"}},"diffAvailability":{"minor":{"change":"modified","platform":"Xcode","versions":["11.4","11.5"]},"major":{"change":"modified","platform":"Xcode","versions":["11.0","11.5"]}},"pid":492847,"paths":["documentation\/foundation\/nsurlsession"],"hierarchy":[[{"id":1613013,"role":"collection","title":{"content":"Foundation"},"paths":["documentation\/foundation"]},{"id":2877756,"role":"collectionGroup","title":{"content":"URL Loading System"},"paths":["documentation\/foundation\/url_loading_system"]}]],"legalNotices":{"copyright":"Copyright &copy; 2020 Apple Inc. All rights reserved.","termsOfUse":"https:\/\/www.apple.com\/legal\/internet-services\/terms\/site.html","privacyPolicy":"https:\/\/www.apple.com\/privacy\/privacy-policy"},"tasks":[{"id":3038362,"role":"task","symbols":[{"id":1409000,"role":"symbol","usr":"c:objc(cs)NSURLSession(cpy)sharedSession","name":"sharedSession","domain":"occ","kind":"cldata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsession\/1409000-sharedsession"],"title":{"content":"sharedSession"},"abstract":"<div><p>The shared singleton session object.<\/p><\/div>"}],"title":{"content":"Using the Shared Session"}},{"id":1660660,"role":"task","symbols":[{"id":1411474,"role":"symbol","usr":"c:objc(cs)NSURLSession(cm)sessionWithConfiguration:","name":"sessionWithConfiguration:","domain":"occ","kind":"clm","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsession\/1411474-sessionwithconfiguration"],"title":{"content":"sessionWithConfiguration:"},"abstract":"<div><p>Creates a session with the specified session configuration.<\/p><\/div>"},{"id":1411597,"role":"symbol","usr":"c:objc(cs)NSURLSession(cm)sessionWithConfiguration:delegate:delegateQueue:","name":"sessionWithConfiguration:delegate:delegateQueue:","domain":"occ","kind":"clm","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsession\/1411597-sessionwithconfiguration"],"title":{"content":"sessionWithConfiguration:delegate:delegateQueue:"},"abstract":"<div><p>Creates a session with the specified session configuration, delegate, and operation queue.<\/p><\/div>"},{"id":1411548,"role":"symbol","usr":"c:objc(cs)NSURLSessionConfiguration","name":"NSURLSessionConfiguration","domain":"occ","kind":"cl","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsessionconfiguration"],"title":{"content":"NSURLSessionConfiguration"},"abstract":"<div><p>A configuration object that defines behavior and policies for a URL session.<\/p><\/div>","hasChildren":true},{"id":1411477,"role":"symbol","usr":"c:objc(cs)NSURLSession(py)configuration","name":"configuration","domain":"occ","kind":"instp","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsession\/1411477-configuration"],"title":{"content":"configuration"},"abstract":"<div><p>A copy of the configuration object for this session.<\/p><\/div>"}],"title":{"content":"Creating a Session"}},{"id":1660744,"role":"task","symbols":[{"id":1411530,"role":"symbol","usr":"c:objc(cs)NSURLSession(py)delegate","name":"delegate","domain":"occ","kind":"instp","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsession\/1411530-delegate"],"title":{"content":"delegate"},"abstract":"<div><p>The delegate assigned when this object was created.<\/p><\/div>"},{"id":1408585,"role":"symbol","usr":"c:objc(pl)NSURLSessionDelegate","name":"NSURLSessionDelegate","domain":"occ","kind":"intf","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsessiondelegate"],"title":{"content":"NSURLSessionDelegate"},"abstract":"<div><p>A protocol that defines methods that URL session instances call on their delegates to handle session-level events, like session life cycle changes. <\/p><\/div>","hasChildren":true},{"id":1410436,"role":"symbol","usr":"c:objc(pl)NSURLSessionTaskDelegate","name":"NSURLSessionTaskDelegate","domain":"occ","kind":"intf","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsessiontaskdelegate"],"title":{"content":"NSURLSessionTaskDelegate"},"abstract":"<div><p>A protocol that defines methods that URL session instances call on their delegates to handle task-level events.<\/p><\/div>","hasChildren":true},{"id":1411571,"role":"symbol","usr":"c:objc(cs)NSURLSession(py)delegateQueue","name":"delegateQueue","domain":"occ","kind":"instp","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsession\/1411571-delegatequeue"],"title":{"content":"delegateQueue"},"abstract":"<div><p>The operation queue provided when this object was created.<\/p><\/div>"}],"title":{"content":"Working with a Delegate"}},{"id":1660851,"role":"task","symbols":[{"id":1411554,"role":"symbol","usr":"c:objc(cs)NSURLSession(im)dataTaskWithURL:","name":"dataTaskWithURL:","domain":"occ","kind":"instm","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsession\/1411554-datataskwithurl"],"title":{"content":"dataTaskWithURL:"},"abstract":"<div><p>Creates a task that retrieves the contents of the specified URL.<\/p><\/div>"},{"id":1410330,"role":"symbol","usr":"c:objc(cs)NSURLSession(im)dataTaskWithURL:completionHandler:","name":"dataTaskWithURL:completionHandler:","domain":"occ","kind":"instm","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsession\/1410330-datataskwithurl"],"title":{"content":"dataTaskWithURL:completionHandler:"},"abstract":"<div><p>Creates a task that retrieves the contents of the specified URL, then calls a handler upon completion. <\/p><\/div>"},{"id":1410592,"role":"symbol","usr":"c:objc(cs)NSURLSession(im)dataTaskWithRequest:","name":"dataTaskWithRequest:","domain":"occ","kind":"instm","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsession\/1410592-datataskwithrequest"],"title":{"content":"dataTaskWithRequest:"},"abstract":"<div><p>Creates a task that retrieves the contents of a URL based on the specified URL request object.<\/p><\/div>"},{"id":1407613,"role":"symbol","usr":"c:objc(cs)NSURLSession(im)dataTaskWithRequest:completionHandler:","name":"dataTaskWithRequest:completionHandler:","domain":"occ","kind":"instm","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsession\/1407613-datataskwithrequest"],"title":{"content":"dataTaskWithRequest:completionHandler:"},"abstract":"<div><p>Creates a task that retrieves the contents of a URL based on the specified URL request object, and calls a handler upon completion. <\/p><\/div>"},{"id":1409799,"role":"symbol","usr":"c:objc(cs)NSURLSessionDataTask","name":"NSURLSessionDataTask","domain":"occ","kind":"cl","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsessiondatatask"],"title":{"content":"NSURLSessionDataTask"},"abstract":"<div><p>A URL session task that returns downloaded data directly to the app in memory.<\/p><\/div>","hasChildren":true},{"id":1408829,"role":"symbol","usr":"c:objc(pl)NSURLSessionDataDelegate","name":"NSURLSessionDataDelegate","domain":"occ","kind":"intf","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsessiondatadelegate"],"title":{"content":"NSURLSessionDataDelegate"},"abstract":"<div><p>A protocol that defines methods that URL session instances call on their delegates to handle task-level events specific to data and upload tasks. <\/p><\/div>","hasChildren":true}],"title":{"content":"Adding Data Tasks to a Session"}},{"id":1660943,"role":"task","symbols":[{"id":1411482,"role":"symbol","usr":"c:objc(cs)NSURLSession(im)downloadTaskWithURL:","name":"downloadTaskWithURL:","domain":"occ","kind":"instm","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsession\/1411482-downloadtaskwithurl"],"title":{"content":"downloadTaskWithURL:"},"abstract":"<div><p>Creates a download task that retrieves the contents of the specified URL and saves the results to a file.<\/p><\/div>"},{"id":1411608,"role":"symbol","usr":"c:objc(cs)NSURLSession(im)downloadTaskWithURL:completionHandler:","name":"downloadTaskWithURL:completionHandler:","domain":"occ","kind":"instm","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsession\/1411608-downloadtaskwithurl"],"title":{"content":"downloadTaskWithURL:completionHandler:"},"abstract":"<div><p>Creates a download task that retrieves the contents of the specified URL, saves the results to a file, and calls a handler upon completion. <\/p><\/div>"},{"id":1411481,"role":"symbol","usr":"c:objc(cs)NSURLSession(im)downloadTaskWithRequest:","name":"downloadTaskWithRequest:","domain":"occ","kind":"instm","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsession\/1411481-downloadtaskwithrequest"],"title":{"content":"downloadTaskWithRequest:"},"abstract":"<div><p>Creates a download task that retrieves the contents of a URL based on the specified URL request object and saves the results to a file.<\/p><\/div>"},{"id":1411511,"role":"symbol","usr":"c:objc(cs)NSURLSession(im)downloadTaskWithRequest:completionHandler:","name":"downloadTaskWithRequest:completionHandler:","domain":"occ","kind":"instm","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsession\/1411511-downloadtaskwithrequest"],"title":{"content":"downloadTaskWithRequest:completionHandler:"},"abstract":"<div><p>Creates a download task that retrieves the contents of a URL based on the specified URL request object, saves the results to a file, and calls a handler upon completion. <\/p><\/div>"},{"id":1409226,"role":"symbol","usr":"c:objc(cs)NSURLSession(im)downloadTaskWithResumeData:","name":"downloadTaskWithResumeData:","domain":"occ","kind":"instm","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsession\/1409226-downloadtaskwithresumedata"],"title":{"content":"downloadTaskWithResumeData:"},"abstract":"<div><p>Creates a download task to resume a previously canceled or failed download.<\/p><\/div>"},{"id":1411598,"role":"symbol","usr":"c:objc(cs)NSURLSession(im)downloadTaskWithResumeData:completionHandler:","name":"downloadTaskWithResumeData:completionHandler:","domain":"occ","kind":"instm","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsession\/1411598-downloadtaskwithresumedata"],"title":{"content":"downloadTaskWithResumeData:completionHandler:"},"abstract":"<div><p>Creates a download task to resume a previously canceled or failed download and calls a handler upon completion. <\/p><\/div>"},{"id":1411524,"role":"symbol","usr":"c:objc(cs)NSURLSessionDownloadTask","name":"NSURLSessionDownloadTask","domain":"occ","kind":"cl","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsessiondownloadtask"],"title":{"content":"NSURLSessionDownloadTask"},"abstract":"<div><p>A URL session task that stores downloaded data to a file.<\/p><\/div>","hasChildren":true},{"id":1410920,"role":"symbol","usr":"c:objc(pl)NSURLSessionDownloadDelegate","name":"NSURLSessionDownloadDelegate","domain":"occ","kind":"intf","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsessiondownloaddelegate"],"title":{"content":"NSURLSessionDownloadDelegate"},"abstract":"<div><p>A protocol that defines methods that URL session instances call on their delegates to handle task-level events specific to download tasks.<\/p><\/div>","hasChildren":true}],"title":{"content":"Adding Download Tasks to a Session"}},{"id":1661056,"role":"task","symbols":[{"id":1409763,"role":"symbol","usr":"c:objc(cs)NSURLSession(im)uploadTaskWithRequest:fromData:","name":"uploadTaskWithRequest:fromData:","domain":"occ","kind":"instm","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsession\/1409763-uploadtaskwithrequest"],"title":{"content":"uploadTaskWithRequest:fromData:"},"abstract":"<div><p>Creates a task that performs an HTTP request for the specified URL request object and uploads the provided data.<\/p><\/div>"},{"id":1411518,"role":"symbol","usr":"c:objc(cs)NSURLSession(im)uploadTaskWithRequest:fromData:completionHandler:","name":"uploadTaskWithRequest:fromData:completionHandler:","domain":"occ","kind":"instm","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsession\/1411518-uploadtaskwithrequest"],"title":{"content":"uploadTaskWithRequest:fromData:completionHandler:"},"abstract":"<div><p>Creates a task that performs an HTTP request for the specified URL request object, uploads the provided data, and calls a handler upon completion. <\/p><\/div>"},{"id":1411550,"role":"symbol","usr":"c:objc(cs)NSURLSession(im)uploadTaskWithRequest:fromFile:","name":"uploadTaskWithRequest:fromFile:","domain":"occ","kind":"instm","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsession\/1411550-uploadtaskwithrequest"],"title":{"content":"uploadTaskWithRequest:fromFile:"},"abstract":"<div><p>Creates a task that performs an HTTP request for uploading the specified file.<\/p><\/div>"},{"id":1411638,"role":"symbol","usr":"c:objc(cs)NSURLSession(im)uploadTaskWithRequest:fromFile:completionHandler:","name":"uploadTaskWithRequest:fromFile:completionHandler:","domain":"occ","kind":"instm","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsession\/1411638-uploadtaskwithrequest"],"title":{"content":"uploadTaskWithRequest:fromFile:completionHandler:"},"abstract":"<div><p>Creates a task that performs an HTTP request for uploading the specified file, then calls a handler upon completion. <\/p><\/div>"},{"id":1410934,"role":"symbol","usr":"c:objc(cs)NSURLSession(im)uploadTaskWithStreamedRequest:","name":"uploadTaskWithStreamedRequest:","domain":"occ","kind":"instm","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsession\/1410934-uploadtaskwithstreamedrequest"],"title":{"content":"uploadTaskWithStreamedRequest:"},"abstract":"<div><p>Creates a task that performs an HTTP request for uploading data based on the specified URL request.<\/p><\/div>"},{"id":1408427,"role":"symbol","usr":"c:objc(cs)NSURLSessionUploadTask","name":"NSURLSessionUploadTask","domain":"occ","kind":"cl","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsessionuploadtask"],"title":{"content":"NSURLSessionUploadTask"},"abstract":"<div><p>A URL session task that uploads data to the network in a request body.<\/p><\/div>","hasChildren":true},{"id":1408829,"role":"symbol","usr":"c:objc(pl)NSURLSessionDataDelegate","name":"NSURLSessionDataDelegate","domain":"occ","kind":"intf","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsessiondatadelegate"],"title":{"content":"NSURLSessionDataDelegate"},"abstract":"<div><p>A protocol that defines methods that URL session instances call on their delegates to handle task-level events specific to data and upload tasks. <\/p><\/div>","hasChildren":true}],"title":{"content":"Adding Upload Tasks to a Session"}},{"id":1674426,"role":"task","symbols":[{"id":1411587,"role":"symbol","usr":"c:objc(cs)NSURLSession(im)streamTaskWithHostName:port:","name":"streamTaskWithHostName:port:","domain":"occ","kind":"instm","availability":[{"platform":"iOS","introduced":"9.0"},{"platform":"macOS","introduced":"10.11"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsession\/1411587-streamtaskwithhostname"],"title":{"content":"streamTaskWithHostName:port:"},"abstract":"<div><p>Creates a task that establishes a bidirectional TCP\/IP connection to a specified hostname and port.<\/p><\/div>"},{"id":1411545,"role":"symbol","usr":"c:objc(cs)NSURLSession(im)streamTaskWithNetService:","name":"streamTaskWithNetService:","domain":"occ","kind":"instm","availability":[{"platform":"iOS","introduced":"9.0"},{"platform":"macOS","introduced":"10.11"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"}],"paths":["documentation\/foundation\/nsurlsession\/1411545-streamtaskwithnetservice"],"title":{"content":"streamTaskWithNetService:"},"abstract":"<div><p>Creates a task that establishes a bidirectional TCP\/IP connection using a specified network service.<\/p><\/div>"},{"id":1410522,"role":"symbol","usr":"c:objc(cs)NSURLSessionStreamTask","name":"NSURLSessionStreamTask","domain":"occ","kind":"cl","availability":[{"platform":"iOS","introduced":"9.0"},{"platform":"macOS","introduced":"10.11"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsessionstreamtask"],"title":{"content":"NSURLSessionStreamTask"},"abstract":"<div><p>A URL session task that is stream-based.<\/p><\/div>","hasChildren":true},{"id":1411586,"role":"symbol","usr":"c:objc(pl)NSURLSessionStreamDelegate","name":"NSURLSessionStreamDelegate","domain":"occ","kind":"intf","availability":[{"platform":"iOS","introduced":"9.0"},{"platform":"macOS","introduced":"10.11"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsessionstreamdelegate"],"title":{"content":"NSURLSessionStreamDelegate"},"abstract":"<div><p>A protocol that defines methods that URL session instances call on their delegates to handle task-level events specific to stream tasks.<\/p><\/div>","hasChildren":true}],"title":{"content":"Adding Stream Tasks to a Session"}},{"id":3382576,"role":"task","symbols":[{"id":3181171,"role":"symbol","usr":"c:objc(cs)NSURLSession(im)webSocketTaskWithURL:","name":"webSocketTaskWithURL:","domain":"occ","kind":"instm","availability":[{"platform":"iOS","introduced":"13.0"},{"platform":"macOS","introduced":"10.15"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"13.0"},{"platform":"watchOS","introduced":"6.0"}],"paths":["documentation\/foundation\/nsurlsession\/3181171-websockettaskwithurl"],"title":{"content":"webSocketTaskWithURL:"},"abstract":"<div><p>Creates a WebSocket task for the provided URL.<\/p><\/div>"},{"id":3235750,"role":"symbol","usr":"c:objc(cs)NSURLSession(im)webSocketTaskWithRequest:","name":"webSocketTaskWithRequest:","domain":"occ","kind":"instm","availability":[{"platform":"iOS","introduced":"13.0"},{"platform":"macOS","introduced":"10.15"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"13.0"},{"platform":"watchOS","introduced":"6.0"}],"paths":["documentation\/foundation\/nsurlsession\/3235750-websockettaskwithrequest"],"title":{"content":"webSocketTaskWithRequest:"},"abstract":"<div><p>Creates a WebSocket task for the provided URL request.<\/p><\/div>"},{"id":3181172,"role":"symbol","usr":"c:objc(cs)NSURLSession(im)webSocketTaskWithURL:protocols:","name":"webSocketTaskWithURL:protocols:","domain":"occ","kind":"instm","availability":[{"platform":"iOS","introduced":"13.0"},{"platform":"macOS","introduced":"10.15"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"13.0"},{"platform":"watchOS","introduced":"6.0"}],"paths":["documentation\/foundation\/nsurlsession\/3181172-websockettaskwithurl"],"title":{"content":"webSocketTaskWithURL:protocols:"},"abstract":"<div><p>Creates a WebSocket task given a URL and an array of protocols.<\/p><\/div>"},{"id":3181199,"role":"symbol","usr":"c:objc(cs)NSURLSessionWebSocketTask","name":"NSURLSessionWebSocketTask","domain":"occ","kind":"cl","availability":[{"platform":"iOS","introduced":"13.0"},{"platform":"macOS","introduced":"10.15"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"13.0"},{"platform":"watchOS","introduced":"6.0"}],"paths":["documentation\/foundation\/nsurlsessionwebsockettask"],"title":{"content":"NSURLSessionWebSocketTask"},"abstract":"<div><p>A URL session task that communicates over the WebSockets protocol standard.<\/p><\/div>","hasChildren":true},{"id":3181187,"role":"symbol","usr":"c:objc(pl)NSURLSessionWebSocketDelegate","name":"NSURLSessionWebSocketDelegate","domain":"occ","kind":"intf","availability":[{"platform":"iOS","introduced":"13.0"},{"platform":"macOS","introduced":"10.15"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"13.0"},{"platform":"watchOS","introduced":"6.0"}],"paths":["documentation\/foundation\/nsurlsessionwebsocketdelegate"],"title":{"content":"NSURLSessionWebSocketDelegate"},"abstract":"<div><p>A protocol that defines methods that URL session instances call on their delegates to handle task-level events specific to WebSocket tasks.<\/p><\/div>","hasChildren":true}],"title":{"content":"Adding WebSocket Tasks to a Session"}},{"id":1661178,"role":"task","symbols":[{"id":1407428,"role":"symbol","usr":"c:objc(cs)NSURLSession(im)finishTasksAndInvalidate","name":"finishTasksAndInvalidate","domain":"occ","kind":"instm","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsession\/1407428-finishtasksandinvalidate"],"title":{"content":"finishTasksAndInvalidate"},"abstract":"<div><p>Invalidates the session, allowing any outstanding tasks to finish.<\/p><\/div>"},{"id":1411622,"role":"symbol","usr":"c:objc(cs)NSURLSession(im)flushWithCompletionHandler:","name":"flushWithCompletionHandler:","domain":"occ","kind":"instm","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsession\/1411622-flushwithcompletionhandler"],"title":{"content":"flushWithCompletionHandler:"},"abstract":"<div><p>Flushes cookies and credentials to disk, clears transient caches, and ensures that future requests occur on a new TCP connection.<\/p><\/div>"},{"id":1411578,"role":"symbol","usr":"c:objc(cs)NSURLSession(im)getTasksWithCompletionHandler:","name":"getTasksWithCompletionHandler:","domain":"occ","kind":"instm","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsession\/1411578-gettaskswithcompletionhandler"],"title":{"content":"getTasksWithCompletionHandler:"},"abstract":"<div><p>Asynchronously calls a completion callback with all data, upload, and download tasks in a session.<\/p><\/div>"},{"id":1411618,"role":"symbol","usr":"c:objc(cs)NSURLSession(im)getAllTasksWithCompletionHandler:","name":"getAllTasksWithCompletionHandler:","domain":"occ","kind":"instm","availability":[{"platform":"iOS","introduced":"9.0"},{"platform":"macOS","introduced":"10.11"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsession\/1411618-getalltaskswithcompletionhandler"],"title":{"content":"getAllTasksWithCompletionHandler:"},"abstract":"<div><p>Asynchronously calls a completion callback with all tasks in a session<\/p><\/div>"},{"id":1411538,"role":"symbol","usr":"c:objc(cs)NSURLSession(im)invalidateAndCancel","name":"invalidateAndCancel","domain":"occ","kind":"instm","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsession\/1411538-invalidateandcancel"],"title":{"content":"invalidateAndCancel"},"abstract":"<div><p>Cancels all outstanding tasks and then invalidates the session.<\/p><\/div>"},{"id":1411479,"role":"symbol","usr":"c:objc(cs)NSURLSession(im)resetWithCompletionHandler:","name":"resetWithCompletionHandler:","domain":"occ","kind":"instm","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsession\/1411479-resetwithcompletionhandler"],"title":{"content":"resetWithCompletionHandler:"},"abstract":"<div><p>Empties all cookies, caches and credential stores, removes disk files, flushes in-progress downloads to disk, and ensures that future requests occur on a new socket.<\/p><\/div>"},{"id":1408277,"role":"symbol","usr":"c:objc(cs)NSURLSession(py)sessionDescription","name":"sessionDescription","domain":"occ","kind":"instp","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsession\/1408277-sessiondescription"],"title":{"content":"sessionDescription"},"abstract":"<div><p>An app-defined descriptive label for the session.<\/p><\/div>"}],"title":{"content":"Managing the Session"}},{"id":1674460,"role":"task","symbols":[{"id":1661243,"role":"collectionGroup","paths":["documentation\/foundation\/nsurlsession\/url_session_error_dictionary_keys"],"hasChildren":true,"abstract":"<div><p>Keys used in conjunction with error objects returned by URL sessions and tasks.<\/p><\/div>","title":{"content":"URL Session Error Dictionary Keys"}},{"id":1508626,"role":"containerSymbol","usr":"c:@Ea@NSURLErrorCancelledReasonUserForceQuitApplication","domain":"occ","kind":"enum","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.10"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"paths":["documentation\/foundation\/1508626-background_task_cancellation"],"title":{"content":"Background Task Cancellation"},"abstract":"<div><p>Constants that indicate why a background task was canceled.<\/p><\/div>","hasChildren":true}],"title":{"content":"Handling Errors"}},{"id":3256446,"role":"task","symbols":[{"id":3240614,"role":"symbol","usr":"c:objc(cs)NSURLSession(im)init","name":"init","domain":"occ","kind":"instm","availability":[{"platform":"iOS","deprecated":"13.0","introduced":"7.0"},{"platform":"macOS","deprecated":"10.15","introduced":"10.9"},{"platform":"Mac Catalyst","deprecated":"13.0","introduced":"13.0"},{"platform":"tvOS","deprecated":"13.0","introduced":"9.0"},{"platform":"watchOS","deprecated":"6.0","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsession\/3240614-init"],"title":{"content":"init"}}],"title":{"content":"Initializers"}},{"id":3256447,"role":"task","symbols":[{"id":3240615,"role":"symbol","usr":"c:objc(cs)NSURLSession(cm)new","name":"new","domain":"occ","kind":"clm","availability":[{"platform":"iOS","deprecated":"13.0","introduced":"7.0"},{"platform":"macOS","deprecated":"10.15","introduced":"10.9"},{"platform":"Mac Catalyst","deprecated":"13.0","introduced":"13.0"},{"platform":"tvOS","deprecated":"13.0","introduced":"9.0"},{"platform":"watchOS","deprecated":"6.0","introduced":"2.0"}],"paths":["documentation\/foundation\/nsurlsession\/3240615-new"],"title":{"content":"new"}}],"title":{"content":"Type Methods"}}]}</script></body></html>

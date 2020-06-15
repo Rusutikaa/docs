@@ -6,6 +6,10 @@
 
 * [Framework SwiftUI 2020.3.29 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com/documentation/swiftui.html)
 
+* [Framework Foundation（ObjC）2020.6.10 日本語訳](https://rusutikaa.github.io/docs//docs2/developer.apple.com/documentation/foundation_language-objc.html)
+
+* [Framework Objective-C Runtime 2020.6.7 日本語訳](https://rusutikaa.github.io/docs/docs2/developer.apple.com/documentation/objectivec.html)
+
 以下は更新されない
 
 * [The Swift Programming Language 2018.3.29 (4.1) 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com/library/archive/documentation/Swift/Conceptual/Swift_Programming_Language/index.html)
