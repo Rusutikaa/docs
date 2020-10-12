@@ -1,0 +1,1526 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- link rel="icon" href="/favicon.ico" -->
+<link rel="mask-icon" href="/apple-logo.svg" color="#333333">
+<link rel="stylesheet" href="../../tutorials/css/_globalnav.css">
+<title>NSDictionary | Apple Developer Documentation</title>
+<link href="../../tutorials/css/chunk-76d5c2b5.00c53891.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic.e358e85c.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css" rel="prefetch">
+<link href="../../tutorials/css/topic.69278f1e.css" rel="prefetch">
+<link href="../../tutorials/css/topic~tutorials-overview.1f93e025.css" rel="prefetch">
+<link href="../../tutorials/css/tutorials-overview.d4ff0b50.css" rel="prefetch">
+<link href="../../tutorials/css/welcome-experience-featured.0537f0f0.css" rel="prefetch">
+<link href="../../tutorials/css/welcome-experience-technologies.60068ae2.css" rel="prefetch">
+<link href="../../tutorials/js/chunk-2d0d3105.459bf725.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-2d21a016.b81cb311.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-503f1ed8.d26c4552.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-530f89ce.621e1d48.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-640db3b2.f8778ca5.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-76d5c2b5.092e3b8a.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic.6abe9458.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js" rel="prefetch">
+<link href="../../tutorials/js/topic.c6ec6b6c.js" rel="prefetch">
+<link href="../../tutorials/js/topic~tutorials-overview.467a8186.js" rel="prefetch">
+<link href="../../tutorials/js/tutorials-overview.d77f61ca.js" rel="prefetch">
+<link href="../../tutorials/js/welcome-experience-featured.04f663e2.js" rel="prefetch">
+<link href="../../tutorials/js/welcome-experience-technologies.56a372c1.js" rel="prefetch">
+<link href="../../tutorials/css/app.2a174a23.css" rel="preload" as="style">
+<link href="../../tutorials/js/app.2c558263.js" rel="preload" as="script">
+<link href="../../tutorials/js/chunk-vendors.c3b68236.js" rel="preload" as="script">
+<link href="../../tutorials/css/app.2a174a23.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../../tutorials/css/chunk-76d5c2b5.00c53891.css">
+<script charset="utf-8" src="../../tutorials/js/chunk-76d5c2b5.092e3b8a.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic.e358e85c.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic.6abe9458.js"></script>
+</head>
+<body>
+<div id="_omniture_top">
+<script>var s_account="awdappledeveloper"</script>
+</div>
+<a href="#main" id="skip-localnav">Skip Navigation</a><aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"><nav id="ac-globalnav" class="js no-touch" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions"><div class="ac-gn-content">
+<ul class="ac-gn-header">
+<li class="ac-gn-item ac-gn-menuicon">
+<label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true"><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span> </span><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span></span></label> <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open"><span class="ac-gn-menuanchor-label">Global Nav Open Menu</span> </a><a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close"><span class="ac-gn-menuanchor-label">Global Nav Close Menu</span></a>
+</li>
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+</ul>
+<div class="ac-gn-search-placeholder-container" role="search"><div class="ac-gn-search ac-gn-search-small"><a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a><div class="ac-gn-search-placeholder-bar">
+<div class="ac-gn-search-placeholder-input"><div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
+<div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
+<span class="ac-gn-search-placeholder">Search Developer</span>
+</div></div>
+<div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></div>
+</div></a></div></div>
+<ul class="ac-gn-list">
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-discover"><a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover"><span class="ac-gn-link-text">Discover</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-design"><a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design"><span class="ac-gn-link-text">Design</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-develop"><a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop"><span class="ac-gn-link-text">Develop</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-distribute"><a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute"><span class="ac-gn-link-text">Distribute</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport"><a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport"><span class="ac-gn-link-text">Support</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-account"><a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account"><span class="ac-gn-link-text">Account</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search"><a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a></li>
+</ul>
+<aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search"><div class="ac-gn-searchview-content">
+<div class="ac-gn-searchview-bar"><div class="ac-gn-searchview-bar-wrapper">
+<form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get"><div class="ac-gn-searchform-wrapper">
+<input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions"> <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button> <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search"><span class="ac-gn-searchform-reset-background"></span></button>
+</div></form>
+<button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></button>
+</div></div>
+<aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
+</div>
+<button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search"><span class="ac-gn-searchview-close-wrapper"><span class="ac-gn-searchview-close-left"></span> <span class="ac-gn-searchview-close-right"></span></span></button></aside>
+</div></nav><div class="ac-gn-blur"></div>
+<div id="ac-gn-curtain" class="ac-gn-curtain"></div>
+<div id="ac-gn-placeholder" class="ac-nav-placeholder"></div>
+<script src="../../tutorials/js/ac-globalnav.built.js"></script>
+<noscript>
+<style>.noscript {
+  font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
+  margin: 92px auto 140px auto;
+  text-align: center;
+  width: 980px;
+}
+
+.noscript-title {
+  color: #111;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -.003em;
+  line-height: 1.08365;
+  margin: 0 auto 54px auto;
+  width: 502px;
+}
+
+@media only screen and (max-width: 1068px) {
+  .noscript {
+    margin: 90px auto 120px auto;
+    width: 692px;
+  }
+
+  .noscript-title {
+    font-size: 40px;
+    letter-spacing: 0;
+    line-height: 1.1;
+    margin: 0 auto 45px auto;
+    width: 420px;
+  }
+}
+
+@media only screen and (max-width: 735px) {
+  .noscript {
+    margin: 45px auto 60px auto;
+    width: 87.5%;
+  }
+
+  .noscript-title {
+    font-size: 32px;
+    letter-spacing: .004em;
+    line-height: 1.125;
+    margin: 0 auto 35px auto;
+    max-width: 330px;
+    width: auto;
+  }
+}
+
+#loading-placeholder {
+  display: none;
+};</style>
+<div class="noscript">
+<h1 class="noscript-title">This page requires JavaScript.</h1>
+<p>Please turn on JavaScript in your browser and refresh the page to view its content.</p>
+</div>
+</noscript>
+<div data-v-0220a4c4="" id="app" class=""><div data-v-0220a4c4=""><div data-v-2deaa168="" class="doc-topic">
+<div data-v-3ceaa5df="" data-v-2deaa168="" class="localnav-container">
+<input data-v-3ceaa5df="" aria-hidden="true" id="localnav-menustate" type="checkbox" class="localnav-menustate"><div id="localnav-sticky-placeholder" class="css-sticky"></div>
+<nav data-v-3ceaa5df="" aria-label="API Reference" data-sticky="" id="localnav" role="navigation" class="localnav localnav-dark theme-dark medium-localnav-collapsible localnav-noborder localnav-scrim css-sticky"><div data-v-3ceaa5df="" class="localnav-wrapper">
+<div data-v-3ceaa5df="" class="referencenav">
+<div data-v-3ceaa5df="" class="localnav-background"></div>
+<div data-v-3ceaa5df="" class="localnav-content">
+<a data-v-3ceaa5df="" href="../../index.html" class="localnav-title">
+            Documentation
+          </a><div data-v-3ceaa5df="" class="localnav-menu">
+<a data-v-3ceaa5df="" href="#localnav-menustate" role="button" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Open Menu</span></a><a data-v-3ceaa5df="" href="#" role="button" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Close Menu</span></a><div data-v-3ceaa5df="" class="localnav-menu-tray">
+<ul data-v-72fd0d2c="" data-v-3ceaa5df="" aria-label="Breadcrumbs" class="localnav-menu-items">
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../documentation/foundation_language-objc.html" class="parent item router-link-active" data-v-23a2ae0d="">
+    Foundation
+  </a></li><!---->
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../documentation/foundation/collections_language-objc.html" class="parent item" data-v-23a2ae0d="">
+    <span class="enstr">Collections</span><!--end_enstr-->
+<span class="jpstr">
+さまざまなコレクション
+</span><!--end_jpstr-->
+
+  </a></li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item">
+<span data-v-23a2ae0d="" class="current item">
+    NSDictionary
+  </span><!---->
+</li>
+</ul>
+<ul data-v-3ceaa5df="" data-breadcrumbs-count="3" class="localnav-menu-items localnav-menu-settings">
+<li data-v-282336e0="" data-v-3ceaa5df="" class="localnav-menu-setting language-container" breadcrumbcount="3">
+<div data-v-282336e0="" class="language-toggle-container">
+<label data-v-282336e0="" for="language-toggle" class="language-toggle-label">
+      Language:
+    </label><select data-v-282336e0="" id="language-toggle" class="language-dropdown localnav-menu-link" style="width: 74px;"><option data-v-282336e0="" value="swift">
+        Swift
+      </option>
+<option data-v-282336e0="" value="occ">
+        Objective-C
+      </option></select>
+</div>
+<div data-v-282336e0="" class="language-list-container">
+<span data-v-282336e0="" class="localnav-menu-setting-label">
+      Language:
+    </span><ul data-v-282336e0="" class="language-list">
+<li data-v-282336e0="" class="language-list-item"><a data-v-282336e0="" href="../../documentation/foundation/nsdictionary.html" class="localnav-menu-setting-link router-link-active">
+          Swift
+        </a></li>
+<li data-v-282336e0="" class="language-list-item"><span data-v-282336e0="" data-language="occ" aria-current="page" class="current-language">
+          Objective-C
+        </span></li>
+</ul>
+</div>
+</li>
+<li data-v-2e9f4ea2="" data-v-3ceaa5df="" class="localnav-menu-setting">
+<label data-v-2e9f4ea2="" for="version-label" class="localnav-menu-setting-label">
+    API Changes:
+  </label><span data-v-2e9f4ea2=""><span class="enstr">None</span><!--end_enstr-->
+<span class="jpstr">
+なし
+</span><!--end_jpstr-->
+</span>
+</li><!---->
+
+</ul>
+</div>
+<div data-v-3ceaa5df="" class="localnav-actions"><div data-v-3ceaa5df="" aria-hidden="true" class="localnav-action localnav-action-menucta"><label data-v-3ceaa5df="" for="localnav-menustate" class="localnav-menucta"><span data-v-3ceaa5df="" class="localnav-menucta-chevron"></span></label></div></div>
+</div>
+</div>
+</div><!---->
+
+</div></nav><label data-v-3ceaa5df="" aria-hidden="true" for="localnav-menustate" id="localnav-curtain"></label>
+</div>
+<main data-v-2deaa168="" id="main" role="main" tabindex="0" class="main"><div data-v-4ba5af7c="" data-v-2deaa168="" class="topictitle">
+<span data-v-4ba5af7c="" class="eyebrow">Class</span><h1 data-v-4ba5af7c="" class="title">NSDictionary</h1>
+</div>
+<div data-v-0253ce0e="" data-v-2deaa168="" class="row container">
+<div data-v-9807b2e0="" data-v-5ad0d458="" data-v-2deaa168="" class="col description large-9 medium-9 small-12" data-v-0253ce0e=""><!---->
+<div data-v-7ea0aa49="" data-v-aba749e6="" data-v-2deaa168="" class="abstract content" data-v-9807b2e0=""><span class="enstr">A static collection of objects associated with unique keys.</span><!--end_enstr-->
+<span class="jpstr">
+特有のキーそれらと結び付けられたオブジェクトそれらからなる静的コレクション。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div>
+<div data-v-9807b2e0="" data-v-42fb6bac="" data-v-2deaa168="" class="col summary large-3 medium-3 small-12" data-v-0253ce0e=""><!---->
+<div data-v-e4237090="" data-v-fcdb795a="" data-v-2deaa168="" class="summary-section availability" role="complementary" aria-label="Availability" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-fcdb795a="" class="title" data-v-e4237090=""><span class="enstr">Availability</span><!--end_enstr-->
+<span class="jpstr">
+有効性
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-fcdb795a="" class="summary-list platform-list" data-v-e4237090="">
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="iOS 2.0+, Available on iOS 2.0 and later" title="Available on iOS 2.0 and later" data-v-e3899270="">
+  iOS 2.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="macOS 10.0+, Available on macOS 10.0 and later" title="Available on macOS 10.0 and later" data-v-e3899270="">
+  macOS 10.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="Mac Catalyst 13.0+, Available on Mac Catalyst 13.0 and later" title="Available on Mac Catalyst 13.0 and later" data-v-e3899270="">
+  Mac Catalyst 13.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="tvOS 9.0+, Available on tvOS 9.0 and later" title="Available on tvOS 9.0 and later" data-v-e3899270="">
+  tvOS 9.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="watchOS 2.0+, Available on watchOS 2.0 and later" title="Available on watchOS 2.0 and later" data-v-e3899270="">
+  watchOS 2.0+
+</span><!---->
+</li>
+</ul>
+</div>
+<div data-v-e4237090="" data-v-741142ba="" data-v-2deaa168="" class="summary-section frameworks" role="complementary" aria-label="Framework" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-741142ba="" class="title" data-v-e4237090=""><span class="enstr">Framework</span><!--end_enstr-->
+<span class="jpstr">
+フレームワーク
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-741142ba="" class="summary-list" data-v-e4237090=""><li data-v-e3899270="" data-v-741142ba="" class="summary-list-item" data-v-1450532d=""><span data-v-741142ba="" data-v-e3899270="" class="name">Foundation</span></li></ul>
+</div>
+<div data-v-e4237090="" data-v-2b96ab1a="" data-v-2deaa168="" class="summary-section on-this-page" data-v-9807b2e0=""><nav data-v-2b96ab1a="" data-v-e4237090="" aria-labelledby="on-this-page-title"><p data-v-1e0258b0="" data-v-2b96ab1a="" class="title" id="on-this-page-title" data-v-e4237090=""><span class="enstr">On This Page</span><!--end_enstr-->
+<span class="jpstr">
+この項には
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-2b96ab1a="" class="summary-list" data-v-e4237090="">
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/nsdictionary_language-objc.html#declaration" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Declaration</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/nsdictionary_language-objc.html#overview" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Overview</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/nsdictionary_language-objc.html#topics" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Topics</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/nsdictionary_language-objc.html#relationships" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Relationships</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/nsdictionary_language-objc.html#see-also" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">See Also</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+</ul></nav></div>
+</div>
+<div data-v-9807b2e0="" data-v-1e40f676="" data-v-2deaa168="" class="col primary-content large-9 medium-9 small-12" data-v-0253ce0e="">
+<section data-v-e932e1b8="" data-v-1e40f676="" id="declaration" class="declaration" data-v-9807b2e0=""><h2 data-v-e932e1b8=""><span class="enstr">Declaration</span><!--end_enstr-->
+<span class="jpstr">
+宣言
+</span><!--end_jpstr-->
+</h2>
+<div data-v-29bd318c="" data-v-e932e1b8="" class="declaration-group"><!---->
+<pre data-v-e0a7f756="" data-v-29bd318c="" class="source"><code data-v-e0a7f756=""><span data-v-c9e896f0="" data-v-e0a7f756="" class="token-keyword">@interface</span> <span data-v-c9e896f0="" data-v-e0a7f756="" class="token-identifier">NSDictionary</span>&lt;<span data-v-c9e896f0="" data-v-e0a7f756="" class="token-keyword">__covariant</span> KeyType, <span data-v-c9e896f0="" data-v-e0a7f756="" class="token-keyword">__covariant</span> ObjectType&gt; : <a data-v-c9e896f0="" data-v-e0a7f756="" href="../../documentation/objectivec/1418956-nsobject_language-objc.html" class="type-identifier-link"><span data-v-c9e896f0="">NSObject</span></a></code></pre>
+</div><!---->
+</section><div data-v-7ea0aa49="" data-v-1e40f676="" class="content" data-v-9807b2e0="">
+<h2 id="overview"><span class="enstr">Overview</span><!--end_enstr-->
+<span class="jpstr">
+概要
+</span><!--end_jpstr-->
+</h2>
+<p><span class="enstr">The <code data-v-7fb764c1="">NSDictionary</code> class declares the programmatic interface to objects that manage immutable associations of keys and values. For example, an interactive form could be represented as a dictionary, with the field names as keys, corresponding to user-entered values.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">NSDictionary</code>クラスは、不変のキーと値関係を管理するオブジェクトに対するプログラムインターフェイスを宣言します。例えば、ある相互作用形式は、フィールド名をキーとして持ち、ユーザ入力の値に対応している、ある辞書として表されることができます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">Use this class or its subclass <a href="../../documentation/foundation/nsmutabledictionary_language-objc.html" class=""><code data-v-7fb764c1="">NSMutable<wbr data-v-7fb764c1="">Dictionary</wbr></code></a> when you need a convenient and efficient way to retrieve data associated with an arbitrary key. <code data-v-7fb764c1="">NSDictionary</code> creates static dictionaries, and <code data-v-7fb764c1="">NSMutable<wbr data-v-7fb764c1="">Dictionary</wbr></code> creates dynamic dictionaries. (For convenience, the term <em>dictionary</em> refers to any instance of one of these classes without specifying its exact class membership.)</span><!--end_enstr-->
+<span class="jpstr">
+このクラスまたはそれのサブクラス<a href="../../documentation/foundation/nsmutabledictionary_language-objc.html" class=""><code data-v-7fb764c1="">NSMutable<wbr data-v-7fb764c1="">Dictionary</wbr></code></a>を、あなたが随意のキーと結び付けられたデータを回収する便利で効率の良いやり方を必要とする時に使ってください。<code data-v-7fb764c1="">NSDictionary</code>は静的な辞書を作成します、そして<code data-v-7fb764c1="">NSMutable<wbr data-v-7fb764c1="">Dictionary</wbr></code>は動的な辞書を作成します。（便宜上、この用語、<em>辞書</em>は、これらのクラスの内の１つのどんなインスタンスにでも、それの正確なクラス帰属を明記しないで言及します。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">A key-value pair within a dictionary is called an entry. Each entry consists of one object that represents the key and a second object that is that key’s value. Within a dictionary, the keys are unique. That is, no two keys in a single dictionary are equal (as determined by <a href="../../documentation/objectivec/1418956-nsobject/1418795-isequal_language-objc.html" class=""><code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Equal:</wbr></code></a>). In general, a key can be any object (provided that it conforms to the <code data-v-7fb764c1="">NSCopying</code> protocol—see below), but note that when using key-value coding the key must be a string (see <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/BasicPrinciples.html#//apple_ref/doc/uid/20002170">Accessing Object Properties</a>). Neither a key nor a value can be <code data-v-7fb764c1="">nil</code>; if you need to represent a null value in a dictionary, you should use <a href="../../documentation/foundation/nsnull_language-objc.html" class=""><code data-v-7fb764c1="">NSNull</code></a>.</span><!--end_enstr-->
+<span class="jpstr">
+辞書の内部のあるキー値ペアは、登録項目（エントリ）と呼ばれます。各登録項目は、キーを表す一方のオブジェクトとそのキーの持つ値である２番目のオブジェクトからなります。ある辞書内では、それらキーは特有です。すなわち、ある単一の辞書の中の２つのキーが等しい（<a href="../../documentation/objectivec/1418956-nsobject/1418795-isequal_language-objc.html" class=""><code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Equal:</wbr></code></a>によって決定されるように）ことはありません。一般に、キーはどんなオブジェクトであることもできます（それが<code data-v-7fb764c1="">NSCopying</code>プロトコルに準拠するという条件で — 下で見てください）、しかしキー値コーディングを使う場合そのキーは文字列でなければならないことに注意してください（<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/BasicPrinciples.html#//apple_ref/doc/uid/20002170">Accessing Object Properties</a>を見てください）。キーも値も<code data-v-7fb764c1="">nil</code>であることはできません；あなたがヌル値を辞書の中で表す必要があるならば、あなたは<a href="../../documentation/foundation/nsnull_language-objc.html" class=""><code data-v-7fb764c1="">NSNull</code></a>を使うべきです。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr"><code data-v-7fb764c1="">NSDictionary</code> is “toll-free bridged” with its Core Foundation counterpart, <a href="https://developer.apple.com/documentation/corefoundation/cfdictionaryref?language=objc" class=""><code data-v-7fb764c1="">CFDictionary<wbr data-v-7fb764c1="">Ref</wbr></code></a>. See <a href="https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2">Toll-Free Bridging</a> for more information on toll-free bridging.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">NSDictionary</code>は、それのCore Foundation相当物<a href="https://developer.apple.com/documentation/corefoundation/cfdictionaryref?language=objc" class=""><code data-v-7fb764c1="">CFDictionary<wbr data-v-7fb764c1="">Ref</wbr></code></a>と「トールフリーブリッジ（通行料なしの橋渡し）」されます。トールフリーブリッジに関する更なる情報として<a href="https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2">Toll-Free Bridging</a>を見てください。
+</span><!--end_jpstr-->
+</p>
+<h3 id="2530698"><span class="enstr">Creating NSDictionary Objects Using Dictionary Literals</span><!--end_enstr-->
+<span class="jpstr">
+NSDictionaryオブジェクトを辞書リテラルを使って作成する
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">In addition to the provided initializers, such as <a href="../../documentation/foundation/nsdictionary/1410010-initwithobjects_language-objc.html" class=""><code data-v-7fb764c1="">init<wbr data-v-7fb764c1="">With<wbr data-v-7fb764c1="">Objects:<wbr data-v-7fb764c1="">for<wbr data-v-7fb764c1="">Keys:</wbr></wbr></wbr></wbr></code></a>, you can create an <code data-v-7fb764c1="">NSDictionary</code> object using a <em>dictionary literal</em>.</span><!--end_enstr-->
+<span class="jpstr">
+提供されたイニシャライザ、例えば<a href="../../documentation/foundation/nsdictionary/1410010-initwithobjects_language-objc.html" class=""><code data-v-7fb764c1="">init<wbr data-v-7fb764c1="">With<wbr data-v-7fb764c1="">Objects:<wbr data-v-7fb764c1="">for<wbr data-v-7fb764c1="">Keys:</wbr></wbr></wbr></wbr></code></a>などに加えて、あなたは<code data-v-7fb764c1="">NSDictionary</code>オブジェクトを<em>辞書リテラル</em>を使って作成できます。
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="2555582"><div data-v-39580a24="" data-syntax="objc" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-built_in">NSDictionary</span> *dictionary = @{</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">       <span class="syntax-string">@"anObject"</span> : someObject,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-string">@"helloString"</span> : <span class="syntax-string">@"Hello, World!"</span>,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-string">@"magicNumber"</span> : @<span class="syntax-number">42</span>,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="5" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">         <span class="syntax-string">@"aValue"</span> : someValue</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="6" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">};</span></span></code></pre></div>
+</div></figure><p><span class="enstr">In Objective-C, the compiler generates code that makes an underlying call to the <a href="../../documentation/foundation/nsdictionary/1574184-dictionarywithobjects_language-objc.html" class=""><code data-v-7fb764c1="">dictionary<wbr data-v-7fb764c1="">With<wbr data-v-7fb764c1="">Objects:<wbr data-v-7fb764c1="">for<wbr data-v-7fb764c1="">Keys:<wbr data-v-7fb764c1="">count:</wbr></wbr></wbr></wbr></wbr></code></a> method.</span><!--end_enstr-->
+<span class="jpstr">
+Objective-Cでは、コンパイラが<a href="../../documentation/foundation/nsdictionary/1574184-dictionarywithobjects_language-objc.html" class=""><code data-v-7fb764c1="">dictionary<wbr data-v-7fb764c1="">With<wbr data-v-7fb764c1="">Objects:<wbr data-v-7fb764c1="">for<wbr data-v-7fb764c1="">Keys:<wbr data-v-7fb764c1="">count:</wbr></wbr></wbr></wbr></wbr></code></a>メソッドへの隠れた呼び出しをするコードを生成します。
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="2555586"><div data-v-39580a24="" data-syntax="objc" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-keyword">id</span> objects[] = { someObject, <span class="syntax-string">@"Hello, World!"</span>, @<span class="syntax-number">42</span>, someValue };</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-keyword">id</span> keys[] = { <span class="syntax-string">@"anObject"</span>, <span class="syntax-string">@"helloString"</span>, <span class="syntax-string">@"magicNumber"</span>, <span class="syntax-string">@"aValue"</span> };</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-built_in">NSUInteger</span> count = <span class="syntax-keyword">sizeof</span>(objects) / <span class="syntax-keyword">sizeof</span>(<span class="syntax-keyword">id</span>);</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-built_in">NSDictionary</span> *dictionary = [<span class="syntax-built_in">NSDictionary</span> dictionaryWithObjects:objects</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="5" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">                                                       forKeys:keys</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="6" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">                                                         count:count];</span></span></code></pre></div>
+</div></figure><p><span class="enstr">Unlike <a href="../../documentation/foundation/nsdictionary/1574181-dictionarywithobjectsandkeys_language-objc.html" class=""><code data-v-7fb764c1="">dictionary<wbr data-v-7fb764c1="">With<wbr data-v-7fb764c1="">Objects<wbr data-v-7fb764c1="">And<wbr data-v-7fb764c1="">Keys:</wbr></wbr></wbr></wbr></code></a> and other initializers, dictionary literals specify entries in key-value order. You should not terminate the list of objects with <code data-v-7fb764c1="">nil</code> when using this literal syntax, and in fact <code data-v-7fb764c1="">nil</code> is an invalid value. For more information about object literals in Objective-C, see <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/WorkingwithObjects/WorkingwithObjects.html#//apple_ref/doc/uid/TP40011210-CH4">Working with Objects</a> in <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011210">Programming with Objective-C</a>.</span><!--end_enstr-->
+<span class="jpstr">
+<a href="../../documentation/foundation/nsdictionary/1574181-dictionarywithobjectsandkeys_language-objc.html" class=""><code data-v-7fb764c1="">dictionary<wbr data-v-7fb764c1="">With<wbr data-v-7fb764c1="">Objects<wbr data-v-7fb764c1="">And<wbr data-v-7fb764c1="">Keys:</wbr></wbr></wbr></wbr></code></a>および他のイニシャライザと違い、辞書リテラルはキー値順で登録項目を指定します。あなたは、このリテラル構文を使う時にオブジェクトのリストを<code data-v-7fb764c1="">nil</code>で終端すべきではありません、そして実際<code data-v-7fb764c1="">nil</code>は無効な値です。Objective-Cにおけるオブジェクトリテラルについてのさらなる情報として、<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/WorkingwithObjects/WorkingwithObjects.html#//apple_ref/doc/uid/TP40011210-CH4">Working with Objects</a>を<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011210">Programming with Objective-C</a>で見てください。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">In Swift, the <code data-v-7fb764c1="">NSDictionary</code> class conforms to the <code data-v-7fb764c1="">Dictionary<wbr data-v-7fb764c1="">Literal<wbr data-v-7fb764c1="">Convertible</wbr></wbr></code> protocol, which allows it to be initialized with dictionary literals. For more information about object literals in Swift, see <a href="../../../developer.apple.com/library/archive/documentation/Swift/Conceptual/Swift_Programming_Language/Expressions.html#//apple_ref/doc/uid/TP40014097-CH32-ID390">Literal Expression</a> in <a href="../../../developer.apple.com/library/archive/documentation/Swift/Conceptual/Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097">The Swift Programming Language (Swift 4.1)</a>.</span><!--end_enstr-->
+<span class="jpstr">
+Swiftでは、<code data-v-7fb764c1="">NSDictionary</code>クラスは<code data-v-7fb764c1="">Dictionary<wbr data-v-7fb764c1="">Literal<wbr data-v-7fb764c1="">Convertible</wbr></wbr></code>プロトコルに準拠します、そのことはそれが辞書リテラルで初期化されることを可能にします。Swiftにおけるオブジェクトリテラルについての更なる情報として<a href="../../../developer.apple.com/library/archive/documentation/Swift/Conceptual/Swift_Programming_Language/Expressions.html#//apple_ref/doc/uid/TP40014097-CH32-ID390">リテラル式</a>を<a href="../../../developer.apple.com/library/archive/documentation/Swift/Conceptual/Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097">Swiftプログラミング言語（Swift 4.1）</a>で見てください。
+</span><!--end_jpstr-->
+</p>
+<h3 id="2530699"><span class="enstr">Accessing Values Using Subscripting</span><!--end_enstr-->
+<span class="jpstr">
+添え字を使って値にアクセスする
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">In addition to the provided instance methods, such as <a href="../../documentation/foundation/nsdictionary/1414347-objectforkey_language-objc.html" class=""><code data-v-7fb764c1="">object<wbr data-v-7fb764c1="">For<wbr data-v-7fb764c1="">Key:</wbr></wbr></code></a>, you can access <code data-v-7fb764c1="">NSDictionary</code> values by their keys using <em>subscripting</em>.</span><!--end_enstr-->
+<span class="jpstr">
+提供されたインスタンスメソッド、例えば<a href="../../documentation/foundation/nsdictionary/1414347-objectforkey_language-objc.html" class=""><code data-v-7fb764c1="">object<wbr data-v-7fb764c1="">For<wbr data-v-7fb764c1="">Key:</wbr></wbr></code></a>などに加えて、あなたは<code data-v-7fb764c1="">NSDictionary</code>値にアクセスすることがそれらのキーによる<em>添え字</em>を使うことで可能です。
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="2555591"><div data-v-39580a24="" data-syntax="objc" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-keyword">id</span> value = dictionary[<span class="syntax-string">@"helloString"</span>];</span></span></code></pre></div>
+</div></figure><h3 id="2530700"><span class="enstr">Enumerating Entries Using for-in Loops</span><!--end_enstr-->
+<span class="jpstr">
+for-inループを使って登録項目を列挙する
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">In addition to the provided instance methods, such as <a href="../../documentation/foundation/nsdictionary/1414570-enumeratekeysandobjectsusingbloc_language-objc.html" class=""><code data-v-7fb764c1="">enumerate<wbr data-v-7fb764c1="">Keys<wbr data-v-7fb764c1="">And<wbr data-v-7fb764c1="">Objects<wbr data-v-7fb764c1="">Using<wbr data-v-7fb764c1="">Block:</wbr></wbr></wbr></wbr></wbr></code></a>, you can enumerate <code data-v-7fb764c1="">NSDictionary</code> entries using <em>for-in loops</em>.</span><!--end_enstr-->
+<span class="jpstr">
+提供されたインスタンスメソッド、例えば<a href="../../documentation/foundation/nsdictionary/1414570-enumeratekeysandobjectsusingbloc_language-objc.html" class=""><code data-v-7fb764c1="">enumerate<wbr data-v-7fb764c1="">Keys<wbr data-v-7fb764c1="">And<wbr data-v-7fb764c1="">Objects<wbr data-v-7fb764c1="">Using<wbr data-v-7fb764c1="">Block:</wbr></wbr></wbr></wbr></wbr></code></a>などに加えて、あなたは<code data-v-7fb764c1="">NSDictionary</code>登録項目を列挙することが<em>for-inループ</em>を使って可能です。
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="2555597"><div data-v-39580a24="" data-syntax="objc" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-keyword">for</span> (<span class="syntax-built_in">NSString</span> *key <span class="syntax-keyword">in</span> dictionary) {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">id</span> value = dictionary[key];</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-built_in">NSLog</span>(<span class="syntax-string">@"Value: %@ for key: %@"</span>, value, key);</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">}</span></span></code></pre></div>
+</div></figure><p><span class="enstr">In Objective-C, <code data-v-7fb764c1="">NSDictionary</code> conforms to the <a href="../../documentation/foundation/nsfastenumeration_language-objc.html" class=""><code data-v-7fb764c1="">NSFast<wbr data-v-7fb764c1="">Enumeration</wbr></code></a> protocol.</span><!--end_enstr-->
+<span class="jpstr">
+Objective-Cでは、<code data-v-7fb764c1="">NSDictionary</code>は<a href="../../documentation/foundation/nsfastenumeration_language-objc.html" class=""><code data-v-7fb764c1="">NSFast<wbr data-v-7fb764c1="">Enumeration</wbr></code></a>プロトコルに準拠します。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">In Swift, <code data-v-7fb764c1="">NSDictionary</code> conforms to the <code data-v-7fb764c1="">Sequence<wbr data-v-7fb764c1="">Type</wbr></code> protocol.</span><!--end_enstr-->
+<span class="jpstr">
+Swiftでは、<code data-v-7fb764c1="">NSDictionary</code>は<code data-v-7fb764c1="">Sequence<wbr data-v-7fb764c1="">Type</wbr></code>プロトコルに準拠します。
+</span><!--end_jpstr-->
+</p>
+<h3 id="1776558"><span class="enstr">Subclassing Notes</span><!--end_enstr-->
+<span class="jpstr">
+サブクラス作成の注意
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">You generally shouldn’t need to subclass <code data-v-7fb764c1="">NSDictionary</code>. Custom behavior can usually be achieved through composition rather than subclassing.</span><!--end_enstr-->
+<span class="jpstr">
+あなたは、一般的に<code data-v-7fb764c1="">NSDictionary</code>のサブクラス作成を必要としないでしょう。あつらえの挙動は、普通はサプクラスを作成するよりコンポジションを通して達成されます。
+</span><!--end_jpstr-->
+</p>
+<h4 id="1776559"><span class="enstr">Methods to Override</span><!--end_enstr-->
+<span class="jpstr">
+メソッドのオーバーライド
+</span><!--end_jpstr-->
+</h4>
+<p><span class="enstr">If you do need to subclass <code data-v-7fb764c1="">NSDictionary</code>, take into account that it is a <a href="https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/ClassCluster.html#//apple_ref/doc/uid/TP40008195-CH7">Class cluster</a>. Any subclass must override the following primitive methods:</span><!--end_enstr-->
+<span class="jpstr">
+あなたが<code data-v-7fb764c1="">NSDictionary</code>のサブクラスを作成する必要があるならば、それが<a href="https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/ClassCluster.html#//apple_ref/doc/uid/TP40008195-CH7">Class cluster</a>である可能性を考慮に入れてください。何らかのサブクラスは、以下の根本的メソッドをオーバーライドする必要があります：
+</span><!--end_jpstr-->
+</p>
+<ul>
+<li><p><a href="../../documentation/foundation/nsdictionary/1412631-initwithobjects_language-objc.html" class=""><code data-v-7fb764c1="">init<wbr data-v-7fb764c1="">With<wbr data-v-7fb764c1="">Objects:<wbr data-v-7fb764c1="">for<wbr data-v-7fb764c1="">Keys:<wbr data-v-7fb764c1="">count:</wbr></wbr></wbr></wbr></wbr></code></a></p></li>
+<li><p><a href="../../documentation/foundation/nsdictionary/1409628-count_language-objc.html" class=""><code data-v-7fb764c1="">count</code></a></p></li>
+<li><p><a href="../../documentation/foundation/nsdictionary/1414347-objectforkey_language-objc.html" class=""><code data-v-7fb764c1="">object<wbr data-v-7fb764c1="">For<wbr data-v-7fb764c1="">Key:</wbr></wbr></code></a></p></li>
+<li><p><a href="../../documentation/foundation/nsdictionary/1411011-keyenumerator_language-objc.html" class=""><code data-v-7fb764c1="">key<wbr data-v-7fb764c1="">Enumerator</wbr></code></a> </p></li>
+</ul>
+<p><span class="enstr">The other methods of <code data-v-7fb764c1="">NSDictionary</code> operate by invoking one or more of these primitives. The non-primitive methods provide convenient ways of accessing multiple entries at once.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">NSDictionary</code>の他のメソッドは、１つ以上のこれら根本的なものを発動することによって作動します。根本的でないメソッドは、一度に複数の登録項目にアクセスする便利な方法を提供します。
+</span><!--end_jpstr-->
+</p>
+<h4 id="1651226"><span class="enstr">Alternatives to Subclassing</span><!--end_enstr-->
+<span class="jpstr">
+サブクラス作成の代わりとなるもの
+</span><!--end_jpstr-->
+</h4>
+<p><span class="enstr">Before making a custom class of <code data-v-7fb764c1="">NSDictionary</code>, investigate <a href="../../documentation/foundation/nsmaptable_language-objc.html" class=""><code data-v-7fb764c1="">NSMap<wbr data-v-7fb764c1="">Table</wbr></code></a> and the corresponding Core Foundation type, <a href="https://developer.apple.com/documentation/corefoundation/cfdictionary?language=objc" class="">CFDictionary</a>. Because <code data-v-7fb764c1="">NSDictionary</code> and <code data-v-7fb764c1="">CFDictionary</code> are “toll-free bridged,” you can substitute a <code data-v-7fb764c1="">CFDictionary</code> object for a <code data-v-7fb764c1="">NSDictionary</code> object in your code (with appropriate casting). Although they are corresponding types, <code data-v-7fb764c1="">CFDictionary</code> and <code data-v-7fb764c1="">NSDictionary</code> do not have identical interfaces or implementations, and you can sometimes do things with <code data-v-7fb764c1="">CFDictionary</code> that you cannot easily do with <code data-v-7fb764c1="">NSDictionary</code>.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">NSDictionary</code>のあつらえのクラスを作る前に、<a href="../../documentation/foundation/nsmaptable_language-objc.html" class=""><code data-v-7fb764c1="">NSMap<wbr data-v-7fb764c1="">Table</wbr></code></a>と対応するCore Foundation型、<a href="https://developer.apple.com/documentation/corefoundation/cfdictionary?language=objc" class="">CFDictionary</a>を研究してください。<code data-v-7fb764c1="">NSDictionary</code> and <code data-v-7fb764c1="">CFDictionary</code>は、「toll-freeブリッジ」されるので、あなたは、あなたのコードにおいて（適切なキャストを行うことで）<code data-v-7fb764c1="">CFDictionary</code>オブジェクトを<code data-v-7fb764c1="">NSDictionary</code>オブジェクトの代わりにすることができます。とは言えそれらが対応している型であっても、<code data-v-7fb764c1="">CFDictionary</code>と<code data-v-7fb764c1="">NSDictionary</code>は全く同一のインターフェイスや実装を持ちません、そしてあなたは時々<code data-v-7fb764c1="">CFDictionary</code>を使って、あなたが<code data-v-7fb764c1="">NSDictionary</code>では簡単にはできないような事を行えます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">If the behavior you want to add supplements that of the existing class, you could write a category on <code data-v-7fb764c1="">NSDictionary</code>. Keep in mind, however, that this category will be in effect for all instances of <code data-v-7fb764c1="">NSDictionary</code> that you use, and this might have unintended consequences. Alternatively, you could use composition to achieve the desired behavior.</span><!--end_enstr-->
+<span class="jpstr">
+あなたが追加したい挙動が既存のクラスのそれを補足するならば、あなたは<code data-v-7fb764c1="">NSDictionary</code>上でカテゴリを書くことができます。しかしながら、このカテゴリはあなたが使う<code data-v-7fb764c1="">NSDictionary</code>インスタンス全てに対して発効になるのを心してください、そしてこれは意図しない成り行きをもたらすかもしれません。あるいは、あなたは望む挙動を達成するためにコンポジション（合成）を使うことができます。
+</span><!--end_jpstr-->
+</p>
+</div>
+</div>
+</div>
+<section data-v-8c663d90="" data-v-63527a60="" data-v-2deaa168="" id="topics" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">Topics</span><!--end_enstr-->
+<span class="jpstr">
+話題
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Creating an Empty Dictionary</span><!--end_enstr-->
+<span class="jpstr">
+空の辞書を作成する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1574180-dictionary_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">+ </span><span data-v-dac213be="" class="identifier">dictionary</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Creates an empty dictionary.</span><!--end_enstr-->
+<span class="jpstr">
+空の辞書を作成します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1418147-init_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">init</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Initializes a newly allocated dictionary.</span><!--end_enstr-->
+<span class="jpstr">
+新しく割り当てられた辞書を初期化します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Creating a Dictionary from Objects and Keys</span><!--end_enstr-->
+<span class="jpstr">
+辞書をオブジェクトとキーから作成する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1574183-dictionarywithobjects_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">+ </span><span data-v-dac213be="" class="identifier">dictionary<wbr data-v-dac213be="">With<wbr data-v-dac213be="">Objects:<wbr data-v-dac213be="">for<wbr data-v-dac213be="">Keys:</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Creates a dictionary containing entries constructed from the contents of an array of keys and an array of values.</span><!--end_enstr-->
+<span class="jpstr">
+キーの配列と値の配列の内容から構成される登録項目を含んでいる辞書を作成します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1574184-dictionarywithobjects_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">+ </span><span data-v-dac213be="" class="identifier">dictionary<wbr data-v-dac213be="">With<wbr data-v-dac213be="">Objects:<wbr data-v-dac213be="">for<wbr data-v-dac213be="">Keys:<wbr data-v-dac213be="">count:</wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Creates a dictionary containing a specified number of objects from a C array.</span><!--end_enstr-->
+<span class="jpstr">
+C配列からある指定された数のオブジェクトを含んでいる辞書を作成します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1410010-initwithobjects_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">init<wbr data-v-dac213be="">With<wbr data-v-dac213be="">Objects:<wbr data-v-dac213be="">for<wbr data-v-dac213be="">Keys:</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Initializes a newly allocated dictionary with key-value pairs constructed from the provided arrays of keys and objects.</span><!--end_enstr-->
+<span class="jpstr">
+新しくアロケートされた辞書を、キーとオブジェクトからなるこの提供された配列から組み立てられたキー値ペアで初期化します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1412631-initwithobjects_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">init<wbr data-v-dac213be="">With<wbr data-v-dac213be="">Objects:<wbr data-v-dac213be="">for<wbr data-v-dac213be="">Keys:<wbr data-v-dac213be="">count:</wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Initializes a newly allocated dictionary with the specified number of key-value pairs constructed from the provided C arrays of keys and objects.</span><!--end_enstr-->
+<span class="jpstr">
+新しくアロケートされた辞書を、キーとオブジェクトからなるこの提供されたC配列から組み立てられた、指定された数のキー値ペアで初期化します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1574181-dictionarywithobjectsandkeys_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">+ </span><span data-v-dac213be="" class="identifier">dictionary<wbr data-v-dac213be="">With<wbr data-v-dac213be="">Objects<wbr data-v-dac213be="">And<wbr data-v-dac213be="">Keys:</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Creates a dictionary containing entries constructed from the specified set of values and keys.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたひと揃いの値とキーから構成される登録項目を含んでいる辞書を作成します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1574190-initwithobjectsandkeys_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">init<wbr data-v-dac213be="">With<wbr data-v-dac213be="">Objects<wbr data-v-dac213be="">And<wbr data-v-dac213be="">Keys:</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Initializes a newly allocated dictionary with entries constructed from the specified set of values and keys.</span><!--end_enstr-->
+<span class="jpstr">
+新しいアロケートされた辞書をその指定されたひと揃いのキーと値から構成される登録項目で初期化します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1414965-dictionarywithobject_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">+ </span><span data-v-dac213be="" class="identifier">dictionary<wbr data-v-dac213be="">With<wbr data-v-dac213be="">Object:<wbr data-v-dac213be="">for<wbr data-v-dac213be="">Key:</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Creates a dictionary containing a given key and value.</span><!--end_enstr-->
+<span class="jpstr">
+ある与えられたキーと値を含んでいる辞書を作成します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Creating a Dictionary from Another Dictionary</span><!--end_enstr-->
+<span class="jpstr">
+辞書を別の辞書から作成する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1574191-dictionarywithdictionary_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">+ </span><span data-v-dac213be="" class="identifier">dictionary<wbr data-v-dac213be="">With<wbr data-v-dac213be="">Dictionary:</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Creates a dictionary containing the keys and values from another given dictionary.</span><!--end_enstr-->
+<span class="jpstr">
+他の与えられた辞書からのキーと値を含んでいる辞書を作成します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1418434-initwithdictionary_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">init<wbr data-v-dac213be="">With<wbr data-v-dac213be="">Dictionary:</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Initializes a newly allocated dictionary by placing in it the keys and values contained in another given dictionary.</span><!--end_enstr-->
+<span class="jpstr">
+新しくアロケートされた辞書を別の与えられた辞書に含まれるキーと値をそれの中に置くことによって初期化します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1410124-initwithdictionary_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">init<wbr data-v-dac213be="">With<wbr data-v-dac213be="">Dictionary:<wbr data-v-dac213be="">copy<wbr data-v-dac213be="">Items:</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Initializes a newly allocated dictionary using the objects contained in another given dictionary.</span><!--end_enstr-->
+<span class="jpstr">
+新しくアロケートされた辞書を別の与えられた辞書の中に含まれるオブジェクトを使って初期化します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Creating a Dictionary from an External Source</span><!--end_enstr-->
+<span class="jpstr">
+辞書を外部ソースから作成する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/2879163-dictionarywithcontentsofurl_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">+ </span><span data-v-dac213be="" class="identifier">dictionary<wbr data-v-dac213be="">With<wbr data-v-dac213be="">Contents<wbr data-v-dac213be="">Of<wbr data-v-dac213be="">URL:<wbr data-v-dac213be="">error:</wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Creates a dictionary using the keys and values found in a resource specified by a given URL.</span><!--end_enstr-->
+<span class="jpstr">
+与えられたURLによって指定されるリソース匂いて見つけられるキーと値を使って辞書を作成します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1574185-dictionarywithcontentsofurl_language-objc.html" class="link deprecated has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">+ </span><span data-v-dac213be="" class="identifier">dictionary<wbr data-v-dac213be="">With<wbr data-v-dac213be="">Contents<wbr data-v-dac213be="">Of<wbr data-v-dac213be="">URL:</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Creates a dictionary using the keys and values found in a resource specified by a given URL.</span><!--end_enstr-->
+<span class="jpstr">
+与えられたURLによって指定されるリソース匂いて見つけられるキーと値を使って辞書を作成します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div>
+<span data-v-41682aee="" data-v-01f7f080="" role="presentation" class="violator violator-inline"><span class="enstr">Deprecated</span><!--end_enstr-->
+<span class="jpstr">
+非推奨
+</span><!--end_jpstr-->
+</span>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/2879140-initwithcontentsofurl_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">init<wbr data-v-dac213be="">With<wbr data-v-dac213be="">Contents<wbr data-v-dac213be="">Of<wbr data-v-dac213be="">URL:<wbr data-v-dac213be="">error:</wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Initializes a newly allocated dictionary using the keys and values found at a given URL.</span><!--end_enstr-->
+<span class="jpstr">
+新しくアロケートされた辞書をある与えられたURLで見つけられたキーと値を使って初期化します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1416069-initwithcontentsofurl_language-objc.html" class="link deprecated has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">init<wbr data-v-dac213be="">With<wbr data-v-dac213be="">Contents<wbr data-v-dac213be="">Of<wbr data-v-dac213be="">URL:</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Initializes a newly allocated dictionary using the keys and values found at a given URL.</span><!--end_enstr-->
+<span class="jpstr">
+新しくアロケートされた辞書をある与えられたURLで見つけられたキーと値を使って初期化します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div>
+<span data-v-41682aee="" data-v-01f7f080="" role="presentation" class="violator violator-inline"><span class="enstr">Deprecated</span><!--end_enstr-->
+<span class="jpstr">
+非推奨
+</span><!--end_jpstr-->
+</span>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1574189-dictionarywithcontentsoffile_language-objc.html" class="link deprecated has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">+ </span><span data-v-dac213be="" class="identifier">dictionary<wbr data-v-dac213be="">With<wbr data-v-dac213be="">Contents<wbr data-v-dac213be="">Of<wbr data-v-dac213be="">File:</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Creates a dictionary using the keys and values found in a file specified by a given path.</span><!--end_enstr-->
+<span class="jpstr">
+与えられたパスによって指定されるファイルで見つけられるキーと値を使って辞書を作成します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div>
+<span data-v-41682aee="" data-v-01f7f080="" role="presentation" class="violator violator-inline"><span class="enstr">Deprecated</span><!--end_enstr-->
+<span class="jpstr">
+非推奨
+</span><!--end_jpstr-->
+</span>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1414949-initwithcontentsoffile_language-objc.html" class="link deprecated has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">init<wbr data-v-dac213be="">With<wbr data-v-dac213be="">Contents<wbr data-v-dac213be="">Of<wbr data-v-dac213be="">File:</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Initializes a newly allocated dictionary using the keys and values found in a file at a given path.</span><!--end_enstr-->
+<span class="jpstr">
+新しくアロケートされた辞書をある与えられたパスでのファイル中に見つけられたキーと値を使って初期化します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div>
+<span data-v-41682aee="" data-v-01f7f080="" role="presentation" class="violator violator-inline"><span class="enstr">Deprecated</span><!--end_enstr-->
+<span class="jpstr">
+非推奨
+</span><!--end_jpstr-->
+</span>
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Creating a Dictionary from an NSCoder</span><!--end_enstr-->
+<span class="jpstr">
+辞書をNSCoderから作成する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1417987-initwithcoder_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">init<wbr data-v-dac213be="">With<wbr data-v-dac213be="">Coder:</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Creates a dictionary initialized from data in the provided unarchiver.</span><!--end_enstr-->
+<span class="jpstr">
+提供されたアンアーカイバの中のデータから初期化された辞書を作成します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Creating Key Sets for Shared-Key Optimized Dictionaries</span><!--end_enstr-->
+<span class="jpstr">
+共有キー最適化辞書のためのキー集合を作成する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1408190-sharedkeysetforkeys_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">+ </span><span data-v-dac213be="" class="identifier">shared<wbr data-v-dac213be="">Key<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">For<wbr data-v-dac213be="">Keys:</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Creates a shared key set object for the specified keys.</span><!--end_enstr-->
+<span class="jpstr">
+いくらかの指定されたキーに対するある共有キー集合オブジェクトを作成します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Counting Entries</span><!--end_enstr-->
+<span class="jpstr">
+登録項目を数える
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1409628-count_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">count</code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The number of entries in the dictionary.</span><!--end_enstr-->
+<span class="jpstr">
+辞書の中の登録項目の数。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Comparing Dictionaries</span><!--end_enstr-->
+<span class="jpstr">
+辞書の比較
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1415445-isequaltodictionary_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">is<wbr data-v-dac213be="">Equal<wbr data-v-dac213be="">To<wbr data-v-dac213be="">Dictionary:</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a Boolean value that indicates whether the contents of the receiving dictionary are equal to the contents of another given dictionary.</span><!--end_enstr-->
+<span class="jpstr">
+受け手側の辞書の内容が別の与えられた辞書の内容と等しいかどうかを指し示すブール値を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Accessing Keys and Values</span><!--end_enstr-->
+<span class="jpstr">
+キーと値にアクセスする
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1409150-allkeys_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">all<wbr data-v-01f7f080="">Keys</wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A new array containing the dictionary’s keys, or an empty array if the dictionary has no entries.</span><!--end_enstr-->
+<span class="jpstr">
+辞書のもつキーそれらを含んでいる新しい配列、または辞書が登録項目を持たないならば空の配列。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1417147-allkeysforobject_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">all<wbr data-v-dac213be="">Keys<wbr data-v-dac213be="">For<wbr data-v-dac213be="">Object:</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a new array containing the keys corresponding to all occurrences of a given object in the dictionary.</span><!--end_enstr-->
+<span class="jpstr">
+ある与えられたオブジェクトのその辞書での全ての出現に対応しているキーそれらを含んでいる新しい配列を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1408915-allvalues_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">all<wbr data-v-01f7f080="">Values</wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A new array containing the dictionary’s values, or an empty array if the dictionary has no entries.</span><!--end_enstr-->
+<span class="jpstr">
+辞書の持つ値それらを含んでいる新しい配列、または辞書が登録項目を持たないならば空の配列。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1410210-valueforkey_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">value<wbr data-v-dac213be="">For<wbr data-v-dac213be="">Key:</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the value associated with a given key.</span><!--end_enstr-->
+<span class="jpstr">
+与えられたキーと結びつけられた値を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1409973-getobjects_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">get<wbr data-v-dac213be="">Objects:<wbr data-v-dac213be="">and<wbr data-v-dac213be="">Keys:<wbr data-v-dac213be="">count:</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns by reference C arrays of the keys and values in the dictionary.</span><!--end_enstr-->
+<span class="jpstr">
+辞書の中のキーと値からなるC配列を参照によって返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1409428-getobjects_language-objc.html" class="link deprecated has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">get<wbr data-v-dac213be="">Objects:<wbr data-v-dac213be="">and<wbr data-v-dac213be="">Keys:</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns by reference C arrays of the keys and values in the dictionary.</span><!--end_enstr-->
+<span class="jpstr">
+辞書の中のキーと値からなるC配列を参照によって返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div>
+<span data-v-41682aee="" data-v-01f7f080="" role="presentation" class="violator violator-inline"><span class="enstr">Deprecated</span><!--end_enstr-->
+<span class="jpstr">
+非推奨
+</span><!--end_jpstr-->
+</span>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1408769-objectsforkeys_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">objects<wbr data-v-dac213be="">For<wbr data-v-dac213be="">Keys:<wbr data-v-dac213be="">not<wbr data-v-dac213be="">Found<wbr data-v-dac213be="">Marker:</wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns as a static array the set of objects from the dictionary that corresponds to the specified keys.</span><!--end_enstr-->
+<span class="jpstr">
+この指定されたキーそれらに対応する、その辞書からのオブジェクト一揃いを、静的配列として返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1414347-objectforkey_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">object<wbr data-v-dac213be="">For<wbr data-v-dac213be="">Key:</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the value associated with a given key.</span><!--end_enstr-->
+<span class="jpstr">
+与えられたキーと結びつけられた値を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1415430-objectforkeyedsubscript_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">object<wbr data-v-dac213be="">For<wbr data-v-dac213be="">Keyed<wbr data-v-dac213be="">Subscript:</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the value associated with a given key.</span><!--end_enstr-->
+<span class="jpstr">
+与えられたキーと結びつけられた値を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Enumerating Dictionaries</span><!--end_enstr-->
+<span class="jpstr">
+辞書を列挙する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1411011-keyenumerator_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">key<wbr data-v-dac213be="">Enumerator</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Provides an enumerator to access the keys in the dictionary.</span><!--end_enstr-->
+<span class="jpstr">
+ある列挙子を提供して、辞書の中のキーそれらにアクセスします。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1409600-objectenumerator_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">object<wbr data-v-dac213be="">Enumerator</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an enumerator object that lets you access each value in the dictionary.</span><!--end_enstr-->
+<span class="jpstr">
+ある列挙子オブジェクトを返します、それはあなたに辞書の中の各値にアクセスさせるものです。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1414570-enumeratekeysandobjectsusingbloc_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">enumerate<wbr data-v-dac213be="">Keys<wbr data-v-dac213be="">And<wbr data-v-dac213be="">Objects<wbr data-v-dac213be="">Using<wbr data-v-dac213be="">Block:</wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Applies a given block object to the entries of the dictionary.</span><!--end_enstr-->
+<span class="jpstr">
+ある与えられたブロックオブジェクトを辞書の登録項目に適用します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1409739-enumeratekeysandobjectswithoptio_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">enumerate<wbr data-v-dac213be="">Keys<wbr data-v-dac213be="">And<wbr data-v-dac213be="">Objects<wbr data-v-dac213be="">With<wbr data-v-dac213be="">Options:<wbr data-v-dac213be="">using<wbr data-v-dac213be="">Block:</wbr></wbr></wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Applies a given block object to the entries of the dictionary, with options specifying how the enumeration is performed.</span><!--end_enstr-->
+<span class="jpstr">
+与えられたブロックオブジェクトを、その辞書の登録項目に適用します、どのように列挙が実行されるか指定しているオプションとともに。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/2865769-countbyenumeratingwithstate_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">count<wbr data-v-dac213be="">By<wbr data-v-dac213be="">Enumerating<wbr data-v-dac213be="">With<wbr data-v-dac213be="">State:<wbr data-v-dac213be="">objects:<wbr data-v-dac213be="">count:</wbr></wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns by reference a C array of objects over which the sender should iterate.</span><!--end_enstr-->
+<span class="jpstr">
+それのすべてにわたってセンダーが反復すべきオブジェクトいくつかからなるC配列を参照によって返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Sorting Dictionaries</span><!--end_enstr-->
+<span class="jpstr">
+辞書をソートする
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1412484-keyssortedbyvalueusingselector_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">keys<wbr data-v-dac213be="">Sorted<wbr data-v-dac213be="">By<wbr data-v-dac213be="">Value<wbr data-v-dac213be="">Using<wbr data-v-dac213be="">Selector:</wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an array of the dictionary’s keys, in the order they would be in if the dictionary were sorted by its values.</span><!--end_enstr-->
+<span class="jpstr">
+辞書の持つキーそれらの配列を返します、もし辞書がそれの値それらでソートされたならば、その状態の順番で。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1411105-keyssortedbyvalueusingcomparator_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">keys<wbr data-v-dac213be="">Sorted<wbr data-v-dac213be="">By<wbr data-v-dac213be="">Value<wbr data-v-dac213be="">Using<wbr data-v-dac213be="">Comparator:</wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an array of the dictionary’s keys, in the order they would be in if the dictionary were sorted by its values using a given comparator block.</span><!--end_enstr-->
+<span class="jpstr">
+辞書の持つキーそれらの配列を返します、ある与えられた比較子ブロックを使ってもし辞書がそれの値それらでソートされたならば、その状態の順番で。
+</span><!--end_jpstr-->
+ </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1415717-keyssortedbyvaluewithoptions_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">keys<wbr data-v-dac213be="">Sorted<wbr data-v-dac213be="">By<wbr data-v-dac213be="">Value<wbr data-v-dac213be="">With<wbr data-v-dac213be="">Options:<wbr data-v-dac213be="">using<wbr data-v-dac213be="">Comparator:</wbr></wbr></wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an array of the dictionary’s keys, in the order they would be in if the dictionary were sorted by its values using a given comparator block and a specified set of options.</span><!--end_enstr-->
+<span class="jpstr">
+辞書の持つキーそれらの配列を返します、ある与えられた比較子ブロックと指定された一揃いのオプションを使ってもし辞書がそれの値それらでソートされたならば、その状態の順番で。
+</span><!--end_jpstr-->
+ </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Filtering Dictionaries</span><!--end_enstr-->
+<span class="jpstr">
+辞書をフィルタする
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1407186-keysofentriespassingtest_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">keys<wbr data-v-dac213be="">Of<wbr data-v-dac213be="">Entries<wbr data-v-dac213be="">Passing<wbr data-v-dac213be="">Test:</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the set of keys whose corresponding value satisfies a constraint described by a block object.</span><!--end_enstr-->
+<span class="jpstr">
+それの対応する値があるブロックオブジェクトによって記述される制約を満たすキーの集合を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1416706-keysofentrieswithoptions_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">keys<wbr data-v-dac213be="">Of<wbr data-v-dac213be="">Entries<wbr data-v-dac213be="">With<wbr data-v-dac213be="">Options:<wbr data-v-dac213be="">passing<wbr data-v-dac213be="">Test:</wbr></wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the set of keys whose corresponding value satisfies a constraint described by a block object.</span><!--end_enstr-->
+<span class="jpstr">
+それの対応する値があるブロックオブジェクトによって記述される制約を満たすキーの集合を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Storing Dictionaries</span><!--end_enstr-->
+<span class="jpstr">
+辞書をソートする
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/2879139-writetourl_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">write<wbr data-v-dac213be="">To<wbr data-v-dac213be="">URL:<wbr data-v-dac213be="">error:</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Writes a property list representation of the contents of the dictionary to a given URL.</span><!--end_enstr-->
+<span class="jpstr">
+辞書の内容のプロパティリスト表現をある与えられたURLに書き出します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1409634-writetourl_language-objc.html" class="link deprecated has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">write<wbr data-v-dac213be="">To<wbr data-v-dac213be="">URL:<wbr data-v-dac213be="">atomically:</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Writes a property list representation of the contents of the dictionary to a given URL.</span><!--end_enstr-->
+<span class="jpstr">
+辞書の内容のプロパティリスト表現をある与えられたURLに書き出します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div>
+<span data-v-41682aee="" data-v-01f7f080="" role="presentation" class="violator violator-inline"><span class="enstr">Deprecated</span><!--end_enstr-->
+<span class="jpstr">
+非推奨
+</span><!--end_jpstr-->
+</span>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1415753-writetofile_language-objc.html" class="link deprecated has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">write<wbr data-v-dac213be="">To<wbr data-v-dac213be="">File:<wbr data-v-dac213be="">atomically:</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Writes a property list representation of the contents of the dictionary to a given path.</span><!--end_enstr-->
+<span class="jpstr">
+辞書の内容のプロパティリスト表現をある与えられたパスに書き出します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div>
+<span data-v-41682aee="" data-v-01f7f080="" role="presentation" class="violator violator-inline"><span class="enstr">Deprecated</span><!--end_enstr-->
+<span class="jpstr">
+非推奨
+</span><!--end_jpstr-->
+</span>
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Accessing File Attributes</span><!--end_enstr-->
+<span class="jpstr">
+ファイル属性にアクセスする
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e="">
+<div data-v-7ea0aa49="" data-v-63527a60="" class="content" data-v-9807b2e0=""><span class="enstr">These convenience methods are for use with dictionaries returned by the <a href="../../documentation/foundation/nsfilemanager_language-objc.html" class=""><code data-v-7fb764c1="">NSFile<wbr data-v-7fb764c1="">Manager</wbr></code></a> method <a href="../../documentation/foundation/nsfilemanager/1410452-attributesofitematpath_language-objc.html" class=""><code data-v-7fb764c1="">attributes<wbr data-v-7fb764c1="">Of<wbr data-v-7fb764c1="">Item<wbr data-v-7fb764c1="">At<wbr data-v-7fb764c1="">Path:<wbr data-v-7fb764c1="">error:</wbr></wbr></wbr></wbr></wbr></code></a>, and allow you to access POSIX and HFS attributes for files and directories.</span><!--end_enstr-->
+<span class="jpstr">
+これら便宜メソッドは、<a href="../../documentation/foundation/nsfilemanager_language-objc.html" class=""><code data-v-7fb764c1="">NSFile<wbr data-v-7fb764c1="">Manager</wbr></code></a>のメソッド<a href="../../documentation/foundation/nsfilemanager/1410452-attributesofitematpath_language-objc.html" class=""><code data-v-7fb764c1="">attributes<wbr data-v-7fb764c1="">Of<wbr data-v-7fb764c1="">Item<wbr data-v-7fb764c1="">At<wbr data-v-7fb764c1="">Path:<wbr data-v-7fb764c1="">error:</wbr></wbr></wbr></wbr></wbr></code></a>によって返される辞書で使うためのものです、そしてあなたにファイルおよびディレクトリに対するPOSIXおよびHFS属性にアクセスさせます。
+</span><!--end_jpstr-->
+</div><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1413465-filesize_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">file<wbr data-v-dac213be="">Size</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the file’s size, in bytes.</span><!--end_enstr-->
+<span class="jpstr">
+ファイルのもつサイズを、バイトで返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1416809-filetype_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">file<wbr data-v-dac213be="">Type</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the file type.</span><!--end_enstr-->
+<span class="jpstr">
+ファイルタイプを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1417071-filecreationdate_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">file<wbr data-v-dac213be="">Creation<wbr data-v-dac213be="">Date</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the file’s creation date.</span><!--end_enstr-->
+<span class="jpstr">
+ファイルの作成日を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1408811-filemodificationdate_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">file<wbr data-v-dac213be="">Modification<wbr data-v-dac213be="">Date</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns file’s modification date.</span><!--end_enstr-->
+<span class="jpstr">
+ファイルの修正日を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1409446-fileposixpermissions_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">file<wbr data-v-dac213be="">Posix<wbr data-v-dac213be="">Permissions</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the file’s POSIX permissions.</span><!--end_enstr-->
+<span class="jpstr">
+ファイルのPOSIX権限を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1412281-fileowneraccountid_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">file<wbr data-v-dac213be="">Owner<wbr data-v-dac213be="">Account<wbr data-v-dac213be="">ID</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the file’s owner account ID.</span><!--end_enstr-->
+<span class="jpstr">
+ファイルの所有者アカウントIDを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1417533-fileowneraccountname_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">file<wbr data-v-dac213be="">Owner<wbr data-v-dac213be="">Account<wbr data-v-dac213be="">Name</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the file’s owner account name.</span><!--end_enstr-->
+<span class="jpstr">
+ファイルの所有者アカウント名を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1413626-filegroupowneraccountid_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">file<wbr data-v-dac213be="">Group<wbr data-v-dac213be="">Owner<wbr data-v-dac213be="">Account<wbr data-v-dac213be="">ID</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns file’s group owner account ID.</span><!--end_enstr-->
+<span class="jpstr">
+ファイルのグループ所有者アカウントIDを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1416788-filegroupowneraccountname_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">file<wbr data-v-dac213be="">Group<wbr data-v-dac213be="">Owner<wbr data-v-dac213be="">Account<wbr data-v-dac213be="">Name</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the file’s group owner account name.</span><!--end_enstr-->
+<span class="jpstr">
+ファイルのグループ所有者アカウント名を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1413177-fileextensionhidden_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">file<wbr data-v-dac213be="">Extension<wbr data-v-dac213be="">Hidden</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a Boolean value indicating whether the file hides its extension.</span><!--end_enstr-->
+<span class="jpstr">
+ファイルがそれの拡張子を隠すかどうかを指し示しているブール値を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1416500-fileisimmutable_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">file<wbr data-v-dac213be="">Is<wbr data-v-dac213be="">Immutable</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a Boolean value indicating whether the file is immutable.</span><!--end_enstr-->
+<span class="jpstr">
+ファイルが不変であるかどうかを指し示しているブール値を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1416083-fileisappendonly_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">file<wbr data-v-dac213be="">Is<wbr data-v-dac213be="">Append<wbr data-v-dac213be="">Only</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a Boolean value indicating whether the file is append only.</span><!--end_enstr-->
+<span class="jpstr">
+ファイルが追加されるだけであるかどうかを指し示しているブール値を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1408396-filesystemfilenumber_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">file<wbr data-v-dac213be="">System<wbr data-v-dac213be="">File<wbr data-v-dac213be="">Number</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the filesystem file number.</span><!--end_enstr-->
+<span class="jpstr">
+ファイルシステムファイル番号を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1415329-filesystemnumber_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">file<wbr data-v-dac213be="">System<wbr data-v-dac213be="">Number</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the filesystem number.</span><!--end_enstr-->
+<span class="jpstr">
+ファイルシステム番号を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1417215-filehfstypecode_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">file<wbr data-v-dac213be="">HFSType<wbr data-v-dac213be="">Code</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns file’s HFS type code.</span><!--end_enstr-->
+<span class="jpstr">
+ファイルのHFSタイプコードを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1415065-filehfscreatorcode_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">file<wbr data-v-dac213be="">HFSCreator<wbr data-v-dac213be="">Code</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the file’s HFS creator code.</span><!--end_enstr-->
+<span class="jpstr">
+ファイルのHFSクリエータコードを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Describing a Dictionary</span><!--end_enstr-->
+<span class="jpstr">
+辞書を記述する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1410799-description_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">description</code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A string that represents the contents of the dictionary, formatted as a property list.</span><!--end_enstr-->
+<span class="jpstr">
+辞書の内容を表す文字列、プロパティリストとして書式設定されます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1413282-descriptioninstringsfileformat_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">description<wbr data-v-01f7f080="">In<wbr data-v-01f7f080="">Strings<wbr data-v-01f7f080="">File<wbr data-v-01f7f080="">Format</wbr></wbr></wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A string that represents the contents of the dictionary, formatted in <code data-v-7fb764c1="">.strings</code> file format.</span><!--end_enstr-->
+<span class="jpstr">
+辞書の内容を表す文字列、<code data-v-7fb764c1="">.strings</code>ファイルフォーマットとして書式設定されます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1417665-descriptionwithlocale_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">description<wbr data-v-dac213be="">With<wbr data-v-dac213be="">Locale:</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a string object that represents the contents of the dictionary, formatted as a property list.</span><!--end_enstr-->
+<span class="jpstr">
+辞書の内容を表す文字列オブジェクトを返します、プロパティリストとして書式設定されます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsdictionary/1412690-descriptionwithlocale_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">description<wbr data-v-dac213be="">With<wbr data-v-dac213be="">Locale:<wbr data-v-dac213be="">indent:</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a string object that represents the contents of the dictionary, formatted as a property list.</span><!--end_enstr-->
+<span class="jpstr">
+辞書の内容を表す文字列オブジェクトを返します、プロパティリストとして書式設定されます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+</div><!----></section><section data-v-8c663d90="" data-v-2deaa168="" id="relationships" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">Relationships</span><!--end_enstr-->
+<span class="jpstr">
+関係
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Inherits From</span><!--end_enstr-->
+<span class="jpstr">
+継承元
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><ul data-v-4af8f78e="" class="relationships-list inline" data-v-9807b2e0=""><li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/objectivec/nsobject_language-objc.html" class="link"><code data-v-4af8f78e="">NSObject</code></a><!---->
+</li></ul></div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Conforms To</span><!--end_enstr-->
+<span class="jpstr">
+次に準拠
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><ul data-v-4af8f78e="" class="relationships-list column" data-v-9807b2e0="">
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/nscopying_language-objc.html" class="link"><code data-v-4af8f78e="">NSCopying</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/nsfastenumeration_language-objc.html" class="link"><code data-v-4af8f78e="">NSFast<wbr data-v-4af8f78e="">Enumeration</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/nsmutablecopying_language-objc.html" class="link"><code data-v-4af8f78e="">NSMutable<wbr data-v-4af8f78e="">Copying</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/nssecurecoding_language-objc.html" class="link"><code data-v-4af8f78e="">NSSecure<wbr data-v-4af8f78e="">Coding</wbr></code></a><!---->
+</li>
+</ul></div>
+</div>
+</div></section><section data-v-8c663d90="" data-v-63527a60="" data-v-2deaa168="" id="see-also" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">See Also</span><!--end_enstr-->
+<span class="jpstr">
+参照
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Basic Collections</span><!--end_enstr-->
+<span class="jpstr">
+基本コレクション
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsarray_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">NSArray</code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A static ordered collection of objects.</span><!--end_enstr-->
+<span class="jpstr">
+オブジェクトそれらからなる静的順序コレクション。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsmutablearray_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">NSMutable<wbr data-v-01f7f080="">Array</wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A dynamic ordered collection of objects.</span><!--end_enstr-->
+<span class="jpstr">
+オブジェクトそれらからなる動的順序コレクション。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsmutabledictionary_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">NSMutable<wbr data-v-01f7f080="">Dictionary</wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A dynamic collection of objects associated with unique keys.</span><!--end_enstr-->
+<span class="jpstr">
+特有のキーそれらと結び付けられたオブジェクトからなる動的コレクション。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsset_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">NSSet</code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A static unordered collection of unique objects.</span><!--end_enstr-->
+<span class="jpstr">
+特有なオブジェクトそれらからなる静的順番なしコレクション。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsmutableset_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">NSMutable<wbr data-v-01f7f080="">Set</wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A dynamic unordered collection of unique objects.</span><!--end_enstr-->
+<span class="jpstr">
+特有なオブジェクトそれらからなる動的順番なしコレクション。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+</div><!----></section></main>
+</div></div></div>
+<section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo"><nav class="footer-breadory"><a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a><section class="breadcrumbs"><ol class="breadcrumbs-list"></ol></section><div id="directorynav" class="directorynav">
+<div id="dn-cola" class="column">
+<h3><a href="/discover/">Discover</a></h3>
+<ul>
+<li><a href="/ios/">iOS</a></li>
+<li><a href="/ipados/">iPadOS</a></li>
+<li><a href="/macos/">macOS</a></li>
+<li><a href="/tvos/">tvOS</a></li>
+<li><a href="/watchos/">watchOS</a></li>
+<li><a href="/safari/">Safari and Web</a></li>
+<li><a href="/games/">Games</a></li>
+<li><a href="/business/">Business</a></li>
+<li><a href="/education/">Education</a></li>
+<li><a href="/wwdc/">WWDC</a></li>
+</ul>
+</div>
+<div id="dn-colb" class="column">
+<h3><a href="/design/">Design</a></h3>
+<ul>
+<li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
+<li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
+<span class="jpstr">
+リソース
+</span><!--end_jpstr-->
+</a></li>
+<li><a href="/videos/design/">Videos</a></li>
+<li><a href="/design/awards/">Apple Design Awards</a></li>
+<li><a href="/fonts/">Fonts</a></li>
+<li><a href="/accessibility/">Accessibility</a></li>
+<li><a href="/localization/"><span class="enstr">Localization</span><!--end_enstr-->
+<span class="jpstr">
+ローカライゼーション
+</span><!--end_jpstr-->
+</a></li>
+<li><a href="/accessories/">Accessories</a></li>
+</ul>
+</div>
+<div id="dn-colc" class="column">
+<h3><a href="/develop/">Develop</a></h3>
+<ul>
+<li><a href="/xcode/">Xcode</a></li>
+<li><a href="/swift/">Swift</a></li>
+<li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
+<li><a href="/testflight/">TestFlight</a></li>
+<li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
+<li><a href="/videos/">Videos</a></li>
+<li><a href="/download/">Downloads</a></li>
+</ul>
+</div>
+<div id="dn-cold" class="column">
+<h3><a href="/distribute/">Distribute</a></h3>
+<ul>
+<li><a href="/programs/">Developer Program</a></li>
+<li><a href="/app-store/">App Store</a></li>
+<li><a href="/app-store/review/">App Review</a></li>
+<li><a href="/macos/distribution/">Mac Software</a></li>
+<li><a href="/business/distribute/">Apps for Business</a></li>
+<li><a href="/safari/extensions/">Safari Extensions</a></li>
+<li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
+<li><a href="/softwarelicensing/">Trademark Licensing</a></li>
+</ul>
+</div>
+<div id="dn-cole" class="column">
+<h3><a href="/support/">Support</a></h3>
+<ul>
+<li><a href="/support/articles/">Articles</a></li>
+<li><a href="/forums/">Developer Forums</a></li>
+<li><a href="/bug-reporting/">Feedback &amp; Bug Reporting</a></li>
+<li><a href="/system-status/">System Status</a></li>
+<li><a href="/contact/">Contact Us</a></li>
+</ul>
+<h3><a href="/account/">Account</a></h3>
+<ul>
+<li><a href="/account/ios/certificate/">Certificates, Identifiers &amp; Profiles</a></li>
+<li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
+</ul>
+</div>
+</div></nav><div class="ac-gf-footer-legal">
+<div class="ac-gf-footer-news">To view the latest developer news, visit <a href="/news/">News and Updates</a>.</div>
+<div class="ac-gf-footer-language-dropdown-wrapper">
+<select id="footer-language-selector" class="footer-language-select" aria-label="Language Dropdown" autocomplete="off"><option value="https://developer.apple.com/" selected>English</option>
+<option value="https://developer.apple.com/cn/">简体中文</option>
+<option value="https://developer.apple.com/jp/">日本語</option>
+<option value="https://developer.apple.com/kr/">한국어</option></select> <span class="footer-language-select-icon icon icon-chevrondown" aria-hidden="true"></span>
+</div>
+<div class="ac-gf-footer-legal-copyright">Copyright © <span class="footer-current-year">2020</span> <a href="https://www.apple.com">Apple Inc.</a> All rights reserved.</div>
+<div class="ac-gf-footer-legal-links">
+<a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a> <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a> <a href="/terms/">License Agreements</a>
+</div>
+</div></footer></section><script src="../../tutorials/js/footer.js"></script>
+</body>
+</html>

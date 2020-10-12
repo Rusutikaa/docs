@@ -1,0 +1,1158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- link rel="icon" href="/favicon.ico" -->
+<link rel="mask-icon" href="/apple-logo.svg" color="#333333">
+<link rel="stylesheet" href="../../tutorials/css/_globalnav.css">
+<title>NSPersonNameComponentsFormatter | Apple Developer Documentation</title>
+<link href="../../tutorials/css/chunk-76d5c2b5.00c53891.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic.e358e85c.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css" rel="prefetch">
+<link href="../../tutorials/css/topic.69278f1e.css" rel="prefetch">
+<link href="../../tutorials/css/topic~tutorials-overview.1f93e025.css" rel="prefetch">
+<link href="../../tutorials/css/tutorials-overview.d4ff0b50.css" rel="prefetch">
+<link href="../../tutorials/css/welcome-experience-featured.0537f0f0.css" rel="prefetch">
+<link href="../../tutorials/css/welcome-experience-technologies.60068ae2.css" rel="prefetch">
+<link href="../../tutorials/js/chunk-2d0d3105.459bf725.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-2d21a016.b81cb311.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-503f1ed8.d26c4552.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-530f89ce.621e1d48.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-640db3b2.f8778ca5.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-76d5c2b5.092e3b8a.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic.6abe9458.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js" rel="prefetch">
+<link href="../../tutorials/js/topic.c6ec6b6c.js" rel="prefetch">
+<link href="../../tutorials/js/topic~tutorials-overview.467a8186.js" rel="prefetch">
+<link href="../../tutorials/js/tutorials-overview.d77f61ca.js" rel="prefetch">
+<link href="../../tutorials/js/welcome-experience-featured.04f663e2.js" rel="prefetch">
+<link href="../../tutorials/js/welcome-experience-technologies.56a372c1.js" rel="prefetch">
+<link href="../../tutorials/css/app.2a174a23.css" rel="preload" as="style">
+<link href="../../tutorials/js/app.2c558263.js" rel="preload" as="script">
+<link href="../../tutorials/js/chunk-vendors.c3b68236.js" rel="preload" as="script">
+<link href="../../tutorials/css/app.2a174a23.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../../tutorials/css/chunk-76d5c2b5.00c53891.css">
+<script charset="utf-8" src="../../tutorials/js/chunk-76d5c2b5.092e3b8a.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic.e358e85c.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic.6abe9458.js"></script>
+</head>
+<body>
+<div id="_omniture_top">
+<script>var s_account="awdappledeveloper"</script>
+</div>
+<a href="#main" id="skip-localnav">Skip Navigation</a><aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"><nav id="ac-globalnav" class="js no-touch" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions"><div class="ac-gn-content">
+<ul class="ac-gn-header">
+<li class="ac-gn-item ac-gn-menuicon">
+<label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true"><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span> </span><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span></span></label> <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open"><span class="ac-gn-menuanchor-label">Global Nav Open Menu</span> </a><a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close"><span class="ac-gn-menuanchor-label">Global Nav Close Menu</span></a>
+</li>
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+</ul>
+<div class="ac-gn-search-placeholder-container" role="search"><div class="ac-gn-search ac-gn-search-small"><a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a><div class="ac-gn-search-placeholder-bar">
+<div class="ac-gn-search-placeholder-input"><div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
+<div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
+<span class="ac-gn-search-placeholder">Search Developer</span>
+</div></div>
+<div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></div>
+</div></a></div></div>
+<ul class="ac-gn-list">
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-discover"><a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover"><span class="ac-gn-link-text">Discover</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-design"><a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design"><span class="ac-gn-link-text">Design</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-develop"><a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop"><span class="ac-gn-link-text">Develop</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-distribute"><a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute"><span class="ac-gn-link-text">Distribute</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport"><a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport"><span class="ac-gn-link-text">Support</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-account"><a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account"><span class="ac-gn-link-text">Account</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search"><a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a></li>
+</ul>
+<aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search"><div class="ac-gn-searchview-content">
+<div class="ac-gn-searchview-bar"><div class="ac-gn-searchview-bar-wrapper">
+<form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get"><div class="ac-gn-searchform-wrapper">
+<input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions"> <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button> <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search"><span class="ac-gn-searchform-reset-background"></span></button>
+</div></form>
+<button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></button>
+</div></div>
+<aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
+</div>
+<button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search"><span class="ac-gn-searchview-close-wrapper"><span class="ac-gn-searchview-close-left"></span> <span class="ac-gn-searchview-close-right"></span></span></button></aside>
+</div></nav><div class="ac-gn-blur"></div>
+<div id="ac-gn-curtain" class="ac-gn-curtain"></div>
+<div id="ac-gn-placeholder" class="ac-nav-placeholder"></div>
+<script src="../../tutorials/js/ac-globalnav.built.js"></script>
+<noscript>
+<style>.noscript {
+  font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
+  margin: 92px auto 140px auto;
+  text-align: center;
+  width: 980px;
+}
+
+.noscript-title {
+  color: #111;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -.003em;
+  line-height: 1.08365;
+  margin: 0 auto 54px auto;
+  width: 502px;
+}
+
+@media only screen and (max-width: 1068px) {
+  .noscript {
+    margin: 90px auto 120px auto;
+    width: 692px;
+  }
+
+  .noscript-title {
+    font-size: 40px;
+    letter-spacing: 0;
+    line-height: 1.1;
+    margin: 0 auto 45px auto;
+    width: 420px;
+  }
+}
+
+@media only screen and (max-width: 735px) {
+  .noscript {
+    margin: 45px auto 60px auto;
+    width: 87.5%;
+  }
+
+  .noscript-title {
+    font-size: 32px;
+    letter-spacing: .004em;
+    line-height: 1.125;
+    margin: 0 auto 35px auto;
+    max-width: 330px;
+    width: auto;
+  }
+}
+
+#loading-placeholder {
+  display: none;
+};</style>
+<div class="noscript">
+<h1 class="noscript-title">This page requires JavaScript.</h1>
+<p>Please turn on JavaScript in your browser and refresh the page to view its content.</p>
+</div>
+</noscript>
+<div data-v-0220a4c4="" id="app" class=""><div data-v-0220a4c4=""><div data-v-2deaa168="" class="doc-topic">
+<div data-v-3ceaa5df="" data-v-2deaa168="" class="localnav-container">
+<input data-v-3ceaa5df="" aria-hidden="true" id="localnav-menustate" type="checkbox" class="localnav-menustate"><div id="localnav-sticky-placeholder" class="css-sticky"></div>
+<nav data-v-3ceaa5df="" aria-label="API Reference" data-sticky="" id="localnav" role="navigation" class="localnav localnav-dark theme-dark medium-localnav-collapsible localnav-noborder localnav-scrim css-sticky"><div data-v-3ceaa5df="" class="localnav-wrapper">
+<div data-v-3ceaa5df="" class="referencenav">
+<div data-v-3ceaa5df="" class="localnav-background"></div>
+<div data-v-3ceaa5df="" class="localnav-content">
+<a data-v-3ceaa5df="" href="../../index.html" class="localnav-title">
+            Documentation
+          </a><div data-v-3ceaa5df="" class="localnav-menu">
+<a data-v-3ceaa5df="" href="#localnav-menustate" role="button" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Open Menu</span></a><a data-v-3ceaa5df="" href="#" role="button" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Close Menu</span></a><div data-v-3ceaa5df="" class="localnav-menu-tray">
+<ul data-v-72fd0d2c="" data-v-3ceaa5df="" aria-label="Breadcrumbs" class="localnav-menu-items">
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../documentation/foundation_language-objc.html" class="parent item router-link-active" data-v-23a2ae0d="">
+    Foundation
+  </a></li><!---->
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../documentation/foundation/data_formatting_language-objc.html" class="parent item" data-v-23a2ae0d="">
+    <span class="enstr">Data Formatting</span><!--end_enstr-->
+<span class="jpstr">
+データ書式設定
+</span><!--end_jpstr-->
+
+  </a></li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item">
+<span data-v-23a2ae0d="" class="current item">
+    NSPersonNameComponentsFormatter
+  </span><!---->
+</li>
+</ul>
+<ul data-v-3ceaa5df="" data-breadcrumbs-count="3" class="localnav-menu-items localnav-menu-settings">
+<li data-v-282336e0="" data-v-3ceaa5df="" class="localnav-menu-setting language-container" breadcrumbcount="3">
+<div data-v-282336e0="" class="language-toggle-container">
+<label data-v-282336e0="" for="language-toggle" class="language-toggle-label">
+      Language:
+    </label><select data-v-282336e0="" id="language-toggle" class="language-dropdown localnav-menu-link" style="width: 74px;"><option data-v-282336e0="" value="swift">
+        Swift
+      </option>
+<option data-v-282336e0="" value="occ">
+        Objective-C
+      </option></select>
+</div>
+<div data-v-282336e0="" class="language-list-container">
+<span data-v-282336e0="" class="localnav-menu-setting-label">
+      Language:
+    </span><ul data-v-282336e0="" class="language-list">
+<li data-v-282336e0="" class="language-list-item"><a data-v-282336e0="" href="../../documentation/foundation/personnamecomponentsformatter.html" class="localnav-menu-setting-link">
+          Swift
+        </a></li>
+<li data-v-282336e0="" class="language-list-item"><span data-v-282336e0="" data-language="occ" aria-current="page" class="current-language">
+          Objective-C
+        </span></li>
+</ul>
+</div>
+</li>
+<li data-v-2e9f4ea2="" data-v-3ceaa5df="" class="localnav-menu-setting">
+<label data-v-2e9f4ea2="" for="version-label" class="localnav-menu-setting-label">
+    API Changes:
+  </label><span data-v-2e9f4ea2=""><span class="enstr">None</span><!--end_enstr-->
+<span class="jpstr">
+なし
+</span><!--end_jpstr-->
+</span>
+</li><!---->
+
+</ul>
+</div>
+<div data-v-3ceaa5df="" class="localnav-actions"><div data-v-3ceaa5df="" aria-hidden="true" class="localnav-action localnav-action-menucta"><label data-v-3ceaa5df="" for="localnav-menustate" class="localnav-menucta"><span data-v-3ceaa5df="" class="localnav-menucta-chevron"></span></label></div></div>
+</div>
+</div>
+</div><!---->
+
+</div></nav><label data-v-3ceaa5df="" aria-hidden="true" for="localnav-menustate" id="localnav-curtain"></label>
+</div>
+<main data-v-2deaa168="" id="main" role="main" tabindex="0" class="main"><div data-v-4ba5af7c="" data-v-2deaa168="" class="topictitle">
+<span data-v-4ba5af7c="" class="eyebrow">Class</span><h1 data-v-4ba5af7c="" class="title">NSPerson<wbr data-v-4ba5af7c="">Name<wbr data-v-4ba5af7c="">Components<wbr data-v-4ba5af7c="">Formatter</wbr></wbr></wbr>
+</h1>
+</div>
+<div data-v-0253ce0e="" data-v-2deaa168="" class="row container">
+<div data-v-9807b2e0="" data-v-5ad0d458="" data-v-2deaa168="" class="col description large-9 medium-9 small-12" data-v-0253ce0e=""><!---->
+<div data-v-7ea0aa49="" data-v-aba749e6="" data-v-2deaa168="" class="abstract content" data-v-9807b2e0=""><span class="enstr">A formatter that provides localized representations of the components of a person’s name.</span><!--end_enstr-->
+<span class="jpstr">
+ある個人の名前の構成要素のローカライズされた表現を提供するフォーマッタ。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div>
+<div data-v-9807b2e0="" data-v-42fb6bac="" data-v-2deaa168="" class="col summary large-3 medium-3 small-12" data-v-0253ce0e=""><!---->
+<div data-v-e4237090="" data-v-fcdb795a="" data-v-2deaa168="" class="summary-section availability" role="complementary" aria-label="Availability" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-fcdb795a="" class="title" data-v-e4237090=""><span class="enstr">Availability</span><!--end_enstr-->
+<span class="jpstr">
+有効性
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-fcdb795a="" class="summary-list platform-list" data-v-e4237090="">
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="iOS 9.0+, Available on iOS 9.0 and later" title="Available on iOS 9.0 and later" data-v-e3899270="">
+  iOS 9.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="macOS 10.11+, Available on macOS 10.11 and later" title="Available on macOS 10.11 and later" data-v-e3899270="">
+  macOS 10.11+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="Mac Catalyst 13.0+, Available on Mac Catalyst 13.0 and later" title="Available on Mac Catalyst 13.0 and later" data-v-e3899270="">
+  Mac Catalyst 13.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="tvOS 9.0+, Available on tvOS 9.0 and later" title="Available on tvOS 9.0 and later" data-v-e3899270="">
+  tvOS 9.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="watchOS 2.0+, Available on watchOS 2.0 and later" title="Available on watchOS 2.0 and later" data-v-e3899270="">
+  watchOS 2.0+
+</span><!---->
+</li>
+</ul>
+</div>
+<div data-v-e4237090="" data-v-741142ba="" data-v-2deaa168="" class="summary-section frameworks" role="complementary" aria-label="Framework" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-741142ba="" class="title" data-v-e4237090=""><span class="enstr">Framework</span><!--end_enstr-->
+<span class="jpstr">
+フレームワーク
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-741142ba="" class="summary-list" data-v-e4237090=""><li data-v-e3899270="" data-v-741142ba="" class="summary-list-item" data-v-1450532d=""><span data-v-741142ba="" data-v-e3899270="" class="name">Foundation</span></li></ul>
+</div>
+<div data-v-e4237090="" data-v-2b96ab1a="" data-v-2deaa168="" class="summary-section on-this-page" data-v-9807b2e0=""><nav data-v-2b96ab1a="" data-v-e4237090="" aria-labelledby="on-this-page-title"><p data-v-1e0258b0="" data-v-2b96ab1a="" class="title" id="on-this-page-title" data-v-e4237090=""><span class="enstr">On This Page</span><!--end_enstr-->
+<span class="jpstr">
+この項には
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-2b96ab1a="" class="summary-list" data-v-e4237090="">
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/nspersonnamecomponentsformatter_language-objc.html#declaration" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Declaration</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/nspersonnamecomponentsformatter_language-objc.html#overview" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Overview</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/nspersonnamecomponentsformatter_language-objc.html#topics" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Topics</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/nspersonnamecomponentsformatter_language-objc.html#relationships" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Relationships</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/nspersonnamecomponentsformatter_language-objc.html#see-also" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">See Also</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+</ul></nav></div>
+</div>
+<div data-v-9807b2e0="" data-v-1e40f676="" data-v-2deaa168="" class="col primary-content large-9 medium-9 small-12" data-v-0253ce0e="">
+<section data-v-e932e1b8="" data-v-1e40f676="" id="declaration" class="declaration" data-v-9807b2e0=""><h2 data-v-e932e1b8=""><span class="enstr">Declaration</span><!--end_enstr-->
+<span class="jpstr">
+宣言
+</span><!--end_jpstr-->
+</h2>
+<div data-v-29bd318c="" data-v-e932e1b8="" class="declaration-group"><!---->
+<pre data-v-e0a7f756="" data-v-29bd318c="" class="source"><code data-v-e0a7f756=""><span data-v-c9e896f0="" data-v-e0a7f756="" class="token-keyword">@interface</span> <span data-v-c9e896f0="" data-v-e0a7f756="" class="token-identifier">NSPersonNameComponentsFormatter</span> : <a data-v-c9e896f0="" data-v-e0a7f756="" href="../../documentation/foundation/nsformatter_language-objc.html" class="type-identifier-link"><span data-v-c9e896f0="">NSFormatter</span></a></code></pre>
+</div><!---->
+</section><div data-v-7ea0aa49="" data-v-1e40f676="" class="content" data-v-9807b2e0="">
+<h2 id="overview"><span class="enstr">Overview</span><!--end_enstr-->
+<span class="jpstr">
+概要
+</span><!--end_jpstr-->
+</h2>
+<p><span class="enstr">Each locale has its own set of rules and conventions for how personal names are structured and represented. These rules vary widely across different locales in a several ways, including the sort and display order of given and family names, the use of salutations and honorifics, and other concerns related to the grammar, spelling, punctuation, and formatting. About the only thing that <em>is</em> consistent across all locales is that personal names are significant and meaningful. For this reason, names deserve careful and respectful treatment—perhaps more than any other kind of information your app interacts with.</span><!--end_enstr-->
+<span class="jpstr">
+各ロケールは、それ独自のひと揃いの規則と、どのように個人名が構造化され表現されるかに対する慣行を持ちます。それら規則は、異なるロケールに移れば幾つかの点で大きく変動します、それは名と家族名のソートと表示の順序、あいさつ句と敬称の使用、そして文法、綴り方、句読点、および書式設定に関するその他の懸念材料を含んで余す。ほぽ全ロケールに渡って首尾一貫<em>する</em>唯一の事柄は、個人名は重要で意味があるということです。この理由のために、名前は注意深く敬意を持った扱いに値します — おそらくあなたのアプリが交流する他のどんな種類の情報よりも。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">Formatters can be configured to represent names in a variety of styles, which are described in detail below.</span><!--end_enstr-->
+<span class="jpstr">
+フォーマッタは、名前をさまざまなスタイルで表すように構成設定されることができます、それは詳細に下で記述されます。
+</span><!--end_jpstr-->
+</p>
+<ul>
+<li><p>Default (<a href="../../documentation/foundation/nspersonnamecomponentsformatterstyle/nspersonnamecomponentsformatterstyledefault_language-objc.html" class=""><code data-v-7fb764c1="">NSPerson<wbr data-v-7fb764c1="">Name<wbr data-v-7fb764c1="">Components<wbr data-v-7fb764c1="">Formatter<wbr data-v-7fb764c1="">Style<wbr data-v-7fb764c1="">Default</wbr></wbr></wbr></wbr></wbr></code></a>)</p></li>
+<li><p>Short (<a href="../../documentation/foundation/nspersonnamecomponentsformatterstyle/nspersonnamecomponentsformatterstyleshort_language-objc.html" class=""><code data-v-7fb764c1="">NSPerson<wbr data-v-7fb764c1="">Name<wbr data-v-7fb764c1="">Components<wbr data-v-7fb764c1="">Formatter<wbr data-v-7fb764c1="">Style<wbr data-v-7fb764c1="">Short</wbr></wbr></wbr></wbr></wbr></code></a>)</p></li>
+<li><p>Long (<a href="../../documentation/foundation/nspersonnamecomponentsformatterstyle/nspersonnamecomponentsformatterstylelong_language-objc.html" class=""><code data-v-7fb764c1="">NSPerson<wbr data-v-7fb764c1="">Name<wbr data-v-7fb764c1="">Components<wbr data-v-7fb764c1="">Formatter<wbr data-v-7fb764c1="">Style<wbr data-v-7fb764c1="">Long</wbr></wbr></wbr></wbr></wbr></code></a>)</p></li>
+<li><p>Abbreviated (<a href="../../documentation/foundation/nspersonnamecomponentsformatterstyle/nspersonnamecomponentsformatterstyleabbreviated_language-objc.html" class=""><code data-v-7fb764c1="">NSPerson<wbr data-v-7fb764c1="">Name<wbr data-v-7fb764c1="">Components<wbr data-v-7fb764c1="">Formatter<wbr data-v-7fb764c1="">Style<wbr data-v-7fb764c1="">Abbreviated</wbr></wbr></wbr></wbr></wbr></code></a>)</p></li>
+</ul>
+<p><span class="enstr">When determining how to represent a name in a particular style, a formatter takes a number of factors into consideration, in order of priority:</span><!--end_enstr-->
+<span class="jpstr">
+名前を特定のスタイルにおいてどのように表すかを決定している場合、フォーマッタはいくつかの因子を、以下の優先度の順で考慮に入れます：
+</span><!--end_jpstr-->
+</p>
+<ol>
+<li><p><span class="enstr"><strong>Script derived behaviors</strong> Scripts may specify a strict sort or display order of given and family names, and the availability of styles.</span><!--end_enstr-->
+<span class="jpstr">
+<strong>書体から引き出される挙動</strong> 書体は、名および苗字の厳密ソートまたは表示順、そしてスタイルの利用可能性を指定するかもしれません。
+</span><!--end_jpstr-->
+</p></li>
+<li><p><span class="enstr"><strong>User specified preferences</strong> Users can enable and configure the display of short names, as well as whether or not to display nicknames when available. Users can also override the default sort and display order of given and family names for their current locale.</span><!--end_enstr-->
+<span class="jpstr">
+<strong>ユーザ指定の環境設定</strong> ユーザは短い名前の表示を可能におよび構成設定できます、利用可能な場合にニックネームを表示するかどうかだけでなく。ユーザはまた、名および苗字のそれらの現在のロケールに対する省略時のソートおよび表示の順序をオーバーライドできます。
+</span><!--end_jpstr-->
+</p></li>
+<li><p><span class="enstr"><strong>Locale derived defaults</strong> Locales specify a default sort and display order for given and family names.</span><!--end_enstr-->
+<span class="jpstr">
+<strong>ロケールから引き出される初期状態</strong> ロケールは名と苗字に対する省略時のソートおよび表示の順序を指定します。
+</span><!--end_jpstr-->
+</p></li>
+<li><p><span class="enstr"><strong>Developer specified configuration</strong> The style property value set for the <code data-v-7fb764c1="">NSPerson<wbr data-v-7fb764c1="">Name<wbr data-v-7fb764c1="">Components<wbr data-v-7fb764c1="">Formatter</wbr></wbr></wbr></code> object.</span><!--end_enstr-->
+<span class="jpstr">
+<strong>開発者指定の構成設定</strong> <code data-v-7fb764c1="">NSPerson<wbr data-v-7fb764c1="">Name<wbr data-v-7fb764c1="">Components<wbr data-v-7fb764c1="">Formatter</wbr></wbr></wbr></code>オブジェクトに設定されるスタイルプロパティ値。
+</span><!--end_jpstr-->
+</p></li>
+</ol>
+<p><span class="enstr">When the behavior specified in one factor conflicts with any other factors, the behavior specified by the factor with the most precedence is used. For example, the U.S. English (<code data-v-7fb764c1="">en-US</code>) locale specifies that names be displayed in “given name followed by the family name” (for example,“John Appleseed”). This behavior would be overridden if the user changed their system preferences to have names displayed as family name followed by given name (for example, “Appleseed, John”), because user-specified preferences take precedence over locale-derived defaults. Furthermore, if the name to be formatted were Japanese (for example, given name: “泰夫”, family name: “木田”), the behavior derived for the name’s script (CJK, for Chinese, Japanese, and Korean languages) would take precedence over any locale-derived defaults or user-specified preferences to have the name displayed as family name followed by given name (for example, “木田 泰夫”).</span><!--end_enstr-->
+<span class="jpstr">
+ある因子において指定された挙動が何か他の因子と衝突する場合、最も高い優先度をもつ因子によって指定された挙動が使用されます。例えば、U.S. English（<code data-v-7fb764c1="">en-US</code>）ロケールは、名前が “名に続けて苗字” で表示されることを指定します（例えば、“John Appleseed”）。この挙動は、もしユーザが彼らのシステム環境設定を変更して名前の表示を苗字に名が続くようにしたならばオーバーライドされるでしょう（例えば、“Appleseed, John”）、なぜならユーザ指定の環境設定はロケール由来の初期設定に優先するからです。さらに、書式設定される名前が日本語だったならば（例えば、名：“泰夫”、苗字：“木田”）、名前のもつ書体（中国語、日本語、そして朝鮮語に対するCJK）に対して導き出される挙動は、あらゆるロケール由来の初期設定またはユーザ指定の環境設定より優先して名前の表示を苗字に名が続くようにするでしょう（例えば、“木田 泰夫”）。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">These considerations extend to the availability of certain formatter styles as well. Because developer-specified configurations have the lowest precedence in determining behavior, the value set for the formatter’s style property can be invalidated if it’s not supported for the locale, user preferences, or script. If the specified style is not available, the next longest valid style is used. For example, a name in Arabic script (for example, “أحمد الراجحي”) does not support the Abbreviated style, so the Short style is used instead.</span><!--end_enstr-->
+<span class="jpstr">
+これらの配慮は、特定のフォーマッタスタイルの利用可能性にも同様に及びます。開発者指定の構成設定が最も低い優先度を挙動の決定において持つことから、フォーマッタのもつスタイルプロパティに対する値ひとそろいは、それがロケール、ユーザ環境設定、または書体にサポートされないならば無効にされます。指定されたスタイルが利用可能でないならば、次に長い有効なスタイルが使われます。例えば、Arabic書体におけるある名前（例えば、“أحمد الراجحي”）は、「Abbreviated（省略）」スタイルをサポートしません、それで「Short（短い）」スタイルが代わりに使われます。
+</span><!--end_jpstr-->
+</p>
+<aside data-v-c567d8a8="" aria-label="note" class="note"><p data-v-c567d8a8="" class="label"><span class="enstr">Note</span><!--end_enstr-->
+<span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+<p data-v-c567d8a8=""><span class="enstr">A name that contains more than one script (for example, given name: “John”, family name: “王”) is detected to have “Unknown” script, which has its own set of behaviors and characteristics.</span><!--end_enstr-->
+<span class="jpstr">
+１つ以上の書体を含む名前（例えば、名：“John”、苗字：“王”）は、それ独自のひとそろいの挙動と特徴を持つ、“Unknown（不明）” 書体を持つと検知されます。
+</span><!--end_jpstr-->
+</p></aside><h3 id="1661070"><span class="enstr">Styles</span><!--end_enstr-->
+<span class="jpstr">
+スタイル
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr"><code data-v-7fb764c1="">NSPerson<wbr data-v-7fb764c1="">Name<wbr data-v-7fb764c1="">Components<wbr data-v-7fb764c1="">Formatter</wbr></wbr></wbr></code> can be configured to format names in the following styles:</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">NSPerson<wbr data-v-7fb764c1="">Name<wbr data-v-7fb764c1="">Components<wbr data-v-7fb764c1="">Formatter</wbr></wbr></wbr></code>は、以下のスタイルで名前を書式設定するように構成設定されることができます：
+</span><!--end_jpstr-->
+</p>
+<dl>
+<dt><a href="../../documentation/foundation/nspersonnamecomponentsformatterstyle/nspersonnamecomponentsformatterstyledefault_language-objc.html" class=""><code data-v-7fb764c1="">NSPerson<wbr data-v-7fb764c1="">Name<wbr data-v-7fb764c1="">Components<wbr data-v-7fb764c1="">Formatter<wbr data-v-7fb764c1="">Style<wbr data-v-7fb764c1="">Default</wbr></wbr></wbr></wbr></wbr></code></a></dt>
+<dd><p><span class="enstr">The minimally necessary features for differentiation in a casual setting. Equivalent to <a href="../../documentation/foundation/nspersonnamecomponentsformatterstyle/nspersonnamecomponentsformatterstylemedium_language-objc.html" class=""><code data-v-7fb764c1="">NSPerson<wbr data-v-7fb764c1="">Name<wbr data-v-7fb764c1="">Components<wbr data-v-7fb764c1="">Formatter<wbr data-v-7fb764c1="">Style<wbr data-v-7fb764c1="">Medium</wbr></wbr></wbr></wbr></wbr></code></a>.</span><!--end_enstr-->
+<span class="jpstr">
+ふだんの設定における識別のために最小限必要な機能性。<a href="../../documentation/foundation/nspersonnamecomponentsformatterstyle/nspersonnamecomponentsformatterstylemedium_language-objc.html" class=""><code data-v-7fb764c1="">NSPerson<wbr data-v-7fb764c1="">Name<wbr data-v-7fb764c1="">Components<wbr data-v-7fb764c1="">Formatter<wbr data-v-7fb764c1="">Style<wbr data-v-7fb764c1="">Medium</wbr></wbr></wbr></wbr></wbr></code></a>に相当します。
+</span><!--end_jpstr-->
+</p></dd>
+<dt><a href="../../documentation/foundation/nspersonnamecomponentsformatterstyle/nspersonnamecomponentsformatterstyleshort_language-objc.html" class=""><code data-v-7fb764c1="">NSPerson<wbr data-v-7fb764c1="">Name<wbr data-v-7fb764c1="">Components<wbr data-v-7fb764c1="">Formatter<wbr data-v-7fb764c1="">Style<wbr data-v-7fb764c1="">Short</wbr></wbr></wbr></wbr></wbr></code></a></dt>
+<dd><p><span class="enstr">Relies on user preferences and language defaults to display shortened form appropriate for display in space-constrained settings.</span><!--end_enstr-->
+<span class="jpstr">
+ユーザ環境設定と言語初期値を当てにして、空間抑制設定における表示に適切な短縮形を表示します。
+</span><!--end_jpstr-->
+</p></dd>
+<dt><a href="../../documentation/foundation/nspersonnamecomponentsformatterstyle/nspersonnamecomponentsformatterstylelong_language-objc.html" class=""><code data-v-7fb764c1="">NSPerson<wbr data-v-7fb764c1="">Name<wbr data-v-7fb764c1="">Components<wbr data-v-7fb764c1="">Formatter<wbr data-v-7fb764c1="">Style<wbr data-v-7fb764c1="">Long</wbr></wbr></wbr></wbr></wbr></code></a></dt>
+<dd><p><span class="enstr">The fully qualified name complete with all known components.</span><!--end_enstr-->
+<span class="jpstr">
+全ての既知の構成要素が備わっている完全修飾名。
+</span><!--end_jpstr-->
+</p></dd>
+<dt><a href="../../documentation/foundation/nspersonnamecomponentsformatterstyle/nspersonnamecomponentsformatterstyleabbreviated_language-objc.html" class=""><code data-v-7fb764c1="">NSPerson<wbr data-v-7fb764c1="">Name<wbr data-v-7fb764c1="">Components<wbr data-v-7fb764c1="">Formatter<wbr data-v-7fb764c1="">Style<wbr data-v-7fb764c1="">Abbreviated</wbr></wbr></wbr></wbr></wbr></code></a></dt>
+<dd><p><span class="enstr">The maximally abbreviated form of a name.</span><!--end_enstr-->
+<span class="jpstr">
+ある名前の最大限に省略された形式。
+</span><!--end_jpstr-->
+</p></dd>
+</dl>
+<figure data-v-7bf080cc="" id="2557019"><figcaption data-v-513cf297="" class="caption" data-v-7bf080cc=""><span class="enstr"><strong data-v-513cf297="">Table 1</strong>&nbsp;Name components used to demonstrate the display of each style for various names and locales.</span><!--end_enstr-->
+<span class="jpstr">
+<strong data-v-513cf297="">表 1</strong>&nbsp;各スタイルの表示を種々の名前とロケールに対して実演するために使われる名前構成要素。
+</span><!--end_jpstr-->
+ </figcaption><div data-v-4906e9b4="" class="table-wrapper" data-v-7bf080cc=""><table data-v-4906e9b4="">
+<thead data-v-4906e9b4=""><tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="col"><p data-v-4906e9b4=""></p></th>
+<th data-v-4906e9b4="" scope="col"><p data-v-4906e9b4=""><code data-v-7fb764c1="" data-v-4906e9b4="">name<wbr data-v-7fb764c1="">Prefix</wbr></code></p></th>
+<th data-v-4906e9b4="" scope="col"><p data-v-4906e9b4=""><code data-v-7fb764c1="" data-v-4906e9b4="">given<wbr data-v-7fb764c1="">Name</wbr></code></p></th>
+<th data-v-4906e9b4="" scope="col"><p data-v-4906e9b4=""><code data-v-7fb764c1="" data-v-4906e9b4="">middle<wbr data-v-7fb764c1="">Name</wbr></code></p></th>
+<th data-v-4906e9b4="" scope="col"><p data-v-4906e9b4=""><code data-v-7fb764c1="" data-v-4906e9b4="">family<wbr data-v-7fb764c1="">Name</wbr></code></p></th>
+<th data-v-4906e9b4="" scope="col"><p data-v-4906e9b4=""><code data-v-7fb764c1="" data-v-4906e9b4="">name<wbr data-v-7fb764c1="">Suffix</wbr></code></p></th>
+<th data-v-4906e9b4="" scope="col"><p data-v-4906e9b4=""><code data-v-7fb764c1="" data-v-4906e9b4=""><span class="enstr">nickname</span><!--end_enstr-->
+<span class="jpstr">
+ニックネーム
+</span><!--end_jpstr-->
+</code></p></th>
+</tr></thead>
+<tbody data-v-4906e9b4="">
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row">
+<p data-v-4906e9b4="">Arabic</p>
+<p data-v-4906e9b4=""><code data-v-7fb764c1="" data-v-4906e9b4="">(ar-SA)</code></p>
+</th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">.د</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">أحمد</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""></p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">محمدالمصري</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""></p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""></p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row">
+<p data-v-4906e9b4="">Chinese</p>
+<p data-v-4906e9b4=""><code data-v-7fb764c1="" data-v-4906e9b4="">(zh-Hans)</code></p>
+</th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">物理学博士</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">振宁</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""></p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">杨</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">先生</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""></p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row">
+<p data-v-4906e9b4="">English</p>
+<p data-v-4906e9b4=""><code data-v-7fb764c1="" data-v-4906e9b4="">(en-US)</code></p>
+</th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">Dr.</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">Jonathan</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">Maple</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">Appleseed</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">Esq.</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">Johnny</p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row">
+<p data-v-4906e9b4="">French</p>
+<p data-v-4906e9b4=""><code data-v-7fb764c1="" data-v-4906e9b4="">(fr-FR)</code></p>
+</th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">Père</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">Jean-Philippe</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""></p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">de Zélicourt</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""></p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">JP</p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row">
+<p data-v-4906e9b4="">German</p>
+<p data-v-4906e9b4=""><code data-v-7fb764c1="" data-v-4906e9b4="">(de-DE)</code></p>
+</th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">Dr. med.</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">Max</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""></p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">Mustermann</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">junior, M.A.</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""></p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row">
+<p data-v-4906e9b4="">Hindi</p>
+<p data-v-4906e9b4=""><code data-v-7fb764c1="" data-v-4906e9b4="">(hi-IN)</code></p>
+</th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">डॉ.</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">रिय</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""></p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">साहिल</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""></p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""></p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row">
+<p data-v-4906e9b4="">Japanese</p>
+<p data-v-4906e9b4=""><code data-v-7fb764c1="" data-v-4906e9b4="">(ja-JP)</code></p>
+</th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""></p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">泰夫</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""></p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">木田</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">先生</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""></p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row">
+<p data-v-4906e9b4="">Spanish</p>
+<p data-v-4906e9b4=""><code data-v-7fb764c1="" data-v-4906e9b4="">(es-ES)</code></p>
+</th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">Dr.</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">José Ramiro</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""></p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">Martín González de Rivera</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">júnior, PhD</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">Ramiro</p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row">
+<p data-v-4906e9b4="">Thai</p>
+<p data-v-4906e9b4=""><code data-v-7fb764c1="" data-v-4906e9b4="">(th-TH)</code></p>
+</th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">ฯพณฯ</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">สมชาย</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">ปีเตอร์</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">รัตนเรืองรองบวรทิพย์</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""></p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""></p></td>
+</tr>
+</tbody>
+</table></div></figure><h4 id="1661099">Default</h4>
+<p><span class="enstr">The Default, or Medium, style presents names in a way that is suitable for most contexts. It uses the given and family names, as well as a nickname, if provided and enabled by the user in System Preferences.</span><!--end_enstr-->
+<span class="jpstr">
+Default（初期状態）、またはMedium（中）スタイルは、名前を、最も文脈に適する方法で提示します。それは名および苗字を使います、それだけでなくニックネームも、もしユーザによってシステム環境設定において提供されて利用可能にされるならば。
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="2557021"><div data-v-4906e9b4="" class="table-wrapper" data-v-7bf080cc=""><table data-v-4906e9b4="">
+<thead data-v-4906e9b4=""><tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="col"><p data-v-4906e9b4=""></p></th>
+<th data-v-4906e9b4="" scope="col"><p data-v-4906e9b4="">Default style</p></th>
+</tr></thead>
+<tbody data-v-4906e9b4="">
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">Arabic (ar-SA)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">أحمد محمﺩﺍلمصﺭﻱ</p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">Chinese (zh-Hans)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">杨振宁</p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">English (en-US)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">Jonathan Appleseed</p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">French (fr-FR)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">Jean-Philippe de Zélicourt</p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">German (de-DE)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">Max Mustermann</p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">Hindi (hi-IN)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">रिय साहिल</p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">Japanese (ja-JP)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">木田泰夫</p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">Spanish (es-ES)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">José Ramiro Martín González de Rivera</p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">Thai (th-TH)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">สมชาย รัตนเรืองรอง บวรทิพย์</p></td>
+</tr>
+</tbody>
+</table></div></figure><h4 id="1661119">Short</h4>
+<p><span class="enstr">The Short style offers an alternative display method for names whose default representation may exceed a certain length constraint. It is only available if the user has enabled “Short Names” in System Preferences, and only for names with a script that supports Short style. Otherwise, a formatter configured to display with Short style is displayed with Medium style instead.</span><!--end_enstr-->
+<span class="jpstr">
+Short（短）スタイルは、ある代替の表示方法を、省略時の表現が特定の長さ制約を超えるかもしれない名前に対して提案します。それは、ユーザが “Short Names” をシステム環境設定において有効にする場合にのみ、そしてShortスタイルをサポートする書体を持つ名前に対してのみ利用可能です。そうでなければ、Shortスタイルで表示するよう構成設定されるフォーマッタは代わりにMediumスタイルで表示されます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">If a user has enabled the use of short names, the user can choose from one of four variations:</span><!--end_enstr-->
+<span class="jpstr">
+あるユーザがショートネームの利用を可能にするならば、そのユーザは４つの異体の１つから選べます：
+</span><!--end_jpstr-->
+</p>
+<ul>
+<li><p><span class="enstr">Given Name - Family Initial</span><!--end_enstr-->
+<span class="jpstr">
+名 - 姓頭文字
+</span><!--end_jpstr-->
+</p></li>
+<li><p><span class="enstr">Family Name - Given Initial</span><!--end_enstr-->
+<span class="jpstr">
+姓 - 名頭文字
+</span><!--end_jpstr-->
+</p></li>
+<li><p><span class="enstr">Given Name Only</span><!--end_enstr-->
+<span class="jpstr">
+名だけ
+</span><!--end_jpstr-->
+</p></li>
+<li><p><span class="enstr">Family Name Only</span><!--end_enstr-->
+<span class="jpstr">
+姓だけ
+</span><!--end_jpstr-->
+</p></li>
+</ul>
+<p><span class="enstr">Short style is not available for names in CJK script and is restricted to Given Name Only or Family Name Only for names in Arabic or Devanagari script. If the specified Short style is unavailable, the Medium style is used instead.</span><!--end_enstr-->
+<span class="jpstr">
+Shortスタイルは、CJK書体での名前に対しては利用可能でありません、そしてアラビア語またはデーヴァナーガリー書体での名前に対しては「名のみ」または「姓のみ」に制限されます。指定されたShortスタイルが利用可能でないならば、Mediumスタイルが代わりに使われます。
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="2557023"><div data-v-4906e9b4="" class="table-wrapper" data-v-7bf080cc=""><table data-v-4906e9b4="">
+<thead data-v-4906e9b4=""><tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="col"><p data-v-4906e9b4=""></p></th>
+<th data-v-4906e9b4="" scope="col"><p data-v-4906e9b4=""><span class="enstr">Given Name - Family Initial</span><!--end_enstr-->
+<span class="jpstr">
+名 - 姓頭文字
+</span><!--end_jpstr-->
+</p></th>
+<th data-v-4906e9b4="" scope="col"><p data-v-4906e9b4=""><span class="enstr">Family Name - Given Initial</span><!--end_enstr-->
+<span class="jpstr">
+姓 - 名頭文字
+</span><!--end_jpstr-->
+</p></th>
+<th data-v-4906e9b4="" scope="col"><p data-v-4906e9b4=""><span class="enstr">Given Name Only</span><!--end_enstr-->
+<span class="jpstr">
+名だけ
+</span><!--end_jpstr-->
+</p></th>
+<th data-v-4906e9b4="" scope="col"><p data-v-4906e9b4=""><span class="enstr">Family Name Only</span><!--end_enstr-->
+<span class="jpstr">
+姓だけ
+</span><!--end_jpstr-->
+</p></th>
+</tr></thead>
+<tbody data-v-4906e9b4="">
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">Arabic (ar-SA)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""><em data-v-4906e9b4="">N/A</em></p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""><em data-v-4906e9b4="">N/A</em></p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">أحمد</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">محمﺩﺍلمصﺭﻱ</p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">Chinese (zh-Hans)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""><em data-v-4906e9b4="">N/A</em></p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""><em data-v-4906e9b4="">N/A</em></p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""><em data-v-4906e9b4="">N/A</em></p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""><em data-v-4906e9b4="">N/A</em></p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">English (en-US)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">Jonathan A</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">J Appleseed</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">Jonathan</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">Appleseed</p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">French (fr-FR)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">Jean-Philippe d</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">J de Zélicourt</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">Jean-Philippe</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">de Zélicourt</p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">German (de-DE)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">Max M</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">M Mustermann</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">Max</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">Mustermann</p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">Hindi (hi-IN)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""><em data-v-4906e9b4="">N/A</em></p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""><em data-v-4906e9b4="">N/A</em></p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">रिय</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">साहिल</p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">Japanese (ja-JP)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""><em data-v-4906e9b4="">N/A</em></p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""><em data-v-4906e9b4="">N/A</em></p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""><em data-v-4906e9b4="">N/A</em></p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""><em data-v-4906e9b4="">N/A</em></p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">Spanish (es-ES)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">José Ramiro M</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">J Martín González de Rivera</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">José Ramiro</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">Martín González de Rivera</p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">Thai (th-TH)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">สมชาย ร</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">ส รัตนเรืองรองบวรทิพย์</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">สมชาย</p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">รัตนเรืองรองบวรทิพย์</p></td>
+</tr>
+</tbody>
+</table></div></figure><aside data-v-c567d8a8="" aria-label="important" class="important"><p data-v-c567d8a8="" class="label"><span class="enstr">Important</span><!--end_enstr-->
+<span class="jpstr">
+重要
+</span><!--end_jpstr-->
+</p>
+<p data-v-c567d8a8=""><span class="enstr"><code data-v-7fb764c1="" data-v-c567d8a8="">NSPerson<wbr data-v-7fb764c1="">Name<wbr data-v-7fb764c1="">Components<wbr data-v-7fb764c1="">Formatter</wbr></wbr></wbr></code> does not currently account for prepositional particles. Representations using the Short style that specify a family name initial naively use the first letter unit of the particle as the initial.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="" data-v-c567d8a8="">NSPerson<wbr data-v-7fb764c1="">Name<wbr data-v-7fb764c1="">Components<wbr data-v-7fb764c1="">Formatter</wbr></wbr></wbr></code>は、現在は冠数詞について理解をしません。Shortスタイルを使っている表現で姓頭文字を指定するものは、愚直に不変化詞の最初のレターユニット（表音文字単位）を頭文字として使います。
+</span><!--end_jpstr-->
+</p></aside><h4 id="1661138">Long</h4>
+<p><span class="enstr">The Long style provides the most explicit representation of names. It uses all available name components, with the exception of nickname.</span><!--end_enstr-->
+<span class="jpstr">
+Long（長）スタイルは、名前の最も率直な表現を提供します。それはすべての利用可能な名前構成要素を使います、ニックネームを除いて。
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="2557024"><div data-v-4906e9b4="" class="table-wrapper" data-v-7bf080cc=""><table data-v-4906e9b4="">
+<thead data-v-4906e9b4=""><tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="col"><p data-v-4906e9b4=""></p></th>
+<th data-v-4906e9b4="" scope="col"><p data-v-4906e9b4="">Long style</p></th>
+</tr></thead>
+<tbody data-v-4906e9b4="">
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">Arabic (ar-SA)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">ﺩ. أحمد محمﺩﺍلمصﺭﻱ</p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">Chinese (zh-Hans)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">物理学博士杨振宁先生</p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">English (en-US)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">Dr. Jonathan Maple Appleseed Esq.</p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">French (fr-FR)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">Père Jean-Philippe de Zélicourt</p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">German (de-DE)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">Dr. med. Max Mustermann junior, M.A.</p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">Hindi (hi-IN)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">डॉ. रिय साहिल</p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">Japanese (ja-JP)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">木田泰夫先生</p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">Spanish (es-ES)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">Dr. José Ramiro Martín González de Rivera júnior, PhD</p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">Thai (th-TH)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">ฯพณฯ สมชาย ปีเตอร์ รัตนเรืองรอง บวรทิพย์</p></td>
+</tr>
+</tbody>
+</table></div></figure><h4 id="1661155">Abbreviated</h4>
+<p><span class="enstr">The Abbreviated style offers the most compact representation of names, similar to a monogram.</span><!--end_enstr-->
+<span class="jpstr">
+Abbreviated（省略）スタイルは、モノグラムのような、名前の最も簡潔な表現を提案します。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">Abbreviated style is supported for names in several scripts, with the following general characteristics:</span><!--end_enstr-->
+<span class="jpstr">
+Abbreviatedスタイルは、いくつかの書体での名前によってサポートされます、以下の一般的な特徴を持ちます：
+</span><!--end_jpstr-->
+</p>
+<ul>
+<li><p><span class="enstr">For names in Cyrillic, Greek, or Latin script, the first characters of <code data-v-7fb764c1="">given<wbr data-v-7fb764c1="">Name</wbr></code>, <code data-v-7fb764c1="">middle<wbr data-v-7fb764c1="">Name</wbr></code>, and <code data-v-7fb764c1="">family<wbr data-v-7fb764c1="">Name</wbr></code> may be used.</span><!--end_enstr-->
+<span class="jpstr">
+キリル語、ギリシャ語、またはラテン語書体での名前に対して、<code data-v-7fb764c1="">given<wbr data-v-7fb764c1="">Name</wbr></code>、<code data-v-7fb764c1="">middle<wbr data-v-7fb764c1="">Name</wbr></code>、そして<code data-v-7fb764c1="">family<wbr data-v-7fb764c1="">Name</wbr></code>の最初の表意文字が使われるかもしれません。
+</span><!--end_jpstr-->
+</p></li>
+<li><p><span class="enstr">For names in Chinese or Japanese script, <code data-v-7fb764c1="">family<wbr data-v-7fb764c1="">Name</wbr></code> may be used. If <code data-v-7fb764c1="">family<wbr data-v-7fb764c1="">Name</wbr></code> is too long, or if the family name is <code data-v-7fb764c1="">nil</code>, the Short or Medium style may be used instead.</span><!--end_enstr-->
+<span class="jpstr">
+中国語または日本語書体での名前に対して、<code data-v-7fb764c1="">family<wbr data-v-7fb764c1="">Name</wbr></code>が使われるかもしれません。<code data-v-7fb764c1="">family<wbr data-v-7fb764c1="">Name</wbr></code>が長すぎるならば、または姓が<code data-v-7fb764c1="">nil</code>ならば、ShortまたはMediumスタイルが代わりに使われるかもしれません。
+</span><!--end_jpstr-->
+</p></li>
+<li><p><span class="enstr">For names in Korean script, <code data-v-7fb764c1="">given<wbr data-v-7fb764c1="">Name</wbr></code> may be used. If <code data-v-7fb764c1="">given<wbr data-v-7fb764c1="">Name</wbr></code> is too long, the first character of <code data-v-7fb764c1="">given<wbr data-v-7fb764c1="">Name</wbr></code> may be used. If <code data-v-7fb764c1="">given<wbr data-v-7fb764c1="">Name</wbr></code> is <code data-v-7fb764c1="">nil</code>, the <code data-v-7fb764c1="">family<wbr data-v-7fb764c1="">Name</wbr></code> may be used instead.</span><!--end_enstr-->
+<span class="jpstr">
+朝鮮語書体での名前に対して、<code data-v-7fb764c1="">given<wbr data-v-7fb764c1="">Name</wbr></code>が使われるかもしれません。<code data-v-7fb764c1="">given<wbr data-v-7fb764c1="">Name</wbr></code>が長すぎるならば、<code data-v-7fb764c1="">given<wbr data-v-7fb764c1="">Name</wbr></code>の最初の表意文字が使われるかもしれません。<code data-v-7fb764c1="">given<wbr data-v-7fb764c1="">Name</wbr></code>が<code data-v-7fb764c1="">nil</code>ならば、<code data-v-7fb764c1="">family<wbr data-v-7fb764c1="">Name</wbr></code>が代わりに使われるかもしれません。
+</span><!--end_jpstr-->
+</p></li>
+<li><p><span class="enstr">For names in Bengali, Devanagari, Gujarati, Gurmukhi, Kannada, Malayalam, Oriya, Sinhala, Tamil, Telugu, Tibetan, or Thai script, the first character of <code data-v-7fb764c1="">given<wbr data-v-7fb764c1="">Name</wbr></code> may be used. If <code data-v-7fb764c1="">given<wbr data-v-7fb764c1="">Name</wbr></code> is <code data-v-7fb764c1="">nil</code>, the first character of <code data-v-7fb764c1="">family<wbr data-v-7fb764c1="">Name</wbr></code> may be used instead.</span><!--end_enstr-->
+<span class="jpstr">
+ベンガル語、デーヴァナーガリー、グジャラート語、グルムキー文字、カンナダ語、マラヤーラム語、オリヤー語、シンハラ語、タミル語、テルグ語、チベット語、またはタイ語書体での名前に対して、<code data-v-7fb764c1="">given<wbr data-v-7fb764c1="">Name</wbr></code>の最初の表意文字が使われるかもしれません。<code data-v-7fb764c1="">given<wbr data-v-7fb764c1="">Name</wbr></code>が<code data-v-7fb764c1="">nil</code>ならば、<code data-v-7fb764c1="">family<wbr data-v-7fb764c1="">Name</wbr></code>の最初の表意文字が代わりに使われるかもしれません。
+</span><!--end_jpstr-->
+</p></li>
+<li><p><span class="enstr">For names that contain more than one script, the abbreviated style may use the <code data-v-7fb764c1="">family<wbr data-v-7fb764c1="">Name</wbr></code>, <code data-v-7fb764c1="">given<wbr data-v-7fb764c1="">Name</wbr></code>, or the first characters of <code data-v-7fb764c1="">given<wbr data-v-7fb764c1="">Name</wbr></code> and/or <code data-v-7fb764c1="">family<wbr data-v-7fb764c1="">Name</wbr></code>.</span><!--end_enstr-->
+<span class="jpstr">
+１つ以上の書体を含む名前に対して、省略されたスタイルは<code data-v-7fb764c1="">family<wbr data-v-7fb764c1="">Name</wbr></code>、<code data-v-7fb764c1="">given<wbr data-v-7fb764c1="">Name</wbr></code>を、または<code data-v-7fb764c1="">given<wbr data-v-7fb764c1="">Name</wbr></code>および／または<code data-v-7fb764c1="">family<wbr data-v-7fb764c1="">Name</wbr></code>の最初の表意文字を使うかもしれません。
+</span><!--end_jpstr-->
+</p></li>
+</ul>
+<p><span class="enstr">If the Abbreviated style is unavailable, the Short style is used instead—unless that too is unsupported, in which case the Medium style is used instead.</span><!--end_enstr-->
+<span class="jpstr">
+Abbreviatedスタイルが利用可能でないならば、Shortスタイルが代わりに使われます — それがまたサポートされない場合を除いて、その場合にはMediumスタイルが代わりに使われます。
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="2557026"><div data-v-4906e9b4="" class="table-wrapper" data-v-7bf080cc=""><table data-v-4906e9b4="">
+<thead data-v-4906e9b4=""><tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="col"><p data-v-4906e9b4=""></p></th>
+<th data-v-4906e9b4="" scope="col"><p data-v-4906e9b4="">Abbreviated style</p></th>
+</tr></thead>
+<tbody data-v-4906e9b4="">
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">Arabic (ar-SA)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""><em data-v-4906e9b4="">N/A</em></p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">Chinese (zh-Hans)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">杨</p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">English (en-US)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">JMA</p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">French (fr-FR)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">Jd</p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">German (de-DE)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">MM</p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">Hindi (hi-IN)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">मि</p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">Japanese (ja-JP)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">木田</p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">Spanish (es-ES)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">JM</p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<th data-v-4906e9b4="" scope="row"><p data-v-4906e9b4="">Thai (th-TH)</p></th>
+<td data-v-4906e9b4=""><p data-v-4906e9b4="">ส</p></td>
+</tr>
+</tbody>
+</table></div></figure><aside data-v-c567d8a8="" aria-label="important" class="important"><p data-v-c567d8a8="" class="label"><span class="enstr">Important</span><!--end_enstr-->
+<span class="jpstr">
+重要
+</span><!--end_jpstr-->
+</p>
+<p data-v-c567d8a8=""><span class="enstr"><code data-v-7fb764c1="" data-v-c567d8a8="">NSPerson<wbr data-v-7fb764c1="">Name<wbr data-v-7fb764c1="">Components<wbr data-v-7fb764c1="">Formatter</wbr></wbr></wbr></code> doesn’t currently account for prepositional particles or compound names. Representations using the Abbreviated style uses the first letter unit of each name component, regardless.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="" data-v-c567d8a8="">NSPerson<wbr data-v-7fb764c1="">Name<wbr data-v-7fb764c1="">Components<wbr data-v-7fb764c1="">Formatter</wbr></wbr></wbr></code>は、現在は冠数詞または複合名について理解をしません。Abbreviatedスタイルを使っている表現は、おかまいなしに、各名前構成要素の最初の表音文字単位を使います。
+</span><!--end_jpstr-->
+</p></aside>
+</div>
+</div>
+</div>
+<section data-v-8c663d90="" data-v-63527a60="" data-v-2deaa168="" id="topics" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">Topics</span><!--end_enstr-->
+<span class="jpstr">
+話題
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Configuring Formatter Behavior</span><!--end_enstr-->
+<span class="jpstr">
+フォーマッタ挙動を構成設定する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nspersonnamecomponentsformatter/1408260-style_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">style</code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The formatting style of the receiver.</span><!--end_enstr-->
+<span class="jpstr">
+レシーバの書式設定スタイル。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nspersonnamecomponentsformatter/1408242-phonetic_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">phonetic</code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A Boolean value that specifies whether the receiver should use only the phonetic representations of name components. <span><code data-v-7fb764c1="">NO</code></span> by default.</span><!--end_enstr-->
+<span class="jpstr">
+あるブール値、それはレシーバが名前構成要素の発音に関する表現のみを使うべきかどうかを指定します。省略時では<span><code data-v-7fb764c1="">NO</code></span>。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Converting Between Person Name Components and Strings</span><!--end_enstr-->
+<span class="jpstr">
+個人名構成要素と文字列の間で変換する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nspersonnamecomponentsformatter/1408258-localizedstringfrompersonnamecom_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">+ </span><span data-v-dac213be="" class="identifier">localized<wbr data-v-dac213be="">String<wbr data-v-dac213be="">From<wbr data-v-dac213be="">Person<wbr data-v-dac213be="">Name<wbr data-v-dac213be="">Components:<wbr data-v-dac213be="">style:<wbr data-v-dac213be="">options:</wbr></wbr></wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a string formatted for a given <code data-v-7fb764c1="">NSPerson<wbr data-v-7fb764c1="">Name<wbr data-v-7fb764c1="">Components</wbr></wbr></code> object using the provided style and options.</span><!--end_enstr-->
+<span class="jpstr">
+与えられた<code data-v-7fb764c1="">NSPerson<wbr data-v-7fb764c1="">Name<wbr data-v-7fb764c1="">Components</wbr></wbr></code>オブジェクトに対して書式設定される文字列を返します、提供されたスタイルとオブジェクトを使います。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nspersonnamecomponentsformatter/1408243-stringfrompersonnamecomponents_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">string<wbr data-v-dac213be="">From<wbr data-v-dac213be="">Person<wbr data-v-dac213be="">Name<wbr data-v-dac213be="">Components:</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a string formatted for a given <code data-v-7fb764c1="">NSPerson<wbr data-v-7fb764c1="">Name<wbr data-v-7fb764c1="">Components</wbr></wbr></code> object.</span><!--end_enstr-->
+<span class="jpstr">
+与えられた<code data-v-7fb764c1="">NSPerson<wbr data-v-7fb764c1="">Name<wbr data-v-7fb764c1="">Components</wbr></wbr></code>オブジェクトに対して書式設定された文字列を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nspersonnamecomponentsformatter/1408241-annotatedstringfrompersonnamecom_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">annotated<wbr data-v-dac213be="">String<wbr data-v-dac213be="">From<wbr data-v-dac213be="">Person<wbr data-v-dac213be="">Name<wbr data-v-dac213be="">Components:</wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an attributed string formatted for a given <code data-v-7fb764c1="">NSPerson<wbr data-v-7fb764c1="">Name<wbr data-v-7fb764c1="">Components</wbr></wbr></code> object, with attribute annotations for each component.</span><!--end_enstr-->
+<span class="jpstr">
+ある書式設定された属性付き文字列を、ある与えられた<code data-v-7fb764c1="">NSPerson<wbr data-v-7fb764c1="">Name<wbr data-v-7fb764c1="">Components</wbr></wbr></code>オブジェクトに対して返します、各構成要素に対して属性注釈をもちます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nspersonnamecomponentsformatter/1642979-personnamecomponentsfromstring_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">person<wbr data-v-dac213be="">Name<wbr data-v-dac213be="">Components<wbr data-v-dac213be="">From<wbr data-v-dac213be="">String:</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a person name components object from a given string.</span><!--end_enstr-->
+<span class="jpstr">
+ある与えられた文字列から個人名構成要素オブジェクトを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nspersonnamecomponentsformatter/1408262-getobjectvalue_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">get<wbr data-v-dac213be="">Object<wbr data-v-dac213be="">Value:<wbr data-v-dac213be="">for<wbr data-v-dac213be="">String:<wbr data-v-dac213be="">error<wbr data-v-dac213be="">Description:</wbr></wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns by reference a person name components object after creating it from a given string.</span><!--end_enstr-->
+<span class="jpstr">
+ある個人名構成要素オブジェクトをそれをある与えられた文字列から作成した後に参照によって返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Constants</span><!--end_enstr-->
+<span class="jpstr">
+定数
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nspersonnamecomponentsformatterstyle_language-objc.html" class="link"><code data-v-01f7f080="">NSPerson<wbr data-v-01f7f080="">Name<wbr data-v-01f7f080="">Components<wbr data-v-01f7f080="">Formatter<wbr data-v-01f7f080="">Style</wbr></wbr></wbr></wbr></code><!----><!----><!----></a>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nspersonnamecomponentsformatteroptions_language-objc.html" class="link"><code data-v-01f7f080="">NSPerson<wbr data-v-01f7f080="">Name<wbr data-v-01f7f080="">Components<wbr data-v-01f7f080="">Formatter<wbr data-v-01f7f080="">Options</wbr></wbr></wbr></wbr></code><!----><!----><!----></a>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0="">
+<a data-v-01f7f080="" href="../../documentation/foundation/nspersonnamecomponentsformatter/attributed_string_key_language-objc.html" class="link has-adjacent-elements"><svg data-v-a76e93d8="" data-v-a8c6b630="" data-v-01f7f080="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="svg-icon topic-icon" height="16" viewbox="0 0 15 16"><title data-v-a76e93d8="">API Reference</title>
+<g data-v-a76e93d8="" fill-rule="evenodd" class="svg-icon-small"><path data-v-a76e93d8="" fill-rule="nonzero" d="M0,0 L15,0 L15,15 L0,15 L0,0 Z M1,14 L14,14 L14,1 L1,1 L1,14 Z"></path><polygon data-v-a76e93d8="" points="4 11 3 11 3 10 4 10"></polygon><polygon data-v-a76e93d8="" points="4 8 3 8 3 7 4 7"></polygon><polygon data-v-a76e93d8="" points="4 5 3 5 3 4 4 4"></polygon><polygon data-v-a76e93d8="" points="12 11 5 11 5 10 12 10"></polygon><polygon data-v-a76e93d8="" points="12 8 5 8 5 7 12 7"></polygon><polygon data-v-a76e93d8="" points="12 5 5 5 5 4 12 4"></polygon></g></svg><span data-v-01f7f080=""><span class="enstr">Attributed String Key</span><!--end_enstr-->
+<span class="jpstr">
+属性付き文字列キー
+</span><!--end_jpstr-->
+</span><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">This constant is used as a key for person name component attributes in attributed strings returned by the <a href="../../documentation/foundation/nspersonnamecomponentsformatter/1408241-annotatedstringfrompersonnamecom_language-objc.html" class=""><code data-v-7fb764c1="">annotated<wbr data-v-7fb764c1="">String<wbr data-v-7fb764c1="">From<wbr data-v-7fb764c1="">Person<wbr data-v-7fb764c1="">Name<wbr data-v-7fb764c1="">Components:</wbr></wbr></wbr></wbr></wbr></code></a> method</span><!--end_enstr-->
+<span class="jpstr">
+この定数は、<a href="../../documentation/foundation/nspersonnamecomponentsformatter/1408241-annotatedstringfrompersonnamecom_language-objc.html" class=""><code data-v-7fb764c1="">annotated<wbr data-v-7fb764c1="">String<wbr data-v-7fb764c1="">From<wbr data-v-7fb764c1="">Person<wbr data-v-7fb764c1="">Name<wbr data-v-7fb764c1="">Components:</wbr></wbr></wbr></wbr></wbr></code></a>メソッドによって返される属性付き文字列の中の個人名構成要素属性に対するキーとして使われます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0="">
+<a data-v-01f7f080="" href="../../documentation/foundation/nspersonnamecomponentsformatter/attributed_string_components_language-objc.html" class="link has-adjacent-elements"><svg data-v-a76e93d8="" data-v-a8c6b630="" data-v-01f7f080="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="svg-icon topic-icon" height="16" viewbox="0 0 15 16"><title data-v-a76e93d8="">API Reference</title>
+<g data-v-a76e93d8="" fill-rule="evenodd" class="svg-icon-small"><path data-v-a76e93d8="" fill-rule="nonzero" d="M0,0 L15,0 L15,15 L0,15 L0,0 Z M1,14 L14,14 L14,1 L1,1 L1,14 Z"></path><polygon data-v-a76e93d8="" points="4 11 3 11 3 10 4 10"></polygon><polygon data-v-a76e93d8="" points="4 8 3 8 3 7 4 7"></polygon><polygon data-v-a76e93d8="" points="4 5 3 5 3 4 4 4"></polygon><polygon data-v-a76e93d8="" points="12 11 5 11 5 10 12 10"></polygon><polygon data-v-a76e93d8="" points="12 8 5 8 5 7 12 7"></polygon><polygon data-v-a76e93d8="" points="12 5 5 5 5 4 12 4"></polygon></g></svg><span data-v-01f7f080=""><span class="enstr">Attributed String Components</span><!--end_enstr-->
+<span class="jpstr">
+属性付き文字列構成要素
+</span><!--end_jpstr-->
+</span><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">These constants are used to identify individual components of attributed strings returned by the <a href="../../documentation/foundation/nspersonnamecomponentsformatter/1408241-annotatedstringfrompersonnamecom_language-objc.html" class=""><code data-v-7fb764c1="">annotated<wbr data-v-7fb764c1="">String<wbr data-v-7fb764c1="">From<wbr data-v-7fb764c1="">Person<wbr data-v-7fb764c1="">Name<wbr data-v-7fb764c1="">Components:</wbr></wbr></wbr></wbr></wbr></code></a> method.</span><!--end_enstr-->
+<span class="jpstr">
+これらの定数は、<a href="../../documentation/foundation/nspersonnamecomponentsformatter/1408241-annotatedstringfrompersonnamecom_language-objc.html" class=""><code data-v-7fb764c1="">annotated<wbr data-v-7fb764c1="">String<wbr data-v-7fb764c1="">From<wbr data-v-7fb764c1="">Person<wbr data-v-7fb764c1="">Name<wbr data-v-7fb764c1="">Components:</wbr></wbr></wbr></wbr></wbr></code></a>メソッドによって返される属性付き文字列の個々の構成要素を識別するために使われます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0="">
+<a data-v-01f7f080="" href="../../documentation/foundation/nspersonnamecomponentsformatter/component_delimiter_language-objc.html" class="link has-adjacent-elements"><svg data-v-a76e93d8="" data-v-a8c6b630="" data-v-01f7f080="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="svg-icon topic-icon" height="16" viewbox="0 0 15 16"><title data-v-a76e93d8="">API Reference</title>
+<g data-v-a76e93d8="" fill-rule="evenodd" class="svg-icon-small"><path data-v-a76e93d8="" fill-rule="nonzero" d="M0,0 L15,0 L15,15 L0,15 L0,0 Z M1,14 L14,14 L14,1 L1,1 L1,14 Z"></path><polygon data-v-a76e93d8="" points="4 11 3 11 3 10 4 10"></polygon><polygon data-v-a76e93d8="" points="4 8 3 8 3 7 4 7"></polygon><polygon data-v-a76e93d8="" points="4 5 3 5 3 4 4 4"></polygon><polygon data-v-a76e93d8="" points="12 11 5 11 5 10 12 10"></polygon><polygon data-v-a76e93d8="" points="12 8 5 8 5 7 12 7"></polygon><polygon data-v-a76e93d8="" points="12 5 5 5 5 4 12 4"></polygon></g></svg><span data-v-01f7f080=""><span class="enstr">Component Delimiter</span><!--end_enstr-->
+<span class="jpstr">
+構成要素区切り子
+</span><!--end_jpstr-->
+</span><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">This constant defines the delimiter used to separate name components.</span><!--end_enstr-->
+<span class="jpstr">
+この定数は、名前構成要素を分離するために使われる区切り子を定義します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+</div><!----></section><section data-v-8c663d90="" data-v-2deaa168="" id="relationships" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">Relationships</span><!--end_enstr-->
+<span class="jpstr">
+関係
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Inherits From</span><!--end_enstr-->
+<span class="jpstr">
+継承元
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><ul data-v-4af8f78e="" class="relationships-list inline" data-v-9807b2e0=""><li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/nsformatter_language-objc.html" class="link"><code data-v-4af8f78e="">NSFormatter</code></a><!---->
+</li></ul></div>
+</div>
+</div></section><section data-v-8c663d90="" data-v-63527a60="" data-v-2deaa168="" id="see-also" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">See Also</span><!--end_enstr-->
+<span class="jpstr">
+参照
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Names</span><!--end_enstr-->
+<span class="jpstr">
+さまざまな名前
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nspersonnamecomponents_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">NSPerson<wbr data-v-01f7f080="">Name<wbr data-v-01f7f080="">Components</wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">An object that manages the separate parts of a person's name to allow locale-aware formatting.</span><!--end_enstr-->
+<span class="jpstr">
+あるオブジェクト、それはある個人名のもつ名前の個々の要素を管理して、ロケール対応の書式設定を可能にします。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+</div><!----></section></main>
+</div></div></div>
+<section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo"><nav class="footer-breadory"><a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a><section class="breadcrumbs"><ol class="breadcrumbs-list"></ol></section><div id="directorynav" class="directorynav">
+<div id="dn-cola" class="column">
+<h3><a href="/discover/">Discover</a></h3>
+<ul>
+<li><a href="/ios/">iOS</a></li>
+<li><a href="/ipados/">iPadOS</a></li>
+<li><a href="/macos/">macOS</a></li>
+<li><a href="/tvos/">tvOS</a></li>
+<li><a href="/watchos/">watchOS</a></li>
+<li><a href="/safari/">Safari and Web</a></li>
+<li><a href="/games/">Games</a></li>
+<li><a href="/business/">Business</a></li>
+<li><a href="/education/">Education</a></li>
+<li><a href="/wwdc/">WWDC</a></li>
+</ul>
+</div>
+<div id="dn-colb" class="column">
+<h3><a href="/design/">Design</a></h3>
+<ul>
+<li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
+<li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
+<span class="jpstr">
+リソース
+</span><!--end_jpstr-->
+</a></li>
+<li><a href="/videos/design/">Videos</a></li>
+<li><a href="/design/awards/">Apple Design Awards</a></li>
+<li><a href="/fonts/">Fonts</a></li>
+<li><a href="/accessibility/">Accessibility</a></li>
+<li><a href="/localization/"><span class="enstr">Localization</span><!--end_enstr-->
+<span class="jpstr">
+ローカライゼーション
+</span><!--end_jpstr-->
+</a></li>
+<li><a href="/accessories/">Accessories</a></li>
+</ul>
+</div>
+<div id="dn-colc" class="column">
+<h3><a href="/develop/">Develop</a></h3>
+<ul>
+<li><a href="/xcode/">Xcode</a></li>
+<li><a href="/swift/">Swift</a></li>
+<li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
+<li><a href="/testflight/">TestFlight</a></li>
+<li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
+<li><a href="/videos/">Videos</a></li>
+<li><a href="/download/">Downloads</a></li>
+</ul>
+</div>
+<div id="dn-cold" class="column">
+<h3><a href="/distribute/">Distribute</a></h3>
+<ul>
+<li><a href="/programs/">Developer Program</a></li>
+<li><a href="/app-store/">App Store</a></li>
+<li><a href="/app-store/review/">App Review</a></li>
+<li><a href="/macos/distribution/">Mac Software</a></li>
+<li><a href="/business/distribute/">Apps for Business</a></li>
+<li><a href="/safari/extensions/">Safari Extensions</a></li>
+<li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
+<li><a href="/softwarelicensing/">Trademark Licensing</a></li>
+</ul>
+</div>
+<div id="dn-cole" class="column">
+<h3><a href="/support/">Support</a></h3>
+<ul>
+<li><a href="/support/articles/">Articles</a></li>
+<li><a href="/forums/">Developer Forums</a></li>
+<li><a href="/bug-reporting/">Feedback &amp; Bug Reporting</a></li>
+<li><a href="/system-status/">System Status</a></li>
+<li><a href="/contact/">Contact Us</a></li>
+</ul>
+<h3><a href="/account/">Account</a></h3>
+<ul>
+<li><a href="/account/ios/certificate/">Certificates, Identifiers &amp; Profiles</a></li>
+<li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
+</ul>
+</div>
+</div></nav><div class="ac-gf-footer-legal">
+<div class="ac-gf-footer-news">To view the latest developer news, visit <a href="/news/">News and Updates</a>.</div>
+<div class="ac-gf-footer-language-dropdown-wrapper">
+<select id="footer-language-selector" class="footer-language-select" aria-label="Language Dropdown" autocomplete="off"><option value="https://developer.apple.com/" selected>English</option>
+<option value="https://developer.apple.com/cn/">简体中文</option>
+<option value="https://developer.apple.com/jp/">日本語</option>
+<option value="https://developer.apple.com/kr/">한국어</option></select> <span class="footer-language-select-icon icon icon-chevrondown" aria-hidden="true"></span>
+</div>
+<div class="ac-gf-footer-legal-copyright">Copyright © <span class="footer-current-year">2020</span> <a href="https://www.apple.com">Apple Inc.</a> All rights reserved.</div>
+<div class="ac-gf-footer-legal-links">
+<a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a> <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a> <a href="/terms/">License Agreements</a>
+</div>
+</div></footer></section><script src="../../tutorials/js/footer.js"></script>
+</body>
+</html>

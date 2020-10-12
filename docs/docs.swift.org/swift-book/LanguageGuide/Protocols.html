@@ -10,7 +10,7 @@
     <meta name="author" content="Apple Inc." />
     <meta name="viewport" content="width=device-width initial-scale=1" />
     
-    <title>Protocols — The Swift Programming Language (Swift 5.2)</title>
+    <title>Protocols — The Swift Programming Language (Swift 5.3)</title>
     
     <link rel="license" href="/LICENSE.txt" />
     <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
@@ -41,7 +41,7 @@
 
     <div id="menu-toggle" class="menu-toggle open"></div>
 
-    <h2>The Swift Programming Language<div>Swift 5.2</div></h2>
+    <h2>The Swift Programming Language<div>Swift 5.3</div></h2>
 
     <ul>
     <ul class="current">
@@ -292,6 +292,11 @@
 </a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#ID627"><span class="enstr">Adopting a Protocol Using a Synthesized Implementation</span><!--end_enstr-->
+<span class="jpstr">
+プロトコルを合成実装を使って採用する
+</span><!--end_jpstr-->
+</a></li>
 <li><a class="reference internal" href="#ID279"><span class="enstr">Collections of Protocol Types</span><!--end_enstr-->
 <span class="jpstr">
 プロトコル型のコレクション
@@ -1114,6 +1119,113 @@
 </p>
 </div>
 </div>
+</div>
+<div class="section" id="ID627">
+<h2><span class="enstr">Adopting a Protocol Using a Synthesized Implementation<a class="headerlink" href="#ID627" title="Permalink to this headline">¶</a></span><!--end_enstr-->
+<span class="jpstr">
+プロトコルを合成実装を使って採用する<a class="headerlink" href="#ID627" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h2>
+<p><span class="enstr">Swift can automatically provide the protocol conformance for <code class="docutils literal notranslate"><span class="pre">Equatable</span></code>, <code class="docutils literal notranslate"><span class="pre">Hashable</span></code>, and <code class="docutils literal notranslate"><span class="pre">Comparable</span></code> in many simple cases. Using this synthesized implementation means you don’t have to write repetitive boilerplate code to implement the protocol requirements yourself.</span><!--end_enstr-->
+<span class="jpstr">
+スウィフトは、自動的にプロトコル準拠を<code class="docutils literal notranslate"><span class="pre">Equatable</span></code>、<code class="docutils literal notranslate"><span class="pre">Hashable</span></code>、そして<code class="docutils literal notranslate"><span class="pre">Comparable</span></code>に対して提供することが多くの単純な場合において可能です。この合成実装を使うことは、あなたが繰り返しの常用文コードを書いてプロトコル要件をあなた自身で実装する必要はないのを意味します。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">Swift provides a synthesized implementation of <code class="docutils literal notranslate"><span class="pre">Equatable</span></code> for the following kinds of custom types:</span><!--end_enstr-->
+<span class="jpstr">
+スウィフトは、<code class="docutils literal notranslate"><span class="pre">Equatable</span></code>の合成実装を以下の種類のあつらえの型に提供します：
+</span><!--end_jpstr-->
+</p>
+<ul class="simple">
+<li><span class="enstr">Structures that have only stored properties that conform to the <code class="docutils literal notranslate"><span class="pre">Equatable</span></code> protocol</span><!--end_enstr-->
+<span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">Equatable</span></code>プロトコルに準拠する格納プロパティだけを持つ構造体
+</span><!--end_jpstr-->
+</li>
+<li><span class="enstr">Enumerations that have only associated types that conform to the <code class="docutils literal notranslate"><span class="pre">Equatable</span></code> protocol</span><!--end_enstr-->
+<span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">Equatable</span></code>プロトコルに準拠する関連型だけを持つ列挙
+</span><!--end_jpstr-->
+</li>
+<li><span class="enstr">Enumerations that have no associated types</span><!--end_enstr-->
+<span class="jpstr">
+関連型を持たない列挙
+</span><!--end_jpstr-->
+</li>
+</ul>
+<p><span class="enstr">To receive a synthesized implementation of <code class="docutils literal notranslate"><span class="pre">==</span></code>, declare conformance to <code class="docutils literal notranslate"><span class="pre">Equatable</span></code> in the file that contains the original declaration, without implementing an <code class="docutils literal notranslate"><span class="pre">==</span></code> operator yourself. The <code class="docutils literal notranslate"><span class="pre">Equatable</span></code> protocol provides a default implementation of <code class="docutils literal notranslate"><span class="pre">!=</span></code>.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">==</span></code>の合成実装を受け取るには、<code class="docutils literal notranslate"><span class="pre">Equatable</span></code>への準拠を本来の宣言を含んでいるファイルにおいて宣言してください、<code class="docutils literal notranslate"><span class="pre">==</span></code>演算子をあなた自身で実装することなしに。<code class="docutils literal notranslate"><span class="pre">Equatable</span></code>プロトコルは、<code class="docutils literal notranslate"><span class="pre">!=</span></code>の省略時の実装を提供します。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">The example below defines a <code class="docutils literal notranslate"><span class="pre">Vector3D</span></code> structure for a three-dimensional position vector <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y,</span> <span class="pre">z)</span></code>, similar to the <code class="docutils literal notranslate"><span class="pre">Vector2D</span></code> structure. Because the <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>, and <code class="docutils literal notranslate"><span class="pre">z</span></code> properties are all of an <code class="docutils literal notranslate"><span class="pre">Equatable</span></code> type, <code class="docutils literal notranslate"><span class="pre">Vector3D</span></code> receives synthesized implementations of the equivalence operators.</span><!--end_enstr-->
+<span class="jpstr">
+下の例は、<code class="docutils literal notranslate"><span class="pre">Vector3D</span></code>構造体を３次元の位置ベクトル<code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y,</span> <span class="pre">z)</span></code>に対して定義する、<code class="docutils literal notranslate"><span class="pre">Vector2D</span></code>構造体に似たものです。<code class="docutils literal notranslate"><span class="pre">x</span></code>、<code class="docutils literal notranslate"><span class="pre">y</span></code>、そして<code class="docutils literal notranslate"><span class="pre">z</span></code>プロパティはみんな<code class="docutils literal notranslate"><span class="pre">Equatable</span></code>型なので、<code class="docutils literal notranslate"><span class="pre">Vector3D</span></code>は等価演算子の合成された実装それらを受け取ります。
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">struct</span> <span class="nv">Vector3D</span>: <span class="nc">Equatable</span> {
+</li><li>    <span class="k">var</span> <span class="nv">x</span> = <span class="m">0.0</span>, <span class="nv">y</span> = <span class="m">0.0</span>, <span class="nv">z</span> = <span class="m">0.0</span>
+</li><li>}
+</li><li>
+</li><li><span class="k">let</span> <span class="nv">twoThreeFour</span> = <span class="nv">Vector3D</span>(<span class="nv">x</span>: <span class="m">2.0</span>, <span class="nv">y</span>: <span class="m">3.0</span>, <span class="nv">z</span>: <span class="m">4.0</span>)
+</li><li><span class="k">let</span> <span class="nv">anotherTwoThreeFour</span> = <span class="nv">Vector3D</span>(<span class="nv">x</span>: <span class="m">2.0</span>, <span class="nv">y</span>: <span class="m">3.0</span>, <span class="nv">z</span>: <span class="m">4.0</span>)
+</li><li><span class="k">if</span> <span class="nv">twoThreeFour</span> == <span class="nv">anotherTwoThreeFour</span> {
+</li><li>    <span class="nv">print</span>(<span class="s">"These two vectors are also equivalent."</span>)
+</li><li>}
+</li><li><span class="c"><span class="enstr">// Prints "These two vectors are also equivalent."</span><!--end_enstr--><span class="jpstr">（「これらの２つのベクトルはまた等しいです。」を出力します）</span><!--end_jpstr--></span>
+</li></ol></div></div></div>
+<p><span class="enstr">Swift provides a synthesized implementation of <code class="docutils literal notranslate"><span class="pre">Hashable</span></code> for the following kinds of custom types:</span><!--end_enstr-->
+<span class="jpstr">
+スウィフトは、<code class="docutils literal notranslate"><span class="pre">Hashable</span></code>の合成実装を以下の種類のあつらえの型に提供します：
+</span><!--end_jpstr-->
+</p>
+<ul class="simple">
+<li><span class="enstr">Structures that have only stored properties that conform to the <code class="docutils literal notranslate"><span class="pre">Hashable</span></code> protocol</span><!--end_enstr-->
+<span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">Hashable</span></code>プロトコルに準拠する格納プロパティだけを持つ構造体
+</span><!--end_jpstr-->
+</li>
+<li><span class="enstr">Enumerations that have only associated types that conform to the <code class="docutils literal notranslate"><span class="pre">Hashable</span></code> protocol</span><!--end_enstr-->
+<span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">Hashable</span></code>プロトコルに準拠する関連型だけを持つ列挙
+</span><!--end_jpstr-->
+</li>
+<li><span class="enstr">Enumerations that have no associated types</span><!--end_enstr-->
+<span class="jpstr">
+関連型を持たない列挙
+</span><!--end_jpstr-->
+</li>
+</ul>
+<p><span class="enstr">To receive a synthesized implementation of <code class="docutils literal notranslate"><span class="pre">hash(into:)</span></code>, declare conformance to <code class="docutils literal notranslate"><span class="pre">Hashable</span></code> in the file that contains the original declaration, without implementing a <code class="docutils literal notranslate"><span class="pre">hash(into:)</span></code> method yourself.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">hash(into:)</span></code>の合成実装を受け取るには、<code class="docutils literal notranslate"><span class="pre">Hashable</span></code>への準拠を本来の宣言を含むファイルにおいて宣言してください、<code class="docutils literal notranslate"><span class="pre">hash(into:)</span></code>メソッドをあなた自身で実装することなしに。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">Swift provides a synthesized implementation of <code class="docutils literal notranslate"><span class="pre">Comparable</span></code> for enumerations that don’t have a raw value. If the enumeration has associated types, they must all conform to the <code class="docutils literal notranslate"><span class="pre">Comparable</span></code> protocol. To receive a synthesized implementation of <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, declare conformance to <code class="docutils literal notranslate"><span class="pre">Comparable</span></code> in the file that contains the original enumeration declaration, without implementing a <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> operator yourself. The <code class="docutils literal notranslate"><span class="pre">Comparable</span></code> protocol’s default implementation of <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code> provides the remaining comparison operators.</span><!--end_enstr-->
+<span class="jpstr">
+スウィフトは、<code class="docutils literal notranslate"><span class="pre">Comparable</span></code>の合成実装を生の値を持たない列挙に提供します。列挙が関連型いくつかを持つならば、それらは全て<code class="docutils literal notranslate"><span class="pre">Comparable</span></code>プロトコルに準拠しなければなりません。<code class="docutils literal notranslate"><span class="pre">&lt;</span></code>の合成実装を受け取るには、<code class="docutils literal notranslate"><span class="pre">Comparable</span></code>への準拠を本来の列挙宣言を含むファイルにおいて宣言してください、<code class="docutils literal notranslate"><span class="pre">&lt;</span></code>演算子をあなた自身で実装することなしに。<code class="docutils literal notranslate"><span class="pre">Comparable</span></code>プロトコルのもつ<code class="docutils literal notranslate"><span class="pre">&lt;=</span></code>、<code class="docutils literal notranslate"><span class="pre">&gt;</span></code>、そして<code class="docutils literal notranslate"><span class="pre">&gt;=</span></code>の省略時の実装は、残りの比較演算子を提供します。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">The example below defines a <code class="docutils literal notranslate"><span class="pre">SkillLevel</span></code> enumeration with cases for beginners, intermediates, and experts. Experts are additionally ranked by the number of stars they have.</span><!--end_enstr-->
+<span class="jpstr">
+下の例は、<code class="docutils literal notranslate"><span class="pre">SkillLevel</span></code>列挙を、初心者（beginners）、中級者（intermediates）、そして熟練者（experts）に対する事例（ケース節）で定義します。expertsは加えて、彼らが持つ星の数によってランク付けされます。
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">enum</span> <span class="nv">SkillLevel</span>: <span class="nc">Comparable</span> {
+</li><li>    <span class="k">case</span> <span class="nv">beginner</span>
+</li><li>    <span class="k">case</span> <span class="nv">intermediate</span>
+</li><li>    <span class="k">case</span> <span class="nv">expert</span>(<span class="nv">stars</span>: <span class="nv">Int</span>)
+</li><li>}
+</li><li><span class="k">var</span> <span class="nv">levels</span> = [<span class="nv">SkillLevel</span>.<span class="nv">intermediate</span>, <span class="nv">SkillLevel</span>.<span class="nv">beginner</span>,
+</li><li>              <span class="nv">SkillLevel</span>.<span class="nv">expert</span>(<span class="nv">stars</span>: <span class="m">5</span>), <span class="nv">SkillLevel</span>.<span class="nv">expert</span>(<span class="nv">stars</span>: <span class="m">3</span>)]
+</li><li><span class="k">for</span> <span class="nv">level</span> <span class="k">in</span> <span class="nv">levels</span>.<span class="nv">sorted</span>() {
+</li><li>    <span class="nv">print</span>(<span class="nv">level</span>)
+</li><li>}
+</li><li><span class="c">// Prints "beginner"</span>
+</li><li><span class="c">// Prints "intermediate"</span>
+</li><li><span class="c">// Prints "expert(stars: 3)"</span>
+</li><li><span class="c">// Prints "expert(stars: 5)"</span>
+</li></ol></div></div></div>
 </div>
 <div class="section" id="ID279">
 <h2><span class="enstr">Collections of Protocol Types<a class="headerlink" href="#ID279" title="Permalink to this headline">¶</a></span><!--end_enstr-->

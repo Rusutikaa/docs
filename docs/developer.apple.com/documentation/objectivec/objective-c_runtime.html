@@ -1,0 +1,1530 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><!-- link rel="icon" href="/favicon.ico" -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+<link rel="mask-icon" href="/apple-logo.svg" color="#333333">
+<link rel="stylesheet" href="../../tutorials/css/_globalnav.css">
+<title>Objective-C Runtime | Apple Developer Documentation</title>
+<link href="../../tutorials/css/chunk-76d5c2b5.00c53891.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic.e358e85c.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css" rel="prefetch">
+<link href="../../tutorials/css/topic.69278f1e.css" rel="prefetch">
+<link href="../../tutorials/css/topic~tutorials-overview.1f93e025.css" rel="prefetch">
+<link href="../../tutorials/css/tutorials-overview.d4ff0b50.css" rel="prefetch">
+<link href="../../tutorials/css/welcome-experience-featured.0537f0f0.css" rel="prefetch">
+<link href="../../tutorials/css/welcome-experience-technologies.60068ae2.css" rel="prefetch">
+<link href="../../tutorials/js/chunk-2d0d3105.459bf725.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-2d21a016.b81cb311.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-503f1ed8.d26c4552.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-530f89ce.621e1d48.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-640db3b2.f8778ca5.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-76d5c2b5.092e3b8a.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic.6abe9458.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js" rel="prefetch">
+<link href="../../tutorials/js/topic.c6ec6b6c.js" rel="prefetch">
+<link href="../../tutorials/js/topic~tutorials-overview.467a8186.js" rel="prefetch">
+<link href="../../tutorials/js/tutorials-overview.d77f61ca.js" rel="prefetch">
+<link href="../../tutorials/js/welcome-experience-featured.04f663e2.js" rel="prefetch">
+<link href="../../tutorials/js/welcome-experience-technologies.56a372c1.js" rel="prefetch">
+<link href="../../tutorials/css/app.2a174a23.css" rel="preload" as="style">
+<link href="../../tutorials/js/app.2c558263.js" rel="preload" as="script">
+<link href="../../tutorials/js/chunk-vendors.c3b68236.js" rel="preload" as="script">
+<link href="../../tutorials/css/app.2a174a23.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../../tutorials/css/chunk-76d5c2b5.00c53891.css">
+<script charset="utf-8" src="../../tutorials/js/chunk-76d5c2b5.092e3b8a.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic.e358e85c.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic.6abe9458.js"></script>
+</head>
+<body>
+<div id="_omniture_top">
+<script>var s_account="awdappledeveloper"</script>
+</div>
+<a href="#main" id="skip-localnav">Skip Navigation</a><aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"><nav id="ac-globalnav" class="js no-touch" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions"><div class="ac-gn-content">
+<ul class="ac-gn-header">
+<li class="ac-gn-item ac-gn-menuicon">
+<label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true"><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span> </span><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span></span></label> <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open"><span class="ac-gn-menuanchor-label">Global Nav Open Menu</span> </a><a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close"><span class="ac-gn-menuanchor-label">Global Nav Close Menu</span></a>
+</li>
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+</ul>
+<div class="ac-gn-search-placeholder-container" role="search"><div class="ac-gn-search ac-gn-search-small"><a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a><div class="ac-gn-search-placeholder-bar">
+<div class="ac-gn-search-placeholder-input"><div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
+<div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
+<span class="ac-gn-search-placeholder">Search Developer</span>
+</div></div>
+<div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></div>
+</div></a></div></div>
+<ul class="ac-gn-list">
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-discover"><a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover"><span class="ac-gn-link-text">Discover</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-design"><a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design"><span class="ac-gn-link-text">Design</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-develop"><a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop"><span class="ac-gn-link-text">Develop</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-distribute"><a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute"><span class="ac-gn-link-text">Distribute</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport"><a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport"><span class="ac-gn-link-text">Support</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-account"><a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account"><span class="ac-gn-link-text">Account</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search"><a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a></li>
+</ul>
+<aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search"><div class="ac-gn-searchview-content">
+<div class="ac-gn-searchview-bar"><div class="ac-gn-searchview-bar-wrapper">
+<form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get"><div class="ac-gn-searchform-wrapper">
+<input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions"> <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button> <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search"><span class="ac-gn-searchform-reset-background"></span></button>
+</div></form>
+<button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></button>
+</div></div>
+<aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
+</div>
+<button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search"><span class="ac-gn-searchview-close-wrapper"><span class="ac-gn-searchview-close-left"></span> <span class="ac-gn-searchview-close-right"></span></span></button></aside>
+</div></nav><div class="ac-gn-blur"></div>
+<div id="ac-gn-curtain" class="ac-gn-curtain"></div>
+<div id="ac-gn-placeholder" class="ac-nav-placeholder"></div>
+<script src="../../tutorials/js/ac-globalnav.built.js"></script>
+<noscript>
+<style>.noscript {
+  font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
+  margin: 92px auto 140px auto;
+  text-align: center;
+  width: 980px;
+}
+
+.noscript-title {
+  color: #111;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -.003em;
+  line-height: 1.08365;
+  margin: 0 auto 54px auto;
+  width: 502px;
+}
+
+@media only screen and (max-width: 1068px) {
+  .noscript {
+    margin: 90px auto 120px auto;
+    width: 692px;
+  }
+
+  .noscript-title {
+    font-size: 40px;
+    letter-spacing: 0;
+    line-height: 1.1;
+    margin: 0 auto 45px auto;
+    width: 420px;
+  }
+}
+
+@media only screen and (max-width: 735px) {
+  .noscript {
+    margin: 45px auto 60px auto;
+    width: 87.5%;
+  }
+
+  .noscript-title {
+    font-size: 32px;
+    letter-spacing: .004em;
+    line-height: 1.125;
+    margin: 0 auto 35px auto;
+    max-width: 330px;
+    width: auto;
+  }
+}
+
+#loading-placeholder {
+  display: none;
+};</style>
+<div class="noscript">
+<h1 class="noscript-title">This page requires JavaScript.</h1>
+<p>Please turn on JavaScript in your browser and refresh the page to view its content.</p>
+</div>
+</noscript>
+<div data-v-0220a4c4="" id="app" class=""><div data-v-0220a4c4=""><div data-v-2deaa168="" class="doc-topic">
+<div data-v-3ceaa5df="" data-v-2deaa168="" class="localnav-container">
+<input data-v-3ceaa5df="" aria-hidden="true" id="localnav-menustate" type="checkbox" class="localnav-menustate"><div id="localnav-sticky-placeholder" class="css-sticky"></div>
+<nav data-v-3ceaa5df="" aria-label="API Reference" data-sticky="" id="localnav" role="navigation" class="localnav localnav-dark theme-dark medium-localnav-collapsible localnav-noborder localnav-scrim css-sticky"><div data-v-3ceaa5df="" class="localnav-wrapper">
+<div data-v-3ceaa5df="" class="referencenav">
+<div data-v-3ceaa5df="" class="localnav-background"></div>
+<div data-v-3ceaa5df="" class="localnav-content">
+<a data-v-3ceaa5df="" href="../../index.html" class="localnav-title">
+            Documentation
+          </a><div data-v-3ceaa5df="" class="localnav-menu">
+<a data-v-3ceaa5df="" href="#localnav-menustate" role="button" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Open Menu</span></a><a data-v-3ceaa5df="" href="#" role="button" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Close Menu</span></a><div data-v-3ceaa5df="" class="localnav-menu-tray">
+<ul data-v-72fd0d2c="" data-v-3ceaa5df="" aria-label="Breadcrumbs" class="localnav-menu-items"><!---->
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../documentation/objectivec.html" class="parent item router-link-active" data-v-23a2ae0d="">
+    <span class="enstr">Objective-C Runtime</span><!--end_enstr-->
+<span class="jpstr">
+Objective-Cランタイム
+</span><!--end_jpstr-->
+
+  </a></li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item">
+<span data-v-23a2ae0d="" class="current item">
+    <span class="enstr">Objective-C Runtime</span><!--end_enstr-->
+<span class="jpstr">
+Objective-Cランタイム
+</span><!--end_jpstr-->
+
+  </span><!---->
+</li>
+</ul>
+<ul data-v-3ceaa5df="" data-breadcrumbs-count="2" class="localnav-menu-items localnav-menu-settings">
+<li data-v-282336e0="" data-v-3ceaa5df="" class="localnav-menu-setting language-container" breadcrumbcount="2">
+<div data-v-282336e0="" class="language-toggle-container">
+<label data-v-282336e0="" for="language-toggle" class="language-toggle-label">
+      Language:
+    </label><select data-v-282336e0="" id="language-toggle" class="language-dropdown localnav-menu-link" style="width: 38px;"><option data-v-282336e0="" value="swift">
+        Swift
+      </option>
+<option data-v-282336e0="" value="occ">
+        Objective-C
+      </option></select>
+</div>
+<div data-v-282336e0="" class="language-list-container">
+<span data-v-282336e0="" class="localnav-menu-setting-label">
+      Language:
+    </span><ul data-v-282336e0="" class="language-list">
+<li data-v-282336e0="" class="language-list-item"><span data-v-282336e0="" data-language="swift" aria-current="page" class="current-language">
+          Swift
+        </span></li>
+<li data-v-282336e0="" class="language-list-item"><a data-v-282336e0="" href="../../documentation/objectivec/objective-c_runtime_language-objc.html" class="localnav-menu-setting-link">
+          Objective-C
+        </a></li>
+</ul>
+</div>
+</li>
+<li data-v-2e9f4ea2="" data-v-3ceaa5df="" class="localnav-menu-setting">
+<label data-v-2e9f4ea2="" for="version-label" class="localnav-menu-setting-label">
+    API Changes:
+  </label><span data-v-2e9f4ea2="">None</span>
+</li><!---->
+
+</ul>
+</div>
+<div data-v-3ceaa5df="" class="localnav-actions"><div data-v-3ceaa5df="" aria-hidden="true" class="localnav-action localnav-action-menucta"><label data-v-3ceaa5df="" for="localnav-menustate" class="localnav-menucta"><span data-v-3ceaa5df="" class="localnav-menucta-chevron"></span></label></div></div>
+</div>
+</div>
+</div><!---->
+
+</div></nav><label data-v-3ceaa5df="" aria-hidden="true" for="localnav-menustate" id="localnav-curtain"></label>
+</div>
+<main data-v-2deaa168="" id="main" role="main" tabindex="0" class="main"><div data-v-4ba5af7c="" data-v-2deaa168="" class="topictitle"><!---->
+<h1 data-v-4ba5af7c="" class="title"><span class="enstr">Objective-C Runtime</span><!--end_enstr-->
+<span class="jpstr">
+Objective-Cランタイム
+</span><!--end_jpstr-->
+</h1>
+</div>
+<div data-v-0253ce0e="" data-v-2deaa168="" class="row container">
+<div data-v-9807b2e0="" data-v-5ad0d458="" data-v-2deaa168="" class="col description large-9 medium-9 small-12" data-v-0253ce0e=""><!---->
+<div data-v-7ea0aa49="" data-v-aba749e6="" data-v-2deaa168="" class="abstract content" data-v-9807b2e0=""><span class="enstr">Describes the macOS Objective-C runtime library support functions and data structures.</span><!--end_enstr-->
+<span class="jpstr">
+関数とデータ構造体をサポートするmacOS Objective-C&nbsp;ランタイムライブラリを記述します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div>
+<div data-v-9807b2e0="" data-v-42fb6bac="" data-v-2deaa168="" class="col summary large-3 medium-3 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-e4237090="" data-v-2b96ab1a="" data-v-2deaa168="" class="summary-section on-this-page" data-v-9807b2e0=""><nav data-v-2b96ab1a="" data-v-e4237090="" aria-labelledby="on-this-page-title"><p data-v-1e0258b0="" data-v-2b96ab1a="" class="title" id="on-this-page-title" data-v-e4237090=""><span class="enstr">On This Page</span><!--end_enstr-->
+<span class="jpstr">
+この項には
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-2b96ab1a="" class="summary-list" data-v-e4237090="">
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/objectivec/objective-c_runtime.html#overview" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Overview</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/objectivec/objective-c_runtime.html#topics" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Topics</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/objectivec/objective-c_runtime.html#see-also" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">See Also</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+</ul></nav></div>
+</div>
+<div data-v-9807b2e0="" data-v-1e40f676="" data-v-2deaa168="" class="col primary-content large-9 medium-9 small-12" data-v-0253ce0e=""><div data-v-7ea0aa49="" data-v-1e40f676="" class="content" data-v-9807b2e0="">
+<h2 id="overview"><span class="enstr">Overview</span><!--end_enstr-->
+<span class="jpstr">
+概要
+</span><!--end_jpstr-->
+</h2>
+<p>The Objective-C runtime is a runtime library that provides support for the dynamic properties of the Objective-C language, and as such is linked to by all Objective-C apps. Objective-C runtime library support functions are implemented in the shared library found at <code data-v-7fb764c1="">/usr/lib/libobjc<wbr data-v-7fb764c1="">.A<wbr data-v-7fb764c1="">.dylib</wbr></wbr></code>. </p>
+<p>You typically don't need to use the Objective-C runtime library directly when programming in Objective-C. This API is useful primarily for developing bridge layers between Objective-C and other languages, or for low-level debugging. </p>
+<p>The macOS implementation of the Objective-C runtime library is unique to the Mac. For other platforms, the GNU Compiler Collection provides a different implementation with a similar API. This document covers only the macOS implementation.</p>
+<p>The low-level Objective-C runtime API is significantly updated in OS X version 10.5. Many functions and all existing data structures are replaced with new functions. The old functions and structures are deprecated in 32-bit and absent in 64-bit mode. The API constrains several values to 32-bit ints even in 64-bit mode—class count, protocol count, methods per class, ivars per class, arguments per method, sizeof(all arguments) per method, and class version number. In addition, the new Objective-C ABI (not described here) further constrains <code data-v-7fb764c1="">sizeof(an<wbr data-v-7fb764c1="">Instance)</wbr></code> to 32 bits, and three other values to 24 bits—methods per class, ivars per class, and sizeof(a single ivar). Finally, the obsolete <code data-v-7fb764c1="">NXHash<wbr data-v-7fb764c1="">Table</wbr></code> and <code data-v-7fb764c1="">NXMap<wbr data-v-7fb764c1="">Table</wbr></code> are limited to 4 billion items.</p>
+<aside data-v-c567d8a8="" aria-label="note" class="note"><p data-v-c567d8a8="" class="label">String encoding</p>
+<p data-v-c567d8a8="">All <code data-v-7fb764c1="" data-v-c567d8a8="">char *</code> in the runtime API should be considered to have UTF-8 encoding.</p></aside><p>“Deprecated” below means “deprecated in OS X version 10.5 for 32-bit code, and disallowed for 64-bit code.” </p>
+<h3 id="1657559">Who Should Read This Document</h3>
+<p>The document is intended for readers who might be interested in learning about the Objective-C runtime.</p>
+<p>Because this isn’t a document about C, it assumes some prior acquaintance with that language. However, it doesn’t have to be an extensive acquaintance.</p>
+</div></div>
+</div>
+<section data-v-8c663d90="" data-v-63527a60="" data-v-2deaa168="" id="topics" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">Topics</span><!--end_enstr-->
+<span class="jpstr">
+話題
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Working with Classes</span><!--end_enstr-->
+<span class="jpstr">
+クラスを扱う
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418635-class_getname.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">class<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Name</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class?) -&gt; Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the name of a class.</span><!--end_enstr-->
+<span class="jpstr">
+あるクラスの名前を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418498-class_getsuperclass.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">class<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Superclass</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class?) -&gt; Any<wbr data-v-dac213be="">Class?</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the superclass of a class.</span><!--end_enstr-->
+<span class="jpstr">
+あるクラスのスーパークラスを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1441536-class_setsuperclass.html" class="link deprecated has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">class<wbr data-v-dac213be="">_set<wbr data-v-dac213be="">Superclass</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class, Any<wbr data-v-dac213be="">Class) -&gt; Any<wbr data-v-dac213be="">Class</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Sets the superclass of a given class.</span><!--end_enstr-->
+<span class="jpstr">
+ある与えられたクラスのスーパークラスを設定します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div>
+<span data-v-41682aee="" data-v-01f7f080="" role="presentation" class="violator violator-inline"><span class="enstr">Deprecated</span><!--end_enstr-->
+<span class="jpstr">
+非推奨
+</span><!--end_jpstr-->
+</span>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418627-class_ismetaclass.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">class<wbr data-v-dac213be="">_is<wbr data-v-dac213be="">Meta<wbr data-v-dac213be="">Class</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class?) -&gt; Bool</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a Boolean value that indicates whether a class object is a metaclass.</span><!--end_enstr-->
+<span class="jpstr">
+あるブール値を返します、それはあるクラスオブジェクトがメタクラスであるかどうかを指し示します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418907-class_getinstancesize.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">class<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Instance<wbr data-v-dac213be="">Size</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class?) -&gt; Int</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the size of instances of a class.</span><!--end_enstr-->
+<span class="jpstr">
+あるクラスのインスタンスのサイズを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418643-class_getinstancevariable.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">class<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Instance<wbr data-v-dac213be="">Variable</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class?, Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;) -&gt; Ivar?</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">Returns the <code data-v-7fb764c1="">Ivar</code> for a specified instance variable of a given class.</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418487-class_getclassvariable.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">class<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Class<wbr data-v-dac213be="">Variable</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class?, Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;) -&gt; Ivar?</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">Returns the <code data-v-7fb764c1="">Ivar</code> for a specified class variable of a given class.</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418756-class_addivar.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">class<wbr data-v-dac213be="">_add<wbr data-v-dac213be="">Ivar</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class?, Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;, Int, UInt8, Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;?) -&gt; Bool</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Adds a new instance variable to a class.</span><!--end_enstr-->
+<span class="jpstr">
+新しいインスタンス変数をクラスに加えます。
+</span><!--end_jpstr-->
+ </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418910-class_copyivarlist.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">class<wbr data-v-dac213be="">_copy<wbr data-v-dac213be="">Ivar<wbr data-v-dac213be="">List</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class?, Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;UInt32&gt;?) -&gt; Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;Ivar&gt;?</wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Describes the instance variables declared by a class.</span><!--end_enstr-->
+<span class="jpstr">
+あるクラスによって宣言されたインスタンス変数を記述します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418918-class_getivarlayout.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">class<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Ivar<wbr data-v-dac213be="">Layout</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class?) -&gt; Unsafe<wbr data-v-dac213be="">Pointer&lt;UInt8&gt;?</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">Returns a description of the <code data-v-7fb764c1="">Ivar</code> layout for a given class. </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418749-class_setivarlayout.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">class<wbr data-v-dac213be="">_set<wbr data-v-dac213be="">Ivar<wbr data-v-dac213be="">Layout</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class?, Unsafe<wbr data-v-dac213be="">Pointer&lt;UInt8&gt;?)</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">Sets the <code data-v-7fb764c1="">Ivar</code> layout for a given class. </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418508-class_getweakivarlayout.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">class<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Weak<wbr data-v-dac213be="">Ivar<wbr data-v-dac213be="">Layout</wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class?) -&gt; Unsafe<wbr data-v-dac213be="">Pointer&lt;UInt8&gt;?</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">Returns a description of the layout of weak <code data-v-7fb764c1="">Ivar</code>s for a given class. </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418852-class_setweakivarlayout.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">class<wbr data-v-dac213be="">_set<wbr data-v-dac213be="">Weak<wbr data-v-dac213be="">Ivar<wbr data-v-dac213be="">Layout</wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class?, Unsafe<wbr data-v-dac213be="">Pointer&lt;UInt8&gt;?)</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">Sets the layout for weak <code data-v-7fb764c1="">Ivar</code>s for a given class. </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418597-class_getproperty.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">class<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Property</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class?, Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;) -&gt; objc<wbr data-v-dac213be="">_property<wbr data-v-dac213be="">_t?</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a property with a given name of a given class.</span><!--end_enstr-->
+<span class="jpstr">
+ある与えられたクラスのある与えられた名前をもつプロパティを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418553-class_copypropertylist.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">class<wbr data-v-dac213be="">_copy<wbr data-v-dac213be="">Property<wbr data-v-dac213be="">List</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class?, Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;UInt32&gt;?) -&gt; Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;objc<wbr data-v-dac213be="">_property<wbr data-v-dac213be="">_t&gt;?</wbr></wbr></wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Describes the properties declared by a class.</span><!--end_enstr-->
+<span class="jpstr">
+あるクラスによって宣言されたプロパティを記述します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418901-class_addmethod.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">class<wbr data-v-dac213be="">_add<wbr data-v-dac213be="">Method</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class?, Selector, IMP, Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;?) -&gt; Bool</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Adds a new method to a class with a given name and implementation.</span><!--end_enstr-->
+<span class="jpstr">
+新しいメソッドをある与えられた名前と実装をもつクラスに加えます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418530-class_getinstancemethod.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">class<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Instance<wbr data-v-dac213be="">Method</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class?, Selector) -&gt; Method?</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a specified instance method for a given class.</span><!--end_enstr-->
+<span class="jpstr">
+ある与えられたクラスに対するある指定されたインスタンスメソッドを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418887-class_getclassmethod.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">class<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Class<wbr data-v-dac213be="">Method</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class?, Selector) -&gt; Method?</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a pointer to the data structure describing a given class method for a given class.</span><!--end_enstr-->
+<span class="jpstr">
+ある与えられたクラスに対するある与えられたメソッドを記述しているデータ構造体へのポインタを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418490-class_copymethodlist.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">class<wbr data-v-dac213be="">_copy<wbr data-v-dac213be="">Method<wbr data-v-dac213be="">List</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class?, Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;UInt32&gt;?) -&gt; Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;Method&gt;?</wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Describes the instance methods implemented by a class.</span><!--end_enstr-->
+<span class="jpstr">
+あるクラスによって実装されたインスタンスメソッドを記述します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418677-class_replacemethod.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">class<wbr data-v-dac213be="">_replace<wbr data-v-dac213be="">Method</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class?, Selector, IMP, Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;?) -&gt; IMP?</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Replaces the implementation of a method for a given class.</span><!--end_enstr-->
+<span class="jpstr">
+ある与えられたクラスに対するあるメソッドの実装を置き換えます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418811-class_getmethodimplementation.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">class<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Method<wbr data-v-dac213be="">Implementation</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class?, Selector) -&gt; IMP?</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the function pointer that would be called if a particular message were sent to an instance of a class.</span><!--end_enstr-->
+<span class="jpstr">
+関数ポインタを返します、それはある特定のメッセージがあるクラスのあるインスタンスに送られたならば呼び出されるでしょう。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418771-class_getmethodimplementation_st.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">class<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Method<wbr data-v-dac213be="">Implementation<wbr data-v-dac213be="">_stret</wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class?, Selector) -&gt; IMP?</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the function pointer that would be called if a particular message were sent to an instance of a class.</span><!--end_enstr-->
+<span class="jpstr">
+関数ポインタを返します、それはある特定のメッセージがあるクラスのあるインスタンスに送られたならば呼び出されるでしょう。
+</span><!--end_jpstr-->
+ </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418517-class_respondstoselector.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">class<wbr data-v-dac213be="">_responds<wbr data-v-dac213be="">To<wbr data-v-dac213be="">Selector</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class?, Selector) -&gt; Bool</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a Boolean value that indicates whether instances of a class respond to a particular selector.</span><!--end_enstr-->
+<span class="jpstr">
+あるブール値を返します、それはあるクラスのインスタンスそれらがある特定のセレクタに応答するかどうかを指し示します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418773-class_addprotocol.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">class<wbr data-v-dac213be="">_add<wbr data-v-dac213be="">Protocol</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class?, Protocol) -&gt; Bool</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Adds a protocol to a class.</span><!--end_enstr-->
+<span class="jpstr">
+あるプロトコルをあるクラスに加えます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418946-class_addproperty.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">class<wbr data-v-dac213be="">_add<wbr data-v-dac213be="">Property</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class?, Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;, Unsafe<wbr data-v-dac213be="">Pointer&lt;objc<wbr data-v-dac213be="">_property<wbr data-v-dac213be="">_attribute<wbr data-v-dac213be="">_t&gt;?, UInt32) -&gt; Bool</wbr></wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Adds a property to a class.</span><!--end_enstr-->
+<span class="jpstr">
+あるプロパティをあるクラスに加えます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418891-class_replaceproperty.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">class<wbr data-v-dac213be="">_replace<wbr data-v-dac213be="">Property</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class?, Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;, Unsafe<wbr data-v-dac213be="">Pointer&lt;objc<wbr data-v-dac213be="">_property<wbr data-v-dac213be="">_attribute<wbr data-v-dac213be="">_t&gt;?, UInt32)</wbr></wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Replace a property of a class.</span><!--end_enstr-->
+<span class="jpstr">
+あるクラスのあるプロパティを置き換えます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418685-class_conformstoprotocol.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">class<wbr data-v-dac213be="">_conforms<wbr data-v-dac213be="">To<wbr data-v-dac213be="">Protocol</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class?, Protocol?) -&gt; Bool</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a Boolean value that indicates whether a class conforms to a given protocol.</span><!--end_enstr-->
+<span class="jpstr">
+あるブール値を返します、それはあるクラスがある与えられたプロトコルに準拠するかどうかを指し示します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418883-class_copyprotocollist.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">class<wbr data-v-dac213be="">_copy<wbr data-v-dac213be="">Protocol<wbr data-v-dac213be="">List</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class?, Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;UInt32&gt;?) -&gt; Autoreleasing<wbr data-v-dac213be="">Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;Protocol&gt;?</wbr></wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Describes the protocols adopted by a class.</span><!--end_enstr-->
+<span class="jpstr">
+あるクラスによって採用されたプロトコルそれらを記述します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418537-class_getversion.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">class<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Version</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class?) -&gt; Int32</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the version number of a class definition.</span><!--end_enstr-->
+<span class="jpstr">
+あるクラス定義のバージョン番号を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418492-class_setversion.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">class<wbr data-v-dac213be="">_set<wbr data-v-dac213be="">Version</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class?, Int32)</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Sets the version number of a class definition.</span><!--end_enstr-->
+<span class="jpstr">
+あるクラス定義のバージョン番号を設定します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Adding Classes</span><!--end_enstr-->
+<span class="jpstr">
+クラスを加える
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418559-objc_allocateclasspair.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">objc<wbr data-v-dac213be="">_allocate<wbr data-v-dac213be="">Class<wbr data-v-dac213be="">Pair</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class?, Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;, Int) -&gt; Any<wbr data-v-dac213be="">Class?</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Creates a new class and metaclass.</span><!--end_enstr-->
+<span class="jpstr">
+新しいクラスとメタクラスを作成します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418912-objc_disposeclasspair.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">objc<wbr data-v-dac213be="">_dispose<wbr data-v-dac213be="">Class<wbr data-v-dac213be="">Pair</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class)</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Destroys a class and its associated metaclass.</span><!--end_enstr-->
+<span class="jpstr">
+クラスとそれの関連メタクラスを破壊します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418603-objc_registerclasspair.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">objc<wbr data-v-dac213be="">_register<wbr data-v-dac213be="">Class<wbr data-v-dac213be="">Pair</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class)</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">Registers a class that was allocated using <span><code data-v-7fb764c1="">objc<wbr data-v-7fb764c1="">_allocate<wbr data-v-7fb764c1="">Class<wbr data-v-7fb764c1="">Pair(_:<wbr data-v-7fb764c1="">_:<wbr data-v-7fb764c1="">_:)</wbr></wbr></wbr></wbr></wbr></code></span>.</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418645-objc_duplicateclass.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">objc<wbr data-v-dac213be="">_duplicate<wbr data-v-dac213be="">Class</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class, Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;, Int) -&gt; Any<wbr data-v-dac213be="">Class</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Used by Foundation's Key-Value Observing.</span><!--end_enstr-->
+<span class="jpstr">
+Foundationのキー値コーディング監視によって使われます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Working with Instances</span><!--end_enstr-->
+<span class="jpstr">
+インスタンスを扱う
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1441508-object_getindexedivars.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">object<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Indexed<wbr data-v-dac213be="">Ivars</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any?) -&gt; Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Raw<wbr data-v-dac213be="">Pointer?</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a pointer to any extra bytes allocated with a instance given object.</span><!--end_enstr-->
+<span class="jpstr">
+あるインスタンス、与えられたオブジェクト、でアロケートされた何らかの余分なバイトへのポインタを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418960-object_getivar.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">object<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Ivar</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any?, Ivar) -&gt; Any?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Reads the value of an instance variable in an object.</span><!--end_enstr-->
+<span class="jpstr">
+あるオブジェクトの中のあるインスタンス変数の値を読み出します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418899-object_setivar.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">object<wbr data-v-dac213be="">_set<wbr data-v-dac213be="">Ivar</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any?, Ivar, Any?)</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Sets the value of an instance variable in an object.</span><!--end_enstr-->
+<span class="jpstr">
+あるオブジェクトの中のあるインスタンス変数の値を設定します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418547-object_getclassname.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">object<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Class<wbr data-v-dac213be="">Name</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any?) -&gt; Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the class name of a given object.</span><!--end_enstr-->
+<span class="jpstr">
+与えられたオブジェクトのクラス名を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418629-object_getclass.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">object<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Class</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any?) -&gt; Any<wbr data-v-dac213be="">Class?</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the class of an object.</span><!--end_enstr-->
+<span class="jpstr">
+あるオブジェクトのクラスを返します。
+</span><!--end_jpstr-->
+ </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418905-object_setclass.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">object<wbr data-v-dac213be="">_set<wbr data-v-dac213be="">Class</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any?, Any<wbr data-v-dac213be="">Class) -&gt; Any<wbr data-v-dac213be="">Class?</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Sets the class of an object.</span><!--end_enstr-->
+<span class="jpstr">
+あるオブジェクトのクラスを設定します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title">Obtaining Class Definitions</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418579-objc_getclasslist.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">objc<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Class<wbr data-v-dac213be="">List</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Autoreleasing<wbr data-v-dac213be="">Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;Any<wbr data-v-dac213be="">Class&gt;?, Int32) -&gt; Int32</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">Obtains the list of registered class definitions.</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418762-objc_copyclasslist.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">objc<wbr data-v-dac213be="">_copy<wbr data-v-dac213be="">Class<wbr data-v-dac213be="">List</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;UInt32&gt;?) -&gt; Autoreleasing<wbr data-v-dac213be="">Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;Any<wbr data-v-dac213be="">Class&gt;?</wbr></wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">Creates and returns a list of pointers to all registered class definitions.</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418760-objc_lookupclass.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">objc<wbr data-v-dac213be="">_look<wbr data-v-dac213be="">Up<wbr data-v-dac213be="">Class</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;) -&gt; Any<wbr data-v-dac213be="">Class?</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">Returns the class definition of a specified class.</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418952-objc_getclass.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">objc<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Class</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;) -&gt; Any!</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">Returns the class definition of a specified class.</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418661-objc_getrequiredclass.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">objc<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Required<wbr data-v-dac213be="">Class</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;) -&gt; Any<wbr data-v-dac213be="">Class</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">Returns the class definition of a specified class. </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418721-objc_getmetaclass.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">objc<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Meta<wbr data-v-dac213be="">Class</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;) -&gt; Any!</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">Returns the metaclass definition of a specified class.</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title">Working with Instance Variables</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418922-ivar_getname.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">ivar<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Name</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Ivar) -&gt; Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;?</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">Returns the name of an instance variable.</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418569-ivar_gettypeencoding.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">ivar<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Type<wbr data-v-dac213be="">Encoding</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Ivar) -&gt; Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;?</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">Returns the type string of an instance variable.</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418976-ivar_getoffset.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">ivar<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Offset</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Ivar) -&gt; Int</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">Returns the offset of an instance variable.</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Associative References</span><!--end_enstr-->
+<span class="jpstr">
+関連参照
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418509-objc_setassociatedobject.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">objc<wbr data-v-dac213be="">_set<wbr data-v-dac213be="">Associated<wbr data-v-dac213be="">Object</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any, Unsafe<wbr data-v-dac213be="">Raw<wbr data-v-dac213be="">Pointer, Any?, objc<wbr data-v-dac213be="">_Association<wbr data-v-dac213be="">Policy)</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Sets an associated value for a given object using a given key and association policy.</span><!--end_enstr-->
+<span class="jpstr">
+与えられたオブジェクトに対する関連値をある与えられたキーと関連ポリシーを使って設定します。
+</span><!--end_jpstr-->
+ </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418865-objc_getassociatedobject.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">objc<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Associated<wbr data-v-dac213be="">Object</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any, Unsafe<wbr data-v-dac213be="">Raw<wbr data-v-dac213be="">Pointer) -&gt; Any?</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the value associated with a given object for a given key.</span><!--end_enstr-->
+<span class="jpstr">
+与えられたキーに対してある与えられたオブジェクトと結び付けられた値を返します。
+</span><!--end_jpstr-->
+ </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418683-objc_removeassociatedobjects.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">objc<wbr data-v-dac213be="">_remove<wbr data-v-dac213be="">Associated<wbr data-v-dac213be="">Objects</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any)</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Removes all associations for a given object.</span><!--end_enstr-->
+<span class="jpstr">
+与えられたオブジェクトに対して全ての関連を取り除きます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Working with Methods</span><!--end_enstr-->
+<span class="jpstr">
+メソッドを扱う
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418758-method_getname.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">method<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Name</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Method) -&gt; Selector</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the name of a method.</span><!--end_enstr-->
+<span class="jpstr">
+あるメソッドの名前を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418551-method_getimplementation.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">method<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Implementation</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Method) -&gt; IMP</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the implementation of a method.</span><!--end_enstr-->
+<span class="jpstr">
+あるメソッドの実装を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418488-method_gettypeencoding.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">method<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Type<wbr data-v-dac213be="">Encoding</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Method) -&gt; Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;?</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a string describing a method's parameter and return types.</span><!--end_enstr-->
+<span class="jpstr">
+あるメソッドのもつパラメータおよび戻り型を記述している文字列を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418777-method_copyreturntype.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">method<wbr data-v-dac213be="">_copy<wbr data-v-dac213be="">Return<wbr data-v-dac213be="">Type</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Method) -&gt; Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;Int8&gt;</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a string describing a method's return type.</span><!--end_enstr-->
+<span class="jpstr">
+あるメソッドのもつ戻り型を記述している文字列を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418832-method_copyargumenttype.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">method<wbr data-v-dac213be="">_copy<wbr data-v-dac213be="">Argument<wbr data-v-dac213be="">Type</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Method, UInt32) -&gt; Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;Int8&gt;?</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a string describing a single parameter type of a method.</span><!--end_enstr-->
+<span class="jpstr">
+あるメソッドのある単一のパラメータ型を記述している文字列を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418591-method_getreturntype.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">method<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Return<wbr data-v-dac213be="">Type</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Method, Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;Int8&gt;, Int)</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns by reference a string describing a method's return type.</span><!--end_enstr-->
+<span class="jpstr">
+あるメソッドのもつ戻り型を記述している文字列を参照によって返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418968-method_getnumberofarguments.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">method<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Number<wbr data-v-dac213be="">Of<wbr data-v-dac213be="">Arguments</wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Method) -&gt; UInt32</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the number of arguments accepted by a method.</span><!--end_enstr-->
+<span class="jpstr">
+あるメソッドによって受け入れられる引数の数を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418607-method_getargumenttype.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">method<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Argument<wbr data-v-dac213be="">Type</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Method, UInt32, Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;Int8&gt;?, Int)</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns by reference a string describing a single parameter type of a method.</span><!--end_enstr-->
+<span class="jpstr">
+あるメソッドのある単一のパラメータ型を記述している文字列を参照によって返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418545-method_getdescription.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">method<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Description</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Method) -&gt; Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;objc<wbr data-v-dac213be="">_method<wbr data-v-dac213be="">_description&gt;</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a method description structure for a specified method.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたメソッドに対するメソッド記述構造体を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418707-method_setimplementation.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">method<wbr data-v-dac213be="">_set<wbr data-v-dac213be="">Implementation</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Method, IMP) -&gt; IMP</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Sets the implementation of a method.</span><!--end_enstr-->
+<span class="jpstr">
+あるメソッドの実装を設定します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418769-method_exchangeimplementations.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">method<wbr data-v-dac213be="">_exchange<wbr data-v-dac213be="">Implementations</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Method, Method)</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Exchanges the implementations of two methods.</span><!--end_enstr-->
+<span class="jpstr">
+２つのメソッドの実装を交換します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Working with Libraries</span><!--end_enstr-->
+<span class="jpstr">
+ライブラリを扱う
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418970-objc_copyimagenames.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">objc<wbr data-v-dac213be="">_copy<wbr data-v-dac213be="">Image<wbr data-v-dac213be="">Names</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;UInt32&gt;?) -&gt; Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;&gt;</wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the names of all the loaded Objective-C frameworks and dynamic libraries.</span><!--end_enstr-->
+<span class="jpstr">
+全てのロードされたObjective-Cフレームワークおよび動的ライブラリの名前を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418539-class_getimagename.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">class<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Image<wbr data-v-dac213be="">Name</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any<wbr data-v-dac213be="">Class?) -&gt; Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;?</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the name of the dynamic library a class originated from.</span><!--end_enstr-->
+<span class="jpstr">
+あるクラスがそれに源を発する動的ライブラリの名前を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418485-objc_copyclassnamesforimage.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">objc<wbr data-v-dac213be="">_copy<wbr data-v-dac213be="">Class<wbr data-v-dac213be="">Names<wbr data-v-dac213be="">For<wbr data-v-dac213be="">Image</wbr></wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;, Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;UInt32&gt;?) -&gt; Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;&gt;?</wbr></wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the names of all the classes within a specified library or framework.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたライブラリまたはフレームワーク内の全てのクラスの名前を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Working with Selectors</span><!--end_enstr-->
+<span class="jpstr">
+セレクタを扱う
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418571-sel_getname.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">sel<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Name</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Selector) -&gt; Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the name of the method specified by a given selector.</span><!--end_enstr-->
+<span class="jpstr">
+与えられたセレクタによって指定されたメソッドの名前を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418557-sel_registername.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">sel<wbr data-v-dac213be="">_register<wbr data-v-dac213be="">Name</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;) -&gt; Selector</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Registers a method with the Objective-C runtime system, maps the method name to a selector, and returns the selector value.</span><!--end_enstr-->
+<span class="jpstr">
+あるメソッドをObjective-C runtimeシステムに登録して、そのメソッド名をあるセレクタにマップして、そしてそのセレクタ値を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418625-sel_getuid.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">sel<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Uid</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;) -&gt; Selector</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Registers a method name with the Objective-C runtime system.</span><!--end_enstr-->
+<span class="jpstr">
+メソッド名をObjective-C runtimeシステムに登録します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418736-sel_isequal.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">sel<wbr data-v-dac213be="">_is<wbr data-v-dac213be="">Equal</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Selector, Selector) -&gt; Bool</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a Boolean value that indicates whether two selectors are equal.</span><!--end_enstr-->
+<span class="jpstr">
+あるブール値を返します、それは２つのセレクタが等しいかどうかを指し示します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Working with Protocols</span><!--end_enstr-->
+<span class="jpstr">
+プロトコルを扱う
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418870-objc_getprotocol.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">objc<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Protocol</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;) -&gt; Protocol?</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a specified protocol.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたプロトコルを返します。
+</span><!--end_jpstr-->
+ </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418549-objc_copyprotocollist.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">objc<wbr data-v-dac213be="">_copy<wbr data-v-dac213be="">Protocol<wbr data-v-dac213be="">List</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;UInt32&gt;?) -&gt; Autoreleasing<wbr data-v-dac213be="">Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;Protocol&gt;?</wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an array of all the protocols known to the runtime.</span><!--end_enstr-->
+<span class="jpstr">
+runtimeにとって既知の全てのプロトコルからなるある配列を返します。
+</span><!--end_jpstr-->
+ </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418599-objc_allocateprotocol.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">objc<wbr data-v-dac213be="">_allocate<wbr data-v-dac213be="">Protocol</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;) -&gt; Protocol?</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Creates a new protocol instance.</span><!--end_enstr-->
+<span class="jpstr">
+新しいプロトコルインスタンスを作成します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418861-objc_registerprotocol.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">objc<wbr data-v-dac213be="">_register<wbr data-v-dac213be="">Protocol</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Protocol)</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Registers a newly created protocol with the Objective-C runtime.</span><!--end_enstr-->
+<span class="jpstr">
+新しく作成されたプロトコルをObjective-C runtimeに登録します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418709-protocol_addmethoddescription.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">protocol<wbr data-v-dac213be="">_add<wbr data-v-dac213be="">Method<wbr data-v-dac213be="">Description</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Protocol, Selector, Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;?, Bool, Bool)</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Adds a method to a protocol.</span><!--end_enstr-->
+<span class="jpstr">
+あるメソッドをあるプロトコルに加えます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418494-protocol_addprotocol.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">protocol<wbr data-v-dac213be="">_add<wbr data-v-dac213be="">Protocol</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Protocol, Protocol)</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Adds a registered protocol to another protocol that is under construction.</span><!--end_enstr-->
+<span class="jpstr">
+ある登録済みプロトコルを、建設中の別のプロトコルに加えます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418585-protocol_addproperty.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">protocol<wbr data-v-dac213be="">_add<wbr data-v-dac213be="">Property</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Protocol, Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;, Unsafe<wbr data-v-dac213be="">Pointer&lt;objc<wbr data-v-dac213be="">_property<wbr data-v-dac213be="">_attribute<wbr data-v-dac213be="">_t&gt;?, UInt32, Bool, Bool)</wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Adds a property to a protocol that is under construction.</span><!--end_enstr-->
+<span class="jpstr">
+あるプロトコルをある建設中のプロトコルに加えます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418826-protocol_getname.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">protocol<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Name</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Protocol) -&gt; Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a the name of a protocol.</span><!--end_enstr-->
+<span class="jpstr">
+あるプロトコルの名前を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418705-protocol_isequal.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">protocol<wbr data-v-dac213be="">_is<wbr data-v-dac213be="">Equal</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Protocol?, Protocol?) -&gt; Bool</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a Boolean value that indicates whether two protocols are equal.</span><!--end_enstr-->
+<span class="jpstr">
+あるブール値を返します、それは２つのプロトコルが等しいかどうかを指し示します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418822-protocol_copymethoddescriptionli.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">protocol<wbr data-v-dac213be="">_copy<wbr data-v-dac213be="">Method<wbr data-v-dac213be="">Description<wbr data-v-dac213be="">List</wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Protocol, Bool, Bool, Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;UInt32&gt;?) -&gt; Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;objc<wbr data-v-dac213be="">_method<wbr data-v-dac213be="">_description&gt;?</wbr></wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an array of method descriptions of methods meeting a given specification for a given protocol.</span><!--end_enstr-->
+<span class="jpstr">
+与えられたプロトコルに対するある与えられた仕様に合っているメソッドそれらのメソッド記述からなるある配列を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418830-protocol_getmethoddescription.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">protocol<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Method<wbr data-v-dac213be="">Description</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Protocol, Selector, Bool, Bool) -&gt; objc<wbr data-v-dac213be="">_method<wbr data-v-dac213be="">_description</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a method description structure for a specified method of a given protocol.</span><!--end_enstr-->
+<span class="jpstr">
+与えられたプロトコルのある指定されたメソッドに対するメソッド記述構造体を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418689-protocol_copypropertylist.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">protocol<wbr data-v-dac213be="">_copy<wbr data-v-dac213be="">Property<wbr data-v-dac213be="">List</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Protocol, Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;UInt32&gt;?) -&gt; Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;objc<wbr data-v-dac213be="">_property<wbr data-v-dac213be="">_t&gt;?</wbr></wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an array of the properties declared by a protocol.</span><!--end_enstr-->
+<span class="jpstr">
+あるプロトコルによって宣言されるプロパティそれらからなるある配列を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418740-protocol_getproperty.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">protocol<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Property</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Protocol, Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;, Bool, Bool) -&gt; objc<wbr data-v-dac213be="">_property<wbr data-v-dac213be="">_t?</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the specified property of a given protocol.</span><!--end_enstr-->
+<span class="jpstr">
+与えられたプロトコルのこの指定されたプロパティを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418717-protocol_copyprotocollist.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">protocol<wbr data-v-dac213be="">_copy<wbr data-v-dac213be="">Protocol<wbr data-v-dac213be="">List</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Protocol, Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;UInt32&gt;?) -&gt; Autoreleasing<wbr data-v-dac213be="">Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;Protocol&gt;?</wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an array of the protocols adopted by a protocol.</span><!--end_enstr-->
+<span class="jpstr">
+あるプロトコルによって採用されたプロトコルそれらからなるある配列を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418783-protocol_conformstoprotocol.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">protocol<wbr data-v-dac213be="">_conforms<wbr data-v-dac213be="">To<wbr data-v-dac213be="">Protocol</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Protocol?, Protocol?) -&gt; Bool</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a Boolean value that indicates whether one protocol conforms to another protocol.</span><!--end_enstr-->
+<span class="jpstr">
+あるブール値を返します、それは一方のプロトコルが別のプロトコルに準拠するかどうかを指し示します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title">Working with Properties</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418903-property_getname.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">property<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Name</wbr></wbr></span><span data-v-dac213be="" class="decorator">(objc<wbr data-v-dac213be="">_property<wbr data-v-dac213be="">_t) -&gt; Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">Returns the name of a property.</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418909-property_getattributes.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">property<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Attributes</wbr></wbr></span><span data-v-dac213be="" class="decorator">(objc<wbr data-v-dac213be="">_property<wbr data-v-dac213be="">_t) -&gt; Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;?</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">Returns the attribute string of a property.</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418944-property_copyattributevalue.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">property<wbr data-v-dac213be="">_copy<wbr data-v-dac213be="">Attribute<wbr data-v-dac213be="">Value</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(objc<wbr data-v-dac213be="">_property<wbr data-v-dac213be="">_t, Unsafe<wbr data-v-dac213be="">Pointer&lt;Int8&gt;) -&gt; Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;Int8&gt;?</wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">Returns the value of a property attribute given the attribute name.</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418675-property_copyattributelist.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">property<wbr data-v-dac213be="">_copy<wbr data-v-dac213be="">Attribute<wbr data-v-dac213be="">List</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(objc<wbr data-v-dac213be="">_property<wbr data-v-dac213be="">_t, Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;UInt32&gt;?) -&gt; Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;objc<wbr data-v-dac213be="">_property<wbr data-v-dac213be="">_attribute<wbr data-v-dac213be="">_t&gt;?</wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">Returns an array of property attributes for a given property.</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Using Objective-C Language Features</span><!--end_enstr-->
+<span class="jpstr">
+Objective-C言語機能を使う
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418744-objc_enumerationmutation.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">objc<wbr data-v-dac213be="">_enumeration<wbr data-v-dac213be="">Mutation</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any)</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Inserted by the compiler when a mutation is detected during a foreach iteration.</span><!--end_enstr-->
+<span class="jpstr">
+ある変異がforeach反復の間に検知される時に、コンパイラによって挿入されます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418751-objc_setenumerationmutationhandl.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">objc<wbr data-v-dac213be="">_set<wbr data-v-dac213be="">Enumeration<wbr data-v-dac213be="">Mutation<wbr data-v-dac213be="">Handler</wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(((Any) -&gt; Void)?)</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Sets the current mutation handler.</span><!--end_enstr-->
+<span class="jpstr">
+現在の変異ハンドラを設定します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418587-imp_implementationwithblock.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">imp<wbr data-v-dac213be="">_implementation<wbr data-v-dac213be="">With<wbr data-v-dac213be="">Block</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Any) -&gt; IMP</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Creates a pointer to a function that calls the specified block when the method is called.</span><!--end_enstr-->
+<span class="jpstr">
+ある関数へのポインターを作成します、それはメソッドが呼び出される時に指定されたブロックを呼び出すものです。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418820-imp_getblock.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">imp<wbr data-v-dac213be="">_get<wbr data-v-dac213be="">Block</wbr></wbr></span><span data-v-dac213be="" class="decorator">(IMP) -&gt; Any?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">Returns the block associated with an <span>IMP</span> that was created using <a href="../../documentation/objectivec/1418587-imp_implementationwithblock.html" class=""><code data-v-7fb764c1="">imp<wbr data-v-7fb764c1="">_implementation<wbr data-v-7fb764c1="">With<wbr data-v-7fb764c1="">Block(_:)</wbr></wbr></wbr></code></a>.</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418482-imp_removeblock.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">imp<wbr data-v-dac213be="">_remove<wbr data-v-dac213be="">Block</wbr></wbr></span><span data-v-dac213be="" class="decorator">(IMP) -&gt; Bool</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">Disassociates a block from an <span>IMP</span> that was created using <a href="../../documentation/objectivec/1418587-imp_implementationwithblock.html" class=""><code data-v-7fb764c1="">imp<wbr data-v-7fb764c1="">_implementation<wbr data-v-7fb764c1="">With<wbr data-v-7fb764c1="">Block(_:)</wbr></wbr></wbr></code></a>, and releases the copy of the block that was created.</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418693-objc_loadweak.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">objc<wbr data-v-dac213be="">_load<wbr data-v-dac213be="">Weak</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Autoreleasing<wbr data-v-dac213be="">Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;Any<wbr data-v-dac213be="">Object?>) -&gt; Any?</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Loads the object referenced by a weak pointer and returns it.</span><!--end_enstr-->
+<span class="jpstr">
+弱いポインタによって参照されたオブジェクトをロードします、そしてそれを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/1418791-objc_storeweak.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">objc<wbr data-v-dac213be="">_store<wbr data-v-dac213be="">Weak</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Autoreleasing<wbr data-v-dac213be="">Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;Any<wbr data-v-dac213be="">Object?>, Any?) -&gt; Any?</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">Stores a new value in a <code data-v-7fb764c1="">_<wbr data-v-7fb764c1="">_weak</wbr></code> variable.</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title">Class-Definition Data Structures</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/method.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">typealias </span><span data-v-dac213be="" class="identifier">Method</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">An opaque type that represents a method in a class definition.</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/ivar.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">typealias </span><span data-v-dac213be="" class="identifier">Ivar</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">An opaque type that represents an instance variable.</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/category.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">typealias </span><span data-v-dac213be="" class="identifier">Category</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">An opaque type that represents a category.</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/objc_property_t.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">typealias </span><span data-v-dac213be="" class="identifier">objc<wbr data-v-dac213be="">_property<wbr data-v-dac213be="">_t</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">An opaque type that represents an Objective-C declared property.</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/objc_method_description.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">struct </span><span data-v-dac213be="" class="identifier">objc<wbr data-v-dac213be="">_method<wbr data-v-dac213be="">_description</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">Defines an Objective-C method.</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/objc_property_attribute_t.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">struct </span><span data-v-dac213be="" class="identifier">objc<wbr data-v-dac213be="">_property<wbr data-v-dac213be="">_attribute<wbr data-v-dac213be="">_t</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">Defines a property attribute.</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title">Instance Data Types</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e="">
+<div data-v-7ea0aa49="" data-v-63527a60="" class="content" data-v-9807b2e0="">
+<p>These are the data types that represent objects, classes, and superclasses.</p>
+<ul>
+<li><p><a href="../../documentation/objectivec/objc_object.html" class=""><code data-v-7fb764c1="">objc<wbr data-v-7fb764c1="">_object</wbr></code></a> pointer to an instance of a class.</p></li>
+<li><p><a href="../../documentation/objectivec/objc_object.html" class=""><code data-v-7fb764c1="">objc<wbr data-v-7fb764c1="">_object</wbr></code></a> represents an instance of a class.</p></li>
+<li><p><a href="../../documentation/objectivec/objc_super.html" class=""><code data-v-7fb764c1="">objc<wbr data-v-7fb764c1="">_super</wbr></code></a> specifies the superclass of an instance.</p></li>
+</ul>
+</div><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/objc_object.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">struct </span><span data-v-dac213be="" class="identifier">objc<wbr data-v-dac213be="">_object</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">A pointer to an instance of a class.</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/objectivec/objc_super.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">struct </span><span data-v-dac213be="" class="identifier">objc<wbr data-v-dac213be="">_super</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">Specifies the superclass of an instance.</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Constants</span><!--end_enstr-->
+<span class="jpstr">
+定数
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0="">
+<a data-v-01f7f080="" href="../../documentation/objectivec/objective-c_runtime/dispatch_function_prototypes.html" class="link has-adjacent-elements"><svg data-v-a76e93d8="" data-v-a8c6b630="" data-v-01f7f080="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="svg-icon topic-icon" height="16" viewbox="0 0 15 16"><title data-v-a76e93d8="">API Reference</title>
+<g data-v-a76e93d8="" fill-rule="evenodd" class="svg-icon-small"><path data-v-a76e93d8="" fill-rule="nonzero" d="M0,0 L15,0 L15,15 L0,15 L0,0 Z M1,14 L14,14 L14,1 L1,1 L1,14 Z"></path><polygon data-v-a76e93d8="" points="4 11 3 11 3 10 4 10"></polygon><polygon data-v-a76e93d8="" points="4 8 3 8 3 7 4 7"></polygon><polygon data-v-a76e93d8="" points="4 5 3 5 3 4 4 4"></polygon><polygon data-v-a76e93d8="" points="12 11 5 11 5 10 12 10"></polygon><polygon data-v-a76e93d8="" points="12 8 5 8 5 7 12 7"></polygon><polygon data-v-a76e93d8="" points="12 5 5 5 5 4 12 4"></polygon></g></svg><span data-v-01f7f080="">Dispatch Function Prototypes</span><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">This macro indicates whether dispatch functions must be cast to an appropriate function pointer type.</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+</div><!----><!----></section><section data-v-8c663d90="" data-v-63527a60="" data-v-2deaa168="" id="see-also" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">See Also</span><!--end_enstr-->
+<span class="jpstr">
+参照
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Related Documentation</span><!--end_enstr-->
+<span class="jpstr">
+関連文書
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048" class="link"><span data-v-01f7f080="">Objective-C Runtime Programming Guide</span><!----><!----><!----></a>
+</div>
+</div>
+</div>
+</div><!----></section></main>
+</div></div></div>
+<section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo"><nav class="footer-breadory"><a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a><section class="breadcrumbs"><ol class="breadcrumbs-list"></ol></section><div id="directorynav" class="directorynav">
+<div id="dn-cola" class="column">
+<h3><a href="/discover/">Discover</a></h3>
+<ul>
+<li><a href="/ios/">iOS</a></li>
+<li><a href="/ipados/">iPadOS</a></li>
+<li><a href="/macos/">macOS</a></li>
+<li><a href="/tvos/">tvOS</a></li>
+<li><a href="/watchos/">watchOS</a></li>
+<li><a href="/safari/">Safari and Web</a></li>
+<li><a href="/games/">Games</a></li>
+<li><a href="/business/">Business</a></li>
+<li><a href="/education/">Education</a></li>
+<li><a href="/wwdc/">WWDC</a></li>
+</ul>
+</div>
+<div id="dn-colb" class="column">
+<h3><a href="/design/">Design</a></h3>
+<ul>
+<li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
+<li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
+<span class="jpstr">
+リソース
+</span><!--end_jpstr-->
+</a></li>
+<li><a href="/videos/design/">Videos</a></li>
+<li><a href="/design/awards/">Apple Design Awards</a></li>
+<li><a href="/fonts/">Fonts</a></li>
+<li><a href="/accessibility/"><span class="enstr">Accessibility</span><!--end_enstr-->
+<span class="jpstr">
+アクセシビリティ
+</span><!--end_jpstr-->
+</a></li>
+<li><a href="/localization/">Localization</a></li>
+<li><a href="/accessories/">Accessories</a></li>
+</ul>
+</div>
+<div id="dn-colc" class="column">
+<h3><a href="/develop/">Develop</a></h3>
+<ul>
+<li><a href="/xcode/">Xcode</a></li>
+<li><a href="/swift/">Swift</a></li>
+<li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
+<li><a href="/testflight/">TestFlight</a></li>
+<li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
+<li><a href="/videos/">Videos</a></li>
+<li><a href="/download/">Downloads</a></li>
+</ul>
+</div>
+<div id="dn-cold" class="column">
+<h3><a href="/distribute/">Distribute</a></h3>
+<ul>
+<li><a href="/programs/">Developer Program</a></li>
+<li><a href="/app-store/">App Store</a></li>
+<li><a href="/app-store/review/">App Review</a></li>
+<li><a href="/macos/distribution/">Mac Software</a></li>
+<li><a href="/business/distribute/">Apps for Business</a></li>
+<li><a href="/safari/extensions/">Safari Extensions</a></li>
+<li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
+<li><a href="/softwarelicensing/">Trademark Licensing</a></li>
+</ul>
+</div>
+<div id="dn-cole" class="column">
+<h3><a href="/support/">Support</a></h3>
+<ul>
+<li><a href="/support/articles/">Articles</a></li>
+<li><a href="/forums/">Developer Forums</a></li>
+<li><a href="/bug-reporting/">Feedback &amp; Bug Reporting</a></li>
+<li><a href="/system-status/">System Status</a></li>
+<li><a href="/contact/">Contact Us</a></li>
+</ul>
+<h3><a href="/account/">Account</a></h3>
+<ul>
+<li><a href="/account/ios/certificate/">Certificates, Identifiers &amp; Profiles</a></li>
+<li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
+</ul>
+</div>
+</div></nav><div class="ac-gf-footer-legal">
+<div class="ac-gf-footer-news">To view the latest developer news, visit <a href="/news/">News and Updates</a>.</div>
+<div class="ac-gf-footer-language-dropdown-wrapper">
+<select id="footer-language-selector" class="footer-language-select" aria-label="Language Dropdown" autocomplete="off"><option value="https://developer.apple.com/" selected>English</option>
+<option value="https://developer.apple.com/cn/">简体中文</option>
+<option value="https://developer.apple.com/jp/">日本語</option>
+<option value="https://developer.apple.com/kr/">한국어</option></select> <span class="footer-language-select-icon icon icon-chevrondown" aria-hidden="true"></span>
+</div>
+<div class="ac-gf-footer-legal-copyright">Copyright © <span class="footer-current-year">2020</span> <a href="https://www.apple.com">Apple Inc.</a> All rights reserved.</div>
+<div class="ac-gf-footer-legal-links">
+<a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a> <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a> <a href="/terms/">License Agreements</a>
+</div>
+</div></footer></section><script src="../../tutorials/js/footer.js"></script>
+</body>
+</html>

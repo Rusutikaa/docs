@@ -1,395 +1,891 @@
-<!DOCTYPE html><html lang="en" data-reactroot=""><head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>Encodable - Swift Standard Library | Apple Developer Documentation</title><!-- link href="https://www.apple.com/wss/fonts?families=SF+Pro,v1|SF+Mono,v1|SF+Pro+Icons,v1" media="all" rel="stylesheet" type="text/css"/ --><meta content="width=device-width, initial-scale=1 viewport-fit=cover" name="viewport"/><meta data-pid="463568"/><link href="../../documentation/assets/application-e5bb1544.css" media="all" rel="stylesheet" type="text/css"/><noscript><link href="../../documentation/assets/nojs-c6be9131.css" media="all" rel="stylesheet" type="text/css"/></noscript><link rel="mask-icon" href="../../documentation/assets/apple-logo.svg" color="#000"/><link rel="shortcut icon" href="../../documentation/assets/favicon.ico"/><script src="../../documentation/assets/shared-b7676010.js"></script></head><body><div id="_omniture_top">
-      <script>
-        var s_account="awdappledeveloper"
-      </script><!-- script src="https://developer.apple.com/assets/metrics/scripts/analytics.js" -->
-      </script>
-      <script>
-        s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
-        s.channel="www.documentation.developer"
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><!-- link rel="icon" href="/favicon.ico" -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 
-        var s_code=s.t();if(s_code)document.write(s_code)
-      </script>
-    </div><div id="app"><div><a href="#main" id="skip-localnav" class="showonfocus hidden">Skip Navigation</a><aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"/><nav id="ac-globalnav" class="no-js" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions/">
-      <div class="ac-gn-content">
-        <ul class="ac-gn-header">
-          <li class="ac-gn-item ac-gn-menuicon">
-            <label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true">
-              <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top">
-                <span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span>
-              </span>
-              <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom">
-                <span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span>
-              </span>
-            </label>
-            <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open">
-              <span class="ac-gn-menuanchor-label">Global Nav Open Menu</span>
-            </a>
-            <a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close">
-              <span class="ac-gn-menuanchor-label">Global Nav Close Menu</span>
-            </a>
-          </li>
-          <li class="ac-gn-item ac-gn-apple">
-            <a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small">
-              <span class="ac-gn-link-text">Apple Developer</span>
-            </a>
-          </li>
-        </ul>
-        <div class="ac-gn-search-placeholder-container" role="search">
-          <div class="ac-gn-search ac-gn-search-small">
-            <a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link aria-label="Search Developer">
-              </a><div class="ac-gn-search-placeholder-bar">
-                <div class="ac-gn-search-placeholder-input">
-                  <div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
-                    <div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
-                    <span class="ac-gn-search-placeholder">Search Developer</span>
-                  </div>
-                </div>
-                <div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close">
-                  <span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-        <ul class="ac-gn-list">
-          <li class="ac-gn-item ac-gn-apple">
-            <a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus">
-              <span class="ac-gn-link-text">Apple Developer</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-discover">
-            <a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover">
-              <span class="ac-gn-link-text">Discover</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-design">
-            <a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design">
-              <span class="ac-gn-link-text">Design</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-develop">
-            <a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop">
-              <span class="ac-gn-link-text">Develop</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-distribute">
-            <a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute">
-              <span class="ac-gn-link-text">Distribute</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport">
-            <a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport">
-              <span class="ac-gn-link-text">Support</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-account">
-            <a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account">
-              <span class="ac-gn-link-text">Account</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search">
-            <a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link aria-label="Search Developer"></a>
-          </li>
-        </ul>
-        <aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search">
-          <div class="ac-gn-searchview-content">
-            <div class="ac-gn-searchview-bar">
-              <div class="ac-gn-searchview-bar-wrapper">
-                <form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get">
-                  <div class="ac-gn-searchform-wrapper">
-                    <input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions" />
-                    <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button>
-                    <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search">
-                        <span class="ac-gn-searchform-reset-background"></span>
-                      </button>
-                  </div>
-                </form>
-                <button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search">
-                    <span class="ac-gn-searchview-close-cancel" aria-hidden="true">
-                      Cancel
-                    </span>
-                  </button>
-              </div>
-            </div>
-            <aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
-          </div>
-          <button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search">
-              <span class="ac-gn-searchview-close-wrapper">
-                <span class="ac-gn-searchview-close-left"></span>
-                <span class="ac-gn-searchview-close-right"></span>
-              </span>
-            </button>
-        </aside>
-          </div>
-    </nav><div class="ac-gn-blur"></div><div id="ac-gn-curtain" class="ac-gn-curtain"></div><div id="ac-gn-placeholder" class="ac-nav-placeholder"></div><input type="checkbox" id="localnav-menustate" class="localnav-menustate" aria-hidden="true"/><nav id="localnav" class="localnav localnav-dark theme-dark localnav-scrim localnav-noborder" role="navigation" aria-label="API Reference" data-sticky="true"><div class="localnav-wrapper"><div class="referencenav"><div class="localnav-background"></div><div class="localnav-content"><a href="../../index.html" class="localnav-title">Documentation</a><div class="localnav-menu"><a href="#localnav-menustate" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span class="localnav-menucta-anchor-label" aria-hidden="true">Open Menu</span></a><a href="#" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span class="localnav-menucta-anchor-label" aria-hidden="true">Close Menu</span></a><div class="localnav-menu-tray"><ul aria-label="Breadcrumbs" class="localnav-menu-items localnav-menu-breadcrumbs"><li class="localnav-menu-item localnav-menu-breadcrumb-item truncated"><a class="localnav-menu-link" href="../../documentation/swift.html">Swift</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item truncated"><a class="localnav-menu-link" href="../../documentation/swift/swift_standard_library.html"><span class="enstr">Swift Standard Library</span><!--end_enstr-->
+<link rel="mask-icon" href="/apple-logo.svg" color="#333333">
+<link rel="stylesheet" href="../../tutorials/css/_globalnav.css">
+<title>Encodable | Apple Developer Documentation</title>
+<link href="../../tutorials/css/chunk-76d5c2b5.00c53891.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic.e358e85c.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css" rel="prefetch">
+<link href="../../tutorials/css/topic.69278f1e.css" rel="prefetch">
+<link href="../../tutorials/css/topic~tutorials-overview.1f93e025.css" rel="prefetch">
+<link href="../../tutorials/css/tutorials-overview.d4ff0b50.css" rel="prefetch">
+<link href="../../tutorials/css/welcome-experience-featured.0537f0f0.css" rel="prefetch">
+<link href="../../tutorials/css/welcome-experience-technologies.60068ae2.css" rel="prefetch">
+<link href="../../tutorials/js/chunk-2d0d3105.459bf725.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-2d21a016.b81cb311.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-503f1ed8.d26c4552.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-530f89ce.621e1d48.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-640db3b2.f8778ca5.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-76d5c2b5.092e3b8a.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic.6abe9458.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js" rel="prefetch">
+<link href="../../tutorials/js/topic.c6ec6b6c.js" rel="prefetch">
+<link href="../../tutorials/js/topic~tutorials-overview.467a8186.js" rel="prefetch">
+<link href="../../tutorials/js/tutorials-overview.d77f61ca.js" rel="prefetch">
+<link href="../../tutorials/js/welcome-experience-featured.04f663e2.js" rel="prefetch">
+<link href="../../tutorials/js/welcome-experience-technologies.56a372c1.js" rel="prefetch">
+<link href="../../tutorials/css/app.2a174a23.css" rel="preload" as="style">
+<link href="../../tutorials/js/app.2c558263.js" rel="preload" as="script">
+<link href="../../tutorials/js/chunk-vendors.c3b68236.js" rel="preload" as="script">
+<link href="../../tutorials/css/app.2a174a23.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../../tutorials/css/chunk-76d5c2b5.00c53891.css">
+<script charset="utf-8" src="../../tutorials/js/chunk-76d5c2b5.092e3b8a.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic.e358e85c.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic.6abe9458.js"></script>
+</head>
+<body>
+<div id="_omniture_top">
+<script>var s_account="awdappledeveloper"</script>
+</div>
+<a href="#main" id="skip-localnav">Skip Navigation</a><aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"><nav id="ac-globalnav" class="js no-touch" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions"><div class="ac-gn-content">
+<ul class="ac-gn-header">
+<li class="ac-gn-item ac-gn-menuicon">
+<label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true"><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span> </span><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span></span></label> <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open"><span class="ac-gn-menuanchor-label">Global Nav Open Menu</span> </a><a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close"><span class="ac-gn-menuanchor-label">Global Nav Close Menu</span></a>
+</li>
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+</ul>
+<div class="ac-gn-search-placeholder-container" role="search"><div class="ac-gn-search ac-gn-search-small"><a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a><div class="ac-gn-search-placeholder-bar">
+<div class="ac-gn-search-placeholder-input"><div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
+<div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
+<span class="ac-gn-search-placeholder">Search Developer</span>
+</div></div>
+<div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></div>
+</div></a></div></div>
+<ul class="ac-gn-list">
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-discover"><a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover"><span class="ac-gn-link-text">Discover</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-design"><a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design"><span class="ac-gn-link-text">Design</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-develop"><a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop"><span class="ac-gn-link-text">Develop</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-distribute"><a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute"><span class="ac-gn-link-text">Distribute</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport"><a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport"><span class="ac-gn-link-text">Support</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-account"><a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account"><span class="ac-gn-link-text">Account</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search"><a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a></li>
+</ul>
+<aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search"><div class="ac-gn-searchview-content">
+<div class="ac-gn-searchview-bar"><div class="ac-gn-searchview-bar-wrapper">
+<form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get"><div class="ac-gn-searchform-wrapper">
+<input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions"> <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button> <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search"><span class="ac-gn-searchform-reset-background"></span></button>
+</div></form>
+<button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></button>
+</div></div>
+<aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
+</div>
+<button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search"><span class="ac-gn-searchview-close-wrapper"><span class="ac-gn-searchview-close-left"></span> <span class="ac-gn-searchview-close-right"></span></span></button></aside>
+</div></nav><div class="ac-gn-blur"></div>
+<div id="ac-gn-curtain" class="ac-gn-curtain"></div>
+<div id="ac-gn-placeholder" class="ac-nav-placeholder"></div>
+<script src="../../tutorials/js/ac-globalnav.built.js"></script>
+<noscript>
+<style>.noscript {
+  font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
+  margin: 92px auto 140px auto;
+  text-align: center;
+  width: 980px;
+}
+
+.noscript-title {
+  color: #111;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -.003em;
+  line-height: 1.08365;
+  margin: 0 auto 54px auto;
+  width: 502px;
+}
+
+@media only screen and (max-width: 1068px) {
+  .noscript {
+    margin: 90px auto 120px auto;
+    width: 692px;
+  }
+
+  .noscript-title {
+    font-size: 40px;
+    letter-spacing: 0;
+    line-height: 1.1;
+    margin: 0 auto 45px auto;
+    width: 420px;
+  }
+}
+
+@media only screen and (max-width: 735px) {
+  .noscript {
+    margin: 45px auto 60px auto;
+    width: 87.5%;
+  }
+
+  .noscript-title {
+    font-size: 32px;
+    letter-spacing: .004em;
+    line-height: 1.125;
+    margin: 0 auto 35px auto;
+    max-width: 330px;
+    width: auto;
+  }
+}
+
+#loading-placeholder {
+  display: none;
+};</style>
+<div class="noscript">
+<h1 class="noscript-title">This page requires JavaScript.</h1>
+<p>Please turn on JavaScript in your browser and refresh the page to view its content.</p>
+</div>
+</noscript>
+<div data-v-0220a4c4="" id="app" class=""><div data-v-0220a4c4=""><div data-v-2deaa168="" class="doc-topic">
+<div data-v-3ceaa5df="" data-v-2deaa168="" class="localnav-container">
+<input data-v-3ceaa5df="" aria-hidden="true" id="localnav-menustate" type="checkbox" class="localnav-menustate"><div id="localnav-sticky-placeholder" class="css-sticky"></div>
+<nav data-v-3ceaa5df="" aria-label="API Reference" data-sticky="" id="localnav" role="navigation" class="localnav localnav-dark theme-dark medium-localnav-collapsible localnav-noborder localnav-scrim css-sticky"><div data-v-3ceaa5df="" class="localnav-wrapper">
+<div data-v-3ceaa5df="" class="referencenav">
+<div data-v-3ceaa5df="" class="localnav-background"></div>
+<div data-v-3ceaa5df="" class="localnav-content">
+<a data-v-3ceaa5df="" href="../../index.html" class="localnav-title">
+            Documentation
+          </a><div data-v-3ceaa5df="" class="localnav-menu">
+<a data-v-3ceaa5df="" href="#localnav-menustate" role="button" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Open Menu</span></a><a data-v-3ceaa5df="" href="#" role="button" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Close Menu</span></a><div data-v-3ceaa5df="" class="localnav-menu-tray">
+<ul data-v-72fd0d2c="" data-v-3ceaa5df="" aria-label="Breadcrumbs" class="localnav-menu-items">
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item collapsed"><a data-v-72fd0d2c="" href="../../documentation/swift.html" class="parent item router-link-active" data-v-23a2ae0d="">
+    Swift
+  </a></li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item collapsed"><a data-v-72fd0d2c="" href="../../documentation/swift/swift_standard_library.html" class="parent item" data-v-23a2ae0d="">
+    <span class="enstr">Swift Standard Library</span><!--end_enstr-->
 <span class="jpstr">
 Swift標準ライブラリ
 </span><!--end_jpstr-->
-</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item truncated-breadcrumbs"><button class="localnav-menu-breadcrumb-link truncated-breadcrumbs-disclosebtn"><span class="truncated-breadcrumbs-disclosebtn-indicator">⋯</span></button><ul class="truncated-breadcrumbs-dropdown"><li class="truncated-breadcrumbs-dropdown-item"><a class="truncated-breadcrumbs-dropdown-item-link" href="../../documentation/swift.html">Swift</a></li><li class="truncated-breadcrumbs-dropdown-item"><a class="truncated-breadcrumbs-dropdown-item-link" href="../../documentation/swift/swift_standard_library.html"><span class="enstr">Swift Standard Library</span><!--end_enstr-->
+
+  </a></li>
+<li data-v-68bd9d1f="" data-v-72fd0d2c="" class="localnav-menu-item hierarchy-collapsed-items">
+<button data-v-68bd9d1f="" class="toggle"><span data-v-68bd9d1f="" class="indicator">⋯</span></button><ul data-v-68bd9d1f="" class="dropdown collapsed">
+<li data-v-68bd9d1f="" class="dropdown-item"><a data-v-68bd9d1f="" href="../../documentation/swift.html" class="link router-link-active">Swift</a></li>
+<li data-v-68bd9d1f="" class="dropdown-item"><a data-v-68bd9d1f="" href="../../documentation/swift/swift_standard_library.html" class="link"><span class="enstr">Swift Standard Library</span><!--end_enstr-->
 <span class="jpstr">
 Swift標準ライブラリ
 </span><!--end_jpstr-->
-</a></li></ul></li><li class="localnav-menu-item localnav-menu-breadcrumb-item"><a class="localnav-menu-link" href="../../documentation/swift/swift_standard_library/encoding_decoding_and_serialization.html"><span class="enstr">Encoding, Decoding, and Serialization</span><!--end_enstr-->
+</a></li>
+</ul>
+</li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../documentation/swift/swift_standard_library/encoding_decoding_and_serialization.html" class="parent item" data-v-23a2ae0d="">
+    <span class="enstr">Encoding, Decoding, and Serialization</span><!--end_enstr-->
 <span class="jpstr">
 エンコード、デコード、そしてシリアライズ
 </span><!--end_jpstr-->
-</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item"><div class="localnav-menu-breadcrumb-current-container localnav-menu-link current"><span aria-current="page" class="localnav-menu-breadcrumb-current">Encodable</span></div></li></ul><ul class="localnav-menu-items localnav-menu-settings" data-breadcrumbs-count="4"><li class="localnav-menu-setting language-container"><span class="localnav-menu-setting-label">Language:</span><span class="localnav-menu-toggle-none current-language" aria-current="page">Swift</span></li><li class="localnav-menu-setting"><span class="localnav-menu-setting-label">API Changes:</span><span class="changes-toggle">None</span></li></ul></div><div class="localnav-actions"><div class="localnav-action localnav-action-menucta" aria-hidden="true"><label for="localnav-menustate" class="localnav-menucta"><span class="localnav-menucta-chevron"></span></label></div></div></div></div></div></div></nav><label for="localnav-menustate" id="localnav-curtain" aria-hidden="true"></label><main role="main" id="main" class="main" tabindex="0"><div class="topic-title"><span class="eyebrow">Protocol</span><h1 class="topic-heading"><span>Encodable</span></h1></div><div class="topic-container section-content row"><div class="topic-description column large-9 medium-9 small-12"><div class="topic-abstract abstract formatted-content"><div><p><span class="enstr">A type that can encode itself to an external representation.</span><!--end_enstr-->
+
+  </a></li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item">
+<span data-v-23a2ae0d="" class="current item">
+    Encodable
+  </span><!---->
+</li>
+</ul>
+<ul data-v-3ceaa5df="" data-breadcrumbs-count="4" class="localnav-menu-items localnav-menu-settings">
+<li data-v-282336e0="" data-v-3ceaa5df="" class="localnav-menu-setting language-container" breadcrumbcount="4">
+<div data-v-282336e0="" class="">
+<label data-v-282336e0="" class="localnav-menu-setting-label">
+      Language:
+    </label><span data-v-282336e0="" aria-current="page" class="localnav-menu-toggle-none current-language">
+      Swift
+    </span>
+</div><!---->
+
+</li>
+<li data-v-2e9f4ea2="" data-v-3ceaa5df="" class="localnav-menu-setting">
+<label data-v-2e9f4ea2="" for="version-label" class="localnav-menu-setting-label">
+    API Changes:
+  </label><span data-v-2e9f4ea2=""><span class="enstr">None</span><!--end_enstr-->
+<span class="jpstr">
+なし
+</span><!--end_jpstr-->
+</span>
+</li><!---->
+
+</ul>
+</div>
+<div data-v-3ceaa5df="" class="localnav-actions"><div data-v-3ceaa5df="" aria-hidden="true" class="localnav-action localnav-action-menucta"><label data-v-3ceaa5df="" for="localnav-menustate" class="localnav-menucta"><span data-v-3ceaa5df="" class="localnav-menucta-chevron"></span></label></div></div>
+</div>
+</div>
+</div><!---->
+
+</div></nav><label data-v-3ceaa5df="" aria-hidden="true" for="localnav-menustate" id="localnav-curtain"></label>
+</div>
+<main data-v-2deaa168="" id="main" role="main" tabindex="0" class="main"><div data-v-4ba5af7c="" data-v-2deaa168="" class="topictitle">
+<span data-v-4ba5af7c="" class="eyebrow">Protocol</span><h1 data-v-4ba5af7c="" class="title">Encodable</h1>
+</div>
+<div data-v-0253ce0e="" data-v-2deaa168="" class="row container">
+<div data-v-9807b2e0="" data-v-5ad0d458="" data-v-2deaa168="" class="col description large-9 medium-9 small-12" data-v-0253ce0e=""><!---->
+<div data-v-7ea0aa49="" data-v-aba749e6="" data-v-2deaa168="" class="abstract content" data-v-9807b2e0=""><span class="enstr">A type that can encode itself to an external representation.</span><!--end_enstr-->
 <span class="jpstr">
 それ自身を外部表現へとエンコードできる型。
 </span><!--end_jpstr-->
-</p></div></div></div><div class="topic-summary column large-3 medium-3 small-12"><div class="topic-summary-section sdks" role="complementary" aria-label="SDK"><p class="topic-summary-section-label subsection-label">SDK</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item sdk"><span aria-label="Xcode 9.0+, Available on Xcode 9.0 and later" role="text" title="Available on Xcode 9.0 and later">Xcode 9.0+</span></li></ul></div><div class="topic-summary-section frameworks" role="complementary" aria-label="Framework"><p class="topic-summary-section-label subsection-label"><span class="enstr">Framework</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div>
+<div data-v-9807b2e0="" data-v-42fb6bac="" data-v-2deaa168="" class="col summary large-3 medium-3 small-12" data-v-0253ce0e=""><!---->
+<div data-v-e4237090="" data-v-fcdb795a="" data-v-2deaa168="" class="summary-section availability" role="complementary" aria-label="Availability" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-fcdb795a="" class="title" data-v-e4237090="">Availability</p>
+<ul data-v-1450532d="" data-v-fcdb795a="" class="summary-list platform-list" data-v-e4237090=""><li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="Xcode 9.0+, Available on Xcode 9.0 and later" title="Available on Xcode 9.0 and later" data-v-e3899270="">
+  Xcode 9.0+
+</span><!---->
+</li></ul>
+</div>
+<div data-v-e4237090="" data-v-741142ba="" data-v-2deaa168="" class="summary-section frameworks" role="complementary" aria-label="Framework" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-741142ba="" class="title" data-v-e4237090=""><span class="enstr">Framework</span><!--end_enstr-->
 <span class="jpstr">
 フレームワーク
 </span><!--end_jpstr-->
-</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item"><span><span class="enstr">Swift Standard Library</span><!--end_enstr-->
+</p>
+<ul data-v-1450532d="" data-v-741142ba="" class="summary-list" data-v-e4237090=""><li data-v-e3899270="" data-v-741142ba="" class="summary-list-item" data-v-1450532d=""><span data-v-741142ba="" data-v-e3899270="" class="name"><span class="enstr">Swift Standard Library</span><!--end_enstr-->
 <span class="jpstr">
 Swift標準ライブラリ
 </span><!--end_jpstr-->
-</span></li></ul></div><div class="topic-summary-section onthispage"><nav class="onthispage-nav" aria-labelledby="onthispage-title"><p id="onthispage-title" class="topic-summary-section-label subsection-label"><span class="enstr">On This Page</span><!--end_enstr-->
+</span></li></ul>
+</div>
+<div data-v-e4237090="" data-v-2b96ab1a="" data-v-2deaa168="" class="summary-section on-this-page" data-v-9807b2e0=""><nav data-v-2b96ab1a="" data-v-e4237090="" aria-labelledby="on-this-page-title"><p data-v-1e0258b0="" data-v-2b96ab1a="" class="title" id="on-this-page-title" data-v-e4237090=""><span class="enstr">On This Page</span><!--end_enstr-->
 <span class="jpstr">
 この項には
 </span><!--end_jpstr-->
-</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item"><a href="#declarations" class="icon icon-after icon-chevrondowncircle"><span class="enstr">Declaration</span><!--end_enstr-->
+</p>
+<ul data-v-1450532d="" data-v-2b96ab1a="" class="summary-list" data-v-e4237090="">
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/swift/encodable.html#declaration" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Declaration</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/swift/encodable.html#topics" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Topics</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/swift/encodable.html#relationships" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Relationships</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/swift/encodable.html#see-also" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">See Also</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+</ul></nav></div>
+</div>
+<div data-v-9807b2e0="" data-v-1e40f676="" data-v-2deaa168="" class="col primary-content large-9 medium-9 small-12" data-v-0253ce0e=""><section data-v-e932e1b8="" data-v-1e40f676="" id="declaration" class="declaration" data-v-9807b2e0=""><h2 data-v-e932e1b8=""><span class="enstr">Declaration</span><!--end_enstr-->
 <span class="jpstr">
 宣言
 </span><!--end_jpstr-->
-</a></li><li class="topic-summary-section-item"><a href="#topics" class="icon icon-after icon-chevrondowncircle"><span class="enstr">Topics</span><!--end_enstr-->
+</h2>
+<div data-v-29bd318c="" data-v-e932e1b8="" class="declaration-group"><!---->
+<pre data-v-e0a7f756="" data-v-29bd318c="" class="source indented"><code data-v-e0a7f756=""><span data-v-c9e896f0="" data-v-e0a7f756="" class="token-keyword">protocol</span> <span data-v-c9e896f0="" data-v-e0a7f756="" class="token-identifier">Encodable</span></code></pre>
+</div><!---->
+</section></div>
+</div>
+<section data-v-8c663d90="" data-v-63527a60="" data-v-2deaa168="" id="topics" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">Topics</span><!--end_enstr-->
 <span class="jpstr">
 話題
 </span><!--end_jpstr-->
-</a></li><li class="topic-summary-section-item"><a href="#relationships" class="icon icon-after icon-chevrondowncircle"><span class="enstr">Relationships</span><!--end_enstr-->
-<span class="jpstr">
-関係
-</span><!--end_jpstr-->
-</a></li><li class="topic-summary-section-item"><a href="#see-also" class="icon icon-after icon-chevrondowncircle"><span class="enstr">See Also</span><!--end_enstr-->
-<span class="jpstr">
-参照
-</span><!--end_jpstr-->
-</a></li></ul></nav></div></div><div class="topic-content column large-9 medium-9 small-12" id="topic-content"><section id="declarations" class="section"><h2><span class="enstr">Declaration</span><!--end_enstr-->
-<span class="jpstr">
-宣言
-</span><!--end_jpstr-->
-</h2><figure class="declaration"><div class="code-listing"><pre class="code-source code-source-indented" data-language="swift"><code><span><span class="syntax-keyword">protocol</span> <span class="syntax-identifier">Encodable</span>
-</span></code></pre></div></figure></section></div></div><section id="topics" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><span class="enstr">Topics</span><!--end_enstr-->
-<span class="jpstr">
-話題
-</span><!--end_jpstr-->
-</h2><section id="2901625" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Instance Methods</span><!--end_enstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Instance Methods</span><!--end_enstr-->
 <span class="jpstr">
 インスタンスメソッド 
 </span><!--end_jpstr-->
-</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/swift/encodable/2893603-encode.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">encode</span><span class="decorator">(</span><span class="identifier">to</span><span class="decorator">: Encoder)</span></code></a><div class="task-topic-abstract task-topic-data abstract-wrapper topic-required"><div class="abstract formatted-content"><div><p><span class="enstr">Encodes this value into the given encoder.</span><!--end_enstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/swift/encodable/2893603-encode.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">encode</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">to</span><span data-v-dac213be="" class="decorator">: Encoder)</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Encodes this value into the given encoder.</span><!--end_enstr-->
 <span class="jpstr">
 この値を与えられたエンコーダにエンコードします。
 </span><!--end_jpstr-->
-</p></div></div><p class="topic-required-text"><span class="enstr"><strong>Required</strong>. Default implementation provided.</span><!--end_enstr-->
+</div><!---->
+<p data-v-01f7f080="" class="requirement-metadata topic-required"><span class="enstr"><strong data-v-01f7f080="">Required.</strong> Default implementation provided.</span><!--end_enstr-->
 <span class="jpstr">
-<strong>必須</strong>。省略時の実装の提供。
+<strong data-v-01f7f080="">必須。</strong>省略時の実装の提供。
 </span><!--end_jpstr-->
-</p></div></div></div></div></div></div></section></div></div></section><section id="relationships" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><span class="enstr">Relationships</span><!--end_enstr-->
+
+  </p><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+</div><!----></section><section data-v-8c663d90="" data-v-2deaa168="" id="relationships" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">Relationships</span><!--end_enstr-->
 <span class="jpstr">
 関係
 </span><!--end_jpstr-->
-</h2><section id="inherited-by" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Inherited By</span><!--end_enstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Inherited By</span><!--end_enstr-->
 <span class="jpstr">
 継承される先
 </span><!--end_jpstr-->
-</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div><a class="symbol-name" href="../../documentation/swift/simd.html"><code><span>SIMD</span></code></a></div></div></div></section><section id="conforming-types" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Conforming Types</span><!--end_enstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><ul data-v-4af8f78e="" class="relationships-list inline" data-v-9807b2e0=""><li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/simd.html" class="link"><code data-v-4af8f78e="">SIMD</code></a><!---->
+</li></ul></div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Conforming Types</span><!--end_enstr-->
 <span class="jpstr">
 これらの型が準拠
 </span><!--end_jpstr-->
-</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><ul class="relationships-section-content-columns"><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/foundation/affinetransform.html"><code><span>Affine<wbr/>Transform</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/array.html"><code><span>Array</span></code></a><div class="relationships-section-availability-constraints-container"><div class="expandableblock availability-constraint-container relationships-section-availability-constraints-expandableblock"><div class="availability-constraint small disabled-link relationships-section-availability-constraints formatted-content"><div><span class="enstr">Conforms when <span class="symbolref"><span>Element</span></span> conforms to <span class="symbolref"><span>Encodable</span></span>.</span><!--end_enstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><ul data-v-4af8f78e="" class="relationships-list column" data-v-9807b2e0="">
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/affinetransform.html" class="link"><code data-v-4af8f78e="">Affine<wbr data-v-4af8f78e="">Transform</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/array.html" class="link"><code data-v-4af8f78e="">Array</code></a><div data-v-7ea0aa49="" data-v-0a9ed1cb="" data-v-4af8f78e="" class="conditional-constraints content"><span class="enstr">Conforms when <code data-v-7fb764c1="">Element</code> conforms to <code data-v-7fb764c1="">Encodable</code>.</span><!--end_enstr-->
 <span class="jpstr">
-<span class="symbolref"><span>Element</span></span>が<span class="symbolref"><span>Encodable</span></span>に準拠する時に準拠します。
+<code data-v-7fb764c1="">Element</code>が<code data-v-7fb764c1="">Encodable</code>に準拠する時に準拠します。
 </span><!--end_jpstr-->
-</div></div></div></div></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/bool.html"><code><span>Bool</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift_packages/buildconfiguration.html"><code><span>Build<wbr/>Configuration</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift_packages/buildsettingcondition.html"><code><span>Build<wbr/>Setting<wbr/>Condition</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/foundation/calendar.html"><code><span>Calendar</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="https://developer.apple.com/documentation/coregraphics/cgaffinetransform"><code><span>CGAffine<wbr/>Transform</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="https://developer.apple.com/documentation/coregraphics/cgfloat"><code><span>CGFloat</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="https://developer.apple.com/documentation/coregraphics/cgpoint"><code><span>CGPoint</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="https://developer.apple.com/documentation/coregraphics/cgrect"><code><span>CGRect</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="https://developer.apple.com/documentation/coregraphics/cgsize"><code><span>CGSize</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="https://developer.apple.com/documentation/coregraphics/cgvector"><code><span>CGVector</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/foundation/characterset.html"><code><span>Character<wbr/>Set</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift_packages/clanguagestandard.html"><code><span>CLanguage<wbr/>Standard</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/closedrange.html"><code><span>Closed<wbr/>Range</span></code></a><div class="relationships-section-availability-constraints-container"><div class="expandableblock availability-constraint-container relationships-section-availability-constraints-expandableblock"><div class="availability-constraint small disabled-link relationships-section-availability-constraints formatted-content"><div><span class="enstr">Conforms when <span class="symbolref"><span>Bound</span></span> conforms to <span class="symbolref"><span>Encodable</span></span>.</span><!--end_enstr-->
+</div>
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/bool.html" class="link"><code data-v-4af8f78e="">Bool</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift_packages/buildconfiguration.html" class="link"><code data-v-4af8f78e="">Build<wbr data-v-4af8f78e="">Configuration</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift_packages/buildsettingcondition.html" class="link"><code data-v-4af8f78e="">Build<wbr data-v-4af8f78e="">Setting<wbr data-v-4af8f78e="">Condition</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/coregraphics/cgaffinetransform" class="link"><code data-v-4af8f78e="">CGAffine<wbr data-v-4af8f78e="">Transform</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/coregraphics/cgfloat" class="link"><code data-v-4af8f78e="">CGFloat</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/coregraphics/cgpoint" class="link"><code data-v-4af8f78e="">CGPoint</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/coregraphics/cgrect" class="link"><code data-v-4af8f78e="">CGRect</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/coregraphics/cgsize" class="link"><code data-v-4af8f78e="">CGSize</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/coregraphics/cgvector" class="link"><code data-v-4af8f78e="">CGVector</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift_packages/clanguagestandard.html" class="link"><code data-v-4af8f78e="">CLanguage<wbr data-v-4af8f78e="">Standard</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift_packages/csetting.html" class="link"><code data-v-4af8f78e="">CSetting</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift_packages/cxxlanguagestandard.html" class="link"><code data-v-4af8f78e="">CXXLanguage<wbr data-v-4af8f78e="">Standard</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift_packages/cxxsetting.html" class="link"><code data-v-4af8f78e="">CXXSetting</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/calendar.html" class="link"><code data-v-4af8f78e="">Calendar</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/characterset.html" class="link"><code data-v-4af8f78e="">Character<wbr data-v-4af8f78e="">Set</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/closedrange.html" class="link"><code data-v-4af8f78e="">Closed<wbr data-v-4af8f78e="">Range</wbr></code></a><div data-v-7ea0aa49="" data-v-0a9ed1cb="" data-v-4af8f78e="" class="conditional-constraints content"><span class="enstr">Conforms when <code data-v-7fb764c1="">Bound</code> conforms to <code data-v-7fb764c1="">Encodable</code>.</span><!--end_enstr-->
 <span class="jpstr">
-<span class="symbolref"><span>Bound</span></span>が<span class="symbolref"><span>Encodable</span></span>に準拠する時に準拠します。
+<code data-v-7fb764c1="">Bound</code>が<code data-v-7fb764c1="">Encodable</code>に準拠する時に準拠します。
 </span><!--end_jpstr-->
-</div></div></div></div></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/collectiondifference.html"><code><span>Collection<wbr/>Difference</span></code></a><div class="relationships-section-availability-constraints-container"><div class="expandableblock availability-constraint-container relationships-section-availability-constraints-expandableblock"><div class="availability-constraint small disabled-link relationships-section-availability-constraints formatted-content"><div><span class="enstr">Conforms when <span class="symbolref"><span>Change<wbr/>Element</span></span> conforms to <span class="symbolref"><span>Decodable</span></span> and <span class="symbolref"><span>Encodable</span></span>.</span><!--end_enstr-->
+</div>
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/collectiondifference.html" class="link"><code data-v-4af8f78e="">Collection<wbr data-v-4af8f78e="">Difference</wbr></code></a><div data-v-7ea0aa49="" data-v-0a9ed1cb="" data-v-4af8f78e="" class="conditional-constraints content"><span class="enstr">Conforms when <code data-v-7fb764c1="">Change<wbr data-v-7fb764c1="">Element</wbr></code> conforms to <code data-v-7fb764c1="">Decodable</code> and <code data-v-7fb764c1="">Encodable</code>.</span><!--end_enstr-->
 <span class="jpstr">
-<span class="symbolref"><span>Change<wbr/>Element</span></span>が<span class="symbolref"><span>Decodable</span></span>と<span class="symbolref"><span>Encodable</span></span>に準拠する時に準拠します。
+<code data-v-7fb764c1="">Change<wbr data-v-7fb764c1="">Element</wbr></code>が<code data-v-7fb764c1="">Decodable</code>と<code data-v-7fb764c1="">Encodable</code>に準拠する時に準拠します。
 </span><!--end_jpstr-->
-</div></div></div></div></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/collectiondifference/change.html"><code><span>Collection<wbr/>Difference<wbr/>.Change</span></code></a><div class="relationships-section-availability-constraints-container"><div class="expandableblock availability-constraint-container relationships-section-availability-constraints-expandableblock"><div class="availability-constraint small disabled-link relationships-section-availability-constraints formatted-content"><div><span class="enstr">Conforms when <span class="symbolref"><span>Change<wbr/>Element</span></span> conforms to <span class="symbolref"><span>Decodable</span></span> and <span class="symbolref"><span>Encodable</span></span>.</span><!--end_enstr-->
+</div>
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/collectiondifference/change.html" class="link"><code data-v-4af8f78e="">Collection<wbr data-v-4af8f78e="">Difference<wbr data-v-4af8f78e="">.Change</wbr></wbr></code></a><div data-v-7ea0aa49="" data-v-0a9ed1cb="" data-v-4af8f78e="" class="conditional-constraints content"><span class="enstr">Conforms when <code data-v-7fb764c1="">Change<wbr data-v-7fb764c1="">Element</wbr></code> conforms to <code data-v-7fb764c1="">Decodable</code> and <code data-v-7fb764c1="">Encodable</code>.</span><!--end_enstr-->
 <span class="jpstr">
-<span class="symbolref"><span>Change<wbr/>Element</span></span>が<span class="symbolref"><span>Decodable</span></span>と<span class="symbolref"><span>Encodable</span></span>に準拠する時に準拠します。
+<code data-v-7fb764c1="">Change<wbr data-v-7fb764c1="">Element</wbr></code>が<code data-v-7fb764c1="">Decodable</code>と<code data-v-7fb764c1="">Encodable</code>に準拠する時に準拠します。
 </span><!--end_jpstr-->
-</div></div></div></div></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/contiguousarray.html"><code><span>Contiguous<wbr/>Array</span></code></a><div class="relationships-section-availability-constraints-container"><div class="expandableblock availability-constraint-container relationships-section-availability-constraints-expandableblock"><div class="availability-constraint small disabled-link relationships-section-availability-constraints formatted-content"><div><span class="enstr">Conforms when <span class="symbolref"><span>Element</span></span> conforms to <span class="symbolref"><span>Encodable</span></span>.</span><!--end_enstr-->
+</div>
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/contiguousarray.html" class="link"><code data-v-4af8f78e="">Contiguous<wbr data-v-4af8f78e="">Array</wbr></code></a><div data-v-7ea0aa49="" data-v-0a9ed1cb="" data-v-4af8f78e="" class="conditional-constraints content"><span class="enstr">Conforms when <code data-v-7fb764c1="">Element</code> conforms to <code data-v-7fb764c1="">Encodable</code>.</span><!--end_enstr-->
 <span class="jpstr">
-<span class="symbolref"><span>Element</span></span>が<span class="symbolref"><span>Encodable</span></span>に準拠する時に準拠します。
+<code data-v-7fb764c1="">Element</code>が<code data-v-7fb764c1="">Encodable</code>に準拠する時に準拠します。
 </span><!--end_jpstr-->
-</div></div></div></div></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift_packages/csetting.html"><code><span>CSetting</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift_packages/cxxlanguagestandard.html"><code><span>CXXLanguage<wbr/>Standard</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift_packages/cxxsetting.html"><code><span>CXXSetting</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/foundation/data.html"><code><span>Data</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/foundation/date.html"><code><span>Date</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/foundation/datecomponents.html"><code><span>Date<wbr/>Components</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/foundation/dateinterval.html"><code><span>Date<wbr/>Interval</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/foundation/decimal.html"><code><span>Decimal</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/dictionary.html"><code><span>Dictionary</span></code></a><div class="relationships-section-availability-constraints-container"><div class="expandableblock availability-constraint-container relationships-section-availability-constraints-expandableblock"><div class="availability-constraint small disabled-link relationships-section-availability-constraints formatted-content"><div><span class="enstr">Conforms when <span class="symbolref"><span>Key</span></span> conforms to <span class="symbolref"><span>Encodable</span></span> and <span class="symbolref"><span>Value</span></span> conforms to <span class="symbolref"><span>Encodable</span></span>.</span><!--end_enstr-->
+</div>
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/data.html" class="link"><code data-v-4af8f78e="">Data</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/date.html" class="link"><code data-v-4af8f78e="">Date</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/datecomponents.html" class="link"><code data-v-4af8f78e="">Date<wbr data-v-4af8f78e="">Components</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/dateinterval.html" class="link"><code data-v-4af8f78e="">Date<wbr data-v-4af8f78e="">Interval</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/dictionary.html" class="link"><code data-v-4af8f78e="">Dictionary</code></a><div data-v-7ea0aa49="" data-v-0a9ed1cb="" data-v-4af8f78e="" class="conditional-constraints content"><span class="enstr">Conforms when <code data-v-7fb764c1="">Key</code> conforms to <code data-v-7fb764c1="">Encodable</code> and <code data-v-7fb764c1="">Value</code> conforms to <code data-v-7fb764c1="">Encodable</code>.</span><!--end_enstr-->
 <span class="jpstr">
-<span class="symbolref"><span>Key</span></span>が<span class="symbolref"><span>Encodable</span></span>に準拠するそして<span class="symbolref"><span>Value</span></span>が<span class="symbolref"><span>Encodable</span></span>に準拠する時に準拠します。
+<code data-v-7fb764c1="">Key</code>が<code data-v-7fb764c1="">Encodable</code>に準拠するそして<code data-v-7fb764c1="">Value</code>が<code data-v-7fb764c1="">Encodable</code>に準拠する時に準拠します。
 </span><!--end_jpstr-->
-</div></div></div></div></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="https://developer.apple.com/documentation/dispatch/dispatchqueue/schedulertimetype"><code><span>Dispatch<wbr/>Queue<wbr/>.Scheduler<wbr/>Time<wbr/>Type</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="https://developer.apple.com/documentation/dispatch/dispatchqueue/schedulertimetype/stride"><code><span>Dispatch<wbr/>Queue<wbr/>.Scheduler<wbr/>Time<wbr/>Type<wbr/>.Stride</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/double.html"><code><span>Double</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/float.html"><code><span>Float</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="https://developer.apple.com/documentation/combine/immediatescheduler/schedulertimetype/stride"><code><span>Immediate<wbr/>Scheduler<wbr/>.Scheduler<wbr/>Time<wbr/>Type<wbr/>.Stride</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/foundation/indexpath.html"><code><span>Index<wbr/>Path</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/foundation/indexset.html"><code><span>Index<wbr/>Set</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/int.html"><code><span>Int</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/int16.html"><code><span>Int16</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/int32.html"><code><span>Int32</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/int64.html"><code><span>Int64</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/int8.html"><code><span>Int8</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift_packages/linkersetting.html"><code><span>Linker<wbr/>Setting</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/foundation/locale.html"><code><span>Locale</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/foundation/measurement.html"><code><span>Measurement</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="https://developer.apple.com/documentation/mediaplayer/mpmusicplayerplayparameters"><code><span>MPMusic<wbr/>Player<wbr/>Play<wbr/>Parameters</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="https://developer.apple.com/documentation/realitykit/networkcompatibilitytoken"><code><span>Network<wbr/>Compatibility<wbr/>Token</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="https://developer.apple.com/documentation/uikit/nsdirectionaledgeinsets"><code><span>NSDirectional<wbr/>Edge<wbr/>Insets</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/foundation/operationqueue/schedulertimetype.html"><code><span>Operation<wbr/>Queue<wbr/>.Scheduler<wbr/>Time<wbr/>Type</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/foundation/operationqueue/schedulertimetype/stride.html"><code><span>Operation<wbr/>Queue<wbr/>.Scheduler<wbr/>Time<wbr/>Type<wbr/>.Stride</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/optional.html"><code><span>Optional</span></code></a><div class="relationships-section-availability-constraints-container"><div class="expandableblock availability-constraint-container relationships-section-availability-constraints-expandableblock"><div class="availability-constraint small disabled-link relationships-section-availability-constraints formatted-content"><div><span class="enstr">Conforms when <span class="symbolref"><span>Wrapped</span></span> conforms to <span class="symbolref"><span>Encodable</span></span>.</span><!--end_enstr-->
+</div>
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/dispatch/dispatchqueue/schedulertimetype" class="link"><code data-v-4af8f78e="">Dispatch<wbr data-v-4af8f78e="">Queue<wbr data-v-4af8f78e="">.Scheduler<wbr data-v-4af8f78e="">Time<wbr data-v-4af8f78e="">Type</wbr></wbr></wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/dispatch/dispatchqueue/schedulertimetype/stride" class="link"><code data-v-4af8f78e="">Dispatch<wbr data-v-4af8f78e="">Queue<wbr data-v-4af8f78e="">.Scheduler<wbr data-v-4af8f78e="">Time<wbr data-v-4af8f78e="">Type<wbr data-v-4af8f78e="">.Stride</wbr></wbr></wbr></wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/double.html" class="link"><code data-v-4af8f78e="">Double</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/system/errno" class="link"><code data-v-4af8f78e="">Errno</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/system/filedescriptor" class="link"><code data-v-4af8f78e="">File<wbr data-v-4af8f78e="">Descriptor</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/system/filedescriptor/accessmode" class="link"><code data-v-4af8f78e="">File<wbr data-v-4af8f78e="">Descriptor<wbr data-v-4af8f78e="">.Access<wbr data-v-4af8f78e="">Mode</wbr></wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/system/filedescriptor/openoptions" class="link"><code data-v-4af8f78e="">File<wbr data-v-4af8f78e="">Descriptor<wbr data-v-4af8f78e="">.Open<wbr data-v-4af8f78e="">Options</wbr></wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/system/filedescriptor/seekorigin" class="link"><code data-v-4af8f78e="">File<wbr data-v-4af8f78e="">Descriptor<wbr data-v-4af8f78e="">.Seek<wbr data-v-4af8f78e="">Origin</wbr></wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/system/filepath" class="link"><code data-v-4af8f78e="">File<wbr data-v-4af8f78e="">Path</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/system/filepermissions" class="link"><code data-v-4af8f78e="">File<wbr data-v-4af8f78e="">Permissions</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/float.html" class="link"><code data-v-4af8f78e="">Float</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/float16.html" class="link"><code data-v-4af8f78e="">Float16</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/combine/immediatescheduler/schedulertimetype/stride" class="link"><code data-v-4af8f78e="">Immediate<wbr data-v-4af8f78e="">Scheduler<wbr data-v-4af8f78e="">.Scheduler<wbr data-v-4af8f78e="">Time<wbr data-v-4af8f78e="">Type<wbr data-v-4af8f78e="">.Stride</wbr></wbr></wbr></wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/indexpath.html" class="link"><code data-v-4af8f78e="">Index<wbr data-v-4af8f78e="">Path</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/indexset.html" class="link"><code data-v-4af8f78e="">Index<wbr data-v-4af8f78e="">Set</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/int.html" class="link"><code data-v-4af8f78e="">Int</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/int16.html" class="link"><code data-v-4af8f78e="">Int16</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/int32.html" class="link"><code data-v-4af8f78e="">Int32</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/int64.html" class="link"><code data-v-4af8f78e="">Int64</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/int8.html" class="link"><code data-v-4af8f78e="">Int8</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift_packages/linkersetting.html" class="link"><code data-v-4af8f78e="">Linker<wbr data-v-4af8f78e="">Setting</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/locale.html" class="link"><code data-v-4af8f78e="">Locale</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/createml/mlactionclassifier/videoaugmentationoptions" class="link"><code data-v-4af8f78e="">MLAction<wbr data-v-4af8f78e="">Classifier<wbr data-v-4af8f78e="">.Video<wbr data-v-4af8f78e="">Augmentation<wbr data-v-4af8f78e="">Options</wbr></wbr></wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/createml/mlcheckpoint" class="link"><code data-v-4af8f78e="">MLCheckpoint</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/createml/mlphase" class="link"><code data-v-4af8f78e="">MLPhase</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/createml/mlprogress" class="link"><code data-v-4af8f78e="">MLProgress</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/createml/mlprogress/metric" class="link"><code data-v-4af8f78e="">MLProgress<wbr data-v-4af8f78e="">.Metric</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/mediaplayer/mpmusicplayerplayparameters" class="link"><code data-v-4af8f78e="">MPMusic<wbr data-v-4af8f78e="">Player<wbr data-v-4af8f78e="">Play<wbr data-v-4af8f78e="">Parameters</wbr></wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/measurement.html" class="link"><code data-v-4af8f78e="">Measurement</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/decimal.html" class="link"><code data-v-4af8f78e="">Decimal</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/nsdirectionaledgeinsets" class="link"><code data-v-4af8f78e="">NSDirectional<wbr data-v-4af8f78e="">Edge<wbr data-v-4af8f78e="">Insets</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/realitykit/networkcompatibilitytoken" class="link"><code data-v-4af8f78e="">Network<wbr data-v-4af8f78e="">Compatibility<wbr data-v-4af8f78e="">Token</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/operationqueue/schedulertimetype.html" class="link"><code data-v-4af8f78e="">Operation<wbr data-v-4af8f78e="">Queue<wbr data-v-4af8f78e="">.Scheduler<wbr data-v-4af8f78e="">Time<wbr data-v-4af8f78e="">Type</wbr></wbr></wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/operationqueue/schedulertimetype/stride.html" class="link"><code data-v-4af8f78e="">Operation<wbr data-v-4af8f78e="">Queue<wbr data-v-4af8f78e="">.Scheduler<wbr data-v-4af8f78e="">Time<wbr data-v-4af8f78e="">Type<wbr data-v-4af8f78e="">.Stride</wbr></wbr></wbr></wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/optional.html" class="link"><code data-v-4af8f78e="">Optional</code></a><div data-v-7ea0aa49="" data-v-0a9ed1cb="" data-v-4af8f78e="" class="conditional-constraints content"><span class="enstr">Conforms when <code data-v-7fb764c1="">Wrapped</code> conforms to <code data-v-7fb764c1="">Encodable</code>.</span><!--end_enstr-->
 <span class="jpstr">
-<span class="symbolref"><span>Wrapped</span></span>が<span class="symbolref"><span>Encodable</span></span>に準拠する時に準拠します。
+<code data-v-7fb764c1="">Wrapped</code>が<code data-v-7fb764c1="">Encodable</code>に準拠する時に準拠します。
 </span><!--end_jpstr-->
-</div></div></div></div></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift_packages/package.html"><code><span>Package</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift_packages/package/dependency.html"><code><span>Package<wbr/>.Dependency</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift_packages/package/dependency/requirement.html"><code><span>Package<wbr/>.Dependency<wbr/>.Requirement</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/partialrangefrom.html"><code><span>Partial<wbr/>Range<wbr/>From</span></code></a><div class="relationships-section-availability-constraints-container"><div class="expandableblock availability-constraint-container relationships-section-availability-constraints-expandableblock"><div class="availability-constraint small disabled-link relationships-section-availability-constraints formatted-content"><div><span class="enstr">Conforms when <span class="symbolref"><span>Bound</span></span> conforms to <span class="symbolref"><span>Encodable</span></span>.</span><!--end_enstr-->
+</div>
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/pencilkit/pkdrawing" class="link"><code data-v-4af8f78e="">PKDrawing</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift_packages/package.html" class="link"><code data-v-4af8f78e="">Package</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift_packages/package/dependency.html" class="link"><code data-v-4af8f78e="">Package<wbr data-v-4af8f78e="">.Dependency</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift_packages/package/dependency/requirement.html" class="link"><code data-v-4af8f78e="">Package<wbr data-v-4af8f78e="">.Dependency<wbr data-v-4af8f78e="">.Requirement</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/partialrangefrom.html" class="link"><code data-v-4af8f78e="">Partial<wbr data-v-4af8f78e="">Range<wbr data-v-4af8f78e="">From</wbr></wbr></code></a><div data-v-7ea0aa49="" data-v-0a9ed1cb="" data-v-4af8f78e="" class="conditional-constraints content"><span class="enstr">Conforms when <code data-v-7fb764c1="">Bound</code> conforms to <code data-v-7fb764c1="">Encodable</code>.</span><!--end_enstr-->
 <span class="jpstr">
-<span class="symbolref"><span>Bound</span></span>が<span class="symbolref"><span>Encodable</span></span>に準拠する時に準拠します。
+<code data-v-7fb764c1="">Bound</code>が<code data-v-7fb764c1="">Encodable</code>に準拠する時に準拠します。
 </span><!--end_jpstr-->
-</div></div></div></div></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/partialrangethrough.html"><code><span>Partial<wbr/>Range<wbr/>Through</span></code></a><div class="relationships-section-availability-constraints-container"><div class="expandableblock availability-constraint-container relationships-section-availability-constraints-expandableblock"><div class="availability-constraint small disabled-link relationships-section-availability-constraints formatted-content"><div><span class="enstr">Conforms when <span class="symbolref"><span>Bound</span></span> conforms to <span class="symbolref"><span>Encodable</span></span>.</span><!--end_enstr-->
+</div>
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/partialrangethrough.html" class="link"><code data-v-4af8f78e="">Partial<wbr data-v-4af8f78e="">Range<wbr data-v-4af8f78e="">Through</wbr></wbr></code></a><div data-v-7ea0aa49="" data-v-0a9ed1cb="" data-v-4af8f78e="" class="conditional-constraints content"><span class="enstr">Conforms when <code data-v-7fb764c1="">Bound</code> conforms to <code data-v-7fb764c1="">Encodable</code>.</span><!--end_enstr-->
 <span class="jpstr">
-<span class="symbolref"><span>Bound</span></span>が<span class="symbolref"><span>Encodable</span></span>に準拠する時に準拠します。
+<code data-v-7fb764c1="">Bound</code>が<code data-v-7fb764c1="">Encodable</code>に準拠する時に準拠します。
 </span><!--end_jpstr-->
-</div></div></div></div></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/partialrangeupto.html"><code><span>Partial<wbr/>Range<wbr/>Up<wbr/>To</span></code></a><div class="relationships-section-availability-constraints-container"><div class="expandableblock availability-constraint-container relationships-section-availability-constraints-expandableblock"><div class="availability-constraint small disabled-link relationships-section-availability-constraints formatted-content"><div><span class="enstr">Conforms when <span class="symbolref"><span>Bound</span></span> conforms to <span class="symbolref"><span>Encodable</span></span>.</span><!--end_enstr-->
+</div>
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/partialrangeupto.html" class="link"><code data-v-4af8f78e="">Partial<wbr data-v-4af8f78e="">Range<wbr data-v-4af8f78e="">Up<wbr data-v-4af8f78e="">To</wbr></wbr></wbr></code></a><div data-v-7ea0aa49="" data-v-0a9ed1cb="" data-v-4af8f78e="" class="conditional-constraints content"><span class="enstr">Conforms when <code data-v-7fb764c1="">Bound</code> conforms to <code data-v-7fb764c1="">Encodable</code>.</span><!--end_enstr-->
 <span class="jpstr">
-<span class="symbolref"><span>Bound</span></span>が<span class="symbolref"><span>Encodable</span></span>に準拠する時に準拠します。
+<code data-v-7fb764c1="">Bound</code>が<code data-v-7fb764c1="">Encodable</code>に準拠する時に準拠します。
 </span><!--end_jpstr-->
-</div></div></div></div></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/foundation/personnamecomponents.html"><code><span>Person<wbr/>Name<wbr/>Components</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="https://developer.apple.com/documentation/pencilkit/pkdrawing"><code><span>PKDrawing</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift_packages/platform.html"><code><span>Platform</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift_packages/product.html"><code><span>Product</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift_packages/product/library/librarytype.html"><code><span>Product<wbr/>.Library<wbr/>.Library<wbr/>Type</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/range.html"><code><span>Range</span></code></a><div class="relationships-section-availability-constraints-container"><div class="expandableblock availability-constraint-container relationships-section-availability-constraints-expandableblock"><div class="availability-constraint small disabled-link relationships-section-availability-constraints formatted-content"><div><span class="enstr">Conforms when <span class="symbolref"><span>Bound</span></span> conforms to <span class="symbolref"><span>Encodable</span></span>.</span><!--end_enstr-->
+</div>
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/personnamecomponents.html" class="link"><code data-v-4af8f78e="">Person<wbr data-v-4af8f78e="">Name<wbr data-v-4af8f78e="">Components</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift_packages/platform.html" class="link"><code data-v-4af8f78e="">Platform</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift_packages/product.html" class="link"><code data-v-4af8f78e="">Product</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift_packages/product/library/librarytype.html" class="link"><code data-v-4af8f78e="">Product<wbr data-v-4af8f78e="">.Library<wbr data-v-4af8f78e="">.Library<wbr data-v-4af8f78e="">Type</wbr></wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/range.html" class="link"><code data-v-4af8f78e="">Range</code></a><div data-v-7ea0aa49="" data-v-0a9ed1cb="" data-v-4af8f78e="" class="conditional-constraints content"><span class="enstr">Conforms when <code data-v-7fb764c1="">Bound</code> conforms to <code data-v-7fb764c1="">Encodable</code>.</span><!--end_enstr-->
 <span class="jpstr">
-<span class="symbolref"><span>Bound</span></span>が<span class="symbolref"><span>Encodable</span></span>に準拠する時に準拠します。
+<code data-v-7fb764c1="">Bound</code>が<code data-v-7fb764c1="">Encodable</code>に準拠する時に準拠します。
 </span><!--end_jpstr-->
-</div></div></div></div></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="https://developer.apple.com/documentation/combine/record"><code><span>Record</span></code></a><div class="relationships-section-availability-constraints-container"><div class="expandableblock availability-constraint-container relationships-section-availability-constraints-expandableblock"><div class="availability-constraint small disabled-link relationships-section-availability-constraints formatted-content"><div><span class="enstr">Conforms when <span class="symbolref"><span>Output</span></span> conforms to <span class="symbolref"><span>Decodable</span></span>, <span class="symbolref"><span>Output</span></span> conforms to <span class="symbolref"><span>Encodable</span></span>, <span class="symbolref"><span>Failure</span></span> conforms to <span class="symbolref"><span>Decodable</span></span>, and <span class="symbolref"><span>Failure</span></span> conforms to <span class="symbolref"><span>Encodable</span></span>.</span><!--end_enstr-->
+</div>
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/combine/record" class="link"><code data-v-4af8f78e="">Record</code></a><div data-v-7ea0aa49="" data-v-0a9ed1cb="" data-v-4af8f78e="" class="conditional-constraints content"><span class="enstr">Conforms when <code data-v-7fb764c1="">Output</code> conforms to <code data-v-7fb764c1="">Decodable</code>, <code data-v-7fb764c1="">Output</code> conforms to <code data-v-7fb764c1="">Encodable</code>, <code data-v-7fb764c1="">Failure</code> conforms to <code data-v-7fb764c1="">Decodable</code>, and <code data-v-7fb764c1="">Failure</code> conforms to <code data-v-7fb764c1="">Encodable</code>.</span><!--end_enstr-->
 <span class="jpstr">
-<span class="symbolref"><span>Output</span></span>が<span class="symbolref"><span>Decodable</span></span>に準拠する、<span class="symbolref"><span>Output</span></span>が<span class="symbolref"><span>Encodable</span></span>に準拠する、<span class="symbolref"><span>Failure</span></span>が<span class="symbolref"><span>Decodable</span></span>に準拠する、そして<span class="symbolref"><span>Failure</span></span>が<span class="symbolref"><span>Encodable</span></span>に準拠する時に準拠します。
+<code data-v-7fb764c1="">Output</code>が<code data-v-7fb764c1="">Decodable</code>に準拠する、<code data-v-7fb764c1="">Output</code>が<code data-v-7fb764c1="">Encodable</code>に準拠する、<code data-v-7fb764c1="">Failure</code>が<code data-v-7fb764c1="">Decodable</code>に準拠する、そして<code data-v-7fb764c1="">Failure</code>が<code data-v-7fb764c1="">Encodable</code>に準拠する時に準拠します。
 </span><!--end_jpstr-->
-</div></div></div></div></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="https://developer.apple.com/documentation/combine/record/recording"><code><span>Record<wbr/>.Recording</span></code></a><div class="relationships-section-availability-constraints-container"><div class="expandableblock availability-constraint-container relationships-section-availability-constraints-expandableblock"><div class="availability-constraint small disabled-link relationships-section-availability-constraints formatted-content"><div><span class="enstr">Conforms when <span class="symbolref"><span>Output</span></span> conforms to <span class="symbolref"><span>Decodable</span></span>, <span class="symbolref"><span>Output</span></span> conforms to <span class="symbolref"><span>Encodable</span></span>, <span class="symbolref"><span>Failure</span></span> conforms to <span class="symbolref"><span>Decodable</span></span>, <span class="symbolref"><span>Failure</span></span> conforms to <span class="symbolref"><span>Encodable</span></span>, and <span class="symbolref"><span>Failure</span></span> conforms to <span class="symbolref"><span>Error</span></span>.</span><!--end_enstr-->
+</div>
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/combine/record/recording-swift.struct" class="link"><code data-v-4af8f78e="">Record<wbr data-v-4af8f78e="">.Recording</wbr></code></a><div data-v-7ea0aa49="" data-v-0a9ed1cb="" data-v-4af8f78e="" class="conditional-constraints content"><span class="enstr">Conforms when <code data-v-7fb764c1="">Output</code> conforms to <code data-v-7fb764c1="">Decodable</code>, <code data-v-7fb764c1="">Output</code> conforms to <code data-v-7fb764c1="">Encodable</code>, <code data-v-7fb764c1="">Failure</code> conforms to <code data-v-7fb764c1="">Decodable</code>, <code data-v-7fb764c1="">Failure</code> conforms to <code data-v-7fb764c1="">Encodable</code>, and <code data-v-7fb764c1="">Failure</code> conforms to <code data-v-7fb764c1="">Error</code>.</span><!--end_enstr-->
 <span class="jpstr">
-<span class="symbolref"><span>Output</span></span>が<span class="symbolref"><span>Decodable</span></span>に準拠する、<span class="symbolref"><span>Output</span></span>が<span class="symbolref"><span>Encodable</span></span>に準拠する、<span class="symbolref"><span>Failure</span></span>が<span class="symbolref"><span>Decodable</span></span>に準拠する、<span class="symbolref"><span>Failure</span></span>が<span class="symbolref"><span>Encodable</span></span>に準拠する、そして<span class="symbolref"><span>Failure</span></span>が<span class="symbolref"><span>Error</span></span>に準拠する時に準拠します。
+<code data-v-7fb764c1="">Output</code>が<code data-v-7fb764c1="">Decodable</code>に準拠する、<code data-v-7fb764c1="">Output</code>が<code data-v-7fb764c1="">Encodable</code>に準拠する、<code data-v-7fb764c1="">Failure</code>が<code data-v-7fb764c1="">Decodable</code>に準拠する、<code data-v-7fb764c1="">Failure</code>が<code data-v-7fb764c1="">Encodable</code>に準拠する、そして<code data-v-7fb764c1="">Failure</code>が<code data-v-7fb764c1="">Error</code>に準拠する時に準拠します。
 </span><!--end_jpstr-->
-</div></div></div></div></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/foundation/runloop/schedulertimetype.html"><code><span>Run<wbr/>Loop<wbr/>.Scheduler<wbr/>Time<wbr/>Type</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/foundation/runloop/schedulertimetype/stride.html"><code><span>Run<wbr/>Loop<wbr/>.Scheduler<wbr/>Time<wbr/>Type<wbr/>.Stride</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/set.html"><code><span>Set</span></code></a><div class="relationships-section-availability-constraints-container"><div class="expandableblock availability-constraint-container relationships-section-availability-constraints-expandableblock"><div class="availability-constraint small disabled-link relationships-section-availability-constraints formatted-content"><div><span class="enstr">Conforms when <span class="symbolref"><span>Element</span></span> conforms to <span class="symbolref"><span>Encodable</span></span>.</span><!--end_enstr-->
+</div>
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift_packages/resource.html" class="link"><code data-v-4af8f78e="">Resource</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift_packages/resource/localization.html" class="link"><code data-v-4af8f78e="">Resource<wbr data-v-4af8f78e="">.Localization</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/runloop/schedulertimetype.html" class="link"><code data-v-4af8f78e="">Run<wbr data-v-4af8f78e="">Loop<wbr data-v-4af8f78e="">.Scheduler<wbr data-v-4af8f78e="">Time<wbr data-v-4af8f78e="">Type</wbr></wbr></wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/runloop/schedulertimetype/stride.html" class="link"><code data-v-4af8f78e="">Run<wbr data-v-4af8f78e="">Loop<wbr data-v-4af8f78e="">.Scheduler<wbr data-v-4af8f78e="">Time<wbr data-v-4af8f78e="">Type<wbr data-v-4af8f78e="">.Stride</wbr></wbr></wbr></wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/set.html" class="link"><code data-v-4af8f78e="">Set</code></a><div data-v-7ea0aa49="" data-v-0a9ed1cb="" data-v-4af8f78e="" class="conditional-constraints content"><span class="enstr">Conforms when <code data-v-7fb764c1="">Element</code> conforms to <code data-v-7fb764c1="">Encodable</code>.</span><!--end_enstr-->
 <span class="jpstr">
-<span class="symbolref"><span>Element</span></span>が<span class="symbolref"><span>Encodable</span></span>に準拠する時に準拠します。
+<code data-v-7fb764c1="">Element</code>が<code data-v-7fb764c1="">Encodable</code>に準拠する時に準拠します。
 </span><!--end_jpstr-->
-</div></div></div></div></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/string.html"><code><span>String</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="https://developer.apple.com/documentation/combine/subscribers/completion"><code><span>Subscribers<wbr/>.Completion</span></code></a><div class="relationships-section-availability-constraints-container"><div class="expandableblock availability-constraint-container relationships-section-availability-constraints-expandableblock"><div class="availability-constraint small disabled-link relationships-section-availability-constraints formatted-content"><div><span class="enstr">Conforms when <span class="symbolref"><span>Failure</span></span> conforms to <span class="symbolref"><span>Encodable</span></span>.</span><!--end_enstr-->
+</div>
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/string.html" class="link"><code data-v-4af8f78e="">String</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/combine/subscribers/completion" class="link"><code data-v-4af8f78e="">Subscribers<wbr data-v-4af8f78e="">.Completion</wbr></code></a><div data-v-7ea0aa49="" data-v-0a9ed1cb="" data-v-4af8f78e="" class="conditional-constraints content"><span class="enstr">Conforms when <code data-v-7fb764c1="">Failure</code> conforms to <code data-v-7fb764c1="">Encodable</code>.</span><!--end_enstr-->
 <span class="jpstr">
-<span class="symbolref"><span>Failure</span></span>が<span class="symbolref"><span>Encodable</span></span>に準拠する時に準拠します。
+<code data-v-7fb764c1="">Failure</code>が<code data-v-7fb764c1="">Encodable</code>に準拠する時に準拠します。
 </span><!--end_jpstr-->
-</div></div></div></div></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="https://developer.apple.com/documentation/combine/subscribers/demand"><code><span>Subscribers<wbr/>.Demand</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift_packages/supportedplatform.html"><code><span>Supported<wbr/>Platform</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift_packages/supportedplatform/iosversion.html"><code><span>Supported<wbr/>Platform<wbr/>.IOSVersion</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift_packages/supportedplatform/macosversion.html"><code><span>Supported<wbr/>Platform<wbr/>.Mac<wbr/>OSVersion</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift_packages/supportedplatform/tvosversion.html"><code><span>Supported<wbr/>Platform<wbr/>.TVOSVersion</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift_packages/supportedplatform/watchosversion.html"><code><span>Supported<wbr/>Platform<wbr/>.Watch<wbr/>OSVersion</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift_packages/swiftsetting.html"><code><span>Swift<wbr/>Setting</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift_packages/swiftversion.html"><code><span>Swift<wbr/>Version</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift_packages/systempackageprovider.html"><code><span>System<wbr/>Package<wbr/>Provider</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift_packages/target.html"><code><span>Target</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift_packages/target/dependency.html"><code><span>Target<wbr/>.Dependency</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift_packages/target/targettype.html"><code><span>Target<wbr/>.Target<wbr/>Type</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/foundation/timezone.html"><code><span>Time<wbr/>Zone</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="https://developer.apple.com/documentation/uikit/uiedgeinsets"><code><span>UIEdge<wbr/>Insets</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="https://developer.apple.com/documentation/uikit/uifloatrange"><code><span>UIFloat<wbr/>Range</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/uint.html"><code><span>UInt</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/uint16.html"><code><span>UInt16</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/uint32.html"><code><span>UInt32</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/uint64.html"><code><span>UInt64</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift/uint8.html"><code><span>UInt8</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="https://developer.apple.com/documentation/uikit/uioffset"><code><span>UIOffset</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/foundation/url.html"><code><span>URL</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/foundation/urlcomponents.html"><code><span>URLComponents</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/foundation/uuid.html"><code><span>UUID</span></code></a></div></li><li class="relationships-section-content-list-item"><div><a class="symbol-name" href="../../documentation/swift_packages/version.html"><code><span>Version</span></code></a></div></li></ul></div></div></section></div></div></section><section id="see-also" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><span class="enstr">See Also</span><!--end_enstr-->
+</div>
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/combine/subscribers/demand" class="link"><code data-v-4af8f78e="">Subscribers<wbr data-v-4af8f78e="">.Demand</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift_packages/supportedplatform.html" class="link"><code data-v-4af8f78e="">Supported<wbr data-v-4af8f78e="">Platform</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift_packages/supportedplatform/iosversion.html" class="link"><code data-v-4af8f78e="">Supported<wbr data-v-4af8f78e="">Platform<wbr data-v-4af8f78e="">.IOSVersion</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift_packages/supportedplatform/macosversion.html" class="link"><code data-v-4af8f78e="">Supported<wbr data-v-4af8f78e="">Platform<wbr data-v-4af8f78e="">.Mac<wbr data-v-4af8f78e="">OSVersion</wbr></wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift_packages/supportedplatform/tvosversion.html" class="link"><code data-v-4af8f78e="">Supported<wbr data-v-4af8f78e="">Platform<wbr data-v-4af8f78e="">.TVOSVersion</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift_packages/supportedplatform/watchosversion.html" class="link"><code data-v-4af8f78e="">Supported<wbr data-v-4af8f78e="">Platform<wbr data-v-4af8f78e="">.Watch<wbr data-v-4af8f78e="">OSVersion</wbr></wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift_packages/swiftsetting.html" class="link"><code data-v-4af8f78e="">Swift<wbr data-v-4af8f78e="">Setting</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift_packages/swiftversion.html" class="link"><code data-v-4af8f78e="">Swift<wbr data-v-4af8f78e="">Version</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift_packages/systempackageprovider.html" class="link"><code data-v-4af8f78e="">System<wbr data-v-4af8f78e="">Package<wbr data-v-4af8f78e="">Provider</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift_packages/target.html" class="link"><code data-v-4af8f78e="">Target</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift_packages/target/dependency.html" class="link"><code data-v-4af8f78e="">Target<wbr data-v-4af8f78e="">.Dependency</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift_packages/target/targettype.html" class="link"><code data-v-4af8f78e="">Target<wbr data-v-4af8f78e="">.Target<wbr data-v-4af8f78e="">Type</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift_packages/targetdependencycondition.html" class="link"><code data-v-4af8f78e="">Target<wbr data-v-4af8f78e="">Dependency<wbr data-v-4af8f78e="">Condition</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swiftui/text/datestyle.html.html" class="link"><code data-v-4af8f78e="">Text<wbr data-v-4af8f78e="">.Date<wbr data-v-4af8f78e="">Style</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/timezone.html" class="link"><code data-v-4af8f78e="">Time<wbr data-v-4af8f78e="">Zone</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/widgetkit/timelineentryrelevance" class="link"><code data-v-4af8f78e="">Timeline<wbr data-v-4af8f78e="">Entry<wbr data-v-4af8f78e="">Relevance</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uiedgeinsets" class="link"><code data-v-4af8f78e="">UIEdge<wbr data-v-4af8f78e="">Insets</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uifloatrange" class="link"><code data-v-4af8f78e="">UIFloat<wbr data-v-4af8f78e="">Range</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uioffset" class="link"><code data-v-4af8f78e="">UIOffset</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/uint.html" class="link"><code data-v-4af8f78e="">UInt</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/uint16.html" class="link"><code data-v-4af8f78e="">UInt16</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/uint32.html" class="link"><code data-v-4af8f78e="">UInt32</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/uint64.html" class="link"><code data-v-4af8f78e="">UInt64</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/uint8.html" class="link"><code data-v-4af8f78e="">UInt8</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/url.html" class="link"><code data-v-4af8f78e="">URL</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/urlcomponents.html" class="link"><code data-v-4af8f78e="">URLComponents</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uniformtypeidentifiers/uttagclass" class="link"><code data-v-4af8f78e="">UTTag<wbr data-v-4af8f78e="">Class</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uniformtypeidentifiers/uttype" class="link"><code data-v-4af8f78e="">UTType</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/uuid.html" class="link"><code data-v-4af8f78e="">UUID</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift_packages/version.html" class="link"><code data-v-4af8f78e="">Version</code></a><!---->
+</li>
+</ul></div>
+</div>
+</div></section><section data-v-8c663d90="" data-v-63527a60="" data-v-2deaa168="" id="see-also" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">See Also</span><!--end_enstr-->
 <span class="jpstr">
 参照
 </span><!--end_jpstr-->
-</h2><section id="2902611" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Custom Encoding and Decoding</span><!--end_enstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Custom Encoding and Decoding</span><!--end_enstr-->
 <span class="jpstr">
 カスタムエンコーディングとデコーディング
 </span><!--end_jpstr-->
-</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types.html"><svg xmlns="http://www.w3.org/2000/svg" height="15" viewBox="0 0 22 30" class="svg-icon symbol-name-icon" aria-hidden="true"><title>Article</title><g id="Article" class="svg-icon-small"><path d="M12.87,0H0V2H0V28H0v2H22V9.13ZM20,28H2V2h9V12h9Zm0-18H13V3l7,7Z"></path></g></svg><span><span class="enstr">Encoding and Decoding Custom Types</span><!--end_enstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0="">
+<a data-v-01f7f080="" href="../../documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types.html" class="link has-adjacent-elements"><svg data-v-a76e93d8="" data-v-a8c6b630="" data-v-01f7f080="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="svg-icon article-icon topic-icon" viewbox="0 0 22 30"><title data-v-a76e93d8="">Article</title>
+<g data-v-a76e93d8=""><path data-v-a76e93d8="" d="M12.87,0H0V2H0V28H0v2H22V9.13ZM20,28H2V2h9V12h9Zm0-18H13V3l7,7Z"></path></g></svg><span data-v-01f7f080=""><span class="enstr">Encoding and Decoding Custom Types</span><!--end_enstr-->
 <span class="jpstr">
 あつらえの型のエンコーディングとデコーディング
 </span><!--end_jpstr-->
-</span></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Make your data types encodable and decodable for compatibility with external representations such as JSON.</span><!--end_enstr-->
+</span><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Make your data types encodable and decodable for compatibility with external representations such as JSON.</span><!--end_enstr-->
 <span class="jpstr">
 あなたのデータ型のエンコーディングとデコーディングを外部表現、例えばJSONなどとの互換性のために行います。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/swift/codable.html"><code class="display-name"><span class="decorator">typealias </span><span class="identifier">Codable</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A type that can convert itself into and out of an external representation.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/swift/codable.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">typealias </span><span data-v-dac213be="" class="identifier">Codable</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A type that can convert itself into and out of an external representation.</span><!--end_enstr-->
 <span class="jpstr">
 それ自身を外部表現へとそしてそれをもとに変換できる型。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/swift/decodable.html"><code class="display-name"><span class="decorator">protocol </span><span class="identifier">Decodable</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A type that can decode itself from an external representation.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/swift/decodable.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">protocol </span><span data-v-dac213be="" class="identifier">Decodable</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A type that can decode itself from an external representation.</span><!--end_enstr-->
 <span class="jpstr">
 それ自身が外部表現からデコードできる型。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/swift/codingkey.html"><code class="display-name"><span class="decorator">protocol </span><span class="identifier">Coding<wbr/>Key</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A type that can be used as a key for encoding and decoding.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/swift/codingkey.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">protocol </span><span data-v-dac213be="" class="identifier">Coding<wbr data-v-dac213be="">Key</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A type that can be used as a key for encoding and decoding.</span><!--end_enstr-->
 <span class="jpstr">
 エンコーディングとデコーディングのためのキーとして使われる型。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../documentation/swift/codinguserinfokey.html"><code class="display-name"><span class="decorator">struct </span><span class="identifier">Coding<wbr/>User<wbr/>Info<wbr/>Key</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A user-defined key for providing context during encoding and decoding.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/swift/codinguserinfokey.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">struct </span><span data-v-dac213be="" class="identifier">Coding<wbr data-v-dac213be="">User<wbr data-v-dac213be="">Info<wbr data-v-dac213be="">Key</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A user-defined key for providing context during encoding and decoding.</span><!--end_enstr-->
 <span class="jpstr">
 エンコーディングおよびデコーディングの間にコンテキストを提供するためのユーザ定義のキー。
 </span><!--end_jpstr-->
-</p></div></div></div></div></div></div></div></section></div></div></section></main><section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo">
-        <nav class="footer-breadory">
-          <a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a>
-          <section class="breadcrumbs">
-            <ol class="breadcrumbs-list">
-              <li><a href=/documentation>Documentation</a></li>
-            </ol>
-          </section>
-          <div id="directorynav" class="directorynav">
-            <div id="dn-cola" class="column">
-              <h3><a href="/discover/">Discover</a></h3>
-              <ul>
-                <li><a href="/macos/">macOS</a></li>
-                <li><a href="/ios/">iOS</a></li>
-                <li><a href="/watchos/">watchOS</a></li>
-                <li><a href="/tvos/">tvOS</a></li>
-                <li><a href="/safari/">Safari and Web</a></li>
-                <li><a href="/games/">Games</a></li>
-                <li><a href="/business/">Business</a></li>
-                <li><a href="/education/">Education</a></li>
-                <li><a href="/wwdc/">WWDC</a></li>
-              </ul>
-            </div>
-            <div id="dn-colb" class="column">
-              <h3><a href="/design/">Design</a></h3>
-              <ul>
-                <li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
-                <li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+</div><!----></section></main>
+</div></div></div>
+<section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo"><nav class="footer-breadory"><a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a><section class="breadcrumbs"><ol class="breadcrumbs-list"></ol></section><div id="directorynav" class="directorynav">
+<div id="dn-cola" class="column">
+<h3><a href="/discover/">Discover</a></h3>
+<ul>
+<li><a href="/ios/">iOS</a></li>
+<li><a href="/ipados/">iPadOS</a></li>
+<li><a href="/macos/">macOS</a></li>
+<li><a href="/tvos/">tvOS</a></li>
+<li><a href="/watchos/">watchOS</a></li>
+<li><a href="/safari/">Safari and Web</a></li>
+<li><a href="/games/">Games</a></li>
+<li><a href="/business/">Business</a></li>
+<li><a href="/education/">Education</a></li>
+<li><a href="/wwdc/">WWDC</a></li>
+</ul>
+</div>
+<div id="dn-colb" class="column">
+<h3><a href="/design/">Design</a></h3>
+<ul>
+<li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
+<li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
 <span class="jpstr">
 リソース
 </span><!--end_jpstr-->
 </a></li>
-                <li><a href="/videos/design/">Videos</a></li>
-                <li><a href="/design/awards/">Apple Design Awards</a></li>
-                <li><a href="/accessibility/">Accessibility</a></li>
-                <li><a href="/internationalization/"><span class="enstr">Internationalization</span><!--end_enstr-->
-<span class="jpstr">
-国際化
-</span><!--end_jpstr-->
-</a></li>
-                <li><a href="/accessories/">Accessories</a></li>
-              </ul>
-            </div>
-            <div id="dn-colc" class="column">
-              <h3><a href="/develop/">Develop</a></h3>
-              <ul>
-                <li><a href="/xcode/">Xcode</a></li>
-                <li><a href="/swift/">Swift</a></li>
-                <li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
-                <li><a href="/testflight/">TestFlight</a></li>
-                <li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
-                <li><a href="/videos/">Videos</a></li>
-                <li><a href="/download/">Downloads</a></li>
-              </ul>
-            </div>
-            <div id="dn-cold" class="column">
-              <h3><a href="/distribute/">Distribute</a></h3>
-              <ul>
-                <li><a href="/programs/">Developer Program</a></li>
-                <li><a href="/app-store/">App Store</a></li>
-                <li><a href="/app-store/review/">App Review</a></li>
-                <li><a href="/macos/distribution/">Mac Software</a></li>
-                <li><a href="/business/distribute/">Apps for Business</a></li>
-                <li><a href="/safari/extensions/">Safari Extensions</a></li>
-                <li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
-                <li><a href="/softwarelicensing/">Trademark Licensing</a></li>
-              </ul>
-            </div>
-            <div id="dn-cole" class="column">
-              <h3><a href="/support/">Support</a></h3>
-              <ul>
-                <li><a href="https://forums.developer.apple.com">Developer Forums</a></li>
-                <li><a href="/bug-reporting/">Bug Reporting</a></li>
-                <li><a href="/terms/">License Agreements</a></li>
-                <li><a href="/system-status/">System Status</a></li>
-                <li><a href="/contact/">Contact Us</a></li>
-              </ul>
-              <h3><a href="/account/">Account</a></h3>
-              <ul>
-                <li><a href="/account/ios/certificate/">Certificates, IDs &amp; Profiles</a></li>
-                <li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-        <div class="ac-gf-footer-legal">
-          <div class="ac-gf-footer-news"> To receive the latest developer news, visit and subscribe to our <a href="/news/">News and Updates</a>.
-          </div>
-          <div class="ac-gf-footer-legal-copyright">Copyright © 2020 Apple Inc. All rights reserved.</div>
-          <div class="ac-gf-footer-legal-links">
-            <a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a>
-            <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
-            <a href="/bug-reporting/">Report Bugs</a>
-            <a href="/contact/submit/?subject=website-feedback">Feedback</a>
-          </div>
-          <div class="ac-gf-footer-language-links">
-            <a href="/cn/" class="first">简体中文</a>
-            <a href="/jp/">日本語</a>
-            <a href="/kr/">한국어</a>
-          </div>
-        </div>
-      </footer></section></div></div><script id="bootstrap-data" type="application/json">{"id":2894932,"title":{"content":"Encodable"},"abstract":"<div><p>A type that can encode itself to an external representation.<\/p><\/div>","containingGroup":[{"id":2902611,"role":"task","paths":[],"symbols":[{"id":2904054,"role":"article","paths":["documentation\/foundation\/archives_and_serialization\/encoding_and_decoding_custom_types","documentation\/swift\/swift_standard_library\/encoding_decoding_and_serialization\/encoding_and_decoding_custom_types"],"abstract":"<div><p>Make your data types encodable and decodable for compatibility with external representations such as JSON.<\/p><\/div>","title":{"content":"Encoding and Decoding Custom Types"}},{"id":2893298,"role":"symbol","usr":"s:s7Codablea","name":"Codable","domain":"swift","kind":"tdef","availability":[{"platform":"Xcode","introduced":"9.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">typealias <\/span><span class=\"identifier\">Codable<\/span><\/code>","paths":["documentation\/swift\/codable"],"title":{"content":"Codable"},"abstract":"<div><p>A type that can convert itself into and out of an external representation.<\/p><\/div>"},{"id":2894932,"role":"symbol","usr":"s:SE","name":"Encodable","domain":"swift","kind":"intf","availability":[{"platform":"Xcode","introduced":"9.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">protocol <\/span><span class=\"identifier\">Encodable<\/span><\/code>","paths":["documentation\/swift\/encodable"],"title":{"content":"Encodable"},"abstract":"<div><p>A type that can encode itself to an external representation.<\/p><\/div>","hasChildren":true},{"id":2893395,"role":"symbol","usr":"s:Se","name":"Decodable","domain":"swift","kind":"intf","availability":[{"platform":"Xcode","introduced":"9.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">protocol <\/span><span class=\"identifier\">Decodable<\/span><\/code>","paths":["documentation\/swift\/decodable"],"title":{"content":"Decodable"},"abstract":"<div><p>A type that can decode itself from an external representation.<\/p><\/div>","hasChildren":true},{"id":2893289,"role":"symbol","usr":"s:s9CodingKeyP","name":"CodingKey","domain":"swift","kind":"intf","availability":[{"platform":"Xcode","introduced":"9.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">protocol <\/span><span class=\"identifier\">Coding<wbr\/>Key<\/span><\/code>","paths":["documentation\/swift\/codingkey"],"title":{"content":"CodingKey"},"abstract":"<div><p>A type that can be used as a key for encoding and decoding.<\/p><\/div>","hasChildren":true},{"id":2893399,"role":"symbol","usr":"s:s17CodingUserInfoKeyV","name":"CodingUserInfoKey","domain":"swift","kind":"struct","availability":[{"platform":"Xcode","introduced":"9.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">struct <\/span><span class=\"identifier\">Coding<wbr\/>User<wbr\/>Info<wbr\/>Key<\/span><\/code>","paths":["documentation\/swift\/codinguserinfokey"],"title":{"content":"CodingUserInfoKey"},"abstract":"<div><p>A user-defined key for providing context during encoding and decoding.<\/p><\/div>","hasChildren":true}],"title":{"content":"Custom Encoding and Decoding"}}],"usr":"s:SE","name":"Encodable","domain":"swift","kind":"intf","availability":[{"platform":"Xcode","current":"11.4","introduced":"9.0"}],"adoptedBy":[{"id":1414588,"usr":"c:@SA@NSDecimal","name":"NSDecimal","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/foundation\/decimal"],"title":{"content":"Decimal"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1454147,"usr":"c:@S@CGRect","name":"CGRect","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/coregraphics\/cgrect"],"title":{"content":"CGRect"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1455351,"usr":"c:@S@CGVector","name":"CGVector","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/coregraphics\/cgvector"],"title":{"content":"CGVector"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1455473,"usr":"c:@S@CGAffineTransform","name":"CGAffineTransform","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/coregraphics\/cgaffinetransform"],"title":{"content":"CGAffineTransform"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1455728,"usr":"c:@S@CGPoint","name":"CGPoint","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/coregraphics\/cgpoint"],"title":{"content":"CGPoint"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1456139,"usr":"c:@S@CGSize","name":"CGSize","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/coregraphics\/cgsize"],"title":{"content":"CGSize"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1538234,"usr":"s:Sb","name":"Bool","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift\/bool"],"title":{"content":"Bool"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1539023,"usr":"s:Sf","name":"Float","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift\/float"],"title":{"content":"Float"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1539084,"usr":"s:Sa","name":"Array","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift\/array"],"title":{"content":"Array"},"availabilityConstraints":"<div>Conforms when <span class=\"symbolref\"><span>Element<\/span><\/span> conforms to <span class=\"symbolref\"><span>Encodable<\/span><\/span>.<\/div>","platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1540027,"usr":"s:SS","name":"String","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift\/string"],"title":{"content":"String"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1540114,"usr":"s:Sd","name":"Double","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift\/double"],"title":{"content":"Double"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1540985,"usr":"s:Su","name":"UInt","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift\/uint"],"title":{"content":"UInt"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1541008,"usr":"s:Sq","name":"Optional","domain":"swift","kind":"enum","role":"symbol","paths":["documentation\/swift\/optional"],"title":{"content":"Optional"},"availabilityConstraints":"<div>Conforms when <span class=\"symbolref\"><span>Wrapped<\/span><\/span> conforms to <span class=\"symbolref\"><span>Encodable<\/span><\/span>.<\/div>","platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1541415,"usr":"s:Si","name":"Int","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift\/int"],"title":{"content":"Int"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1624500,"usr":"c:@S@UIOffset","name":"UIOffset","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/uikit\/uioffset"],"title":{"content":"UIOffset"},"platforms":["iOS","Mac Catalyst","tvOS","watchOS"]},{"id":1621295,"usr":"c:@SA@UIFloatRange","name":"UIFloatRange","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/uikit\/uifloatrange"],"title":{"content":"UIFloatRange"},"platforms":["iOS","Mac Catalyst","tvOS"]},{"id":1624479,"usr":"c:@S@UIEdgeInsets","name":"UIEdgeInsets","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/uikit\/uiedgeinsets"],"title":{"content":"UIEdgeInsets"},"platforms":["iOS","Mac Catalyst","tvOS","watchOS"]},{"id":2865773,"usr":"c:@S@NSDirectionalEdgeInsets","name":"NSDirectionalEdgeInsets","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/uikit\/nsdirectionaledgeinsets","documentation\/appkit\/nsdirectionaledgeinsets"],"title":{"content":"NSDirectionalEdgeInsets"},"platforms":["iOS","Mac Catalyst","tvOS","watchOS"]},{"id":1454468,"usr":"s:12CoreGraphics7CGFloatV","name":"CGFloat","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/coregraphics\/cgfloat"],"title":{"content":"CGFloat"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1779827,"usr":"s:10Foundation4UUIDV","name":"UUID","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/foundation\/uuid"],"title":{"content":"UUID"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1779590,"usr":"s:10Foundation20PersonNameComponentsV","name":"PersonNameComponents","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/foundation\/personnamecomponents"],"title":{"content":"PersonNameComponents"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":2293000,"usr":"s:10Foundation6LocaleV","name":"Locale","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/foundation\/locale"],"title":{"content":"Locale"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1924217,"usr":"s:10Foundation11MeasurementV","name":"Measurement","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/foundation\/measurement"],"title":{"content":"Measurement"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1779622,"usr":"s:10Foundation12CharacterSetV","name":"CharacterSet","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/foundation\/characterset"],"title":{"content":"CharacterSet"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":2293650,"usr":"s:10Foundation8TimeZoneV","name":"TimeZone","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/foundation\/timezone"],"title":{"content":"TimeZone"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1779670,"usr":"s:10Foundation4DataV","name":"Data","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/foundation\/data"],"title":{"content":"Data"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1779976,"usr":"s:10Foundation9IndexPathV","name":"IndexPath","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/foundation\/indexpath"],"title":{"content":"IndexPath"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1780012,"usr":"s:10Foundation3URLV","name":"URL","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/foundation\/url"],"title":{"content":"URL"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1779721,"usr":"s:10Foundation12DateIntervalV","name":"DateInterval","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/foundation\/dateinterval"],"title":{"content":"DateInterval"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1779911,"usr":"s:10Foundation13URLComponentsV","name":"URLComponents","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/foundation\/urlcomponents"],"title":{"content":"URLComponents"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1780046,"usr":"s:10Foundation4DateV","name":"Date","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/foundation\/date"],"title":{"content":"Date"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1779587,"usr":"s:10Foundation14DateComponentsV","name":"DateComponents","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/foundation\/datecomponents"],"title":{"content":"DateComponents"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":2293530,"usr":"s:10Foundation8CalendarV","name":"Calendar","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/foundation\/calendar"],"title":{"content":"Calendar"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1780407,"usr":"s:10Foundation8IndexSetV","name":"IndexSet","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/foundation\/indexset"],"title":{"content":"IndexSet"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1539883,"usr":"s:s4Int8V","name":"Int8","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift\/int8"],"title":{"content":"Int8"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1538735,"usr":"s:s6UInt32V","name":"UInt32","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift\/uint32"],"title":{"content":"UInt32"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1541358,"usr":"s:s5Int16V","name":"Int16","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift\/int16"],"title":{"content":"Int16"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1538309,"usr":"s:s5UInt8V","name":"UInt8","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift\/uint8"],"title":{"content":"UInt8"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1539287,"usr":"s:s6UInt64V","name":"UInt64","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift\/uint64"],"title":{"content":"UInt64"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1541118,"usr":"s:s6UInt16V","name":"UInt16","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift\/uint16"],"title":{"content":"UInt16"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1540726,"usr":"s:s15ContiguousArrayV","name":"ContiguousArray","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift\/contiguousarray"],"title":{"content":"ContiguousArray"},"availabilityConstraints":"<div>Conforms when <span class=\"symbolref\"><span>Element<\/span><\/span> conforms to <span class=\"symbolref\"><span>Encodable<\/span><\/span>.<\/div>","platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1538969,"usr":"s:s5Int64V","name":"Int64","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift\/int64"],"title":{"content":"Int64"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1540383,"usr":"s:s5Int32V","name":"Int32","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift\/int32"],"title":{"content":"Int32"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":2892952,"usr":"s:s16PartialRangeUpToV","name":"PartialRangeUpTo","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift\/partialrangeupto"],"title":{"content":"PartialRangeUpTo"},"availabilityConstraints":"<div>Conforms when <span class=\"symbolref\"><span>Bound<\/span><\/span> conforms to <span class=\"symbolref\"><span>Encodable<\/span><\/span>.<\/div>","platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":2893954,"usr":"s:s19PartialRangeThroughV","name":"PartialRangeThrough","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift\/partialrangethrough"],"title":{"content":"PartialRangeThrough"},"availabilityConstraints":"<div>Conforms when <span class=\"symbolref\"><span>Bound<\/span><\/span> conforms to <span class=\"symbolref\"><span>Encodable<\/span><\/span>.<\/div>","platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":2894373,"usr":"s:s16PartialRangeFromV","name":"PartialRangeFrom","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift\/partialrangefrom"],"title":{"content":"PartialRangeFrom"},"availabilityConstraints":"<div>Conforms when <span class=\"symbolref\"><span>Bound<\/span><\/span> conforms to <span class=\"symbolref\"><span>Encodable<\/span><\/span>.<\/div>","platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":2919976,"usr":"c:objc(cs)MPMusicPlayerPlayParameters","name":"MPMusicPlayerPlayParameters","domain":"swift","kind":"cl","role":"symbol","paths":["documentation\/mediaplayer\/mpmusicplayerplayparameters"],"title":{"content":"MPMusicPlayerPlayParameters"},"platforms":["iOS","Mac Catalyst"]},{"id":1781519,"usr":"s:SN","name":"ClosedRange","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift\/closedrange"],"title":{"content":"ClosedRange"},"availabilityConstraints":"<div>Conforms when <span class=\"symbolref\"><span>Bound<\/span><\/span> conforms to <span class=\"symbolref\"><span>Encodable<\/span><\/span>.<\/div>","platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1540569,"usr":"s:SD","name":"Dictionary","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift\/dictionary"],"title":{"content":"Dictionary"},"availabilityConstraints":"<div>Conforms when <span class=\"symbolref\"><span>Key<\/span><\/span> conforms to <span class=\"symbolref\"><span>Encodable<\/span><\/span> and <span class=\"symbolref\"><span>Value<\/span><\/span> conforms to <span class=\"symbolref\"><span>Encodable<\/span><\/span>.<\/div>","platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1540681,"usr":"s:Sn","name":"Range","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift\/range"],"title":{"content":"Range"},"availabilityConstraints":"<div>Conforms when <span class=\"symbolref\"><span>Bound<\/span><\/span> conforms to <span class=\"symbolref\"><span>Encodable<\/span><\/span>.<\/div>","platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":1538506,"usr":"s:Sh","name":"Set","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift\/set"],"title":{"content":"Set"},"availabilityConstraints":"<div>Conforms when <span class=\"symbolref\"><span>Element<\/span><\/span> conforms to <span class=\"symbolref\"><span>Encodable<\/span><\/span>.<\/div>","platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":3200729,"usr":"s:s20CollectionDifferenceV","name":"CollectionDifference","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift\/collectiondifference"],"title":{"content":"CollectionDifference"},"availabilityConstraints":"<div>Conforms when <span class=\"symbolref\"><span>Change<wbr\/>Element<\/span><\/span> conforms to <span class=\"symbolref\"><span>Decodable<\/span><\/span> and <span class=\"symbolref\"><span>Encodable<\/span><\/span>.<\/div>","platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":3200731,"usr":"s:s20CollectionDifferenceV6ChangeO","name":"CollectionDifference.Change","domain":"swift","kind":"enum","role":"symbol","paths":["documentation\/swift\/collectiondifference\/change"],"title":{"content":"CollectionDifference.Change"},"availabilityConstraints":"<div>Conforms when <span class=\"symbolref\"><span>Change<wbr\/>Element<\/span><\/span> conforms to <span class=\"symbolref\"><span>Decodable<\/span><\/span> and <span class=\"symbolref\"><span>Encodable<\/span><\/span>.<\/div>","platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":3204517,"usr":"s:7Combine18ImmediateSchedulerV0C8TimeTypeV6StrideV","name":"ImmediateScheduler.SchedulerTimeType.Stride","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/combine\/immediatescheduler\/schedulertimetype\/stride"],"title":{"content":"ImmediateScheduler.SchedulerTimeType.Stride"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":3213657,"usr":"s:7Combine11SubscribersO10CompletionO","name":"Subscribers.Completion","domain":"swift","kind":"enum","role":"symbol","paths":["documentation\/combine\/subscribers\/completion"],"title":{"content":"Subscribers.Completion"},"availabilityConstraints":"<div>Conforms when <span class=\"symbolref\"><span>Failure<\/span><\/span> conforms to <span class=\"symbolref\"><span>Encodable<\/span><\/span>.<\/div>","platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":3281873,"usr":"s:9PencilKit9PKDrawingV","name":"PKDrawing","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/pencilkit\/pkdrawing"],"title":{"content":"PKDrawing"},"platforms":["iOS","macOS","Mac Catalyst"]},{"id":3329152,"usr":"s:So17OS_dispatch_queueC8DispatchE17SchedulerTimeTypeV","name":"DispatchQueue.SchedulerTimeType","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/dispatch\/dispatchqueue\/schedulertimetype"],"title":{"content":"DispatchQueue.SchedulerTimeType"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":3329172,"usr":"s:So17OS_dispatch_queueC8DispatchE17SchedulerTimeTypeV6StrideV","name":"DispatchQueue.SchedulerTimeType.Stride","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/dispatch\/dispatchqueue\/schedulertimetype\/stride"],"title":{"content":"DispatchQueue.SchedulerTimeType.Stride"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":3329392,"usr":"s:So9NSRunLoopC10FoundationE17SchedulerTimeTypeV","name":"RunLoop.SchedulerTimeType","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/foundation\/runloop\/schedulertimetype"],"title":{"content":"RunLoop.SchedulerTimeType"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":3329415,"usr":"s:So9NSRunLoopC10FoundationE17SchedulerTimeTypeV6StrideV","name":"RunLoop.SchedulerTimeType.Stride","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/foundation\/runloop\/schedulertimetype\/stride"],"title":{"content":"RunLoop.SchedulerTimeType.Stride"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":3334814,"usr":"s:7Combine11SubscribersO6DemandV","name":"Subscribers.Demand","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/combine\/subscribers\/demand"],"title":{"content":"Subscribers.Demand"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":3362735,"usr":"s:7Combine6RecordV","name":"Record","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/combine\/record"],"title":{"content":"Record"},"availabilityConstraints":"<div>Conforms when <span class=\"symbolref\"><span>Output<\/span><\/span> conforms to <span class=\"symbolref\"><span>Decodable<\/span><\/span>, <span class=\"symbolref\"><span>Output<\/span><\/span> conforms to <span class=\"symbolref\"><span>Encodable<\/span><\/span>, <span class=\"symbolref\"><span>Failure<\/span><\/span> conforms to <span class=\"symbolref\"><span>Decodable<\/span><\/span>, and <span class=\"symbolref\"><span>Failure<\/span><\/span> conforms to <span class=\"symbolref\"><span>Encodable<\/span><\/span>.<\/div>","platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":3362736,"usr":"s:7Combine6RecordV9RecordingV","name":"Record.Recording","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/combine\/record\/recording"],"title":{"content":"Record.Recording"},"availabilityConstraints":"<div>Conforms when <span class=\"symbolref\"><span>Output<\/span><\/span> conforms to <span class=\"symbolref\"><span>Decodable<\/span><\/span>, <span class=\"symbolref\"><span>Output<\/span><\/span> conforms to <span class=\"symbolref\"><span>Encodable<\/span><\/span>, <span class=\"symbolref\"><span>Failure<\/span><\/span> conforms to <span class=\"symbolref\"><span>Decodable<\/span><\/span>, <span class=\"symbolref\"><span>Failure<\/span><\/span> conforms to <span class=\"symbolref\"><span>Encodable<\/span><\/span>, and <span class=\"symbolref\"><span>Failure<\/span><\/span> conforms to <span class=\"symbolref\"><span>Error<\/span><\/span>.<\/div>","platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":3362877,"usr":"s:So16NSOperationQueueC10FoundationE17SchedulerTimeTypeV","name":"OperationQueue.SchedulerTimeType","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/foundation\/operationqueue\/schedulertimetype"],"title":{"content":"OperationQueue.SchedulerTimeType"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":3362897,"usr":"s:So16NSOperationQueueC10FoundationE17SchedulerTimeTypeV6StrideV","name":"OperationQueue.SchedulerTimeType.Stride","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/foundation\/operationqueue\/schedulertimetype\/stride"],"title":{"content":"OperationQueue.SchedulerTimeType.Stride"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]},{"id":3543417,"usr":"s:10RealityKit25NetworkCompatibilityTokenC","name":"NetworkCompatibilityToken","domain":"swift","kind":"cl","role":"symbol","paths":["documentation\/realitykit\/networkcompatibilitytoken"],"title":{"content":"NetworkCompatibilityToken"},"platforms":["iOS","macOS","Mac Catalyst"]},{"id":2878255,"usr":"s:18PackageDescription7ProductC","name":"Product","domain":"swift","kind":"cl","role":"symbol","paths":["documentation\/swift_packages\/product"],"title":{"content":"Product"},"platforms":["macOS"]},{"id":2878247,"usr":"s:18PackageDescription7ProductC7LibraryC0D4TypeO","name":"Product.Library.LibraryType","domain":"swift","kind":"enum","role":"symbol","paths":["documentation\/swift_packages\/product\/library\/librarytype"],"title":{"content":"Product.Library.LibraryType"},"platforms":["macOS"]},{"id":2878216,"usr":"s:18PackageDescription0A0C","name":"Package","domain":"swift","kind":"cl","role":"symbol","paths":["documentation\/swift_packages\/package"],"title":{"content":"Package"},"platforms":["macOS"]},{"id":2878223,"usr":"s:18PackageDescription6TargetC","name":"Target","domain":"swift","kind":"cl","role":"symbol","paths":["documentation\/swift_packages\/target"],"title":{"content":"Target"},"platforms":["macOS"]},{"id":2878249,"usr":"s:18PackageDescription7VersionV","name":"Version","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift_packages\/version"],"title":{"content":"Version"},"platforms":["macOS"]},{"id":2878222,"usr":"s:18PackageDescription06SystemA8ProviderO","name":"SystemPackageProvider","domain":"swift","kind":"enum","role":"symbol","paths":["documentation\/swift_packages\/systempackageprovider"],"title":{"content":"SystemPackageProvider"},"platforms":["macOS"]},{"id":2878184,"usr":"s:18PackageDescription0A0C10DependencyC","name":"Package.Dependency","domain":"swift","kind":"cl","role":"symbol","paths":["documentation\/swift_packages\/package\/dependency"],"title":{"content":"Package.Dependency"},"platforms":["macOS"]},{"id":2878201,"usr":"s:18PackageDescription0A0C10DependencyC11RequirementO","name":"Package.Dependency.Requirement","domain":"swift","kind":"enum","role":"symbol","paths":["documentation\/swift_packages\/package\/dependency\/requirement"],"title":{"content":"Package.Dependency.Requirement"},"platforms":["macOS"]},{"id":2878229,"usr":"s:18PackageDescription6TargetC10DependencyO","name":"Target.Dependency","domain":"swift","kind":"enum","role":"symbol","paths":["documentation\/swift_packages\/target\/dependency"],"title":{"content":"Target.Dependency"},"platforms":["macOS"]},{"id":2516746,"usr":"s:10Foundation15AffineTransformV","name":"AffineTransform","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/foundation\/affinetransform"],"title":{"content":"AffineTransform"},"platforms":["macOS"]},{"id":2923507,"usr":"s:18PackageDescription17CLanguageStandardO","name":"CLanguageStandard","domain":"swift","kind":"enum","role":"symbol","paths":["documentation\/swift_packages\/clanguagestandard"],"title":{"content":"CLanguageStandard"},"platforms":["macOS"]},{"id":2923526,"usr":"s:18PackageDescription19CXXLanguageStandardO","name":"CXXLanguageStandard","domain":"swift","kind":"enum","role":"symbol","paths":["documentation\/swift_packages\/cxxlanguagestandard"],"title":{"content":"CXXLanguageStandard"},"platforms":["macOS"]},{"id":3019526,"usr":"s:18PackageDescription6TargetC0C4TypeO","name":"Target.TargetType","domain":"swift","kind":"enum","role":"symbol","paths":["documentation\/swift_packages\/target\/targettype"],"title":{"content":"Target.TargetType"},"platforms":["macOS"]},{"id":3112649,"usr":"s:18PackageDescription18BuildConfigurationV","name":"BuildConfiguration","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift_packages\/buildconfiguration"],"title":{"content":"BuildConfiguration"},"platforms":["macOS"]},{"id":3112655,"usr":"s:18PackageDescription21BuildSettingConditionV","name":"BuildSettingCondition","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift_packages\/buildsettingcondition"],"title":{"content":"BuildSettingCondition"},"platforms":["macOS"]},{"id":3112661,"usr":"s:18PackageDescription8CSettingV","name":"CSetting","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift_packages\/csetting"],"title":{"content":"CSetting"},"platforms":["macOS"]},{"id":3112669,"usr":"s:18PackageDescription10CXXSettingV","name":"CXXSetting","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift_packages\/cxxsetting"],"title":{"content":"CXXSetting"},"platforms":["macOS"]},{"id":3112676,"usr":"s:18PackageDescription13LinkerSettingV","name":"LinkerSetting","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift_packages\/linkersetting"],"title":{"content":"LinkerSetting"},"platforms":["macOS"]},{"id":3112697,"usr":"s:18PackageDescription8PlatformV","name":"Platform","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift_packages\/platform"],"title":{"content":"Platform"},"platforms":["macOS"]},{"id":3112719,"usr":"s:18PackageDescription17SupportedPlatformV","name":"SupportedPlatform","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift_packages\/supportedplatform"],"title":{"content":"SupportedPlatform"},"platforms":["macOS"]},{"id":3112723,"usr":"s:18PackageDescription17SupportedPlatformV10IOSVersionV","name":"SupportedPlatform.IOSVersion","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift_packages\/supportedplatform\/iosversion"],"title":{"content":"SupportedPlatform.IOSVersion"},"platforms":["macOS"]},{"id":3112732,"usr":"s:18PackageDescription17SupportedPlatformV12MacOSVersionV","name":"SupportedPlatform.MacOSVersion","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift_packages\/supportedplatform\/macosversion"],"title":{"content":"SupportedPlatform.MacOSVersion"},"platforms":["macOS"]},{"id":3112741,"usr":"s:18PackageDescription17SupportedPlatformV11TVOSVersionV","name":"SupportedPlatform.TVOSVersion","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift_packages\/supportedplatform\/tvosversion"],"title":{"content":"SupportedPlatform.TVOSVersion"},"platforms":["macOS"]},{"id":3112749,"usr":"s:18PackageDescription17SupportedPlatformV14WatchOSVersionV","name":"SupportedPlatform.WatchOSVersion","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift_packages\/supportedplatform\/watchosversion"],"title":{"content":"SupportedPlatform.WatchOSVersion"},"platforms":["macOS"]},{"id":3112765,"usr":"s:18PackageDescription12SwiftSettingV","name":"SwiftSetting","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/swift_packages\/swiftsetting"],"title":{"content":"SwiftSetting"},"platforms":["macOS"]},{"id":3197888,"usr":"s:18PackageDescription12SwiftVersionO","name":"SwiftVersion","domain":"swift","kind":"enum","role":"symbol","paths":["documentation\/swift_packages\/swiftversion"],"title":{"content":"SwiftVersion"},"platforms":["macOS"]}],"inheritedBy":[{"id":3139405,"usr":"s:s4SIMDP","name":"SIMD","domain":"swift","kind":"intf","role":"symbol","paths":["documentation\/swift\/simd"],"title":{"content":"SIMD"},"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]}],"module":[{"title":{"content":"Swift Standard Library"},"importStatement":"<div><span class=\"syntax-identifier\">import<\/span> Swift<\/div>","paths":["documentation\/swift"],"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">protocol <\/span><span class=\"identifier\">Encodable<\/span><\/code>","declaration":[{"content":"<span><span class=\"syntax-keyword\">protocol<\/span> <span class=\"syntax-identifier\">Encodable<\/span>\n<\/span>","platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]}],"role":"symbol","language":"swift","roleHeading":"Protocol","languages":["swift"],"variants":{"swift":{"paths":["documentation\/swift\/encodable"],"usr":"s:SE"}},"pid":463568,"paths":["documentation\/swift\/encodable"],"hierarchy":[[{"id":3000738,"role":"collection","title":{"content":"Swift"},"paths":["documentation\/swift"]},{"id":2984803,"role":"collectionGroup","title":{"content":"Swift Standard Library"},"paths":["documentation\/swift\/swift_standard_library"]},{"id":2902609,"role":"collectionGroup","title":{"content":"Encoding, Decoding, and Serialization"},"paths":["documentation\/swift\/swift_standard_library\/encoding_decoding_and_serialization"]}]],"legalNotices":{"copyright":"Copyright &copy; 2020 Apple Inc. All rights reserved.","termsOfUse":"https:\/\/www.apple.com\/legal\/internet-services\/terms\/site.html","privacyPolicy":"https:\/\/www.apple.com\/privacy\/privacy-policy"},"tasks":[{"id":2901625,"role":"task","symbols":[{"id":2893603,"role":"symbol","usr":"s:SE6encode2toys7Encoder_p_tKF","name":"encode(to:)","domain":"swift","kind":"intfm","availability":[{"platform":"Xcode","introduced":"9.0"}],"required":true,"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">encode<\/span><span class=\"decorator\">(<\/span><span class=\"identifier\">to<\/span><span class=\"decorator\">: Encoder)<\/span><\/code>","paths":["documentation\/swift\/encodable\/2893603-encode"],"title":{"content":"encode(to:)"},"abstract":"<div><p>Encodes this value into the given encoder.<\/p><\/div>","defaultImplementationsCount":1,"hasChildren":true}],"title":{"content":"Instance Methods"}}]}</script></body></html>
+<li><a href="/videos/design/">Videos</a></li>
+<li><a href="/design/awards/">Apple Design Awards</a></li>
+<li><a href="/fonts/">Fonts</a></li>
+<li><a href="/accessibility/">Accessibility</a></li>
+<li><a href="/localization/">Localization</a></li>
+<li><a href="/accessories/">Accessories</a></li>
+</ul>
+</div>
+<div id="dn-colc" class="column">
+<h3><a href="/develop/">Develop</a></h3>
+<ul>
+<li><a href="/xcode/">Xcode</a></li>
+<li><a href="/swift/">Swift</a></li>
+<li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
+<li><a href="/testflight/">TestFlight</a></li>
+<li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
+<li><a href="/videos/">Videos</a></li>
+<li><a href="/download/">Downloads</a></li>
+</ul>
+</div>
+<div id="dn-cold" class="column">
+<h3><a href="/distribute/">Distribute</a></h3>
+<ul>
+<li><a href="/programs/">Developer Program</a></li>
+<li><a href="/app-store/">App Store</a></li>
+<li><a href="/app-store/review/">App Review</a></li>
+<li><a href="/macos/distribution/">Mac Software</a></li>
+<li><a href="/business/distribute/">Apps for Business</a></li>
+<li><a href="/safari/extensions/">Safari Extensions</a></li>
+<li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
+<li><a href="/softwarelicensing/">Trademark Licensing</a></li>
+</ul>
+</div>
+<div id="dn-cole" class="column">
+<h3><a href="/support/">Support</a></h3>
+<ul>
+<li><a href="/support/articles/">Articles</a></li>
+<li><a href="/forums/">Developer Forums</a></li>
+<li><a href="/bug-reporting/">Feedback &amp; Bug Reporting</a></li>
+<li><a href="/system-status/">System Status</a></li>
+<li><a href="/contact/">Contact Us</a></li>
+</ul>
+<h3><a href="/account/">Account</a></h3>
+<ul>
+<li><a href="/account/ios/certificate/">Certificates, Identifiers &amp; Profiles</a></li>
+<li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
+</ul>
+</div>
+</div></nav><div class="ac-gf-footer-legal">
+<div class="ac-gf-footer-news">To view the latest developer news, visit <a href="/news/">News and Updates</a>.</div>
+<div class="ac-gf-footer-language-dropdown-wrapper">
+<select id="footer-language-selector" class="footer-language-select" aria-label="Language Dropdown" autocomplete="off"><option value="https://developer.apple.com/" selected>English</option>
+<option value="https://developer.apple.com/cn/">简体中文</option>
+<option value="https://developer.apple.com/jp/">日本語</option>
+<option value="https://developer.apple.com/kr/">한국어</option></select> <span class="footer-language-select-icon icon icon-chevrondown" aria-hidden="true"></span>
+</div>
+<div class="ac-gf-footer-legal-copyright">Copyright © <span class="footer-current-year">2020</span> <a href="https://www.apple.com">Apple Inc.</a> All rights reserved.</div>
+<div class="ac-gf-footer-legal-links">
+<a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a> <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a> <a href="/terms/">License Agreements</a>
+</div>
+</div></footer></section><script src="../../tutorials/js/footer.js"></script>
+</body>
+</html>

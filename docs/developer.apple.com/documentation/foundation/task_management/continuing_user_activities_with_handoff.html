@@ -1,509 +1,712 @@
-<!DOCTYPE html><html lang="en" data-reactroot=""><head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>Continuing User Activities with Handoff | Apple Developer Documentation</title><!-- link href="https://www.apple.com/wss/fonts?families=SF+Pro,v1|SF+Mono,v1|SF+Pro+Icons,v1" media="all" rel="stylesheet" type="text/css"/ --><meta content="width=device-width, initial-scale=1 viewport-fit=cover" name="viewport"/><meta data-pid="463568"/><link href="../../../documentation/assets/application-e5bb1544.css" media="all" rel="stylesheet" type="text/css"/><noscript><link href="../../../documentation/assets/nojs-c6be9131.css" media="all" rel="stylesheet" type="text/css"/></noscript><link rel="mask-icon" href="../../../documentation/assets/apple-logo.svg" color="#000"/><link rel="shortcut icon" href="../../../documentation/assets/favicon.ico"/><script src="../../../documentation/assets/shared-b7676010.js"></script></head><body><div id="_omniture_top">
-      <script>
-        var s_account="awdappledeveloper"
-      </script><!-- script src="https://developer.apple.com/assets/metrics/scripts/analytics.js" -->
-      </script>
-      <script>
-        s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
-        s.channel="www.documentation.developer"
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- link rel="icon" href="/favicon.ico" -->
+<link rel="mask-icon" href="/apple-logo.svg" color="#333333">
+<link rel="stylesheet" href="../../../tutorials/css/_globalnav.css">
+<title>Continuing User Activities with Handoff | Apple Developer Documentation</title>
+<link href="../../../tutorials/css/chunk-76d5c2b5.00c53891.css" rel="prefetch">
+<link href="../../../tutorials/css/documentation-topic.e358e85c.css" rel="prefetch">
+<link href="../../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css" rel="prefetch">
+<link href="../../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css" rel="prefetch">
+<link href="../../../tutorials/css/topic.69278f1e.css" rel="prefetch">
+<link href="../../../tutorials/css/topic~tutorials-overview.1f93e025.css" rel="prefetch">
+<link href="../../../tutorials/css/tutorials-overview.d4ff0b50.css" rel="prefetch">
+<link href="../../../tutorials/css/welcome-experience-featured.0537f0f0.css" rel="prefetch">
+<link href="../../../tutorials/css/welcome-experience-technologies.60068ae2.css" rel="prefetch">
+<link href="../../../tutorials/js/chunk-2d0d3105.459bf725.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-2d21a016.b81cb311.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-503f1ed8.d26c4552.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-530f89ce.621e1d48.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-640db3b2.f8778ca5.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-76d5c2b5.092e3b8a.js" rel="prefetch">
+<link href="../../../tutorials/js/documentation-topic.6abe9458.js" rel="prefetch">
+<link href="../../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js" rel="prefetch">
+<link href="../../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js" rel="prefetch">
+<link href="../../../tutorials/js/topic.c6ec6b6c.js" rel="prefetch">
+<link href="../../../tutorials/js/topic~tutorials-overview.467a8186.js" rel="prefetch">
+<link href="../../../tutorials/js/tutorials-overview.d77f61ca.js" rel="prefetch">
+<link href="../../../tutorials/js/welcome-experience-featured.04f663e2.js" rel="prefetch">
+<link href="../../../tutorials/js/welcome-experience-technologies.56a372c1.js" rel="prefetch">
+<link href="../../../tutorials/css/app.2a174a23.css" rel="preload" as="style">
+<link href="../../../tutorials/js/app.2c558263.js" rel="preload" as="script">
+<link href="../../../tutorials/js/chunk-vendors.c3b68236.js" rel="preload" as="script">
+<link href="../../../tutorials/css/app.2a174a23.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../../../tutorials/css/chunk-76d5c2b5.00c53891.css">
+<script charset="utf-8" src="../../../tutorials/js/chunk-76d5c2b5.092e3b8a.js"></script><link rel="stylesheet" type="text/css" href="../../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css">
+<script charset="utf-8" src="../../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js"></script><link rel="stylesheet" type="text/css" href="../../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css">
+<script charset="utf-8" src="../../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js"></script><link rel="stylesheet" type="text/css" href="../../../tutorials/css/documentation-topic.e358e85c.css">
+<script charset="utf-8" src="../../../tutorials/js/documentation-topic.6abe9458.js"></script>
+</head>
+<body>
+<div id="_omniture_top">
+<script>var s_account="awdappledeveloper"</script>
+</div>
+<a href="#main" id="skip-localnav">Skip Navigation</a><aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"><nav id="ac-globalnav" class="js no-touch" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions"><div class="ac-gn-content">
+<ul class="ac-gn-header">
+<li class="ac-gn-item ac-gn-menuicon">
+<label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true"><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span> </span><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span></span></label> <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open"><span class="ac-gn-menuanchor-label">Global Nav Open Menu</span> </a><a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close"><span class="ac-gn-menuanchor-label">Global Nav Close Menu</span></a>
+</li>
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+</ul>
+<div class="ac-gn-search-placeholder-container" role="search"><div class="ac-gn-search ac-gn-search-small"><a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a><div class="ac-gn-search-placeholder-bar">
+<div class="ac-gn-search-placeholder-input"><div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
+<div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
+<span class="ac-gn-search-placeholder">Search Developer</span>
+</div></div>
+<div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></div>
+</div></a></div></div>
+<ul class="ac-gn-list">
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-discover"><a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover"><span class="ac-gn-link-text">Discover</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-design"><a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design"><span class="ac-gn-link-text">Design</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-develop"><a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop"><span class="ac-gn-link-text">Develop</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-distribute"><a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute"><span class="ac-gn-link-text">Distribute</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport"><a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport"><span class="ac-gn-link-text">Support</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-account"><a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account"><span class="ac-gn-link-text">Account</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search"><a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a></li>
+</ul>
+<aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search"><div class="ac-gn-searchview-content">
+<div class="ac-gn-searchview-bar"><div class="ac-gn-searchview-bar-wrapper">
+<form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get"><div class="ac-gn-searchform-wrapper">
+<input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions"> <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button> <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search"><span class="ac-gn-searchform-reset-background"></span></button>
+</div></form>
+<button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></button>
+</div></div>
+<aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
+</div>
+<button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search"><span class="ac-gn-searchview-close-wrapper"><span class="ac-gn-searchview-close-left"></span> <span class="ac-gn-searchview-close-right"></span></span></button></aside>
+</div></nav><div class="ac-gn-blur"></div>
+<div id="ac-gn-curtain" class="ac-gn-curtain"></div>
+<div id="ac-gn-placeholder" class="ac-nav-placeholder"></div>
+<script src="../../../tutorials/js/ac-globalnav.built.js"></script>
+<noscript>
+<style>.noscript {
+  font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
+  margin: 92px auto 140px auto;
+  text-align: center;
+  width: 980px;
+}
 
-        var s_code=s.t();if(s_code)document.write(s_code)
-      </script>
-    </div><div id="app"><div><a href="#main" id="skip-localnav" class="showonfocus hidden">Skip Navigation</a><aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"/><nav id="ac-globalnav" class="no-js" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions/">
-      <div class="ac-gn-content">
-        <ul class="ac-gn-header">
-          <li class="ac-gn-item ac-gn-menuicon">
-            <label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true">
-              <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top">
-                <span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span>
-              </span>
-              <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom">
-                <span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span>
-              </span>
-            </label>
-            <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open">
-              <span class="ac-gn-menuanchor-label">Global Nav Open Menu</span>
-            </a>
-            <a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close">
-              <span class="ac-gn-menuanchor-label">Global Nav Close Menu</span>
-            </a>
-          </li>
-          <li class="ac-gn-item ac-gn-apple">
-            <a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small">
-              <span class="ac-gn-link-text">Apple Developer</span>
-            </a>
-          </li>
-        </ul>
-        <div class="ac-gn-search-placeholder-container" role="search">
-          <div class="ac-gn-search ac-gn-search-small">
-            <a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link aria-label="Search Developer">
-              </a><div class="ac-gn-search-placeholder-bar">
-                <div class="ac-gn-search-placeholder-input">
-                  <div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
-                    <div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
-                    <span class="ac-gn-search-placeholder">Search Developer</span>
-                  </div>
-                </div>
-                <div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close">
-                  <span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-        <ul class="ac-gn-list">
-          <li class="ac-gn-item ac-gn-apple">
-            <a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus">
-              <span class="ac-gn-link-text">Apple Developer</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-discover">
-            <a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover">
-              <span class="ac-gn-link-text">Discover</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-design">
-            <a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design">
-              <span class="ac-gn-link-text">Design</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-develop">
-            <a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop">
-              <span class="ac-gn-link-text">Develop</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-distribute">
-            <a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute">
-              <span class="ac-gn-link-text">Distribute</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport">
-            <a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport">
-              <span class="ac-gn-link-text">Support</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-account">
-            <a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account">
-              <span class="ac-gn-link-text">Account</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search">
-            <a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link aria-label="Search Developer"></a>
-          </li>
-        </ul>
-        <aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search">
-          <div class="ac-gn-searchview-content">
-            <div class="ac-gn-searchview-bar">
-              <div class="ac-gn-searchview-bar-wrapper">
-                <form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get">
-                  <div class="ac-gn-searchform-wrapper">
-                    <input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions" />
-                    <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button>
-                    <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search">
-                        <span class="ac-gn-searchform-reset-background"></span>
-                      </button>
-                  </div>
-                </form>
-                <button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search">
-                    <span class="ac-gn-searchview-close-cancel" aria-hidden="true">
-                      Cancel
-                    </span>
-                  </button>
-              </div>
-            </div>
-            <aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
-          </div>
-          <button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search">
-              <span class="ac-gn-searchview-close-wrapper">
-                <span class="ac-gn-searchview-close-left"></span>
-                <span class="ac-gn-searchview-close-right"></span>
-              </span>
-            </button>
-        </aside>
-          </div>
-    </nav><div class="ac-gn-blur"></div><div id="ac-gn-curtain" class="ac-gn-curtain"></div><div id="ac-gn-placeholder" class="ac-nav-placeholder"></div><input type="checkbox" id="localnav-menustate" class="localnav-menustate" aria-hidden="true"/><nav id="localnav" class="localnav localnav-dark theme-dark localnav-scrim localnav-noborder" role="navigation" aria-label="API Reference" data-sticky="true"><div class="localnav-wrapper"><div class="referencenav"><div class="localnav-background"></div><div class="localnav-content"><a href="../../../index.html" class="localnav-title">Documentation</a><div class="localnav-menu"><a href="#localnav-menustate" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span class="localnav-menucta-anchor-label" aria-hidden="true">Open Menu</span></a><a href="#" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span class="localnav-menucta-anchor-label" aria-hidden="true">Close Menu</span></a><div class="localnav-menu-tray"><ul aria-label="Breadcrumbs" class="localnav-menu-items localnav-menu-breadcrumbs"><li class="localnav-menu-item localnav-menu-breadcrumb-item"><a class="localnav-menu-link" href="../../../documentation/foundation.html">Foundation</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item"><a class="localnav-menu-link" href="../../../documentation/foundation/task_management.html"><span class="enstr">Task Management</span><!--end_enstr-->
+.noscript-title {
+  color: #111;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -.003em;
+  line-height: 1.08365;
+  margin: 0 auto 54px auto;
+  width: 502px;
+}
+
+@media only screen and (max-width: 1068px) {
+  .noscript {
+    margin: 90px auto 120px auto;
+    width: 692px;
+  }
+
+  .noscript-title {
+    font-size: 40px;
+    letter-spacing: 0;
+    line-height: 1.1;
+    margin: 0 auto 45px auto;
+    width: 420px;
+  }
+}
+
+@media only screen and (max-width: 735px) {
+  .noscript {
+    margin: 45px auto 60px auto;
+    width: 87.5%;
+  }
+
+  .noscript-title {
+    font-size: 32px;
+    letter-spacing: .004em;
+    line-height: 1.125;
+    margin: 0 auto 35px auto;
+    max-width: 330px;
+    width: auto;
+  }
+}
+
+#loading-placeholder {
+  display: none;
+};</style>
+<div class="noscript">
+<h1 class="noscript-title">This page requires JavaScript.</h1>
+<p>Please turn on JavaScript in your browser and refresh the page to view its content.</p>
+</div>
+</noscript>
+<div data-v-0220a4c4="" id="app" class=""><div data-v-0220a4c4=""><div data-v-2deaa168="" class="doc-topic">
+<div data-v-3ceaa5df="" data-v-2deaa168="" class="localnav-container">
+<input data-v-3ceaa5df="" aria-hidden="true" id="localnav-menustate" type="checkbox" class="localnav-menustate"><div id="localnav-sticky-placeholder" class="css-sticky"></div>
+<nav data-v-3ceaa5df="" aria-label="API Reference" data-sticky="" id="localnav" role="navigation" class="localnav localnav-dark theme-dark medium-localnav-collapsible localnav-noborder localnav-scrim css-sticky"><div data-v-3ceaa5df="" class="localnav-wrapper">
+<div data-v-3ceaa5df="" class="referencenav">
+<div data-v-3ceaa5df="" class="localnav-background"></div>
+<div data-v-3ceaa5df="" class="localnav-content">
+<a data-v-3ceaa5df="" href="../../../index.html" class="localnav-title">
+            Documentation
+          </a><div data-v-3ceaa5df="" class="localnav-menu">
+<a data-v-3ceaa5df="" href="#localnav-menustate" role="button" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Open Menu</span></a><a data-v-3ceaa5df="" href="#" role="button" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Close Menu</span></a><div data-v-3ceaa5df="" class="localnav-menu-tray">
+<ul data-v-72fd0d2c="" data-v-3ceaa5df="" aria-label="Breadcrumbs" class="localnav-menu-items">
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../../documentation/foundation.html" class="parent item router-link-active" data-v-23a2ae0d="">
+    Foundation
+  </a></li><!---->
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../../documentation/foundation/task_management.html" class="parent item router-link-active" data-v-23a2ae0d="">
+    <span class="enstr">Task Management</span><!--end_enstr-->
 <span class="jpstr">
 タスク管理
 </span><!--end_jpstr-->
-</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item"><div class="localnav-menu-breadcrumb-current-container localnav-menu-link current"><span aria-current="page" class="localnav-menu-breadcrumb-current"><span class="enstr">Continuing User Activities with Handoff</span><!--end_enstr-->
+
+  </a></li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item">
+<span data-v-23a2ae0d="" class="current item">
+    <span class="enstr">Continuing User Activities with Handoff</span><!--end_enstr-->
 <span class="jpstr">
 ユーザアクティビティをHandoffで継続する
 </span><!--end_jpstr-->
-</span></div></li></ul><ul class="localnav-menu-items localnav-menu-settings" data-breadcrumbs-count="3"><li class="localnav-menu-setting language-container"><span class="localnav-menu-setting-label">Language:</span><span class="localnav-menu-toggle-none current-language" aria-current="page">Swift</span></li><li class="localnav-menu-setting"><span class="localnav-menu-setting-label">API Changes:</span><span class="changes-toggle">None</span></li></ul></div><div class="localnav-actions"><div class="localnav-action localnav-action-menucta" aria-hidden="true"><label for="localnav-menustate" class="localnav-menucta"><span class="localnav-menucta-chevron"></span></label></div></div></div></div></div></div></nav><label for="localnav-menustate" id="localnav-curtain" aria-hidden="true"></label><main role="main" id="main" class="main" tabindex="0"><div class="topic-title"><span class="eyebrow">Sample Code</span><h1 class="topic-heading"><span><span class="enstr">Continuing User Activities with Handoff</span><!--end_enstr-->
+
+  </span><!---->
+</li>
+</ul>
+<ul data-v-3ceaa5df="" data-breadcrumbs-count="3" class="localnav-menu-items localnav-menu-settings">
+<li data-v-282336e0="" data-v-3ceaa5df="" class="localnav-menu-setting language-container" breadcrumbcount="3">
+<div data-v-282336e0="" class="">
+<label data-v-282336e0="" class="localnav-menu-setting-label">
+      Language:
+    </label><span data-v-282336e0="" aria-current="page" class="localnav-menu-toggle-none current-language">
+      Swift
+    </span>
+</div><!---->
+
+</li>
+<li data-v-2e9f4ea2="" data-v-3ceaa5df="" class="localnav-menu-setting">
+<label data-v-2e9f4ea2="" for="version-label" class="localnav-menu-setting-label">
+    API Changes:
+  </label><span data-v-2e9f4ea2=""><span class="enstr">None</span><!--end_enstr-->
+<span class="jpstr">
+なし
+</span><!--end_jpstr-->
+</span>
+</li><!---->
+
+</ul>
+</div>
+<div data-v-3ceaa5df="" class="localnav-actions"><div data-v-3ceaa5df="" aria-hidden="true" class="localnav-action localnav-action-menucta"><label data-v-3ceaa5df="" for="localnav-menustate" class="localnav-menucta"><span data-v-3ceaa5df="" class="localnav-menucta-chevron"></span></label></div></div>
+</div>
+</div>
+</div><!---->
+
+</div></nav><label data-v-3ceaa5df="" aria-hidden="true" for="localnav-menustate" id="localnav-curtain"></label>
+</div>
+<main data-v-2deaa168="" id="main" role="main" tabindex="0" class="main"><div data-v-4ba5af7c="" data-v-2deaa168="" class="topictitle">
+<span data-v-4ba5af7c="" class="eyebrow">Sample Code</span><h1 data-v-4ba5af7c="" class="title"><span class="enstr">Continuing User Activities with Handoff</span><!--end_enstr-->
 <span class="jpstr">
 ユーザアクティビティをHandoffで継続する
 </span><!--end_jpstr-->
-</span></h1></div><div class="topic-container section-content row"><div class="topic-description column large-9 medium-9 small-12"><div class="topic-abstract abstract formatted-content"><div><p><span class="enstr">Define and manage which of your app’s activities can be continued between devices.</span><!--end_enstr-->
+</h1>
+</div>
+<div data-v-0253ce0e="" data-v-2deaa168="" class="row container">
+<div data-v-9807b2e0="" data-v-5ad0d458="" data-v-2deaa168="" class="col description large-9 medium-9 small-12" data-v-0253ce0e=""><!---->
+<div data-v-7ea0aa49="" data-v-aba749e6="" data-v-2deaa168="" class="abstract content" data-v-9807b2e0=""><span class="enstr">Define and manage which of your app’s activities can be continued between devices.</span><!--end_enstr-->
 <span class="jpstr">
 あなたのアプリのもつアクティビティのどれがデバイス間で継続されることが可能か定義および管理します。
 </span><!--end_jpstr-->
-</p></div></div><a href="../../../../docs-assets.developer.apple.com/published/fd7ed9d64f/ContinuingUserActivitiesWithHandoff.zip" download="" class="downloadsample"><span class="button" aria-label="Download sample code">Download</span></a></div><div class="topic-summary column large-3 medium-3 small-12"><div class="topic-summary-section sdks" role="complementary" aria-label="SDKs"><p class="topic-summary-section-label subsection-label">SDKs</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item sdk"><span aria-label="iOS 12.0+, Available on iOS 12.0 and later" role="text" title="Available on iOS 12.0 and later">iOS 12.0+</span></li><li class="topic-summary-section-item sdk"><span aria-label="macOS 10.14+, Available on macOS 10.14 and later" role="text" title="Available on macOS 10.14 and later">macOS 10.14+</span></li><li class="topic-summary-section-item sdk"><span aria-label="Xcode 10.1+, Available on Xcode 10.1 and later" role="text" title="Available on Xcode 10.1 and later">Xcode 10.1+</span></li></ul></div><div class="topic-summary-section frameworks" role="complementary" aria-label="Framework"><p class="topic-summary-section-label subsection-label"><span class="enstr">Framework</span><!--end_enstr-->
+</div><!----><!---->
+<a data-v-8a83aba8="" data-v-2deaa168="" href="../../../../docs-assets.developer.apple.com/published/fd7ed9d64f/ContinuingUserActivitiesWithHandoff.zip" class="button button-cta" data-v-9807b2e0="">Download</a>
+</div>
+<div data-v-9807b2e0="" data-v-42fb6bac="" data-v-2deaa168="" class="col summary large-3 medium-3 small-12" data-v-0253ce0e=""><!---->
+<div data-v-e4237090="" data-v-fcdb795a="" data-v-2deaa168="" class="summary-section availability" role="complementary" aria-label="Availability" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-fcdb795a="" class="title" data-v-e4237090=""><span class="enstr">Availability</span><!--end_enstr-->
+<span class="jpstr">
+有効性
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-fcdb795a="" class="summary-list platform-list" data-v-e4237090="">
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="iOS 12.0+, Available on iOS 12.0 and later" title="Available on iOS 12.0 and later" data-v-e3899270="">
+  iOS 12.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="macOS 10.14+, Available on macOS 10.14 and later" title="Available on macOS 10.14 and later" data-v-e3899270="">
+  macOS 10.14+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="Xcode 10.1+, Available on Xcode 10.1 and later" title="Available on Xcode 10.1 and later" data-v-e3899270="">
+  Xcode 10.1+
+</span><!---->
+</li>
+</ul>
+</div>
+<div data-v-e4237090="" data-v-741142ba="" data-v-2deaa168="" class="summary-section frameworks" role="complementary" aria-label="Framework" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-741142ba="" class="title" data-v-e4237090=""><span class="enstr">Framework</span><!--end_enstr-->
 <span class="jpstr">
 フレームワーク
 </span><!--end_jpstr-->
-</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item"><span>Foundation</span></li></ul></div><div class="topic-summary-section onthispage"><nav class="onthispage-nav" aria-labelledby="onthispage-title"><p id="onthispage-title" class="topic-summary-section-label subsection-label"><span class="enstr">On This Page</span><!--end_enstr-->
+</p>
+<ul data-v-1450532d="" data-v-741142ba="" class="summary-list" data-v-e4237090=""><li data-v-e3899270="" data-v-741142ba="" class="summary-list-item" data-v-1450532d=""><span data-v-741142ba="" data-v-e3899270="" class="name">Foundation</span></li></ul>
+</div>
+<div data-v-e4237090="" data-v-2b96ab1a="" data-v-2deaa168="" class="summary-section on-this-page" data-v-9807b2e0=""><nav data-v-2b96ab1a="" data-v-e4237090="" aria-labelledby="on-this-page-title"><p data-v-1e0258b0="" data-v-2b96ab1a="" class="title" id="on-this-page-title" data-v-e4237090=""><span class="enstr">On This Page</span><!--end_enstr-->
 <span class="jpstr">
 この項には
 </span><!--end_jpstr-->
-</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item"><a href="#overview" class="icon icon-after icon-chevrondowncircle"><span class="enstr">Overview</span><!--end_enstr-->
+</p>
+<ul data-v-1450532d="" data-v-2b96ab1a="" class="summary-list" data-v-e4237090="">
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../../documentation/foundation/task_management/continuing_user_activities_with_handoff.html#overview" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Overview</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../../documentation/foundation/task_management/continuing_user_activities_with_handoff.html#see-also" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">See Also</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+</ul></nav></div>
+</div>
+<div data-v-9807b2e0="" data-v-1e40f676="" data-v-2deaa168="" class="col primary-content large-9 medium-9 small-12" data-v-0253ce0e=""><div data-v-7ea0aa49="" data-v-1e40f676="" class="content" data-v-9807b2e0="">
+<h2 id="overview"><span class="enstr">Overview</span><!--end_enstr-->
 <span class="jpstr">
 概要
 </span><!--end_jpstr-->
-</a></li><li class="topic-summary-section-item"><a href="#see-also" class="icon icon-after icon-chevrondowncircle"><span class="enstr">See Also</span><!--end_enstr-->
-<span class="jpstr">
-参照
-</span><!--end_jpstr-->
-</a></li></ul></nav></div></div><div class="topic-content column large-9 medium-9 small-12" id="topic-content"><section id="overview" class="section"><h2><span class="enstr">Overview</span><!--end_enstr-->
-<span class="jpstr">
-概要
-</span><!--end_jpstr-->
-</h2><div class="formatted-content"><div><p><span class="enstr">This sample app searches for Apple Store locations and shows them on a map. The user can choose a store’s map annotation to see its address and mark it as a favorite. As the user changes visible regions or inspects individual stores, the app uses Handoff to share these activities with the user’s other devices. If the user changes devices, they can use Handoff to launch the app and return to what they were doing on the original device.</span><!--end_enstr-->
+</h2>
+<p><span class="enstr">This sample app searches for Apple Store locations and shows them on a map. The user can choose a store’s map annotation to see its address and mark it as a favorite. As the user changes visible regions or inspects individual stores, the app uses Handoff to share these activities with the user’s other devices. If the user changes devices, they can use Handoff to launch the app and return to what they were doing on the original device.</span><!--end_enstr-->
 <span class="jpstr">
 この見本のアプリは、アップルストアの場所を検索してそれらを地図上に示します。ユーザは、あるストアのもつ地図注釈を選んで、その住所を見たりそれをお気に入りとして印できます。ユーザが可視領域を変更するまたは個々のストアを調べるとき、アプリはHandoffを使ってそれらアクティビティをユーザのもつ他のデバイスで共有します。ユーザがデバイスを替えるならば、彼ら彼女らはHandoffを使ってアプリを起動して彼ら彼女らが元のデバイス上でしていたことに戻れます。
 </span><!--end_jpstr-->
-</p><p><figure id="3174463"><img class="centered-block" src="../../../../docs-assets.developer.apple.com/published/d677c0c7b1/5eca4f04-129e-44bd-9145-4708dced70d6.png" srcSet="../../../../docs-assets.developer.apple.com/published/d677c0c7b1/5eca4f04-129e-44bd-9145-4708dced70d6.png 2x" alt="Outlines of mobile and desktop devices, showing a specific point of interest on a map." width="564" height="auto"/></figure></p><p><span class="enstr">The sample project builds for both macOS and iOS, so you can run it on a Mac, iPhone, and iPad. The project does not contain a watchOS or tvOS app.</span><!--end_enstr-->
+</p>
+<p><!----><figure data-v-7bf080cc="" id="3174463"><picture data-v-3b7e9d01="" data-v-7bf080cc=""><img alt="Outlines of mobile and desktop devices, showing a specific point of interest on a map." srcset="../../../../docs-assets.developer.apple.com/published/d677c0c7b1/5eca4f04-129e-44bd-9145-4708dced70d6.png 2x" src="../../../../docs-assets.developer.apple.com/published/d677c0c7b1/5eca4f04-129e-44bd-9145-4708dced70d6.png" width="564" height="auto"></picture></figure></p>
+<p><span class="enstr">The sample project builds for both macOS and iOS, so you can run it on a Mac, iPhone, and iPad. The project does not contain a watchOS or tvOS app.</span><!--end_enstr-->
 <span class="jpstr">
 見本プロジェクトは、macOSとiOSの両方に対してビルドします、なのであなたはそれをMac、iPhone、そしてiPad上で実行できます。プロジェクトは、watchOSまたはtvOSアプリを含みません。
 </span><!--end_jpstr-->
-</p></div><h3 id="3174479"><span class="enstr">Configure the Sample Code Project</span><!--end_enstr-->
+</p>
+<h3 id="3174479"><span class="enstr">Configure the Sample Code Project</span><!--end_enstr-->
 <span class="jpstr">
 見本のコードプロジェクトを構成設定する
 </span><!--end_jpstr-->
-</h3><div><p><span class="enstr"><code class="code-voice"><span>Handoff<wbr/>Map<wbr/>Viewer</span></code> must be run on actual devices; the iOS version cannot run in Simulator.</span><!--end_enstr-->
+</h3>
+<p><span class="enstr"><code data-v-7fb764c1="">Handoff<wbr data-v-7fb764c1="">Map<wbr data-v-7fb764c1="">Viewer</wbr></wbr></code> must be run on actual devices; the iOS version cannot run in Simulator.</span><!--end_enstr-->
 <span class="jpstr">
-<code class="code-voice"><span>Handoff<wbr/>Map<wbr/>Viewer</span></code>は、実際のデバイス上で実行されなければなりません；iOSバージョンはSimulatorでは実行できません。
+<code data-v-7fb764c1="">Handoff<wbr data-v-7fb764c1="">Map<wbr data-v-7fb764c1="">Viewer</wbr></wbr></code>は、実際のデバイス上で実行されなければなりません；iOSバージョンはSimulatorでは実行できません。
 </span><!--end_jpstr-->
-</p><p><span class="enstr">To configure your Mac to run the sample code project, open System Preferences and do the following:</span><!--end_enstr-->
+</p>
+<p><span class="enstr">To configure your Mac to run the sample code project, open System Preferences and do the following:</span><!--end_enstr-->
 <span class="jpstr">
 あなたのMacを構成設定して見本コードプロジェクトを実行するには、システム環境設定を開いて以下を行ってください：
 </span><!--end_jpstr-->
-</p><ol><li><p><span class="enstr">In Bluetooth settings, click Turn Bluetooth On.</span><!--end_enstr-->
+</p>
+<ol>
+<li><p><span class="enstr">In Bluetooth settings, click Turn Bluetooth On.</span><!--end_enstr-->
 <span class="jpstr">
 Bluetooth設定において、「Bluetooth を入りにする」をクリックします。
 </span><!--end_jpstr-->
-</p></li><li><p><span class="enstr">In iCloud settings, verify that you are signed into iCloud. If you are not, click Sign In and enter your Apple ID and password.</span><!--end_enstr-->
+</p></li>
+<li><p><span class="enstr">In iCloud settings, verify that you are signed into iCloud. If you are not, click Sign In and enter your Apple ID and password.</span><!--end_enstr-->
 <span class="jpstr">
 iCloud設定において、あなたがiCloudにサインインすることを確かめます。あなたがしてないならば、「サインイン」をクリックしてあなたのApple IDとパスワードを入力します。
 </span><!--end_jpstr-->
-</p></li><li><p><span class="enstr">In General settings, select “Allow Handoff between this Mac and your iCloud devices”.</span><!--end_enstr-->
+</p></li>
+<li><p><span class="enstr">In General settings, select “Allow Handoff between this Mac and your iCloud devices”.</span><!--end_enstr-->
 <span class="jpstr">
 「一般」設定において、「この Mac と iCloud デバイス間での Handoff を許可」をクリックします。
 </span><!--end_jpstr-->
-</p></li></ol><p><span class="enstr">To configure your iOS devices to run the sample code project, open the Settings app and do the following:</span><!--end_enstr-->
+</p></li>
+</ol>
+<p><span class="enstr">To configure your iOS devices to run the sample code project, open the Settings app and do the following:</span><!--end_enstr-->
 <span class="jpstr">
 あなたのiOSデバイスを構成設定して見本コードプロジェクトを実行するには、「設定」アプリを開いて以下を行ってください：
 </span><!--end_jpstr-->
-</p><ol><li><p><span class="enstr">In Bluetooth settings, tap to turn on Bluetooth.</span><!--end_enstr-->
+</p>
+<ol>
+<li><p><span class="enstr">In Bluetooth settings, tap to turn on Bluetooth.</span><!--end_enstr-->
 <span class="jpstr">
 Bluetooth設定において、タップしてBluetoothを入りにします。
 </span><!--end_jpstr-->
-</p></li><li><p><span class="enstr">In the user banner at the top of Settings, tap to sign in with your Apple ID if you haven’t already. Then tap to turn on  iCloud.</span><!--end_enstr-->
+</p></li>
+<li><p><span class="enstr">In the user banner at the top of Settings, tap to sign in with your Apple ID if you haven’t already. Then tap to turn on  iCloud.</span><!--end_enstr-->
 <span class="jpstr">
 「設定」の上部でのユーザバナーにおいて、タップしてあなたのApple IDでサインインします、もしあなたが既にそうしていないならば。それからタップしてiCloudを入りにします。
 </span><!--end_jpstr-->
-</p></li><li><p><span class="enstr">In General settings, tap to turn on Handoff.</span><!--end_enstr-->
+</p></li>
+<li><p><span class="enstr">In General settings, tap to turn on Handoff.</span><!--end_enstr-->
 <span class="jpstr">
 「一般」設定において、タップしてHandoffを入りにします。
 </span><!--end_jpstr-->
-</p></li></ol><p><span class="enstr">To configure the sample code project so that it can run on your devices, open the <code class="code-voice"><span>Handoff<wbr/>Map<wbr/>Viewer<wbr/>.xcodeproj</span></code> project in Xcode and do the following:</span><!--end_enstr-->
+</p></li>
+</ol>
+<p><span class="enstr">To configure the sample code project so that it can run on your devices, open the <code data-v-7fb764c1="">Handoff<wbr data-v-7fb764c1="">Map<wbr data-v-7fb764c1="">Viewer<wbr data-v-7fb764c1="">.xcodeproj</wbr></wbr></wbr></code> project in Xcode and do the following:</span><!--end_enstr-->
 <span class="jpstr">
-見本コードプロジェクトを構成設定してそれがあなたのデバイス上で動作できるようにするには、<code class="code-voice"><span>Handoff<wbr/>Map<wbr/>Viewer<wbr/>.xcodeproj</span></code>プロジェクトをXcodeにおいて開いて、そして以下を行ってください：
+見本コードプロジェクトを構成設定してそれがあなたのデバイス上で動作できるようにするには、<code data-v-7fb764c1="">Handoff<wbr data-v-7fb764c1="">Map<wbr data-v-7fb764c1="">Viewer<wbr data-v-7fb764c1="">.xcodeproj</wbr></wbr></wbr></code>プロジェクトをXcodeにおいて開いて、そして以下を行ってください：
 </span><!--end_jpstr-->
-</p><ol><li><p><span class="enstr">Select the <code class="code-voice"><span>Handoff<wbr/>Map<wbr/>Viewer</span></code> project at the top of the Project Navigator, select the <code class="code-voice"><span>Handoff<wbr/>Map<wbr/>Viewer<wbr/>Mac</span></code> target, select the “General” tab, and change the Bundle Identifier to a unique value, such as one that uses your organization’s name instead of <code class="code-voice"><span>com<wbr/>.example</span></code>.</span><!--end_enstr-->
+</p>
+<ol>
+<li><p><span class="enstr">Select the <code data-v-7fb764c1="">Handoff<wbr data-v-7fb764c1="">Map<wbr data-v-7fb764c1="">Viewer</wbr></wbr></code> project at the top of the Project Navigator, select the <code data-v-7fb764c1="">Handoff<wbr data-v-7fb764c1="">Map<wbr data-v-7fb764c1="">Viewer<wbr data-v-7fb764c1="">Mac</wbr></wbr></wbr></code> target, select the “General” tab, and change the Bundle Identifier to a unique value, such as one that uses your organization’s name instead of <code data-v-7fb764c1="">com<wbr data-v-7fb764c1="">.example</wbr></code>.</span><!--end_enstr-->
 <span class="jpstr">
-<code class="code-voice"><span>Handoff<wbr/>Map<wbr/>Viewer</span></code>プロジェクトをProject Navigatorの上部で選択します、<code class="code-voice"><span>Handoff<wbr/>Map<wbr/>Viewer<wbr/>Mac</span></code>ターゲットを選びます、“General” タブを選択します、そしてBundle Identifierを特有な値に変更します、たとえばあなたの組織名を使うものなどを<code class="code-voice"><span>com<wbr/>.example</span></code>の代わりに。
+<code data-v-7fb764c1="">Handoff<wbr data-v-7fb764c1="">Map<wbr data-v-7fb764c1="">Viewer</wbr></wbr></code>プロジェクトをProject Navigatorの上部で選択します、<code data-v-7fb764c1="">Handoff<wbr data-v-7fb764c1="">Map<wbr data-v-7fb764c1="">Viewer<wbr data-v-7fb764c1="">Mac</wbr></wbr></wbr></code>ターゲットを選びます、“General” タブを選択します、そしてBundle Identifierを特有な値に変更します、たとえばあなたの組織名を使うものなどを<code data-v-7fb764c1="">com<wbr data-v-7fb764c1="">.example</wbr></code>の代わりに。
 </span><!--end_jpstr-->
-</p></li><li><p><span class="enstr">With the <code class="code-voice"><span>Handoff<wbr/>Map<wbr/>Viewer</span></code> project still selected in the Project Navigator, select the <code class="code-voice"><span>Handoff<wbr/>Map<wbr/>Viewer<wbr/>IOS</span></code> target, select the “General” tab, and change the Bundle Identifier to the same value you used in the previous step.</span><!--end_enstr-->
+</p></li>
+<li><p><span class="enstr">With the <code data-v-7fb764c1="">Handoff<wbr data-v-7fb764c1="">Map<wbr data-v-7fb764c1="">Viewer</wbr></wbr></code> project still selected in the Project Navigator, select the <code data-v-7fb764c1="">Handoff<wbr data-v-7fb764c1="">Map<wbr data-v-7fb764c1="">Viewer<wbr data-v-7fb764c1="">IOS</wbr></wbr></wbr></code> target, select the “General” tab, and change the Bundle Identifier to the same value you used in the previous step.</span><!--end_enstr-->
 <span class="jpstr">
-<code class="code-voice"><span>Handoff<wbr/>Map<wbr/>Viewer</span></code>が依然としてProject Navigatorにおいて選択された状態で、<code class="code-voice"><span>Handoff<wbr/>Map<wbr/>Viewer<wbr/>IOS</span></code>ターゲットを選びます、“General” タブを選びます、そしてBundle Identifierをあなたが前の段階で使ったのと同じ値に変更します。
+<code data-v-7fb764c1="">Handoff<wbr data-v-7fb764c1="">Map<wbr data-v-7fb764c1="">Viewer</wbr></wbr></code>が依然としてProject Navigatorにおいて選択された状態で、<code data-v-7fb764c1="">Handoff<wbr data-v-7fb764c1="">Map<wbr data-v-7fb764c1="">Viewer<wbr data-v-7fb764c1="">IOS</wbr></wbr></wbr></code>ターゲットを選びます、“General” タブを選びます、そしてBundle Identifierをあなたが前の段階で使ったのと同じ値に変更します。
 </span><!--end_jpstr-->
-</p></li><li><p><span class="enstr">To run the macOS version, build the <code class="code-voice"><span>Handoff<wbr/>Map<wbr/>Viewer<wbr/>Mac</span></code> target, and run it locally, or copy the application file from the <code class="code-voice"><span>Products</span></code> folder to another Mac and run it there.</span><!--end_enstr-->
+</p></li>
+<li><p><span class="enstr">To run the macOS version, build the <code data-v-7fb764c1="">Handoff<wbr data-v-7fb764c1="">Map<wbr data-v-7fb764c1="">Viewer<wbr data-v-7fb764c1="">Mac</wbr></wbr></wbr></code> target, and run it locally, or copy the application file from the <code data-v-7fb764c1="">Products</code> folder to another Mac and run it there.</span><!--end_enstr-->
 <span class="jpstr">
-macOS版を実行するには、<code class="code-voice"><span>Handoff<wbr/>Map<wbr/>Viewer<wbr/>Mac</span></code>ターゲットをビルドします、そしてそれをローカルに実行します、またはアプリケーションファイルを<code class="code-voice"><span>Products</span></code>フォルダから別のMacにコピーしてそれをそこで実行します。
+macOS版を実行するには、<code data-v-7fb764c1="">Handoff<wbr data-v-7fb764c1="">Map<wbr data-v-7fb764c1="">Viewer<wbr data-v-7fb764c1="">Mac</wbr></wbr></wbr></code>ターゲットをビルドします、そしてそれをローカルに実行します、またはアプリケーションファイルを<code data-v-7fb764c1="">Products</code>フォルダから別のMacにコピーしてそれをそこで実行します。
 </span><!--end_jpstr-->
-</p></li><li><p><span class="enstr">To run the iOS version, build the <code class="code-voice"><span>Handoff<wbr/>Map<wbr/>Viewer<wbr/>IOS</span></code> target and run it on one of your connected iOS devices.</span><!--end_enstr-->
+</p></li>
+<li><p><span class="enstr">To run the iOS version, build the <code data-v-7fb764c1="">Handoff<wbr data-v-7fb764c1="">Map<wbr data-v-7fb764c1="">Viewer<wbr data-v-7fb764c1="">IOS</wbr></wbr></wbr></code> target and run it on one of your connected iOS devices.</span><!--end_enstr-->
 <span class="jpstr">
-iOS版を実行するには、<code class="code-voice"><span>Handoff<wbr/>Map<wbr/>Viewer<wbr/>IOS</span></code>ターゲットをビルドします、そしてそれをあなたの接続済みiOSデバイスの１つで実行します。
+iOS版を実行するには、<code data-v-7fb764c1="">Handoff<wbr data-v-7fb764c1="">Map<wbr data-v-7fb764c1="">Viewer<wbr data-v-7fb764c1="">IOS</wbr></wbr></wbr></code>ターゲットをビルドします、そしてそれをあなたの接続済みiOSデバイスの１つで実行します。
 </span><!--end_jpstr-->
-</p></li></ol></div><h3 id="3174480"><span class="enstr">Define User Activities</span><!--end_enstr-->
+</p></li>
+</ol>
+<h3 id="3174480"><span class="enstr">Define User Activities</span><!--end_enstr-->
 <span class="jpstr">
 ユーザアクティビティを定義する
 </span><!--end_jpstr-->
-</h3><div><p><span class="enstr">You implement Handoff by determining specific activities that a user can perform in your app, and whose state you can reproduce on a second device. The sample app has two user activities:</span><!--end_enstr-->
+</h3>
+<p><span class="enstr">You implement Handoff by determining specific activities that a user can perform in your app, and whose state you can reproduce on a second device. The sample app has two user activities:</span><!--end_enstr-->
 <span class="jpstr">
 あなたはHandoffの実装を、ユーザがあなたのアプリにおいて実行できる特定のアクティビティを、そしてあなたが第２のデバイス上で再現可能なそれの状態を決定することによって行います。この見本アプリは、２つのユーザアクティビティを持ちます：
 </span><!--end_jpstr-->
-</p><ul><li><p><span class="enstr">Viewing a map region.</span><!--end_enstr-->
+</p>
+<ul>
+<li><p><span class="enstr">Viewing a map region.</span><!--end_enstr-->
 <span class="jpstr">
 ある地図領域を眺める。
 </span><!--end_jpstr-->
-</p></li><li><p><span class="enstr">Viewing the details of a specific Apple Store and editing its “favorite” value.</span><!--end_enstr-->
+</p></li>
+<li><p><span class="enstr">Viewing the details of a specific Apple Store and editing its “favorite” value.</span><!--end_enstr-->
 <span class="jpstr">
 特定のアップルストアの詳細を眺める、そしてそれの “お気に入り” 値を編集する。
 </span><!--end_jpstr-->
-</p></li></ul><aside class="aside aside-note" role="note"><p class="aside-name"><span class="enstr">Note</span><!--end_enstr-->
+</p></li>
+</ul>
+<aside data-v-c567d8a8="" aria-label="note" class="note"><p data-v-c567d8a8="" class="label"><span class="enstr">Note</span><!--end_enstr-->
 <span class="jpstr">
 注意
 </span><!--end_jpstr-->
-</p><p><span class="enstr">Be aware that your app usually has other persistence and synchronization strategies in addition to Handoff. For example, the sample app uses an iCloud key-value store to keep track of which stores have been marked as favorites. This way, the favorites data is available to the app if you launch it outside of Handoff, such as from the macOS Dock or the iOS Home screen.</span><!--end_enstr-->
+</p>
+<p data-v-c567d8a8=""><span class="enstr">Be aware that your app usually has other persistence and synchronization strategies in addition to Handoff. For example, the sample app uses an iCloud key-value store to keep track of which stores have been marked as favorites. This way, the favorites data is available to the app if you launch it outside of Handoff, such as from the macOS Dock or the iOS Home screen.</span><!--end_enstr-->
 <span class="jpstr">
 あなたのアプリがたいていは他の永続および同期戦略をHandoffに加えて持つことを承知していてください、例えば、見本アプリはiCloudキー値格納を使ってどのストアがお気に入りとして印されているかを追跡し続けます。この方法、お気に入りデータは、アプリに利用可能です、もしあなたがそれをHandoffの外側で、たとえばmacOSのDockまたはiOSのホーム画面から起動するならば。
 </span><!--end_jpstr-->
-</p></aside><p><span class="enstr">You use the app’s <code class="code-voice"><span>Info<wbr/>.plist</span></code> to tell Handoff which activities your app can continue, by providing an entry with the key name <code class="code-voice"><span>NSUser<wbr/>Activity<wbr/>Types</span></code>. The type of this entry is <code class="code-voice"><span>Array</span></code>, and each member is a <code class="code-voice"><span>String</span></code> representing a supported Handoff activity. In the sample app, the macOS and iOS targets include the <code class="code-voice"><span>map-viewing</span></code> and <code class="code-voice"><span>store-editing</span></code> activites in their <code class="code-voice"><span>Info<wbr/>.plist</span></code> files.</span><!--end_enstr-->
+</p></aside><p><span class="enstr">You use the app’s <code data-v-7fb764c1="">Info<wbr data-v-7fb764c1="">.plist</wbr></code> to tell Handoff which activities your app can continue, by providing an entry with the key name <code data-v-7fb764c1="">NSUser<wbr data-v-7fb764c1="">Activity<wbr data-v-7fb764c1="">Types</wbr></wbr></code>. The type of this entry is <code data-v-7fb764c1="">Array</code>, and each member is a <code data-v-7fb764c1="">String</code> representing a supported Handoff activity. In the sample app, the macOS and iOS targets include the <code data-v-7fb764c1="">map-viewing</code> and <code data-v-7fb764c1="">store-editing</code> activites in their <code data-v-7fb764c1="">Info<wbr data-v-7fb764c1="">.plist</wbr></code> files.</span><!--end_enstr-->
 <span class="jpstr">
-あなたはアプリのもつ<code class="code-voice"><span>Info<wbr/>.plist</span></code>を使って、Handoffにあなたのアプリが継続できるアクティビティはどれかを教えます、キー名<code class="code-voice"><span>NSUser<wbr/>Activity<wbr/>Types</span></code>での登録項目を提供することによって。この登録項目の型は<code class="code-voice"><span>Array</span></code>です、そして各項はサポートされるHandoffアクティビティを表している<code class="code-voice"><span>String</span></code>です。見本アプリにおいて、macOSとiOSターゲットは<code class="code-voice"><span>map-viewing</span></code>と<code class="code-voice"><span>store-editing</span></code>アクティビティをそれらの<code class="code-voice"><span>Info<wbr/>.plist</span></code>ファイルにおいて含みます。
+あなたはアプリのもつ<code data-v-7fb764c1="">Info<wbr data-v-7fb764c1="">.plist</wbr></code>を使って、Handoffにあなたのアプリが継続できるアクティビティはどれかを教えます、キー名<code data-v-7fb764c1="">NSUser<wbr data-v-7fb764c1="">Activity<wbr data-v-7fb764c1="">Types</wbr></wbr></code>での登録項目を提供することによって。この登録項目の型は<code data-v-7fb764c1="">Array</code>です、そして各項はサポートされるHandoffアクティビティを表している<code data-v-7fb764c1="">String</code>です。見本アプリにおいて、macOSとiOSターゲットは<code data-v-7fb764c1="">map-viewing</code>と<code data-v-7fb764c1="">store-editing</code>アクティビティをそれらの<code data-v-7fb764c1="">Info<wbr data-v-7fb764c1="">.plist</wbr></code>ファイルにおいて含みます。
 </span><!--end_jpstr-->
-</p><figure id="3174466"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>&lt;key&gt;NSUserActivityTypes&lt;/key&gt;
-&lt;array&gt;
-  &lt;string&gt;com.example.apple-samplecode.HandoffMapViewer.map-viewing&lt;/string&gt;
-  &lt;string&gt;com.example.apple-samplecode.HandoffMapViewer.store-editing&lt;/string&gt;
-&lt;/array&gt;
-</code></pre></div></div></figure></div><h3 id="3174481"><span class="enstr">Manage User Activities</span><!--end_enstr-->
+</p>
+<figure data-v-7bf080cc="" id="3174466"><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">&lt;key&gt;<span class="syntax-type">NSUserActivityTypes</span>&lt;/key&gt;</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">&lt;array&gt;</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">  &lt;string&gt;com.example.apple-samplecode.<span class="syntax-type">HandoffMapViewer</span>.<span class="syntax-built_in">map</span>-viewing&lt;/string&gt;</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">  &lt;string&gt;com.example.apple-samplecode.<span class="syntax-type">HandoffMapViewer</span>.store-editing&lt;/string&gt;</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="5" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">&lt;/array&gt;</span></span></code></pre></div>
+</div></figure><h3 id="3174481"><span class="enstr">Manage User Activities</span><!--end_enstr-->
 <span class="jpstr">
 ユーザアクティビティを管理する
 </span><!--end_jpstr-->
-</h3><div><p><span class="enstr">At runtime, you represent a user activity with the <code class="code-voice"><span>NSUser<wbr/>Activity</span></code>  type. You initialize a user activity object with a string identifier, the same one used earlier in the <code class="code-voice"><span>Info<wbr/>.plist</span></code>. This object also has an <code class="code-voice"><span>is<wbr/>Eligible<wbr/>For<wbr/>Handoff</span></code> property that exposes the activity to Handoff, and a <code class="code-voice"><span>user<wbr/>Info</span></code>  dictionary containing data needed to recreate the app’s state on the receiving device.</span><!--end_enstr-->
+</h3>
+<p><span class="enstr">At runtime, you represent a user activity with the <code data-v-7fb764c1="">NSUser<wbr data-v-7fb764c1="">Activity</wbr></code>  type. You initialize a user activity object with a string identifier, the same one used earlier in the <code data-v-7fb764c1="">Info<wbr data-v-7fb764c1="">.plist</wbr></code>. This object also has an <code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Eligible<wbr data-v-7fb764c1="">For<wbr data-v-7fb764c1="">Handoff</wbr></wbr></wbr></code> property that exposes the activity to Handoff, and a <code data-v-7fb764c1="">user<wbr data-v-7fb764c1="">Info</wbr></code>  dictionary containing data needed to recreate the app’s state on the receiving device.</span><!--end_enstr-->
 <span class="jpstr">
-実行時では、あなたはユーザアクティビティを<code class="code-voice"><span>NSUser<wbr/>Activity</span></code>型で表します。あなたは、ユーザアクティビティオブジェクトを文字列識別子、前の<code class="code-voice"><span>Info<wbr/>.plist</span></code>において使われるのと同じもので初期化します。このオブジェクトはまた、アクティビティをHandoffに露出する<code class="code-voice"><span>is<wbr/>Eligible<wbr/>For<wbr/>Handoff</span></code>プロパティ、そしてアプリのもつ状態を受け取っているデバイス上で回復するのに必要なデータを含んでいる<code class="code-voice"><span>user<wbr/>Info</span></code> 辞書を持ちます。
+実行時では、あなたはユーザアクティビティを<code data-v-7fb764c1="">NSUser<wbr data-v-7fb764c1="">Activity</wbr></code>型で表します。あなたは、ユーザアクティビティオブジェクトを文字列識別子、前の<code data-v-7fb764c1="">Info<wbr data-v-7fb764c1="">.plist</wbr></code>において使われるのと同じもので初期化します。このオブジェクトはまた、アクティビティをHandoffに露出する<code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Eligible<wbr data-v-7fb764c1="">For<wbr data-v-7fb764c1="">Handoff</wbr></wbr></wbr></code>プロパティ、そしてアプリのもつ状態を受け取っているデバイス上で回復するのに必要なデータを含んでいる<code data-v-7fb764c1="">user<wbr data-v-7fb764c1="">Info</wbr></code> 辞書を持ちます。
 </span><!--end_jpstr-->
-</p><p><span class="enstr">In the sample app, the <code class="code-voice"><span>Map<wbr/>View<wbr/>Controller</span></code> manages two <code class="code-voice"><span>NSUser<wbr/>Activity</span></code> instances: one each for the <code class="code-voice"><span>map-viewing</span></code> and <code class="code-voice"><span>store-editing</span></code> activities. When the map region changes, it sets the <code class="code-voice"><span>user<wbr/>Activity</span></code> property (defined in <code class="code-voice"><span>NSView<wbr/>Controller</span></code> for macOS and <code class="code-voice"><span>UIView<wbr/>Controller</span></code> for iOS) to the <code class="code-voice"><span>map-viewing</span></code> activity. It makes this the current activity, replacing any other activity that may have previously been sent to Handoff, and sets <code class="code-voice"><span>needs<wbr/>Save</span></code> to <code class="code-voice"><span>true</span></code>, indicating that the activity has new data to send to remote devices.</span><!--end_enstr-->
+</p>
+<p><span class="enstr">In the sample app, the <code data-v-7fb764c1="">Map<wbr data-v-7fb764c1="">View<wbr data-v-7fb764c1="">Controller</wbr></wbr></code> manages two <code data-v-7fb764c1="">NSUser<wbr data-v-7fb764c1="">Activity</wbr></code> instances: one each for the <code data-v-7fb764c1="">map-viewing</code> and <code data-v-7fb764c1="">store-editing</code> activities. When the map region changes, it sets the <code data-v-7fb764c1="">user<wbr data-v-7fb764c1="">Activity</wbr></code> property (defined in <code data-v-7fb764c1="">NSView<wbr data-v-7fb764c1="">Controller</wbr></code> for macOS and <code data-v-7fb764c1="">UIView<wbr data-v-7fb764c1="">Controller</wbr></code> for iOS) to the <code data-v-7fb764c1="">map-viewing</code> activity. It makes this the current activity, replacing any other activity that may have previously been sent to Handoff, and sets <code data-v-7fb764c1="">needs<wbr data-v-7fb764c1="">Save</wbr></code> to <code data-v-7fb764c1="">true</code>, indicating that the activity has new data to send to remote devices.</span><!--end_enstr-->
 <span class="jpstr">
-見本アプリにおいて、<code class="code-voice"><span>Map<wbr/>View<wbr/>Controller</span></code>は２つの<code class="code-voice"><span>NSUser<wbr/>Activity</span></code>インスタンス：<code class="code-voice"><span>map-viewing</span></code>と<code class="code-voice"><span>store-editing</span></code>アクティビティに対してそれぞれ１つを管理します。地図領域が変化する場合、それは<code class="code-voice"><span>user<wbr/>Activity</span></code>プロパティ（macOSでは<code class="code-voice"><span>NSView<wbr/>Controller</span></code>において、そしてiOSでは<code class="code-voice"><span>UIView<wbr/>Controller</span></code>において定義されます）を<code class="code-voice"><span>map-viewing</span></code>アクティビティに設定します。それはこれを、以前にHandoffに送られたかもしれない何らかの他のアクティビティを置き換えて、現在のアクティビティにします、そして<code class="code-voice"><span>needs<wbr/>Save</span></code>を、そのアクティビティがリモートデバイスに送る新しいデータを持つことを指し示している<code class="code-voice"><span>true</span></code>に設定します。
+見本アプリにおいて、<code data-v-7fb764c1="">Map<wbr data-v-7fb764c1="">View<wbr data-v-7fb764c1="">Controller</wbr></wbr></code>は２つの<code data-v-7fb764c1="">NSUser<wbr data-v-7fb764c1="">Activity</wbr></code>インスタンス：<code data-v-7fb764c1="">map-viewing</code>と<code data-v-7fb764c1="">store-editing</code>アクティビティに対してそれぞれ１つを管理します。地図領域が変化する場合、それは<code data-v-7fb764c1="">user<wbr data-v-7fb764c1="">Activity</wbr></code>プロパティ（macOSでは<code data-v-7fb764c1="">NSView<wbr data-v-7fb764c1="">Controller</wbr></code>において、そしてiOSでは<code data-v-7fb764c1="">UIView<wbr data-v-7fb764c1="">Controller</wbr></code>において定義されます）を<code data-v-7fb764c1="">map-viewing</code>アクティビティに設定します。それはこれを、以前にHandoffに送られたかもしれない何らかの他のアクティビティを置き換えて、現在のアクティビティにします、そして<code data-v-7fb764c1="">needs<wbr data-v-7fb764c1="">Save</wbr></code>を、そのアクティビティがリモートデバイスに送る新しいデータを持つことを指し示している<code data-v-7fb764c1="">true</code>に設定します。
 </span><!--end_jpstr-->
-</p><figure id="3174468"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>userActivity = mapViewingActivity
-mapViewingActivity.needsSave = true
-mapViewingActivity.becomeCurrent()
-</code></pre></div></div></figure><p><span class="enstr">Calling <code class="code-voice"><span>needs<wbr/>Save</span></code>  on the view controller’s <code class="code-voice"><span>user<wbr/>Activity</span></code> eventually results in a callback to the method <code class="code-voice"><span>update<wbr/>User<wbr/>Activity<wbr/>State(_:)</span></code>, declared in <code class="code-voice"><span>UIResponder</span></code> on iOS and <code class="code-voice"><span>NSResponder</span></code> on macOS. This is the app’s opportunity to refresh the activity object’s <code class="code-voice"><span>user<wbr/>Info</span></code> before Handoff receives the activity. The implementation in the sample app calls a convenience function <code class="code-voice"><span>update<wbr/>Viewing<wbr/>Region(_:)</span></code>,  defined in an extension on <code class="code-voice"><span>NSUser<wbr/>Activity</span></code>, to encode the map view’s <code class="code-voice"><span>MKCoordinate<wbr/>Region</span></code> into key-value entries in the <code class="code-voice"><span>user<wbr/>Info</span></code> dictionary.</span><!--end_enstr-->
+</p>
+<figure data-v-7bf080cc="" id="3174468"><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">userActivity = mapViewingActivity</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">mapViewingActivity.needsSave = <span class="syntax-literal">true</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">mapViewingActivity.becomeCurrent()</span></span></code></pre></div>
+</div></figure><p><span class="enstr">Calling <code data-v-7fb764c1="">needs<wbr data-v-7fb764c1="">Save</wbr></code>  on the view controller’s <code data-v-7fb764c1="">user<wbr data-v-7fb764c1="">Activity</wbr></code> eventually results in a callback to the method <code data-v-7fb764c1="">update<wbr data-v-7fb764c1="">User<wbr data-v-7fb764c1="">Activity<wbr data-v-7fb764c1="">State(_:)</wbr></wbr></wbr></code>, declared in <code data-v-7fb764c1="">UIResponder</code> on iOS and <code data-v-7fb764c1="">NSResponder</code> on macOS. This is the app’s opportunity to refresh the activity object’s <code data-v-7fb764c1="">user<wbr data-v-7fb764c1="">Info</wbr></code> before Handoff receives the activity. The implementation in the sample app calls a convenience function <code data-v-7fb764c1="">update<wbr data-v-7fb764c1="">Viewing<wbr data-v-7fb764c1="">Region(_:)</wbr></wbr></code>,  defined in an extension on <code data-v-7fb764c1="">NSUser<wbr data-v-7fb764c1="">Activity</wbr></code>, to encode the map view’s <code data-v-7fb764c1="">MKCoordinate<wbr data-v-7fb764c1="">Region</wbr></code> into key-value entries in the <code data-v-7fb764c1="">user<wbr data-v-7fb764c1="">Info</wbr></code> dictionary.</span><!--end_enstr-->
 <span class="jpstr">
-<code class="code-voice"><span>needs<wbr/>Save</span></code>をビューコントローラのもつ<code class="code-voice"><span>user<wbr/>Activity</span></code>上で呼び出すことは、結局はメソッド<code class="code-voice"><span>update<wbr/>User<wbr/>Activity<wbr/>State(_:)</span></code>へのコールバックという結果になります、それはiOSでは<code class="code-voice"><span>UIResponder</span></code>においてそしてmacOSでは<code class="code-voice"><span>NSResponder</span></code>において宣言されます。これはアプリにとって、アクティビティオブジェクトのもつ<code class="code-voice"><span>user<wbr/>Info</span></code>をHandoffがそのアクティビティを受け取る前にリフレッシュする好機です。見本アプリにおける実装は、ある便宜関数<code class="code-voice"><span>update<wbr/>Viewing<wbr/>Region(_:)</span></code>、それは<code class="code-voice"><span>NSUser<wbr/>Activity</span></code>上のある拡張において定義されます、を呼び出して地図ビューのもつ<code class="code-voice"><span>MKCoordinate<wbr/>Region</span></code>を<code class="code-voice"><span>user<wbr/>Info</span></code>辞書の中のキー値登録項目へとエンコードします。
+<code data-v-7fb764c1="">needs<wbr data-v-7fb764c1="">Save</wbr></code>をビューコントローラのもつ<code data-v-7fb764c1="">user<wbr data-v-7fb764c1="">Activity</wbr></code>上で呼び出すことは、結局はメソッド<code data-v-7fb764c1="">update<wbr data-v-7fb764c1="">User<wbr data-v-7fb764c1="">Activity<wbr data-v-7fb764c1="">State(_:)</wbr></wbr></wbr></code>へのコールバックという結果になります、それはiOSでは<code data-v-7fb764c1="">UIResponder</code>においてそしてmacOSでは<code data-v-7fb764c1="">NSResponder</code>において宣言されます。これはアプリにとって、アクティビティオブジェクトのもつ<code data-v-7fb764c1="">user<wbr data-v-7fb764c1="">Info</wbr></code>をHandoffがそのアクティビティを受け取る前にリフレッシュする好機です。見本アプリにおける実装は、ある便宜関数<code data-v-7fb764c1="">update<wbr data-v-7fb764c1="">Viewing<wbr data-v-7fb764c1="">Region(_:)</wbr></wbr></code>、それは<code data-v-7fb764c1="">NSUser<wbr data-v-7fb764c1="">Activity</wbr></code>上のある拡張において定義されます、を呼び出して地図ビューのもつ<code data-v-7fb764c1="">MKCoordinate<wbr data-v-7fb764c1="">Region</wbr></code>を<code data-v-7fb764c1="">user<wbr data-v-7fb764c1="">Info</wbr></code>辞書の中のキー値登録項目へとエンコードします。
 </span><!--end_jpstr-->
-</p><figure id="3174469"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>func updateViewingRegion(_ region: MKCoordinateRegion) {
-    let updateDict = [
-        NSUserActivity.regionCenterLatitudeKeyString: region.center.latitude,
-        NSUserActivity.regionCenterLongitudeKeyString: region.center.longitude,
-        NSUserActivity.regionSpanLatitudeKeyString: region.span.latitudeDelta,
-        NSUserActivity.regionSpanLongitudeKeyString: region.span.longitudeDelta]
-    addUserInfoEntries(from: updateDict)
-}
-</code></pre></div></div></figure></div><h3 id="3174482"><span class="enstr">Receive User Activities</span><!--end_enstr-->
+</p>
+<figure data-v-7bf080cc="" id="3174469"><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-function"><span class="syntax-keyword">func</span> <span class="syntax-title">updateViewingRegion</span><span class="syntax-params">(<span class="syntax-number">_</span> region: MKCoordinateRegion)</span></span> {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">let</span> updateDict = [</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-type">NSUserActivity</span>.regionCenterLatitudeKeyString: region.center.latitude,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-type">NSUserActivity</span>.regionCenterLongitudeKeyString: region.center.longitude,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="5" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-type">NSUserActivity</span>.regionSpanLatitudeKeyString: region.span.latitudeDelta,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="6" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-type">NSUserActivity</span>.regionSpanLongitudeKeyString: region.span.longitudeDelta]</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="7" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    addUserInfoEntries(from: updateDict)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="8" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">}</span></span></code></pre></div>
+</div></figure><h3 id="3174482"><span class="enstr">Receive User Activities</span><!--end_enstr-->
 <span class="jpstr">
 ユーザアクティビティを受け取る
 </span><!--end_jpstr-->
-</h3><div><p><span class="enstr">When you move to another device, macOS or iOS indicates that a Handoff activity is available. macOS displays a Handoff icon at the beginning of the Dock, with a badge indicating the type of source device. On iOS, the Handoff banner appears at the bottom of the screen in the app switcher, showing the app and source device name.</span><!--end_enstr-->
+</h3>
+<p><span class="enstr">When you move to another device, macOS or iOS indicates that a Handoff activity is available. macOS displays a Handoff icon at the beginning of the Dock, with a badge indicating the type of source device. On iOS, the Handoff banner appears at the bottom of the screen in the app switcher, showing the app and source device name.</span><!--end_enstr-->
 <span class="jpstr">
 あなたが別のデバイスに移る時、macOSやiOSは、Handoffアクティビティが利用可能であることを指し示します。macOSは、HandoffアイコンをDockの初めの部分で、元のデバイスの種類を指し示しているバッジとともに表示します。iOSでは、HandoffバナーはAppスイッチャーの画面下で現れて、アプリと元のデバイスの名前を示します。
 </span><!--end_jpstr-->
-</p><p><span class="enstr">When you launch the app using the Handoff prompts, the system calls methods in <code class="code-voice"><span>UIApplication<wbr/>Delegate</span></code> (iOS) or <code class="code-voice"><span>NSApplication<wbr/>Delegate</span></code> (macOS) to provide the Handoff activity. The <code class="code-voice"><span>application(_:<wbr/>continue:<wbr/>restoration<wbr/>Handler:)</span></code> method provides the activity, along with a completion handler that you call with an array of view controllers that can handle the activity. The implementation in the iOS app delegate just finds and passes the first view controller, an instance of <code class="code-voice"><span>Map<wbr/>View<wbr/>Controller</span></code>.</span><!--end_enstr-->
+</p>
+<p><span class="enstr">When you launch the app using the Handoff prompts, the system calls methods in <code data-v-7fb764c1="">UIApplication<wbr data-v-7fb764c1="">Delegate</wbr></code> (iOS) or <code data-v-7fb764c1="">NSApplication<wbr data-v-7fb764c1="">Delegate</wbr></code> (macOS) to provide the Handoff activity. The <code data-v-7fb764c1="">application(_:<wbr data-v-7fb764c1="">continue:<wbr data-v-7fb764c1="">restoration<wbr data-v-7fb764c1="">Handler:)</wbr></wbr></wbr></code> method provides the activity, along with a completion handler that you call with an array of view controllers that can handle the activity. The implementation in the iOS app delegate just finds and passes the first view controller, an instance of <code data-v-7fb764c1="">Map<wbr data-v-7fb764c1="">View<wbr data-v-7fb764c1="">Controller</wbr></wbr></code>.</span><!--end_enstr-->
 <span class="jpstr">
-あなたがアプリをHandoffプロンプトを使って起動する場合、システムはいくつかのメソッドを<code class="code-voice"><span>UIApplication<wbr/>Delegate</span></code> (iOS) または<code class="code-voice"><span>NSApplication<wbr/>Delegate</span></code> (macOS) において呼び出してHandoffアクティビティを提供します。<code class="code-voice"><span>application(_:<wbr/>continue:<wbr/>restoration<wbr/>Handler:)</span></code>メソッドは、アクティビティを、ある完了ハンドラと一緒に提供します、それはアクティビティを取り扱い可能なビューコントローラの配列とともにあなたが呼び出すものです。iOSアプリ委任先における実装は、単にファーストビューコントローラ、<code class="code-voice"><span>Map<wbr/>View<wbr/>Controller</span></code>のインスタンスを見つけて渡すだけです。
+あなたがアプリをHandoffプロンプトを使って起動する場合、システムはいくつかのメソッドを<code data-v-7fb764c1="">UIApplication<wbr data-v-7fb764c1="">Delegate</wbr></code> (iOS) または<code data-v-7fb764c1="">NSApplication<wbr data-v-7fb764c1="">Delegate</wbr></code> (macOS) において呼び出してHandoffアクティビティを提供します。<code data-v-7fb764c1="">application(_:<wbr data-v-7fb764c1="">continue:<wbr data-v-7fb764c1="">restoration<wbr data-v-7fb764c1="">Handler:)</wbr></wbr></wbr></code>メソッドは、アクティビティを、ある完了ハンドラと一緒に提供します、それはアクティビティを取り扱い可能なビューコントローラの配列とともにあなたが呼び出すものです。iOSアプリ委任先における実装は、単にファーストビューコントローラ、<code data-v-7fb764c1="">Map<wbr data-v-7fb764c1="">View<wbr data-v-7fb764c1="">Controller</wbr></wbr></code>のインスタンスを見つけて渡すだけです。
 </span><!--end_jpstr-->
-</p><figure id="3174471"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>func application(_ application: UIApplication, continue userActivity: NSUserActivity,
-                 restorationHandler: @escaping ([UIUserActivityRestoring]?) -&gt; Void) -&gt; Bool {
-    guard let topNav = application.keyWindow?.rootViewController as?UINavigationController,
-        let mapVC = topNav.viewControllers.first as?MapViewController else {
-        return false
-    }
-    
-    mapVC.loadView()
-    restorationHandler([mapVC])
-    return true
-}
-</code></pre></div></div></figure><p><span class="enstr">The implementation in the macOS app delegate is similar, except that it traverses the key window’s hierarchy, rather than the iOS navigation controller stack:</span><!--end_enstr-->
+</p>
+<figure data-v-7bf080cc="" id="3174471"><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-function"><span class="syntax-keyword">func</span> <span class="syntax-title">application</span><span class="syntax-params">(<span class="syntax-number">_</span> application: UIApplication, <span class="syntax-keyword">continue</span> userActivity: NSUserActivity,</span></span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-params">                 restorationHandler: @escaping <span class="syntax-params">([UIUserActivityRestoring]?)</span></span> -&gt; <span class="syntax-type">Void</span>) -&gt; <span class="syntax-type">Bool</span> {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">guard</span> <span class="syntax-keyword">let</span> topNav = application.keyWindow?.rootViewController <span class="syntax-keyword">as</span>? <span class="syntax-type">UINavigationController</span>,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">let</span> mapVC = topNav.viewControllers.first <span class="syntax-keyword">as</span>? <span class="syntax-type">MapViewController</span> <span class="syntax-keyword">else</span> {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="5" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">return</span> <span class="syntax-literal">false</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="6" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="7" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    </span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="8" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    mapVC.loadView()</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="9" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    restorationHandler([mapVC])</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="10" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">return</span> <span class="syntax-literal">true</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="11" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">}</span></span></code></pre></div>
+</div></figure><p><span class="enstr">The implementation in the macOS app delegate is similar, except that it traverses the key window’s hierarchy, rather than the iOS navigation controller stack:</span><!--end_enstr-->
 <span class="jpstr">
 macOSアプリ委任先における実装は似ていますが、それがキーウインドウのもつ階層を辿っていくことが異なります、iOSナビゲーションコントローラスタックではなくて：
 </span><!--end_jpstr-->
-</p><figure id="3174472"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>func application(_ application: NSApplication, continue userActivity: NSUserActivity,
-                 restorationHandler: @escaping ([NSUserActivityRestoring]) -&gt; Void) -&gt; Bool {
-    guard let mapVC = application.keyWindow?.windowController?.contentViewController as?MapViewController else {
-        return false
-    }
-    
-    mapVC.loadView()
-    restorationHandler([mapVC])
-    return true
-}
-</code></pre></div></div></figure></div><h3 id="3174483"><span class="enstr">Update the App’s State</span><!--end_enstr-->
+</p>
+<figure data-v-7bf080cc="" id="3174472"><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-function"><span class="syntax-keyword">func</span> <span class="syntax-title">application</span><span class="syntax-params">(<span class="syntax-number">_</span> application: NSApplication, <span class="syntax-keyword">continue</span> userActivity: NSUserActivity,</span></span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-params">                 restorationHandler: @escaping <span class="syntax-params">([NSUserActivityRestoring])</span></span> -&gt; <span class="syntax-type">Void</span>) -&gt; <span class="syntax-type">Bool</span> {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">guard</span> <span class="syntax-keyword">let</span> mapVC = application.keyWindow?.windowController?.contentViewController <span class="syntax-keyword">as</span>? <span class="syntax-type">MapViewController</span> <span class="syntax-keyword">else</span> {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">return</span> <span class="syntax-literal">false</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="5" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="6" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    </span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="7" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    mapVC.loadView()</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="8" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    restorationHandler([mapVC])</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="9" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">return</span> <span class="syntax-literal">true</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="10" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">}</span></span></code></pre></div>
+</div></figure><h3 id="3174483"><span class="enstr">Update the App’s State</span><!--end_enstr-->
 <span class="jpstr">
 アプリのもつ状態を更新する
 </span><!--end_jpstr-->
-</h3><div><p><span class="enstr">The view controllers receive the <code class="code-voice"><span>NSUser<wbr/>Activity</span></code> in the <code class="code-voice"><span>restore<wbr/>User<wbr/>Activity<wbr/>State(_:)</span></code> method. <code class="code-voice"><span>Map<wbr/>View<wbr/>Controller</span></code> inspects the activity to determine whether it is the map-viewing or the store-editing activity, and then updates the UI as needed. The map-viewing activity case resets the map region, by creating a new <code class="code-voice"><span>MKCoordinate<wbr/>Region</span></code> from the values in the <code class="code-voice"><span>user<wbr/>Info</span></code>.</span><!--end_enstr-->
+</h3>
+<p><span class="enstr">The view controllers receive the <code data-v-7fb764c1="">NSUser<wbr data-v-7fb764c1="">Activity</wbr></code> in the <code data-v-7fb764c1="">restore<wbr data-v-7fb764c1="">User<wbr data-v-7fb764c1="">Activity<wbr data-v-7fb764c1="">State(_:)</wbr></wbr></wbr></code> method. <code data-v-7fb764c1="">Map<wbr data-v-7fb764c1="">View<wbr data-v-7fb764c1="">Controller</wbr></wbr></code> inspects the activity to determine whether it is the map-viewing or the store-editing activity, and then updates the UI as needed. The map-viewing activity case resets the map region, by creating a new <code data-v-7fb764c1="">MKCoordinate<wbr data-v-7fb764c1="">Region</wbr></code> from the values in the <code data-v-7fb764c1="">user<wbr data-v-7fb764c1="">Info</wbr></code>.</span><!--end_enstr-->
 <span class="jpstr">
-ビューコントローラは、<code class="code-voice"><span>NSUser<wbr/>Activity</span></code>を<code class="code-voice"><span>restore<wbr/>User<wbr/>Activity<wbr/>State(_:)</span></code>メソッドにおいて受け取ります。<code class="code-voice"><span>Map<wbr/>View<wbr/>Controller</span></code>は、アクティビティを調べて、それが地図閲覧またはストア編集アクティビティであるかどうかを決定します、そしてそれらかUIを必要に応じて更新します。地図閲覧アクティビティの場合は地図領域を再設定します、新しい<code class="code-voice"><span>MKCoordinate<wbr/>Region</span></code>を<code class="code-voice"><span>user<wbr/>Info</span></code>の中の値から作成することによって。
+ビューコントローラは、<code data-v-7fb764c1="">NSUser<wbr data-v-7fb764c1="">Activity</wbr></code>を<code data-v-7fb764c1="">restore<wbr data-v-7fb764c1="">User<wbr data-v-7fb764c1="">Activity<wbr data-v-7fb764c1="">State(_:)</wbr></wbr></wbr></code>メソッドにおいて受け取ります。<code data-v-7fb764c1="">Map<wbr data-v-7fb764c1="">View<wbr data-v-7fb764c1="">Controller</wbr></wbr></code>は、アクティビティを調べて、それが地図閲覧またはストア編集アクティビティであるかどうかを決定します、そしてそれらかUIを必要に応じて更新します。地図閲覧アクティビティの場合は地図領域を再設定します、新しい<code data-v-7fb764c1="">MKCoordinate<wbr data-v-7fb764c1="">Region</wbr></code>を<code data-v-7fb764c1="">user<wbr data-v-7fb764c1="">Info</wbr></code>の中の値から作成することによって。
 </span><!--end_jpstr-->
-</p><figure id="3174474"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>func viewingRegion() -&gt; MKCoordinateRegion? {
-    guard let centerLatitude = userInfo?[NSUserActivity.regionCenterLatitudeKeyString] as? CLLocationDegrees,
-        let centerLongitude = userInfo?[NSUserActivity.regionCenterLongitudeKeyString] as? CLLocationDegrees,
-        let spanLatitude = userInfo?[NSUserActivity.regionSpanLatitudeKeyString] as? CLLocationDegrees,
-        let spanLongitude = userInfo?[NSUserActivity.regionSpanLongitudeKeyString] as? CLLocationDegrees else {
-            return nil
-    }
-    return MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: centerLatitude,
-                                                             longitude: centerLongitude),
-                              span: MKCoordinateSpan(latitudeDelta: spanLatitude,
-                                                     longitudeDelta: spanLongitude))
-}
-</code></pre></div></div></figure><p><span class="enstr">In the case of the store-editing activity, the view controller also retrieves the store’s URL and location coordinates from the <code class="code-voice"><span>user<wbr/>Info</span></code>. The app waits until the map adds a <code class="code-voice"><span>MKAnnotation<wbr/>View</span></code> for the store being edited, so it knows where to anchor the popover.</span><!--end_enstr-->
+</p>
+<figure data-v-7bf080cc="" id="3174474"><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-function"><span class="syntax-keyword">func</span> <span class="syntax-title">viewingRegion</span><span class="syntax-params">()</span></span> -&gt; <span class="syntax-type">MKCoordinateRegion?</span> {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">guard</span> <span class="syntax-keyword">let</span> centerLatitude = userInfo?[<span class="syntax-type">NSUserActivity</span>.regionCenterLatitudeKeyString] <span class="syntax-keyword">as</span>? <span class="syntax-type">CLLocationDegrees</span>,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">let</span> centerLongitude = userInfo?[<span class="syntax-type">NSUserActivity</span>.regionCenterLongitudeKeyString] <span class="syntax-keyword">as</span>? <span class="syntax-type">CLLocationDegrees</span>,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">let</span> spanLatitude = userInfo?[<span class="syntax-type">NSUserActivity</span>.regionSpanLatitudeKeyString] <span class="syntax-keyword">as</span>? <span class="syntax-type">CLLocationDegrees</span>,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="5" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">let</span> spanLongitude = userInfo?[<span class="syntax-type">NSUserActivity</span>.regionSpanLongitudeKeyString] <span class="syntax-keyword">as</span>? <span class="syntax-type">CLLocationDegrees</span> <span class="syntax-keyword">else</span> {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="6" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">            <span class="syntax-keyword">return</span> <span class="syntax-literal">nil</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="7" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="8" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">return</span> <span class="syntax-type">MKCoordinateRegion</span>(center: <span class="syntax-type">CLLocationCoordinate2D</span>(latitude: centerLatitude,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="9" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">                                                             longitude: centerLongitude),</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="10" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">                              span: <span class="syntax-type">MKCoordinateSpan</span>(latitudeDelta: spanLatitude,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="11" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">                                                     longitudeDelta: spanLongitude))</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="12" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">}</span></span></code></pre></div>
+</div></figure><p><span class="enstr">In the case of the store-editing activity, the view controller also retrieves the store’s URL and location coordinates from the <code data-v-7fb764c1="">user<wbr data-v-7fb764c1="">Info</wbr></code>. The app waits until the map adds a <code data-v-7fb764c1="">MKAnnotation<wbr data-v-7fb764c1="">View</wbr></code> for the store being edited, so it knows where to anchor the popover.</span><!--end_enstr-->
 <span class="jpstr">
-ストア編集アクティビティの場合では、ビューコントローラはまた、ストアのもつURLと位置座標を<code class="code-voice"><span>user<wbr/>Info</span></code>からとってきます。アプリは、地図が<code class="code-voice"><span>MKAnnotation<wbr/>View</span></code>をその編集されているストアのために加えるまで待機します、なのでそれはポップオーバーを据えつけるところがわかります。
+ストア編集アクティビティの場合では、ビューコントローラはまた、ストアのもつURLと位置座標を<code data-v-7fb764c1="">user<wbr data-v-7fb764c1="">Info</wbr></code>からとってきます。アプリは、地図が<code data-v-7fb764c1="">MKAnnotation<wbr data-v-7fb764c1="">View</wbr></code>をその編集されているストアのために加えるまで待機します、なのでそれはポップオーバーを据えつけるところがわかります。
 </span><!--end_jpstr-->
-</p></div><h3 id="3174484"><span class="enstr">Update the Original Device’s State (Optional)</span><!--end_enstr-->
+</p>
+<h3 id="3174484"><span class="enstr">Update the Original Device’s State (Optional)</span><!--end_enstr-->
 <span class="jpstr">
 元のデバイスのもつ状態を更新する（随意）
 </span><!--end_jpstr-->
-</h3><div><p><span class="enstr">The <code class="code-voice"><span>NSUser<wbr/>Activity</span></code> class has a <code class="code-voice"><span>delegate</span></code> property of type <code class="code-voice"><span>NSUser<wbr/>Activity<wbr/>Delegate</span></code>. This notifies the originating device when you continue an activity on another device. The originating device can use this to clean up its own UI state.</span><!--end_enstr-->
+</h3>
+<p><span class="enstr">The <code data-v-7fb764c1="">NSUser<wbr data-v-7fb764c1="">Activity</wbr></code> class has a <code data-v-7fb764c1="">delegate</code> property of type <code data-v-7fb764c1="">NSUser<wbr data-v-7fb764c1="">Activity<wbr data-v-7fb764c1="">Delegate</wbr></wbr></code>. This notifies the originating device when you continue an activity on another device. The originating device can use this to clean up its own UI state.</span><!--end_enstr-->
 <span class="jpstr">
-<code class="code-voice"><span>NSUser<wbr/>Activity</span></code>クラスは、型<code class="code-voice"><span>NSUser<wbr/>Activity<wbr/>Delegate</span></code>の<code class="code-voice"><span>delegate</span></code>プロパティを持ちます。これは、元となるデバイスを、あなたがアクティビティを別のデバイス上で継続する場合に通知します。元となるデバイスは、これを使ってそれ自身のUI状態をきれいにします。
+<code data-v-7fb764c1="">NSUser<wbr data-v-7fb764c1="">Activity</wbr></code>クラスは、型<code data-v-7fb764c1="">NSUser<wbr data-v-7fb764c1="">Activity<wbr data-v-7fb764c1="">Delegate</wbr></wbr></code>の<code data-v-7fb764c1="">delegate</code>プロパティを持ちます。これは、元となるデバイスを、あなたがアクティビティを別のデバイス上で継続する場合に通知します。元となるデバイスは、これを使ってそれ自身のUI状態をきれいにします。
 </span><!--end_jpstr-->
-</p><p><span class="enstr">In the sample app, tapping a pin for an Apple Store shows a popover with details about the store and a switch (iOS) or checkbox (macOS) to mark the store as a favorite. The <code class="code-voice"><span>Map<wbr/>View<wbr/>Contoller</span></code> represents this activity as the <code class="code-voice"><span>store<wbr/>Editing<wbr/>Activity</span></code> property, and sets itself as the activity’s delegate. When you continue editing on a second device, the delegate on the originating device receives a notification that this activity has been continued, and dismisses its own popover.</span><!--end_enstr-->
+</p>
+<p><span class="enstr">In the sample app, tapping a pin for an Apple Store shows a popover with details about the store and a switch (iOS) or checkbox (macOS) to mark the store as a favorite. The <code data-v-7fb764c1="">Map<wbr data-v-7fb764c1="">View<wbr data-v-7fb764c1="">Contoller</wbr></wbr></code> represents this activity as the <code data-v-7fb764c1="">store<wbr data-v-7fb764c1="">Editing<wbr data-v-7fb764c1="">Activity</wbr></wbr></code> property, and sets itself as the activity’s delegate. When you continue editing on a second device, the delegate on the originating device receives a notification that this activity has been continued, and dismisses its own popover.</span><!--end_enstr-->
 <span class="jpstr">
-見本アプリでは、あるアップルストアに対するピンをタップすることは、ストアについての詳細およびストアをお気に入りとして印するスイッチ（iOS）かチェックボックス（macOS）を持つポップオーバーを表示します。<code class="code-voice"><span>Map<wbr/>View<wbr/>Contoller</span></code>は、このアクティビティを<code class="code-voice"><span>store<wbr/>Editing<wbr/>Activity</span></code>プロパティとして表します、そしてそれ自身をアクティビティのもつ委任先として設定します。あなたが第２のデバイス上で編集を継続する場合、元のデバイス上の委任先は、このアクティビティが継続されたという通知を受け取ります、そしてそれ自身のポップオーバーを退出させます。
+見本アプリでは、あるアップルストアに対するピンをタップすることは、ストアについての詳細およびストアをお気に入りとして印するスイッチ（iOS）かチェックボックス（macOS）を持つポップオーバーを表示します。<code data-v-7fb764c1="">Map<wbr data-v-7fb764c1="">View<wbr data-v-7fb764c1="">Contoller</wbr></wbr></code>は、このアクティビティを<code data-v-7fb764c1="">store<wbr data-v-7fb764c1="">Editing<wbr data-v-7fb764c1="">Activity</wbr></wbr></code>プロパティとして表します、そしてそれ自身をアクティビティのもつ委任先として設定します。あなたが第２のデバイス上で編集を継続する場合、元のデバイス上の委任先は、このアクティビティが継続されたという通知を受け取ります、そしてそれ自身のポップオーバーを退出させます。
 </span><!--end_jpstr-->
-</p><figure id="3174476"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>func userActivityWasContinued(_ userActivity: NSUserActivity) {
-    if let detailVC = presentedViewController as? StoreDetailViewController,
-        userActivity.activityType == NSUserActivity.storeEditingActivityType {
-        detailVC.dismiss(animated: true)
-    }
-}
-</code></pre></div></div></figure><aside class="aside aside-note" role="note"><p class="aside-name"><span class="enstr">Note</span><!--end_enstr-->
+</p>
+<figure data-v-7bf080cc="" id="3174476"><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-function"><span class="syntax-keyword">func</span> <span class="syntax-title">userActivityWasContinued</span><span class="syntax-params">(<span class="syntax-number">_</span> userActivity: NSUserActivity)</span></span> {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">if</span> <span class="syntax-keyword">let</span> detailVC = presentedViewController <span class="syntax-keyword">as</span>? <span class="syntax-type">StoreDetailViewController</span>,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        userActivity.activityType == <span class="syntax-type">NSUserActivity</span>.storeEditingActivityType {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        detailVC.dismiss(animated: <span class="syntax-literal">true</span>)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="5" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="6" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">}</span></span></code></pre></div>
+</div></figure><aside data-v-c567d8a8="" aria-label="note" class="note"><p data-v-c567d8a8="" class="label"><span class="enstr">Note</span><!--end_enstr-->
 <span class="jpstr">
 注意
 </span><!--end_jpstr-->
-</p><p><span class="enstr">Not all apps need to update the state of the originating app. In the sample app, dismissing the popover is meant as a gentle reminder to not make simultaneous edits from two devices. This is neither explicitly prohibited nor supported in the sample.</span><!--end_enstr-->
+</p>
+<p data-v-c567d8a8=""><span class="enstr">Not all apps need to update the state of the originating app. In the sample app, dismissing the popover is meant as a gentle reminder to not make simultaneous edits from two devices. This is neither explicitly prohibited nor supported in the sample.</span><!--end_enstr-->
 <span class="jpstr">
 全てのアプリが元のアプリの状態の更新を必要とするわけではありません。見本アプリでは、ポップオーバーの退出は、２つのデバイスから同時に編集させないための穏やかな注意としての意味を持ちます。これは、明示的に禁止されません、しかしこの見本アプリではサポートされません。
 </span><!--end_jpstr-->
-</p></aside></div></div></section></div></div><section id="see-also" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><span class="enstr">See Also</span><!--end_enstr-->
+</p></aside>
+</div></div>
+</div><!----><!----><!---->
+<section data-v-8c663d90="" data-v-63527a60="" data-v-2deaa168="" id="see-also" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">See Also</span><!--end_enstr-->
 <span class="jpstr">
 参照
 </span><!--end_jpstr-->
-</h2><section id="2877763" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Activity Sharing</span><!--end_enstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Activity Sharing</span><!--end_enstr-->
 <span class="jpstr">
 アクティビティを共有する
 </span><!--end_jpstr-->
-</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../../documentation/foundation/task_management/increasing_app_usage_with_suggestions_based_on_user_activities.html"><svg xmlns="http://www.w3.org/2000/svg" height="15" viewBox="0 0 15 15" class="svg-icon symbol-name-icon" aria-hidden="true"><title>Sample Code</title><g class="svg-icon-small" fill-rule="evenodd"><path d="M9 15L9 14 11.0104712 14C11.5759162 14 12.1832461 13.86 12.1832461 12.14L12.1832461 10.28C12.1529524 9.27545906 12.5278004 8.29817424 13.2303665 7.55L13.3246073 7.47C12.5372999 6.72356427 12.1089306 5.6990224 12.1413613 4.64L12.1413613 3.42C12.1413613 3 12.1413613 1 11.0104712 1L9 1 9 0 11.0104712 0C12.3926702 0 13.1884817 1.28 13.1884817 3.42L13.1884817 4.64C13.1884817 6 13.8691099 6.95 14.4764398 6.95L15 6.95 15 7.95 14.4764398 7.95C14.2508552 7.96082278 14.0394061 8.05818375 13.8900524 8.22 13.4104115 8.78359074 13.1611361 9.49421163 13.1884817 10.22L13.1884817 12.09C13.1884817 14 12.4764398 15 11.0104712 15L9 15zM6 15L4.28 15C2.87 15 2 13.85 2 12L2 10.13C2 8.46 1.66 8 .5 8L0 8 0 7 .5 7C1.61 6.95 2 6.3 2 4.49L2 3.27C2 1.32 2.92 0 4.28 0L6 0 6 1 4.28 1C3.4 1 3 2.14 3 3.27L3 4.49C3.11371534 5.55342654 2.78458756 6.61676246 2.09 7.43 2.79401717 8.14117553 3.12990379 9.13776222 3 10.13L3 12C3 12.75 3.17 14 4.29 14L6 14 6 15z"></path></g></svg><span><span class="enstr">Increasing App Usage with Suggestions Based on User Activities</span><!--end_enstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0="">
+<a data-v-01f7f080="" href="../../../documentation/foundation/task_management/increasing_app_usage_with_suggestions_based_on_user_activities.html" class="link has-adjacent-elements"><svg data-v-a76e93d8="" data-v-a8c6b630="" data-v-01f7f080="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="svg-icon topic-icon" height="15" viewbox="0 0 15 15"><title data-v-a76e93d8="">Sample Code</title>
+<g data-v-a76e93d8="" fill-rule="evenodd" class="svg-icon-small"><path data-v-a76e93d8="" d="M9 15L9 14 11.0104712 14C11.5759162 14 12.1832461 13.86 12.1832461 12.14L12.1832461 10.28C12.1529524 9.27545906 12.5278004 8.29817424 13.2303665 7.55L13.3246073 7.47C12.5372999 6.72356427 12.1089306 5.6990224 12.1413613 4.64L12.1413613 3.42C12.1413613 3 12.1413613 1 11.0104712 1L9 1 9 0 11.0104712 0C12.3926702 0 13.1884817 1.28 13.1884817 3.42L13.1884817 4.64C13.1884817 6 13.8691099 6.95 14.4764398 6.95L15 6.95 15 7.95 14.4764398 7.95C14.2508552 7.96082278 14.0394061 8.05818375 13.8900524 8.22 13.4104115 8.78359074 13.1611361 9.49421163 13.1884817 10.22L13.1884817 12.09C13.1884817 14 12.4764398 15 11.0104712 15L9 15zM6 15L4.28 15C2.87 15 2 13.85 2 12L2 10.13C2 8.46 1.66 8 .5 8L0 8 0 7 .5 7C1.61 6.95 2 6.3 2 4.49L2 3.27C2 1.32 2.92 0 4.28 0L6 0 6 1 4.28 1C3.4 1 3 2.14 3 3.27L3 4.49C3.11371534 5.55342654 2.78458756 6.61676246 2.09 7.43 2.79401717 8.14117553 3.12990379 9.13776222 3 10.13L3 12C3 12.75 3.17 14 4.29 14L6 14 6 15z"></path></g></svg><span data-v-01f7f080=""><span class="enstr">Increasing App Usage with Suggestions Based on User Activities</span><!--end_enstr-->
 <span class="jpstr">
 ユーザアクションに基づく提案でアプリ利用を拡大する
 </span><!--end_jpstr-->
-</span></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Provide a continuous user experience by capturing information from your app and displaying this information as proactive suggestions across the system.</span><!--end_enstr-->
+</span><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Provide a continuous user experience by capturing information from your app and displaying this information as proactive suggestions across the system.</span><!--end_enstr-->
 <span class="jpstr">
 情報をあなたのアプリからキャプチャして、この情報を積極的提案としてシステムの至る所で表示することによって、途切れのないユーザ体験を提供してください。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../../documentation/foundation/task_management/implementing_handoff_in_your_app.html"><svg xmlns="http://www.w3.org/2000/svg" height="15" viewBox="0 0 22 30" class="svg-icon symbol-name-icon" aria-hidden="true"><title>Article</title><g id="Article" class="svg-icon-small"><path d="M12.87,0H0V2H0V28H0v2H22V9.13ZM20,28H2V2h9V12h9Zm0-18H13V3l7,7Z"></path></g></svg><span><span class="enstr">Implementing Handoff in Your App</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0="">
+<a data-v-01f7f080="" href="../../../documentation/foundation/task_management/implementing_handoff_in_your_app.html" class="link has-adjacent-elements"><svg data-v-a76e93d8="" data-v-a8c6b630="" data-v-01f7f080="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="svg-icon article-icon topic-icon" viewbox="0 0 22 30"><title data-v-a76e93d8="">Article</title>
+<g data-v-a76e93d8=""><path data-v-a76e93d8="" d="M12.87,0H0V2H0V28H0v2H22V9.13ZM20,28H2V2h9V12h9Zm0-18H13V3l7,7Z"></path></g></svg><span data-v-01f7f080=""><span class="enstr">Implementing Handoff in Your App</span><!--end_enstr-->
 <span class="jpstr">
 Handoffをあなたのアプリにおいて実装する
 </span><!--end_jpstr-->
-</span></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Create, send, and receive user activities directly.</span><!--end_enstr-->
+</span><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Create, send, and receive user activities directly.</span><!--end_enstr-->
 <span class="jpstr">
 ユーザアクティビティを直接に作成、送信、そして受信します。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/nsuseractivity.html"><code class="display-name"><span class="decorator">class </span><span class="identifier">NSUser<wbr/>Activity</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A representation of the state of your app at a moment in time.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/nsuseractivity.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class </span><span data-v-dac213be="" class="identifier">NSUser<wbr data-v-dac213be="">Activity</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A representation of the state of your app at a moment in time.</span><!--end_enstr-->
 <span class="jpstr">
 現時点でのあなたのアプリの状態の表現。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/nsuseractivitydelegate.html"><code class="display-name"><span class="decorator">protocol </span><span class="identifier">NSUser<wbr/>Activity<wbr/>Delegate</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The interface through which a user activity instance notifies its delegate of updates.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/nsuseractivitydelegate.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">protocol </span><span data-v-dac213be="" class="identifier">NSUser<wbr data-v-dac213be="">Activity<wbr data-v-dac213be="">Delegate</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The interface through which a user activity instance notifies its delegate of updates.</span><!--end_enstr-->
 <span class="jpstr">
 それを通してユーザ活動インスタンスがそれの更新の委任先を通知するインターフェイス。
 </span><!--end_jpstr-->
-</p></div></div></div></div></div></div></div></section></div></div></section></main><section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo">
-        <nav class="footer-breadory">
-          <a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a>
-          <section class="breadcrumbs">
-            <ol class="breadcrumbs-list">
-              <li><a href=/documentation>Documentation</a></li>
-            </ol>
-          </section>
-          <div id="directorynav" class="directorynav">
-            <div id="dn-cola" class="column">
-              <h3><a href="/discover/">Discover</a></h3>
-              <ul>
-                <li><a href="/macos/">macOS</a></li>
-                <li><a href="/ios/">iOS</a></li>
-                <li><a href="/watchos/">watchOS</a></li>
-                <li><a href="/tvos/">tvOS</a></li>
-                <li><a href="/safari/">Safari and Web</a></li>
-                <li><a href="/games/">Games</a></li>
-                <li><a href="/business/">Business</a></li>
-                <li><a href="/education/">Education</a></li>
-                <li><a href="/wwdc/">WWDC</a></li>
-              </ul>
-            </div>
-            <div id="dn-colb" class="column">
-              <h3><a href="/design/">Design</a></h3>
-              <ul>
-                <li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
-                <li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+</div><!----></section></main>
+</div></div></div>
+<section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo"><nav class="footer-breadory"><a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a><section class="breadcrumbs"><ol class="breadcrumbs-list"></ol></section><div id="directorynav" class="directorynav">
+<div id="dn-cola" class="column">
+<h3><a href="/discover/">Discover</a></h3>
+<ul>
+<li><a href="/ios/">iOS</a></li>
+<li><a href="/ipados/">iPadOS</a></li>
+<li><a href="/macos/">macOS</a></li>
+<li><a href="/tvos/">tvOS</a></li>
+<li><a href="/watchos/">watchOS</a></li>
+<li><a href="/safari/">Safari and Web</a></li>
+<li><a href="/games/">Games</a></li>
+<li><a href="/business/">Business</a></li>
+<li><a href="/education/">Education</a></li>
+<li><a href="/wwdc/">WWDC</a></li>
+</ul>
+</div>
+<div id="dn-colb" class="column">
+<h3><a href="/design/">Design</a></h3>
+<ul>
+<li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
+<li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
 <span class="jpstr">
 リソース
 </span><!--end_jpstr-->
 </a></li>
-                <li><a href="/videos/design/">Videos</a></li>
-                <li><a href="/design/awards/">Apple Design Awards</a></li>
-                <li><a href="/accessibility/">Accessibility</a></li>
-                <li><a href="/internationalization/"><span class="enstr">Internationalization</span><!--end_enstr-->
+<li><a href="/videos/design/">Videos</a></li>
+<li><a href="/design/awards/">Apple Design Awards</a></li>
+<li><a href="/fonts/">Fonts</a></li>
+<li><a href="/accessibility/">Accessibility</a></li>
+<li><a href="/localization/"><span class="enstr">Localization</span><!--end_enstr-->
 <span class="jpstr">
-国際化
+ローカライゼーション
 </span><!--end_jpstr-->
 </a></li>
-                <li><a href="/accessories/">Accessories</a></li>
-              </ul>
-            </div>
-            <div id="dn-colc" class="column">
-              <h3><a href="/develop/">Develop</a></h3>
-              <ul>
-                <li><a href="/xcode/">Xcode</a></li>
-                <li><a href="/swift/">Swift</a></li>
-                <li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
-                <li><a href="/testflight/">TestFlight</a></li>
-                <li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
-                <li><a href="/videos/">Videos</a></li>
-                <li><a href="/download/">Downloads</a></li>
-              </ul>
-            </div>
-            <div id="dn-cold" class="column">
-              <h3><a href="/distribute/">Distribute</a></h3>
-              <ul>
-                <li><a href="/programs/">Developer Program</a></li>
-                <li><a href="/app-store/">App Store</a></li>
-                <li><a href="/app-store/review/">App Review</a></li>
-                <li><a href="/macos/distribution/">Mac Software</a></li>
-                <li><a href="/business/distribute/">Apps for Business</a></li>
-                <li><a href="/safari/extensions/">Safari Extensions</a></li>
-                <li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
-                <li><a href="/softwarelicensing/">Trademark Licensing</a></li>
-              </ul>
-            </div>
-            <div id="dn-cole" class="column">
-              <h3><a href="/support/">Support</a></h3>
-              <ul>
-                <li><a href="https://forums.developer.apple.com">Developer Forums</a></li>
-                <li><a href="/bug-reporting/">Bug Reporting</a></li>
-                <li><a href="/terms/">License Agreements</a></li>
-                <li><a href="/system-status/">System Status</a></li>
-                <li><a href="/contact/">Contact Us</a></li>
-              </ul>
-              <h3><a href="/account/">Account</a></h3>
-              <ul>
-                <li><a href="/account/ios/certificate/">Certificates, IDs &amp; Profiles</a></li>
-                <li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-        <div class="ac-gf-footer-legal">
-          <div class="ac-gf-footer-news"> To receive the latest developer news, visit and subscribe to our <a href="/news/">News and Updates</a>.
-          </div>
-          <div class="ac-gf-footer-legal-copyright">Copyright © 2020 Apple Inc. All rights reserved.</div>
-          <div class="ac-gf-footer-legal-links">
-            <a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a>
-            <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
-            <a href="/bug-reporting/">Report Bugs</a>
-            <a href="/contact/submit/?subject=website-feedback">Feedback</a>
-          </div>
-          <div class="ac-gf-footer-language-links">
-            <a href="/cn/" class="first">简体中文</a>
-            <a href="/jp/">日本語</a>
-            <a href="/kr/">한국어</a>
-          </div>
-        </div>
-      </footer></section></div></div><script id="bootstrap-data" type="application/json">{"id":3108512,"title":{"content":"Continuing User Activities with Handoff"},"availability":[{"introduced":"12.0","current":"13.4","platform":"iOS"},{"introduced":"10.14","current":"10.15.4","platform":"macOS"},{"introduced":"10.1","current":"11.4","platform":"Xcode"}],"abstract":"<div><p>Define and manage which of your app’s activities can be continued between devices.<\/p><\/div>","repository":{"downloadURL":"https:\/\/docs-assets.developer.apple.com\/published\/fd7ed9d64f\/ContinuingUserActivitiesWithHandoff.zip","checksum":"98c1104625438dd3c8a7490cc6cd195249d5183658c3d694af8b29eab805db76d98d5942ced7d45d9c4ec81eff6b182ca46f013d6ab6edfe64fef14385b1b3bc"},"discussion":"<div><p>This sample app searches for Apple Store locations and shows them on a map. The user can choose a store’s map annotation to see its address and mark it as a favorite. As the user changes visible regions or inspects individual stores, the app uses Handoff to share these activities with the user’s other devices. If the user changes devices, they can use Handoff to launch the app and return to what they were doing on the original device.<\/p><p><figure id=\"3174463\"><img class=\"centered-block\" src=\"https:\/\/docs-assets.developer.apple.com\/published\/d677c0c7b1\/5eca4f04-129e-44bd-9145-4708dced70d6.png\" srcSet=\"https:\/\/docs-assets.developer.apple.com\/published\/d677c0c7b1\/5eca4f04-129e-44bd-9145-4708dced70d6.png 2x\" alt=\"Outlines of mobile and desktop devices, showing a specific point of interest on a map.\" width=\"564\" height=\"auto\"\/><\/figure><\/p><p>The sample project builds for both macOS and iOS, so you can run it on a Mac, iPhone, and iPad. The project does not contain a watchOS or tvOS app.<\/p><\/div><h3 id=\"3174479\">Configure the Sample Code Project<\/h3><div><p><code class=\"code-voice\"><span>Handoff<wbr\/>Map<wbr\/>Viewer<\/span><\/code> must be run on actual devices; the iOS version cannot run in Simulator.<\/p><p>To configure your Mac to run the sample code project, open System Preferences and do the following:<\/p><ol><li><p>In Bluetooth settings, click Turn Bluetooth On.<\/p><\/li><li><p>In iCloud settings, verify that you are signed into iCloud. If you are not, click Sign In and enter your Apple ID and password.<\/p><\/li><li><p>In General settings, select “Allow Handoff between this Mac and your iCloud devices”.<\/p><\/li><\/ol><p>To configure your iOS devices to run the sample code project, open the Settings app and do the following:<\/p><ol><li><p>In Bluetooth settings, tap to turn on Bluetooth.<\/p><\/li><li><p>In the user banner at the top of Settings, tap to sign in with your Apple ID if you haven’t already. Then tap to turn on  iCloud.<\/p><\/li><li><p>In General settings, tap to turn on Handoff.<\/p><\/li><\/ol><p>To configure the sample code project so that it can run on your devices, open the <code class=\"code-voice\"><span>Handoff<wbr\/>Map<wbr\/>Viewer<wbr\/>.xcodeproj<\/span><\/code> project in Xcode and do the following:<\/p><ol><li><p>Select the <code class=\"code-voice\"><span>Handoff<wbr\/>Map<wbr\/>Viewer<\/span><\/code> project at the top of the Project Navigator, select the <code class=\"code-voice\"><span>Handoff<wbr\/>Map<wbr\/>Viewer<wbr\/>Mac<\/span><\/code> target, select the “General” tab, and change the Bundle Identifier to a unique value, such as one that uses your organization’s name instead of <code class=\"code-voice\"><span>com<wbr\/>.example<\/span><\/code>.<\/p><\/li><li><p>With the <code class=\"code-voice\"><span>Handoff<wbr\/>Map<wbr\/>Viewer<\/span><\/code> project still selected in the Project Navigator, select the <code class=\"code-voice\"><span>Handoff<wbr\/>Map<wbr\/>Viewer<wbr\/>IOS<\/span><\/code> target, select the “General” tab, and change the Bundle Identifier to the same value you used in the previous step.<\/p><\/li><li><p>To run the macOS version, build the <code class=\"code-voice\"><span>Handoff<wbr\/>Map<wbr\/>Viewer<wbr\/>Mac<\/span><\/code> target, and run it locally, or copy the application file from the <code class=\"code-voice\"><span>Products<\/span><\/code> folder to another Mac and run it there.<\/p><\/li><li><p>To run the iOS version, build the <code class=\"code-voice\"><span>Handoff<wbr\/>Map<wbr\/>Viewer<wbr\/>IOS<\/span><\/code> target and run it on one of your connected iOS devices.<\/p><\/li><\/ol><\/div><h3 id=\"3174480\">Define User Activities<\/h3><div><p>You implement Handoff by determining specific activities that a user can perform in your app, and whose state you can reproduce on a second device. The sample app has two user activities:<\/p><ul><li><p>Viewing a map region.<\/p><\/li><li><p>Viewing the details of a specific Apple Store and editing its “favorite” value.<\/p><\/li><\/ul><aside class=\"aside aside-note\" role=\"note\"><p class=\"aside-name\">Note<\/p><p>Be aware that your app usually has other persistence and synchronization strategies in addition to Handoff. For example, the sample app uses an iCloud key-value store to keep track of which stores have been marked as favorites. This way, the favorites data is available to the app if you launch it outside of Handoff, such as from the macOS Dock or the iOS Home screen.<\/p><\/aside><p>You use the app’s <code class=\"code-voice\"><span>Info<wbr\/>.plist<\/span><\/code> to tell Handoff which activities your app can continue, by providing an entry with the key name <code class=\"code-voice\"><span>NSUser<wbr\/>Activity<wbr\/>Types<\/span><\/code>. The type of this entry is <code class=\"code-voice\"><span>Array<\/span><\/code>, and each member is a <code class=\"code-voice\"><span>String<\/span><\/code> representing a supported Handoff activity. In the sample app, the macOS and iOS targets include the <code class=\"code-voice\"><span>map-viewing<\/span><\/code> and <code class=\"code-voice\"><span>store-editing<\/span><\/code> activites in their <code class=\"code-voice\"><span>Info<wbr\/>.plist<\/span><\/code> files.<\/p><figure id=\"3174466\"><div class=\"formatted-content\"><div class=\"code-listing\"><pre class=\"code-source\" data-language=\"swift\"><code>&lt;key&gt;NSUserActivityTypes&lt;\/key&gt;\n&lt;array&gt;\n  &lt;string&gt;com.example.apple-samplecode.HandoffMapViewer.map-viewing&lt;\/string&gt;\n  &lt;string&gt;com.example.apple-samplecode.HandoffMapViewer.store-editing&lt;\/string&gt;\n&lt;\/array&gt;\n<\/code><\/pre><\/div><\/div><\/figure><\/div><h3 id=\"3174481\">Manage User Activities<\/h3><div><p>At runtime, you represent a user activity with the <code class=\"code-voice\"><span>NSUser<wbr\/>Activity<\/span><\/code>  type. You initialize a user activity object with a string identifier, the same one used earlier in the <code class=\"code-voice\"><span>Info<wbr\/>.plist<\/span><\/code>.  This object also has an <code class=\"code-voice\"><span>is<wbr\/>Eligible<wbr\/>For<wbr\/>Handoff<\/span><\/code> property that exposes the activity to Handoff, and a <code class=\"code-voice\"><span>user<wbr\/>Info<\/span><\/code>  dictionary containing data needed to recreate the app’s state on the receiving device.<\/p><p>In the sample app, the <code class=\"code-voice\"><span>Map<wbr\/>View<wbr\/>Controller<\/span><\/code> manages two <code class=\"code-voice\"><span>NSUser<wbr\/>Activity<\/span><\/code> instances: one each for the <code class=\"code-voice\"><span>map-viewing<\/span><\/code> and <code class=\"code-voice\"><span>store-editing<\/span><\/code> activities. When the map region changes, it sets the <code class=\"code-voice\"><span>user<wbr\/>Activity<\/span><\/code> property (defined in <code class=\"code-voice\"><span>NSView<wbr\/>Controller<\/span><\/code> for macOS and <code class=\"code-voice\"><span>UIView<wbr\/>Controller<\/span><\/code> for iOS) to the <code class=\"code-voice\"><span>map-viewing<\/span><\/code> activity. It makes this the current activity, replacing any other activity that may have previously been sent to Handoff, and sets <code class=\"code-voice\"><span>needs<wbr\/>Save<\/span><\/code> to <code class=\"code-voice\"><span>true<\/span><\/code>, indicating that the activity has new data to send to remote devices.<\/p><figure id=\"3174468\"><div class=\"formatted-content\"><div class=\"code-listing\"><pre class=\"code-source\" data-language=\"swift\"><code>userActivity = mapViewingActivity\nmapViewingActivity.needsSave = true\nmapViewingActivity.becomeCurrent()\n<\/code><\/pre><\/div><\/div><\/figure><p>Calling <code class=\"code-voice\"><span>needs<wbr\/>Save<\/span><\/code>  on the view controller’s <code class=\"code-voice\"><span>user<wbr\/>Activity<\/span><\/code> eventually results in a callback to the method <code class=\"code-voice\"><span>update<wbr\/>User<wbr\/>Activity<wbr\/>State(_:)<\/span><\/code>, declared in <code class=\"code-voice\"><span>UIResponder<\/span><\/code> on iOS and <code class=\"code-voice\"><span>NSResponder<\/span><\/code> on macOS. This is the app’s opportunity to refresh the activity object’s <code class=\"code-voice\"><span>user<wbr\/>Info<\/span><\/code> before Handoff receives the activity. The implementation in the sample app calls a convenience function <code class=\"code-voice\"><span>update<wbr\/>Viewing<wbr\/>Region(_:)<\/span><\/code>,  defined in an extension on <code class=\"code-voice\"><span>NSUser<wbr\/>Activity<\/span><\/code>, to encode the map view’s <code class=\"code-voice\"><span>MKCoordinate<wbr\/>Region<\/span><\/code> into key-value entries in the <code class=\"code-voice\"><span>user<wbr\/>Info<\/span><\/code> dictionary.<\/p><figure id=\"3174469\"><div class=\"formatted-content\"><div class=\"code-listing\"><pre class=\"code-source\" data-language=\"swift\"><code>func updateViewingRegion(_ region: MKCoordinateRegion) {\n    let updateDict = [\n        NSUserActivity.regionCenterLatitudeKeyString: region.center.latitude,\n        NSUserActivity.regionCenterLongitudeKeyString: region.center.longitude,\n        NSUserActivity.regionSpanLatitudeKeyString: region.span.latitudeDelta,\n        NSUserActivity.regionSpanLongitudeKeyString: region.span.longitudeDelta]\n    addUserInfoEntries(from: updateDict)\n}\n<\/code><\/pre><\/div><\/div><\/figure><\/div><h3 id=\"3174482\">Receive User Activities<\/h3><div><p>When you move to another device, macOS or iOS indicates that a Handoff activity is available. macOS displays a Handoff icon at the beginning of the Dock, with a badge indicating the type of source device. On iOS, the Handoff banner appears at the bottom of the screen in the app switcher, showing the app and source device name.<\/p><p>When you launch the app using the Handoff prompts, the system calls methods in <code class=\"code-voice\"><span>UIApplication<wbr\/>Delegate<\/span><\/code> (iOS) or <code class=\"code-voice\"><span>NSApplication<wbr\/>Delegate<\/span><\/code> (macOS) to provide the Handoff activity. The <code class=\"code-voice\"><span>application(_:<wbr\/>continue:<wbr\/>restoration<wbr\/>Handler:)<\/span><\/code> method provides the activity, along with a completion handler that you call with an array of view controllers that can handle the activity.  The implementation in the iOS app delegate just finds and passes the first view controller, an instance of <code class=\"code-voice\"><span>Map<wbr\/>View<wbr\/>Controller<\/span><\/code>.<\/p><figure id=\"3174471\"><div class=\"formatted-content\"><div class=\"code-listing\"><pre class=\"code-source\" data-language=\"swift\"><code>func application(_ application: UIApplication, continue userActivity: NSUserActivity,\n                 restorationHandler: @escaping ([UIUserActivityRestoring]?) -&gt; Void) -&gt; Bool {\n    guard let topNav = application.keyWindow?.rootViewController as? UINavigationController,\n        let mapVC = topNav.viewControllers.first as? MapViewController else {\n        return false\n    }\n    \n    mapVC.loadView()\n    restorationHandler([mapVC])\n    return true\n}\n<\/code><\/pre><\/div><\/div><\/figure><p>The implementation in the macOS app delegate is similar, except that it traverses the key window’s hierarchy, rather than the iOS navigation controller stack:<\/p><figure id=\"3174472\"><div class=\"formatted-content\"><div class=\"code-listing\"><pre class=\"code-source\" data-language=\"swift\"><code>func application(_ application: NSApplication, continue userActivity: NSUserActivity,\n                 restorationHandler: @escaping ([NSUserActivityRestoring]) -&gt; Void) -&gt; Bool {\n    guard let mapVC = application.keyWindow?.windowController?.contentViewController as? MapViewController else {\n        return false\n    }\n    \n    mapVC.loadView()\n    restorationHandler([mapVC])\n    return true\n}\n<\/code><\/pre><\/div><\/div><\/figure><\/div><h3 id=\"3174483\">Update the App’s State<\/h3><div><p>The view controllers receive the <code class=\"code-voice\"><span>NSUser<wbr\/>Activity<\/span><\/code> in the <code class=\"code-voice\"><span>restore<wbr\/>User<wbr\/>Activity<wbr\/>State(_:)<\/span><\/code> method. <code class=\"code-voice\"><span>Map<wbr\/>View<wbr\/>Controller<\/span><\/code> inspects the activity to determine whether it is the map-viewing or the store-editing activity, and then updates the UI as needed. The map-viewing activity case resets the map region, by creating a new <code class=\"code-voice\"><span>MKCoordinate<wbr\/>Region<\/span><\/code> from the values in the <code class=\"code-voice\"><span>user<wbr\/>Info<\/span><\/code>.<\/p><figure id=\"3174474\"><div class=\"formatted-content\"><div class=\"code-listing\"><pre class=\"code-source\" data-language=\"swift\"><code>func viewingRegion() -&gt; MKCoordinateRegion? {\n    guard let centerLatitude = userInfo?[NSUserActivity.regionCenterLatitudeKeyString] as? CLLocationDegrees,\n        let centerLongitude = userInfo?[NSUserActivity.regionCenterLongitudeKeyString] as? CLLocationDegrees,\n        let spanLatitude = userInfo?[NSUserActivity.regionSpanLatitudeKeyString] as? CLLocationDegrees,\n        let spanLongitude = userInfo?[NSUserActivity.regionSpanLongitudeKeyString] as? CLLocationDegrees else {\n            return nil\n    }\n    return MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: centerLatitude,\n                                                             longitude: centerLongitude),\n                              span: MKCoordinateSpan(latitudeDelta: spanLatitude,\n                                                     longitudeDelta: spanLongitude))\n}\n<\/code><\/pre><\/div><\/div><\/figure><p>In the case of the store-editing activity, the view controller also retrieves the store’s URL and location coordinates from the <code class=\"code-voice\"><span>user<wbr\/>Info<\/span><\/code>. The app waits until the map adds a <code class=\"code-voice\"><span>MKAnnotation<wbr\/>View<\/span><\/code> for the store being edited, so it knows where to anchor the popover.<\/p><\/div><h3 id=\"3174484\">Update the Original Device’s State (Optional)<\/h3><div><p>The <code class=\"code-voice\"><span>NSUser<wbr\/>Activity<\/span><\/code> class has a <code class=\"code-voice\"><span>delegate<\/span><\/code> property of type <code class=\"code-voice\"><span>NSUser<wbr\/>Activity<wbr\/>Delegate<\/span><\/code>. This notifies the originating device when you continue an activity on another device. The originating device can use this to clean up its own UI state.<\/p><p>In the sample app, tapping a pin for an Apple Store shows a popover with details about the store and a switch (iOS) or checkbox (macOS) to mark the store as a favorite. The <code class=\"code-voice\"><span>Map<wbr\/>View<wbr\/>Contoller<\/span><\/code> represents this activity as the <code class=\"code-voice\"><span>store<wbr\/>Editing<wbr\/>Activity<\/span><\/code> property, and sets itself as the activity’s delegate. When you continue editing on a second device, the delegate on the originating device receives a notification that this activity has been continued, and dismisses its own popover.<\/p><figure id=\"3174476\"><div class=\"formatted-content\"><div class=\"code-listing\"><pre class=\"code-source\" data-language=\"swift\"><code>func userActivityWasContinued(_ userActivity: NSUserActivity) {\n    if let detailVC = presentedViewController as? StoreDetailViewController,\n        userActivity.activityType == NSUserActivity.storeEditingActivityType {\n        detailVC.dismiss(animated: true)\n    }\n}\n<\/code><\/pre><\/div><\/div><\/figure><aside class=\"aside aside-note\" role=\"note\"><p class=\"aside-name\">Note<\/p><p>Not all apps need to update the state of the originating app. In the sample app, dismissing the popover is meant as a gentle reminder to not make simultaneous edits from two devices. This is neither explicitly prohibited nor supported in the sample.<\/p><\/aside><\/div>","containingGroup":[{"id":2877763,"role":"task","paths":[],"abstract":"<div><p>Share the user’s current activity with Handoff, Spotlight, and Siri Shortcuts.<\/p><\/div>","symbols":[{"id":2962158,"role":"sampleCode","paths":["documentation\/foundation\/task_management\/increasing_app_usage_with_suggestions_based_on_user_activities"],"abstract":"<div><p>Provide a continuous user experience by capturing information from your app and displaying this information as proactive suggestions across the system.<\/p><\/div>","title":{"content":"Increasing App Usage with Suggestions Based on User Activities"}},{"id":3108512,"role":"sampleCode","paths":["documentation\/foundation\/task_management\/continuing_user_activities_with_handoff"],"abstract":"<div><p>Define and manage which of your app’s activities can be continued between devices.<\/p><\/div>","title":{"content":"Continuing User Activities with Handoff"}},{"id":3112025,"role":"article","paths":["documentation\/foundation\/task_management\/implementing_handoff_in_your_app"],"abstract":"<div><p>Create, send, and receive user activities directly.<\/p><\/div>","title":{"content":"Implementing Handoff in Your App"}},{"id":1414761,"role":"symbol","usr":"c:objc(cs)NSUserActivity","name":"NSUserActivity","domain":"swift","kind":"cl","availability":[{"platform":"iOS","introduced":"8.0"},{"platform":"macOS","introduced":"10.10"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">class <\/span><span class=\"identifier\">NSUser<wbr\/>Activity<\/span><\/code>","paths":["documentation\/foundation\/nsuseractivity"],"title":{"content":"NSUserActivity"},"abstract":"<div><p>A representation of the state of your app at a moment in time.<\/p><\/div>","hasChildren":true},{"id":1417869,"role":"symbol","usr":"c:objc(pl)NSUserActivityDelegate","name":"NSUserActivityDelegate","domain":"swift","kind":"intf","availability":[{"platform":"iOS","introduced":"8.0"},{"platform":"macOS","introduced":"10.10"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"3.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">protocol <\/span><span class=\"identifier\">NSUser<wbr\/>Activity<wbr\/>Delegate<\/span><\/code>","paths":["documentation\/foundation\/nsuseractivitydelegate"],"title":{"content":"NSUserActivityDelegate"},"abstract":"<div><p>The interface through which a user activity instance notifies its delegate of updates.<\/p><\/div>","hasChildren":true}],"title":{"content":"Activity Sharing"}}],"modules":[{"title":{"content":"Foundation"},"paths":["documentation\/foundation"],"importStatement":"<import xml:space=\"preserve\"><keyWord>import<\/keyWord> Foundation<\/import>","availability":[{"platform":"watchOS","introduced":"2.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"iOS","introduced":"2.0"}]}],"role":"sampleCode","language":"swift","roleHeading":"Sample Code","languages":["swift"],"variants":{"swift":{"paths":["documentation\/foundation\/task_management\/continuing_user_activities_with_handoff"]}},"pid":463568,"paths":["documentation\/foundation\/task_management\/continuing_user_activities_with_handoff"],"hierarchy":[[{"id":1613013,"role":"collection","title":{"content":"Foundation"},"paths":["documentation\/foundation"]},{"id":2877754,"role":"collectionGroup","title":{"content":"Task Management"},"paths":["documentation\/foundation\/task_management"]}]],"legalNotices":{"copyright":"Copyright &copy; 2020 Apple Inc. All rights reserved.","termsOfUse":"https:\/\/www.apple.com\/legal\/internet-services\/terms\/site.html","privacyPolicy":"https:\/\/www.apple.com\/privacy\/privacy-policy"}}</script></body></html>
+<li><a href="/accessories/">Accessories</a></li>
+</ul>
+</div>
+<div id="dn-colc" class="column">
+<h3><a href="/develop/">Develop</a></h3>
+<ul>
+<li><a href="/xcode/">Xcode</a></li>
+<li><a href="/swift/">Swift</a></li>
+<li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
+<li><a href="/testflight/">TestFlight</a></li>
+<li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
+<li><a href="/videos/">Videos</a></li>
+<li><a href="/download/">Downloads</a></li>
+</ul>
+</div>
+<div id="dn-cold" class="column">
+<h3><a href="/distribute/">Distribute</a></h3>
+<ul>
+<li><a href="/programs/">Developer Program</a></li>
+<li><a href="/app-store/">App Store</a></li>
+<li><a href="/app-store/review/">App Review</a></li>
+<li><a href="/macos/distribution/">Mac Software</a></li>
+<li><a href="/business/distribute/">Apps for Business</a></li>
+<li><a href="/safari/extensions/">Safari Extensions</a></li>
+<li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
+<li><a href="/softwarelicensing/">Trademark Licensing</a></li>
+</ul>
+</div>
+<div id="dn-cole" class="column">
+<h3><a href="/support/">Support</a></h3>
+<ul>
+<li><a href="/support/articles/">Articles</a></li>
+<li><a href="/forums/">Developer Forums</a></li>
+<li><a href="/bug-reporting/">Feedback &amp; Bug Reporting</a></li>
+<li><a href="/system-status/">System Status</a></li>
+<li><a href="/contact/">Contact Us</a></li>
+</ul>
+<h3><a href="/account/">Account</a></h3>
+<ul>
+<li><a href="/account/ios/certificate/">Certificates, Identifiers &amp; Profiles</a></li>
+<li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
+</ul>
+</div>
+</div></nav><div class="ac-gf-footer-legal">
+<div class="ac-gf-footer-news">To view the latest developer news, visit <a href="/news/">News and Updates</a>.</div>
+<div class="ac-gf-footer-language-dropdown-wrapper">
+<select id="footer-language-selector" class="footer-language-select" aria-label="Language Dropdown" autocomplete="off"><option value="https://developer.apple.com/" selected>English</option>
+<option value="https://developer.apple.com/cn/">简体中文</option>
+<option value="https://developer.apple.com/jp/">日本語</option>
+<option value="https://developer.apple.com/kr/">한국어</option></select> <span class="footer-language-select-icon icon icon-chevrondown" aria-hidden="true"></span>
+</div>
+<div class="ac-gf-footer-legal-copyright">Copyright © <span class="footer-current-year">2020</span> <a href="https://www.apple.com">Apple Inc.</a> All rights reserved.</div>
+<div class="ac-gf-footer-legal-links">
+<a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a> <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a> <a href="/terms/">License Agreements</a>
+</div>
+</div></footer></section><script src="../../../tutorials/js/footer.js"></script>
+</body>
+</html>

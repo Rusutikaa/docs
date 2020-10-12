@@ -1,0 +1,1134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- link rel="icon" href="/favicon.ico" -->
+<link rel="mask-icon" href="/apple-logo.svg" color="#333333">
+<link rel="stylesheet" href="../../tutorials/css/_globalnav.css">
+<title>NSURLSessionConfiguration | Apple Developer Documentation</title>
+<link href="../../tutorials/css/chunk-76d5c2b5.00c53891.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic.e358e85c.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css" rel="prefetch">
+<link href="../../tutorials/css/topic.69278f1e.css" rel="prefetch">
+<link href="../../tutorials/css/topic~tutorials-overview.1f93e025.css" rel="prefetch">
+<link href="../../tutorials/css/tutorials-overview.d4ff0b50.css" rel="prefetch">
+<link href="../../tutorials/css/welcome-experience-featured.0537f0f0.css" rel="prefetch">
+<link href="../../tutorials/css/welcome-experience-technologies.60068ae2.css" rel="prefetch">
+<link href="../../tutorials/js/chunk-2d0d3105.459bf725.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-2d21a016.b81cb311.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-503f1ed8.d26c4552.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-530f89ce.621e1d48.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-640db3b2.f8778ca5.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-76d5c2b5.092e3b8a.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic.6abe9458.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js" rel="prefetch">
+<link href="../../tutorials/js/topic.c6ec6b6c.js" rel="prefetch">
+<link href="../../tutorials/js/topic~tutorials-overview.467a8186.js" rel="prefetch">
+<link href="../../tutorials/js/tutorials-overview.d77f61ca.js" rel="prefetch">
+<link href="../../tutorials/js/welcome-experience-featured.04f663e2.js" rel="prefetch">
+<link href="../../tutorials/js/welcome-experience-technologies.56a372c1.js" rel="prefetch">
+<link href="../../tutorials/css/app.2a174a23.css" rel="preload" as="style">
+<link href="../../tutorials/js/app.2c558263.js" rel="preload" as="script">
+<link href="../../tutorials/js/chunk-vendors.c3b68236.js" rel="preload" as="script">
+<link href="../../tutorials/css/app.2a174a23.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../../tutorials/css/chunk-76d5c2b5.00c53891.css">
+<script charset="utf-8" src="../../tutorials/js/chunk-76d5c2b5.092e3b8a.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic.e358e85c.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic.6abe9458.js"></script>
+</head>
+<body>
+<div id="_omniture_top">
+<script>var s_account="awdappledeveloper"</script>
+</div>
+<a href="#main" id="skip-localnav">Skip Navigation</a><aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"><nav id="ac-globalnav" class="js no-touch" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions"><div class="ac-gn-content">
+<ul class="ac-gn-header">
+<li class="ac-gn-item ac-gn-menuicon">
+<label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true"><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span> </span><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span></span></label> <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open"><span class="ac-gn-menuanchor-label">Global Nav Open Menu</span> </a><a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close"><span class="ac-gn-menuanchor-label">Global Nav Close Menu</span></a>
+</li>
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+</ul>
+<div class="ac-gn-search-placeholder-container" role="search"><div class="ac-gn-search ac-gn-search-small"><a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a><div class="ac-gn-search-placeholder-bar">
+<div class="ac-gn-search-placeholder-input"><div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
+<div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
+<span class="ac-gn-search-placeholder">Search Developer</span>
+</div></div>
+<div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></div>
+</div></a></div></div>
+<ul class="ac-gn-list">
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-discover"><a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover"><span class="ac-gn-link-text">Discover</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-design"><a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design"><span class="ac-gn-link-text">Design</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-develop"><a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop"><span class="ac-gn-link-text">Develop</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-distribute"><a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute"><span class="ac-gn-link-text">Distribute</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport"><a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport"><span class="ac-gn-link-text">Support</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-account"><a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account"><span class="ac-gn-link-text">Account</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search"><a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a></li>
+</ul>
+<aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search"><div class="ac-gn-searchview-content">
+<div class="ac-gn-searchview-bar"><div class="ac-gn-searchview-bar-wrapper">
+<form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get"><div class="ac-gn-searchform-wrapper">
+<input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions"> <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button> <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search"><span class="ac-gn-searchform-reset-background"></span></button>
+</div></form>
+<button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></button>
+</div></div>
+<aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
+</div>
+<button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search"><span class="ac-gn-searchview-close-wrapper"><span class="ac-gn-searchview-close-left"></span> <span class="ac-gn-searchview-close-right"></span></span></button></aside>
+</div></nav><div class="ac-gn-blur"></div>
+<div id="ac-gn-curtain" class="ac-gn-curtain"></div>
+<div id="ac-gn-placeholder" class="ac-nav-placeholder"></div>
+<script src="../../tutorials/js/ac-globalnav.built.js"></script>
+<noscript>
+<style>.noscript {
+  font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
+  margin: 92px auto 140px auto;
+  text-align: center;
+  width: 980px;
+}
+
+.noscript-title {
+  color: #111;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -.003em;
+  line-height: 1.08365;
+  margin: 0 auto 54px auto;
+  width: 502px;
+}
+
+@media only screen and (max-width: 1068px) {
+  .noscript {
+    margin: 90px auto 120px auto;
+    width: 692px;
+  }
+
+  .noscript-title {
+    font-size: 40px;
+    letter-spacing: 0;
+    line-height: 1.1;
+    margin: 0 auto 45px auto;
+    width: 420px;
+  }
+}
+
+@media only screen and (max-width: 735px) {
+  .noscript {
+    margin: 45px auto 60px auto;
+    width: 87.5%;
+  }
+
+  .noscript-title {
+    font-size: 32px;
+    letter-spacing: .004em;
+    line-height: 1.125;
+    margin: 0 auto 35px auto;
+    max-width: 330px;
+    width: auto;
+  }
+}
+
+#loading-placeholder {
+  display: none;
+};</style>
+<div class="noscript">
+<h1 class="noscript-title">This page requires JavaScript.</h1>
+<p>Please turn on JavaScript in your browser and refresh the page to view its content.</p>
+</div>
+</noscript>
+<div data-v-0220a4c4="" id="app" class=""><div data-v-0220a4c4=""><div data-v-2deaa168="" class="doc-topic">
+<div data-v-3ceaa5df="" data-v-2deaa168="" class="localnav-container">
+<input data-v-3ceaa5df="" aria-hidden="true" id="localnav-menustate" type="checkbox" class="localnav-menustate"><div id="localnav-sticky-placeholder" class="css-sticky"></div>
+<nav data-v-3ceaa5df="" aria-label="API Reference" data-sticky="" id="localnav" role="navigation" class="localnav localnav-dark theme-dark medium-localnav-collapsible localnav-noborder localnav-scrim css-sticky"><div data-v-3ceaa5df="" class="localnav-wrapper">
+<div data-v-3ceaa5df="" class="referencenav">
+<div data-v-3ceaa5df="" class="localnav-background"></div>
+<div data-v-3ceaa5df="" class="localnav-content">
+<a data-v-3ceaa5df="" href="../../index.html" class="localnav-title">
+            Documentation
+          </a><div data-v-3ceaa5df="" class="localnav-menu">
+<a data-v-3ceaa5df="" href="#localnav-menustate" role="button" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Open Menu</span></a><a data-v-3ceaa5df="" href="#" role="button" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Close Menu</span></a><div data-v-3ceaa5df="" class="localnav-menu-tray">
+<ul data-v-72fd0d2c="" data-v-3ceaa5df="" aria-label="Breadcrumbs" class="localnav-menu-items">
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item collapsed"><a data-v-72fd0d2c="" href="../../documentation/foundation_language-objc.html" class="parent item router-link-active" data-v-23a2ae0d="">
+    Foundation
+  </a></li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item collapsed"><a data-v-72fd0d2c="" href="../../documentation/foundation/url_loading_system_language-objc.html" class="parent item" data-v-23a2ae0d="">
+    <span class="enstr">URL Loading System</span><!--end_enstr-->
+<span class="jpstr">
+URLローディングシステム
+</span><!--end_jpstr-->
+
+  </a></li>
+<li data-v-68bd9d1f="" data-v-72fd0d2c="" class="localnav-menu-item hierarchy-collapsed-items">
+<button data-v-68bd9d1f="" class="toggle"><span data-v-68bd9d1f="" class="indicator">⋯</span></button><ul data-v-68bd9d1f="" class="dropdown collapsed">
+<li data-v-68bd9d1f="" class="dropdown-item"><a data-v-68bd9d1f="" href="../../documentation/foundation_language-objc.html" class="link router-link-active">Foundation</a></li>
+<li data-v-68bd9d1f="" class="dropdown-item"><a data-v-68bd9d1f="" href="../../documentation/foundation/url_loading_system_language-objc.html" class="link"><span class="enstr">URL Loading System</span><!--end_enstr-->
+<span class="jpstr">
+URLローディングシステム
+</span><!--end_jpstr-->
+</a></li>
+</ul>
+</li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../documentation/foundation/nsurlsession_language-objc.html" class="parent item" data-v-23a2ae0d="">
+    NSURLSession
+  </a></li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item">
+<span data-v-23a2ae0d="" class="current item">
+    NSURLSessionConfiguration
+  </span><!---->
+</li>
+</ul>
+<ul data-v-3ceaa5df="" data-breadcrumbs-count="4" class="localnav-menu-items localnav-menu-settings">
+<li data-v-282336e0="" data-v-3ceaa5df="" class="localnav-menu-setting language-container" breadcrumbcount="4">
+<div data-v-282336e0="" class="language-toggle-container">
+<label data-v-282336e0="" for="language-toggle" class="language-toggle-label">
+      Language:
+    </label><select data-v-282336e0="" id="language-toggle" class="language-dropdown localnav-menu-link" style="width: 74px;"><option data-v-282336e0="" value="swift">
+        Swift
+      </option>
+<option data-v-282336e0="" value="occ">
+        Objective-C
+      </option></select>
+</div>
+<div data-v-282336e0="" class="language-list-container">
+<span data-v-282336e0="" class="localnav-menu-setting-label">
+      Language:
+    </span><ul data-v-282336e0="" class="language-list">
+<li data-v-282336e0="" class="language-list-item"><a data-v-282336e0="" href="../../documentation/foundation/urlsessionconfiguration.html" class="localnav-menu-setting-link">
+          Swift
+        </a></li>
+<li data-v-282336e0="" class="language-list-item"><span data-v-282336e0="" data-language="occ" aria-current="page" class="current-language">
+          Objective-C
+        </span></li>
+</ul>
+</div>
+</li>
+<li data-v-2e9f4ea2="" data-v-3ceaa5df="" class="localnav-menu-setting">
+<label data-v-2e9f4ea2="" for="version-label" class="localnav-menu-setting-label">
+    API Changes:
+  </label><a data-v-2e9f4ea2="" id="version-label" href="#" class="localnav-menu-link version-label version-label-show">
+    Show
+  </a>
+</li><!---->
+
+</ul>
+</div>
+<div data-v-3ceaa5df="" class="localnav-actions"><div data-v-3ceaa5df="" aria-hidden="true" class="localnav-action localnav-action-menucta"><label data-v-3ceaa5df="" for="localnav-menustate" class="localnav-menucta"><span data-v-3ceaa5df="" class="localnav-menucta-chevron"></span></label></div></div>
+</div>
+</div>
+</div><!---->
+
+</div></nav><label data-v-3ceaa5df="" aria-hidden="true" for="localnav-menustate" id="localnav-curtain"></label>
+</div>
+<main data-v-2deaa168="" id="main" role="main" tabindex="0" class="main"><div data-v-4ba5af7c="" data-v-2deaa168="" class="topictitle">
+<span data-v-4ba5af7c="" class="eyebrow">Class</span><h1 data-v-4ba5af7c="" class="title">NSURLSession<wbr data-v-4ba5af7c="">Configuration</wbr>
+</h1>
+</div>
+<div data-v-0253ce0e="" data-v-2deaa168="" class="row container">
+<div data-v-9807b2e0="" data-v-5ad0d458="" data-v-2deaa168="" class="col description large-9 medium-9 small-12" data-v-0253ce0e=""><!---->
+<div data-v-7ea0aa49="" data-v-aba749e6="" data-v-2deaa168="" class="abstract content" data-v-9807b2e0=""><span class="enstr">A configuration object that defines behavior and policies for a URL session.</span><!--end_enstr-->
+<span class="jpstr">
+ある構成設定オブジェクト、それはあるURLセッションに対する挙動と方針を定義します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div>
+<div data-v-9807b2e0="" data-v-42fb6bac="" data-v-2deaa168="" class="col summary large-3 medium-3 small-12" data-v-0253ce0e=""><!---->
+<div data-v-e4237090="" data-v-fcdb795a="" data-v-2deaa168="" class="summary-section availability" role="complementary" aria-label="Availability" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-fcdb795a="" class="title" data-v-e4237090=""><span class="enstr">Availability</span><!--end_enstr-->
+<span class="jpstr">
+有効性
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-fcdb795a="" class="summary-list platform-list" data-v-e4237090="">
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="iOS 7.0+, Available on iOS 7.0 and later" title="Available on iOS 7.0 and later" data-v-e3899270="">
+  iOS 7.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="macOS 10.9+, Available on macOS 10.9 and later" title="Available on macOS 10.9 and later" data-v-e3899270="">
+  macOS 10.9+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="Mac Catalyst 13.0+, Available on Mac Catalyst 13.0 and later" title="Available on Mac Catalyst 13.0 and later" data-v-e3899270="">
+  Mac Catalyst 13.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="tvOS 9.0+, Available on tvOS 9.0 and later" title="Available on tvOS 9.0 and later" data-v-e3899270="">
+  tvOS 9.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="watchOS 2.0+, Available on watchOS 2.0 and later" title="Available on watchOS 2.0 and later" data-v-e3899270="">
+  watchOS 2.0+
+</span><!---->
+</li>
+</ul>
+</div>
+<div data-v-e4237090="" data-v-741142ba="" data-v-2deaa168="" class="summary-section frameworks" role="complementary" aria-label="Framework" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-741142ba="" class="title" data-v-e4237090=""><span class="enstr">Framework</span><!--end_enstr-->
+<span class="jpstr">
+フレームワーク
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-741142ba="" class="summary-list" data-v-e4237090=""><li data-v-e3899270="" data-v-741142ba="" class="summary-list-item" data-v-1450532d=""><span data-v-741142ba="" data-v-e3899270="" class="name">Foundation</span></li></ul>
+</div>
+<div data-v-e4237090="" data-v-2b96ab1a="" data-v-2deaa168="" class="summary-section on-this-page" data-v-9807b2e0=""><nav data-v-2b96ab1a="" data-v-e4237090="" aria-labelledby="on-this-page-title"><p data-v-1e0258b0="" data-v-2b96ab1a="" class="title" id="on-this-page-title" data-v-e4237090=""><span class="enstr">On This Page</span><!--end_enstr-->
+<span class="jpstr">
+この項には
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-2b96ab1a="" class="summary-list" data-v-e4237090="">
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/nsurlsessionconfiguration_language-objc.html#declaration" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Declaration</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/nsurlsessionconfiguration_language-objc.html#overview" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Overview</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/nsurlsessionconfiguration_language-objc.html#topics" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Topics</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/nsurlsessionconfiguration_language-objc.html#relationships" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Relationships</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/nsurlsessionconfiguration_language-objc.html#see-also" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">See Also</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+</ul></nav></div>
+</div>
+<div data-v-9807b2e0="" data-v-1e40f676="" data-v-2deaa168="" class="col primary-content large-9 medium-9 small-12" data-v-0253ce0e="">
+<section data-v-e932e1b8="" data-v-1e40f676="" id="declaration" class="declaration" data-v-9807b2e0=""><h2 data-v-e932e1b8=""><span class="enstr">Declaration</span><!--end_enstr-->
+<span class="jpstr">
+宣言
+</span><!--end_jpstr-->
+</h2>
+<div data-v-29bd318c="" data-v-e932e1b8="" class="declaration-group"><!---->
+<pre data-v-e0a7f756="" data-v-29bd318c="" class="source"><code data-v-e0a7f756=""><span data-v-c9e896f0="" data-v-e0a7f756="" class="token-keyword">@interface</span> <span data-v-c9e896f0="" data-v-e0a7f756="" class="token-identifier">NSURLSessionConfiguration</span> : <a data-v-c9e896f0="" data-v-e0a7f756="" href="../../documentation/objectivec/1418956-nsobject_language-objc.html" class="type-identifier-link"><span data-v-c9e896f0="">NSObject</span></a></code></pre>
+</div><!---->
+</section><div data-v-7ea0aa49="" data-v-1e40f676="" class="content" data-v-9807b2e0="">
+<h2 id="overview"><span class="enstr">Overview</span><!--end_enstr-->
+<span class="jpstr">
+概要
+</span><!--end_jpstr-->
+</h2>
+<p><span class="enstr">An <span><code data-v-7fb764c1="">NSURLSession<wbr data-v-7fb764c1="">Configuration</wbr></code></span> object defines the behavior and policies to use when uploading and downloading data using an <a href="../../documentation/foundation/nsurlsession_language-objc.html" class=""><code data-v-7fb764c1="">NSURLSession</code></a> object. When uploading or downloading data, creating a configuration object is always the first step you must take. You use this object to configure the timeout values, caching policies, connection requirements, and other types of information that you intend to use with your <span><code data-v-7fb764c1="">NSURLSession</code></span> object.</span><!--end_enstr-->
+<span class="jpstr">
+<span><code data-v-7fb764c1="">NSURLSession<wbr data-v-7fb764c1="">Configuration</wbr></code></span>オブジェクトは、<a href="../../documentation/foundation/nsurlsession_language-objc.html" class=""><code data-v-7fb764c1="">NSURLSession</code></a>オブジェクトを使ってデータをアップロードおよびダウンロードするときに使う挙動と方針を定義します。データをアップロードまたはダウンロードする時、構成設定オブジェクトを作成することは、常にあなたが取らなければならない最初の一歩です。あなたはこのオブジェクトを使うことで、タイムアウト値、キャッシュ方針、接続要件、そしてあなたの<span><code data-v-7fb764c1="">NSURLSession</code></span>オブジェクトで使うことをあなたが意図する他の種類の情報を構成設定します。
+</span><!--end_jpstr-->
+ </p>
+<p><span class="enstr">It is important to configure your <span><code data-v-7fb764c1="">NSURLSession<wbr data-v-7fb764c1="">Configuration</wbr></code></span> object appropriately before using it to initialize a session object. Session objects make a copy of the configuration settings you provide and use those settings to configure the session. Once configured, the session object ignores any changes you make to the <span><code data-v-7fb764c1="">NSURLSession<wbr data-v-7fb764c1="">Configuration</wbr></code></span> object. If you need to modify your transfer policies, you must update the session configuration object and use it to create a new <span><code data-v-7fb764c1="">NSURLSession</code></span> object.</span><!--end_enstr-->
+<span class="jpstr">
+重要なことは、あなたの<span><code data-v-7fb764c1="">NSURLSession<wbr data-v-7fb764c1="">Configuration</wbr></code></span>オブジェクトを、それを使ってセッションオブジェクトを初期化する前に、適切に構成設定することです。セッションオブジェクトは、あなたが提供する構成設定の設定それらのコピーを作ります、そしてそれらの設定を使ってセッションを構成設定します。一旦構成設定されたならば、セッションオブジェクトは、あなたが<span><code data-v-7fb764c1="">NSURLSession<wbr data-v-7fb764c1="">Configuration</wbr></code></span>オブジェクトにするあらゆる変更を無視します。あなたがあなたの転送方針を修正する必要があるならば、あなたはセッション構成設定オブジェクトを更新して、それを使って新しい<span><code data-v-7fb764c1="">NSURLSession</code></span>オブジェクトを作成しなければなりません。
+</span><!--end_jpstr-->
+</p>
+<aside data-v-c567d8a8="" aria-label="note" class="note"><p data-v-c567d8a8="" class="label"><span class="enstr">Note</span><!--end_enstr-->
+<span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+<p data-v-c567d8a8=""><span class="enstr">In some cases, the policies defined in this configuration may be overridden by policies specified by an <a href="../../documentation/foundation/nsurlrequest_language-objc.html" class="" data-v-c567d8a8=""><code data-v-7fb764c1="">NSURLRequest</code></a> object provided for a task. Any policy specified on the request object is respected unless the session’s policy is more restrictive. For example, if the session configuration specifies that cellular networking should not be allowed, the <a href="../../documentation/foundation/nsurlrequest_language-objc.html" class="" data-v-c567d8a8=""><code data-v-7fb764c1="">NSURLRequest</code></a> object cannot request cellular networking.</span><!--end_enstr-->
+<span class="jpstr">
+いくつかの場合には、この構成設定において定義された方針は、あるタスクに提供された<a href="../../documentation/foundation/nsurlrequest_language-objc.html" class="" data-v-c567d8a8=""><code data-v-7fb764c1="">NSURLRequest</code></a>オブジェクトによって指定される方針で上書きされるかもしれません。リクエストオブジェクト上で指定される何らかの方針は、そのセッションのもつ方針のほうがより制限が強い場合を除き、尊重されます。例えば、セッション構成設定がセルラーネットワークは許可されるべきでないと指定するならば、その<a href="../../documentation/foundation/nsurlrequest_language-objc.html" class="" data-v-c567d8a8=""><code data-v-7fb764c1="">NSURLRequest</code></a>オブジェクトはセルラーネットワークを要求できません。
+</span><!--end_jpstr-->
+</p></aside><p><span class="enstr">For more information about using configuration objects to create sessions, see <a href="../../documentation/foundation/nsurlsession_language-objc.html" class=""><code data-v-7fb764c1="">NSURLSession</code></a>.</span><!--end_enstr-->
+<span class="jpstr">
+セッションを作成するために構成設定オブジェクトを使うことについてのさらなる情報として、<a href="../../documentation/foundation/nsurlsession_language-objc.html" class=""><code data-v-7fb764c1="">NSURLSession</code></a>を見てください。
+</span><!--end_jpstr-->
+ </p>
+<h3 id="2934753"><span class="enstr">Types of Session Configurations</span><!--end_enstr-->
+<span class="jpstr">
+セッション構成設定の型
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">The behavior and capabilities of a URL session are largely determined by the kind of configuration used to create the session.</span><!--end_enstr-->
+<span class="jpstr">
+あるURLセッションの挙動と能力は、セッションを作成するために使われる構成設定の種類によって大部分は決定されます。
+</span><!--end_jpstr-->
+ </p>
+<p></p>
+<p></p>
+<p><span class="enstr">The singleton shared session (which has no configuration object) is for basic requests. It’s not as customizable as sessions that you create, but it serves as a good starting point if you have very limited requirements. You access this session by calling the shared class method. See that method’s discussion for more information about its limitations.</span><!--end_enstr-->
+<span class="jpstr">
+シングルトン共有セッション（それは構成設定オブジェクトを持ちません）は、基本的なリクエストに対するものです。それはあなたが作成するセッションと同じようにカスタマイズ可能ではありません、しかしそれは良い出発点として利用できます、もしあなたが非常に制限された要件を持つならば。あなたはこのセッションに、共有クラスメソッドを呼び出すことによってアクセスします。そのメソッドのもつ議論をそれの限界についてのさらなる情報として見てください。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">Default sessions behave much like the shared session (unless you customize them further), but let you obtain data incrementally using a delegate. You can create a default session configuration by calling the default method on the URLSessionConfiguration class.</span><!--end_enstr-->
+<span class="jpstr">
+省略時のセッションは、ほとんど共有セッションのように振るまいます、しかしあなたにデータを漸増的に委任先を使って入手させます。あなたは、省略時のセッション構成設定を、省略時のメソッドをURLSessionConfigurationクラス上で呼び出すことによって作成できます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">Ephemeral sessions are similar to default sessions, but they don’t write caches, cookies, or credentials to disk. You can create an ephemeral session configuration by calling the ephemeral method on the URLSessionConfiguration class.</span><!--end_enstr-->
+<span class="jpstr">
+短命セッションは、省略時のセッションに似ています、しかしそれらはキャッシュ、クッキー、または資格情報をディスクに書き出しません。あなたは、短命セッション構成設定を、短命メソッドをURLSessionConfigurationクラス上で呼び出すことによって作成できます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">Background sessions let you perform uploads and downloads of content in the background while your app isn’t running. You can create a background session configuration by calling the backgroundSessionConfiguration(_:) method on the URLSessionConfiguration class.</span><!--end_enstr-->
+<span class="jpstr">
+バックグラウンドセッションは、あなたに内容のアップロードとダウンロードをあなたのアプリが動作していない間にバックグラウンドで実行させます。あなたは、バックグラウンドセッション構成設定を、backgroundSessionConfiguration(_:) メソッドをURLSessionConfigurationクラス上で呼び出すことによって作成できます。
+</span><!--end_jpstr-->
+</p>
+</div>
+</div>
+</div>
+<section data-v-8c663d90="" data-v-63527a60="" data-v-2deaa168="" id="topics" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">Topics</span><!--end_enstr-->
+<span class="jpstr">
+話題
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Creating a Session Configuration Object</span><!--end_enstr-->
+<span class="jpstr">
+セッション構成設定オブジェクトを作成する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/1411560-defaultsessionconfiguration_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">default<wbr data-v-01f7f080="">Session<wbr data-v-01f7f080="">Configuration</wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A default session configuration object.</span><!--end_enstr-->
+<span class="jpstr">
+省略時の構成設定オブジェクト。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/1410529-ephemeralsessionconfiguration_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">ephemeral<wbr data-v-01f7f080="">Session<wbr data-v-01f7f080="">Configuration</wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A session configuration that uses no persistent storage for caches, cookies, or credentials.</span><!--end_enstr-->
+<span class="jpstr">
+あるセッション構成設定、それはキャッシュ、クッキー、または資格情報のためにどんな持続ストレージも使いません。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/1407496-backgroundsessionconfigurationwi_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">+ </span><span data-v-dac213be="" class="identifier">background<wbr data-v-dac213be="">Session<wbr data-v-dac213be="">Configuration<wbr data-v-dac213be="">With<wbr data-v-dac213be="">Identifier:</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Creates a session configuration object that allows HTTP and HTTPS uploads or downloads to be performed in the background.</span><!--end_enstr-->
+<span class="jpstr">
+あるセッション構成設定オブジェクトを作成します、それはHTTPおよびHTTPSアップロードまたはダウンロードにバックグラウンドで実行されることを許可します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/3240616-init_language-objc.html" class="link deprecated has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">init</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Creates an empty session configuration.</span><!--end_enstr-->
+<span class="jpstr">
+空のセッション構成設定を作成します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div>
+<span data-v-41682aee="" data-v-01f7f080="" role="presentation" class="violator violator-inline"><span class="enstr">Deprecated</span><!--end_enstr-->
+<span class="jpstr">
+非推奨
+</span><!--end_jpstr-->
+</span>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/3240617-new_language-objc.html" class="link deprecated has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">+ </span><span data-v-dac213be="" class="identifier">new</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Creates an empty session configuration.</span><!--end_enstr-->
+<span class="jpstr">
+空のセッション構成設定を作成します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div>
+<span data-v-41682aee="" data-v-01f7f080="" role="presentation" class="violator violator-inline"><span class="enstr">Deprecated</span><!--end_enstr-->
+<span class="jpstr">
+非推奨
+</span><!--end_jpstr-->
+</span>
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Setting General Properties</span><!--end_enstr-->
+<span class="jpstr">
+一般プロパティを設定する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/1408987-identifier_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">identifier</code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The background session identifier of the configuration object.</span><!--end_enstr-->
+<span class="jpstr">
+構成設定オブジェクトのバックグラウンドセッション識別子。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/1411532-httpadditionalheaders_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">HTTPAdditional<wbr data-v-01f7f080="">Headers</wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A dictionary of additional headers to send with requests.</span><!--end_enstr-->
+<span class="jpstr">
+リクエストで送られる追加ヘッダそれらからなるある辞書。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/1411606-networkservicetype_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">network<wbr data-v-01f7f080="">Service<wbr data-v-01f7f080="">Type</wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The type of network service for all tasks within sessions based on this configuration.</span><!--end_enstr-->
+<span class="jpstr">
+この構成設定に基づくセッションそれら内部の全てのタスクに対するネットワークサービスの型。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/1409406-allowscellularaccess_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">allows<wbr data-v-01f7f080="">Cellular<wbr data-v-01f7f080="">Access</wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A Boolean value that determines whether connections should be made over a cellular network.</span><!--end_enstr-->
+<span class="jpstr">
+あるブール値、それは接続がセルラーネットワーク越しになされるべきかどうかを決定します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/1408259-timeoutintervalforrequest_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">timeout<wbr data-v-01f7f080="">Interval<wbr data-v-01f7f080="">For<wbr data-v-01f7f080="">Request</wbr></wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The timeout interval to use when waiting for additional data.</span><!--end_enstr-->
+<span class="jpstr">
+追加データを待っているときに使うタイムアウト間隔。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/1408153-timeoutintervalforresource_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">timeout<wbr data-v-01f7f080="">Interval<wbr data-v-01f7f080="">For<wbr data-v-01f7f080="">Resource</wbr></wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The maximum amount of time that a resource request should be allowed to take.</span><!--end_enstr-->
+<span class="jpstr">
+リソースリクエストがとるのを許可されるべき最大限の時間量。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/1409450-sharedcontaineridentifier_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">shared<wbr data-v-01f7f080="">Container<wbr data-v-01f7f080="">Identifier</wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The identifier for the shared container into which files in background URL sessions should be downloaded.</span><!--end_enstr-->
+<span class="jpstr">
+それへとバックグラウンドURLセッションにおけるファイルがダウンロードされるべき、共有コンテナに対する識別子。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/2908812-waitsforconnectivity_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">waits<wbr data-v-01f7f080="">For<wbr data-v-01f7f080="">Connectivity</wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A Boolean value that indicates whether the session should wait for connectivity to become available, or fail immediately.</span><!--end_enstr-->
+<span class="jpstr">
+あるブール値、それは相互通信能力が利用可能になるのをセッションが待機するべきか、または直ちに失敗するかを指し示します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Setting Cookie Policies</span><!--end_enstr-->
+<span class="jpstr">
+クッキー方針を設定する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/1408933-httpcookieacceptpolicy_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">HTTPCookie<wbr data-v-01f7f080="">Accept<wbr data-v-01f7f080="">Policy</wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A policy constant that determines when cookies should be accepted.</span><!--end_enstr-->
+<span class="jpstr">
+ある方針定数、それはクッキーが受け入れられるべき場合を決定します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/1411589-httpshouldsetcookies_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">HTTPShould<wbr data-v-01f7f080="">Set<wbr data-v-01f7f080="">Cookies</wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A Boolean value that determines whether requests should contain cookies from the cookie store.</span><!--end_enstr-->
+<span class="jpstr">
+あるブール値、それはリクエストがクッキー貯蔵所からのクッキーを含むべきかどうかを決定します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/1411599-httpcookiestorage_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">HTTPCookie<wbr data-v-01f7f080="">Storage</wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The cookie store for storing cookies within this session.</span><!--end_enstr-->
+<span class="jpstr">
+このセッション内のクッキーを格納するクッキー貯蔵所。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nshttpcookiestorage_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">NSHTTPCookie<wbr data-v-01f7f080="">Storage</wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A container that manages the storage of cookies.</span><!--end_enstr-->
+<span class="jpstr">
+クッキーのストレージを管理するコンテナ。
+</span><!--end_jpstr-->
+ </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nshttpcookie_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">NSHTTPCookie</code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A representation of an HTTP cookie.</span><!--end_enstr-->
+<span class="jpstr">
+HTTPクッキーのある表現。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Setting Security Policies</span><!--end_enstr-->
+<span class="jpstr">
+セキュリティ方針を設定する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/3362533-tlsminimumsupportedprotocolversi_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">TLSMinimum<wbr data-v-01f7f080="">Supported<wbr data-v-01f7f080="">Protocol<wbr data-v-01f7f080="">Version</wbr></wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The minimum TLS protocol version that the client should accept when making connections in this session.</span><!--end_enstr-->
+<span class="jpstr">
+接続をこのセッションにおいて作っているクライアントが受け入れるべき最小限のTLSプロトコルバージョン。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/3362532-tlsmaximumsupportedprotocolversi_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">TLSMaximum<wbr data-v-01f7f080="">Supported<wbr data-v-01f7f080="">Protocol<wbr data-v-01f7f080="">Version</wbr></wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The maximum TLS protocol version that the client should request when making connections in this session.</span><!--end_enstr-->
+<span class="jpstr">
+最大限のTLSプロトコルバージョン、それはクライアントがこのセッションにおいて接続をする時にリクエストすべきものです。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/1410947-urlcredentialstorage_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">URLCredential<wbr data-v-01f7f080="">Storage</wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A credential store that provides credentials for authentication.</span><!--end_enstr-->
+<span class="jpstr">
+ある資格情報貯蔵所、それは認証に対する資格情報を提供します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/1411526-tlsminimumsupportedprotocol_language-objc.html" class="link deprecated has-adjacent-elements"><code data-v-01f7f080="">TLSMinimum<wbr data-v-01f7f080="">Supported<wbr data-v-01f7f080="">Protocol</wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The minimum TLS protocol to accept during protocol negotiation.</span><!--end_enstr-->
+<span class="jpstr">
+プロトコル交渉の間に受け入れる最小限のTLSプロトコル。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div>
+<span data-v-41682aee="" data-v-01f7f080="" role="presentation" class="violator violator-inline"><span class="enstr">Deprecated</span><!--end_enstr-->
+<span class="jpstr">
+非推奨
+</span><!--end_jpstr-->
+</span>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/1409076-tlsmaximumsupportedprotocol_language-objc.html" class="link deprecated has-adjacent-elements"><code data-v-01f7f080="">TLSMaximum<wbr data-v-01f7f080="">Supported<wbr data-v-01f7f080="">Protocol</wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The maximum TLS protocol version that the client should request when making connections in this session.</span><!--end_enstr-->
+<span class="jpstr">
+最大限のTLSプロトコルバージョン、それはクライアントがこのセッションにおいて接続をする時にリクエストすべきものです。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div>
+<span data-v-41682aee="" data-v-01f7f080="" role="presentation" class="violator violator-inline"><span class="enstr">Deprecated</span><!--end_enstr-->
+<span class="jpstr">
+非推奨
+</span><!--end_jpstr-->
+</span>
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Setting Caching Policies</span><!--end_enstr-->
+<span class="jpstr">
+キャッシュ方針を設定する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/1410148-urlcache_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">URLCache</code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The URL cache for providing cached responses to requests within the session.</span><!--end_enstr-->
+<span class="jpstr">
+セッション内のリクエストそれらに対するキャッシュされた応答を提供するためのURLキャッシュ。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/1411655-requestcachepolicy_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">request<wbr data-v-01f7f080="">Cache<wbr data-v-01f7f080="">Policy</wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A predefined constant that determines when to return a response from the cache.</span><!--end_enstr-->
+<span class="jpstr">
+あるあらかじめ定義された定数、それはある応答がキャッシュから返されることになる時を決定します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Supporting Background Transfers</span><!--end_enstr-->
+<span class="jpstr">
+バックグラウンド転送をサポートする
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/1617174-sessionsendslaunchevents_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">session<wbr data-v-01f7f080="">Sends<wbr data-v-01f7f080="">Launch<wbr data-v-01f7f080="">Events</wbr></wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A Boolean value that indicates whether the app should be resumed or launched in the background when transfers finish.</span><!--end_enstr-->
+<span class="jpstr">
+あるブール値、それは転送が終了する時にアプリがバックグラウンドで再開されるまたは起動されるべきかどうかを指し示します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/1411552-discretionary_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">discretionary</code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A Boolean value that determines whether background tasks can be scheduled at the discretion of the system for optimal performance.</span><!--end_enstr-->
+<span class="jpstr">
+あるブール値、それはバックグラウンドタスクが最善の性能のためにシステムの裁量で予定されることができるかどうかを決定します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/1409517-shoulduseextendedbackgroundidlem_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">should<wbr data-v-01f7f080="">Use<wbr data-v-01f7f080="">Extended<wbr data-v-01f7f080="">Background<wbr data-v-01f7f080="">Idle<wbr data-v-01f7f080="">Mode</wbr></wbr></wbr></wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A Boolean value that indicates whether TCP connections should be kept open when the app moves to the background.</span><!--end_enstr-->
+<span class="jpstr">
+あるブール値、それはアプリがバックグラウンドに移動する時にTCP接続が開いたままにされるべきかどうかを指し示します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Supporting Custom Protocols</span><!--end_enstr-->
+<span class="jpstr">
+あつらえのプロトコルをサポートする
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/1411050-protocolclasses_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">protocol<wbr data-v-01f7f080="">Classes</wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">An array of extra protocol subclasses that handle requests in a session.</span><!--end_enstr-->
+<span class="jpstr">
+あるセッションにおいてリクエストを取り扱う追加のプロトコルサブクラスからなるある配列。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlprotocol_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">NSURLProtocol</code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">An abstract class that handles the loading of protocol-specific URL data.</span><!--end_enstr-->
+<span class="jpstr">
+ある抽象クラス、それはプロトコル特有URLデータのロードを取り扱います。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Supporting Multipath TCP</span><!--end_enstr-->
+<span class="jpstr">
+マルチパスTCPをサポートする
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0="">
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/improving_network_reliability_using_multipath_tcp_language-objc.html" class="link has-adjacent-elements"><svg data-v-a76e93d8="" data-v-a8c6b630="" data-v-01f7f080="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="svg-icon article-icon topic-icon" viewbox="0 0 22 30"><title data-v-a76e93d8="">Article</title>
+<g data-v-a76e93d8=""><path data-v-a76e93d8="" d="M12.87,0H0V2H0V28H0v2H22V9.13ZM20,28H2V2h9V12h9Zm0-18H13V3l7,7Z"></path></g></svg><span data-v-01f7f080=""><span class="enstr">Improving Network Reliability Using Multipath TCP</span><!--end_enstr-->
+<span class="jpstr">
+ネットワーク信頼性をマルチパスTCPを使って改善する
+</span><!--end_jpstr-->
+</span><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Use the available radios in iOS devices to improve your app’s network reliability and performance.</span><!--end_enstr-->
+<span class="jpstr">
+iOSデバイスにおいて利用可能な無線を使って、あなたのアプリのもつネットワーク信頼性と性能を改善します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/2875967-multipathservicetype_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">multipath<wbr data-v-01f7f080="">Service<wbr data-v-01f7f080="">Type</wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A service type that specifies the Multipath TCP connection policy for transmitting data over Wi-Fi and cellular interfaces.</span><!--end_enstr-->
+<span class="jpstr">
+あるサービス型、それはWi-Fiおよびcellularインターフェイス越しのデータ転送に対するマルチパスTCP接続方針を指定します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionmultipathservicetype_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">NSURLSession<wbr data-v-01f7f080="">Multipath<wbr data-v-01f7f080="">Service<wbr data-v-01f7f080="">Type</wbr></wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Constants that specify the type of service that Multipath TCP uses.</span><!--end_enstr-->
+<span class="jpstr">
+マルチパスTCPが使うサービスの型を指定する定数。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_networking_multipath?language=objc" class="link has-adjacent-elements"><span data-v-01f7f080=""><span class="enstr">Multipath Entitlement</span><!--end_enstr-->
+<span class="jpstr">
+マルチパス資格
+</span><!--end_jpstr-->
+</span><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A Boolean value indicating whether your app may use Multipath protocols to seamlessly transition between Wi-Fi and cellular networks.</span><!--end_enstr-->
+<span class="jpstr">
+あなたのアプリがマルチバスプロトコルを使って途切れることなくWi-Fiとセルラーネットワークの間を推移するかもしれないかどうかを指し示すあるブール値。
+</span><!--end_jpstr-->
+</div>
+<div data-v-01f7f080="" class="topic-keyinfo">
+<strong data-v-01f7f080="">Key:</strong> com.apple.developer.networking.multipath
+      </div><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Setting HTTP Policy and Proxy Properties</span><!--end_enstr-->
+<span class="jpstr">
+HTTPポリシーおよびプロキシプロパティを設定する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/1407597-httpmaximumconnectionsperhost_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">HTTPMaximum<wbr data-v-01f7f080="">Connections<wbr data-v-01f7f080="">Per<wbr data-v-01f7f080="">Host</wbr></wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The maximum number of simultaneous connections to make to a given host.</span><!--end_enstr-->
+<span class="jpstr">
+与えられたホストにする同時接続の最大限の数。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/1411657-httpshouldusepipelining_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">HTTPShould<wbr data-v-01f7f080="">Use<wbr data-v-01f7f080="">Pipelining</wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A Boolean value that determines whether the session should use HTTP pipelining.</span><!--end_enstr-->
+<span class="jpstr">
+あるブール値、それはセッションがHTTPパイプラインを使うべきかどうかを決定します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/1411499-connectionproxydictionary_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">connection<wbr data-v-01f7f080="">Proxy<wbr data-v-01f7f080="">Dictionary</wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A dictionary containing information about the proxy to use within this session.</span><!--end_enstr-->
+<span class="jpstr">
+セッション内で使うプロキシについての情報を含んでいる辞書。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Supporting Connectivity Changes</span><!--end_enstr-->
+<span class="jpstr">
+接続変更をサボートする
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/2908812-waitsforconnectivity_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">waits<wbr data-v-01f7f080="">For<wbr data-v-01f7f080="">Connectivity</wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A Boolean value that indicates whether the session should wait for connectivity to become available, or fail immediately.</span><!--end_enstr-->
+<span class="jpstr">
+あるブール値、それは相互通信能力が利用可能になるのをセッションが待機するべきか、または直ちに失敗するかを指し示します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Supporting Limited Modes</span><!--end_enstr-->
+<span class="jpstr">
+制限モードをサポートする
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/3235751-allowsconstrainednetworkaccess_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">allows<wbr data-v-01f7f080="">Constrained<wbr data-v-01f7f080="">Network<wbr data-v-01f7f080="">Access</wbr></wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A Boolean value that indicates whether connections may use the network when the user has specified Low Data Mode.</span><!--end_enstr-->
+<span class="jpstr">
+ユーザがLow Data Modeを指定する場合に接続がネットワークを使うかもしれないかどうかを指し示すブール値。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/3235752-allowsexpensivenetworkaccess_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">allows<wbr data-v-01f7f080="">Expensive<wbr data-v-01f7f080="">Network<wbr data-v-01f7f080="">Access</wbr></wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A Boolean value that indicates whether connections may use a network interface that the system considers expensive.</span><!--end_enstr-->
+<span class="jpstr">
+システムが高くつくと考えるネットワークインターフェイスを接続が使うかもしれないかどうかを指し示すブール値。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Deprecated Methods</span><!--end_enstr-->
+<span class="jpstr">
+非推奨メソッド
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsessionconfiguration/1411521-backgroundsessionconfiguration_language-objc.html" class="link deprecated has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">+ </span><span data-v-dac213be="" class="identifier">background<wbr data-v-dac213be="">Session<wbr data-v-dac213be="">Configuration:</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a session configuration object that allows HTTP and HTTPS uploads or downloads to be performed in the background.</span><!--end_enstr-->
+<span class="jpstr">
+あるセッション構成設定オブジェクトを返します、それはHTTPおよびHTTPSアップロードまたはダウンロードにバックグラウンドで実行されることを許可します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div>
+<span data-v-41682aee="" data-v-01f7f080="" role="presentation" class="violator violator-inline"><span class="enstr">Deprecated</span><!--end_enstr-->
+<span class="jpstr">
+非推奨
+</span><!--end_jpstr-->
+</span>
+</div>
+</div>
+</div>
+</div><!----></section><section data-v-8c663d90="" data-v-2deaa168="" id="relationships" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">Relationships</span><!--end_enstr-->
+<span class="jpstr">
+関係
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Inherits From</span><!--end_enstr-->
+<span class="jpstr">
+継承元
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><ul data-v-4af8f78e="" class="relationships-list inline" data-v-9807b2e0=""><li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/objectivec/nsobject_language-objc.html" class="link"><code data-v-4af8f78e="">NSObject</code></a><!---->
+</li></ul></div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Conforms To</span><!--end_enstr-->
+<span class="jpstr">
+次に準拠
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><ul data-v-4af8f78e="" class="relationships-list inline" data-v-9807b2e0=""><li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/nscopying_language-objc.html" class="link"><code data-v-4af8f78e="">NSCopying</code></a><!---->
+</li></ul></div>
+</div>
+</div></section><section data-v-8c663d90="" data-v-63527a60="" data-v-2deaa168="" id="see-also" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">See Also</span><!--end_enstr-->
+<span class="jpstr">
+参照
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Creating a Session</span><!--end_enstr-->
+<span class="jpstr">
+セッションを作成する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsession/1411474-sessionwithconfiguration_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">+ </span><span data-v-dac213be="" class="identifier">session<wbr data-v-dac213be="">With<wbr data-v-dac213be="">Configuration:</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Creates a session with the specified session configuration.</span><!--end_enstr-->
+<span class="jpstr">
+セッションをこの指定されたセッション構成設定で作成します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsession/1411597-sessionwithconfiguration_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">+ </span><span data-v-dac213be="" class="identifier">session<wbr data-v-dac213be="">With<wbr data-v-dac213be="">Configuration:<wbr data-v-dac213be="">delegate:<wbr data-v-dac213be="">delegate<wbr data-v-dac213be="">Queue:</wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Creates a session with the specified session configuration, delegate, and operation queue.</span><!--end_enstr-->
+<span class="jpstr">
+セッションをこの指定されたセッション構成設定、委任先、そしてオペレーションキューで作成します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsurlsession/1411477-configuration_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">configuration</code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A copy of the configuration object for this session.</span><!--end_enstr-->
+<span class="jpstr">
+このセッションに対する構成設定オブジェクトのあるコピー。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+</div><!----></section></main>
+</div></div></div>
+<section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo"><nav class="footer-breadory"><a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a><section class="breadcrumbs"><ol class="breadcrumbs-list"></ol></section><div id="directorynav" class="directorynav">
+<div id="dn-cola" class="column">
+<h3><a href="/discover/">Discover</a></h3>
+<ul>
+<li><a href="/ios/">iOS</a></li>
+<li><a href="/ipados/">iPadOS</a></li>
+<li><a href="/macos/">macOS</a></li>
+<li><a href="/tvos/">tvOS</a></li>
+<li><a href="/watchos/">watchOS</a></li>
+<li><a href="/safari/">Safari and Web</a></li>
+<li><a href="/games/">Games</a></li>
+<li><a href="/business/">Business</a></li>
+<li><a href="/education/">Education</a></li>
+<li><a href="/wwdc/">WWDC</a></li>
+</ul>
+</div>
+<div id="dn-colb" class="column">
+<h3><a href="/design/">Design</a></h3>
+<ul>
+<li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
+<li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
+<span class="jpstr">
+リソース
+</span><!--end_jpstr-->
+</a></li>
+<li><a href="/videos/design/">Videos</a></li>
+<li><a href="/design/awards/">Apple Design Awards</a></li>
+<li><a href="/fonts/">Fonts</a></li>
+<li><a href="/accessibility/">Accessibility</a></li>
+<li><a href="/localization/"><span class="enstr">Localization</span><!--end_enstr-->
+<span class="jpstr">
+ローカライゼーション
+</span><!--end_jpstr-->
+</a></li>
+<li><a href="/accessories/">Accessories</a></li>
+</ul>
+</div>
+<div id="dn-colc" class="column">
+<h3><a href="/develop/">Develop</a></h3>
+<ul>
+<li><a href="/xcode/">Xcode</a></li>
+<li><a href="/swift/">Swift</a></li>
+<li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
+<li><a href="/testflight/">TestFlight</a></li>
+<li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
+<li><a href="/videos/">Videos</a></li>
+<li><a href="/download/">Downloads</a></li>
+</ul>
+</div>
+<div id="dn-cold" class="column">
+<h3><a href="/distribute/">Distribute</a></h3>
+<ul>
+<li><a href="/programs/">Developer Program</a></li>
+<li><a href="/app-store/">App Store</a></li>
+<li><a href="/app-store/review/">App Review</a></li>
+<li><a href="/macos/distribution/">Mac Software</a></li>
+<li><a href="/business/distribute/">Apps for Business</a></li>
+<li><a href="/safari/extensions/">Safari Extensions</a></li>
+<li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
+<li><a href="/softwarelicensing/">Trademark Licensing</a></li>
+</ul>
+</div>
+<div id="dn-cole" class="column">
+<h3><a href="/support/">Support</a></h3>
+<ul>
+<li><a href="/support/articles/">Articles</a></li>
+<li><a href="/forums/">Developer Forums</a></li>
+<li><a href="/bug-reporting/">Feedback &amp; Bug Reporting</a></li>
+<li><a href="/system-status/">System Status</a></li>
+<li><a href="/contact/">Contact Us</a></li>
+</ul>
+<h3><a href="/account/">Account</a></h3>
+<ul>
+<li><a href="/account/ios/certificate/">Certificates, Identifiers &amp; Profiles</a></li>
+<li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
+</ul>
+</div>
+</div></nav><div class="ac-gf-footer-legal">
+<div class="ac-gf-footer-news">To view the latest developer news, visit <a href="/news/">News and Updates</a>.</div>
+<div class="ac-gf-footer-language-dropdown-wrapper">
+<select id="footer-language-selector" class="footer-language-select" aria-label="Language Dropdown" autocomplete="off"><option value="https://developer.apple.com/" selected>English</option>
+<option value="https://developer.apple.com/cn/">简体中文</option>
+<option value="https://developer.apple.com/jp/">日本語</option>
+<option value="https://developer.apple.com/kr/">한국어</option></select> <span class="footer-language-select-icon icon icon-chevrondown" aria-hidden="true"></span>
+</div>
+<div class="ac-gf-footer-legal-copyright">Copyright © <span class="footer-current-year">2020</span> <a href="https://www.apple.com">Apple Inc.</a> All rights reserved.</div>
+<div class="ac-gf-footer-legal-links">
+<a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a> <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a> <a href="/terms/">License Agreements</a>
+</div>
+</div></footer></section><script src="../../tutorials/js/footer.js"></script>
+</body>
+</html>

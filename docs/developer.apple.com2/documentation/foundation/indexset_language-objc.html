@@ -1,0 +1,2113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- link rel="icon" href="/favicon.ico" -->
+<link rel="mask-icon" href="/apple-logo.svg" color="#333333">
+<link rel="stylesheet" href="../../tutorials/css/_globalnav.css">
+<title>IndexSet | Apple Developer Documentation</title>
+<link href="../../tutorials/css/chunk-76d5c2b5.00c53891.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic.e358e85c.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css" rel="prefetch">
+<link href="../../tutorials/css/topic.69278f1e.css" rel="prefetch">
+<link href="../../tutorials/css/topic~tutorials-overview.1f93e025.css" rel="prefetch">
+<link href="../../tutorials/css/tutorials-overview.d4ff0b50.css" rel="prefetch">
+<link href="../../tutorials/css/welcome-experience-featured.0537f0f0.css" rel="prefetch">
+<link href="../../tutorials/css/welcome-experience-technologies.60068ae2.css" rel="prefetch">
+<link href="../../tutorials/js/chunk-2d0d3105.459bf725.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-2d21a016.b81cb311.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-503f1ed8.d26c4552.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-530f89ce.621e1d48.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-640db3b2.f8778ca5.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-76d5c2b5.092e3b8a.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic.6abe9458.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js" rel="prefetch">
+<link href="../../tutorials/js/topic.c6ec6b6c.js" rel="prefetch">
+<link href="../../tutorials/js/topic~tutorials-overview.467a8186.js" rel="prefetch">
+<link href="../../tutorials/js/tutorials-overview.d77f61ca.js" rel="prefetch">
+<link href="../../tutorials/js/welcome-experience-featured.04f663e2.js" rel="prefetch">
+<link href="../../tutorials/js/welcome-experience-technologies.56a372c1.js" rel="prefetch">
+<link href="../../tutorials/css/app.2a174a23.css" rel="preload" as="style">
+<link href="../../tutorials/js/app.2c558263.js" rel="preload" as="script">
+<link href="../../tutorials/js/chunk-vendors.c3b68236.js" rel="preload" as="script">
+<link href="../../tutorials/css/app.2a174a23.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../../tutorials/css/chunk-76d5c2b5.00c53891.css">
+<script charset="utf-8" src="../../tutorials/js/chunk-76d5c2b5.092e3b8a.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic.e358e85c.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic.6abe9458.js"></script>
+</head>
+<body>
+<div id="_omniture_top">
+<script>var s_account="awdappledeveloper"</script>
+</div>
+<a href="#main" id="skip-localnav">Skip Navigation</a><aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"><nav id="ac-globalnav" class="js no-touch" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions"><div class="ac-gn-content">
+<ul class="ac-gn-header">
+<li class="ac-gn-item ac-gn-menuicon">
+<label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true"><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span> </span><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span></span></label> <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open"><span class="ac-gn-menuanchor-label">Global Nav Open Menu</span> </a><a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close"><span class="ac-gn-menuanchor-label">Global Nav Close Menu</span></a>
+</li>
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+</ul>
+<div class="ac-gn-search-placeholder-container" role="search"><div class="ac-gn-search ac-gn-search-small"><a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a><div class="ac-gn-search-placeholder-bar">
+<div class="ac-gn-search-placeholder-input"><div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
+<div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
+<span class="ac-gn-search-placeholder">Search Developer</span>
+</div></div>
+<div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></div>
+</div></a></div></div>
+<ul class="ac-gn-list">
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-discover"><a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover"><span class="ac-gn-link-text">Discover</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-design"><a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design"><span class="ac-gn-link-text">Design</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-develop"><a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop"><span class="ac-gn-link-text">Develop</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-distribute"><a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute"><span class="ac-gn-link-text">Distribute</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport"><a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport"><span class="ac-gn-link-text">Support</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-account"><a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account"><span class="ac-gn-link-text">Account</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search"><a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a></li>
+</ul>
+<aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search"><div class="ac-gn-searchview-content">
+<div class="ac-gn-searchview-bar"><div class="ac-gn-searchview-bar-wrapper">
+<form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get"><div class="ac-gn-searchform-wrapper">
+<input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions"> <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button> <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search"><span class="ac-gn-searchform-reset-background"></span></button>
+</div></form>
+<button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></button>
+</div></div>
+<aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
+</div>
+<button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search"><span class="ac-gn-searchview-close-wrapper"><span class="ac-gn-searchview-close-left"></span> <span class="ac-gn-searchview-close-right"></span></span></button></aside>
+</div></nav><div class="ac-gn-blur"></div>
+<div id="ac-gn-curtain" class="ac-gn-curtain"></div>
+<div id="ac-gn-placeholder" class="ac-nav-placeholder"></div>
+<script src="../../tutorials/js/ac-globalnav.built.js"></script>
+<noscript>
+<style>.noscript {
+  font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
+  margin: 92px auto 140px auto;
+  text-align: center;
+  width: 980px;
+}
+
+.noscript-title {
+  color: #111;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -.003em;
+  line-height: 1.08365;
+  margin: 0 auto 54px auto;
+  width: 502px;
+}
+
+@media only screen and (max-width: 1068px) {
+  .noscript {
+    margin: 90px auto 120px auto;
+    width: 692px;
+  }
+
+  .noscript-title {
+    font-size: 40px;
+    letter-spacing: 0;
+    line-height: 1.1;
+    margin: 0 auto 45px auto;
+    width: 420px;
+  }
+}
+
+@media only screen and (max-width: 735px) {
+  .noscript {
+    margin: 45px auto 60px auto;
+    width: 87.5%;
+  }
+
+  .noscript-title {
+    font-size: 32px;
+    letter-spacing: .004em;
+    line-height: 1.125;
+    margin: 0 auto 35px auto;
+    max-width: 330px;
+    width: auto;
+  }
+}
+
+#loading-placeholder {
+  display: none;
+};</style>
+<div class="noscript">
+<h1 class="noscript-title">This page requires JavaScript.</h1>
+<p>Please turn on JavaScript in your browser and refresh the page to view its content.</p>
+</div>
+</noscript>
+<div data-v-0220a4c4="" id="app" class=""><div data-v-0220a4c4=""><div data-v-2deaa168="" class="doc-topic">
+<div data-v-3ceaa5df="" data-v-2deaa168="" class="localnav-container">
+<input data-v-3ceaa5df="" aria-hidden="true" id="localnav-menustate" type="checkbox" class="localnav-menustate"><div id="localnav-sticky-placeholder" class="css-sticky"></div>
+<nav data-v-3ceaa5df="" aria-label="API Reference" data-sticky="" id="localnav" role="navigation" class="localnav localnav-dark theme-dark medium-localnav-collapsible localnav-noborder localnav-scrim css-sticky"><div data-v-3ceaa5df="" class="localnav-wrapper">
+<div data-v-3ceaa5df="" class="referencenav">
+<div data-v-3ceaa5df="" class="localnav-background"></div>
+<div data-v-3ceaa5df="" class="localnav-content">
+<a data-v-3ceaa5df="" href="../../index.html" class="localnav-title">
+            Documentation
+          </a><div data-v-3ceaa5df="" class="localnav-menu">
+<a data-v-3ceaa5df="" href="#localnav-menustate" role="button" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Open Menu</span></a><a data-v-3ceaa5df="" href="#" role="button" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Close Menu</span></a><div data-v-3ceaa5df="" class="localnav-menu-tray">
+<ul data-v-72fd0d2c="" data-v-3ceaa5df="" aria-label="Breadcrumbs" class="localnav-menu-items">
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../documentation/foundation_language-objc.html" class="parent item router-link-active" data-v-23a2ae0d="">
+    Foundation
+  </a></li><!---->
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../documentation/foundation/collections_language-objc.html" class="parent item" data-v-23a2ae0d="">
+    <span class="enstr">Collections</span><!--end_enstr-->
+<span class="jpstr">
+さまざまなコレクション
+</span><!--end_jpstr-->
+
+  </a></li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item">
+<span data-v-23a2ae0d="" class="current item">
+    IndexSet
+  </span><!---->
+</li>
+</ul>
+<ul data-v-3ceaa5df="" data-breadcrumbs-count="3" class="localnav-menu-items localnav-menu-settings">
+<li data-v-282336e0="" data-v-3ceaa5df="" class="localnav-menu-setting language-container" breadcrumbcount="3">
+<div data-v-282336e0="" class="">
+<label data-v-282336e0="" class="localnav-menu-setting-label">
+      Language:
+    </label><span data-v-282336e0="" aria-current="page" class="localnav-menu-toggle-none current-language">
+      Swift
+    </span>
+</div><!---->
+
+</li>
+<li data-v-2e9f4ea2="" data-v-3ceaa5df="" class="localnav-menu-setting">
+<label data-v-2e9f4ea2="" for="version-label" class="localnav-menu-setting-label">
+    API Changes:
+  </label><span data-v-2e9f4ea2=""><span class="enstr">None</span><!--end_enstr-->
+<span class="jpstr">
+なし
+</span><!--end_jpstr-->
+</span>
+</li><!---->
+
+</ul>
+</div>
+<div data-v-3ceaa5df="" class="localnav-actions"><div data-v-3ceaa5df="" aria-hidden="true" class="localnav-action localnav-action-menucta"><label data-v-3ceaa5df="" for="localnav-menustate" class="localnav-menucta"><span data-v-3ceaa5df="" class="localnav-menucta-chevron"></span></label></div></div>
+</div>
+</div>
+</div><!---->
+
+</div></nav><label data-v-3ceaa5df="" aria-hidden="true" for="localnav-menustate" id="localnav-curtain"></label>
+</div>
+<main data-v-2deaa168="" id="main" role="main" tabindex="0" class="main"><div data-v-4ba5af7c="" data-v-2deaa168="" class="topictitle">
+<span data-v-4ba5af7c="" class="eyebrow">Structure</span><h1 data-v-4ba5af7c="" class="title">Index<wbr data-v-4ba5af7c="">Set</wbr>
+</h1>
+</div>
+<div data-v-0253ce0e="" data-v-2deaa168="" class="row container">
+<div data-v-9807b2e0="" data-v-5ad0d458="" data-v-2deaa168="" class="col description large-9 medium-9 small-12" data-v-0253ce0e=""><!---->
+<div data-v-7ea0aa49="" data-v-aba749e6="" data-v-2deaa168="" class="abstract content" data-v-9807b2e0=""><span class="enstr">A collection of unique integer values that represent the indexes of elements in another collection.</span><!--end_enstr-->
+<span class="jpstr">
+別のコレクションの中の要素のインデックスを表す特有な整数値それらからなるあるコレクション。
+</span><!--end_jpstr-->
+ </div><!----><!----><!---->
+
+</div>
+<div data-v-9807b2e0="" data-v-42fb6bac="" data-v-2deaa168="" class="col summary large-3 medium-3 small-12" data-v-0253ce0e=""><!---->
+<div data-v-e4237090="" data-v-fcdb795a="" data-v-2deaa168="" class="summary-section availability" role="complementary" aria-label="Availability" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-fcdb795a="" class="title" data-v-e4237090=""><span class="enstr">Availability</span><!--end_enstr-->
+<span class="jpstr">
+有効性
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-fcdb795a="" class="summary-list platform-list" data-v-e4237090="">
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="iOS 7.0+, Available on iOS 7.0 and later" title="Available on iOS 7.0 and later" data-v-e3899270="">
+  iOS 7.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="macOS 10.9+, Available on macOS 10.9 and later" title="Available on macOS 10.9 and later" data-v-e3899270="">
+  macOS 10.9+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="Mac Catalyst 13.0+, Available on Mac Catalyst 13.0 and later" title="Available on Mac Catalyst 13.0 and later" data-v-e3899270="">
+  Mac Catalyst 13.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="tvOS 9.0+, Available on tvOS 9.0 and later" title="Available on tvOS 9.0 and later" data-v-e3899270="">
+  tvOS 9.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="watchOS 2.0+, Available on watchOS 2.0 and later" title="Available on watchOS 2.0 and later" data-v-e3899270="">
+  watchOS 2.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="Xcode 8.0+, Available on Xcode 8.0 and later" title="Available on Xcode 8.0 and later" data-v-e3899270="">
+  Xcode 8.0+
+</span><!---->
+</li>
+</ul>
+</div>
+<div data-v-e4237090="" data-v-741142ba="" data-v-2deaa168="" class="summary-section frameworks" role="complementary" aria-label="Framework" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-741142ba="" class="title" data-v-e4237090=""><span class="enstr">Framework</span><!--end_enstr-->
+<span class="jpstr">
+フレームワーク
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-741142ba="" class="summary-list" data-v-e4237090=""><li data-v-e3899270="" data-v-741142ba="" class="summary-list-item" data-v-1450532d=""><span data-v-741142ba="" data-v-e3899270="" class="name">Foundation</span></li></ul>
+</div>
+<div data-v-e4237090="" data-v-2b96ab1a="" data-v-2deaa168="" class="summary-section on-this-page" data-v-9807b2e0=""><nav data-v-2b96ab1a="" data-v-e4237090="" aria-labelledby="on-this-page-title"><p data-v-1e0258b0="" data-v-2b96ab1a="" class="title" id="on-this-page-title" data-v-e4237090=""><span class="enstr">On This Page</span><!--end_enstr-->
+<span class="jpstr">
+この項には
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-2b96ab1a="" class="summary-list" data-v-e4237090="">
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/indexset_language-objc.html#declaration" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Declaration</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/indexset_language-objc.html#overview" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Overview</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/indexset_language-objc.html#topics" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Topics</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/indexset_language-objc.html#relationships" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Relationships</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/indexset_language-objc.html#see-also" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">See Also</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+</ul></nav></div>
+</div>
+<div data-v-9807b2e0="" data-v-1e40f676="" data-v-2deaa168="" class="col primary-content large-9 medium-9 small-12" data-v-0253ce0e="">
+<section data-v-e932e1b8="" data-v-1e40f676="" id="declaration" class="declaration" data-v-9807b2e0=""><h2 data-v-e932e1b8=""><span class="enstr">Declaration</span><!--end_enstr-->
+<span class="jpstr">
+宣言
+</span><!--end_jpstr-->
+</h2>
+<div data-v-29bd318c="" data-v-e932e1b8="" class="declaration-group"><!---->
+<pre data-v-e0a7f756="" data-v-29bd318c="" class="source indented"><code data-v-e0a7f756=""><span data-v-c9e896f0="" data-v-e0a7f756="" class="token-keyword">struct</span> <span data-v-c9e896f0="" data-v-e0a7f756="" class="token-identifier">IndexSet</span></code></pre>
+</div><!---->
+</section><div data-v-7ea0aa49="" data-v-1e40f676="" class="content" data-v-9807b2e0="">
+<h2 id="overview"><span class="enstr">Overview</span><!--end_enstr-->
+<span class="jpstr">
+概要
+</span><!--end_jpstr-->
+</h2>
+<p><span class="enstr">The range of valid integer values is 0..&lt;INT_MAX-1. Anything outside this range is an error.</span><!--end_enstr-->
+<span class="jpstr">
+有効な整数値の範囲は、0..&lt;INT_MAX-1 です。この範囲の外側のどんなものもエラーとなります。
+</span><!--end_jpstr-->
+</p>
+</div>
+</div>
+</div>
+<section data-v-8c663d90="" data-v-63527a60="" data-v-2deaa168="" id="topics" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">Topics</span><!--end_enstr-->
+<span class="jpstr">
+話題
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Creating an Index Set</span><!--end_enstr-->
+<span class="jpstr">
+インデックス集合を作成する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1779635-init_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="identifier">init</span><span data-v-dac213be="" class="decorator">()</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Initializes an empty index set.</span><!--end_enstr-->
+<span class="jpstr">
+空のインデックス集合を初期化します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1779813-init_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="identifier">init</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">array<wbr data-v-dac213be="">Literal</wbr></span><span data-v-dac213be="" class="decorator">: Int...)</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Creates a set containing the elements of the given array literal.</span><!--end_enstr-->
+<span class="jpstr">
+与えられた配列リテラルの要素を含んでいる集合を作成します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780018-init_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="identifier">init</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">integer</span><span data-v-dac213be="" class="decorator">: Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element)</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Initializes an index set with a single integer.</span><!--end_enstr-->
+<span class="jpstr">
+単一の整数を使ってインデックス集合を初期化します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1779657-init_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="identifier">init</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">integers<wbr data-v-dac213be="">In</wbr></span><span data-v-dac213be="" class="decorator">: Range&lt;Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element&gt;)</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Initializes an index set with a range of integers.</span><!--end_enstr-->
+<span class="jpstr">
+ある範囲の整数を使ってインデックス集合を初期化します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Counting Items in a Set</span><!--end_enstr-->
+<span class="jpstr">
+集合の中の項目を数える
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1779633-count_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">count</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">in</span><span data-v-dac213be="" class="decorator">: Range&lt;Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element&gt;) -&gt; Int</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the count of integers in <code data-v-7fb764c1="">self</code> that intersect <code data-v-7fb764c1="">range</code>.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">self</code>の中の、<code data-v-7fb764c1="">range</code>と交差する、整数の総数を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Accessing Elements</span><!--end_enstr-->
+<span class="jpstr">
+要素にアクセスする
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1779836-subscript_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="identifier">subscript</span><span data-v-dac213be="" class="decorator">(Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Index) -&gt; Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Accesses one element in the index set.</span><!--end_enstr-->
+<span class="jpstr">
+インデックス集合の中の１つの要素にアクセスします。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Combining Index Sets</span><!--end_enstr-->
+<span class="jpstr">
+インデックス集合を結合する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780463-formintersection_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">form<wbr data-v-dac213be="">Intersection</wbr></span><span data-v-dac213be="" class="decorator">(Index<wbr data-v-dac213be="">Set)</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Intersects the <code data-v-7fb764c1="">Index<wbr data-v-7fb764c1="">Set</wbr></code> with <code data-v-7fb764c1="">other</code>.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">Index<wbr data-v-7fb764c1="">Set</wbr></code>の<code data-v-7fb764c1="">other</code>との共通部分。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780037-formsymmetricdifference_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">form<wbr data-v-dac213be="">Symmetric<wbr data-v-dac213be="">Difference</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Index<wbr data-v-dac213be="">Set)</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Exclusive or the <code data-v-7fb764c1="">Index<wbr data-v-7fb764c1="">Set</wbr></code> with <code data-v-7fb764c1="">other</code>.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">Index<wbr data-v-7fb764c1="">Set</wbr></code>の<code data-v-7fb764c1="">other</code>との排他的論理和。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780306-formunion_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">form<wbr data-v-dac213be="">Union</wbr></span><span data-v-dac213be="" class="decorator">(Index<wbr data-v-dac213be="">Set)</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Union the <code data-v-7fb764c1="">Index<wbr data-v-7fb764c1="">Set</wbr></code> with <code data-v-7fb764c1="">other</code>.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">Index<wbr data-v-7fb764c1="">Set</wbr></code>の<code data-v-7fb764c1="">other</code>との和集合。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780212-intersection_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">intersection</span><span data-v-dac213be="" class="decorator">(Index<wbr data-v-dac213be="">Set) -&gt; Index<wbr data-v-dac213be="">Set</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Intersects the <code data-v-7fb764c1="">Index<wbr data-v-7fb764c1="">Set</wbr></code> with <code data-v-7fb764c1="">other</code>.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">Index<wbr data-v-7fb764c1="">Set</wbr></code>の<code data-v-7fb764c1="">other</code>との共通部分。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780135-symmetricdifference_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">symmetric<wbr data-v-dac213be="">Difference</wbr></span><span data-v-dac213be="" class="decorator">(Index<wbr data-v-dac213be="">Set) -&gt; Index<wbr data-v-dac213be="">Set</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Exclusive or the <code data-v-7fb764c1="">Index<wbr data-v-7fb764c1="">Set</wbr></code> with <code data-v-7fb764c1="">other</code>.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">Index<wbr data-v-7fb764c1="">Set</wbr></code>の<code data-v-7fb764c1="">other</code>との排他的論理和。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780461-union_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">union</span><span data-v-dac213be="" class="decorator">(Index<wbr data-v-dac213be="">Set) -&gt; Index<wbr data-v-dac213be="">Set</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Union the <code data-v-7fb764c1="">Index<wbr data-v-7fb764c1="">Set</wbr></code> with <code data-v-7fb764c1="">other</code>.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">Index<wbr data-v-7fb764c1="">Set</wbr></code>の<code data-v-7fb764c1="">other</code>との和集合。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Inserting Elements</span><!--end_enstr-->
+<span class="jpstr">
+いくつかの要素を挿入する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780092-insert_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">insert</span><span data-v-dac213be="" class="decorator">(Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element) -&gt; (</wbr></wbr></span><span data-v-dac213be="" class="identifier">inserted</span><span data-v-dac213be="" class="decorator">: Bool, </span><span data-v-dac213be="" class="identifier">member<wbr data-v-dac213be="">After<wbr data-v-dac213be="">Insert</wbr></wbr></span><span data-v-dac213be="" class="decorator">: Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element)</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Insert an integer into the <code data-v-7fb764c1="">Index<wbr data-v-7fb764c1="">Set</wbr></code>.</span><!--end_enstr-->
+<span class="jpstr">
+ある整数を<code data-v-7fb764c1="">Index<wbr data-v-7fb764c1="">Set</wbr></code>へと挿入します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780157-insert_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">insert</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">integers<wbr data-v-dac213be="">In</wbr></span><span data-v-dac213be="" class="decorator">: Range&lt;Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element&gt;)</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Insert a range of integers into the <code data-v-7fb764c1="">Index<wbr data-v-7fb764c1="">Set</wbr></code>.</span><!--end_enstr-->
+<span class="jpstr">
+いくつかの整数からなるある範囲を<code data-v-7fb764c1="">Index<wbr data-v-7fb764c1="">Set</wbr></code>へと挿入します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780238-update_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">update</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">with</span><span data-v-dac213be="" class="decorator">: Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element) -&gt; Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element?</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Insert an integer into the <code data-v-7fb764c1="">Index<wbr data-v-7fb764c1="">Set</wbr></code>.</span><!--end_enstr-->
+<span class="jpstr">
+ある整数を<code data-v-7fb764c1="">Index<wbr data-v-7fb764c1="">Set</wbr></code>へと挿入します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Removing Elements</span><!--end_enstr-->
+<span class="jpstr">
+要素の削除
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780281-remove_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">remove</span><span data-v-dac213be="" class="decorator">(Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element) -&gt; Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element?</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Remove an integer from the <code data-v-7fb764c1="">Index<wbr data-v-7fb764c1="">Set</wbr></code>.</span><!--end_enstr-->
+<span class="jpstr">
+ある整数を<code data-v-7fb764c1="">Index<wbr data-v-7fb764c1="">Set</wbr></code>から除去します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780198-remove_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">remove</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">integers<wbr data-v-dac213be="">In</wbr></span><span data-v-dac213be="" class="decorator">: Range&lt;Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element&gt;)</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Remove a range of integers from the <code data-v-7fb764c1="">Index<wbr data-v-7fb764c1="">Set</wbr></code>.</span><!--end_enstr-->
+<span class="jpstr">
+いくつかの整数からなるある範囲を <code data-v-7fb764c1="">Index<wbr data-v-7fb764c1="">Set</wbr></code>から除去します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2293416-remove_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">remove</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">integers<wbr data-v-dac213be="">In</wbr></span><span data-v-dac213be="" class="decorator">: Closed<wbr data-v-dac213be="">Range&lt;Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element&gt;)</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Remove a range of integers from the <code data-v-7fb764c1="">Index<wbr data-v-7fb764c1="">Set</wbr></code>.</span><!--end_enstr-->
+<span class="jpstr">
+いくつかの整数からなるある範囲を <code data-v-7fb764c1="">Index<wbr data-v-7fb764c1="">Set</wbr></code>から除去します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780199-removeall_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">remove<wbr data-v-dac213be="">All</wbr></span><span data-v-dac213be="" class="decorator">()</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Remove all values from the <code data-v-7fb764c1="">Index<wbr data-v-7fb764c1="">Set</wbr></code>.</span><!--end_enstr-->
+<span class="jpstr">
+すべての値を<code data-v-7fb764c1="">Index<wbr data-v-7fb764c1="">Set</wbr></code>から除去します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780485-subtract_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">subtract</span><span data-v-dac213be="" class="decorator">(Index<wbr data-v-dac213be="">Set)</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Removes the elements of the given set from this set.</span><!--end_enstr-->
+<span class="jpstr">
+与えられた集合の要素をこの集合から除去します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780163-subtracting_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">subtracting</span><span data-v-dac213be="" class="decorator">(Index<wbr data-v-dac213be="">Set) -&gt; Index<wbr data-v-dac213be="">Set</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a new set containing the elements of this set that do not occur in the given set.</span><!--end_enstr-->
+<span class="jpstr">
+与えられた集合の中の現れないこの集合の要素を含んでいる新しい集合を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Testing Set Membership</span><!--end_enstr-->
+<span class="jpstr">
+集合メンバーシップをテストする
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1779990-contains_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">contains</span><span data-v-dac213be="" class="decorator">(Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element) -&gt; Bool</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns <code data-v-7fb764c1="">true</code> if <code data-v-7fb764c1="">self</code> contains <code data-v-7fb764c1="">integer</code>.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">true</code>を返します、もし<code data-v-7fb764c1="">self</code>が<code data-v-7fb764c1="">integer</code>を含むならば。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1779991-contains_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">contains</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">integers<wbr data-v-dac213be="">In</wbr></span><span data-v-dac213be="" class="decorator">: Index<wbr data-v-dac213be="">Set) -&gt; Bool</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns <code data-v-7fb764c1="">true</code> if <code data-v-7fb764c1="">self</code> contains all of the integers in <code data-v-7fb764c1="">index<wbr data-v-7fb764c1="">Set</wbr></code>.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">true</code>を返します、もし<code data-v-7fb764c1="">self</code>が<code data-v-7fb764c1="">index<wbr data-v-7fb764c1="">Set</wbr></code>の中のすべての整数を含むならば。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780232-contains_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">contains</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">integers<wbr data-v-dac213be="">In</wbr></span><span data-v-dac213be="" class="decorator">: Range&lt;Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element&gt;) -&gt; Bool</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns <code data-v-7fb764c1="">true</code> if <code data-v-7fb764c1="">self</code> contains all of the integers in <code data-v-7fb764c1="">range</code>.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">true</code>を返します、もし<code data-v-7fb764c1="">self</code>が<code data-v-7fb764c1="">range</code>の中のすべての整数を含むならば。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2292842-contains_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">contains</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">where</span><span data-v-dac213be="" class="decorator">: (Int) -&gt; Bool) -&gt; Bool</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a Boolean value indicating whether the sequence contains an element that satisfies the given predicate.</span><!--end_enstr-->
+<span class="jpstr">
+指定された述部を満足させるある要素をシーケンスが含むかどうかを指し示すブール値を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1779713-intersects_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">intersects</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">integers<wbr data-v-dac213be="">In</wbr></span><span data-v-dac213be="" class="decorator">: Range&lt;Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element&gt;) -&gt; Bool</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns <code data-v-7fb764c1="">true</code> if <code data-v-7fb764c1="">self</code> intersects any of the integers in <code data-v-7fb764c1="">range</code>.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">true</code>を返します、もし<code data-v-7fb764c1="">self</code>が<code data-v-7fb764c1="">range</code>の中の整数のいくらかと交わるならば。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2852953-starts_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">starts</span><span data-v-dac213be="" class="decorator">&lt;Possible<wbr data-v-dac213be="">Prefix&gt;(</wbr></span><span data-v-dac213be="" class="identifier">with</span><span data-v-dac213be="" class="decorator">: Possible<wbr data-v-dac213be="">Prefix) -&gt; Bool</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a Boolean value indicating whether the initial elements of the sequence are the same as the elements in another sequence.</span><!--end_enstr-->
+<span class="jpstr">
+シーケンスの最初の要素らが別のシーケンスの中の要素らと同じかどうかを指し示すブール値を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780017-isdisjoint_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">is<wbr data-v-dac213be="">Disjoint</wbr></span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">with</span><span data-v-dac213be="" class="decorator">: Index<wbr data-v-dac213be="">Set) -&gt; Bool</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a Boolean value that indicates whether the set has no members in common with the given set.</span><!--end_enstr-->
+<span class="jpstr">
+この集合が、与えられた集合と共通のメンバを１つも持たないかどうかを指し示すブール値を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780278-isstrictsubset_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">is<wbr data-v-dac213be="">Strict<wbr data-v-dac213be="">Subset</wbr></wbr></span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">of</span><span data-v-dac213be="" class="decorator">: Index<wbr data-v-dac213be="">Set) -&gt; Bool</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a Boolean value that indicates whether this set is a strict subset of the given set.</span><!--end_enstr-->
+<span class="jpstr">
+この集合は与えられた集合の狭義の下位集合であるかどうかを指し示すブール値を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1779941-isstrictsuperset_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">is<wbr data-v-dac213be="">Strict<wbr data-v-dac213be="">Superset</wbr></wbr></span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">of</span><span data-v-dac213be="" class="decorator">: Index<wbr data-v-dac213be="">Set) -&gt; Bool</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a Boolean value that indicates whether this set is a strict superset of the given set.</span><!--end_enstr-->
+<span class="jpstr">
+この集合は与えられた集合の狭義の上位集合であるかどうかを指し示すブール値を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780362-issubset_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">is<wbr data-v-dac213be="">Subset</wbr></span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">of</span><span data-v-dac213be="" class="decorator">: Index<wbr data-v-dac213be="">Set) -&gt; Bool</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a Boolean value that indicates whether the set is a subset of another set.</span><!--end_enstr-->
+<span class="jpstr">
+この集合は別の集合の下位集合であるかどうかを指し示すブール値を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780452-issuperset_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">is<wbr data-v-dac213be="">Superset</wbr></span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">of</span><span data-v-dac213be="" class="decorator">: Index<wbr data-v-dac213be="">Set) -&gt; Bool</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a Boolean value that indicates whether the set is a superset of the given set.</span><!--end_enstr-->
+<span class="jpstr">
+この集合が、与えられた集合の上位集合であるかどうかを指し示すブール値を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Manipulating Indexes</span><!--end_enstr-->
+<span class="jpstr">
+インデックスを操作する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1779669-startindex_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">start<wbr data-v-dac213be="">Index</wbr></span><span data-v-dac213be="" class="decorator">: Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Index</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The beginning index in the set.</span><!--end_enstr-->
+<span class="jpstr">
+集合の中の開始インデックス。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1779935-endindex_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">end<wbr data-v-dac213be="">Index</wbr></span><span data-v-dac213be="" class="decorator">: Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Index</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The ending index in the set.</span><!--end_enstr-->
+<span class="jpstr">
+集合の中の終了インデックス。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1779819-index_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">index</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">after</span><span data-v-dac213be="" class="decorator">: Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Index) -&gt; Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Index</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the index that follows the given index in the set.</span><!--end_enstr-->
+<span class="jpstr">
+集合の中の与えられたインデックスに続くインデックスを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780176-index_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">index</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">before</span><span data-v-dac213be="" class="decorator">: Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Index) -&gt; Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Index</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the index that precedes the given index in the set.</span><!--end_enstr-->
+<span class="jpstr">
+集合の中の与えられたインデックスに先行するインデックスを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1779619-formindex_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">form<wbr data-v-dac213be="">Index</wbr></span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">after</span><span data-v-dac213be="" class="decorator">: inout Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Index)</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Modifies the given index to refer to the item after the one it currently refers to.</span><!--end_enstr-->
+<span class="jpstr">
+与えられたインデックスを、それが現在参照するものの後の項目を参照するように修正します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780386-formindex_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">form<wbr data-v-dac213be="">Index</wbr></span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">before</span><span data-v-dac213be="" class="decorator">: inout Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Index)</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Modifies the given index to refer to the item before the one it currently refers to.</span><!--end_enstr-->
+<span class="jpstr">
+与えられたインデックスを、それが現在参照するものの前の項目を参照するように修正します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780216-indexrange_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">index<wbr data-v-dac213be="">Range</wbr></span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">in</span><span data-v-dac213be="" class="decorator">: Range&lt;Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element&gt;) -&gt; Range&lt;Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Index&gt;</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Return a <code data-v-7fb764c1="">Range&lt;Index<wbr data-v-7fb764c1="">Set<wbr data-v-7fb764c1="">.Index&gt;</wbr></wbr></code> which can be used to subscript the index set.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">Range&lt;Index<wbr data-v-7fb764c1="">Set<wbr data-v-7fb764c1="">.Index&gt;</wbr></wbr></code>を返します、それはインデックス集合の添え字として使われることができます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Finding Elements</span><!--end_enstr-->
+<span class="jpstr">
+要素を見つける
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1849767-first_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">first</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">where</span><span data-v-dac213be="" class="decorator">: (Int) -&gt; Bool) -&gt; Int?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the first element of the sequence that satisfies the given predicate.</span><!--end_enstr-->
+<span class="jpstr">
+与えられた述部を満たすこのシーケンスの最初の要素を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780263-max_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">max</span><span data-v-dac213be="" class="decorator">() -&gt; Int?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the maximum element in the sequence.</span><!--end_enstr-->
+<span class="jpstr">
+シーケンスの中の最大の要素を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2292986-max_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">max</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">by</span><span data-v-dac213be="" class="decorator">: (Int, Int) -&gt; Bool) -&gt; Int?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the maximum element in the sequence, using the given predicate as the comparison between elements.</span><!--end_enstr-->
+<span class="jpstr">
+シーケンスの中の最大の要素を返します、与えられた述部を要素間の比較として使います。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780243-min_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">min</span><span data-v-dac213be="" class="decorator">() -&gt; Int?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the minimum element in the sequence.</span><!--end_enstr-->
+<span class="jpstr">
+シーケンスの中の最小の要素を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2293641-min_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">min</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">by</span><span data-v-dac213be="" class="decorator">: (Int, Int) -&gt; Bool) -&gt; Int?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the minimum element in the sequence, using the given predicate as the comparison between elements.</span><!--end_enstr-->
+<span class="jpstr">
+シーケンスの中の最小の要素を返します、与えられた述部を要素間の比較として使います。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780379-integerlessthanorequalto_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">integer<wbr data-v-dac213be="">Less<wbr data-v-dac213be="">Than<wbr data-v-dac213be="">Or<wbr data-v-dac213be="">Equal<wbr data-v-dac213be="">To</wbr></wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element) -&gt; Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element?</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an integer contained in <code data-v-7fb764c1="">self</code> which is less than or equal to <code data-v-7fb764c1="">integer</code>, or <code data-v-7fb764c1="">nil</code> if a result could not be found.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">self</code>に含まれるある整数を返します、それは<code data-v-7fb764c1="">integer</code>と等しいかより少ないものです、または結果が見つけられないならば<code data-v-7fb764c1="">nil</code>を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1779840-integergreaterthan_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">integer<wbr data-v-dac213be="">Greater<wbr data-v-dac213be="">Than</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element) -&gt; Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element?</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an integer contained in <code data-v-7fb764c1="">self</code> which is greater than <code data-v-7fb764c1="">integer</code>, or <code data-v-7fb764c1="">nil</code> if a result could not be found.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">self</code>に含まれるある整数を返します、それは<code data-v-7fb764c1="">integer</code>とより大きいものです、または結果が見つけられないならば<code data-v-7fb764c1="">nil</code>を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1779673-integergreaterthanorequalto_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">integer<wbr data-v-dac213be="">Greater<wbr data-v-dac213be="">Than<wbr data-v-dac213be="">Or<wbr data-v-dac213be="">Equal<wbr data-v-dac213be="">To</wbr></wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element) -&gt; Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element?</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an integer contained in <code data-v-7fb764c1="">self</code> which is greater than or equal to <code data-v-7fb764c1="">integer</code>, or <code data-v-7fb764c1="">nil</code> if a result could not be found.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">self</code>に含まれるある整数を返します、それは<code data-v-7fb764c1="">integer</code>と等しいかより大きいものです、または結果が見つけられないならば<code data-v-7fb764c1="">nil</code>を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780356-integerlessthan_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">integer<wbr data-v-dac213be="">Less<wbr data-v-dac213be="">Than</wbr></wbr></span><span data-v-dac213be="" class="decorator">(Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element) -&gt; Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element?</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an integer contained in <code data-v-7fb764c1="">self</code> which is less than <code data-v-7fb764c1="">integer</code>, or <code data-v-7fb764c1="">nil</code> if a result could not be found.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">self</code>に含まれるある整数を返します、それは<code data-v-7fb764c1="">integer</code>とより少ないものです、または結果が見つけられないならば<code data-v-7fb764c1="">nil</code>を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Selecting Elements</span><!--end_enstr-->
+<span class="jpstr">
+要素の選択
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1779960-filter_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">filter</span><span data-v-dac213be="" class="decorator">((Int) -&gt; Bool) -&gt; [Int]</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an array containing, in order, the elements of the sequence that satisfy the given predicate.</span><!--end_enstr-->
+<span class="jpstr">
+指定された述部を満足させるものであるシーケンスの要素を、順序通りに、含んでいる配列を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780049-filteredindexset_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">filtered<wbr data-v-dac213be="">Index<wbr data-v-dac213be="">Set</wbr></wbr></span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">in</span><span data-v-dac213be="" class="decorator">: Range&lt;Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element&gt;, </wbr></wbr></span><span data-v-dac213be="" class="identifier">include<wbr data-v-dac213be="">Integer</wbr></span><span data-v-dac213be="" class="decorator">: (Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element) -&gt; Bool) -&gt; Index<wbr data-v-dac213be="">Set</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an IndexSet filtered according to the result of <code data-v-7fb764c1="">include<wbr data-v-7fb764c1="">Integer</wbr></code>.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">include<wbr data-v-7fb764c1="">Integer</wbr></code>の結果によってフィルタされたIndexSetを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2293680-filteredindexset_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">filtered<wbr data-v-dac213be="">Index<wbr data-v-dac213be="">Set</wbr></wbr></span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">in</span><span data-v-dac213be="" class="decorator">: Closed<wbr data-v-dac213be="">Range&lt;Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element&gt;, </wbr></wbr></wbr></span><span data-v-dac213be="" class="identifier">include<wbr data-v-dac213be="">Integer</wbr></span><span data-v-dac213be="" class="decorator">: (Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element) -&gt; Bool) -&gt; Index<wbr data-v-dac213be="">Set</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an IndexSet filtered according to the result of <code data-v-7fb764c1="">include<wbr data-v-7fb764c1="">Integer</wbr></code>.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">include<wbr data-v-7fb764c1="">Integer</wbr></code>の結果によってフィルタされたIndexSetを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2293628-filteredindexset_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">filtered<wbr data-v-dac213be="">Index<wbr data-v-dac213be="">Set</wbr></wbr></span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">include<wbr data-v-dac213be="">Integer</wbr></span><span data-v-dac213be="" class="decorator">: (Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element) -&gt; Bool) -&gt; Index<wbr data-v-dac213be="">Set</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an IndexSet filtered according to the result of <code data-v-7fb764c1="">include<wbr data-v-7fb764c1="">Integer</wbr></code>.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">include<wbr data-v-7fb764c1="">Integer</wbr></code>の結果によってフィルタされたIndexSetを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780272-prefix_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">prefix</span><span data-v-dac213be="" class="decorator">(Int) -&gt; Slice&lt;Index<wbr data-v-dac213be="">Set&gt;</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a subsequence, up to the specified maximum length, containing the initial elements of the collection.</span><!--end_enstr-->
+<span class="jpstr">
+下位シーケンスを、指定された最大長まで、コレクションの冒頭の要素を含めて返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780050-prefix_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">prefix</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">through</span><span data-v-dac213be="" class="decorator">: Index) -&gt; Slice&lt;Index<wbr data-v-dac213be="">Set&gt;</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a subsequence from the start of the collection through the specified position.</span><!--end_enstr-->
+<span class="jpstr">
+コレクションの始まりから指定された位置までも含む下位シーケンスを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1779675-prefix_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">prefix</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">up<wbr data-v-dac213be="">To</wbr></span><span data-v-dac213be="" class="decorator">: Index) -&gt; Slice&lt;Index<wbr data-v-dac213be="">Set&gt;</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a subsequence from the start of the collection up to, but not including, the specified position.</span><!--end_enstr-->
+<span class="jpstr">
+コレクションの始まりから指定された位置まで、しかしそれは含めない下位シーケンスを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2832893-prefix_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">prefix</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">while</span><span data-v-dac213be="" class="decorator">: (Int) -&gt; Bool) -&gt; Slice&lt;Index<wbr data-v-dac213be="">Set&gt;</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a subsequence containing the initial elements until <code data-v-7fb764c1="">predicate</code> returns <code data-v-7fb764c1="">false</code> and skipping the remaining elements.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">predicate</code>が<code data-v-7fb764c1="">false</code>を返すまで冒頭の要素を含んでいて残りの要素を飛ばしている、ある下位シーケンスを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780354-suffix_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">suffix</span><span data-v-dac213be="" class="decorator">(Int) -&gt; Slice&lt;Index<wbr data-v-dac213be="">Set&gt;</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a subsequence, up to the given maximum length, containing the final elements of the collection.</span><!--end_enstr-->
+<span class="jpstr">
+下位シーケンスを、指定された最大長まで、コレクションの末尾の要素を含めて返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1779598-suffix_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">suffix</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">from</span><span data-v-dac213be="" class="decorator">: Index) -&gt; Slice&lt;Index<wbr data-v-dac213be="">Set&gt;</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a subsequence from the specified position to the end of the collection.</span><!--end_enstr-->
+<span class="jpstr">
+指定された位置からコレクションの終わりまでの下位シーケンスを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Excluding Elements</span><!--end_enstr-->
+<span class="jpstr">
+要素を排除する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1779954-droplast_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">drop<wbr data-v-dac213be="">Last</wbr></span><span data-v-dac213be="" class="decorator">(Int) -&gt; Slice&lt;Index<wbr data-v-dac213be="">Set&gt;</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a subsequence containing all but the specified number of final elements.</span><!--end_enstr-->
+<span class="jpstr">
+指定された数の末尾要素以外すべてを含んでいる下位シーケンスを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1779772-dropfirst_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">drop<wbr data-v-dac213be="">First</wbr></span><span data-v-dac213be="" class="decorator">(Int) -&gt; Slice&lt;Index<wbr data-v-dac213be="">Set&gt;</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a subsequence containing all but the given number of initial elements.</span><!--end_enstr-->
+<span class="jpstr">
+指定された数の冒頭要素以外すべてを含んでいる下位シーケンスを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2832817-drop_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">drop</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">while</span><span data-v-dac213be="" class="decorator">: (Int) -&gt; Bool) -&gt; Slice&lt;Index<wbr data-v-dac213be="">Set&gt;</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a subsequence by skipping elements while <code data-v-7fb764c1="">predicate</code> returns <code data-v-7fb764c1="">true</code> and returning the remaining elements.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">predicate</code>が<code data-v-7fb764c1="">true</code>を返す間は要素を飛ばして残りの要素を返すことによって、ある下位シーケンスを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Transforming Elements</span><!--end_enstr-->
+<span class="jpstr">
+要素を変形する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2293358-reduce_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">reduce</span><span data-v-dac213be="" class="decorator">&lt;Result&gt;(Result, (Result, Int) -&gt; Result) -&gt; Result</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the result of combining the elements of the sequence using the given closure.</span><!--end_enstr-->
+<span class="jpstr">
+シーケンスの要素を与えられたクロージャを使って結合する結果を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780133-lazy_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">lazy</span><span data-v-dac213be="" class="decorator">: Lazy<wbr data-v-dac213be="">Sequence&lt;Index<wbr data-v-dac213be="">Set&gt;</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A sequence containing the same elements as this sequence, but on which some operations, such as <code data-v-7fb764c1="">map</code> and <code data-v-7fb764c1="">filter</code>, are implemented lazily.</span><!--end_enstr-->
+<span class="jpstr">
+このシーケンスと同じ要素を含んでいるシーケンス、しかしそれの上で何らかの演算、例えば<code data-v-7fb764c1="">map</code>や<code data-v-7fb764c1="">filter</code>が遅延に実装されます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Iterating Over Elements</span><!--end_enstr-->
+<span class="jpstr">
+要素すべてに対して反復する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780248-foreach_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">for<wbr data-v-dac213be="">Each</wbr></span><span data-v-dac213be="" class="decorator">((Int) -&gt; Void)</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Calls the given closure on each element in the sequence in the same order as a <code data-v-7fb764c1="">for</code>-<code data-v-7fb764c1="">in</code> loop.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたクロージャをそのシーケンスの各要素上で<code data-v-7fb764c1="">for</code>-<code data-v-7fb764c1="">in</code>ループと同じ順番で呼び出します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780173-enumerated_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">enumerated</span><span data-v-dac213be="" class="decorator">() -&gt; Enumerated<wbr data-v-dac213be="">Sequence&lt;Index<wbr data-v-dac213be="">Set&gt;</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a sequence of pairs (<em>n</em>, <em>x</em>), where <em>n</em> represents a consecutive integer starting at zero and <em>x</em> represents an element of the sequence.</span><!--end_enstr-->
+<span class="jpstr">
+ペア (<em>n</em>, <em>x</em>) のシーケンスを返します、そこで<em>n</em>はゼロで開始する連続した数を表して、<em>x</em>はシーケンスの要素を表します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780426-makeiterator_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">make<wbr data-v-dac213be="">Iterator</wbr></span><span data-v-dac213be="" class="decorator">() -&gt; Indexing<wbr data-v-dac213be="">Iterator&lt;Index<wbr data-v-dac213be="">Set&gt;</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an iterator over the elements of this sequence.</span><!--end_enstr-->
+<span class="jpstr">
+このシーケンスの要素すべてを対象としたあるイテレータを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Sorting Elements</span><!--end_enstr-->
+<span class="jpstr">
+要素のソート（並べ換え）
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1779787-sorted_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">sorted</span><span data-v-dac213be="" class="decorator">() -&gt; [Int]</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the elements of the sequence, sorted.</span><!--end_enstr-->
+<span class="jpstr">
+シーケンスの要素を、ソートして返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2293322-sorted_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">sorted</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">by</span><span data-v-dac213be="" class="decorator">: (Int, Int) -&gt; Bool) -&gt; [Int]</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the elements of the sequence, sorted using the given predicate as the comparison between elements.</span><!--end_enstr-->
+<span class="jpstr">
+与えられた述部を要素間の比較として使ってソートされた、シーケンスの要素を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780267-reversed_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">reversed</span><span data-v-dac213be="" class="decorator">() -&gt; Reversed<wbr data-v-dac213be="">Collection&lt;Index<wbr data-v-dac213be="">Set&gt;</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a view presenting the elements of the collection in reverse order.</span><!--end_enstr-->
+<span class="jpstr">
+コレクションの要素を逆順に表しているある見方を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Shifting Index Groups</span><!--end_enstr-->
+<span class="jpstr">
+インデックスグループをずらす
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780041-shift_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">shift</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">starting<wbr data-v-dac213be="">At</wbr></span><span data-v-dac213be="" class="decorator">: Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element, </wbr></wbr></span><span data-v-dac213be="" class="identifier">by</span><span data-v-dac213be="" class="decorator">: Int)</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">For a positive delta, shifts the indexes in [index, INT_MAX] to the right, thereby inserting an “empty space” [index, delta], for a negative delta, shifts the indexes in [index, INT_MAX] to the left, thereby deleting the indexes in the range [index - delta, delta].</span><!--end_enstr-->
+<span class="jpstr">
+正の delta に対して、ある “空白” を [index, delta] に挿入することによって、[index, INT_MAX] の中のインデックスを右にずらします、負の delta に対して、範囲 [index - delta, delta] の中のインデックスを消去することによって、[index, INT_MAX] の中のインデックスを左にずらします。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Splitting the Set</span><!--end_enstr-->
+<span class="jpstr">
+集合を分割する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2293205-split_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">split</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">max<wbr data-v-dac213be="">Splits</wbr></span><span data-v-dac213be="" class="decorator">: Int, </span><span data-v-dac213be="" class="identifier">omitting<wbr data-v-dac213be="">Empty<wbr data-v-dac213be="">Subsequences</wbr></wbr></span><span data-v-dac213be="" class="decorator">: Bool, </span><span data-v-dac213be="" class="identifier">where<wbr data-v-dac213be="">Separator</wbr></span><span data-v-dac213be="" class="decorator">: (Int) -&gt; Bool) -&gt; [Slice&lt;Index<wbr data-v-dac213be="">Set&gt;]</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the longest possible subsequences of the collection, in order, that don’t contain elements satisfying the given predicate.</span><!--end_enstr-->
+<span class="jpstr">
+与えられた述部を満たす要素を含んでいない、このコレクションの最も長くなりうる下位シーケンスそれらを順序どおりに返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780446-split_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">split</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">separator</span><span data-v-dac213be="" class="decorator">: Int, </span><span data-v-dac213be="" class="identifier">max<wbr data-v-dac213be="">Splits</wbr></span><span data-v-dac213be="" class="decorator">: Int, </span><span data-v-dac213be="" class="identifier">omitting<wbr data-v-dac213be="">Empty<wbr data-v-dac213be="">Subsequences</wbr></wbr></span><span data-v-dac213be="" class="decorator">: Bool) -&gt; [Slice&lt;Index<wbr data-v-dac213be="">Set&gt;]</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the longest possible subsequences of the collection, in order, around elements equal to the given element.</span><!--end_enstr-->
+<span class="jpstr">
+与えられた要素と等しい要素を避けるようにして、このコレクションの最も長くなりうる下位シーケンスを、順番に返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Comparing Index Sets</span><!--end_enstr-->
+<span class="jpstr">
+インデックス集合を比較する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2883172_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static func </span><span data-v-dac213be="" class="identifier">!= </span><span data-v-dac213be="" class="decorator">(Index<wbr data-v-dac213be="">Set, Index<wbr data-v-dac213be="">Set) -&gt; Bool</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a Boolean value indicating whether two values are not equal.</span><!--end_enstr-->
+<span class="jpstr">
+２つの値が等しくないかどうかを指し示すブール値を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2293410_language-objc.html" class="link"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static func </span><span data-v-dac213be="" class="identifier">== </span><span data-v-dac213be="" class="decorator">(Index<wbr data-v-dac213be="">Set, Index<wbr data-v-dac213be="">Set) -&gt; Bool</wbr></wbr></span></code><!----><!----><!----></a>
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Getting a Range-Based View</span><!--end_enstr-->
+<span class="jpstr">
+範囲に基づくビューを取得する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780154-rangeview_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">range<wbr data-v-dac213be="">View</wbr></span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">of</span><span data-v-dac213be="" class="decorator">: Range&lt;Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element&gt;) -&gt; Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Range<wbr data-v-dac213be="">View</wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a <code data-v-7fb764c1="">Range</code>-based view of <code data-v-7fb764c1="">self</code>.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">Range</code>に基づく、<code data-v-7fb764c1="">self</code>のビューを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2293483-rangeview_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">range<wbr data-v-dac213be="">View</wbr></span><span data-v-dac213be="" class="decorator">: Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Range<wbr data-v-dac213be="">View</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a <code data-v-7fb764c1="">Range</code>-based view of the entire contents of <code data-v-7fb764c1="">self</code>.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">Range</code>に基づいた、<code data-v-7fb764c1="">self</code>の内容全体のビューを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/rangeview_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">struct </span><span data-v-dac213be="" class="identifier">Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Range<wbr data-v-dac213be="">View</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A view of the contents of an IndexSet, organized by range.</span><!--end_enstr-->
+<span class="jpstr">
+IndexSetの内容のあるビュー、範囲によって組織されます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Describing an Index Set</span><!--end_enstr-->
+<span class="jpstr">
+インデックス集合を記述する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780210-description_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">description</span><span data-v-dac213be="" class="decorator">: String</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A textual description of the index set.</span><!--end_enstr-->
+<span class="jpstr">
+インデックス集合のテキスト記述。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1779731-debugdescription_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">debug<wbr data-v-dac213be="">Description</wbr></span><span data-v-dac213be="" class="decorator">: String</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A textual description of the index set suitable for debugging.</span><!--end_enstr-->
+<span class="jpstr">
+デバッグに適したインデックス集合のテキスト記述。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2427242-custommirror_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">custom<wbr data-v-dac213be="">Mirror</wbr></span><span data-v-dac213be="" class="decorator">: Mirror</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A mirror that reflects the index set.</span><!--end_enstr-->
+<span class="jpstr">
+インデックス集合を反映するミラー。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1779674-hashvalue_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">hash<wbr data-v-dac213be="">Value</wbr></span><span data-v-dac213be="" class="decorator">: Int</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The computed hash value for the index set.</span><!--end_enstr-->
+<span class="jpstr">
+インデックス集合に対する計算ハッシュ値。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Using Reference Types</span><!--end_enstr-->
+<span class="jpstr">
+参照型を使用する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsindexset_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class </span><span data-v-dac213be="" class="identifier">NSIndex<wbr data-v-dac213be="">Set</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">An object representing an immutable collection of unique integer values that bridges to <a href="../../documentation/foundation/indexset_language-objc.html" class="router-link-exact-active router-link-active"><code data-v-7fb764c1="">Index<wbr data-v-7fb764c1="">Set</wbr></code></a>; use <span><code data-v-7fb764c1="">NSIndex<wbr data-v-7fb764c1="">Set</wbr></code></span> when you need reference semantics or other Foundation-specific behavior.</span><!--end_enstr-->
+<span class="jpstr">
+特有な整数値それらからなるある不変のコレクションを表しているオブジェクト、それは<a href="../../documentation/foundation/indexset_language-objc.html" class="router-link-exact-active router-link-active"><code data-v-7fb764c1="">Index<wbr data-v-7fb764c1="">Set</wbr></code></a>にブリッジします；<span><code data-v-7fb764c1="">NSIndex<wbr data-v-7fb764c1="">Set</wbr></code></span>をあなたが参照意味論または他のFoundation特有の挙動を必要とする場合に使ってください。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsmutableindexset_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class </span><span data-v-dac213be="" class="identifier">NSMutable<wbr data-v-dac213be="">Index<wbr data-v-dac213be="">Set</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">An object representing a mutable collection of unique integer values that bridges to <a href="../../documentation/foundation/indexset_language-objc.html" class="router-link-exact-active router-link-active"><code data-v-7fb764c1="">Index<wbr data-v-7fb764c1="">Set</wbr></code></a>; use <span><code data-v-7fb764c1="">NSMutable<wbr data-v-7fb764c1="">Index<wbr data-v-7fb764c1="">Set</wbr></wbr></code></span> when you need reference semantics or other Foundation-specific behavior.</span><!--end_enstr-->
+<span class="jpstr">
+特有な整数値の可変コレクションを表しているオブジェクト、それは<a href="../../documentation/foundation/indexset_language-objc.html" class="router-link-exact-active router-link-active"><code data-v-7fb764c1="">Index<wbr data-v-7fb764c1="">Set</wbr></code></a>にブリッジします；<span><code data-v-7fb764c1="">NSMutable<wbr data-v-7fb764c1="">Index<wbr data-v-7fb764c1="">Set</wbr></wbr></code></span>をあなたが参照意味論または他のFoundation特有の挙動を必要とする場合に使ってください。
+</span><!--end_jpstr-->
+ </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/referencetype_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">typealias </span><span data-v-dac213be="" class="identifier">Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Reference<wbr data-v-dac213be="">Type</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">An alias for this value type's equivalent reference type.</span><!--end_enstr-->
+<span class="jpstr">
+この値型のもつ同等な参照型に対するエイリアス。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Type Aliases</span><!--end_enstr-->
+<span class="jpstr">
+型エイリアス
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/element_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">typealias </span><span data-v-dac213be="" class="identifier">Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">An alias for the type that an index set holds.</span><!--end_enstr-->
+<span class="jpstr">
+インデックス集合を保持する型に対するエイリアス
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/arrayliteralelement_language-objc.html" class="link"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">typealias </span><span data-v-dac213be="" class="identifier">Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Array<wbr data-v-dac213be="">Literal<wbr data-v-dac213be="">Element</wbr></wbr></wbr></wbr></span></code><!----><!----><!----></a>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/indices_language-objc.html" class="link"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">typealias </span><span data-v-dac213be="" class="identifier">Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Indices</wbr></wbr></span></code><!----><!----><!----></a>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/iterator_language-objc.html" class="link"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">typealias </span><span data-v-dac213be="" class="identifier">Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Iterator</wbr></wbr></span></code><!----><!----><!----></a>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/subsequence_language-objc.html" class="link"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">typealias </span><span data-v-dac213be="" class="identifier">Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Sub<wbr data-v-dac213be="">Sequence</wbr></wbr></wbr></span></code><!----><!----><!----></a>
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Initializers</span><!--end_enstr-->
+<span class="jpstr">
+イニシャライザ
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/3126692-init_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="identifier">init</span><span data-v-dac213be="" class="decorator">&lt;S&gt;(S)</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Creates a new set from a finite sequence of items.</span><!--end_enstr-->
+<span class="jpstr">
+いくつかの要素からなる有限のシーケンスから集合を作成します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2908867-init_language-objc.html" class="link"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="identifier">init</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">from</span><span data-v-dac213be="" class="decorator">: Decoder)</span></code><!----><!----><!----></a>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2983369-init_language-objc.html" class="link"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="identifier">init</span><span data-v-dac213be="" class="decorator">&lt;R&gt;(</span><span data-v-dac213be="" class="identifier">integers<wbr data-v-dac213be="">In</wbr></span><span data-v-dac213be="" class="decorator">: R)</span></code><!----><!----><!----></a>
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Instance Properties</span><!--end_enstr-->
+<span class="jpstr">
+インスタンスプロパティ 
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2946873-count_language-objc.html" class="link"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">count</span><span data-v-dac213be="" class="decorator">: Int</span></code><!----><!----><!----></a>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1779665-first_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">first</span><span data-v-dac213be="" class="decorator">: Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element?</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The first integer in <code data-v-7fb764c1="">self</code>, or nil if <code data-v-7fb764c1="">self</code> is empty.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">self</code>の中の最初の整数、または<code data-v-7fb764c1="">self</code>が空ならばnil。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780179-first_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">first</span><span data-v-dac213be="" class="decorator">: Int?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The first element of the collection.</span><!--end_enstr-->
+<span class="jpstr">
+コレクションの最初の要素。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2949143-indices_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">indices</span><span data-v-dac213be="" class="decorator">: Default<wbr data-v-dac213be="">Indices&lt;Index<wbr data-v-dac213be="">Set&gt;</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The indices that are valid for subscripting the collection, in ascending order.</span><!--end_enstr-->
+<span class="jpstr">
+コレクションの添え字に使うのに有効である、昇順でのインデックス。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2946899-isempty_language-objc.html" class="link"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">is<wbr data-v-dac213be="">Empty</wbr></span><span data-v-dac213be="" class="decorator">: Bool</span></code><!----><!----><!----></a>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1779717-last_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">last</span><span data-v-dac213be="" class="decorator">: Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Element?</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The last integer in <code data-v-7fb764c1="">self</code>, or nil if <code data-v-7fb764c1="">self</code> is empty.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">self</code>の中の最後の整数、または<code data-v-7fb764c1="">self</code>が空ならばnil。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/1780087-last_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">last</span><span data-v-dac213be="" class="decorator">: Int?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The last element of the collection.</span><!--end_enstr-->
+<span class="jpstr">
+コレクションの最後の要素。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/3344771-publisher_language-objc.html" class="link"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">publisher</span><span data-v-dac213be="" class="decorator">: Publishers<wbr data-v-dac213be="">.Sequence&lt;Index<wbr data-v-dac213be="">Set, Never&gt;</wbr></wbr></span></code><!----><!----><!----></a>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/3017450-underestimatedcount_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">underestimated<wbr data-v-dac213be="">Count</wbr></span><span data-v-dac213be="" class="decorator">: Int</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A value less than or equal to the number of elements in the collection.</span><!--end_enstr-->
+<span class="jpstr">
+このコレクションの中の要素の数より少ないか等しい値。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Instance Methods</span><!--end_enstr-->
+<span class="jpstr">
+インスタンス メソッド
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2994559-allsatisfy_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">all<wbr data-v-dac213be="">Satisfy</wbr></span><span data-v-dac213be="" class="decorator">((Int) -&gt; Bool) -&gt; Bool</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a Boolean value indicating whether every element of a sequence satisfies a given predicate.</span><!--end_enstr-->
+<span class="jpstr">
+シーケンスのすべての要素がある与えられたを満たすかどうかを指し示すブール値を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2957830-compactmap_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">compact<wbr data-v-dac213be="">Map</wbr></span><span data-v-dac213be="" class="decorator">&lt;Element<wbr data-v-dac213be="">Of<wbr data-v-dac213be="">Result&gt;((Int) -&gt; Element<wbr data-v-dac213be="">Of<wbr data-v-dac213be="">Result?) -&gt; [Element<wbr data-v-dac213be="">Of<wbr data-v-dac213be="">Result]</wbr></wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an array containing the non-<code data-v-7fb764c1="">nil</code> results of calling the given transformation with each element of this sequence.</span><!--end_enstr-->
+<span class="jpstr">
+指定された変換をこのシーケンスの各要素で呼び出す結果で非-<code data-v-7fb764c1="">nil</code>のものを含んでいる配列を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2983366-contains_language-objc.html" class="link"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">contains</span><span data-v-dac213be="" class="decorator">&lt;R&gt;(</span><span data-v-dac213be="" class="identifier">integers<wbr data-v-dac213be="">In</wbr></span><span data-v-dac213be="" class="decorator">: R) -&gt; Bool</span></code><!----><!----><!----></a>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2983367-count_language-objc.html" class="link"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">count</span><span data-v-dac213be="" class="decorator">&lt;R&gt;(</span><span data-v-dac213be="" class="identifier">in</span><span data-v-dac213be="" class="decorator">: R) -&gt; Int</span></code><!----><!----><!----></a>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/3200267-difference_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">difference</span><span data-v-dac213be="" class="decorator">&lt;C&gt;(</span><span data-v-dac213be="" class="identifier">from</span><span data-v-dac213be="" class="decorator">: C) -&gt; Collection<wbr data-v-dac213be="">Difference&lt;Int&gt;</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the difference needed to produce this collection’s ordered elements from the given collection.</span><!--end_enstr-->
+<span class="jpstr">
+このコレクションのもつ順番付き要素をこの与えられたコレクションから生成するのに必要な差異を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/3200268-difference_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">difference</span><span data-v-dac213be="" class="decorator">&lt;C&gt;(</span><span data-v-dac213be="" class="identifier">from</span><span data-v-dac213be="" class="decorator">: C, </span><span data-v-dac213be="" class="identifier">by</span><span data-v-dac213be="" class="decorator">: (C<wbr data-v-dac213be="">.Element, Int) -&gt; Bool) -&gt; Collection<wbr data-v-dac213be="">Difference&lt;Int&gt;</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the difference needed to produce this collection’s ordered elements from the given collection, using the given predicate as an equivalence test.</span><!--end_enstr-->
+<span class="jpstr">
+このコレクションのもつ順序付けられた要素をこの与えられたコレクションから生み出すために必要とされる差異を返します、与えられた述部を同等性試験として使います。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2946816-distance_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">distance</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">from</span><span data-v-dac213be="" class="decorator">: Index, </span><span data-v-dac213be="" class="identifier">to</span><span data-v-dac213be="" class="decorator">: Index) -&gt; Int</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the distance between two indices.</span><!--end_enstr-->
+<span class="jpstr">
+２つのインデックス間の隔たりを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2852958-elementsequal_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">elements<wbr data-v-dac213be="">Equal</wbr></span><span data-v-dac213be="" class="decorator">&lt;Other<wbr data-v-dac213be="">Sequence&gt;(Other<wbr data-v-dac213be="">Sequence) -&gt; Bool</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a Boolean value indicating whether this sequence and another sequence contain the same elements in the same order.</span><!--end_enstr-->
+<span class="jpstr">
+このシーケンスともう一方のシーケンスが同じ要素を同じ順序で含むかどうかを指し示すブール値を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2949125-elementsequal_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">elements<wbr data-v-dac213be="">Equal</wbr></span><span data-v-dac213be="" class="decorator">&lt;Other<wbr data-v-dac213be="">Sequence&gt;(Other<wbr data-v-dac213be="">Sequence, </wbr></wbr></span><span data-v-dac213be="" class="identifier">by</span><span data-v-dac213be="" class="decorator">: (Int, Other<wbr data-v-dac213be="">Sequence<wbr data-v-dac213be="">.Element) -&gt; Bool) -&gt; Bool</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a Boolean value indicating whether this sequence and another sequence contain equivalent elements in the same order, using the given predicate as the equivalence test.</span><!--end_enstr-->
+<span class="jpstr">
+このシーケンスともう一方のシーケンスが同等の要素を同じ順序で含むかどうかを、与えられた述部を同等テストとして使って、指し示しているブール値を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2908871-encode_language-objc.html" class="link"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">encode</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">to</span><span data-v-dac213be="" class="decorator">: Encoder)</span></code><!----><!----><!----></a>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2990433-firstindex_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">first<wbr data-v-dac213be="">Index</wbr></span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">of</span><span data-v-dac213be="" class="decorator">: Int) -&gt; Index?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the first index where the specified value appears in the collection.</span><!--end_enstr-->
+<span class="jpstr">
+指定された値がコレクションにおいて現れるところの最初のインデックスを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2990434-firstindex_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">first<wbr data-v-dac213be="">Index</wbr></span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">where</span><span data-v-dac213be="" class="decorator">: (Int) -&gt; Bool) -&gt; Index?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the first index in which an element of the collection satisfies the given predicate.</span><!--end_enstr-->
+<span class="jpstr">
+最初のインデックスで、それにおけるコレクションの要素が与えられた述部を満足させるものを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/3126688-flatmap_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">flat<wbr data-v-dac213be="">Map</wbr></span><span data-v-dac213be="" class="decorator">&lt;Segment<wbr data-v-dac213be="">Of<wbr data-v-dac213be="">Result&gt;((Int) -&gt; Segment<wbr data-v-dac213be="">Of<wbr data-v-dac213be="">Result) -&gt; [Segment<wbr data-v-dac213be="">Of<wbr data-v-dac213be="">Result<wbr data-v-dac213be="">.Element]</wbr></wbr></wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an array containing the concatenated results of calling the given transformation with each element of this sequence.</span><!--end_enstr-->
+<span class="jpstr">
+指定された変換をこのシーケンスの各要素で呼び出す結果を連結したものを含んでいる配列を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/3126690-flatmap_language-objc.html" class="link deprecated"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">flat<wbr data-v-dac213be="">Map</wbr></span><span data-v-dac213be="" class="decorator">&lt;Element<wbr data-v-dac213be="">Of<wbr data-v-dac213be="">Result&gt;((Int) -&gt; Element<wbr data-v-dac213be="">Of<wbr data-v-dac213be="">Result?) -&gt; [Element<wbr data-v-dac213be="">Of<wbr data-v-dac213be="">Result]</wbr></wbr></wbr></wbr></wbr></wbr></span></code><!----><!----></a><span data-v-41682aee="" data-v-01f7f080="" role="presentation" class="violator violator-inline"><span class="enstr">Deprecated</span><!--end_enstr-->
+<span class="jpstr">
+非推奨
+</span><!--end_jpstr-->
+</span>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2946874-formindex_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">form<wbr data-v-dac213be="">Index</wbr></span><span data-v-dac213be="" class="decorator">(inout Index, </span><span data-v-dac213be="" class="identifier">offset<wbr data-v-dac213be="">By</wbr></span><span data-v-dac213be="" class="decorator">: Int)</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Offsets the given index by the specified distance.</span><!--end_enstr-->
+<span class="jpstr">
+与えられたインデックスを指定された間隔で補います。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2946890-formindex_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">form<wbr data-v-dac213be="">Index</wbr></span><span data-v-dac213be="" class="decorator">(inout Index, </span><span data-v-dac213be="" class="identifier">offset<wbr data-v-dac213be="">By</wbr></span><span data-v-dac213be="" class="decorator">: Int, </span><span data-v-dac213be="" class="identifier">limited<wbr data-v-dac213be="">By</wbr></span><span data-v-dac213be="" class="decorator">: Index) -&gt; Bool</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Offsets the given index by the specified distance, or so that it equals the given limiting index.</span><!--end_enstr-->
+<span class="jpstr">
+与えられたインデックスを指定された間隔で補います、またはそれでそれは与えられた限界インデックスと等しくなります。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/3236753-hash_language-objc.html" class="link"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">hash</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">into</span><span data-v-dac213be="" class="decorator">: inout Hasher)</span></code><!----><!----><!----></a>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2946846-index_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">index</span><span data-v-dac213be="" class="decorator">(Index, </span><span data-v-dac213be="" class="identifier">offset<wbr data-v-dac213be="">By</wbr></span><span data-v-dac213be="" class="decorator">: Int) -&gt; Index</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an index that is the specified distance from the given index.</span><!--end_enstr-->
+<span class="jpstr">
+与えられたインデックスから指定された隔たりのインデックスを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2946883-index_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">index</span><span data-v-dac213be="" class="decorator">(Index, </span><span data-v-dac213be="" class="identifier">offset<wbr data-v-dac213be="">By</wbr></span><span data-v-dac213be="" class="decorator">: Int, </span><span data-v-dac213be="" class="identifier">limited<wbr data-v-dac213be="">By</wbr></span><span data-v-dac213be="" class="decorator">: Index) -&gt; Index?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an index that is the specified distance from the given index, unless that distance is beyond a given limiting index.</span><!--end_enstr-->
+<span class="jpstr">
+与えられたインデックスから指定された隔たりのインデックスを返します、その隔たりが与えられた限界インデックスを超えない限りは。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/3126691-index_language-objc.html" class="link deprecated has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">index</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">of</span><span data-v-dac213be="" class="decorator">: Int) -&gt; Index?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the first index where the specified value appears in the collection.</span><!--end_enstr-->
+<span class="jpstr">
+指定された値がコレクションにおいて現れるところの最初のインデックスを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div>
+<span data-v-41682aee="" data-v-01f7f080="" role="presentation" class="violator violator-inline"><span class="enstr">Deprecated</span><!--end_enstr-->
+<span class="jpstr">
+非推奨
+</span><!--end_jpstr-->
+</span>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2983368-indexrange_language-objc.html" class="link"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">index<wbr data-v-dac213be="">Range</wbr></span><span data-v-dac213be="" class="decorator">&lt;R&gt;(</span><span data-v-dac213be="" class="identifier">in</span><span data-v-dac213be="" class="decorator">: R) -&gt; Range&lt;Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Index&gt;</wbr></wbr></span></code><!----><!----><!----></a>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2983370-insert_language-objc.html" class="link"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">insert</span><span data-v-dac213be="" class="decorator">&lt;R&gt;(</span><span data-v-dac213be="" class="identifier">integers<wbr data-v-dac213be="">In</wbr></span><span data-v-dac213be="" class="decorator">: R)</span></code><!----><!----><!----></a>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2983371-intersects_language-objc.html" class="link"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">intersects</span><span data-v-dac213be="" class="decorator">&lt;R&gt;(</span><span data-v-dac213be="" class="identifier">integers<wbr data-v-dac213be="">In</wbr></span><span data-v-dac213be="" class="decorator">: R) -&gt; Bool</span></code><!----><!----><!----></a>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2990435-last_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">last</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">where</span><span data-v-dac213be="" class="decorator">: (Int) -&gt; Bool) -&gt; Int?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the last element of the sequence that satisfies the given predicate.</span><!--end_enstr-->
+<span class="jpstr">
+与えられた述部を満たすこのシーケンスの最後の要素を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2990436-lastindex_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">last<wbr data-v-dac213be="">Index</wbr></span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">of</span><span data-v-dac213be="" class="decorator">: Int) -&gt; Index?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the last index where the specified value appears in the collection.</span><!--end_enstr-->
+<span class="jpstr">
+指定された値がコレクションにおいて現れるところの最後のインデックスを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2990437-lastindex_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">last<wbr data-v-dac213be="">Index</wbr></span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">where</span><span data-v-dac213be="" class="decorator">: (Int) -&gt; Bool) -&gt; Index?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the index of the last element in the collection that matches the given predicate.</span><!--end_enstr-->
+<span class="jpstr">
+与えられたに合致する、コレクションの中の最後の要素のインデックスを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2852961-lexicographicallyprecedes_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">lexicographically<wbr data-v-dac213be="">Precedes</wbr></span><span data-v-dac213be="" class="decorator">&lt;Other<wbr data-v-dac213be="">Sequence&gt;(Other<wbr data-v-dac213be="">Sequence) -&gt; Bool</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a Boolean value indicating whether the sequence precedes another sequence in a lexicographical (dictionary) ordering, using the less-than operator (<code data-v-7fb764c1="">&lt;</code>) to compare elements.</span><!--end_enstr-->
+<span class="jpstr">
+そのシーケンスが別のシーケンスの前に来るかどうかを、ある語彙筆記的順序（字典）順序において、より小さい演算子（<code data-v-7fb764c1="">&lt;</code>）を使って要素を比較して、指し示すブール値を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2853014-lexicographicallyprecedes_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">lexicographically<wbr data-v-dac213be="">Precedes</wbr></span><span data-v-dac213be="" class="decorator">&lt;Other<wbr data-v-dac213be="">Sequence&gt;(Other<wbr data-v-dac213be="">Sequence, </wbr></wbr></span><span data-v-dac213be="" class="identifier">by</span><span data-v-dac213be="" class="decorator">: (Int, Int) -&gt; Bool) -&gt; Bool</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a Boolean value indicating whether the sequence precedes another sequence in a lexicographical (dictionary) ordering, using the given predicate to compare elements.</span><!--end_enstr-->
+<span class="jpstr">
+シーケンスが別のシーケンスの前に来るかどうかをある語彙筆記的順序（字典）順序において、与えられた述部を使って要素を比較して、指し示すブール値を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/3017444-map_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">map</span><span data-v-dac213be="" class="decorator">&lt;T&gt;((Int) -&gt; T) -&gt; [T]</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an array containing the results of mapping the given closure over the sequence’s elements.</span><!--end_enstr-->
+<span class="jpstr">
+シーケンスの要素全体にわたって与えられたクロージャをマップする結果を含んでいる配列を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2994572-randomelement_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">random<wbr data-v-dac213be="">Element</wbr></span><span data-v-dac213be="" class="decorator">() -&gt; Int?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a random element of the collection.</span><!--end_enstr-->
+<span class="jpstr">
+コレクションのある無作為な要素を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2994574-randomelement_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">random<wbr data-v-dac213be="">Element</wbr></span><span data-v-dac213be="" class="decorator">&lt;T&gt;(</span><span data-v-dac213be="" class="identifier">using</span><span data-v-dac213be="" class="decorator">: inout T) -&gt; Int?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a random element of the collection, using the given generator as a source for randomness.</span><!--end_enstr-->
+<span class="jpstr">
+コレクションのある無作為な要素を返します、与えられた生成子を無作為さの源として使います。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2983374-rangeview_language-objc.html" class="link"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">range<wbr data-v-dac213be="">View</wbr></span><span data-v-dac213be="" class="decorator">&lt;R&gt;(</span><span data-v-dac213be="" class="identifier">of</span><span data-v-dac213be="" class="decorator">: R) -&gt; Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Range<wbr data-v-dac213be="">View</wbr></wbr></wbr></span></code><!----><!----><!----></a>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/3126695-reduce_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">reduce</span><span data-v-dac213be="" class="decorator">&lt;Result&gt;(</span><span data-v-dac213be="" class="identifier">into</span><span data-v-dac213be="" class="decorator">: Result, (inout Result, Int) -&gt; ()) -&gt; Result</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the result of combining the elements of the sequence using the given closure.</span><!--end_enstr-->
+<span class="jpstr">
+シーケンスの要素を与えられたクロージャを使って結合する結果を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2994576-shuffled_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">shuffled</span><span data-v-dac213be="" class="decorator">() -&gt; [Int]</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the elements of the sequence, shuffled.</span><!--end_enstr-->
+<span class="jpstr">
+シーケンスの要素を、シャッフルして返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2994578-shuffled_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">shuffled</span><span data-v-dac213be="" class="decorator">&lt;T&gt;(</span><span data-v-dac213be="" class="identifier">using</span><span data-v-dac213be="" class="decorator">: inout T) -&gt; [Int]</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the elements of the sequence, shuffled using the given generator as a source for randomness.</span><!--end_enstr-->
+<span class="jpstr">
+シーケンスの要素を返します、与えられた生成子を無作為さの源として使ってシャッフルされます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2983375-starts_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">starts</span><span data-v-dac213be="" class="decorator">&lt;Possible<wbr data-v-dac213be="">Prefix&gt;(</wbr></span><span data-v-dac213be="" class="identifier">with</span><span data-v-dac213be="" class="decorator">: Possible<wbr data-v-dac213be="">Prefix, </wbr></span><span data-v-dac213be="" class="identifier">by</span><span data-v-dac213be="" class="decorator">: (Int, Possible<wbr data-v-dac213be="">Prefix<wbr data-v-dac213be="">.Element) -&gt; Bool) -&gt; Bool</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a Boolean value indicating whether the initial elements of the sequence are equivalent to the elements in another sequence, using the given predicate as the equivalence test.</span><!--end_enstr-->
+<span class="jpstr">
+シーケンスの最初の要素らが別のシーケンスの中の要素らと同等かどうかを、与えられた述部を同等性テストとして使って指し示すブール値を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/3126697-withcontiguousstorageifavailable_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">with<wbr data-v-dac213be="">Contiguous<wbr data-v-dac213be="">Storage<wbr data-v-dac213be="">If<wbr data-v-dac213be="">Available</wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">&lt;R&gt;((Unsafe<wbr data-v-dac213be="">Buffer<wbr data-v-dac213be="">Pointer&lt;Int&gt;) -&gt; R) -&gt; R?</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Call <code data-v-7fb764c1="">body(p)</code>, where <code data-v-7fb764c1="">p</code> is a pointer to the collection’s contiguous storage. If no such storage exists, it is first created. If the collection does not support an internal representation in a form of contiguous storage, <code data-v-7fb764c1="">body</code> is not called and <code data-v-7fb764c1="">nil</code> is returned.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">body(p)</code>を呼び出します、ここで<code data-v-7fb764c1="">p</code>はコレクションのもつ隣接ストレージへのポインタです。そのようなストレージが存在しないならば、それがまず作成されます。コレクションが内部表現を隣接ストレージの形式においてサポートしないならば、<code data-v-7fb764c1="">body</code>は呼び出されません、そして<code data-v-7fb764c1="">nil</code>が返されます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Subscripts</span><!--end_enstr-->
+<span class="jpstr">
+添え字
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2946905-subscript_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="identifier">subscript</span><span data-v-dac213be="" class="decorator">&lt;R&gt;(R) -&gt; Slice&lt;Index<wbr data-v-dac213be="">Set&gt;</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Accesses the contiguous subrange of the collection’s elements specified by a range expression.</span><!--end_enstr-->
+<span class="jpstr">
+範囲式によって指定される、コレクションの要素からなる連続した下位範囲にアクセスします。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/2946912-subscript_language-objc.html" class="link"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="identifier">subscript</span><span data-v-dac213be="" class="decorator">((Unbounded<wbr data-v-dac213be="">Range_) -&gt; ()) -&gt; Slice&lt;Index<wbr data-v-dac213be="">Set&gt;</wbr></wbr></span></code><!----><!----><!----></a>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/3017446-subscript_language-objc.html" class="link"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="identifier">subscript</span><span data-v-dac213be="" class="decorator">(Range&lt;Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Index&gt;) -&gt; Slice&lt;Index<wbr data-v-dac213be="">Set&gt;</wbr></wbr></wbr></span></code><!----><!----><!----></a>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/3017447-subscript_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="identifier">subscript</span><span data-v-dac213be="" class="decorator">(Range&lt;Index&gt;) -&gt; Slice&lt;Index<wbr data-v-dac213be="">Set&gt;</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Accesses a contiguous subrange of the collection’s elements.</span><!--end_enstr-->
+<span class="jpstr">
+コレクションのもついくらかの要素からなるある連続した下位範囲にアクセスします。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Structures</span><!--end_enstr-->
+<span class="jpstr">
+構造体 
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexset/index_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">struct </span><span data-v-dac213be="" class="identifier">Index<wbr data-v-dac213be="">Set<wbr data-v-dac213be="">.Index</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The mechanism for accessing the integers stored in an IndexSet.</span><!--end_enstr-->
+<span class="jpstr">
+IndexSetの中に格納される整数にアクセスするための仕組み。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+</div><!----></section><section data-v-8c663d90="" data-v-2deaa168="" id="relationships" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">Relationships</span><!--end_enstr-->
+<span class="jpstr">
+関係
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Conforms To</span><!--end_enstr-->
+<span class="jpstr">
+次に準拠
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><ul data-v-4af8f78e="" class="relationships-list column" data-v-9807b2e0="">
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/bidirectionalcollection_language-objc.html" class="link"><code data-v-4af8f78e="">Bidirectional<wbr data-v-4af8f78e="">Collection</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/customdebugstringconvertible_language-objc.html" class="link"><code data-v-4af8f78e="">Custom<wbr data-v-4af8f78e="">Debug<wbr data-v-4af8f78e="">String<wbr data-v-4af8f78e="">Convertible</wbr></wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/customreflectable_language-objc.html" class="link"><code data-v-4af8f78e="">Custom<wbr data-v-4af8f78e="">Reflectable</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/customstringconvertible_language-objc.html" class="link"><code data-v-4af8f78e="">Custom<wbr data-v-4af8f78e="">String<wbr data-v-4af8f78e="">Convertible</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/decodable_language-objc.html" class="link"><code data-v-4af8f78e="">Decodable</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/encodable_language-objc.html" class="link"><code data-v-4af8f78e="">Encodable</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/equatable_language-objc.html" class="link"><code data-v-4af8f78e="">Equatable</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/referenceconvertible_language-objc.html" class="link"><code data-v-4af8f78e="">Reference<wbr data-v-4af8f78e="">Convertible</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/setalgebra_language-objc.html" class="link"><code data-v-4af8f78e="">Set<wbr data-v-4af8f78e="">Algebra</wbr></code></a><!---->
+</li>
+</ul></div>
+</div>
+</div></section><section data-v-8c663d90="" data-v-63527a60="" data-v-2deaa168="" id="see-also" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">See Also</span><!--end_enstr-->
+<span class="jpstr">
+参照
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Indexes</span><!--end_enstr-->
+<span class="jpstr">
+インデックス
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/indexpath_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">struct </span><span data-v-dac213be="" class="identifier">Index<wbr data-v-dac213be="">Path</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A list of indexes that together represent the path to a specific location in a tree of nested arrays.</span><!--end_enstr-->
+<span class="jpstr">
+入れ子にされた配列のツリーの中の特定の位置へのパスを合わせて表すインデックスからなるリスト。
+</span><!--end_jpstr-->
+ </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+</div><!----></section></main>
+</div></div></div>
+<section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo"><nav class="footer-breadory"><a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a><section class="breadcrumbs"><ol class="breadcrumbs-list"></ol></section><div id="directorynav" class="directorynav">
+<div id="dn-cola" class="column">
+<h3><a href="/discover/">Discover</a></h3>
+<ul>
+<li><a href="/ios/">iOS</a></li>
+<li><a href="/ipados/">iPadOS</a></li>
+<li><a href="/macos/">macOS</a></li>
+<li><a href="/tvos/">tvOS</a></li>
+<li><a href="/watchos/">watchOS</a></li>
+<li><a href="/safari/">Safari and Web</a></li>
+<li><a href="/games/">Games</a></li>
+<li><a href="/business/">Business</a></li>
+<li><a href="/education/">Education</a></li>
+<li><a href="/wwdc/">WWDC</a></li>
+</ul>
+</div>
+<div id="dn-colb" class="column">
+<h3><a href="/design/">Design</a></h3>
+<ul>
+<li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
+<li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
+<span class="jpstr">
+リソース
+</span><!--end_jpstr-->
+</a></li>
+<li><a href="/videos/design/">Videos</a></li>
+<li><a href="/design/awards/">Apple Design Awards</a></li>
+<li><a href="/fonts/">Fonts</a></li>
+<li><a href="/accessibility/">Accessibility</a></li>
+<li><a href="/localization/"><span class="enstr">Localization</span><!--end_enstr-->
+<span class="jpstr">
+ローカライゼーション
+</span><!--end_jpstr-->
+</a></li>
+<li><a href="/accessories/">Accessories</a></li>
+</ul>
+</div>
+<div id="dn-colc" class="column">
+<h3><a href="/develop/">Develop</a></h3>
+<ul>
+<li><a href="/xcode/">Xcode</a></li>
+<li><a href="/swift/">Swift</a></li>
+<li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
+<li><a href="/testflight/">TestFlight</a></li>
+<li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
+<li><a href="/videos/">Videos</a></li>
+<li><a href="/download/">Downloads</a></li>
+</ul>
+</div>
+<div id="dn-cold" class="column">
+<h3><a href="/distribute/">Distribute</a></h3>
+<ul>
+<li><a href="/programs/">Developer Program</a></li>
+<li><a href="/app-store/">App Store</a></li>
+<li><a href="/app-store/review/">App Review</a></li>
+<li><a href="/macos/distribution/">Mac Software</a></li>
+<li><a href="/business/distribute/">Apps for Business</a></li>
+<li><a href="/safari/extensions/">Safari Extensions</a></li>
+<li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
+<li><a href="/softwarelicensing/">Trademark Licensing</a></li>
+</ul>
+</div>
+<div id="dn-cole" class="column">
+<h3><a href="/support/">Support</a></h3>
+<ul>
+<li><a href="/support/articles/">Articles</a></li>
+<li><a href="/forums/">Developer Forums</a></li>
+<li><a href="/bug-reporting/">Feedback &amp; Bug Reporting</a></li>
+<li><a href="/system-status/">System Status</a></li>
+<li><a href="/contact/">Contact Us</a></li>
+</ul>
+<h3><a href="/account/">Account</a></h3>
+<ul>
+<li><a href="/account/ios/certificate/">Certificates, Identifiers &amp; Profiles</a></li>
+<li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
+</ul>
+</div>
+</div></nav><div class="ac-gf-footer-legal">
+<div class="ac-gf-footer-news">To view the latest developer news, visit <a href="/news/">News and Updates</a>.</div>
+<div class="ac-gf-footer-language-dropdown-wrapper">
+<select id="footer-language-selector" class="footer-language-select" aria-label="Language Dropdown" autocomplete="off"><option value="https://developer.apple.com/" selected>English</option>
+<option value="https://developer.apple.com/cn/">简体中文</option>
+<option value="https://developer.apple.com/jp/">日本語</option>
+<option value="https://developer.apple.com/kr/">한국어</option></select> <span class="footer-language-select-icon icon icon-chevrondown" aria-hidden="true"></span>
+</div>
+<div class="ac-gf-footer-legal-copyright">Copyright © <span class="footer-current-year">2020</span> <a href="https://www.apple.com">Apple Inc.</a> All rights reserved.</div>
+<div class="ac-gf-footer-legal-links">
+<a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a> <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a> <a href="/terms/">License Agreements</a>
+</div>
+</div></footer></section><script src="../../tutorials/js/footer.js"></script>
+</body>
+</html>

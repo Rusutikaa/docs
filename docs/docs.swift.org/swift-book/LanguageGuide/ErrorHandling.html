@@ -10,7 +10,7 @@
     <meta name="author" content="Apple Inc." />
     <meta name="viewport" content="width=device-width initial-scale=1" />
     
-    <title>Error Handling — The Swift Programming Language (Swift 5.2)</title>
+    <title>Error Handling — The Swift Programming Language (Swift 5.3)</title>
     
     <link rel="license" href="/LICENSE.txt" />
     <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
@@ -41,7 +41,7 @@
 
     <div id="menu-toggle" class="menu-toggle open"></div>
 
-    <h2>The Swift Programming Language<div>Swift 5.2</div></h2>
+    <h2>The Swift Programming Language<div>Swift 5.3</div></h2>
 
     <ul>
     <ul class="current">
@@ -506,6 +506,8 @@ do-catchを使ってエラーを処理する<a class="headerlink" href="#ID541" 
 </li><li>    <span class="gi">statements</span>
 </li><li>} <span class="k">catch</span> <span class="gi">pattern 2</span> <span class="k">where</span> <span class="gi">condition</span> {
 </li><li>    <span class="gi">statements</span>
+</li><li>} <span class="k">catch</span> <span class="gi">pattern 3</span>, <span class="gi">pattern 4</span> <span class="k">where</span> <span class="gi">condition</span> {
+</li><li>    <span class="gi">statements</span>
 </li><li>} <span class="k">catch</span> {
 </li><li>    <span class="gi">statements</span>
 </li><li>}
@@ -543,7 +545,7 @@ do-catchを使ってエラーを処理する<a class="headerlink" href="#ID541" 
 </p>
 <p><span class="enstr">The <code class="docutils literal notranslate"><span class="pre">catch</span></code> clauses don’t have to handle every possible error that the code in the <code class="docutils literal notranslate"><span class="pre">do</span></code> clause can throw. If none of the <code class="docutils literal notranslate"><span class="pre">catch</span></code> clauses handle the error, the error propagates to the surrounding scope. However, the propagated error must be handled by <em>some</em> surrounding scope. In a nonthrowing function, an enclosing <code class="docutils literal notranslate"><span class="pre">do</span></code>-<code class="docutils literal notranslate"><span class="pre">catch</span></code> statement must handle the error. In a throwing function, either an enclosing <code class="docutils literal notranslate"><span class="pre">do</span></code>-<code class="docutils literal notranslate"><span class="pre">catch</span></code> statement or the caller must handle the error. If the error propagates to the top-level scope without being handled, you’ll get a runtime error.</span><!--end_enstr-->
 <span class="jpstr">
-<code class="docutils literal notranslate"><span class="pre">catch</span></code>節は、<code class="docutils literal notranslate"><span class="pre">do</span></code>節の中のコードがスロー可能なすべての起こりうるエラーを取り扱う必要はありません。どの<code class="docutils literal notranslate"><span class="pre">catch</span></code>節もエラーを処理しないならば、エラーは取り囲んでいるスコープへと伝えられます。しかしながら、伝えられるエラーは取り囲んでいるスコープの<em>何れか</em>によって処理される必要があります。非スロー関数では、取り囲んでいる<code class="docutils literal notranslate"><span class="pre">do</span></code>-<code class="docutils literal notranslate"><span class="pre">catch</span></code>文がエラーを処理しなければなりません。スロー関数では、取り囲んでいる<code class="docutils literal notranslate"><span class="pre">do</span></code>-<code class="docutils literal notranslate"><span class="pre">catch</span></code>文または呼び出し側のどちらかがエラーを処理しなければなりません。エラーが取り扱われることなくトップレベルスコープに伝わるならば、あなたは実行時エラーを得るでしょう。
+<code class="docutils literal notranslate"><span class="pre">catch</span></code>節は、<code class="docutils literal notranslate"><span class="pre">do</span></code>節の中のコードがスロー可能なすべての起こりうるエラーを取り扱う必要はありません。どの<code class="docutils literal notranslate"><span class="pre">catch</span></code>節もエラーを処理しないならば、エラーは周囲のスコープへと伝えられます。しかしながら、伝えられるエラーは周囲のスコープの<em>何れか</em>によって処理される必要があります。非スロー関数では、取り囲んでいる<code class="docutils literal notranslate"><span class="pre">do</span></code>-<code class="docutils literal notranslate"><span class="pre">catch</span></code>文がエラーを処理しなければなりません。スロー関数では、取り囲んでいる<code class="docutils literal notranslate"><span class="pre">do</span></code>-<code class="docutils literal notranslate"><span class="pre">catch</span></code>文または呼び出し側のどちらかがエラーを処理しなければなりません。エラーが取り扱われることなくトップレベルスコープに伝わるならば、あなたは実行時エラーを得るでしょう。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">For example, the above example can be written so any error that isn’t a <code class="docutils literal notranslate"><span class="pre">VendingMachineError</span></code> is instead caught by the calling function:</span><!--end_enstr-->
@@ -555,7 +557,7 @@ do-catchを使ってエラーを処理する<a class="headerlink" href="#ID541" 
 </li><li>    <span class="k">do</span> {
 </li><li>        <span class="k">try</span> <span class="nv">vendingMachine</span>.<span class="nv">vend</span>(<span class="nv">itemNamed</span>: <span class="nv">item</span>)
 </li><li>    } <span class="k">catch</span> <span class="k">is</span> <span class="nc">VendingMachineError</span> {
-</li><li>        <span class="nv">print</span>(<span class="s">"Invalid selection, out of stock, or not enough money."</span>)
+</li><li>        <span class="nv">print</span>(<span class="s">"Couldn't buy that from the vending machine."</span>)
 </li><li>    }
 </li><li>}
 </li><li>
@@ -564,11 +566,29 @@ do-catchを使ってエラーを処理する<a class="headerlink" href="#ID541" 
 </li><li>} <span class="k">catch</span> {
 </li><li>    <span class="nv">print</span>(<span class="s">"Unexpected non-vending-machine-related error: </span>\<span class="p">(</span><span class="nv">error</span><span class="p">)</span><span class="s">"</span>)
 </li><li>}
-</li><li><span class="c">// Prints "Invalid selection, out of stock, or not enough money."</span>
+</li><li><span class="c">// Prints "Couldn't buy that from the vending machine."</span>
 </li></ol></div></div></div>
 <p><span class="enstr">In the <code class="docutils literal notranslate"><span class="pre">nourish(with:)</span></code> function, if <code class="docutils literal notranslate"><span class="pre">vend(itemNamed:)</span></code> throws an error that’s one of the cases of the <code class="docutils literal notranslate"><span class="pre">VendingMachineError</span></code> enumeration, <code class="docutils literal notranslate"><span class="pre">nourish(with:)</span></code> handles the error by printing a message. Otherwise, <code class="docutils literal notranslate"><span class="pre">nourish(with:)</span></code> propagates the error to its call site. The error is then caught by the general <code class="docutils literal notranslate"><span class="pre">catch</span></code> clause.</span><!--end_enstr-->
 <span class="jpstr">
 <code class="docutils literal notranslate"><span class="pre">nourish(with:)</span></code>関数において、<code class="docutils literal notranslate"><span class="pre">vend(itemNamed:)</span></code>が<code class="docutils literal notranslate"><span class="pre">VendingMachineError</span></code>列挙のケース節の１つであるエラーをスローするならば、<code class="docutils literal notranslate"><span class="pre">nourish(with:)</span></code>はそのエラーをメッセージを出力することによって取り扱います。そうでなければ、<code class="docutils literal notranslate"><span class="pre">nourish(with:)</span></code>はそのエラーをそれの呼出地点へと伝達します。エラーは、それから一般的な<code class="docutils literal notranslate"><span class="pre">catch</span></code>節によってキャッチされます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">Another way to catch several related errors is to list them after <code class="docutils literal notranslate"><span class="pre">catch</span></code>, separated by commas. For example:</span><!--end_enstr-->
+<span class="jpstr">
+いくつかの関連したエラーをキャッチする別の方法は、それらを<code class="docutils literal notranslate"><span class="pre">catch</span></code>の後に、コンマで区切って列記することになります。例えば：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">func</span> <span class="nv">eat</span>(<span class="nv">item</span>: <span class="nc">String</span>) <span class="k">throws</span> {
+</li><li>    <span class="k">do</span> {
+</li><li>        <span class="k">try</span> <span class="nv">vendingMachine</span>.<span class="nv">vend</span>(<span class="nv">itemNamed</span>: <span class="nv">item</span>)
+</li><li>    } <span class="k">catch</span> <span class="nv">VendingMachineError</span>.<span class="nv">invalidSelection</span>, <span class="nv">VendingMachineError</span>.<span class="nv">insufficientFunds</span>, <span class="nv">VendingMachineError</span>.<span class="nv">outOfStock</span> {
+</li><li>        <span class="nv">print</span>(<span class="s">"Invalid selection, out of stock, or not enough money."</span>)
+</li><li>    }
+</li><li>}
+</li></ol></div></div></div>
+<p><span class="enstr">The <code class="docutils literal notranslate"><span class="pre">eat(item:)</span></code> function lists the vending machine errors to catch, and its error text corresponds to the items in that list. If any of the three listed errors are thrown, this <code class="docutils literal notranslate"><span class="pre">catch</span></code> clause handles them by printing a message. Any other errors are propagated to the surrounding scope, including any vending-machine errors that might be added later.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">eat(item:)</span></code>関数は、自動販売機エラーそれらをリストしてキャッチします、そしてそれのエラーテキストをそのリストの中の項目と結び付けます。３つのリストされたエラーのどれかがスローされるならば、この<code class="docutils literal notranslate"><span class="pre">catch</span></code>節はそれらをあるメッセージを出力することによって取り扱います。何らかの他のエラーは、周囲のスコープに伝播されます、後で加えられるかもしれないあらゆる自動販売機エラーを含めて。
 </span><!--end_jpstr-->
 </p>
 </div>

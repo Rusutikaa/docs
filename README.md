@@ -1,14 +1,14 @@
-﻿* [The Swift Programming Language 2020.3.24 日本語訳](https://rusutikaa.github.io/docs/docs.swift.org/swift-book/index.html)
+﻿* [The Swift Programming Language 2020.9.16 日本語訳](https://rusutikaa.github.io/docs/docs.swift.org/swift-book/index.html)
 
-* [Framework Swift 2020.3.29 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com/documentation/swift.html)
+* [Framework Swift 2020.10.9 途中 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com/documentation/swift.html)
 
-* [Framework Foundation（Swift）2020.3.29 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com/documentation/foundation.html)
+* [Framework SwiftUI 2020.10.9 途中 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com/documentation/swiftui.html)
 
-* [Framework SwiftUI 2020.3.29 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com/documentation/swiftui.html)
+* [Framework Foundation（Swift）2020.10.9 途中 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com/documentation/foundation.html)
+* [Framework Foundation（ObjC）2020.10.9 途中 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com2/documentation/foundation_language-objc.html)
 
-* [Framework Foundation（ObjC）2020.6.10 日本語訳](https://rusutikaa.github.io/docs//docs2/developer.apple.com/documentation/foundation_language-objc.html)
-
-* [Framework Objective-C Runtime (Swift) 2020.6.7 日本語訳](https://rusutikaa.github.io/docs/docs2/developer.apple.com/documentation/objectivec.html)
+* [Framework Objective-C Runtime (Swift) 2020.10.9 途中 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com/documentation/objectivec.html)
+* [Framework Objective-C Runtime (ObjC) 2020.10.9 途中 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com2/documentation/objectivec_language-objc.html)
 
 以下は更新されない
 

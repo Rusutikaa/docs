@@ -10,7 +10,7 @@
     <meta name="author" content="Apple Inc." />
     <meta name="viewport" content="width=device-width initial-scale=1" />
     
-    <title>Properties — The Swift Programming Language (Swift 5.2)</title>
+    <title>Properties — The Swift Programming Language (Swift 5.3)</title>
     
     <link rel="license" href="/LICENSE.txt" />
     <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
@@ -41,7 +41,7 @@
 
     <div id="menu-toggle" class="menu-toggle open"></div>
 
-    <h2>The Swift Programming Language<div>Swift 5.2</div></h2>
+    <h2>The Swift Programming Language<div>Swift 5.3</div></h2>
 
     <ul>
     <ul class="current">
@@ -278,8 +278,16 @@
 プロパティラッパー
 </span><!--end_jpstr-->
 </a><ul>
-<li><a class="reference internal" href="#ID618">Setting Initial Values for Wrapped Properties</a></li>
-<li><a class="reference internal" href="#ID619">Projecting a Value From a Property Wrapper</a></li>
+<li><a class="reference internal" href="#ID618"><span class="enstr">Setting Initial Values for Wrapped Properties</span><!--end_enstr-->
+<span class="jpstr">
+ラップされたプロパティに初期値を設定する
+</span><!--end_jpstr-->
+</a></li>
+<li><a class="reference internal" href="#ID619"><span class="enstr">Projecting a Value From a Property Wrapper</span><!--end_enstr-->
+<span class="jpstr">
+値をプロパティラッパーから投影する
+</span><!--end_jpstr-->
+</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#ID263"><span class="enstr">Global and Local Variables</span><!--end_enstr-->
@@ -490,7 +498,7 @@
 注意
 </span><!--end_jpstr-->
 </p>
-<p class="last"><span class="enstr">If a property marked with the <code class="docutils literal notranslate"><span class="pre">lazy</span></code> modifier is accessed by multiple threads simultaneously and the property has not yet been initialized, there is no guarantee that the property will be initialized only once.</span><!--end_enstr-->
+<p class="last"><span class="enstr">If a property marked with the <code class="docutils literal notranslate"><span class="pre">lazy</span></code> modifier is accessed by multiple threads simultaneously and the property has not yet been initialized, there’s no guarantee that the property will be initialized only once.</span><!--end_enstr-->
 <span class="jpstr">
 <code class="docutils literal notranslate"><span class="pre">lazy</span></code>修飾子で印されるプロパティが複数のスレッドによって同時にアクセスされ、そのプロパティがその時まだ初期化されないならば、そのプロパティがただ一度だけ初期化されるとは保障されません。
 </span><!--end_jpstr-->
@@ -713,9 +721,31 @@
 プロパティオブザーバーは、あるプロパティの値の変化を観察して、応答します。プロパティオブザーバーは、あるプロパティの値が設定されるたびに、たとえ新しい値がそのプロパティの現在の値と同じものであるとしても、呼ばれます。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">You can add property observers to any stored properties you define, except for lazy stored properties. You can also add property observers to any inherited property (whether stored or computed) by overriding the property within a subclass. You don’t need to define property observers for nonoverridden computed properties, because you can observe and respond to changes to their value in the computed property’s setter. Property overriding is described in <a class="reference internal" href="Inheritance.html#ID196"><span class="std std-ref">Overriding</span></a>.</span><!--end_enstr-->
+<p><span class="enstr">You can add property observers in the following places:</span><!--end_enstr-->
 <span class="jpstr">
-あなたは、プロパティオブザーバーをあなたが定義するどんな格納プロパティにでも加えることができます、しかし遅延格納プロパティは除きます。あなたはまた、プロパティオブザーバーを、どんな継承されたプロパティにでも（格納されるか、計算されるかに関係なく）、サブクラス内でそのプロパティをオーバーライドすることによって加えることができます。あなたは、オーバーライドされていない計算プロパティのためにプロパティオブザーバーを定義する必要はありません、なぜならあなたは計算プロパティのセッターにおいてそれらの値の変化を観察して応答することができるからです。プロパティをオーバーライドすることは<a class="reference internal" href="Inheritance.html#ID196"><span class="std std-ref">オーバーライド</span></a>で記述されます。
+あなたは、プロパティオブザーバを以下の場所に追加できます：
+</span><!--end_jpstr-->
+</p>
+<ul class="simple">
+<li><span class="enstr">Stored properties that you define</span><!--end_enstr-->
+<span class="jpstr">
+あなたが定義する格納プロパティ
+</span><!--end_jpstr-->
+</li>
+<li><span class="enstr">Stored properties that you inherit</span><!--end_enstr-->
+<span class="jpstr">
+あなたが継承する格納プロパティ
+</span><!--end_jpstr-->
+</li>
+<li><span class="enstr">Computed properties that you inherit</span><!--end_enstr-->
+<span class="jpstr">
+あなたが継承する計算プロパティ
+</span><!--end_jpstr-->
+</li>
+</ul>
+<p><span class="enstr">For an inherited property, you add a property observer by overriding that property in a subclass. For a computed property that you define, use the property’s setter to observe and respond to value changes, instead of trying to create an observer. Overriding properties is described in <a class="reference internal" href="Inheritance.html#ID196"><span class="std std-ref">Overriding</span></a>.</span><!--end_enstr-->
+<span class="jpstr">
+継承されたプロパティに対して、あなたはプロパティオブザーバを、そのプロパティをサブクラスの中でオーバーライドすることによって追加します。あなたが定義する計算プロパティに対して、プロパティのもつセッターを使うことで値の変化を監視および応答してください、オブザーバを作成しようとするのではなく。プロパティのオーバーライドは、<a class="reference internal" href="Inheritance.html#ID196"><span class="std std-ref">オーバーライド</span></a>において記述されます。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">You have the option to define either or both of these observers on a property:</span><!--end_enstr-->
@@ -1050,7 +1080,7 @@
 <div class="section" id="ID619">
 <h3><span class="enstr">Projecting a Value From a Property Wrapper<a class="headerlink" href="#ID619" title="Permalink to this headline">¶</a></span><!--end_enstr-->
 <span class="jpstr">
-値をプロパティラッパーから投影する
+値をプロパティラッパーから投影する<a class="headerlink" href="#ID619" title="Permalink to this headline">¶</a>
 </span><!--end_jpstr-->
 </h3>
 <p><span class="enstr">In addition to the wrapped value, a property wrapper can expose additional functionality by defining a <em>projected value</em>—for example, a property wrapper that manages access to a database can expose a <code class="docutils literal notranslate"><span class="pre">flushDatabaseConnection()</span></code> method on its projected value. The name of the projected value is the same as the wrapped value, except it begins with a dollar sign (<code class="docutils literal notranslate"><span class="pre">$</span></code>). Because your code can’t define properties that start with <code class="docutils literal notranslate"><span class="pre">$</span></code> the projected value never interferes with properties you define.</span><!--end_enstr-->

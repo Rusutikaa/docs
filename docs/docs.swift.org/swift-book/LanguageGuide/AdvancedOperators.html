@@ -10,7 +10,7 @@
     <meta name="author" content="Apple Inc." />
     <meta name="viewport" content="width=device-width initial-scale=1" />
     
-    <title>Advanced Operators — The Swift Programming Language (Swift 5.2)</title>
+    <title>Advanced Operators — The Swift Programming Language (Swift 5.3)</title>
     
     <link rel="license" href="/LICENSE.txt" />
     <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
@@ -41,7 +41,7 @@
 
     <div id="menu-toggle" class="menu-toggle open"></div>
 
-    <h2>The Swift Programming Language<div>Swift 5.2</div></h2>
+    <h2>The Swift Programming Language<div>Swift 5.3</div></h2>
 
     <ul>
     <ul class="current">
@@ -1030,49 +1030,11 @@ Cでの算術演算子と違って、スウィフトの算術演算子は、初�
 </li><li>}
 </li><li><span class="c"><span class="enstr">// Prints "These two vectors are equivalent."</span><!--end_enstr--><span class="jpstr">（「これらの２つのベクトルは等しいです。」を出力します）</span><!--end_jpstr--></span>
 </li></ol></div></div></div>
-<p><span class="enstr">In many simple cases, you can ask Swift to provide synthesized implementations of the equivalence operators for you. Swift provides synthesized implementations for the following kinds of custom types:</span><!--end_enstr-->
+<p><span class="enstr">In many simple cases, you can ask Swift to provide synthesized implementations of the equivalence operators for you, as described in <a class="reference internal" href="Protocols.html#ID627"><span class="std std-ref">Adopting a Protocol Using a Synthesized Implementation</span></a>.</span><!--end_enstr-->
 <span class="jpstr">
-多くの単純な場合では、あなたはスウィフトに頼むことで、等価演算子の合成された実装をあなたに提供できます。スウィフトは、合成された実装を以下の種類のあつらえの方に対して提供します：
+多くの単純な場合では、あなたはスウィフトに頼むことで、等価演算子の合成された実装をあなたの代わりに提供できます。<a class="reference internal" href="Protocols.html#ID627"><span class="std std-ref">プロトコルを合成実装を使って採用する</span></a>で記述されるように。
 </span><!--end_jpstr-->
 </p>
-<ul class="simple">
-<li><span class="enstr">Structures that have only stored properties that conform to the <code class="docutils literal notranslate"><span class="pre">Equatable</span></code> protocol</span><!--end_enstr-->
-<span class="jpstr">
-<code class="docutils literal notranslate"><span class="pre">Equatable</span></code>プロトコルに準拠する格納プロパティだけを持つ構造体
-</span><!--end_jpstr-->
-</li>
-<li><span class="enstr">Enumerations that have only associated types that conform to the <code class="docutils literal notranslate"><span class="pre">Equatable</span></code> protocol</span><!--end_enstr-->
-<span class="jpstr">
-<code class="docutils literal notranslate"><span class="pre">Equatable</span></code>プロトコルに準拠する関連型だけを持つ列挙
-</span><!--end_jpstr-->
-</li>
-<li><span class="enstr">Enumerations that have no associated types</span><!--end_enstr-->
-<span class="jpstr">
-関連型を持たない列挙
-</span><!--end_jpstr-->
-</li>
-</ul>
-<p><span class="enstr">To receive a synthesized implementation of <code class="docutils literal notranslate"><span class="pre">==</span></code>, declare <code class="docutils literal notranslate"><span class="pre">Equatable</span></code> conformance in the file that contains the original declaration, without implementing an <code class="docutils literal notranslate"><span class="pre">==</span></code> operator yourself.</span><!--end_enstr-->
-<span class="jpstr">
-<code class="docutils literal notranslate"><span class="pre">==</span></code>の合成された実装を受け取るには、<code class="docutils literal notranslate"><span class="pre">Equatable</span></code>準拠の宣言を元の宣言を含むファイルにおいて行ってください、<code class="docutils literal notranslate"><span class="pre">==</span></code>演算子をあなた自身で実装することなしに。
-</span><!--end_jpstr-->
-</p>
-<p><span class="enstr">The example below defines a <code class="docutils literal notranslate"><span class="pre">Vector3D</span></code> structure for a three-dimensional position vector <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y,</span> <span class="pre">z)</span></code>, similar to the <code class="docutils literal notranslate"><span class="pre">Vector2D</span></code> structure. Because the <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>, and <code class="docutils literal notranslate"><span class="pre">z</span></code> properties are all of an <code class="docutils literal notranslate"><span class="pre">Equatable</span></code> type, <code class="docutils literal notranslate"><span class="pre">Vector3D</span></code> receives synthesized implementations of the equivalence operators.</span><!--end_enstr-->
-<span class="jpstr">
-下の例は、<code class="docutils literal notranslate"><span class="pre">Vector3D</span></code>構造体を３次元の位置ベクトル<code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y,</span> <span class="pre">z)</span></code>に対して定義します、<code class="docutils literal notranslate"><span class="pre">Vector2D</span></code>構造体に似たものです。<code class="docutils literal notranslate"><span class="pre">x</span></code>、<code class="docutils literal notranslate"><span class="pre">y</span></code>、そして<code class="docutils literal notranslate"><span class="pre">z</span></code>プロパティはみんな<code class="docutils literal notranslate"><span class="pre">Equatable</span></code>型なので、<code class="docutils literal notranslate"><span class="pre">Vector3D</span></code>は等価演算子の合成された実装それらを受け取ります。
-</span><!--end_jpstr-->
-</p>
-<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">struct</span> <span class="nv">Vector3D</span>: <span class="nc">Equatable</span> {
-</li><li>    <span class="k">var</span> <span class="nv">x</span> = <span class="m">0.0</span>, <span class="nv">y</span> = <span class="m">0.0</span>, <span class="nv">z</span> = <span class="m">0.0</span>
-</li><li>}
-</li><li>
-</li><li><span class="k">let</span> <span class="nv">twoThreeFour</span> = <span class="nv">Vector3D</span>(<span class="nv">x</span>: <span class="m">2.0</span>, <span class="nv">y</span>: <span class="m">3.0</span>, <span class="nv">z</span>: <span class="m">4.0</span>)
-</li><li><span class="k">let</span> <span class="nv">anotherTwoThreeFour</span> = <span class="nv">Vector3D</span>(<span class="nv">x</span>: <span class="m">2.0</span>, <span class="nv">y</span>: <span class="m">3.0</span>, <span class="nv">z</span>: <span class="m">4.0</span>)
-</li><li><span class="k">if</span> <span class="nv">twoThreeFour</span> == <span class="nv">anotherTwoThreeFour</span> {
-</li><li>    <span class="nv">print</span>(<span class="s">"These two vectors are also equivalent."</span>)
-</li><li>}
-</li><li><span class="c"><span class="enstr">// Prints "These two vectors are also equivalent."</span><!--end_enstr--><span class="jpstr">（「これらの２つのベクトルはまた等しいです。」を出力します）</span><!--end_jpstr--></span>
-</li></ol></div></div></div>
 </div>
 </div>
 <div class="section" id="ID46">

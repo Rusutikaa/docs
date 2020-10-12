@@ -10,7 +10,7 @@
     <meta name="author" content="Apple Inc." />
     <meta name="viewport" content="width=device-width initial-scale=1" />
     
-    <title>Automatic Reference Counting — The Swift Programming Language (Swift 5.2)</title>
+    <title>Automatic Reference Counting — The Swift Programming Language (Swift 5.3)</title>
     
     <link rel="license" href="/LICENSE.txt" />
     <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
@@ -41,7 +41,7 @@
 
     <div id="menu-toggle" class="menu-toggle open"></div>
 
-    <h2>The Swift Programming Language<div>Swift 5.2</div></h2>
+    <h2>The Swift Programming Language<div>Swift 5.3</div></h2>
 
     <ul>
     <ul class="current">
@@ -258,6 +258,11 @@ ARCの動作
 非所有参照
 </span><!--end_jpstr-->
 </a></li>
+<li><a class="reference internal" href="#ID625"><span class="enstr">Unowned Optional References</span><!--end_enstr-->
+<span class="jpstr">
+非所有オプショナル参照
+</span><!--end_jpstr-->
+</a></li>
 <li><a class="reference internal" href="#ID55"><span class="enstr">Unowned References and Implicitly Unwrapped Optional Properties</span><!--end_enstr-->
 <span class="jpstr">
 非所有参照と暗黙的にアンラップされるオプショナルのプロパティ
@@ -399,9 +404,9 @@ ARCの動作<a class="headerlink" href="#ID50" title="Permalink to this headline
 あなたが<code class="docutils literal notranslate"><span class="pre">Person</span></code>クラスのイニシャライザを呼んだ時点で、メッセージ<code class="docutils literal notranslate"><span class="pre">"John</span> <span class="pre">Appleseed</span> <span class="pre">is</span> <span class="pre">being</span> <span class="pre">initialized"</span></code>が出力されるという点に注意してください。これは、初期化が起こったことを確認します。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">Because the new <code class="docutils literal notranslate"><span class="pre">Person</span></code> instance has been assigned to the <code class="docutils literal notranslate"><span class="pre">reference1</span></code> variable, there is now a strong reference from <code class="docutils literal notranslate"><span class="pre">reference1</span></code> to the new <code class="docutils literal notranslate"><span class="pre">Person</span></code> instance. Because there is at least one strong reference, ARC makes sure that this <code class="docutils literal notranslate"><span class="pre">Person</span></code> is kept in memory and is not deallocated.</span><!--end_enstr-->
+<p><span class="enstr">Because the new <code class="docutils literal notranslate"><span class="pre">Person</span></code> instance has been assigned to the <code class="docutils literal notranslate"><span class="pre">reference1</span></code> variable, there’s now a strong reference from <code class="docutils literal notranslate"><span class="pre">reference1</span></code> to the new <code class="docutils literal notranslate"><span class="pre">Person</span></code> instance. Because there’s at least one strong reference, ARC makes sure that this <code class="docutils literal notranslate"><span class="pre">Person</span></code> is kept in memory and is not deallocated.</span><!--end_enstr-->
 <span class="jpstr">
-新しい<code class="docutils literal notranslate"><span class="pre">Person</span></code>インスタンスが<code class="docutils literal notranslate"><span class="pre">reference1</span></code>変数に代入されたので、強い参照が現在<code class="docutils literal notranslate"><span class="pre">reference1</span></code>から新しい<code class="docutils literal notranslate"><span class="pre">Person</span></code>インスタンスまで存在します。少なくとも１つの強い参照があるので、ARCはこの<code class="docutils literal notranslate"><span class="pre">Person</span></code>がメモリに保たれて割り当て解除されないことを確実にします。
+新しい<code class="docutils literal notranslate"><span class="pre">Person</span></code>インスタンスが<code class="docutils literal notranslate"><span class="pre">reference1</span></code>変数に代入されたので、現在は強い参照が<code class="docutils literal notranslate"><span class="pre">reference1</span></code>から新しい<code class="docutils literal notranslate"><span class="pre">Person</span></code>インスタンスまで存在します。少なくとも１つの強い参照があるので、ARCはこの<code class="docutils literal notranslate"><span class="pre">Person</span></code>がメモリの中に保たれて割り当て解除されないことを確実にします。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">If you assign the same <code class="docutils literal notranslate"><span class="pre">Person</span></code> instance to two more variables, two more strong references to that instance are established:</span><!--end_enstr-->
@@ -695,9 +700,9 @@ ARCは、<code class="docutils literal notranslate"><span class="pre">Person</sp
 弱い参照のように、<em>非所有参照</em>は、それが言及するインスタンスに対する強い支配力を保ちません。しかしながら、弱い参照とは違い、非所有参照は他のインスタンスが同じ生涯またはより長い生涯を持つ場合に使われます。あなたは、プロパティまたは変数の宣言の前に<code class="docutils literal notranslate"><span class="pre">unowned</span></code>キーワードを置くことによって非所有参照を示します。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">An unowned reference is expected to always have a value. As a result, ARC never sets an unowned reference’s value to <code class="docutils literal notranslate"><span class="pre">nil</span></code>, which means that unowned references are defined using non-optional types.</span><!--end_enstr-->
+<p><span class="enstr">Unlike a weak reference, an unowned reference is expected to always have a value. As a result, marking a value as unowned doesn’t make it optional, and ARC never sets an unowned reference’s value to <code class="docutils literal notranslate"><span class="pre">nil</span></code>.</span><!--end_enstr-->
 <span class="jpstr">
-非所有参照は、常にある値を持っていることを期待されます。結果として、ARCは決して非所有参照のもつ値を<code class="docutils literal notranslate"><span class="pre">nil</span></code>に設定しません、それは非所有参照が非オプショナル型を使って定義されることを意味します。
+弱い参照とは違い、非所有参照は常に値を持つと期待されます。結果として、ある値を非所有と印することは、それをオプショナルにしません、そしてARCは決して非所有参照のもつ値を<code class="docutils literal notranslate"><span class="pre">nil</span></code>に設定しません。
 </span><!--end_jpstr-->
 </p>
 <div class="admonition important">
@@ -832,6 +837,96 @@ ARCは、<code class="docutils literal notranslate"><span class="pre">Person</sp
 </p>
 </div>
 </div>
+<div class="section" id="ID625">
+<h3><span class="enstr">Unowned Optional References<a class="headerlink" href="#ID625" title="Permalink to this headline">¶</a></span><!--end_enstr-->
+<span class="jpstr">
+非所有オプショナル参照<a class="headerlink" href="#ID625" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">You can mark an optional reference to a class as unowned. In terms of the ARC ownership model, an unowned optional reference and a weak reference can both be used in the same contexts. The difference is that when you use an unowned optional reference, you’re responsible for making sure it always refers to a valid object or is set to <code class="docutils literal notranslate"><span class="pre">nil</span></code>.</span><!--end_enstr-->
+<span class="jpstr">
+あなたは、あるクラスへのオプショナル参照を非所有として印できます。ARC所有権モデルの観点では、非所有オプショナル参照と弱い参照は両方とも同じ文脈で使用できます。違いは、あなたが非所有オプショナル参照を使う場合、あなたはそれが有効なオブジェクトを常に参照するまたは<code class="docutils literal notranslate"><span class="pre">nil</span></code>に設定されるのを確実にする責任があることです。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">Here’s an example that keeps track of the courses offered by a particular department at a school:</span><!--end_enstr-->
+<span class="jpstr">
+ここに例があります、それはある学校でのある特定の学科（Department）によって提供される課程（Course）それらの情報を得続けます。
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">class</span> <span class="nv">Department</span> {
+</li><li>    <span class="k">var</span> <span class="nv">name</span>: <span class="nc">String</span>
+</li><li>    <span class="k">var</span> <span class="nv">courses</span>: [<span class="nc">Course</span>]
+</li><li>    <span class="k">init</span>(<span class="nv">name</span>: <span class="nc">String</span>) {
+</li><li>        <span class="k">self</span>.<span class="nv">name</span> = <span class="nv">name</span>
+</li><li>        <span class="k">self</span>.<span class="nv">courses</span> = []
+</li><li>    }
+</li><li>}
+</li><li>
+</li><li><span class="k">class</span> <span class="nv">Course</span> {
+</li><li>    <span class="k">var</span> <span class="nv">name</span>: <span class="nc">String</span>
+</li><li>    <span class="k">unowned</span> <span class="k">var</span> <span class="nv">department</span>: <span class="nc">Department</span>
+</li><li>    <span class="k">unowned</span> <span class="k">var</span> <span class="nv">nextCourse</span>: <span class="nc">Course</span>?
+</li><li>    <span class="k">init</span>(<span class="nv">name</span>: <span class="nc">String</span>, <span class="nv">in</span> <span class="nv">department</span>: <span class="nc">Department</span>) {
+</li><li>        <span class="k">self</span>.<span class="nv">name</span> = <span class="nv">name</span>
+</li><li>        <span class="k">self</span>.<span class="nv">department</span> = <span class="nv">department</span>
+</li><li>        <span class="k">self</span>.<span class="nv">nextCourse</span> = <span class="k">nil</span>
+</li><li>    }
+</li><li>}
+</li></ol></div></div></div>
+<p><span class="enstr"><code class="docutils literal notranslate"><span class="pre">Department</span></code> maintains a strong reference to each course that the department offers. In the ARC ownership model, a department owns its courses. <code class="docutils literal notranslate"><span class="pre">Course</span></code> has two unowned references, one to the department and one to the next course a student should take; a course doesn’t own either of these objects. Every course is part of some department so the <code class="docutils literal notranslate"><span class="pre">department</span></code> property isn’t an optional. However, because some courses don’t have a recommended follow-on course, the <code class="docutils literal notranslate"><span class="pre">nextCourse</span></code> property is an optional.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">Department</span></code>（学科）は、ある強い参照をその学科が提供する課程それぞれに対して保守します。ARC所有権モデルにおいて、ある学科はそれの課程それらを所有します。<code class="docutils literal notranslate"><span class="pre">Course</span></code>（課程）は２つの非所有参照を持ちます、学科に対して１つそして生徒が取るべき次の課程に対して１つ；ある課程はこれらオブジェクトのどちらも所有しません。あらゆる課程は、なんらかの学科の一部です、なので<code class="docutils literal notranslate"><span class="pre">department</span></code>プロパティはオプショナルではありません。しかしながら、いくつかの課程は推奨される後続の課程を持たないことから、<code class="docutils literal notranslate"><span class="pre">nextCourse</span></code>プロパティはオプショナルです。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">Here’s an example of using these classes:</span><!--end_enstr-->
+<span class="jpstr">
+ここにこれらクラスを使う例があります：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">let</span> <span class="nv">department</span> = <span class="nv">Department</span>(<span class="nv">name</span>: <span class="s">"Horticulture"</span>)
+</li><li>
+</li><li><span class="k">let</span> <span class="nv">intro</span> = <span class="nv">Course</span>(<span class="nv">name</span>: <span class="s">"Survey of Plants"</span>, <span class="nv">in</span>: <span class="nv">department</span>)
+</li><li><span class="k">let</span> <span class="nv">intermediate</span> = <span class="nv">Course</span>(<span class="nv">name</span>: <span class="s">"Growing Common Herbs"</span>, <span class="nv">in</span>: <span class="nv">department</span>)
+</li><li><span class="k">let</span> <span class="nv">advanced</span> = <span class="nv">Course</span>(<span class="nv">name</span>: <span class="s">"Caring for Tropical Plants"</span>, <span class="nv">in</span>: <span class="nv">department</span>)
+</li><li>
+</li><li><span class="nv">intro</span>.<span class="nv">nextCourse</span> = <span class="nv">intermediate</span>
+</li><li><span class="nv">intermediate</span>.<span class="nv">nextCourse</span> = <span class="nv">advanced</span>
+</li><li><span class="nv">department</span>.<span class="nv">courses</span> = [<span class="nv">intro</span>, <span class="nv">intermediate</span>, <span class="nv">advanced</span>]
+</li></ol></div></div></div>
+<p><span class="enstr">The code above creates a department and its three courses. The intro and intermediate courses both have a suggested next course stored in their <code class="docutils literal notranslate"><span class="pre">nextCourse</span></code> property, which maintains an unowned optional reference to the course a student should take after after completing this one.</span><!--end_enstr-->
+<span class="jpstr">
+上のコードは、ある学科とそれの３つの課程を作成します。入門と中級の課程の両方とも、それらの<code class="docutils literal notranslate"><span class="pre">nextCourse</span></code>プロパティの中に格納される提案される次の課程を持ちます、それは生徒がそれを修了した後に取るべき課程への非所有オプショナル参照を保守します。
+</span><!--end_jpstr-->
+</p>
+<img alt="../_images/unownedOptionalReference_2x.png" class="align-center" src="../images/unownedOptionalReference_2x.png" style="width: 628px;" />
+<p><span class="enstr">An unowned optional reference doesn’t keep a strong hold on the instance of the class that it wraps, and so it doesn’t prevent ARC from deallocating the instance. It behaves the same as an unowned reference does under ARC, except that an unowned optional reference can be <code class="docutils literal notranslate"><span class="pre">nil</span></code>.</span><!--end_enstr-->
+<span class="jpstr">
+非所有オプショナル参照は、強い保持をそれがラップするクラスのインスタンス上で持ち続けません、それゆえそれはARCがインスタンスをデアロケートするのを妨げません。それは非所有参照がARCの下でするのと同じに振る舞います、非所有オプショナル参照が<code class="docutils literal notranslate"><span class="pre">nil</span></code>であることが可能である以外は。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">Like non-optional unowned references, you’re responsible for ensuring that <code class="docutils literal notranslate"><span class="pre">nextCourse</span></code> always refers to a course that hasn’t been deallocated. In this case, for example, when you delete a course from <code class="docutils literal notranslate"><span class="pre">department.courses</span></code> you also need to remove any references to it that other courses might have.</span><!--end_enstr-->
+<span class="jpstr">
+非オプショナル非所有参照のように、あなたは<code class="docutils literal notranslate"><span class="pre">nextCourse</span></code>が常にあるデアロケートされていない課程を参照することを確実にする責任があります。この場合には、例えば、あなたがある課程を<code class="docutils literal notranslate"><span class="pre">department.courses</span></code>から削除する場合はあなたはまた他の課程が持つかもしれないそれへのあらゆる参照を取り除く必要があります。
+</span><!--end_jpstr-->
+</p>
+<div class="admonition note">
+<p class="first admonition-title"><span class="enstr">Note</span><!--end_enstr-->
+<span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">The underlying type of an optional value is <code class="docutils literal notranslate"><span class="pre">Optional</span></code>, which is an enumeration in the Swift standard library. However, optionals are an exception to the rule that value types can’t be marked with <code class="docutils literal notranslate"><span class="pre">unowned</span></code>.</span><!--end_enstr-->
+<span class="jpstr">
+あるオプショナル値の基礎をなす型は、<code class="docutils literal notranslate"><span class="pre">Optional</span></code>です、それはSwift標準ライブラリにおけるある列挙です。しかしながら、オプショナルそれらは、値型は<code class="docutils literal notranslate"><span class="pre">unowned</span></code>で印されることが出来ないという規則に対するひとつの例外です
+</span><!--end_jpstr-->
+</p>
+<p class="last"><span class="enstr">The optional that wraps the class doesn’t use reference counting, so you don’t need to maintain a strong reference to the optional.</span><!--end_enstr-->
+<span class="jpstr">
+クラスをラップするオプショナルは、参照カウントを使用しません、それであなたはオプショナルへの強い参照を保守する必要はありません。
+</span><!--end_jpstr-->
+</p>
+</div>
+</div>
 <div class="section" id="ID55">
 <h3><span class="enstr">Unowned References and Implicitly Unwrapped Optional Properties<a class="headerlink" href="#ID55" title="Permalink to this headline">¶</a></span><!--end_enstr-->
 <span class="jpstr">
@@ -845,15 +940,15 @@ ARCは、<code class="docutils literal notranslate"><span class="pre">Person</sp
 </p>
 <p><span class="enstr">The <code class="docutils literal notranslate"><span class="pre">Person</span></code> and <code class="docutils literal notranslate"><span class="pre">Apartment</span></code> example shows a situation where two properties, both of which are allowed to be <code class="docutils literal notranslate"><span class="pre">nil</span></code>, have the potential to cause a strong reference cycle. This scenario is best resolved with a weak reference.</span><!--end_enstr-->
 <span class="jpstr">
-<code class="docutils literal notranslate"><span class="pre">Person</span></code>と<code class="docutils literal notranslate"><span class="pre">Apartment</span></code>の例は、２つのプロパティ、両方とも<code class="docutils literal notranslate"><span class="pre">nil</span></code>であることを許されるものが強い参照循環を引き起こす可能性をもつ状況を示します。この筋書きは、弱い参照で最もよく解消されます。
+<code class="docutils literal notranslate"><span class="pre">Person</span></code>と<code class="docutils literal notranslate"><span class="pre">Apartment</span></code>の例は、２つのプロパティ、両方とも<code class="docutils literal notranslate"><span class="pre">nil</span></code>であることを許されるものが強い参照循環を引き起こす可能性をもつ状況を示します。この筋書きは、弱い参照で最も良く解消されます。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">The <code class="docutils literal notranslate"><span class="pre">Customer</span></code> and <code class="docutils literal notranslate"><span class="pre">CreditCard</span></code> example shows a situation where one property that is allowed to be <code class="docutils literal notranslate"><span class="pre">nil</span></code> and another property that cannot be <code class="docutils literal notranslate"><span class="pre">nil</span></code> have the potential to cause a strong reference cycle. This scenario is best resolved with an unowned reference.</span><!--end_enstr-->
 <span class="jpstr">
-<code class="docutils literal notranslate"><span class="pre">Customer</span></code>と<code class="docutils literal notranslate"><span class="pre">CreditCard</span></code>の例は、<code class="docutils literal notranslate"><span class="pre">nil</span></code>であることを許されるあるプロパティと<code class="docutils literal notranslate"><span class="pre">nil</span></code>であることができないもう１つのプロパティが強い参照循環を引き起こす可能性をもつ状況を示します。この筋書きは、非所有参照で最もよく解消されます。
+<code class="docutils literal notranslate"><span class="pre">Customer</span></code>と<code class="docutils literal notranslate"><span class="pre">CreditCard</span></code>の例は、<code class="docutils literal notranslate"><span class="pre">nil</span></code>であることを許されるあるプロパティと<code class="docutils literal notranslate"><span class="pre">nil</span></code>であることができないもう１つのプロパティが強い参照循環を引き起こす可能性をもつ状況を示します。この筋書きは、非所有参照で最も良く解消されます。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">However, there is a third scenario, in which <em>both</em> properties should always have a value, and neither property should ever be <code class="docutils literal notranslate"><span class="pre">nil</span></code> once initialization is complete. In this scenario, it’s useful to combine an unowned property on one class with an implicitly unwrapped optional property on the other class.</span><!--end_enstr-->
+<p><span class="enstr">However, there’s a third scenario, in which <em>both</em> properties should always have a value, and neither property should ever be <code class="docutils literal notranslate"><span class="pre">nil</span></code> once initialization is complete. In this scenario, it’s useful to combine an unowned property on one class with an implicitly unwrapped optional property on the other class.</span><!--end_enstr-->
 <span class="jpstr">
 しかし、第３の筋書きがあります、そこにおいて<em>両方の</em>プロパティは常に値を持たなければなりません、そして一旦初期化が終了しているならば、どちらのプロパティも決して<code class="docutils literal notranslate"><span class="pre">nil</span></code>であってはなりません。この筋書きにおいて、一方のクラス上の非所有プロパティと他方のクラス上の暗黙的にアンラップされるオプショナルのプロパティを結合することは、役に立ちます。
 </span><!--end_jpstr-->

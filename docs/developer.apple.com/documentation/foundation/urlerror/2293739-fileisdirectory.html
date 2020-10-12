@@ -1,459 +1,928 @@
-<!DOCTYPE html><html lang="en" data-reactroot=""><head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>fileIsDirectory - URLError | Apple Developer Documentation</title><!-- link href="https://www.apple.com/wss/fonts?families=SF+Pro,v1|SF+Mono,v1|SF+Pro+Icons,v1" media="all" rel="stylesheet" type="text/css"/ --><meta content="width=device-width, initial-scale=1 viewport-fit=cover" name="viewport"/><meta data-pid="463568"/><link href="../../../documentation/assets/application-e5bb1544.css" media="all" rel="stylesheet" type="text/css"/><noscript><link href="../../../documentation/assets/nojs-c6be9131.css" media="all" rel="stylesheet" type="text/css"/></noscript><link rel="mask-icon" href="../../../documentation/assets/apple-logo.svg" color="#000"/><link rel="shortcut icon" href="../../../documentation/assets/favicon.ico"/><script src="../../../documentation/assets/shared-b7676010.js"></script></head><body><div id="_omniture_top">
-      <script>
-        var s_account="awdappledeveloper"
-      </script><!-- script src="https://developer.apple.com/assets/metrics/scripts/analytics.js" -->
-      </script>
-      <script>
-        s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
-        s.channel="www.documentation.developer"
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- link rel="icon" href="/favicon.ico" -->
+<link rel="mask-icon" href="/apple-logo.svg" color="#333333">
+<link rel="stylesheet" href="../../../tutorials/css/_globalnav.css">
+<title>fileIsDirectory | Apple Developer Documentation</title>
+<link href="../../../tutorials/css/chunk-76d5c2b5.00c53891.css" rel="prefetch">
+<link href="../../../tutorials/css/documentation-topic.e358e85c.css" rel="prefetch">
+<link href="../../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css" rel="prefetch">
+<link href="../../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css" rel="prefetch">
+<link href="../../../tutorials/css/topic.69278f1e.css" rel="prefetch">
+<link href="../../../tutorials/css/topic~tutorials-overview.1f93e025.css" rel="prefetch">
+<link href="../../../tutorials/css/tutorials-overview.d4ff0b50.css" rel="prefetch">
+<link href="../../../tutorials/css/welcome-experience-featured.0537f0f0.css" rel="prefetch">
+<link href="../../../tutorials/css/welcome-experience-technologies.60068ae2.css" rel="prefetch">
+<link href="../../../tutorials/js/chunk-2d0d3105.459bf725.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-2d21a016.b81cb311.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-503f1ed8.d26c4552.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-530f89ce.621e1d48.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-640db3b2.f8778ca5.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-76d5c2b5.092e3b8a.js" rel="prefetch">
+<link href="../../../tutorials/js/documentation-topic.6abe9458.js" rel="prefetch">
+<link href="../../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js" rel="prefetch">
+<link href="../../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js" rel="prefetch">
+<link href="../../../tutorials/js/topic.c6ec6b6c.js" rel="prefetch">
+<link href="../../../tutorials/js/topic~tutorials-overview.467a8186.js" rel="prefetch">
+<link href="../../../tutorials/js/tutorials-overview.d77f61ca.js" rel="prefetch">
+<link href="../../../tutorials/js/welcome-experience-featured.04f663e2.js" rel="prefetch">
+<link href="../../../tutorials/js/welcome-experience-technologies.56a372c1.js" rel="prefetch">
+<link href="../../../tutorials/css/app.2a174a23.css" rel="preload" as="style">
+<link href="../../../tutorials/js/app.2c558263.js" rel="preload" as="script">
+<link href="../../../tutorials/js/chunk-vendors.c3b68236.js" rel="preload" as="script">
+<link href="../../../tutorials/css/app.2a174a23.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../../../tutorials/css/chunk-76d5c2b5.00c53891.css">
+<script charset="utf-8" src="../../../tutorials/js/chunk-76d5c2b5.092e3b8a.js"></script><link rel="stylesheet" type="text/css" href="../../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css">
+<script charset="utf-8" src="../../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js"></script><link rel="stylesheet" type="text/css" href="../../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css">
+<script charset="utf-8" src="../../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js"></script><link rel="stylesheet" type="text/css" href="../../../tutorials/css/documentation-topic.e358e85c.css">
+<script charset="utf-8" src="../../../tutorials/js/documentation-topic.6abe9458.js"></script>
+</head>
+<body>
+<div id="_omniture_top">
+<script>var s_account="awdappledeveloper"</script>
+</div>
+<a href="#main" id="skip-localnav">Skip Navigation</a><aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"><nav id="ac-globalnav" class="js no-touch" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions"><div class="ac-gn-content">
+<ul class="ac-gn-header">
+<li class="ac-gn-item ac-gn-menuicon">
+<label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true"><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span> </span><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span></span></label> <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open"><span class="ac-gn-menuanchor-label">Global Nav Open Menu</span> </a><a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close"><span class="ac-gn-menuanchor-label">Global Nav Close Menu</span></a>
+</li>
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+</ul>
+<div class="ac-gn-search-placeholder-container" role="search"><div class="ac-gn-search ac-gn-search-small"><a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a><div class="ac-gn-search-placeholder-bar">
+<div class="ac-gn-search-placeholder-input"><div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
+<div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
+<span class="ac-gn-search-placeholder">Search Developer</span>
+</div></div>
+<div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></div>
+</div></a></div></div>
+<ul class="ac-gn-list">
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-discover"><a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover"><span class="ac-gn-link-text">Discover</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-design"><a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design"><span class="ac-gn-link-text">Design</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-develop"><a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop"><span class="ac-gn-link-text">Develop</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-distribute"><a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute"><span class="ac-gn-link-text">Distribute</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport"><a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport"><span class="ac-gn-link-text">Support</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-account"><a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account"><span class="ac-gn-link-text">Account</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search"><a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a></li>
+</ul>
+<aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search"><div class="ac-gn-searchview-content">
+<div class="ac-gn-searchview-bar"><div class="ac-gn-searchview-bar-wrapper">
+<form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get"><div class="ac-gn-searchform-wrapper">
+<input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions"> <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button> <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search"><span class="ac-gn-searchform-reset-background"></span></button>
+</div></form>
+<button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></button>
+</div></div>
+<aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
+</div>
+<button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search"><span class="ac-gn-searchview-close-wrapper"><span class="ac-gn-searchview-close-left"></span> <span class="ac-gn-searchview-close-right"></span></span></button></aside>
+</div></nav><div class="ac-gn-blur"></div>
+<div id="ac-gn-curtain" class="ac-gn-curtain"></div>
+<div id="ac-gn-placeholder" class="ac-nav-placeholder"></div>
+<script src="../../../tutorials/js/ac-globalnav.built.js"></script>
+<noscript>
+<style>.noscript {
+  font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
+  margin: 92px auto 140px auto;
+  text-align: center;
+  width: 980px;
+}
 
-        var s_code=s.t();if(s_code)document.write(s_code)
-      </script>
-    </div><div id="app"><div><a href="#main" id="skip-localnav" class="showonfocus hidden">Skip Navigation</a><aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"/><nav id="ac-globalnav" class="no-js" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions/">
-      <div class="ac-gn-content">
-        <ul class="ac-gn-header">
-          <li class="ac-gn-item ac-gn-menuicon">
-            <label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true">
-              <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top">
-                <span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span>
-              </span>
-              <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom">
-                <span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span>
-              </span>
-            </label>
-            <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open">
-              <span class="ac-gn-menuanchor-label">Global Nav Open Menu</span>
-            </a>
-            <a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close">
-              <span class="ac-gn-menuanchor-label">Global Nav Close Menu</span>
-            </a>
-          </li>
-          <li class="ac-gn-item ac-gn-apple">
-            <a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small">
-              <span class="ac-gn-link-text">Apple Developer</span>
-            </a>
-          </li>
-        </ul>
-        <div class="ac-gn-search-placeholder-container" role="search">
-          <div class="ac-gn-search ac-gn-search-small">
-            <a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link aria-label="Search Developer">
-              </a><div class="ac-gn-search-placeholder-bar">
-                <div class="ac-gn-search-placeholder-input">
-                  <div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
-                    <div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
-                    <span class="ac-gn-search-placeholder">Search Developer</span>
-                  </div>
-                </div>
-                <div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close">
-                  <span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-        <ul class="ac-gn-list">
-          <li class="ac-gn-item ac-gn-apple">
-            <a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus">
-              <span class="ac-gn-link-text">Apple Developer</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-discover">
-            <a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover">
-              <span class="ac-gn-link-text">Discover</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-design">
-            <a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design">
-              <span class="ac-gn-link-text">Design</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-develop">
-            <a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop">
-              <span class="ac-gn-link-text">Develop</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-distribute">
-            <a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute">
-              <span class="ac-gn-link-text">Distribute</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport">
-            <a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport">
-              <span class="ac-gn-link-text">Support</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-account">
-            <a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account">
-              <span class="ac-gn-link-text">Account</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search">
-            <a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link aria-label="Search Developer"></a>
-          </li>
-        </ul>
-        <aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search">
-          <div class="ac-gn-searchview-content">
-            <div class="ac-gn-searchview-bar">
-              <div class="ac-gn-searchview-bar-wrapper">
-                <form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get">
-                  <div class="ac-gn-searchform-wrapper">
-                    <input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions" />
-                    <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button>
-                    <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search">
-                        <span class="ac-gn-searchform-reset-background"></span>
-                      </button>
-                  </div>
-                </form>
-                <button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search">
-                    <span class="ac-gn-searchview-close-cancel" aria-hidden="true">
-                      Cancel
-                    </span>
-                  </button>
-              </div>
-            </div>
-            <aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
-          </div>
-          <button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search">
-              <span class="ac-gn-searchview-close-wrapper">
-                <span class="ac-gn-searchview-close-left"></span>
-                <span class="ac-gn-searchview-close-right"></span>
-              </span>
-            </button>
-        </aside>
-          </div>
-    </nav><div class="ac-gn-blur"></div><div id="ac-gn-curtain" class="ac-gn-curtain"></div><div id="ac-gn-placeholder" class="ac-nav-placeholder"></div><input type="checkbox" id="localnav-menustate" class="localnav-menustate" aria-hidden="true"/><nav id="localnav" class="localnav localnav-dark theme-dark localnav-scrim localnav-noborder" role="navigation" aria-label="API Reference" data-sticky="true"><div class="localnav-wrapper"><div class="referencenav"><div class="localnav-background"></div><div class="localnav-content"><a href="../../../index.html" class="localnav-title">Documentation</a><div class="localnav-menu"><a href="#localnav-menustate" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span class="localnav-menucta-anchor-label" aria-hidden="true">Open Menu</span></a><a href="#" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span class="localnav-menucta-anchor-label" aria-hidden="true">Close Menu</span></a><div class="localnav-menu-tray"><ul aria-label="Breadcrumbs" class="localnav-menu-items localnav-menu-breadcrumbs"><li class="localnav-menu-item localnav-menu-breadcrumb-item truncated"><a class="localnav-menu-link" href="../../../documentation/foundation.html">Foundation</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item truncated"><a class="localnav-menu-link" href="../../../documentation/foundation/url_loading_system.html"><span class="enstr">URL Loading System</span><!--end_enstr-->
+.noscript-title {
+  color: #111;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -.003em;
+  line-height: 1.08365;
+  margin: 0 auto 54px auto;
+  width: 502px;
+}
+
+@media only screen and (max-width: 1068px) {
+  .noscript {
+    margin: 90px auto 120px auto;
+    width: 692px;
+  }
+
+  .noscript-title {
+    font-size: 40px;
+    letter-spacing: 0;
+    line-height: 1.1;
+    margin: 0 auto 45px auto;
+    width: 420px;
+  }
+}
+
+@media only screen and (max-width: 735px) {
+  .noscript {
+    margin: 45px auto 60px auto;
+    width: 87.5%;
+  }
+
+  .noscript-title {
+    font-size: 32px;
+    letter-spacing: .004em;
+    line-height: 1.125;
+    margin: 0 auto 35px auto;
+    max-width: 330px;
+    width: auto;
+  }
+}
+
+#loading-placeholder {
+  display: none;
+};</style>
+<div class="noscript">
+<h1 class="noscript-title">This page requires JavaScript.</h1>
+<p>Please turn on JavaScript in your browser and refresh the page to view its content.</p>
+</div>
+</noscript>
+<div data-v-0220a4c4="" id="app" class=""><div data-v-0220a4c4=""><div data-v-2deaa168="" class="doc-topic">
+<div data-v-3ceaa5df="" data-v-2deaa168="" class="localnav-container">
+<input data-v-3ceaa5df="" aria-hidden="true" id="localnav-menustate" type="checkbox" class="localnav-menustate"><div id="localnav-sticky-placeholder" class="css-sticky"></div>
+<nav data-v-3ceaa5df="" aria-label="API Reference" data-sticky="" id="localnav" role="navigation" class="localnav localnav-dark theme-dark medium-localnav-collapsible localnav-noborder localnav-scrim css-sticky"><div data-v-3ceaa5df="" class="localnav-wrapper">
+<div data-v-3ceaa5df="" class="referencenav">
+<div data-v-3ceaa5df="" class="localnav-background"></div>
+<div data-v-3ceaa5df="" class="localnav-content">
+<a data-v-3ceaa5df="" href="../../../index.html" class="localnav-title">
+            Documentation
+          </a><div data-v-3ceaa5df="" class="localnav-menu">
+<a data-v-3ceaa5df="" href="#localnav-menustate" role="button" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Open Menu</span></a><a data-v-3ceaa5df="" href="#" role="button" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Close Menu</span></a><div data-v-3ceaa5df="" class="localnav-menu-tray">
+<ul data-v-72fd0d2c="" data-v-3ceaa5df="" aria-label="Breadcrumbs" class="localnav-menu-items">
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item collapsed"><a data-v-72fd0d2c="" href="../../../documentation/foundation.html" class="parent item router-link-active" data-v-23a2ae0d="">
+    Foundation
+  </a></li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item collapsed"><a data-v-72fd0d2c="" href="../../../documentation/foundation/url_loading_system.html" class="parent item" data-v-23a2ae0d="">
+    <span class="enstr">URL Loading System</span><!--end_enstr-->
 <span class="jpstr">
 URLローディングシステム
 </span><!--end_jpstr-->
-</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item truncated-breadcrumbs"><button class="localnav-menu-breadcrumb-link truncated-breadcrumbs-disclosebtn"><span class="truncated-breadcrumbs-disclosebtn-indicator">⋯</span></button><ul class="truncated-breadcrumbs-dropdown"><li class="truncated-breadcrumbs-dropdown-item"><a class="truncated-breadcrumbs-dropdown-item-link" href="../../../documentation/foundation.html">Foundation</a></li><li class="truncated-breadcrumbs-dropdown-item"><a class="truncated-breadcrumbs-dropdown-item-link" href="../../../documentation/foundation/url_loading_system.html"><span class="enstr">URL Loading System</span><!--end_enstr-->
+
+  </a></li>
+<li data-v-68bd9d1f="" data-v-72fd0d2c="" class="localnav-menu-item hierarchy-collapsed-items">
+<button data-v-68bd9d1f="" class="toggle"><span data-v-68bd9d1f="" class="indicator">⋯</span></button><ul data-v-68bd9d1f="" class="dropdown collapsed">
+<li data-v-68bd9d1f="" class="dropdown-item"><a data-v-68bd9d1f="" href="../../../documentation/foundation.html" class="link router-link-active">Foundation</a></li>
+<li data-v-68bd9d1f="" class="dropdown-item"><a data-v-68bd9d1f="" href="../../../documentation/foundation/url_loading_system.html" class="link"><span class="enstr">URL Loading System</span><!--end_enstr-->
 <span class="jpstr">
 URLローディングシステム
 </span><!--end_jpstr-->
-</a></li></ul></li><li class="localnav-menu-item localnav-menu-breadcrumb-item"><a class="localnav-menu-link" href="../../../documentation/foundation/urlerror.html">URLError</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item"><div class="localnav-menu-breadcrumb-current-container localnav-menu-link current"><span aria-current="page" class="localnav-menu-breadcrumb-current">fileIsDirectory</span></div></li></ul><ul class="localnav-menu-items localnav-menu-settings" data-breadcrumbs-count="4"><li class="localnav-menu-setting language-container"><span class="localnav-menu-setting-label">Language:</span><span class="localnav-menu-toggle-none current-language" aria-current="page">Swift</span></li><li class="localnav-menu-setting"><span class="localnav-menu-setting-label">API Changes:</span><span class="changes-toggle">None</span></li></ul></div><div class="localnav-actions"><div class="localnav-action localnav-action-menucta" aria-hidden="true"><label for="localnav-menustate" class="localnav-menucta"><span class="localnav-menucta-chevron"></span></label></div></div></div></div></div></div></nav><label for="localnav-menustate" id="localnav-curtain" aria-hidden="true"></label><main role="main" id="main" class="main" tabindex="0"><div class="topic-title"><span class="eyebrow"><span class="enstr">Type Property</span><!--end_enstr-->
+</a></li>
+</ul>
+</li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../../documentation/foundation/urlerror.html" class="parent item router-link-active" data-v-23a2ae0d="">
+    URLError
+  </a></li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item">
+<span data-v-23a2ae0d="" class="current item">
+    fileIsDirectory
+  </span><!---->
+</li>
+</ul>
+<ul data-v-3ceaa5df="" data-breadcrumbs-count="4" class="localnav-menu-items localnav-menu-settings">
+<li data-v-282336e0="" data-v-3ceaa5df="" class="localnav-menu-setting language-container" breadcrumbcount="4">
+<div data-v-282336e0="" class="">
+<label data-v-282336e0="" class="localnav-menu-setting-label">
+      Language:
+    </label><span data-v-282336e0="" aria-current="page" class="localnav-menu-toggle-none current-language">
+      Swift
+    </span>
+</div><!---->
+
+</li>
+<li data-v-2e9f4ea2="" data-v-3ceaa5df="" class="localnav-menu-setting">
+<label data-v-2e9f4ea2="" for="version-label" class="localnav-menu-setting-label">
+    API Changes:
+  </label><span data-v-2e9f4ea2=""><span class="enstr">None</span><!--end_enstr-->
+<span class="jpstr">
+なし
+</span><!--end_jpstr-->
+</span>
+</li><!---->
+
+</ul>
+</div>
+<div data-v-3ceaa5df="" class="localnav-actions"><div data-v-3ceaa5df="" aria-hidden="true" class="localnav-action localnav-action-menucta"><label data-v-3ceaa5df="" for="localnav-menustate" class="localnav-menucta"><span data-v-3ceaa5df="" class="localnav-menucta-chevron"></span></label></div></div>
+</div>
+</div>
+</div><!---->
+
+</div></nav><label data-v-3ceaa5df="" aria-hidden="true" for="localnav-menustate" id="localnav-curtain"></label>
+</div>
+<main data-v-2deaa168="" id="main" role="main" tabindex="0" class="main"><div data-v-4ba5af7c="" data-v-2deaa168="" class="topictitle">
+<span data-v-4ba5af7c="" class="eyebrow"><span class="enstr">Type Property</span><!--end_enstr-->
 <span class="jpstr">
 型プロパティ
 </span><!--end_jpstr-->
-</span><h1 class="topic-heading"><span>file<wbr/>Is<wbr/>Directory</span></h1></div><div class="topic-container section-content row"><div class="topic-description column large-9 medium-9 small-12"><div class="topic-abstract abstract formatted-content"><div><p><span class="enstr">A request for an FTP file resulted in the server responding that the file is not a plain file, but a directory.</span><!--end_enstr-->
+</span><h1 data-v-4ba5af7c="" class="title">file<wbr data-v-4ba5af7c="">Is<wbr data-v-4ba5af7c="">Directory</wbr></wbr>
+</h1>
+</div>
+<div data-v-0253ce0e="" data-v-2deaa168="" class="row container">
+<div data-v-9807b2e0="" data-v-5ad0d458="" data-v-2deaa168="" class="col description large-9 medium-9 small-12" data-v-0253ce0e=""><!---->
+<div data-v-7ea0aa49="" data-v-aba749e6="" data-v-2deaa168="" class="abstract content" data-v-9807b2e0=""><span class="enstr">A request for an FTP file resulted in the server responding that the file is not a plain file, but a directory.</span><!--end_enstr-->
 <span class="jpstr">
 あるFTPファイルに対する要請は、そのファイルがプレーンテキストでない、しかしディレクトリであるというサーバ応答という結果になりました。
 </span><!--end_jpstr-->
-</p></div></div></div><div class="topic-summary column large-3 medium-3 small-12"><div class="topic-summary-section sdks" role="complementary" aria-label="SDKs"><p class="topic-summary-section-label subsection-label">SDKs</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item sdk"><span aria-label="iOS 7.0+, Available on iOS 7.0 and later" role="text" title="Available on iOS 7.0 and later">iOS 7.0+</span></li><li class="topic-summary-section-item sdk"><span aria-label="macOS 10.9+, Available on macOS 10.9 and later" role="text" title="Available on macOS 10.9 and later">macOS 10.9+</span></li><li class="topic-summary-section-item sdk"><span aria-label="Mac Catalyst 13.0+, Available on Mac Catalyst 13.0 and later" role="text" title="Available on Mac Catalyst 13.0 and later">Mac Catalyst 13.0+</span></li><li class="topic-summary-section-item sdk"><span aria-label="tvOS 9.0+, Available on tvOS 9.0 and later" role="text" title="Available on tvOS 9.0 and later">tvOS 9.0+</span></li><li class="topic-summary-section-item sdk"><span aria-label="watchOS 2.0+, Available on watchOS 2.0 and later" role="text" title="Available on watchOS 2.0 and later">watchOS 2.0+</span></li><li class="topic-summary-section-item sdk"><span aria-label="Xcode 8.0+, Available on Xcode 8.0 and later" role="text" title="Available on Xcode 8.0 and later">Xcode 8.0+</span></li></ul></div><div class="topic-summary-section frameworks" role="complementary" aria-label="Framework"><p class="topic-summary-section-label subsection-label"><span class="enstr">Framework</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div>
+<div data-v-9807b2e0="" data-v-42fb6bac="" data-v-2deaa168="" class="col summary large-3 medium-3 small-12" data-v-0253ce0e=""><!---->
+<div data-v-e4237090="" data-v-fcdb795a="" data-v-2deaa168="" class="summary-section availability" role="complementary" aria-label="Availability" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-fcdb795a="" class="title" data-v-e4237090=""><span class="enstr">Availability</span><!--end_enstr-->
+<span class="jpstr">
+有効性
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-fcdb795a="" class="summary-list platform-list" data-v-e4237090="">
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="iOS 7.0+, Available on iOS 7.0 and later" title="Available on iOS 7.0 and later" data-v-e3899270="">
+  iOS 7.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="macOS 10.9+, Available on macOS 10.9 and later" title="Available on macOS 10.9 and later" data-v-e3899270="">
+  macOS 10.9+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="Mac Catalyst 13.0+, Available on Mac Catalyst 13.0 and later" title="Available on Mac Catalyst 13.0 and later" data-v-e3899270="">
+  Mac Catalyst 13.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="tvOS 9.0+, Available on tvOS 9.0 and later" title="Available on tvOS 9.0 and later" data-v-e3899270="">
+  tvOS 9.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="watchOS 2.0+, Available on watchOS 2.0 and later" title="Available on watchOS 2.0 and later" data-v-e3899270="">
+  watchOS 2.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="Xcode 8.0+, Available on Xcode 8.0 and later" title="Available on Xcode 8.0 and later" data-v-e3899270="">
+  Xcode 8.0+
+</span><!---->
+</li>
+</ul>
+</div>
+<div data-v-e4237090="" data-v-741142ba="" data-v-2deaa168="" class="summary-section frameworks" role="complementary" aria-label="Framework" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-741142ba="" class="title" data-v-e4237090=""><span class="enstr">Framework</span><!--end_enstr-->
 <span class="jpstr">
 フレームワーク
 </span><!--end_jpstr-->
-</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item"><span>Foundation</span></li></ul></div><div class="topic-summary-section onthispage"><nav class="onthispage-nav" aria-labelledby="onthispage-title"><p id="onthispage-title" class="topic-summary-section-label subsection-label"><span class="enstr">On This Page</span><!--end_enstr-->
+</p>
+<ul data-v-1450532d="" data-v-741142ba="" class="summary-list" data-v-e4237090=""><li data-v-e3899270="" data-v-741142ba="" class="summary-list-item" data-v-1450532d=""><span data-v-741142ba="" data-v-e3899270="" class="name">Foundation</span></li></ul>
+</div>
+<div data-v-e4237090="" data-v-2b96ab1a="" data-v-2deaa168="" class="summary-section on-this-page" data-v-9807b2e0=""><nav data-v-2b96ab1a="" data-v-e4237090="" aria-labelledby="on-this-page-title"><p data-v-1e0258b0="" data-v-2b96ab1a="" class="title" id="on-this-page-title" data-v-e4237090=""><span class="enstr">On This Page</span><!--end_enstr-->
 <span class="jpstr">
 この項には
 </span><!--end_jpstr-->
-</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item"><a href="#declarations" class="icon icon-after icon-chevrondowncircle"><span class="enstr">Declaration</span><!--end_enstr-->
+</p>
+<ul data-v-1450532d="" data-v-2b96ab1a="" class="summary-list" data-v-e4237090="">
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../../documentation/foundation/urlerror/2293739-fileisdirectory.html#declaration" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Declaration</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../../documentation/foundation/urlerror/2293739-fileisdirectory.html#see-also" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">See Also</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+</ul></nav></div>
+</div>
+<div data-v-9807b2e0="" data-v-1e40f676="" data-v-2deaa168="" class="col primary-content large-9 medium-9 small-12" data-v-0253ce0e=""><section data-v-e932e1b8="" data-v-1e40f676="" id="declaration" class="declaration" data-v-9807b2e0=""><h2 data-v-e932e1b8=""><span class="enstr">Declaration</span><!--end_enstr-->
 <span class="jpstr">
 宣言
 </span><!--end_jpstr-->
-</a></li><li class="topic-summary-section-item"><a href="#see-also" class="icon icon-after icon-chevrondowncircle"><span class="enstr">See Also</span><!--end_enstr-->
+</h2>
+<div data-v-29bd318c="" data-v-e932e1b8="" class="declaration-group"><!---->
+<pre data-v-e0a7f756="" data-v-29bd318c="" class="source indented"><code data-v-e0a7f756=""><span data-v-c9e896f0="" data-v-e0a7f756="" class="token-keyword">static</span> <span data-v-c9e896f0="" data-v-e0a7f756="" class="token-keyword">var</span> <span data-v-c9e896f0="" data-v-e0a7f756="" class="token-identifier">fileIsDirectory</span>: <a data-v-c9e896f0="" data-v-e0a7f756="" href="../../../documentation/foundation/urlerror.html" class="router-link-active type-identifier-link"><span data-v-c9e896f0="">URLError</span></a>.<a data-v-c9e896f0="" data-v-e0a7f756="" href="../../../documentation/foundation/urlerror/code.html" class="type-identifier-link"><span data-v-c9e896f0="">Code</span></a> { <span data-v-c9e896f0="" data-v-e0a7f756="" class="token-keyword">get</span> }</code></pre>
+</div><!---->
+</section></div>
+</div><!----><!----><!---->
+<section data-v-8c663d90="" data-v-63527a60="" data-v-2deaa168="" id="see-also" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">See Also</span><!--end_enstr-->
 <span class="jpstr">
 参照
 </span><!--end_jpstr-->
-</a></li></ul></nav></div></div><div class="topic-content column large-9 medium-9 small-12" id="topic-content"><section id="declarations" class="section"><h2><span class="enstr">Declaration</span><!--end_enstr-->
-<span class="jpstr">
-宣言
-</span><!--end_jpstr-->
-</h2><figure class="declaration"><div class="code-listing"><pre class="code-source code-source-indented" data-language="swift"><code><span><span class="syntax-keyword">static</span> <span class="syntax-keyword">var</span> <span class="syntax-identifier">fileIsDirectory</span>: <a class="symbolref" href="../../../documentation/foundation/urlerror.html"><span>URLError</span></a>.<a class="symbolref" href="../../../documentation/foundation/urlerror/code.html"><span>Code</span></a> { <span class="syntax-keyword">get</span> }
-</span></code></pre></div></figure></section></div></div><section id="see-also" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><span class="enstr">See Also</span><!--end_enstr-->
-<span class="jpstr">
-参照
-</span><!--end_jpstr-->
-</h2><section id="2961406" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Error Codes</span><!--end_enstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Error Codes</span><!--end_enstr-->
 <span class="jpstr">
 さまざまなエラーコード
 </span><!--end_jpstr-->
-</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2865492-apptransportsecurityrequiressecu.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">app<wbr/>Transport<wbr/>Security<wbr/>Requires<wbr/>Secure<wbr/>Connection</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">App Transport Security disallowed a connection because there is no secure network connection.</span><!--end_enstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2865492-apptransportsecurityrequiressecu.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">app<wbr data-v-dac213be="">Transport<wbr data-v-dac213be="">Security<wbr data-v-dac213be="">Requires<wbr data-v-dac213be="">Secure<wbr data-v-dac213be="">Connection</wbr></wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">App Transport Security disallowed a connection because there is no secure network connection.</span><!--end_enstr-->
 <span class="jpstr">
 App Transport Securityは接続を却下しました、なぜなら安全なネットワーク接続がないためです。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293763-backgroundsessioninusebyanotherp.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">background<wbr/>Session<wbr/>In<wbr/>Use<wbr/>By<wbr/>Another<wbr/>Process</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">An app or app extension attempted to connect to a background session that is already connected to a process.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293763-backgroundsessioninusebyanotherp.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">background<wbr data-v-dac213be="">Session<wbr data-v-dac213be="">In<wbr data-v-dac213be="">Use<wbr data-v-dac213be="">By<wbr data-v-dac213be="">Another<wbr data-v-dac213be="">Process</wbr></wbr></wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">An app or app extension attempted to connect to a background session that is already connected to a process.</span><!--end_enstr-->
 <span class="jpstr">
 アプリまたはアプリ拡張は、既にあるプロセスに接続されるバックグラウンドセッションに接続を試みました。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293679-backgroundsessionrequiressharedc.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">background<wbr/>Session<wbr/>Requires<wbr/>Shared<wbr/>Container</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The shared container identifier of the URL session configuration is needed but hasn’t been set.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293679-backgroundsessionrequiressharedc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">background<wbr data-v-dac213be="">Session<wbr data-v-dac213be="">Requires<wbr data-v-dac213be="">Shared<wbr data-v-dac213be="">Container</wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The shared container identifier of the URL session configuration is needed but hasn’t been set.</span><!--end_enstr-->
 <span class="jpstr">
 URLセッション設定の共有コンテナ識別子が必要とされます、しかし設定されていません。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293004-backgroundsessionwasdisconnected.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">background<wbr/>Session<wbr/>Was<wbr/>Disconnected</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The app is suspended or exits while a background data task is processing.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293004-backgroundsessionwasdisconnected.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">background<wbr data-v-dac213be="">Session<wbr data-v-dac213be="">Was<wbr data-v-dac213be="">Disconnected</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The app is suspended or exits while a background data task is processing.</span><!--end_enstr-->
 <span class="jpstr">
 バックグラウンドデータタスクが処理している間に、アプリが一時中断されるまたは退出します。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293606-badserverresponse.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">bad<wbr/>Server<wbr/>Response</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The URL Loading System received bad data from the server.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293606-badserverresponse.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">bad<wbr data-v-dac213be="">Server<wbr data-v-dac213be="">Response</wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The URL Loading System received bad data from the server.</span><!--end_enstr-->
 <span class="jpstr">
 URL Loading Systemがサーバから不良データを受け取りました。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293516-badurl.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">bad<wbr/>URL</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A malformed URL prevented a URL request from being initiated.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293516-badurl.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">bad<wbr data-v-dac213be="">URL</wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A malformed URL prevented a URL request from being initiated.</span><!--end_enstr-->
 <span class="jpstr">
 不正な形式のURLが、あるURLリクエストが開始されることを妨げました。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293147-callisactive.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">call<wbr/>Is<wbr/>Active</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A connection was attempted while a phone call is active on a network that doesn’t support simultaneous phone and data communication, such as EDGE or GPRS.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293147-callisactive.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">call<wbr data-v-dac213be="">Is<wbr data-v-dac213be="">Active</wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A connection was attempted while a phone call is active on a network that doesn’t support simultaneous phone and data communication, such as EDGE or GPRS.</span><!--end_enstr-->
 <span class="jpstr">
 例えばEDGEまたはGPRSなど、同時に電話とデータ通信をサポートしないネットワーク上で電話呼び出しが進行中である間にある接続が試みられました。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293052-cancelled.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">cancelled</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">An asynchronous load has been canceled.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293052-cancelled.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">cancelled</span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">An asynchronous load has been canceled.</span><!--end_enstr-->
 <span class="jpstr">
 非同期ロードはキャンセルされました。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293764-cannotclosefile.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">cannot<wbr/>Close<wbr/>File</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A download task couldn’t close the downloaded file on disk.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293764-cannotclosefile.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">cannot<wbr data-v-dac213be="">Close<wbr data-v-dac213be="">File</wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A download task couldn’t close the downloaded file on disk.</span><!--end_enstr-->
 <span class="jpstr">
 ダウンロードタスクは、ダウンロードされたファイルをディスク上で閉じることができませんでした。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293028-cannotconnecttohost.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">cannot<wbr/>Connect<wbr/>To<wbr/>Host</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">An attempt to connect to a host failed.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293028-cannotconnecttohost.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">cannot<wbr data-v-dac213be="">Connect<wbr data-v-dac213be="">To<wbr data-v-dac213be="">Host</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">An attempt to connect to a host failed.</span><!--end_enstr-->
 <span class="jpstr">
 ホストへの接続の試みは失敗しました。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293257-cannotcreatefile.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">cannot<wbr/>Create<wbr/>File</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A download task couldn’t create the downloaded file on disk because of an I/O failure.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293257-cannotcreatefile.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">cannot<wbr data-v-dac213be="">Create<wbr data-v-dac213be="">File</wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A download task couldn’t create the downloaded file on disk because of an I/O failure.</span><!--end_enstr-->
 <span class="jpstr">
 ダウンロードタスクは、ダウンロードファイルをディスク上で作成できませんでした、I/O失敗のため。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2292983-cannotdecodecontentdata.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">cannot<wbr/>Decode<wbr/>Content<wbr/>Data</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Content data received during a connection request had an unknown content encoding.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2292983-cannotdecodecontentdata.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">cannot<wbr data-v-dac213be="">Decode<wbr data-v-dac213be="">Content<wbr data-v-dac213be="">Data</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Content data received during a connection request had an unknown content encoding.</span><!--end_enstr-->
 <span class="jpstr">
 接続要請の間に受け取られた接続データが、未知のコンテンツ符号化を持ちます。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293573-cannotdecoderawdata.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">cannot<wbr/>Decode<wbr/>Raw<wbr/>Data</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Content data received during a connection request couldn’t be decoded for a known content encoding.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293573-cannotdecoderawdata.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">cannot<wbr data-v-dac213be="">Decode<wbr data-v-dac213be="">Raw<wbr data-v-dac213be="">Data</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Content data received during a connection request couldn’t be decoded for a known content encoding.</span><!--end_enstr-->
 <span class="jpstr">
 接続リクエストの間に受け取られたコンテンツデータは、既知のコンテンツ符号化に対して復号できませんでした。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293460-cannotfindhost.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">cannot<wbr/>Find<wbr/>Host</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The host name for a URL couldn’t be resolved.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293460-cannotfindhost.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">cannot<wbr data-v-dac213be="">Find<wbr data-v-dac213be="">Host</wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The host name for a URL couldn’t be resolved.</span><!--end_enstr-->
 <span class="jpstr">
 URLに対するホスト名が解決できませんでした。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293549-cannotloadfromnetwork.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">cannot<wbr/>Load<wbr/>From<wbr/>Network</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A request to load an item only from the cache could not be satisfied.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293549-cannotloadfromnetwork.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">cannot<wbr data-v-dac213be="">Load<wbr data-v-dac213be="">From<wbr data-v-dac213be="">Network</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A request to load an item only from the cache could not be satisfied.</span><!--end_enstr-->
 <span class="jpstr">
 キャッシュからのみある項目をロードするリクエストが、履行できませんでした。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293182-cannotmovefile.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">cannot<wbr/>Move<wbr/>File</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A download task was unable to move a downloaded file on disk.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293182-cannotmovefile.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">cannot<wbr data-v-dac213be="">Move<wbr data-v-dac213be="">File</wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A download task was unable to move a downloaded file on disk.</span><!--end_enstr-->
 <span class="jpstr">
 あるダウンロードタスクが、あるダウンロードファイルをディスク上で移動することができませんでした。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2292837-cannotopenfile.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">cannot<wbr/>Open<wbr/>File</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A download task was unable to open the downloaded file on disk.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2292837-cannotopenfile.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">cannot<wbr data-v-dac213be="">Open<wbr data-v-dac213be="">File</wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A download task was unable to open the downloaded file on disk.</span><!--end_enstr-->
 <span class="jpstr">
 あるダウンロードタスクが、ダウンロードファイルをディスク上で開くことができませんでした。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293435-cannotparseresponse.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">cannot<wbr/>Parse<wbr/>Response</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A task couldn’t parse a response.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293435-cannotparseresponse.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">cannot<wbr data-v-dac213be="">Parse<wbr data-v-dac213be="">Response</wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A task couldn’t parse a response.</span><!--end_enstr-->
 <span class="jpstr">
 タスクが、ある応答を構文解析できませんでした。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293211-cannotremovefile.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">cannot<wbr/>Remove<wbr/>File</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A download task was unable to remove a downloaded file from disk.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293211-cannotremovefile.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">cannot<wbr data-v-dac213be="">Remove<wbr data-v-dac213be="">File</wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A download task was unable to remove a downloaded file from disk.</span><!--end_enstr-->
 <span class="jpstr">
 あるダウンロードタスクが、あるダウンロードファイルをディスクから除去することができませんでした。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293714-cannotwritetofile.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">cannot<wbr/>Write<wbr/>To<wbr/>File</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A download task was unable to write to the downloaded file on disk.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293714-cannotwritetofile.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">cannot<wbr data-v-dac213be="">Write<wbr data-v-dac213be="">To<wbr data-v-dac213be="">File</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A download task was unable to write to the downloaded file on disk.</span><!--end_enstr-->
 <span class="jpstr">
 あるダウンロードタスクが、ダウンロードファイルをディスク上で書き出すことができませんでした。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2292873-clientcertificaterejected.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">client<wbr/>Certificate<wbr/>Rejected</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A server certificate was rejected.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2292873-clientcertificaterejected.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">client<wbr data-v-dac213be="">Certificate<wbr data-v-dac213be="">Rejected</wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A server certificate was rejected.</span><!--end_enstr-->
 <span class="jpstr">
 サーバー証明書は拒否されました。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293312-clientcertificaterequired.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">client<wbr/>Certificate<wbr/>Required</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A client certificate was required to authenticate an SSL connection during a request.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293312-clientcertificaterequired.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">client<wbr data-v-dac213be="">Certificate<wbr data-v-dac213be="">Required</wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A client certificate was required to authenticate an SSL connection during a request.</span><!--end_enstr-->
 <span class="jpstr">
 あるクライアント証明書が、あるリクエストの間にSSL接続を認証することを必要とされました。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2865465-datalengthexceedsmaximum.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">data<wbr/>Length<wbr/>Exceeds<wbr/>Maximum</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The length of the resource data exceeds the maximum allowed.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2865465-datalengthexceedsmaximum.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">data<wbr data-v-dac213be="">Length<wbr data-v-dac213be="">Exceeds<wbr data-v-dac213be="">Maximum</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The length of the resource data exceeds the maximum allowed.</span><!--end_enstr-->
 <span class="jpstr">
 リソースデータの長さは、許される最大限度を越えます。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293362-datanotallowed.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">data<wbr/>Not<wbr/>Allowed</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The cellular network disallowed a connection.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293362-datanotallowed.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">data<wbr data-v-dac213be="">Not<wbr data-v-dac213be="">Allowed</wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The cellular network disallowed a connection.</span><!--end_enstr-->
 <span class="jpstr">
 セルラーネットワークは接続を拒否しました。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293434-dnslookupfailed.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">dns<wbr/>Lookup<wbr/>Failed</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The host address couldn’t be found via DNS lookup.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293434-dnslookupfailed.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">dns<wbr data-v-dac213be="">Lookup<wbr data-v-dac213be="">Failed</wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The host address couldn’t be found via DNS lookup.</span><!--end_enstr-->
 <span class="jpstr">
 ホストアドレスは、DNS探索経由で見つけられることができませんでした。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293392-downloaddecodingfailedmidstream.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">download<wbr/>Decoding<wbr/>Failed<wbr/>Mid<wbr/>Stream</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A download task failed to decode an encoded file during the download.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293392-downloaddecodingfailedmidstream.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">download<wbr data-v-dac213be="">Decoding<wbr data-v-dac213be="">Failed<wbr data-v-dac213be="">Mid<wbr data-v-dac213be="">Stream</wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A download task failed to decode an encoded file during the download.</span><!--end_enstr-->
 <span class="jpstr">
 ダウンロードタスクは、符号化されたファイルを復号することにダウンロードの間に失敗しました。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293779-downloaddecodingfailedtocomplete.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">download<wbr/>Decoding<wbr/>Failed<wbr/>To<wbr/>Complete</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A download task failed to decode an encoded file after downloading.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293779-downloaddecodingfailedtocomplete.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">download<wbr data-v-dac213be="">Decoding<wbr data-v-dac213be="">Failed<wbr data-v-dac213be="">To<wbr data-v-dac213be="">Complete</wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A download task failed to decode an encoded file after downloading.</span><!--end_enstr-->
 <span class="jpstr">
 ダウンロードタスクは、符号化されたファイルを復号することをダウンロードの後に失敗しました。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293448-filedoesnotexist.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">file<wbr/>Does<wbr/>Not<wbr/>Exist</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The specified file doesn’t exist.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293448-filedoesnotexist.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">file<wbr data-v-dac213be="">Does<wbr data-v-dac213be="">Not<wbr data-v-dac213be="">Exist</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The specified file doesn’t exist.</span><!--end_enstr-->
 <span class="jpstr">
 指定されたファイルは、存在しません。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2292901-httptoomanyredirects.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">http<wbr/>Too<wbr/>Many<wbr/>Redirects</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A redirect loop has been detected or the threshold for number of allowable redirects has been exceeded (currently 16).</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2292901-httptoomanyredirects.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">http<wbr data-v-dac213be="">Too<wbr data-v-dac213be="">Many<wbr data-v-dac213be="">Redirects</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A redirect loop has been detected or the threshold for number of allowable redirects has been exceeded (currently 16).</span><!--end_enstr-->
 <span class="jpstr">
 リダイレクトループが検出されました、またはまたは許可されるリダイレクトの数に対するしきい値を越えました（現在は16）。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2292893-internationalroamingoff.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">international<wbr/>Roaming<wbr/>Off</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The attempted connection required activating a data context while roaming, but international roaming is disabled.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2292893-internationalroamingoff.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">international<wbr data-v-dac213be="">Roaming<wbr data-v-dac213be="">Off</wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The attempted connection required activating a data context while roaming, but international roaming is disabled.</span><!--end_enstr-->
 <span class="jpstr">
 試みられた接続は、あるデータ文脈を始動することをローミングの間に要請しました、しかし国際ローミングは不能にされます。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293759-networkconnectionlost.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">network<wbr/>Connection<wbr/>Lost</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A client or server connection was severed in the middle of an in-progress load.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293759-networkconnectionlost.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">network<wbr data-v-dac213be="">Connection<wbr data-v-dac213be="">Lost</wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A client or server connection was severed in the middle of an in-progress load.</span><!--end_enstr-->
 <span class="jpstr">
 クライアントまたはサーバ接続は、進行中のロードの半ばで切断されました。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293054-nopermissionstoreadfile.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">no<wbr/>Permissions<wbr/>To<wbr/>Read<wbr/>File</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A resource couldn’t be read because of insufficient permissions.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293054-nopermissionstoreadfile.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">no<wbr data-v-dac213be="">Permissions<wbr data-v-dac213be="">To<wbr data-v-dac213be="">Read<wbr data-v-dac213be="">File</wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A resource couldn’t be read because of insufficient permissions.</span><!--end_enstr-->
 <span class="jpstr">
 リソースが読み込まれることができませんでした、不十分な権限のため。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293104-notconnectedtointernet.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">not<wbr/>Connected<wbr/>To<wbr/>Internet</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A network resource was requested, but an internet connection hasn’t been established and can’t be established automatically.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293104-notconnectedtointernet.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">not<wbr data-v-dac213be="">Connected<wbr data-v-dac213be="">To<wbr data-v-dac213be="">Internet</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A network resource was requested, but an internet connection hasn’t been established and can’t be established automatically.</span><!--end_enstr-->
 <span class="jpstr">
 ネットワークリソースがリクエストされました、しかしインターネット接続は確立されていませんそして自動的に確立されることができません。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293066-redirecttononexistentlocation.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">redirect<wbr/>To<wbr/>Non<wbr/>Existent<wbr/>Location</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A redirect was specified by way of server response code, but the server didn’t accompany this code with a redirect URL.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293066-redirecttononexistentlocation.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">redirect<wbr data-v-dac213be="">To<wbr data-v-dac213be="">Non<wbr data-v-dac213be="">Existent<wbr data-v-dac213be="">Location</wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A redirect was specified by way of server response code, but the server didn’t accompany this code with a redirect URL.</span><!--end_enstr-->
 <span class="jpstr">
 リダイレクトがサーバ応答コードのやり方で指定されました、しかしサーバはこのコードをリダイレクトURLに添えませんでした。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293288-requestbodystreamexhausted.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">request<wbr/>Body<wbr/>Stream<wbr/>Exhausted</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A body stream is needed but the client didn’t provide one.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293288-requestbodystreamexhausted.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">request<wbr data-v-dac213be="">Body<wbr data-v-dac213be="">Stream<wbr data-v-dac213be="">Exhausted</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A body stream is needed but the client didn’t provide one.</span><!--end_enstr-->
 <span class="jpstr">
 あるボディストリームが必要とされましたがクライアントはそれを提供しません。
 </span><!--end_jpstr-->
-  </p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293555-resourceunavailable.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">resource<wbr/>Unavailable</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A requested resource couldn’t be retrieved.</span><!--end_enstr-->
+  </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293555-resourceunavailable.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">resource<wbr data-v-dac213be="">Unavailable</wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A requested resource couldn’t be retrieved.</span><!--end_enstr-->
 <span class="jpstr">
 リクエストされたリソースは取ってくることができませんでした。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293419-servercertificatehasbaddate.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">server<wbr/>Certificate<wbr/>Has<wbr/>Bad<wbr/>Date</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A server certificate is expired, or is not yet valid.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293419-servercertificatehasbaddate.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">server<wbr data-v-dac213be="">Certificate<wbr data-v-dac213be="">Has<wbr data-v-dac213be="">Bad<wbr data-v-dac213be="">Date</wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A server certificate is expired, or is not yet valid.</span><!--end_enstr-->
 <span class="jpstr">
 サーバ証明書が期限切れです、またはまだ有効ではありません。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2292958-servercertificatehasunknownroot.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">server<wbr/>Certificate<wbr/>Has<wbr/>Unknown<wbr/>Root</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A server certificate wasn’t signed by any root server.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2292958-servercertificatehasunknownroot.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">server<wbr data-v-dac213be="">Certificate<wbr data-v-dac213be="">Has<wbr data-v-dac213be="">Unknown<wbr data-v-dac213be="">Root</wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A server certificate wasn’t signed by any root server.</span><!--end_enstr-->
 <span class="jpstr">
 サーバ証明書はどんなルートサーバによっても署名されていませんでした。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293005-servercertificatenotyetvalid.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">server<wbr/>Certificate<wbr/>Not<wbr/>Yet<wbr/>Valid</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A server certificate isn’t valid yet.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293005-servercertificatenotyetvalid.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">server<wbr data-v-dac213be="">Certificate<wbr data-v-dac213be="">Not<wbr data-v-dac213be="">Yet<wbr data-v-dac213be="">Valid</wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A server certificate isn’t valid yet.</span><!--end_enstr-->
 <span class="jpstr">
 サーバ証明書はまだ有効ではありません。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293474-servercertificateuntrusted.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">server<wbr/>Certificate<wbr/>Untrusted</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A server certificate was signed by a root server that isn’t trusted.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293474-servercertificateuntrusted.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">server<wbr data-v-dac213be="">Certificate<wbr data-v-dac213be="">Untrusted</wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A server certificate was signed by a root server that isn’t trusted.</span><!--end_enstr-->
 <span class="jpstr">
 サーバー証明書は信頼できないルートサーバーによって署名されました。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293423-secureconnectionfailed.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">secure<wbr/>Connection<wbr/>Failed</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">An attempt to establish a secure connection failed for reasons that can’t be expressed more specifically.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293423-secureconnectionfailed.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">secure<wbr data-v-dac213be="">Connection<wbr data-v-dac213be="">Failed</wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">An attempt to establish a secure connection failed for reasons that can’t be expressed more specifically.</span><!--end_enstr-->
 <span class="jpstr">
 安全な接続を確立する試みは、より具体的に表現されることができないという理由で失敗しました。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293002-timedout.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">timed<wbr/>Out</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">An asynchronous operation timed out.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293002-timedout.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">timed<wbr data-v-dac213be="">Out</wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">An asynchronous operation timed out.</span><!--end_enstr-->
 <span class="jpstr">
 非同期の演算が時間切れです。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293357-unknown.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">unknown</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">The URL Loading System encountered an error that it can’t interpret.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293357-unknown.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">unknown</span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The URL Loading System encountered an error that it can’t interpret.</span><!--end_enstr-->
 <span class="jpstr">
 URL Loading Systemが解釈できないエラーに遭遇しました。
 </span><!--end_jpstr-->
-  </p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293246-unsupportedurl.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">unsupported<wbr/>URL</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A properly formed URL couldn’t be handled by the framework.</span><!--end_enstr-->
+  </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293246-unsupportedurl.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">unsupported<wbr data-v-dac213be="">URL</wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A properly formed URL couldn’t be handled by the framework.</span><!--end_enstr-->
 <span class="jpstr">
 適切に形成されたURLがフレームワークによって取り扱われることができませんでした。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293560-userauthenticationrequired.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">user<wbr/>Authentication<wbr/>Required</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Authentication is required to access a resource.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293560-userauthenticationrequired.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">user<wbr data-v-dac213be="">Authentication<wbr data-v-dac213be="">Required</wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Authentication is required to access a resource.</span><!--end_enstr-->
 <span class="jpstr">
 リソースにアクセスするのに認証が必要とされます。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293330-usercancelledauthentication.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">user<wbr/>Cancelled<wbr/>Authentication</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">An asynchronous request for authentication has been canceled by the user.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293330-usercancelledauthentication.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">user<wbr data-v-dac213be="">Cancelled<wbr data-v-dac213be="">Authentication</wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">An asynchronous request for authentication has been canceled by the user.</span><!--end_enstr-->
 <span class="jpstr">
 認証に対する非同期リクエストがユーザによってキャンセルされました。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/2293773-zerobyteresource.html"><code class="display-name"><span class="decorator">static var </span><span class="identifier">zero<wbr/>Byte<wbr/>Resource</span><span class="decorator">: URLError<wbr/>.Code</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A server reported that a URL has a non-zero content length, but terminated the network connection gracefully without sending any data.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/2293773-zerobyteresource.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static var </span><span data-v-dac213be="" class="identifier">zero<wbr data-v-dac213be="">Byte<wbr data-v-dac213be="">Resource</wbr></wbr></span><span data-v-dac213be="" class="decorator">: URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A server reported that a URL has a non-zero content length, but terminated the network connection gracefully without sending any data.</span><!--end_enstr-->
 <span class="jpstr">
 URLが非ゼロの内容長さを持つことをサーバが報告しました、しかし何らデータを送ることなく美しくネットワーク接続を終わらせました。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info has-inline-element"><a class="symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlerror/code.html"><code class="display-name"><span class="decorator">struct </span><span class="identifier">URLError<wbr/>.Code</span></code></a></div></div></div></div></div></section></div></div></section></main><section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo">
-        <nav class="footer-breadory">
-          <a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a>
-          <section class="breadcrumbs">
-            <ol class="breadcrumbs-list">
-              <li><a href=/documentation>Documentation</a></li>
-            </ol>
-          </section>
-          <div id="directorynav" class="directorynav">
-            <div id="dn-cola" class="column">
-              <h3><a href="/discover/">Discover</a></h3>
-              <ul>
-                <li><a href="/macos/">macOS</a></li>
-                <li><a href="/ios/">iOS</a></li>
-                <li><a href="/watchos/">watchOS</a></li>
-                <li><a href="/tvos/">tvOS</a></li>
-                <li><a href="/safari/">Safari and Web</a></li>
-                <li><a href="/games/">Games</a></li>
-                <li><a href="/business/">Business</a></li>
-                <li><a href="/education/">Education</a></li>
-                <li><a href="/wwdc/">WWDC</a></li>
-              </ul>
-            </div>
-            <div id="dn-colb" class="column">
-              <h3><a href="/design/">Design</a></h3>
-              <ul>
-                <li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
-                <li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlerror/code.html" class="link"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">struct </span><span data-v-dac213be="" class="identifier">URLError<wbr data-v-dac213be="">.Code</wbr></span></code><!----><!----><!----></a>
+</div>
+</div>
+</div>
+</div><!----></section></main>
+</div></div></div>
+<section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo"><nav class="footer-breadory"><a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a><section class="breadcrumbs"><ol class="breadcrumbs-list"></ol></section><div id="directorynav" class="directorynav">
+<div id="dn-cola" class="column">
+<h3><a href="/discover/">Discover</a></h3>
+<ul>
+<li><a href="/ios/">iOS</a></li>
+<li><a href="/ipados/">iPadOS</a></li>
+<li><a href="/macos/">macOS</a></li>
+<li><a href="/tvos/">tvOS</a></li>
+<li><a href="/watchos/">watchOS</a></li>
+<li><a href="/safari/">Safari and Web</a></li>
+<li><a href="/games/">Games</a></li>
+<li><a href="/business/">Business</a></li>
+<li><a href="/education/">Education</a></li>
+<li><a href="/wwdc/">WWDC</a></li>
+</ul>
+</div>
+<div id="dn-colb" class="column">
+<h3><a href="/design/">Design</a></h3>
+<ul>
+<li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
+<li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
 <span class="jpstr">
 リソース
 </span><!--end_jpstr-->
 </a></li>
-                <li><a href="/videos/design/">Videos</a></li>
-                <li><a href="/design/awards/">Apple Design Awards</a></li>
-                <li><a href="/accessibility/">Accessibility</a></li>
-                <li><a href="/internationalization/"><span class="enstr">Internationalization</span><!--end_enstr-->
+<li><a href="/videos/design/">Videos</a></li>
+<li><a href="/design/awards/">Apple Design Awards</a></li>
+<li><a href="/fonts/">Fonts</a></li>
+<li><a href="/accessibility/">Accessibility</a></li>
+<li><a href="/localization/"><span class="enstr">Localization</span><!--end_enstr-->
 <span class="jpstr">
-国際化
+ローカライゼーション
 </span><!--end_jpstr-->
 </a></li>
-                <li><a href="/accessories/">Accessories</a></li>
-              </ul>
-            </div>
-            <div id="dn-colc" class="column">
-              <h3><a href="/develop/">Develop</a></h3>
-              <ul>
-                <li><a href="/xcode/">Xcode</a></li>
-                <li><a href="/swift/">Swift</a></li>
-                <li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
-                <li><a href="/testflight/">TestFlight</a></li>
-                <li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
-                <li><a href="/videos/">Videos</a></li>
-                <li><a href="/download/">Downloads</a></li>
-              </ul>
-            </div>
-            <div id="dn-cold" class="column">
-              <h3><a href="/distribute/">Distribute</a></h3>
-              <ul>
-                <li><a href="/programs/">Developer Program</a></li>
-                <li><a href="/app-store/">App Store</a></li>
-                <li><a href="/app-store/review/">App Review</a></li>
-                <li><a href="/macos/distribution/">Mac Software</a></li>
-                <li><a href="/business/distribute/">Apps for Business</a></li>
-                <li><a href="/safari/extensions/">Safari Extensions</a></li>
-                <li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
-                <li><a href="/softwarelicensing/">Trademark Licensing</a></li>
-              </ul>
-            </div>
-            <div id="dn-cole" class="column">
-              <h3><a href="/support/">Support</a></h3>
-              <ul>
-                <li><a href="https://forums.developer.apple.com">Developer Forums</a></li>
-                <li><a href="/bug-reporting/">Bug Reporting</a></li>
-                <li><a href="/terms/">License Agreements</a></li>
-                <li><a href="/system-status/">System Status</a></li>
-                <li><a href="/contact/">Contact Us</a></li>
-              </ul>
-              <h3><a href="/account/">Account</a></h3>
-              <ul>
-                <li><a href="/account/ios/certificate/">Certificates, IDs &amp; Profiles</a></li>
-                <li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-        <div class="ac-gf-footer-legal">
-          <div class="ac-gf-footer-news"> To receive the latest developer news, visit and subscribe to our <a href="/news/">News and Updates</a>.
-          </div>
-          <div class="ac-gf-footer-legal-copyright">Copyright © 2020 Apple Inc. All rights reserved.</div>
-          <div class="ac-gf-footer-legal-links">
-            <a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a>
-            <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
-            <a href="/bug-reporting/">Report Bugs</a>
-            <a href="/contact/submit/?subject=website-feedback">Feedback</a>
-          </div>
-          <div class="ac-gf-footer-language-links">
-            <a href="/cn/" class="first">简体中文</a>
-            <a href="/jp/">日本語</a>
-            <a href="/kr/">한국어</a>
-          </div>
-        </div>
-      </footer></section></div></div><script id="bootstrap-data" type="application/json">{"id":2293739,"title":{"content":"fileIsDirectory"},"abstract":"<div><p>A request for an FTP file resulted in the server responding that the file is not a plain file, but a directory.<\/p><\/div>","containingGroup":[{"id":2961406,"role":"task","paths":[],"symbols":[{"id":2865492,"role":"symbol","usr":"s:10Foundation8URLErrorV44appTransportSecurityRequiresSecureConnectionAC4CodeVvpZ","name":"appTransportSecurityRequiresSecureConnection","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"9.0"},{"platform":"macOS","introduced":"10.11"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"7.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">app<wbr\/>Transport<wbr\/>Security<wbr\/>Requires<wbr\/>Secure<wbr\/>Connection<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2865492-apptransportsecurityrequiressecu"],"title":{"content":"appTransportSecurityRequiresSecureConnection"},"abstract":"<div><p>App Transport Security disallowed a connection because there is no secure network connection.<\/p><\/div>"},{"id":2293763,"role":"symbol","usr":"s:10Foundation8URLErrorV38backgroundSessionInUseByAnotherProcessAC4CodeVvpZ","name":"backgroundSessionInUseByAnotherProcess","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"8.0"},{"platform":"macOS","introduced":"10.10"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"6.0.1"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">background<wbr\/>Session<wbr\/>In<wbr\/>Use<wbr\/>By<wbr\/>Another<wbr\/>Process<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293763-backgroundsessioninusebyanotherp"],"title":{"content":"backgroundSessionInUseByAnotherProcess"},"abstract":"<div><p>An app or app extension attempted to connect to a background session that is already connected to a process.<\/p><\/div>"},{"id":2293679,"role":"symbol","usr":"s:10Foundation8URLErrorV40backgroundSessionRequiresSharedContainerAC4CodeVvpZ","name":"backgroundSessionRequiresSharedContainer","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"8.0"},{"platform":"macOS","introduced":"10.10"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"6.0.1"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">background<wbr\/>Session<wbr\/>Requires<wbr\/>Shared<wbr\/>Container<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293679-backgroundsessionrequiressharedc"],"title":{"content":"backgroundSessionRequiresSharedContainer"},"abstract":"<div><p>The shared container identifier of the URL session configuration is needed but hasn’t been set.<\/p><\/div>"},{"id":2293004,"role":"symbol","usr":"s:10Foundation8URLErrorV32backgroundSessionWasDisconnectedAC4CodeVvpZ","name":"backgroundSessionWasDisconnected","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"8.0"},{"platform":"macOS","introduced":"10.10"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"6.0.1"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">background<wbr\/>Session<wbr\/>Was<wbr\/>Disconnected<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293004-backgroundsessionwasdisconnected"],"title":{"content":"backgroundSessionWasDisconnected"},"abstract":"<div><p>The app is suspended or exits while a background data task is processing.<\/p><\/div>"},{"id":2293606,"role":"symbol","usr":"s:10Foundation8URLErrorV17badServerResponseAC4CodeVvpZ","name":"badServerResponse","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">bad<wbr\/>Server<wbr\/>Response<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293606-badserverresponse"],"title":{"content":"badServerResponse"},"abstract":"<div><p>The URL Loading System received bad data from the server.<\/p><\/div>"},{"id":2293516,"role":"symbol","usr":"s:10Foundation8URLErrorV6badURLAC4CodeVvpZ","name":"badURL","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">bad<wbr\/>URL<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293516-badurl"],"title":{"content":"badURL"},"abstract":"<div><p>A malformed URL prevented a URL request from being initiated.<\/p><\/div>"},{"id":2293147,"role":"symbol","usr":"s:10Foundation8URLErrorV12callIsActiveAC4CodeVvpZ","name":"callIsActive","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"3.0"},{"platform":"macOS","introduced":"10.7"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">call<wbr\/>Is<wbr\/>Active<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293147-callisactive"],"title":{"content":"callIsActive"},"abstract":"<div><p>A connection was attempted while a phone call is active on a network that doesn’t support simultaneous phone and data communication, such as EDGE or GPRS.<\/p><\/div>"},{"id":2293052,"role":"symbol","usr":"s:10Foundation8URLErrorV9cancelledAC4CodeVvpZ","name":"cancelled","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">cancelled<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293052-cancelled"],"title":{"content":"cancelled"},"abstract":"<div><p>An asynchronous load has been canceled.<\/p><\/div>"},{"id":2293764,"role":"symbol","usr":"s:10Foundation8URLErrorV15cannotCloseFileAC4CodeVvpZ","name":"cannotCloseFile","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">cannot<wbr\/>Close<wbr\/>File<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293764-cannotclosefile"],"title":{"content":"cannotCloseFile"},"abstract":"<div><p>A download task couldn’t close the downloaded file on disk.<\/p><\/div>"},{"id":2293028,"role":"symbol","usr":"s:10Foundation8URLErrorV19cannotConnectToHostAC4CodeVvpZ","name":"cannotConnectToHost","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">cannot<wbr\/>Connect<wbr\/>To<wbr\/>Host<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293028-cannotconnecttohost"],"title":{"content":"cannotConnectToHost"},"abstract":"<div><p>An attempt to connect to a host failed.<\/p><\/div>"},{"id":2293257,"role":"symbol","usr":"s:10Foundation8URLErrorV16cannotCreateFileAC4CodeVvpZ","name":"cannotCreateFile","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">cannot<wbr\/>Create<wbr\/>File<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293257-cannotcreatefile"],"title":{"content":"cannotCreateFile"},"abstract":"<div><p>A download task couldn’t create the downloaded file on disk because of an I\/O failure.<\/p><\/div>"},{"id":2292983,"role":"symbol","usr":"s:10Foundation8URLErrorV23cannotDecodeContentDataAC4CodeVvpZ","name":"cannotDecodeContentData","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">cannot<wbr\/>Decode<wbr\/>Content<wbr\/>Data<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2292983-cannotdecodecontentdata"],"title":{"content":"cannotDecodeContentData"},"abstract":"<div><p>Content data received during a connection request had an unknown content encoding.<\/p><\/div>"},{"id":2293573,"role":"symbol","usr":"s:10Foundation8URLErrorV19cannotDecodeRawDataAC4CodeVvpZ","name":"cannotDecodeRawData","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">cannot<wbr\/>Decode<wbr\/>Raw<wbr\/>Data<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293573-cannotdecoderawdata"],"title":{"content":"cannotDecodeRawData"},"abstract":"<div><p>Content data received during a connection request couldn’t be decoded for a known content encoding.<\/p><\/div>"},{"id":2293460,"role":"symbol","usr":"s:10Foundation8URLErrorV14cannotFindHostAC4CodeVvpZ","name":"cannotFindHost","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">cannot<wbr\/>Find<wbr\/>Host<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293460-cannotfindhost"],"title":{"content":"cannotFindHost"},"abstract":"<div><p>The host name for a URL couldn’t be resolved.<\/p><\/div>"},{"id":2293549,"role":"symbol","usr":"s:10Foundation8URLErrorV21cannotLoadFromNetworkAC4CodeVvpZ","name":"cannotLoadFromNetwork","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">cannot<wbr\/>Load<wbr\/>From<wbr\/>Network<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293549-cannotloadfromnetwork"],"title":{"content":"cannotLoadFromNetwork"},"abstract":"<div><p>A request to load an item only from the cache could not be satisfied.<\/p><\/div>"},{"id":2293182,"role":"symbol","usr":"s:10Foundation8URLErrorV14cannotMoveFileAC4CodeVvpZ","name":"cannotMoveFile","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">cannot<wbr\/>Move<wbr\/>File<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293182-cannotmovefile"],"title":{"content":"cannotMoveFile"},"abstract":"<div><p>A download task was unable to move a downloaded file on disk.<\/p><\/div>"},{"id":2292837,"role":"symbol","usr":"s:10Foundation8URLErrorV14cannotOpenFileAC4CodeVvpZ","name":"cannotOpenFile","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">cannot<wbr\/>Open<wbr\/>File<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2292837-cannotopenfile"],"title":{"content":"cannotOpenFile"},"abstract":"<div><p>A download task was unable to open the downloaded file on disk.<\/p><\/div>"},{"id":2293435,"role":"symbol","usr":"s:10Foundation8URLErrorV19cannotParseResponseAC4CodeVvpZ","name":"cannotParseResponse","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">cannot<wbr\/>Parse<wbr\/>Response<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293435-cannotparseresponse"],"title":{"content":"cannotParseResponse"},"abstract":"<div><p>A task couldn’t parse a response.<\/p><\/div>"},{"id":2293211,"role":"symbol","usr":"s:10Foundation8URLErrorV16cannotRemoveFileAC4CodeVvpZ","name":"cannotRemoveFile","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">cannot<wbr\/>Remove<wbr\/>File<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293211-cannotremovefile"],"title":{"content":"cannotRemoveFile"},"abstract":"<div><p>A download task was unable to remove a downloaded file from disk.<\/p><\/div>"},{"id":2293714,"role":"symbol","usr":"s:10Foundation8URLErrorV17cannotWriteToFileAC4CodeVvpZ","name":"cannotWriteToFile","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">cannot<wbr\/>Write<wbr\/>To<wbr\/>File<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293714-cannotwritetofile"],"title":{"content":"cannotWriteToFile"},"abstract":"<div><p>A download task was unable to write to the downloaded file on disk.<\/p><\/div>"},{"id":2292873,"role":"symbol","usr":"s:10Foundation8URLErrorV25clientCertificateRejectedAC4CodeVvpZ","name":"clientCertificateRejected","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">client<wbr\/>Certificate<wbr\/>Rejected<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2292873-clientcertificaterejected"],"title":{"content":"clientCertificateRejected"},"abstract":"<div><p>A server certificate was rejected.<\/p><\/div>"},{"id":2293312,"role":"symbol","usr":"s:10Foundation8URLErrorV25clientCertificateRequiredAC4CodeVvpZ","name":"clientCertificateRequired","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">client<wbr\/>Certificate<wbr\/>Required<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293312-clientcertificaterequired"],"title":{"content":"clientCertificateRequired"},"abstract":"<div><p>A client certificate was required to authenticate an SSL connection during a request.<\/p><\/div>"},{"id":2865465,"role":"symbol","usr":"s:10Foundation8URLErrorV24dataLengthExceedsMaximumAC4CodeVvpZ","name":"dataLengthExceedsMaximum","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"2.0"},{"platform":"macOS","introduced":"10.5"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.3"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">data<wbr\/>Length<wbr\/>Exceeds<wbr\/>Maximum<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2865465-datalengthexceedsmaximum"],"title":{"content":"dataLengthExceedsMaximum"},"abstract":"<div><p>The length of the resource data exceeds the maximum allowed.<\/p><\/div>"},{"id":2293362,"role":"symbol","usr":"s:10Foundation8URLErrorV14dataNotAllowedAC4CodeVvpZ","name":"dataNotAllowed","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"3.0"},{"platform":"macOS","introduced":"10.7"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">data<wbr\/>Not<wbr\/>Allowed<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293362-datanotallowed"],"title":{"content":"dataNotAllowed"},"abstract":"<div><p>The cellular network disallowed a connection.<\/p><\/div>"},{"id":2293434,"role":"symbol","usr":"s:10Foundation8URLErrorV15dnsLookupFailedAC4CodeVvpZ","name":"dnsLookupFailed","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">dns<wbr\/>Lookup<wbr\/>Failed<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293434-dnslookupfailed"],"title":{"content":"dnsLookupFailed"},"abstract":"<div><p>The host address couldn’t be found via DNS lookup.<\/p><\/div>"},{"id":2293392,"role":"symbol","usr":"s:10Foundation8URLErrorV31downloadDecodingFailedMidStreamAC4CodeVvpZ","name":"downloadDecodingFailedMidStream","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">download<wbr\/>Decoding<wbr\/>Failed<wbr\/>Mid<wbr\/>Stream<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293392-downloaddecodingfailedmidstream"],"title":{"content":"downloadDecodingFailedMidStream"},"abstract":"<div><p>A download task failed to decode an encoded file during the download.<\/p><\/div>"},{"id":2293779,"role":"symbol","usr":"s:10Foundation8URLErrorV32downloadDecodingFailedToCompleteAC4CodeVvpZ","name":"downloadDecodingFailedToComplete","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">download<wbr\/>Decoding<wbr\/>Failed<wbr\/>To<wbr\/>Complete<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293779-downloaddecodingfailedtocomplete"],"title":{"content":"downloadDecodingFailedToComplete"},"abstract":"<div><p>A download task failed to decode an encoded file after downloading.<\/p><\/div>"},{"id":2293448,"role":"symbol","usr":"s:10Foundation8URLErrorV16fileDoesNotExistAC4CodeVvpZ","name":"fileDoesNotExist","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">file<wbr\/>Does<wbr\/>Not<wbr\/>Exist<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293448-filedoesnotexist"],"title":{"content":"fileDoesNotExist"},"abstract":"<div><p>The specified file doesn’t exist.<\/p><\/div>"},{"id":2293739,"role":"symbol","usr":"s:10Foundation8URLErrorV15fileIsDirectoryAC4CodeVvpZ","name":"fileIsDirectory","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">file<wbr\/>Is<wbr\/>Directory<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293739-fileisdirectory"],"title":{"content":"fileIsDirectory"},"abstract":"<div><p>A request for an FTP file resulted in the server responding that the file is not a plain file, but a directory.<\/p><\/div>"},{"id":2292901,"role":"symbol","usr":"s:10Foundation8URLErrorV20httpTooManyRedirectsAC4CodeVvpZ","name":"httpTooManyRedirects","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">http<wbr\/>Too<wbr\/>Many<wbr\/>Redirects<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2292901-httptoomanyredirects"],"title":{"content":"httpTooManyRedirects"},"abstract":"<div><p>A redirect loop has been detected or the threshold for number of allowable redirects has been exceeded (currently 16).<\/p><\/div>"},{"id":2292893,"role":"symbol","usr":"s:10Foundation8URLErrorV23internationalRoamingOffAC4CodeVvpZ","name":"internationalRoamingOff","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"3.0"},{"platform":"macOS","introduced":"10.7"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">international<wbr\/>Roaming<wbr\/>Off<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2292893-internationalroamingoff"],"title":{"content":"internationalRoamingOff"},"abstract":"<div><p>The attempted connection required activating a data context while roaming, but international roaming is disabled.<\/p><\/div>"},{"id":2293759,"role":"symbol","usr":"s:10Foundation8URLErrorV21networkConnectionLostAC4CodeVvpZ","name":"networkConnectionLost","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">network<wbr\/>Connection<wbr\/>Lost<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293759-networkconnectionlost"],"title":{"content":"networkConnectionLost"},"abstract":"<div><p>A client or server connection was severed in the middle of an in-progress load.<\/p><\/div>"},{"id":2293054,"role":"symbol","usr":"s:10Foundation8URLErrorV23noPermissionsToReadFileAC4CodeVvpZ","name":"noPermissionsToReadFile","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">no<wbr\/>Permissions<wbr\/>To<wbr\/>Read<wbr\/>File<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293054-nopermissionstoreadfile"],"title":{"content":"noPermissionsToReadFile"},"abstract":"<div><p>A resource couldn’t be read because of insufficient permissions.<\/p><\/div>"},{"id":2293104,"role":"symbol","usr":"s:10Foundation8URLErrorV22notConnectedToInternetAC4CodeVvpZ","name":"notConnectedToInternet","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">not<wbr\/>Connected<wbr\/>To<wbr\/>Internet<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293104-notconnectedtointernet"],"title":{"content":"notConnectedToInternet"},"abstract":"<div><p>A network resource was requested, but an internet connection hasn’t been established and can’t be established automatically.<\/p><\/div>"},{"id":2293066,"role":"symbol","usr":"s:10Foundation8URLErrorV29redirectToNonExistentLocationAC4CodeVvpZ","name":"redirectToNonExistentLocation","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">redirect<wbr\/>To<wbr\/>Non<wbr\/>Existent<wbr\/>Location<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293066-redirecttononexistentlocation"],"title":{"content":"redirectToNonExistentLocation"},"abstract":"<div><p>A redirect was specified by way of server response code, but the server didn’t accompany this code with a redirect URL.<\/p><\/div>"},{"id":2293288,"role":"symbol","usr":"s:10Foundation8URLErrorV26requestBodyStreamExhaustedAC4CodeVvpZ","name":"requestBodyStreamExhausted","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"3.0"},{"platform":"macOS","introduced":"10.7"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">request<wbr\/>Body<wbr\/>Stream<wbr\/>Exhausted<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293288-requestbodystreamexhausted"],"title":{"content":"requestBodyStreamExhausted"},"abstract":"<div><p>A body stream is needed but the client didn’t provide one.  <\/p><\/div>"},{"id":2293555,"role":"symbol","usr":"s:10Foundation8URLErrorV19resourceUnavailableAC4CodeVvpZ","name":"resourceUnavailable","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">resource<wbr\/>Unavailable<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293555-resourceunavailable"],"title":{"content":"resourceUnavailable"},"abstract":"<div><p>A requested resource couldn’t be retrieved.<\/p><\/div>"},{"id":2293419,"role":"symbol","usr":"s:10Foundation8URLErrorV27serverCertificateHasBadDateAC4CodeVvpZ","name":"serverCertificateHasBadDate","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">server<wbr\/>Certificate<wbr\/>Has<wbr\/>Bad<wbr\/>Date<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293419-servercertificatehasbaddate"],"title":{"content":"serverCertificateHasBadDate"},"abstract":"<div><p>A server certificate is expired, or is not yet valid.<\/p><\/div>"},{"id":2292958,"role":"symbol","usr":"s:10Foundation8URLErrorV31serverCertificateHasUnknownRootAC4CodeVvpZ","name":"serverCertificateHasUnknownRoot","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">server<wbr\/>Certificate<wbr\/>Has<wbr\/>Unknown<wbr\/>Root<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2292958-servercertificatehasunknownroot"],"title":{"content":"serverCertificateHasUnknownRoot"},"abstract":"<div><p>A server certificate wasn’t signed by any root server.<\/p><\/div>"},{"id":2293005,"role":"symbol","usr":"s:10Foundation8URLErrorV28serverCertificateNotYetValidAC4CodeVvpZ","name":"serverCertificateNotYetValid","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">server<wbr\/>Certificate<wbr\/>Not<wbr\/>Yet<wbr\/>Valid<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293005-servercertificatenotyetvalid"],"title":{"content":"serverCertificateNotYetValid"},"abstract":"<div><p>A server certificate isn’t valid yet.<\/p><\/div>"},{"id":2293474,"role":"symbol","usr":"s:10Foundation8URLErrorV26serverCertificateUntrustedAC4CodeVvpZ","name":"serverCertificateUntrusted","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">server<wbr\/>Certificate<wbr\/>Untrusted<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293474-servercertificateuntrusted"],"title":{"content":"serverCertificateUntrusted"},"abstract":"<div><p>A server certificate was signed by a root server that isn’t trusted.<\/p><\/div>"},{"id":2293423,"role":"symbol","usr":"s:10Foundation8URLErrorV22secureConnectionFailedAC4CodeVvpZ","name":"secureConnectionFailed","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">secure<wbr\/>Connection<wbr\/>Failed<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293423-secureconnectionfailed"],"title":{"content":"secureConnectionFailed"},"abstract":"<div><p>An attempt to establish a secure connection failed for reasons that can’t be expressed more specifically.<\/p><\/div>"},{"id":2293002,"role":"symbol","usr":"s:10Foundation8URLErrorV8timedOutAC4CodeVvpZ","name":"timedOut","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">timed<wbr\/>Out<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293002-timedout"],"title":{"content":"timedOut"},"abstract":"<div><p>An asynchronous operation timed out.<\/p><\/div>"},{"id":2293357,"role":"symbol","usr":"s:10Foundation8URLErrorV7unknownAC4CodeVvpZ","name":"unknown","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">unknown<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293357-unknown"],"title":{"content":"unknown"},"abstract":"<div><p>The URL Loading System encountered an error that it can’t interpret.  <\/p><\/div>"},{"id":2293246,"role":"symbol","usr":"s:10Foundation8URLErrorV14unsupportedURLAC4CodeVvpZ","name":"unsupportedURL","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">unsupported<wbr\/>URL<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293246-unsupportedurl"],"title":{"content":"unsupportedURL"},"abstract":"<div><p>A properly formed URL couldn’t be handled by the framework.<\/p><\/div>"},{"id":2293560,"role":"symbol","usr":"s:10Foundation8URLErrorV26userAuthenticationRequiredAC4CodeVvpZ","name":"userAuthenticationRequired","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">user<wbr\/>Authentication<wbr\/>Required<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293560-userauthenticationrequired"],"title":{"content":"userAuthenticationRequired"},"abstract":"<div><p>Authentication is required to access a resource.<\/p><\/div>"},{"id":2293330,"role":"symbol","usr":"s:10Foundation8URLErrorV27userCancelledAuthenticationAC4CodeVvpZ","name":"userCancelledAuthentication","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">user<wbr\/>Cancelled<wbr\/>Authentication<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293330-usercancelledauthentication"],"title":{"content":"userCancelledAuthentication"},"abstract":"<div><p>An asynchronous request for authentication has been canceled by the user.<\/p><\/div>"},{"id":2293773,"role":"symbol","usr":"s:10Foundation8URLErrorV16zeroByteResourceAC4CodeVvpZ","name":"zeroByteResource","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"8.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">zero<wbr\/>Byte<wbr\/>Resource<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/2293773-zerobyteresource"],"title":{"content":"zeroByteResource"},"abstract":"<div><p>A server reported that a URL has a non-zero content length, but terminated the network connection gracefully without sending any data.<\/p><\/div>"},{"id":2883111,"role":"symbol","usr":"s:10Foundation8URLErrorV4CodeV","name":"URLError.Code","domain":"swift","kind":"struct","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"9.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">struct <\/span><span class=\"identifier\">URLError<wbr\/>.Code<\/span><\/code>","paths":["documentation\/foundation\/urlerror\/code"],"title":{"content":"URLError.Code"},"hasChildren":true}],"title":{"content":"Error Codes"}}],"usr":"s:10Foundation8URLErrorV15fileIsDirectoryAC4CodeVvpZ","name":"fileIsDirectory","domain":"swift","kind":"structdata","availability":[{"platform":"iOS","current":"13.4","introduced":"7.0"},{"platform":"macOS","current":"10.15.4","introduced":"10.9"},{"platform":"Mac Catalyst","current":"13.4","introduced":"13.0"},{"platform":"tvOS","current":"13.4","introduced":"9.0"},{"platform":"watchOS","current":"6.2","introduced":"2.0"},{"platform":"Xcode","current":"11.4","introduced":"8.0"}],"parent":{"id":2293594,"usr":"s:10Foundation8URLErrorV","name":"URLError","domain":"swift","kind":"struct","role":"symbol","paths":["documentation\/foundation\/urlerror"],"title":{"content":"URLError"},"abstract":{"content":"<abstract><paragraph xml:space=\"preserve\">Error codes returned by URL loading APIs.<\/paragraph><\/abstract>"}},"module":[{"title":{"content":"Foundation"},"importStatement":"<div><span class=\"syntax-identifier\">import<\/span> Foundation<\/div>","paths":["documentation\/foundation"],"platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"]}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">static var <\/span><span class=\"identifier\">file<wbr\/>Is<wbr\/>Directory<\/span><span class=\"decorator\">: URLError<wbr\/>.Code<\/span><\/code>","declaration":[{"content":"<span><span class=\"syntax-keyword\">static<\/span> <span class=\"syntax-keyword\">var<\/span> <span class=\"syntax-identifier\">fileIsDirectory<\/span>: <a class=\"symbolref\" href=\"\/documentation\/foundation\/urlerror\"><span>URLError<\/span><\/a>.<a class=\"symbolref\" href=\"\/documentation\/foundation\/urlerror\/code\"><span>Code<\/span><\/a> { <span class=\"syntax-keyword\">get<\/span> }\n<\/span>","platforms":["iOS","macOS","Mac Catalyst","tvOS","watchOS"],"references":{"2293594":{"id":2293594,"role":"symbol","paths":["documentation\/foundation\/urlerror"],"usr":"s:10Foundation8URLErrorV","kind":"struct","language":"swift","domain":"swift","name":"URLError","languages":["swift"],"title":{"content":"URLError"}},"2883111":{"id":2883111,"role":"symbol","paths":["documentation\/foundation\/urlerror\/code"],"usr":"s:10Foundation8URLErrorV4CodeV","kind":"struct","language":"swift","domain":"swift","name":"URLError.Code","languages":["swift"],"title":{"content":"URLError.Code"}}}}],"role":"symbol","language":"swift","roleHeading":"Type Property","languages":["swift"],"variants":{"swift":{"paths":["documentation\/foundation\/urlerror\/2293739-fileisdirectory"],"usr":"s:10Foundation8URLErrorV15fileIsDirectoryAC4CodeVvpZ"}},"pid":463568,"paths":["documentation\/foundation\/urlerror\/2293739-fileisdirectory"],"hierarchy":[[{"id":1613013,"role":"collection","title":{"content":"Foundation"},"paths":["documentation\/foundation"]},{"id":2877756,"role":"collectionGroup","title":{"content":"URL Loading System"},"paths":["documentation\/foundation\/url_loading_system"]},{"id":2293594,"role":"symbol","title":{"content":"URLError"},"usr":"s:10Foundation8URLErrorV","kind":"struct","paths":["documentation\/foundation\/urlerror"]}]],"legalNotices":{"copyright":"Copyright &copy; 2020 Apple Inc. All rights reserved.","termsOfUse":"https:\/\/www.apple.com\/legal\/internet-services\/terms\/site.html","privacyPolicy":"https:\/\/www.apple.com\/privacy\/privacy-policy"}}</script></body></html>
+<li><a href="/accessories/">Accessories</a></li>
+</ul>
+</div>
+<div id="dn-colc" class="column">
+<h3><a href="/develop/">Develop</a></h3>
+<ul>
+<li><a href="/xcode/">Xcode</a></li>
+<li><a href="/swift/">Swift</a></li>
+<li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
+<li><a href="/testflight/">TestFlight</a></li>
+<li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
+<li><a href="/videos/">Videos</a></li>
+<li><a href="/download/">Downloads</a></li>
+</ul>
+</div>
+<div id="dn-cold" class="column">
+<h3><a href="/distribute/">Distribute</a></h3>
+<ul>
+<li><a href="/programs/">Developer Program</a></li>
+<li><a href="/app-store/">App Store</a></li>
+<li><a href="/app-store/review/">App Review</a></li>
+<li><a href="/macos/distribution/">Mac Software</a></li>
+<li><a href="/business/distribute/">Apps for Business</a></li>
+<li><a href="/safari/extensions/">Safari Extensions</a></li>
+<li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
+<li><a href="/softwarelicensing/">Trademark Licensing</a></li>
+</ul>
+</div>
+<div id="dn-cole" class="column">
+<h3><a href="/support/">Support</a></h3>
+<ul>
+<li><a href="/support/articles/">Articles</a></li>
+<li><a href="/forums/">Developer Forums</a></li>
+<li><a href="/bug-reporting/">Feedback &amp; Bug Reporting</a></li>
+<li><a href="/system-status/">System Status</a></li>
+<li><a href="/contact/">Contact Us</a></li>
+</ul>
+<h3><a href="/account/">Account</a></h3>
+<ul>
+<li><a href="/account/ios/certificate/">Certificates, Identifiers &amp; Profiles</a></li>
+<li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
+</ul>
+</div>
+</div></nav><div class="ac-gf-footer-legal">
+<div class="ac-gf-footer-news">To view the latest developer news, visit <a href="/news/">News and Updates</a>.</div>
+<div class="ac-gf-footer-language-dropdown-wrapper">
+<select id="footer-language-selector" class="footer-language-select" aria-label="Language Dropdown" autocomplete="off"><option value="https://developer.apple.com/" selected>English</option>
+<option value="https://developer.apple.com/cn/">简体中文</option>
+<option value="https://developer.apple.com/jp/">日本語</option>
+<option value="https://developer.apple.com/kr/">한국어</option></select> <span class="footer-language-select-icon icon icon-chevrondown" aria-hidden="true"></span>
+</div>
+<div class="ac-gf-footer-legal-copyright">Copyright © <span class="footer-current-year">2020</span> <a href="https://www.apple.com">Apple Inc.</a> All rights reserved.</div>
+<div class="ac-gf-footer-legal-links">
+<a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a> <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a> <a href="/terms/">License Agreements</a>
+</div>
+</div></footer></section><script src="../../../tutorials/js/footer.js"></script>
+</body>
+</html>

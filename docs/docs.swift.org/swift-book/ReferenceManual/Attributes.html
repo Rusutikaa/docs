@@ -10,7 +10,7 @@
     <meta name="author" content="Apple Inc." />
     <meta name="viewport" content="width=device-width initial-scale=1" />
     
-    <title>Attributes — The Swift Programming Language (Swift 5.2)</title>
+    <title>Attributes — The Swift Programming Language (Swift 5.3)</title>
     
     <link rel="license" href="/LICENSE.txt" />
     <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
@@ -41,7 +41,7 @@
 
     <div id="menu-toggle" class="menu-toggle open"></div>
 
-    <h2>The Swift Programming Language<div>Swift 5.2</div></h2>
+    <h2>The Swift Programming Language<div>Swift 5.3</div></h2>
 
     <ul>
     <ul class="current">
@@ -155,6 +155,7 @@
 <li><a class="reference internal" href="#ID620">frozen</a></li>
 <li><a class="reference internal" href="#ID586">GKInspectable</a></li>
 <li><a class="reference internal" href="#ID587">inlinable</a></li>
+<li><a class="reference internal" href="#ID626">main</a></li>
 <li><a class="reference internal" href="#ID588">nonobjc</a></li>
 <li><a class="reference internal" href="#ID589">NSApplicationMain</a></li>
 <li><a class="reference internal" href="#ID590">NSCopying</a></li>
@@ -254,6 +255,8 @@
 <li><code class="docutils literal notranslate"><span class="pre">iOSApplicationExtension</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">macOS</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">macOSApplicationExtension</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">macCatalyst</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">macCatalystApplicationExtension</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">watchOS</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">watchOSApplicationExtension</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">tvOS</span></code></li>
@@ -518,7 +521,7 @@
 </li><li>}
 </li><li><span class="k">let</span> <span class="nv">s</span> = <span class="nv">DynamicStruct</span>()
 </li><li>
-</li><li><span class="c">// Use dynamic member lookup.</span>
+</li><li><span class="c"><span class="enstr">// Use dynamic member lookup.</span><!--end_enstr--><span class="jpstr">（動的メンバ検索を使います。）</span><!--end_jpstr--></span>
 </li><li><span class="k">let</span> <span class="nv">dynamic</span> = <span class="nv">s</span>.<span class="nv">someDynamicMember</span>
 </li><li><span class="nv">print</span>(<span class="nv">dynamic</span>)
 </li><li><span class="c"><span class="enstr">// Prints "325"</span><!--end_enstr--><span class="jpstr">（ "325" を出力する）</span><!--end_jpstr--></span>
@@ -614,6 +617,35 @@
 </span><!--end_jpstr-->
 </p>
 </div>
+<div class="section" id="ID626">
+<h3>main<a class="headerlink" href="#ID626" title="Permalink to this headline">¶</a></h3>
+<p><span class="enstr">Apply this attribute to a structure, class, or enumeration declaration to indicate that it contains the top-level entry point for program flow. The type must provide a <code class="docutils literal notranslate"><span class="pre">main</span></code> type function that doesn’t take any arguments and returns <code class="docutils literal notranslate"><span class="pre">Void</span></code>. For example:</span><!--end_enstr-->
+<span class="jpstr">
+この属性を構造体、クラス、または列挙宣言に適用して、それがプログラム流れに対するトップレベルエントリポイントを含むことを指し示してください。型は、ある<code class="docutils literal notranslate"><span class="pre">main</span></code>型関数を提供しなければなりません、それはどんな引数もとりません、そして<code class="docutils literal notranslate"><span class="pre">Void</span></code>を返します。例えば：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li>@<span class="nv">main</span>
+</li><li><span class="k">struct</span> <span class="nv">MyTopLevel</span> {
+</li><li>    <span class="k">static</span> <span class="k">func</span> <span class="nv">main</span>() {
+</li><li>        <span class="c">// Top-level code goes here</span>
+</li><li>    }
+</li><li>}
+</li></ol></div></div></div>
+<p><span class="enstr">Another way to describe the requirements of the <code class="docutils literal notranslate"><span class="pre">main</span></code> attribute is that the type you write this attribute on must satisfy the same requirements as types that conform to the following hypothetical protocol:</span><!--end_enstr-->
+<span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">main</span></code>属性の要件を記述する別の方法は、あなたがそれの上でこの属性を書くところの型は以下の仮定的なプロトコルに準拠する型と同じ要件を満たさなければならない、ということになります：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">protocol</span> <span class="nv">ProvidesMain</span> {
+</li><li>    <span class="k">static</span> <span class="k">func</span> <span class="nv">main</span>() <span class="k">throws</span>
+</li><li>}
+</li></ol></div></div></div>
+<p><span class="enstr">The Swift code you compile to make an executable can contain at most one top-level entry point, as discussed in <a class="reference internal" href="Declarations.html#ID352"><span class="std std-ref">Top-Level Code</span></a>.</span><!--end_enstr-->
+<span class="jpstr">
+あなたがコンパイルして実行可能にするSwiftコードは、最大で１つのトップレベルエントリポイントを持つことができます、<a class="reference internal" href="Declarations.html#ID352"><span class="std std-ref">トップレベル・コード</span></a>で記述されるように。
+</span><!--end_jpstr-->
+</p>
+</div>
 <div class="section" id="ID588">
 <h3>nonobjc<a class="headerlink" href="#ID588" title="Permalink to this headline">¶</a></h3>
 <p><span class="enstr">Apply this attribute to a method, property, subscript, or initializer declaration to suppress an implicit <code class="docutils literal notranslate"><span class="pre">objc</span></code> attribute. The <code class="docutils literal notranslate"><span class="pre">nonobjc</span></code> attribute tells the compiler to make the declaration unavailable in Objective-C code, even though it’s possible to represent it in Objective-C.</span><!--end_enstr-->
@@ -652,6 +684,11 @@
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">import</span> <span class="nv">AppKit</span>
 </li><li><span class="nv">NSApplicationMain</span>(<span class="nv">CommandLine</span>.<span class="nv">argc</span>, <span class="nv">CommandLine</span>.<span class="nv">unsafeArgv</span>)
 </li></ol></div></div></div>
+<p><span class="enstr">The Swift code you compile to make an executable can contain at most one top-level entry point, as discussed in <a class="reference internal" href="Declarations.html#ID352"><span class="std std-ref">Top-Level Code</span></a>.</span><!--end_enstr-->
+<span class="jpstr">
+あなたがコンパイルして実行可能にするSwiftコードは、最大で１つのトップレベルエントリポイントを持つことができます、<a class="reference internal" href="Declarations.html#ID352"><span class="std std-ref">トップレベル・コード</span></a>で記述されるように。
+</span><!--end_jpstr-->
+</p>
 </div>
 <div class="section" id="ID590">
 <h3>NSCopying<a class="headerlink" href="#ID590" title="Permalink to this headline">¶</a></h3>
@@ -865,6 +902,11 @@
 <p><span class="enstr">If you don’t use this attribute, supply a <code class="docutils literal notranslate"><span class="pre">main.swift</span></code> file with code at the top level that calls the <a class="reference external" href="https://developer.apple.com/documentation/uikit/1622933-uiapplicationmain"><code class="docutils literal notranslate"><span class="pre">UIApplicationMain(_:_:_:_:)</span></code></a> function. For example, if your app uses a custom subclass of <code class="docutils literal notranslate"><span class="pre">UIApplication</span></code> as its principal class, call the <code class="docutils literal notranslate"><span class="pre">UIApplicationMain(_:_:_:_:)</span></code> function instead of using this attribute.</span><!--end_enstr-->
 <span class="jpstr">
 あなたがこの属性を使わないならば、<a class="reference external" href="https://developer.apple.com/documentation/uikit/1622933-uiapplicationmain"><code class="docutils literal notranslate"><span class="pre">UIApplicationMain(_:_:_:_:)</span></code></a>関数を呼ぶトップレベルでのコードを持つ<code class="docutils literal notranslate"><span class="pre">main.swift</span></code>ファイルを提供してください。例えば、あなたのアプリがそれの主役クラス（プリンシパルクラス）として<code class="docutils literal notranslate"><span class="pre">UIApplication</span></code>のあつらえのサブクラスを使うならば、<code class="docutils literal notranslate"><span class="pre">UIApplicationMain(_:_:_:_:)</span></code>関数をこの属性を使用する代わりに呼んでください。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">The Swift code you compile to make an executable can contain at most one top-level entry point, as discussed in <a class="reference internal" href="Declarations.html#ID352"><span class="std std-ref">Top-Level Code</span></a>.</span><!--end_enstr-->
+<span class="jpstr">
+あなたがコンパイルして実行可能にするSwiftコードは、最大で１つのトップレベルエントリポイントを持つことができます、<a class="reference internal" href="Declarations.html#ID352"><span class="std std-ref">トップレベル・コード</span></a>で記述されるように。
 </span><!--end_jpstr-->
 </p>
 </div>

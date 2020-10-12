@@ -1,0 +1,1174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- link rel="icon" href="/favicon.ico" -->
+<link rel="mask-icon" href="/apple-logo.svg" color="#333333">
+<link rel="stylesheet" href="../../tutorials/css/_globalnav.css">
+<title>XMLNode | Apple Developer Documentation</title>
+<link href="../../tutorials/css/chunk-76d5c2b5.00c53891.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic.e358e85c.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css" rel="prefetch">
+<link href="../../tutorials/css/topic.69278f1e.css" rel="prefetch">
+<link href="../../tutorials/css/topic~tutorials-overview.1f93e025.css" rel="prefetch">
+<link href="../../tutorials/css/tutorials-overview.d4ff0b50.css" rel="prefetch">
+<link href="../../tutorials/css/welcome-experience-featured.0537f0f0.css" rel="prefetch">
+<link href="../../tutorials/css/welcome-experience-technologies.60068ae2.css" rel="prefetch">
+<link href="../../tutorials/js/chunk-2d0d3105.459bf725.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-2d21a016.b81cb311.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-503f1ed8.d26c4552.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-530f89ce.621e1d48.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-640db3b2.f8778ca5.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-76d5c2b5.092e3b8a.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic.6abe9458.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js" rel="prefetch">
+<link href="../../tutorials/js/topic.c6ec6b6c.js" rel="prefetch">
+<link href="../../tutorials/js/topic~tutorials-overview.467a8186.js" rel="prefetch">
+<link href="../../tutorials/js/tutorials-overview.d77f61ca.js" rel="prefetch">
+<link href="../../tutorials/js/welcome-experience-featured.04f663e2.js" rel="prefetch">
+<link href="../../tutorials/js/welcome-experience-technologies.56a372c1.js" rel="prefetch">
+<link href="../../tutorials/css/app.2a174a23.css" rel="preload" as="style">
+<link href="../../tutorials/js/app.2c558263.js" rel="preload" as="script">
+<link href="../../tutorials/js/chunk-vendors.c3b68236.js" rel="preload" as="script">
+<link href="../../tutorials/css/app.2a174a23.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../../tutorials/css/chunk-76d5c2b5.00c53891.css">
+<script charset="utf-8" src="../../tutorials/js/chunk-76d5c2b5.092e3b8a.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic.e358e85c.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic.6abe9458.js"></script>
+</head>
+<body>
+<div id="_omniture_top">
+<script>var s_account="awdappledeveloper"</script>
+</div>
+<a href="#main" id="skip-localnav">Skip Navigation</a><aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"><nav id="ac-globalnav" class="js no-touch" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions"><div class="ac-gn-content">
+<ul class="ac-gn-header">
+<li class="ac-gn-item ac-gn-menuicon">
+<label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true"><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span> </span><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span></span></label> <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open"><span class="ac-gn-menuanchor-label">Global Nav Open Menu</span> </a><a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close"><span class="ac-gn-menuanchor-label">Global Nav Close Menu</span></a>
+</li>
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+</ul>
+<div class="ac-gn-search-placeholder-container" role="search"><div class="ac-gn-search ac-gn-search-small"><a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a><div class="ac-gn-search-placeholder-bar">
+<div class="ac-gn-search-placeholder-input"><div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
+<div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
+<span class="ac-gn-search-placeholder">Search Developer</span>
+</div></div>
+<div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></div>
+</div></a></div></div>
+<ul class="ac-gn-list">
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-discover"><a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover"><span class="ac-gn-link-text">Discover</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-design"><a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design"><span class="ac-gn-link-text">Design</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-develop"><a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop"><span class="ac-gn-link-text">Develop</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-distribute"><a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute"><span class="ac-gn-link-text">Distribute</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport"><a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport"><span class="ac-gn-link-text">Support</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-account"><a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account"><span class="ac-gn-link-text">Account</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search"><a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a></li>
+</ul>
+<aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search"><div class="ac-gn-searchview-content">
+<div class="ac-gn-searchview-bar"><div class="ac-gn-searchview-bar-wrapper">
+<form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get"><div class="ac-gn-searchform-wrapper">
+<input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions"> <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button> <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search"><span class="ac-gn-searchform-reset-background"></span></button>
+</div></form>
+<button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></button>
+</div></div>
+<aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
+</div>
+<button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search"><span class="ac-gn-searchview-close-wrapper"><span class="ac-gn-searchview-close-left"></span> <span class="ac-gn-searchview-close-right"></span></span></button></aside>
+</div></nav><div class="ac-gn-blur"></div>
+<div id="ac-gn-curtain" class="ac-gn-curtain"></div>
+<div id="ac-gn-placeholder" class="ac-nav-placeholder"></div>
+<script src="../../tutorials/js/ac-globalnav.built.js"></script>
+<noscript>
+<style>.noscript {
+  font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
+  margin: 92px auto 140px auto;
+  text-align: center;
+  width: 980px;
+}
+
+.noscript-title {
+  color: #111;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -.003em;
+  line-height: 1.08365;
+  margin: 0 auto 54px auto;
+  width: 502px;
+}
+
+@media only screen and (max-width: 1068px) {
+  .noscript {
+    margin: 90px auto 120px auto;
+    width: 692px;
+  }
+
+  .noscript-title {
+    font-size: 40px;
+    letter-spacing: 0;
+    line-height: 1.1;
+    margin: 0 auto 45px auto;
+    width: 420px;
+  }
+}
+
+@media only screen and (max-width: 735px) {
+  .noscript {
+    margin: 45px auto 60px auto;
+    width: 87.5%;
+  }
+
+  .noscript-title {
+    font-size: 32px;
+    letter-spacing: .004em;
+    line-height: 1.125;
+    margin: 0 auto 35px auto;
+    max-width: 330px;
+    width: auto;
+  }
+}
+
+#loading-placeholder {
+  display: none;
+};</style>
+<div class="noscript">
+<h1 class="noscript-title">This page requires JavaScript.</h1>
+<p>Please turn on JavaScript in your browser and refresh the page to view its content.</p>
+</div>
+</noscript>
+<div data-v-0220a4c4="" id="app" class=""><div data-v-0220a4c4=""><div data-v-2deaa168="" class="doc-topic">
+<div data-v-3ceaa5df="" data-v-2deaa168="" class="localnav-container">
+<input data-v-3ceaa5df="" aria-hidden="true" id="localnav-menustate" type="checkbox" class="localnav-menustate"><div id="localnav-sticky-placeholder" class="css-sticky"></div>
+<nav data-v-3ceaa5df="" aria-label="API Reference" data-sticky="" id="localnav" role="navigation" class="localnav localnav-dark theme-dark medium-localnav-collapsible localnav-noborder localnav-scrim css-sticky"><div data-v-3ceaa5df="" class="localnav-wrapper">
+<div data-v-3ceaa5df="" class="referencenav">
+<div data-v-3ceaa5df="" class="localnav-background"></div>
+<div data-v-3ceaa5df="" class="localnav-content">
+<a data-v-3ceaa5df="" href="../../index.html" class="localnav-title">
+            Documentation
+          </a><div data-v-3ceaa5df="" class="localnav-menu">
+<a data-v-3ceaa5df="" href="#localnav-menustate" role="button" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Open Menu</span></a><a data-v-3ceaa5df="" href="#" role="button" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Close Menu</span></a><div data-v-3ceaa5df="" class="localnav-menu-tray">
+<ul data-v-72fd0d2c="" data-v-3ceaa5df="" aria-label="Breadcrumbs" class="localnav-menu-items">
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item collapsed"><a data-v-72fd0d2c="" href="../../documentation/foundation_language-objc.html" class="parent item router-link-active" data-v-23a2ae0d="">
+    Foundation
+  </a></li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item collapsed"><a data-v-72fd0d2c="" href="../../documentation/foundation/archives_and_serialization_language-objc.html" class="parent item" data-v-23a2ae0d="">
+    <span class="enstr">Archives and Serialization</span><!--end_enstr-->
+<span class="jpstr">
+アーカイブとシリアライゼーション
+</span><!--end_jpstr-->
+
+  </a></li>
+<li data-v-68bd9d1f="" data-v-72fd0d2c="" class="localnav-menu-item hierarchy-collapsed-items">
+<button data-v-68bd9d1f="" class="toggle"><span data-v-68bd9d1f="" class="indicator">⋯</span></button><ul data-v-68bd9d1f="" class="dropdown collapsed">
+<li data-v-68bd9d1f="" class="dropdown-item"><a data-v-68bd9d1f="" href="../../documentation/foundation_language-objc.html" class="link router-link-active">Foundation</a></li>
+<li data-v-68bd9d1f="" class="dropdown-item"><a data-v-68bd9d1f="" href="../../documentation/foundation/archives_and_serialization_language-objc.html" class="link"><span class="enstr">Archives and Serialization</span><!--end_enstr-->
+<span class="jpstr">
+アーカイブとシリアライゼーション
+</span><!--end_jpstr-->
+</a></li>
+</ul>
+</li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../documentation/foundation/archives_and_serialization/xml_processing_and_modeling_language-objc.html" class="parent item" data-v-23a2ae0d="">
+    <span class="enstr">XML Processing and Modeling</span><!--end_enstr-->
+<span class="jpstr">
+XMLの処理とモデリング
+</span><!--end_jpstr-->
+
+  </a></li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item">
+<span data-v-23a2ae0d="" class="current item">
+    XMLNode
+  </span><!---->
+</li>
+</ul>
+<ul data-v-3ceaa5df="" data-breadcrumbs-count="4" class="localnav-menu-items localnav-menu-settings">
+<li data-v-282336e0="" data-v-3ceaa5df="" class="localnav-menu-setting language-container" breadcrumbcount="4">
+<div data-v-282336e0="" class="language-toggle-container">
+<label data-v-282336e0="" for="language-toggle" class="language-toggle-label">
+      Language:
+    </label><select data-v-282336e0="" id="language-toggle" class="language-dropdown localnav-menu-link" style="width: 38px;"><option data-v-282336e0="" value="swift">
+        Swift
+      </option>
+<option data-v-282336e0="" value="occ">
+        Objective-C
+      </option></select>
+</div>
+<div data-v-282336e0="" class="language-list-container">
+<span data-v-282336e0="" class="localnav-menu-setting-label">
+      Language:
+    </span><ul data-v-282336e0="" class="language-list">
+<li data-v-282336e0="" class="language-list-item"><span data-v-282336e0="" data-language="swift" aria-current="page" class="current-language">
+          Swift
+        </span></li>
+<li data-v-282336e0="" class="language-list-item"><a data-v-282336e0="" href="../../documentation/foundation/nsxmlnode_language-objc.html" class="localnav-menu-setting-link">
+          Objective-C
+        </a></li>
+</ul>
+</div>
+</li>
+<li data-v-2e9f4ea2="" data-v-3ceaa5df="" class="localnav-menu-setting">
+<label data-v-2e9f4ea2="" for="version-label" class="localnav-menu-setting-label">
+    API Changes:
+  </label><span data-v-2e9f4ea2=""><span class="enstr">None</span><!--end_enstr-->
+<span class="jpstr">
+なし
+</span><!--end_jpstr-->
+</span>
+</li><!---->
+
+</ul>
+</div>
+<div data-v-3ceaa5df="" class="localnav-actions"><div data-v-3ceaa5df="" aria-hidden="true" class="localnav-action localnav-action-menucta"><label data-v-3ceaa5df="" for="localnav-menustate" class="localnav-menucta"><span data-v-3ceaa5df="" class="localnav-menucta-chevron"></span></label></div></div>
+</div>
+</div>
+</div><!---->
+
+</div></nav><label data-v-3ceaa5df="" aria-hidden="true" for="localnav-menustate" id="localnav-curtain"></label>
+</div>
+<main data-v-2deaa168="" id="main" role="main" tabindex="0" class="main"><div data-v-4ba5af7c="" data-v-2deaa168="" class="topictitle">
+<span data-v-4ba5af7c="" class="eyebrow">Class</span><h1 data-v-4ba5af7c="" class="title">XMLNode</h1>
+</div>
+<div data-v-0253ce0e="" data-v-2deaa168="" class="row container">
+<div data-v-9807b2e0="" data-v-5ad0d458="" data-v-2deaa168="" class="col description large-9 medium-9 small-12" data-v-0253ce0e=""><!---->
+<div data-v-7ea0aa49="" data-v-aba749e6="" data-v-2deaa168="" class="abstract content" data-v-9807b2e0=""><span class="enstr">The nodes in the abstract, logical tree structure that represents an XML document.</span><!--end_enstr-->
+<span class="jpstr">
+XML文書を表す、抽象的、論理ツリー構造の中のノード。
+</span><!--end_jpstr-->
+ </div><!----><!----><!---->
+
+</div>
+<div data-v-9807b2e0="" data-v-42fb6bac="" data-v-2deaa168="" class="col summary large-3 medium-3 small-12" data-v-0253ce0e=""><!---->
+<div data-v-e4237090="" data-v-fcdb795a="" data-v-2deaa168="" class="summary-section availability" role="complementary" aria-label="Availability" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-fcdb795a="" class="title" data-v-e4237090=""><span class="enstr">Availability</span><!--end_enstr-->
+<span class="jpstr">
+有効性
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-fcdb795a="" class="summary-list platform-list" data-v-e4237090=""><li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="macOS 10.4+, Available on macOS 10.4 and later" title="Available on macOS 10.4 and later" data-v-e3899270="">
+  macOS 10.4+
+</span><!---->
+</li></ul>
+</div>
+<div data-v-e4237090="" data-v-741142ba="" data-v-2deaa168="" class="summary-section frameworks" role="complementary" aria-label="Framework" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-741142ba="" class="title" data-v-e4237090=""><span class="enstr">Framework</span><!--end_enstr-->
+<span class="jpstr">
+フレームワーク
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-741142ba="" class="summary-list" data-v-e4237090=""><li data-v-e3899270="" data-v-741142ba="" class="summary-list-item" data-v-1450532d=""><span data-v-741142ba="" data-v-e3899270="" class="name">Foundation</span></li></ul>
+</div>
+<div data-v-e4237090="" data-v-2b96ab1a="" data-v-2deaa168="" class="summary-section on-this-page" data-v-9807b2e0=""><nav data-v-2b96ab1a="" data-v-e4237090="" aria-labelledby="on-this-page-title"><p data-v-1e0258b0="" data-v-2b96ab1a="" class="title" id="on-this-page-title" data-v-e4237090=""><span class="enstr">On This Page</span><!--end_enstr-->
+<span class="jpstr">
+この項には
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-2b96ab1a="" class="summary-list" data-v-e4237090="">
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/xmlnode_language-objc.html#declaration" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Declaration</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/xmlnode_language-objc.html#overview" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Overview</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/xmlnode_language-objc.html#topics" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Topics</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/xmlnode_language-objc.html#relationships" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Relationships</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/xmlnode_language-objc.html#see-also" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">See Also</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+</ul></nav></div>
+</div>
+<div data-v-9807b2e0="" data-v-1e40f676="" data-v-2deaa168="" class="col primary-content large-9 medium-9 small-12" data-v-0253ce0e="">
+<section data-v-e932e1b8="" data-v-1e40f676="" id="declaration" class="declaration" data-v-9807b2e0=""><h2 data-v-e932e1b8=""><span class="enstr">Declaration</span><!--end_enstr-->
+<span class="jpstr">
+宣言
+</span><!--end_jpstr-->
+</h2>
+<div data-v-29bd318c="" data-v-e932e1b8="" class="declaration-group"><!---->
+<pre data-v-e0a7f756="" data-v-29bd318c="" class="source"><code data-v-e0a7f756=""><span data-v-c9e896f0="" data-v-e0a7f756="" class="token-keyword">class</span> <span data-v-c9e896f0="" data-v-e0a7f756="" class="token-identifier">XMLNode</span> : <a data-v-c9e896f0="" data-v-e0a7f756="" href="../../documentation/objectivec/nsobject_language-objc.html" class="type-identifier-link"><span data-v-c9e896f0="">NSObject</span></a></code></pre>
+</div><!---->
+</section><div data-v-7ea0aa49="" data-v-1e40f676="" class="content" data-v-9807b2e0="">
+<h2 id="overview"><span class="enstr">Overview</span><!--end_enstr-->
+<span class="jpstr">
+概要
+</span><!--end_jpstr-->
+</h2>
+<p><span class="enstr">Node objects can be of different kinds, corresponding to the following markup constructs in an XML document: element, attribute, text, processing instruction, namespace, and comment. In addition, a document-node object (specifically, an instance of <a href="../../documentation/foundation/xmldocument_language-objc.html" class=""><code data-v-7fb764c1="">XMLDocument</code></a>) represents an XML document in its entirety. <span><code data-v-7fb764c1="">XMLNode</code></span> objects can also represent document type declarations as well as declarations in Document Type Definitions (DTDs). Class factory methods of <span><code data-v-7fb764c1="">XMLNode</code></span> enable you to create nodes of each kind. Only document, element, and DTD nodes may have child nodes.</span><!--end_enstr-->
+<span class="jpstr">
+ノードオブジェクトは、異なる種類のものであることができます、XML書類の中の以下のマークアップ構成体：要素、属性、テキスト、処理命令、名前空間、そしてコメントに対応しています。さらに、書類ノードオブジェクト（具体的には、<a href="../../documentation/foundation/xmldocument_language-objc.html" class=""><code data-v-7fb764c1="">XMLDocument</code></a>のインスタンス）は、そっくりそのままXML書類を表します。<span><code data-v-7fb764c1="">XMLNode</code></span>オブジェクトはまた、書類型宣言を表します、それだけでなくDocument Type Definition（DTD）それらにおける宣言も。<span><code data-v-7fb764c1="">XMLNode</code></span>のクラスファクトリメソッドは、あなたに各種のノードを作成させます。書類、要素、そしてDTDノードだけは、子ノードを持つかもしれません。
+</span><!--end_jpstr-->
+ </p>
+<p><span class="enstr">Among the XML family of classes (excluding <a href="../../documentation/foundation/xmlparser_language-objc.html" class=""><code data-v-7fb764c1="">XMLParser</code></a>) the <span><code data-v-7fb764c1="">XMLNode</code></span> class is the base class. Inheriting from it are the classes <a href="../../documentation/foundation/xmlelement_language-objc.html" class=""><code data-v-7fb764c1="">XMLElement</code></a>, <a href="../../documentation/foundation/xmldocument_language-objc.html" class=""><code data-v-7fb764c1="">XMLDocument</code></a>, <a href="../../documentation/foundation/xmldtd_language-objc.html" class=""><code data-v-7fb764c1="">XMLDTD</code></a>, and <a href="../../documentation/foundation/xmldtdnode_language-objc.html" class=""><code data-v-7fb764c1="">XMLDTDNode</code></a>. <span><code data-v-7fb764c1="">XMLNode</code></span> specifies the interface common to all XML node objects and defines common node behavior and attributes, for example hierarchy level, node name and value, tree traversal, and the ability to emit representative XML markup text.</span><!--end_enstr-->
+<span class="jpstr">
+クラスのXMLファミリーの間で（<a href="../../documentation/foundation/xmlparser_language-objc.html" class=""><code data-v-7fb764c1="">XMLParser</code></a>を除いて）<span><code data-v-7fb764c1="">XMLNode</code></span>クラスは基盤クラスです。それから継承しているのは、クラス<a href="../../documentation/foundation/xmlelement_language-objc.html" class=""><code data-v-7fb764c1="">XMLElement</code></a>、<a href="../../documentation/foundation/xmldocument_language-objc.html" class=""><code data-v-7fb764c1="">XMLDocument</code></a>、<a href="../../documentation/foundation/xmldtd_language-objc.html" class=""><code data-v-7fb764c1="">XMLDTD</code></a>、そして<a href="../../documentation/foundation/xmldtdnode_language-objc.html" class=""><code data-v-7fb764c1="">XMLDTDNode</code></a>です。<span><code data-v-7fb764c1="">XMLNode</code></span>は、XMLノードオブジェクトに一般的なインターフェイスを指定します、そして一般的ノード挙動と属性を定義します、例えば改装水準、ノード名と値、ツリー探索、そして代表的XMLマークアップテキストを発行するなど。
+</span><!--end_jpstr-->
+</p>
+<h3 id="1663408"><span class="enstr">Subclassing Notes</span><!--end_enstr-->
+<span class="jpstr">
+サブクラス作成の注意
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">You can subclass <span><code data-v-7fb764c1="">XMLNode</code></span> if you want nodes of kinds different from the supported ones, You can also create a subclass with more specialized attributes or behavior than <span><code data-v-7fb764c1="">XMLNode</code></span>.</span><!--end_enstr-->
+<span class="jpstr">
+あなたは、<span><code data-v-7fb764c1="">XMLNode</code></span>のサブクラスを作成できます、もしあなたがサポートされるものとは違う種類のノードを望むならば、あなたはまた<span><code data-v-7fb764c1="">XMLNode</code></span>よりも特殊化された属性または挙動を持つサブクラスを作成できます。
+</span><!--end_jpstr-->
+</p>
+<h4 id="1663424"><span class="enstr">Methods to Override</span><!--end_enstr-->
+<span class="jpstr">
+メソッドのオーバーライド
+</span><!--end_jpstr-->
+</h4>
+<p><span class="enstr">To subclass <span><code data-v-7fb764c1="">XMLNode</code></span> you need to override the primary initializer, <a href="../../documentation/foundation/xmlnode/1409747-init_language-objc.html" class=""><code data-v-7fb764c1="">init(kind:<wbr data-v-7fb764c1="">options:)</wbr></code></a>, and the methods listed below. In most cases, you need only invoke the superclass implementation, adding any subclass-specific code before or after the invocation, as necessary.</span><!--end_enstr-->
+<span class="jpstr">
+<span><code data-v-7fb764c1="">XMLNode</code></span>のサブクラスを作るためにあなたは主要イニシャライザ、<a href="../../documentation/foundation/xmlnode/1409747-init_language-objc.html" class=""><code data-v-7fb764c1="">init(kind:<wbr data-v-7fb764c1="">options:)</wbr></code></a>、および下で一覧にされるメソッドをオーバーライドする必要があります。ほとんどの場合には、あなたはスーパークラス実装の発動だけが必要です、何らかのサブクラス特有コードをその発動の前または後に加えます、必要に応じて。
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="2555895"><div data-v-4906e9b4="" class="table-wrapper" data-v-7bf080cc=""><table data-v-4906e9b4=""><tbody data-v-4906e9b4="">
+<tr data-v-4906e9b4="">
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""><a href="../../documentation/foundation/xmlnode/1408882-kind_language-objc.html" class="" data-v-4906e9b4=""><code data-v-7fb764c1="">kind</code></a></p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""><a href="../../documentation/foundation/xmlnode/1409740-parent_language-objc.html" class="" data-v-4906e9b4=""><code data-v-7fb764c1="">parent</code></a></p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""><a href="../../documentation/foundation/xmlnode/1409770-name_language-objc.html" class="" data-v-4906e9b4=""><code data-v-7fb764c1="">name</code></a></p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""><a href="../../documentation/foundation/xmlnode/1409811-child_language-objc.html" class="" data-v-4906e9b4=""><code data-v-7fb764c1="">child(at:)</code></a></p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""><a href="../../documentation/foundation/xmlnode/1409770-name_language-objc.html" class="" data-v-4906e9b4=""><code data-v-7fb764c1="">name</code></a></p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""><a href="../../documentation/foundation/xmlnode/1409808-childcount_language-objc.html" class="" data-v-4906e9b4=""><code data-v-7fb764c1="">child<wbr data-v-7fb764c1="">Count</wbr></code></a></p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""><a href="../../documentation/foundation/xmlnode/1409756-objectvalue_language-objc.html" class="" data-v-4906e9b4=""><code data-v-7fb764c1="">object<wbr data-v-7fb764c1="">Value</wbr></code></a></p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""><a href="../../documentation/foundation/xmlnode/1409828-children_language-objc.html" class="" data-v-4906e9b4=""><code data-v-7fb764c1="">children</code></a></p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""><a href="../../documentation/foundation/xmlnode/1409756-objectvalue_language-objc.html" class="" data-v-4906e9b4=""><code data-v-7fb764c1="">object<wbr data-v-7fb764c1="">Value</wbr></code></a></p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""><a href="../../documentation/foundation/xmlnode/1409806-detach_language-objc.html" class="" data-v-4906e9b4=""><code data-v-7fb764c1="">detach()</code></a></p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""><a href="../../documentation/foundation/xmlnode/1409818-stringvalue_language-objc.html" class="" data-v-4906e9b4=""><code data-v-7fb764c1="">string<wbr data-v-7fb764c1="">Value</wbr></code></a></p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""><a href="../../documentation/foundation/xmlnode/1409734-localname_language-objc.html" class="" data-v-4906e9b4=""><code data-v-7fb764c1="">local<wbr data-v-7fb764c1="">Name</wbr></code></a></p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""><a href="../../documentation/foundation/xmlnode/1409758-setstringvalue_language-objc.html" class="" data-v-4906e9b4=""><code data-v-7fb764c1="">set<wbr data-v-7fb764c1="">String<wbr data-v-7fb764c1="">Value(_:<wbr data-v-7fb764c1="">resolving<wbr data-v-7fb764c1="">Entities:)</wbr></wbr></wbr></wbr></code></a></p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""><a href="../../documentation/foundation/xmlnode/1409797-prefix_language-objc.html" class="" data-v-4906e9b4=""><code data-v-7fb764c1="">prefix</code></a></p></td>
+</tr>
+<tr data-v-4906e9b4="">
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""><a href="../../documentation/foundation/xmlnode/1409743-index_language-objc.html" class="" data-v-4906e9b4=""><code data-v-7fb764c1="">index</code></a></p></td>
+<td data-v-4906e9b4=""><p data-v-4906e9b4=""><a href="../../documentation/foundation/xmlnode/1409774-uri_language-objc.html" class="" data-v-4906e9b4=""><code data-v-7fb764c1="">uri</code></a></p></td>
+</tr>
+</tbody></table></div></figure><p><span class="enstr">By default <span><code data-v-7fb764c1="">XMLNode</code></span> implements the <code data-v-7fb764c1="">NSObject</code> <a href="../../documentation/objectivec/nsobjectprotocol/1418795-isequal_language-objc.html" class=""><code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Equal(_:)</wbr></code></a> method to perform a deep comparison: two <span><code data-v-7fb764c1="">XMLNode</code></span> objects are not considered equal unless they have the same name, same child nodes, same attributes, and so on. The comparison looks at the node and its children, but does not include the node’s parent. If you want a different standard of comparison, override <code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Equal:</wbr></code>.</span><!--end_enstr-->
+<span class="jpstr">
+初期状態で<span><code data-v-7fb764c1="">XMLNode</code></span>は<code data-v-7fb764c1="">NSObject</code>の<a href="../../documentation/objectivec/nsobjectprotocol/1418795-isequal_language-objc.html" class=""><code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Equal(_:)</wbr></code></a>メソッドを実装して、ある深い比較を実行します：２つの<span><code data-v-7fb764c1="">XMLNode</code></span>オブジェクトは等しいとみなされません、それらが同じ名前、同じ子ノード、同じ属性、などを持たない限り。比較は、ノードとそれの子を見ます、しかしノードのもつ親を含めません。あなたが比較の異なる標準を望むならば、<code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Equal:</wbr></code>をオーバーライドしてください。
+</span><!--end_jpstr-->
+ </p>
+<h4 id="1663443"><span class="enstr">Special Considerations</span><!--end_enstr-->
+<span class="jpstr">
+特別な注意事項
+</span><!--end_jpstr-->
+</h4>
+<p><span class="enstr">Because of the architecture and data model of NSXML, when it parses and processes a source of XML it cannot know about your subclass unless you override the <a href="../../documentation/foundation/xmldocument_language-objc.html" class=""><code data-v-7fb764c1="">XMLDocument</code></a> class method <a href="../../documentation/foundation/xmldocument/1409660-replacementclass_language-objc.html" class=""><code data-v-7fb764c1="">replacement<wbr data-v-7fb764c1="">Class(for:)</wbr></code></a> to return your custom class in place of an NSXML class. If your custom class has no direct NSXML counterpart—for example, it is a subclass of <span><code data-v-7fb764c1="">XMLNode</code></span> that represents CDATA sections—then you can walk the tree after it has been created and insert the new node where appropriate.</span><!--end_enstr-->
+<span class="jpstr">
+NSXMLのアーキテクチャとデータモデルが原因で、それがXMLのソースを構文解析して処理する時にそれはあなたのサブクラスについて知ることはできません、もしあなたが<a href="../../documentation/foundation/xmldocument_language-objc.html" class=""><code data-v-7fb764c1="">XMLDocument</code></a>のクラスメソッド<a href="../../documentation/foundation/xmldocument/1409660-replacementclass_language-objc.html" class=""><code data-v-7fb764c1="">replacement<wbr data-v-7fb764c1="">Class(for:)</wbr></code></a>をオーバーライドしてあなたのあつらえのクラスをNSXMLクラスの代わりに返すのでなければ。あなたのあつらえのクラスが直接のNSXML相当物を持たないならば — 例えば、それが、<span><code data-v-7fb764c1="">XMLNode</code></span>のサブクラスであり、CDATAセクションを表している — そのときあなたはツリーをそれが作成された後に歩いて行って（walk）、新しいノードを適切なところに挿入できます。
+</span><!--end_jpstr-->
+</p>
+</div>
+</div>
+</div>
+<section data-v-8c663d90="" data-v-63527a60="" data-v-2deaa168="" id="topics" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">Topics</span><!--end_enstr-->
+<span class="jpstr">
+話題
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Creating and Initializing Node Objects</span><!--end_enstr-->
+<span class="jpstr">
+ノードオブジェクトの作成と初期化
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409766-init_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="identifier">init</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">kind</span><span data-v-dac213be="" class="decorator">: XMLNode<wbr data-v-dac213be="">.Kind)</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an <code data-v-7fb764c1="">NSXMLNode</code> instance initialized with the constant indicating node kind.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">NSXMLNode</code>インスタンスを返します、ノード種類を指し示している定数で初期化されます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409747-init_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="identifier">init</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">kind</span><span data-v-dac213be="" class="decorator">: XMLNode<wbr data-v-dac213be="">.Kind, </wbr></span><span data-v-dac213be="" class="identifier">options</span><span data-v-dac213be="" class="decorator">: XMLNode<wbr data-v-dac213be="">.Options)</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an <code data-v-7fb764c1="">NSXMLNode</code> instance initialized with the constant indicating node kind and one or more initialization options.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">NSXMLNode</code>インスタンスを返します、ノード種類を指し示している定数そして１つ以上の初期化オプションで初期化されます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409821-document_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class func </span><span data-v-dac213be="" class="identifier">document</span><span data-v-dac213be="" class="decorator">() -&gt; Any</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an empty document node.</span><!--end_enstr-->
+<span class="jpstr">
+ある空の書類ノードを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409802-document_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class func </span><span data-v-dac213be="" class="identifier">document</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">with<wbr data-v-dac213be="">Root<wbr data-v-dac213be="">Element</wbr></wbr></span><span data-v-dac213be="" class="decorator">: XMLElement) -&gt; Any</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an <a href="../../documentation/foundation/xmldocument_language-objc.html" class=""><code data-v-7fb764c1="">XMLDocument</code></a> object initialized with a given root element.</span><!--end_enstr-->
+<span class="jpstr">
+<a href="../../documentation/foundation/xmldocument_language-objc.html" class=""><code data-v-7fb764c1="">XMLDocument</code></a>オブジェクトを返します、与えられたルート要素で初期化されます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409760-element_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class func </span><span data-v-dac213be="" class="identifier">element</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">with<wbr data-v-dac213be="">Name</wbr></span><span data-v-dac213be="" class="decorator">: String) -&gt; Any</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an <a href="../../documentation/foundation/xmlelement_language-objc.html" class=""><code data-v-7fb764c1="">XMLElement</code></a> object with a given tag identifier, or name</span><!--end_enstr-->
+<span class="jpstr">
+<a href="../../documentation/foundation/xmlelement_language-objc.html" class=""><code data-v-7fb764c1="">XMLElement</code></a>オブジェクトを返します、与えられたタグ識別子、または名前を持ちます。
+</span><!--end_jpstr-->
+ </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409299-element_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class func </span><span data-v-dac213be="" class="identifier">element</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">with<wbr data-v-dac213be="">Name</wbr></span><span data-v-dac213be="" class="decorator">: String, </span><span data-v-dac213be="" class="identifier">children</span><span data-v-dac213be="" class="decorator">: [XMLNode]?, </span><span data-v-dac213be="" class="identifier">attributes</span><span data-v-dac213be="" class="decorator">: [XMLNode]?) -&gt; Any</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an <a href="../../documentation/foundation/xmlelement_language-objc.html" class=""><code data-v-7fb764c1="">XMLElement</code></a> object with the given tag (name), attributes, and children.</span><!--end_enstr-->
+<span class="jpstr">
+<a href="../../documentation/foundation/xmlelement_language-objc.html" class=""><code data-v-7fb764c1="">XMLElement</code></a>オブジェクトを返します、与えられたタグ（名前）、属性、そして子を持ちます。
+</span><!--end_jpstr-->
+ </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409460-element_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class func </span><span data-v-dac213be="" class="identifier">element</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">with<wbr data-v-dac213be="">Name</wbr></span><span data-v-dac213be="" class="decorator">: String, </span><span data-v-dac213be="" class="identifier">string<wbr data-v-dac213be="">Value</wbr></span><span data-v-dac213be="" class="decorator">: String) -&gt; Any</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an <a href="../../documentation/foundation/xmlelement_language-objc.html" class=""><code data-v-7fb764c1="">XMLElement</code></a> object with a single text-node child containing the specified text.</span><!--end_enstr-->
+<span class="jpstr">
+<a href="../../documentation/foundation/xmlelement_language-objc.html" class=""><code data-v-7fb764c1="">XMLElement</code></a>オブジェクトを返します、指定されたテキストを含んでいる単一のテキストノード子を持ちます。
+</span><!--end_jpstr-->
+ </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409752-element_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class func </span><span data-v-dac213be="" class="identifier">element</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">with<wbr data-v-dac213be="">Name</wbr></span><span data-v-dac213be="" class="decorator">: String, </span><span data-v-dac213be="" class="identifier">uri</span><span data-v-dac213be="" class="decorator">: String) -&gt; Any</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an element whose fully qualified name is specified.</span><!--end_enstr-->
+<span class="jpstr">
+それの完全修飾名が指定されるある要素を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409795-attribute_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class func </span><span data-v-dac213be="" class="identifier">attribute</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">with<wbr data-v-dac213be="">Name</wbr></span><span data-v-dac213be="" class="decorator">: String, </span><span data-v-dac213be="" class="identifier">string<wbr data-v-dac213be="">Value</wbr></span><span data-v-dac213be="" class="decorator">: String) -&gt; Any</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an <code data-v-7fb764c1="">NSXMLNode</code> object representing an attribute node with a given name and string.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">NSXMLNode</code>オブジェクトを返します、与えられた名前と文字列を持つ属性ノードを表しています。
+</span><!--end_jpstr-->
+ </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409815-attribute_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class func </span><span data-v-dac213be="" class="identifier">attribute</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">with<wbr data-v-dac213be="">Name</wbr></span><span data-v-dac213be="" class="decorator">: String, </span><span data-v-dac213be="" class="identifier">uri</span><span data-v-dac213be="" class="decorator">: String, </span><span data-v-dac213be="" class="identifier">string<wbr data-v-dac213be="">Value</wbr></span><span data-v-dac213be="" class="decorator">: String) -&gt; Any</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an <code data-v-7fb764c1="">NSXMLNode</code> object representing an attribute node with a given qualified name and string.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">NSXMLNode</code>オブジェクトを返します、与えられた修飾名と文字列を持つ属性ノードを表しています。
+</span><!--end_jpstr-->
+ </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409754-text_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class func </span><span data-v-dac213be="" class="identifier">text</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">with<wbr data-v-dac213be="">String<wbr data-v-dac213be="">Value</wbr></wbr></span><span data-v-dac213be="" class="decorator">: String) -&gt; Any</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an <code data-v-7fb764c1="">NSXMLNode</code> object representing a text node with specified content.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">NSXMLNode</code>オブジェクトを返します、指定された内容を持つテキストノードを表しています。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409831-comment_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class func </span><span data-v-dac213be="" class="identifier">comment</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">with<wbr data-v-dac213be="">String<wbr data-v-dac213be="">Value</wbr></wbr></span><span data-v-dac213be="" class="decorator">: String) -&gt; Any</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an <span><code data-v-7fb764c1="">XMLNode</code></span> object representing a comment node containing given text.</span><!--end_enstr-->
+<span class="jpstr">
+<span><code data-v-7fb764c1="">XMLNode</code></span>オブジェクトを返します、与えられたテキストを含んでいるコメントノードを表しています。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409738-namespace_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class func </span><span data-v-dac213be="" class="identifier">namespace</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">with<wbr data-v-dac213be="">Name</wbr></span><span data-v-dac213be="" class="decorator">: String, </span><span data-v-dac213be="" class="identifier">string<wbr data-v-dac213be="">Value</wbr></span><span data-v-dac213be="" class="decorator">: String) -&gt; Any</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an <code data-v-7fb764c1="">NSXMLNode</code> object representing a namespace with a specified name and URI.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">NSXMLNode</code>オブジェクトを返します、指定された名前とURIを持つ名前空間を表しています。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409145-dtdnode_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class func </span><span data-v-dac213be="" class="identifier">dtd<wbr data-v-dac213be="">Node</wbr></span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">with<wbr data-v-dac213be="">XMLString</wbr></span><span data-v-dac213be="" class="decorator">: String) -&gt; Any?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a <a href="../../documentation/foundation/xmldtdnode_language-objc.html" class=""><code data-v-7fb764c1="">XMLDTDNode</code></a> object representing the DTD declaration for an element, attribute, entity, or notation based on a given string.</span><!--end_enstr-->
+<span class="jpstr">
+<a href="../../documentation/foundation/xmldtdnode_language-objc.html" class=""><code data-v-7fb764c1="">XMLDTDNode</code></a>オブジェクトを返します、与えられた文字列に基づく要素、属性、エンティティ、または表記法に対するDTD宣言を表しています。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409745-predefinednamespace_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class func </span><span data-v-dac213be="" class="identifier">predefined<wbr data-v-dac213be="">Namespace</wbr></span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">for<wbr data-v-dac213be="">Prefix</wbr></span><span data-v-dac213be="" class="decorator">: String) -&gt; XMLNode?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an <code data-v-7fb764c1="">NSXMLNode</code> object representing one of the predefined namespaces with the specified prefix.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">NSXMLNode</code>オブジェクトを返します、指定された接頭辞を持つあらかじめ定義された名前空間の１つを表しています。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409784-processinginstruction_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class func </span><span data-v-dac213be="" class="identifier">processing<wbr data-v-dac213be="">Instruction</wbr></span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">with<wbr data-v-dac213be="">Name</wbr></span><span data-v-dac213be="" class="decorator">: String, </span><span data-v-dac213be="" class="identifier">string<wbr data-v-dac213be="">Value</wbr></span><span data-v-dac213be="" class="decorator">: String) -&gt; Any</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an <code data-v-7fb764c1="">NSXMLNode</code> object representing a processing instruction with a specified name and value.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">NSXMLNode</code>オブジェクトを返します、指定された名前と値を持つ処理命令を表しています。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Managing XML Node Objects</span><!--end_enstr-->
+<span class="jpstr">
+XMLノードオブジェクトを管理する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409743-index_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">index</span><span data-v-dac213be="" class="decorator">: Int</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the index of the receiver identifying its position relative to its sibling nodes.</span><!--end_enstr-->
+<span class="jpstr">
+レシーバのインデックスを返します、それの位置をそれの親類ノードに相対的に識別しています。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1408882-kind_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">kind</span><span data-v-dac213be="" class="decorator">: XMLNode<wbr data-v-dac213be="">.Kind</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the kind of node the receiver is as a constant of type <a href="../../documentation/foundation/xmlnode/kind_language-objc.html" class=""><code data-v-7fb764c1="">XMLNode<wbr data-v-7fb764c1="">.Kind</wbr></code></a>.</span><!--end_enstr-->
+<span class="jpstr">
+ノードの種類を返します、レシーバは型<a href="../../documentation/foundation/xmlnode/kind_language-objc.html" class=""><code data-v-7fb764c1="">XMLNode<wbr data-v-7fb764c1="">.Kind</wbr></code></a>のある定数と同じものです。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1407508-level_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">level</span><span data-v-dac213be="" class="decorator">: Int</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the nesting level of the receiver within the tree hierarchy.</span><!--end_enstr-->
+<span class="jpstr">
+ツリー階層内でのレシーバの入れ子水準を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409770-name_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">name</span><span data-v-dac213be="" class="decorator">: String?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the name of the receiver.</span><!--end_enstr-->
+<span class="jpstr">
+レシーバの名前を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409756-objectvalue_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">object<wbr data-v-dac213be="">Value</wbr></span><span data-v-dac213be="" class="decorator">: Any?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the object value of the receiver.</span><!--end_enstr-->
+<span class="jpstr">
+レシーバのオブジェクト値を返します。
+</span><!--end_jpstr-->
+ </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409818-stringvalue_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">string<wbr data-v-dac213be="">Value</wbr></span><span data-v-dac213be="" class="decorator">: String?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the content of the receiver as a string value.</span><!--end_enstr-->
+<span class="jpstr">
+レシーバの内容を文字列値として返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409758-setstringvalue_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">set<wbr data-v-dac213be="">String<wbr data-v-dac213be="">Value</wbr></wbr></span><span data-v-dac213be="" class="decorator">(String, </span><span data-v-dac213be="" class="identifier">resolving<wbr data-v-dac213be="">Entities</wbr></span><span data-v-dac213be="" class="decorator">: Bool)</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Sets the content of the receiver as a string value and, optionally, resolves character references, predefined entities, and user-defined entities as declared in the associated DTD.</span><!--end_enstr-->
+<span class="jpstr">
+レシーバの内容を文字列値として設定しますそして、随意に文字参照、あらかじめ定義されたエンティティ、そしてユーザ定義エンティティをその結びつけられたDTDにおいて宣言されるとおりに解決します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409774-uri_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">uri</span><span data-v-dac213be="" class="decorator">: String?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the URI associated with the receiver.</span><!--end_enstr-->
+<span class="jpstr">
+レシーバと結びつけられたURIを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Navigating the Tree of Nodes</span><!--end_enstr-->
+<span class="jpstr">
+ノードのツリーを閲覧する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409830-rootdocument_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">root<wbr data-v-dac213be="">Document</wbr></span><span data-v-dac213be="" class="decorator">: XMLDocument?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the <a href="../../documentation/foundation/xmldocument_language-objc.html" class=""><code data-v-7fb764c1="">XMLDocument</code></a> object containing the root element and representing the XML document as a whole.</span><!--end_enstr-->
+<span class="jpstr">
+<a href="../../documentation/foundation/xmldocument_language-objc.html" class=""><code data-v-7fb764c1="">XMLDocument</code></a>オブジェクトを返します、ルート要素を含んでいます、そしてXML書類を全体として表しています。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409740-parent_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">parent</span><span data-v-dac213be="" class="decorator">: XMLNode?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the parent node of the receiver.</span><!--end_enstr-->
+<span class="jpstr">
+レシーバの親ノードを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409811-child_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">child</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">at</span><span data-v-dac213be="" class="decorator">: Int) -&gt; XMLNode?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the child node of the receiver at the specified location.</span><!--end_enstr-->
+<span class="jpstr">
+指定された位置での、レシーバの子ノードを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409808-childcount_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">child<wbr data-v-dac213be="">Count</wbr></span><span data-v-dac213be="" class="decorator">: Int</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the number of child nodes the receiver has.</span><!--end_enstr-->
+<span class="jpstr">
+レシーバが持つ子ノードの数を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409828-children_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">children</span><span data-v-dac213be="" class="decorator">: [XMLNode]?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an immutable array containing the child nodes of the receiver (as <code data-v-7fb764c1="">NSXMLNode</code> objects).</span><!--end_enstr-->
+<span class="jpstr">
+ある不変の配列を返します、レシーバの子ノードを含んでいます（<code data-v-7fb764c1="">NSXMLNode</code>オブジェクトとして）。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409800-next_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">next</span><span data-v-dac213be="" class="decorator">: XMLNode?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the next <code data-v-7fb764c1="">NSXMLNode</code> object in document order.</span><!--end_enstr-->
+<span class="jpstr">
+書類順で次の<code data-v-7fb764c1="">NSXMLNode</code>オブジェクトを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409750-nextsibling_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">next<wbr data-v-dac213be="">Sibling</wbr></span><span data-v-dac213be="" class="decorator">: XMLNode?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the next <code data-v-7fb764c1="">NSXMLNode</code> object that is a sibling node to the receiver.</span><!--end_enstr-->
+<span class="jpstr">
+次の<code data-v-7fb764c1="">NSXMLNode</code>オブジェクトを返します、それはレシーバに対する親類ノードです。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409736-previous_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">previous</span><span data-v-dac213be="" class="decorator">: XMLNode?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the previous <code data-v-7fb764c1="">NSXMLNode</code> object in document order.</span><!--end_enstr-->
+<span class="jpstr">
+書類順で前の<code data-v-7fb764c1="">NSXMLNode</code>オブジェクトを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409764-previoussibling_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">previous<wbr data-v-dac213be="">Sibling</wbr></span><span data-v-dac213be="" class="decorator">: XMLNode?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the previous <code data-v-7fb764c1="">NSXMLNode</code> object that is a sibling node to the receiver.</span><!--end_enstr-->
+<span class="jpstr">
+前の<code data-v-7fb764c1="">NSXMLNode</code>オブジェクトを返します、それはレシーバに対する親類ノードです。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409806-detach_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">detach</span><span data-v-dac213be="" class="decorator">()</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Detaches the receiver from its parent node.</span><!--end_enstr-->
+<span class="jpstr">
+レシーバをそれの親ノードから分離します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Emitting Node Content</span><!--end_enstr-->
+<span class="jpstr">
+ノード内容を発行する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409772-xmlstring_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">xml<wbr data-v-dac213be="">String</wbr></span><span data-v-dac213be="" class="decorator">: String</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the string representation of the receiver as it would appear in an XML document.</span><!--end_enstr-->
+<span class="jpstr">
+レシーバの文字列表現を返します、それがXML書類において現れるのと同じに。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409778-xmlstring_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">xml<wbr data-v-dac213be="">String</wbr></span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">options</span><span data-v-dac213be="" class="decorator">: XMLNode<wbr data-v-dac213be="">.Options) -&gt; String</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the string representation of the receiver as it would appear in an XML document, with one or more output options specified.</span><!--end_enstr-->
+<span class="jpstr">
+レシーバの文字列表現を返します、それがXML書類において現れるのと同じに、１つ以上の指定された出力オプションで。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409817-canonicalxmlstringpreservingcomm_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">canonical<wbr data-v-dac213be="">XMLString<wbr data-v-dac213be="">Preserving<wbr data-v-dac213be="">Comments</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Bool) -&gt; String</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a string object encapsulating the receiver’s XML in canonical form.</span><!--end_enstr-->
+<span class="jpstr">
+レシーバのもつXMLを正準形式においてカプセル化している文字列オブジェクトを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409788-description_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">description</span><span data-v-dac213be="" class="decorator">: String</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a description of the receiver.</span><!--end_enstr-->
+<span class="jpstr">
+レシーバのある記述を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Executing Queries</span><!--end_enstr-->
+<span class="jpstr">
+クエリを遂行する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409813-nodes_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">nodes</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">for<wbr data-v-dac213be="">XPath</wbr></span><span data-v-dac213be="" class="decorator">: String) -&gt; [XMLNode]</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the nodes resulting from executing an XPath query upon the receiver.</span><!--end_enstr-->
+<span class="jpstr">
+XPathクエリをレシーバ上で遂行する結果としてのノードを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409768-objects_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">objects</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">for<wbr data-v-dac213be="">XQuery</wbr></span><span data-v-dac213be="" class="decorator">: String) -&gt; [Any]</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the objects resulting from executing an XQuery query upon the receiver.</span><!--end_enstr-->
+<span class="jpstr">
+XQueryクエリをレシーバ上で遂行する結果としてのオブジェクトを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409792-objects_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">objects</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">for<wbr data-v-dac213be="">XQuery</wbr></span><span data-v-dac213be="" class="decorator">: String, </span><span data-v-dac213be="" class="identifier">constants</span><span data-v-dac213be="" class="decorator">: [String : Any]?) -&gt; [Any]</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the objects resulting from executing an XQuery query upon the receiver.</span><!--end_enstr-->
+<span class="jpstr">
+XQueryクエリをレシーバ上で遂行する結果としてのオブジェクトを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409826-xpath_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">x<wbr data-v-dac213be="">Path</wbr></span><span data-v-dac213be="" class="decorator">: String?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the XPath expression identifying the receiver’s location in the document tree.</span><!--end_enstr-->
+<span class="jpstr">
+書類ツリーにおいてレシーバのもつ位置を識別しているXPath表現を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Managing Namespaces</span><!--end_enstr-->
+<span class="jpstr">
+名前空間を管理する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409734-localname_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">local<wbr data-v-dac213be="">Name</wbr></span><span data-v-dac213be="" class="decorator">: String?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the local name of the receiver.</span><!--end_enstr-->
+<span class="jpstr">
+レシーバのローカル名を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409646-localname_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class func </span><span data-v-dac213be="" class="identifier">local<wbr data-v-dac213be="">Name</wbr></span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">for<wbr data-v-dac213be="">Name</wbr></span><span data-v-dac213be="" class="decorator">: String) -&gt; String</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the local name from the specified qualified name.</span><!--end_enstr-->
+<span class="jpstr">
+指定された修飾名からローカル名を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409797-prefix_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">prefix</span><span data-v-dac213be="" class="decorator">: String?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the prefix of the receiver’s name.</span><!--end_enstr-->
+<span class="jpstr">
+レシーバのもつ名前の接頭辞を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1407393-prefix_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class func </span><span data-v-dac213be="" class="identifier">prefix</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">for<wbr data-v-dac213be="">Name</wbr></span><span data-v-dac213be="" class="decorator">: String) -&gt; String?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the prefix from the specified qualified name.</span><!--end_enstr-->
+<span class="jpstr">
+指定された修飾名から接頭辞を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Constants</span><!--end_enstr-->
+<span class="jpstr">
+定数
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/kind_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">enum </span><span data-v-dac213be="" class="identifier">XMLNode<wbr data-v-dac213be="">.Kind</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content">
+<span class="enstr"><code data-v-7fb764c1="">NSXMLNode</code> declares the following constants of type NSXMLNodeKind for specifying a node’s kind in the initializer methods <a href="../../documentation/foundation/xmlnode/1409766-init_language-objc.html" class=""><code data-v-7fb764c1="">init(kind:)</code></a> and <a href="../../documentation/foundation/xmlnode/1409747-init_language-objc.html" class=""><code data-v-7fb764c1="">init(kind:<wbr data-v-7fb764c1="">options:)</wbr></code></a>:</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">NSXMLNode</code>は、型NSXMLNodeKindの以下の定数を、イニシャライザメソッド<a href="../../documentation/foundation/xmlnode/1409766-init_language-objc.html" class=""><code data-v-7fb764c1="">init(kind:)</code></a>と<a href="../../documentation/foundation/xmlnode/1409747-init_language-objc.html" class=""><code data-v-7fb764c1="">init(kind:<wbr data-v-7fb764c1="">options:)</wbr></code></a>: においてあるノードのもつ種類を指定するために宣言します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/options_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">struct </span><span data-v-dac213be="" class="identifier">XMLNode<wbr data-v-dac213be="">.Options</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">These constants are input and output options for all <code data-v-7fb764c1="">NSXMLNode</code> objects (unless otherwise indicated), including <a href="../../documentation/foundation/xmldocument_language-objc.html" class=""><code data-v-7fb764c1="">XMLDocument</code></a> objects. You can specify these options in the <code data-v-7fb764c1="">NSXMLNode</code> methods <a href="../../documentation/foundation/xmlnode/1409747-init_language-objc.html" class=""><code data-v-7fb764c1="">init(kind:<wbr data-v-7fb764c1="">options:)</wbr></code></a> and <a href="../../documentation/foundation/xmlnode/1409778-xmlstring_language-objc.html" class=""><code data-v-7fb764c1="">xml<wbr data-v-7fb764c1="">String(options:)</wbr></code></a>.</span><!--end_enstr-->
+<span class="jpstr">
+これらの定数は、全ての<code data-v-7fb764c1="">NSXMLNode</code>オブジェクトに対する入力および出力オプションです（特に断りのない限り）、<a href="../../documentation/foundation/xmldocument_language-objc.html" class=""><code data-v-7fb764c1="">XMLDocument</code></a>オブジェクトを含めて。あなたは、３つのオプションを<code data-v-7fb764c1="">NSXMLNode</code>のメソッド<a href="../../documentation/foundation/xmlnode/1409747-init_language-objc.html" class=""><code data-v-7fb764c1="">init(kind:<wbr data-v-7fb764c1="">options:)</wbr></code></a>と<a href="../../documentation/foundation/xmlnode/1409778-xmlstring_language-objc.html" class=""><code data-v-7fb764c1="">xml<wbr data-v-7fb764c1="">String(options:)</wbr></code></a>において指定できます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Initializers</span><!--end_enstr-->
+<span class="jpstr">
+イニシャライザ
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlnode/1409780-init_language-objc.html" class="link"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="identifier">init</span><span data-v-dac213be="" class="decorator">()</span></code><!----><!----><!----></a>
+</div>
+</div>
+</div>
+</div><!----></section><section data-v-8c663d90="" data-v-2deaa168="" id="relationships" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">Relationships</span><!--end_enstr-->
+<span class="jpstr">
+関係
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Inherits From</span><!--end_enstr-->
+<span class="jpstr">
+継承元
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><ul data-v-4af8f78e="" class="relationships-list inline" data-v-9807b2e0=""><li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/objectivec/nsobject_language-objc.html" class="link"><code data-v-4af8f78e="">NSObject</code></a><!---->
+</li></ul></div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Conforms To</span><!--end_enstr-->
+<span class="jpstr">
+次に準拠
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><ul data-v-4af8f78e="" class="relationships-list column" data-v-9807b2e0="">
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/cvararg_language-objc.html" class="link"><code data-v-4af8f78e="">CVar<wbr data-v-4af8f78e="">Arg</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/equatable_language-objc.html" class="link"><code data-v-4af8f78e="">Equatable</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/hashable_language-objc.html" class="link"><code data-v-4af8f78e="">Hashable</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/nscopying_language-objc.html" class="link"><code data-v-4af8f78e="">NSCopying</code></a><!---->
+</li>
+</ul></div>
+</div>
+</div></section><section data-v-8c663d90="" data-v-63527a60="" data-v-2deaa168="" id="see-also" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">See Also</span><!--end_enstr-->
+<span class="jpstr">
+参照
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Tree-Based Processing</span><!--end_enstr-->
+<span class="jpstr">
+ツリー基盤の処理
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmldtd_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class </span><span data-v-dac213be="" class="identifier">XMLDTD</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A representation of a Document Type Definition.</span><!--end_enstr-->
+<span class="jpstr">
+ある「文書型定義」の表現。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmldtdnode_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class </span><span data-v-dac213be="" class="identifier">XMLDTDNode</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A representation of element, attribute-list, entity, and notation declarations in a Document Type Definition.</span><!--end_enstr-->
+<span class="jpstr">
+「文書型定義」における要素、属性リスト、エンティティ、そして表記法宣言の表現。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmldocument_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class </span><span data-v-dac213be="" class="identifier">XMLDocument</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">An XML document as internalized into a logical tree structure.</span><!--end_enstr-->
+<span class="jpstr">
+論理ツリー構造への内面化としてのXML文書。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/xmlelement_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class </span><span data-v-dac213be="" class="identifier">XMLElement</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The element nodes in an XML tree structure.</span><!--end_enstr-->
+<span class="jpstr">
+XMLツリー構造の中の要素ノード。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+</div><!----></section></main>
+</div></div></div>
+<section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo"><nav class="footer-breadory"><a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a><section class="breadcrumbs"><ol class="breadcrumbs-list"></ol></section><div id="directorynav" class="directorynav">
+<div id="dn-cola" class="column">
+<h3><a href="/discover/">Discover</a></h3>
+<ul>
+<li><a href="/ios/">iOS</a></li>
+<li><a href="/ipados/">iPadOS</a></li>
+<li><a href="/macos/">macOS</a></li>
+<li><a href="/tvos/">tvOS</a></li>
+<li><a href="/watchos/">watchOS</a></li>
+<li><a href="/safari/">Safari and Web</a></li>
+<li><a href="/games/">Games</a></li>
+<li><a href="/business/">Business</a></li>
+<li><a href="/education/">Education</a></li>
+<li><a href="/wwdc/">WWDC</a></li>
+</ul>
+</div>
+<div id="dn-colb" class="column">
+<h3><a href="/design/">Design</a></h3>
+<ul>
+<li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
+<li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
+<span class="jpstr">
+リソース
+</span><!--end_jpstr-->
+</a></li>
+<li><a href="/videos/design/">Videos</a></li>
+<li><a href="/design/awards/">Apple Design Awards</a></li>
+<li><a href="/fonts/">Fonts</a></li>
+<li><a href="/accessibility/">Accessibility</a></li>
+<li><a href="/localization/"><span class="enstr">Localization</span><!--end_enstr-->
+<span class="jpstr">
+ローカライゼーション
+</span><!--end_jpstr-->
+</a></li>
+<li><a href="/accessories/">Accessories</a></li>
+</ul>
+</div>
+<div id="dn-colc" class="column">
+<h3><a href="/develop/">Develop</a></h3>
+<ul>
+<li><a href="/xcode/">Xcode</a></li>
+<li><a href="/swift/">Swift</a></li>
+<li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
+<li><a href="/testflight/">TestFlight</a></li>
+<li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
+<li><a href="/videos/">Videos</a></li>
+<li><a href="/download/">Downloads</a></li>
+</ul>
+</div>
+<div id="dn-cold" class="column">
+<h3><a href="/distribute/">Distribute</a></h3>
+<ul>
+<li><a href="/programs/">Developer Program</a></li>
+<li><a href="/app-store/">App Store</a></li>
+<li><a href="/app-store/review/">App Review</a></li>
+<li><a href="/macos/distribution/">Mac Software</a></li>
+<li><a href="/business/distribute/">Apps for Business</a></li>
+<li><a href="/safari/extensions/">Safari Extensions</a></li>
+<li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
+<li><a href="/softwarelicensing/">Trademark Licensing</a></li>
+</ul>
+</div>
+<div id="dn-cole" class="column">
+<h3><a href="/support/">Support</a></h3>
+<ul>
+<li><a href="/support/articles/">Articles</a></li>
+<li><a href="/forums/">Developer Forums</a></li>
+<li><a href="/bug-reporting/">Feedback &amp; Bug Reporting</a></li>
+<li><a href="/system-status/">System Status</a></li>
+<li><a href="/contact/">Contact Us</a></li>
+</ul>
+<h3><a href="/account/">Account</a></h3>
+<ul>
+<li><a href="/account/ios/certificate/">Certificates, Identifiers &amp; Profiles</a></li>
+<li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
+</ul>
+</div>
+</div></nav><div class="ac-gf-footer-legal">
+<div class="ac-gf-footer-news">To view the latest developer news, visit <a href="/news/">News and Updates</a>.</div>
+<div class="ac-gf-footer-language-dropdown-wrapper">
+<select id="footer-language-selector" class="footer-language-select" aria-label="Language Dropdown" autocomplete="off"><option value="https://developer.apple.com/" selected>English</option>
+<option value="https://developer.apple.com/cn/">简体中文</option>
+<option value="https://developer.apple.com/jp/">日本語</option>
+<option value="https://developer.apple.com/kr/">한국어</option></select> <span class="footer-language-select-icon icon icon-chevrondown" aria-hidden="true"></span>
+</div>
+<div class="ac-gf-footer-legal-copyright">Copyright © <span class="footer-current-year">2020</span> <a href="https://www.apple.com">Apple Inc.</a> All rights reserved.</div>
+<div class="ac-gf-footer-legal-links">
+<a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a> <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a> <a href="/terms/">License Agreements</a>
+</div>
+</div></footer></section><script src="../../tutorials/js/footer.js"></script>
+</body>
+</html>

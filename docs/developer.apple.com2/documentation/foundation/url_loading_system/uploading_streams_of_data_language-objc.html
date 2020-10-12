@@ -1,0 +1,629 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- link rel="icon" href="/favicon.ico" -->
+<link rel="mask-icon" href="/apple-logo.svg" color="#333333">
+<link rel="stylesheet" href="../../../tutorials/css/_globalnav.css">
+<title>Uploading Streams of Data | Apple Developer Documentation</title>
+<link href="../../../tutorials/css/chunk-76d5c2b5.00c53891.css" rel="prefetch">
+<link href="../../../tutorials/css/documentation-topic.e358e85c.css" rel="prefetch">
+<link href="../../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css" rel="prefetch">
+<link href="../../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css" rel="prefetch">
+<link href="../../../tutorials/css/topic.69278f1e.css" rel="prefetch">
+<link href="../../../tutorials/css/topic~tutorials-overview.1f93e025.css" rel="prefetch">
+<link href="../../../tutorials/css/tutorials-overview.d4ff0b50.css" rel="prefetch">
+<link href="../../../tutorials/css/welcome-experience-featured.0537f0f0.css" rel="prefetch">
+<link href="../../../tutorials/css/welcome-experience-technologies.60068ae2.css" rel="prefetch">
+<link href="../../../tutorials/js/chunk-2d0d3105.459bf725.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-2d21a016.b81cb311.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-503f1ed8.d26c4552.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-530f89ce.621e1d48.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-640db3b2.f8778ca5.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-76d5c2b5.092e3b8a.js" rel="prefetch">
+<link href="../../../tutorials/js/documentation-topic.6abe9458.js" rel="prefetch">
+<link href="../../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js" rel="prefetch">
+<link href="../../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js" rel="prefetch">
+<link href="../../../tutorials/js/topic.c6ec6b6c.js" rel="prefetch">
+<link href="../../../tutorials/js/topic~tutorials-overview.467a8186.js" rel="prefetch">
+<link href="../../../tutorials/js/tutorials-overview.d77f61ca.js" rel="prefetch">
+<link href="../../../tutorials/js/welcome-experience-featured.04f663e2.js" rel="prefetch">
+<link href="../../../tutorials/js/welcome-experience-technologies.56a372c1.js" rel="prefetch">
+<link href="../../../tutorials/css/app.2a174a23.css" rel="preload" as="style">
+<link href="../../../tutorials/js/app.2c558263.js" rel="preload" as="script">
+<link href="../../../tutorials/js/chunk-vendors.c3b68236.js" rel="preload" as="script">
+<link href="../../../tutorials/css/app.2a174a23.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../../../tutorials/css/chunk-76d5c2b5.00c53891.css">
+<script charset="utf-8" src="../../../tutorials/js/chunk-76d5c2b5.092e3b8a.js"></script><link rel="stylesheet" type="text/css" href="../../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css">
+<script charset="utf-8" src="../../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js"></script><link rel="stylesheet" type="text/css" href="../../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css">
+<script charset="utf-8" src="../../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js"></script><link rel="stylesheet" type="text/css" href="../../../tutorials/css/documentation-topic.e358e85c.css">
+<script charset="utf-8" src="../../../tutorials/js/documentation-topic.6abe9458.js"></script>
+</head>
+<body>
+<div id="_omniture_top">
+<script>var s_account="awdappledeveloper"</script>
+</div>
+<a href="#main" id="skip-localnav">Skip Navigation</a><aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"><nav id="ac-globalnav" class="js no-touch" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions"><div class="ac-gn-content">
+<ul class="ac-gn-header">
+<li class="ac-gn-item ac-gn-menuicon">
+<label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true"><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span> </span><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span></span></label> <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open"><span class="ac-gn-menuanchor-label">Global Nav Open Menu</span> </a><a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close"><span class="ac-gn-menuanchor-label">Global Nav Close Menu</span></a>
+</li>
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+</ul>
+<div class="ac-gn-search-placeholder-container" role="search"><div class="ac-gn-search ac-gn-search-small"><a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a><div class="ac-gn-search-placeholder-bar">
+<div class="ac-gn-search-placeholder-input"><div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
+<div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
+<span class="ac-gn-search-placeholder">Search Developer</span>
+</div></div>
+<div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></div>
+</div></a></div></div>
+<ul class="ac-gn-list">
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-discover"><a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover"><span class="ac-gn-link-text">Discover</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-design"><a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design"><span class="ac-gn-link-text">Design</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-develop"><a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop"><span class="ac-gn-link-text">Develop</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-distribute"><a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute"><span class="ac-gn-link-text">Distribute</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport"><a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport"><span class="ac-gn-link-text">Support</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-account"><a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account"><span class="ac-gn-link-text">Account</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search"><a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a></li>
+</ul>
+<aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search"><div class="ac-gn-searchview-content">
+<div class="ac-gn-searchview-bar"><div class="ac-gn-searchview-bar-wrapper">
+<form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get"><div class="ac-gn-searchform-wrapper">
+<input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions"> <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button> <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search"><span class="ac-gn-searchform-reset-background"></span></button>
+</div></form>
+<button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></button>
+</div></div>
+<aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
+</div>
+<button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search"><span class="ac-gn-searchview-close-wrapper"><span class="ac-gn-searchview-close-left"></span> <span class="ac-gn-searchview-close-right"></span></span></button></aside>
+</div></nav><div class="ac-gn-blur"></div>
+<div id="ac-gn-curtain" class="ac-gn-curtain"></div>
+<div id="ac-gn-placeholder" class="ac-nav-placeholder"></div>
+<script src="../../../tutorials/js/ac-globalnav.built.js"></script>
+<noscript>
+<style>.noscript {
+  font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
+  margin: 92px auto 140px auto;
+  text-align: center;
+  width: 980px;
+}
+
+.noscript-title {
+  color: #111;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -.003em;
+  line-height: 1.08365;
+  margin: 0 auto 54px auto;
+  width: 502px;
+}
+
+@media only screen and (max-width: 1068px) {
+  .noscript {
+    margin: 90px auto 120px auto;
+    width: 692px;
+  }
+
+  .noscript-title {
+    font-size: 40px;
+    letter-spacing: 0;
+    line-height: 1.1;
+    margin: 0 auto 45px auto;
+    width: 420px;
+  }
+}
+
+@media only screen and (max-width: 735px) {
+  .noscript {
+    margin: 45px auto 60px auto;
+    width: 87.5%;
+  }
+
+  .noscript-title {
+    font-size: 32px;
+    letter-spacing: .004em;
+    line-height: 1.125;
+    margin: 0 auto 35px auto;
+    max-width: 330px;
+    width: auto;
+  }
+}
+
+#loading-placeholder {
+  display: none;
+};</style>
+<div class="noscript">
+<h1 class="noscript-title">This page requires JavaScript.</h1>
+<p>Please turn on JavaScript in your browser and refresh the page to view its content.</p>
+</div>
+</noscript>
+<div data-v-0220a4c4="" id="app" class=""><div data-v-0220a4c4=""><div data-v-2deaa168="" class="doc-topic">
+<div data-v-3ceaa5df="" data-v-2deaa168="" class="localnav-container">
+<input data-v-3ceaa5df="" aria-hidden="true" id="localnav-menustate" type="checkbox" class="localnav-menustate"><div id="localnav-sticky-placeholder" class="css-sticky"></div>
+<nav data-v-3ceaa5df="" aria-label="API Reference" data-sticky="" id="localnav" role="navigation" class="localnav localnav-dark theme-dark medium-localnav-collapsible localnav-noborder localnav-scrim css-sticky"><div data-v-3ceaa5df="" class="localnav-wrapper">
+<div data-v-3ceaa5df="" class="referencenav">
+<div data-v-3ceaa5df="" class="localnav-background"></div>
+<div data-v-3ceaa5df="" class="localnav-content">
+<a data-v-3ceaa5df="" href="../../../index.html" class="localnav-title">
+            Documentation
+          </a><div data-v-3ceaa5df="" class="localnav-menu">
+<a data-v-3ceaa5df="" href="#localnav-menustate" role="button" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Open Menu</span></a><a data-v-3ceaa5df="" href="#" role="button" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Close Menu</span></a><div data-v-3ceaa5df="" class="localnav-menu-tray">
+<ul data-v-72fd0d2c="" data-v-3ceaa5df="" aria-label="Breadcrumbs" class="localnav-menu-items">
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../../documentation/foundation_language-objc.html" class="parent item router-link-active" data-v-23a2ae0d="">
+    Foundation
+  </a></li><!---->
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../../documentation/foundation/url_loading_system_language-objc.html" class="parent item router-link-active" data-v-23a2ae0d="">
+    <span class="enstr">URL Loading System</span><!--end_enstr-->
+<span class="jpstr">
+URLローディングシステム
+</span><!--end_jpstr-->
+
+  </a></li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item">
+<span data-v-23a2ae0d="" class="current item">
+    <span class="enstr">Uploading Streams of Data</span><!--end_enstr-->
+<span class="jpstr">
+データのストリームをアップロードする
+</span><!--end_jpstr-->
+
+  </span><!---->
+</li>
+</ul>
+<ul data-v-3ceaa5df="" data-breadcrumbs-count="3" class="localnav-menu-items localnav-menu-settings">
+<li data-v-282336e0="" data-v-3ceaa5df="" class="localnav-menu-setting language-container" breadcrumbcount="3">
+<div data-v-282336e0="" class="language-toggle-container">
+<label data-v-282336e0="" for="language-toggle" class="language-toggle-label">
+      Language:
+    </label><select data-v-282336e0="" id="language-toggle" class="language-dropdown localnav-menu-link" style="width: 74px;"><option data-v-282336e0="" value="swift">
+        Swift
+      </option>
+<option data-v-282336e0="" value="occ">
+        Objective-C
+      </option></select>
+</div>
+<div data-v-282336e0="" class="language-list-container">
+<span data-v-282336e0="" class="localnav-menu-setting-label">
+      Language:
+    </span><ul data-v-282336e0="" class="language-list">
+<li data-v-282336e0="" class="language-list-item"><a data-v-282336e0="" href="../../../documentation/foundation/url_loading_system/uploading_streams_of_data.html" class="localnav-menu-setting-link router-link-active">
+          Swift
+        </a></li>
+<li data-v-282336e0="" class="language-list-item"><span data-v-282336e0="" data-language="occ" aria-current="page" class="current-language">
+          Objective-C
+        </span></li>
+</ul>
+</div>
+</li>
+<li data-v-2e9f4ea2="" data-v-3ceaa5df="" class="localnav-menu-setting">
+<label data-v-2e9f4ea2="" for="version-label" class="localnav-menu-setting-label">
+    API Changes:
+  </label><span data-v-2e9f4ea2=""><span class="enstr">None</span><!--end_enstr-->
+<span class="jpstr">
+なし
+</span><!--end_jpstr-->
+</span>
+</li><!---->
+
+</ul>
+</div>
+<div data-v-3ceaa5df="" class="localnav-actions"><div data-v-3ceaa5df="" aria-hidden="true" class="localnav-action localnav-action-menucta"><label data-v-3ceaa5df="" for="localnav-menustate" class="localnav-menucta"><span data-v-3ceaa5df="" class="localnav-menucta-chevron"></span></label></div></div>
+</div>
+</div>
+</div><!---->
+
+</div></nav><label data-v-3ceaa5df="" aria-hidden="true" for="localnav-menustate" id="localnav-curtain"></label>
+</div>
+<main data-v-2deaa168="" id="main" role="main" tabindex="0" class="main"><div data-v-4ba5af7c="" data-v-2deaa168="" class="topictitle">
+<span data-v-4ba5af7c="" class="eyebrow">Article</span><h1 data-v-4ba5af7c="" class="title"><span class="enstr">Uploading Streams of Data</span><!--end_enstr-->
+<span class="jpstr">
+データのストリームをアップロードする
+</span><!--end_jpstr-->
+</h1>
+</div>
+<div data-v-0253ce0e="" data-v-2deaa168="" class="row container">
+<div data-v-9807b2e0="" data-v-5ad0d458="" data-v-2deaa168="" class="col description large-9 medium-9 small-12" data-v-0253ce0e=""><!---->
+<div data-v-7ea0aa49="" data-v-aba749e6="" data-v-2deaa168="" class="abstract content" data-v-9807b2e0=""><span class="enstr">Send a stream of data to a server.</span><!--end_enstr-->
+<span class="jpstr">
+データのストリームをサーバーに送信します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div>
+<div data-v-9807b2e0="" data-v-42fb6bac="" data-v-2deaa168="" class="col summary large-3 medium-3 small-12" data-v-0253ce0e=""><!----><!---->
+<div data-v-e4237090="" data-v-741142ba="" data-v-2deaa168="" class="summary-section frameworks" role="complementary" aria-label="Framework" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-741142ba="" class="title" data-v-e4237090=""><span class="enstr">Framework</span><!--end_enstr-->
+<span class="jpstr">
+フレームワーク
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-741142ba="" class="summary-list" data-v-e4237090=""><li data-v-e3899270="" data-v-741142ba="" class="summary-list-item" data-v-1450532d=""><span data-v-741142ba="" data-v-e3899270="" class="name">Foundation</span></li></ul>
+</div>
+<div data-v-e4237090="" data-v-2b96ab1a="" data-v-2deaa168="" class="summary-section on-this-page" data-v-9807b2e0=""><nav data-v-2b96ab1a="" data-v-e4237090="" aria-labelledby="on-this-page-title"><p data-v-1e0258b0="" data-v-2b96ab1a="" class="title" id="on-this-page-title" data-v-e4237090=""><span class="enstr">On This Page</span><!--end_enstr-->
+<span class="jpstr">
+この項には
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-2b96ab1a="" class="summary-list" data-v-e4237090="">
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../../documentation/foundation/url_loading_system/uploading_streams_of_data_language-objc.html#overview" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Overview</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../../documentation/foundation/url_loading_system/uploading_streams_of_data_language-objc.html#see-also" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">See Also</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+</ul></nav></div>
+</div>
+<div data-v-9807b2e0="" data-v-1e40f676="" data-v-2deaa168="" class="col primary-content large-9 medium-9 small-12" data-v-0253ce0e=""><div data-v-7ea0aa49="" data-v-1e40f676="" class="content" data-v-9807b2e0="">
+<h2 id="overview"><span class="enstr">Overview</span><!--end_enstr-->
+<span class="jpstr">
+概要
+</span><!--end_jpstr-->
+</h2>
+<p><span class="enstr">Streaming media apps and long-running apps that send continual updates use an ongoing stream to upload data, rather than sending a single block of data or a flat file. You can configure an instance of <a href="../../../documentation/foundation/nsurlsessionuploadtask_language-objc.html" class=""><code data-v-7fb764c1="">NSURLSession<wbr data-v-7fb764c1="">Upload<wbr data-v-7fb764c1="">Task</wbr></wbr></code></a> (a subclass of <a href="../../../documentation/foundation/nsurlsessiontask_language-objc.html" class=""><code data-v-7fb764c1="">NSURLSession<wbr data-v-7fb764c1="">Task</wbr></code></a>) to work with a stream that you provide, and then fill this stream with data indefinitely.</span><!--end_enstr-->
+<span class="jpstr">
+ストリーミングメディアアプリと連続的なアップデートを送信する長く動作するアプリは、ある継続中のストリームを使ってデータをアップロードします、単一のブロックまたはフラットファイルを送信するのではなく。あなたは、<a href="../../../documentation/foundation/nsurlsessionuploadtask_language-objc.html" class=""><code data-v-7fb764c1="">NSURLSession<wbr data-v-7fb764c1="">Upload<wbr data-v-7fb764c1="">Task</wbr></wbr></code></a>（<a href="../../../documentation/foundation/nsurlsessiontask_language-objc.html" class=""><code data-v-7fb764c1="">NSURLSession<wbr data-v-7fb764c1="">Task</wbr></code></a>のサブクラス）のインスタンスを構成設定して、あなたが提供するストリームを扱います、そしてそれからこのストリームをデータで無期限に満たします。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">The task gets the stream by calling your session’s delegate, so you need to create a session and set your own code as its delegate.</span><!--end_enstr-->
+<span class="jpstr">
+タスクは、ストリームをあなたのセッションのもつ委任先を呼び出すことによって取得します、なのであなたはあるセッションを作成して、それの委任先としてあなた独自のコードを設定する必要があります。
+</span><!--end_jpstr-->
+</p>
+<h3 id="3081174"><span class="enstr">Create a URL Session</span><!--end_enstr-->
+<span class="jpstr">
+URLセッションを作成する
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">Begin by creating a URLSession and providing it with a delegate. <a href="../../../documentation/foundation/url_loading_system/uploading_streams_of_data_language-objc.html#3081173" class="">Listing 1</a> creates a URL session with the default <a href="../../../documentation/foundation/nsurlsessionconfiguration_language-objc.html" class=""><code data-v-7fb764c1="">NSURLSession<wbr data-v-7fb764c1="">Configuration</wbr></code></a> and sets <code data-v-7fb764c1="">self</code> as the delegate. You’ll implement <a href="../../../documentation/foundation/nsurlsessiontaskdelegate_language-objc.html" class=""><code data-v-7fb764c1="">NSURLSession<wbr data-v-7fb764c1="">Task<wbr data-v-7fb764c1="">Delegate</wbr></wbr></code></a> later, in <a href="../../../documentation/foundation/url_loading_system/uploading_streams_of_data_language-objc.html#3037344" class="">Provide the Stream to the Upload Task</a>.</span><!--end_enstr-->
+<span class="jpstr">
+URLSessionを作成してそれにある委任先を提供することによって始めます。<a href="../../../documentation/foundation/url_loading_system/uploading_streams_of_data_language-objc.html#3081173" class="">コード出力 1</a> は、あるURLセッションを省略時の<a href="../../../documentation/foundation/nsurlsessionconfiguration_language-objc.html" class=""><code data-v-7fb764c1="">NSURLSession<wbr data-v-7fb764c1="">Configuration</wbr></code></a>で作成して、<code data-v-7fb764c1="">self</code>を委任先として設定します。あなたは、<a href="../../../documentation/foundation/nsurlsessiontaskdelegate_language-objc.html" class=""><code data-v-7fb764c1="">NSURLSession<wbr data-v-7fb764c1="">Task<wbr data-v-7fb764c1="">Delegate</wbr></wbr></code></a>を後で実装します、<a href="../../../documentation/foundation/url_loading_system/uploading_streams_of_data_language-objc.html#3037344" class="">ストリームをアップロードタスクに提供する</a>において。
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="3081173"><figcaption data-v-513cf297="" class="caption" data-v-7bf080cc=""><span class="enstr"><strong data-v-513cf297="">Listing 1</strong>&nbsp;Creating a URLSession with a delegate</span><!--end_enstr-->
+<span class="jpstr">
+<strong data-v-513cf297="">コード出力 1</strong> URLSessionをある委任先をつかって作成する
+</span><!--end_jpstr-->
+</figcaption><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-built_in">lazy</span> <span class="syntax-keyword">var</span> session: <span class="syntax-type">URLSession</span> = <span class="syntax-type">URLSession</span>(configuration: .<span class="syntax-keyword">default</span>,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">                                          delegate: <span class="syntax-keyword">self</span>,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">                                          delegateQueue: .main)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">
+</span></span></code></pre></div>
+</div></figure><p></p>
+<p></p>
+<p></p>
+<p></p>
+<h3 id="3037348"><span class="enstr">Create a Streaming Upload Task</span><!--end_enstr-->
+<span class="jpstr">
+ストリーミングアップロードタスクを作成する
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">Create the upload task with the <a href="../../../documentation/foundation/nsurlsession_language-objc.html" class=""><code data-v-7fb764c1="">NSURLSession</code></a> method <a href="../../../documentation/foundation/nsurlsession/1410934-uploadtaskwithstreamedrequest_language-objc.html" class=""><code data-v-7fb764c1="">upload<wbr data-v-7fb764c1="">Task<wbr data-v-7fb764c1="">With<wbr data-v-7fb764c1="">Streamed<wbr data-v-7fb764c1="">Request:</wbr></wbr></wbr></wbr></code></a>. This takes an <a href="../../../documentation/foundation/nsurlrequest_language-objc.html" class=""><code data-v-7fb764c1="">NSURLRequest</code></a> specifying the URL you want to upload to, along with other parameters. You start the task by calling <a href="../../../documentation/foundation/nsurlsessiontask/1411121-resume_language-objc.html" class=""><code data-v-7fb764c1="">resume</code></a>. <a href="../../../documentation/foundation/url_loading_system/uploading_streams_of_data_language-objc.html#3037347" class="">Listing 2</a> shows how to create and start an upload task, connecting to a server on the local machine (<code data-v-7fb764c1="">127<wbr data-v-7fb764c1="">.0<wbr data-v-7fb764c1="">.0<wbr data-v-7fb764c1="">.1</wbr></wbr></wbr></code>) listening on port <code data-v-7fb764c1="">12345</code>.</span><!--end_enstr-->
+<span class="jpstr">
+アップロードタスクを<a href="../../../documentation/foundation/nsurlsession_language-objc.html" class=""><code data-v-7fb764c1="">NSURLSession</code></a>のメソッド<a href="../../../documentation/foundation/nsurlsession/1410934-uploadtaskwithstreamedrequest_language-objc.html" class=""><code data-v-7fb764c1="">upload<wbr data-v-7fb764c1="">Task<wbr data-v-7fb764c1="">With<wbr data-v-7fb764c1="">Streamed<wbr data-v-7fb764c1="">Request:</wbr></wbr></wbr></wbr></code></a>で作成してください。これは、あなたがそれへとアップロードしたいURLを指定している<a href="../../../documentation/foundation/nsurlrequest_language-objc.html" class=""><code data-v-7fb764c1="">NSURLRequest</code></a>を、他のパラメータと一緒に取ります。あなたは、タスクを<a href="../../../documentation/foundation/nsurlsessiontask/1411121-resume_language-objc.html" class=""><code data-v-7fb764c1="">resume</code></a>を呼び出すことによって始めます。<a href="../../../documentation/foundation/url_loading_system/uploading_streams_of_data_language-objc.html#3037347" class="">コード出力 2</a> は、ローカルマシン（<code data-v-7fb764c1="">127<wbr data-v-7fb764c1="">.0<wbr data-v-7fb764c1="">.0<wbr data-v-7fb764c1="">.1</wbr></wbr></wbr></code>）上のサーバーに接続して、ポート<code data-v-7fb764c1="">12345</code>で聞き耳を立てている、あるアップロードタスクをどのように作成して開始するかを示します。
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="3037347"><figcaption data-v-513cf297="" class="caption" data-v-7bf080cc=""><span class="enstr"><strong data-v-513cf297="">Listing 2</strong>&nbsp;Creating an upload task</span><!--end_enstr-->
+<span class="jpstr">
+<strong data-v-513cf297="">コード出力 2</strong> アップロードタスクを作成する
+</span><!--end_jpstr-->
+</figcaption><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-keyword">let</span> url = <span class="syntax-type">URL</span>(string: <span class="syntax-string">"http://127.0.0.1:12345"</span>)!</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-keyword">var</span> request = <span class="syntax-type">URLRequest</span>(url: url,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">                         cachePolicy: .reloadIgnoringLocalCacheData,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">                         timeoutInterval: <span class="syntax-number">10</span>)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="5" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">request.httpMethod = <span class="syntax-string">"POST"</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="6" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-keyword">let</span> uploadTask = session.uploadTask(withStreamedRequest: request)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="7" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">uploadTask.resume()</span></span></code></pre></div>
+</div></figure><p></p>
+<h3 id="3037352"><span class="enstr">Use a Bound Pair of Streams to Provide an Input Stream</span><!--end_enstr-->
+<span class="jpstr">
+ストリームの束縛対を使って入力ストリームを提供する
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">You provide the streaming data to the upload task as an <a href="../../../documentation/foundation/nsinputstream_language-objc.html" class=""><code data-v-7fb764c1="">NSInput<wbr data-v-7fb764c1="">Stream</wbr></code></a>. The task reads data from this stream and uploads it to the destination.</span><!--end_enstr-->
+<span class="jpstr">
+あなたは、ストリーミングデータをアップロードタスクに<a href="../../../documentation/foundation/nsinputstream_language-objc.html" class=""><code data-v-7fb764c1="">NSInput<wbr data-v-7fb764c1="">Stream</wbr></code></a>として提供します。タスクは、データをこのストリームから読み出してそれを行き先にアップロードします。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">A good way to provide data to the input stream is to use a <em>bound pair</em> of streams. The bound pair contains an <a href="../../../documentation/foundation/nsoutputstream_language-objc.html" class=""><code data-v-7fb764c1="">NSOutput<wbr data-v-7fb764c1="">Stream</wbr></code></a> that you write data to. Thanks to the binding of the streams, the data you write to the output stream is made available to the input stream, which the task can then read from. <a href="../../../documentation/foundation/url_loading_system/uploading_streams_of_data_language-objc.html#3037791" class="">Figure 1</a> shows this arrangement.</span><!--end_enstr-->
+<span class="jpstr">
+データを入力ストリームに提供する１つの良い方法は、ストリームの<em>束縛対</em>を使うことです。束縛対は、あなたがデータをそれへと書き出す<a href="../../../documentation/foundation/nsoutputstream_language-objc.html" class=""><code data-v-7fb764c1="">NSOutput<wbr data-v-7fb764c1="">Stream</wbr></code></a>を含んでいます。ストリームそれらの束縛に感謝しましょう、あなたが出力ストリームへと書き出すデータは、入力ストリームに利用できるようにされます、それはタスクがその時それから読み出せます。<a href="../../../documentation/foundation/url_loading_system/uploading_streams_of_data_language-objc.html#3037791" class="">図 1</a> は、この取り決めを示します。
+</span><!--end_jpstr-->
+</p>
+<p><figure data-v-7bf080cc="" id="3037791"><figcaption data-v-513cf297="" class="caption" data-v-7bf080cc=""><span class="enstr"><strong data-v-513cf297="">Figure 1</strong>&nbsp;Providing data to an upload task with a bound pair of streams</span><!--end_enstr-->
+<span class="jpstr">
+<strong data-v-513cf297="">図 1</strong>&nbsp;データをアップロードタスクにストリームの束縛対で提供する
+</span><!--end_jpstr-->
+</figcaption><picture data-v-3b7e9d01="" data-v-7bf080cc=""><!----><img alt="Flow diagram showing how data written by an app to the output stream of a bound pair goes into a buffer, then to the bound pair's input stream, then to the upload task, which sends it to the destination." srcset="../../../../docs-assets.developer.apple.com/published/da31e34bc2/a29fb2be-5f7f-4c56-9ef6-4090ecfbae82.png 2x" src="../../../../docs-assets.developer.apple.com/published/da31e34bc2/a29fb2be-5f7f-4c56-9ef6-4090ecfbae82.png" width="613" height="auto"></picture></figure></p>
+<p><span class="enstr"><a href="../../../documentation/foundation/url_loading_system/uploading_streams_of_data_language-objc.html#3037346" class="">Listing 3</a> shows a structure called <code data-v-7fb764c1="">Streams</code> that consists of an <span><code data-v-7fb764c1="">NSInput<wbr data-v-7fb764c1="">Stream</wbr></code></span> and an <span><code data-v-7fb764c1="">NSOutput<wbr data-v-7fb764c1="">Stream</wbr></code></span>. The listing creates a property of this type, called <code data-v-7fb764c1="">bound<wbr data-v-7fb764c1="">Streams</wbr></code>, by calling the <a href="../../../documentation/foundation/nsstream/1412683-getboundstreamswithbuffersize_language-objc.html" class=""><code data-v-7fb764c1="">get<wbr data-v-7fb764c1="">Bound<wbr data-v-7fb764c1="">Streams<wbr data-v-7fb764c1="">With<wbr data-v-7fb764c1="">Buffer<wbr data-v-7fb764c1="">Size:<wbr data-v-7fb764c1="">input<wbr data-v-7fb764c1="">Stream:<wbr data-v-7fb764c1="">output<wbr data-v-7fb764c1="">Stream:</wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></code></a> method of the <a href="../../../documentation/foundation/nsstream_language-objc.html" class=""><code data-v-7fb764c1="">NSStream</code></a> class, passing in in-out references for the input and output streams.</span><!--end_enstr-->
+<span class="jpstr">
+<a href="../../../documentation/foundation/url_loading_system/uploading_streams_of_data_language-objc.html#3037346" class="">コード出力 3</a> は、<code data-v-7fb764c1="">Streams</code>と呼ばれる構造体を示します、それは<span><code data-v-7fb764c1="">NSInput<wbr data-v-7fb764c1="">Stream</wbr></code></span>と<span><code data-v-7fb764c1="">NSOutput<wbr data-v-7fb764c1="">Stream</wbr></code></span>から成ります。コード出力は、この型の<code data-v-7fb764c1="">bound<wbr data-v-7fb764c1="">Streams</wbr></code>と呼ばれるあるプロパティを、<a href="../../../documentation/foundation/nsstream_language-objc.html" class=""><code data-v-7fb764c1="">NSStream</code></a>クラスの<a href="../../../documentation/foundation/nsstream/1412683-getboundstreamswithbuffersize_language-objc.html" class=""><code data-v-7fb764c1="">get<wbr data-v-7fb764c1="">Bound<wbr data-v-7fb764c1="">Streams<wbr data-v-7fb764c1="">With<wbr data-v-7fb764c1="">Buffer<wbr data-v-7fb764c1="">Size:<wbr data-v-7fb764c1="">input<wbr data-v-7fb764c1="">Stream:<wbr data-v-7fb764c1="">output<wbr data-v-7fb764c1="">Stream:</wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></code></a>メソッドを、入力および出力ストリームに対するin-out参照を渡して、呼び出すことによって作成します。
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="3037346"><figcaption data-v-513cf297="" class="caption" data-v-7bf080cc=""><span class="enstr"><strong data-v-513cf297="">Listing 3</strong>&nbsp;Creating a bound pair of input and output streams</span><!--end_enstr-->
+<span class="jpstr">
+<strong data-v-513cf297="">コード出力 3</strong>&nbsp;入力および出力ストリームの束縛対を作成する
+</span><!--end_jpstr-->
+</figcaption><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-class"><span class="syntax-keyword">struct</span> <span class="syntax-title">Streams</span> </span>{</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">let</span> input: <span class="syntax-type">InputStream</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">let</span> output: <span class="syntax-type">OutputStream</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">}</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="5" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-built_in">lazy</span> <span class="syntax-keyword">var</span> boundStreams: <span class="syntax-type">Streams</span> = {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="6" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">var</span> inputOrNil: <span class="syntax-type">InputStream?</span> = <span class="syntax-literal">nil</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="7" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">var</span> outputOrNil: <span class="syntax-type">OutputStream?</span> = <span class="syntax-literal">nil</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="8" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-type">Stream</span>.getBoundStreams(withBufferSize: <span class="syntax-number">4096</span>,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="9" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">                           inputStream: &amp;inputOrNil,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="10" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">                           outputStream: &amp;outputOrNil)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="11" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">guard</span> <span class="syntax-keyword">let</span> input = inputOrNil, <span class="syntax-keyword">let</span> output = outputOrNil <span class="syntax-keyword">else</span> {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="12" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-built_in">fatalError</span>(<span class="syntax-string">"On return of `getBoundStreams`, both `inputStream` and `outputStream` will contain non-nil streams."</span>)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="13" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="14" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-comment">// configure and open output stream</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="15" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    output.delegate = <span class="syntax-keyword">self</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="16" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    output.schedule(<span class="syntax-keyword">in</span>: .current, forMode: .<span class="syntax-keyword">default</span>)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="17" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    output.<span class="syntax-keyword">open</span>()</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="18" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">return</span> <span class="syntax-type">Streams</span>(input: input, output: output)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="19" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">}()</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="20" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">
+</span></span></code></pre></div>
+</div></figure><p><span class="enstr">When you create the bound pair, make sure you specify a buffer size large enough to hold any data you write to the output stream, prior to the data being read from the input stream. <span>Listing 3</span> uses a 4096-byte buffer.</span><!--end_enstr-->
+<span class="jpstr">
+あなたが束縛対を作成する場合、入力ストリームから読み出されるデータに先だって、あなたが出力ストリームに書き出す何らかのデータを保持するのに十分に大きいバッファサイズを指定することを確実にしてください。<span>コード出力 3</span> は、4096バイトのバッファを使います。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">The listing also sets <code data-v-7fb764c1="">self</code> as the output stream’s delegate. Declare that your class implements the <a href="../../../documentation/foundation/nsstreamdelegate_language-objc.html" class=""><code data-v-7fb764c1="">NSStream<wbr data-v-7fb764c1="">Delegate</wbr></code></a> protocol in order to receive events that indicate when the output stream is ready to receive new data. You’ll provide the implementation of <span><code data-v-7fb764c1="">NSStream<wbr data-v-7fb764c1="">Delegate</wbr></code></span> later, in <a href="../../../documentation/foundation/url_loading_system/uploading_streams_of_data_language-objc.html#3037342" class="">Write Data to the Stream When It’s Ready</a>.</span><!--end_enstr-->
+<span class="jpstr">
+コード出力はまた、<code data-v-7fb764c1="">self</code>を出力ストリームのもつ委任先として設定します。あなたのクラスが<a href="../../../documentation/foundation/nsstreamdelegate_language-objc.html" class=""><code data-v-7fb764c1="">NSStream<wbr data-v-7fb764c1="">Delegate</wbr></code></a>プロトコルを、いつ出力ストリームが新しいデータを受け取る準備が出来るかを指し示すイベントを受け取る手段として実装することを宣言してください。あなたは、<span><code data-v-7fb764c1="">NSStream<wbr data-v-7fb764c1="">Delegate</wbr></code></span>の実装を後で提供します、<a href="../../../documentation/foundation/url_loading_system/uploading_streams_of_data_language-objc.html#3037342" class="">データをストリームにそれが準備できる時に書き出す</a>において。
+</span><!--end_jpstr-->
+</p>
+<aside data-v-c567d8a8="" aria-label="tip" class="tip"><p data-v-c567d8a8="" class="label"><span class="enstr">Tip</span><!--end_enstr-->
+<span class="jpstr">
+秘訣
+</span><!--end_jpstr-->
+</p>
+<p data-v-c567d8a8=""><span class="enstr">Your implementations of <span data-v-c567d8a8=""><code data-v-7fb764c1="">NSStream<wbr data-v-7fb764c1="">Delegate</wbr></code></span> and <span data-v-c567d8a8=""><code data-v-7fb764c1="">NSURLSession<wbr data-v-7fb764c1="">Task<wbr data-v-7fb764c1="">Delegate</wbr></wbr></code></span> may be in the same class or in different classes, whichever makes more sense for your app’s architecture.</span><!--end_enstr-->
+<span class="jpstr">
+<span data-v-c567d8a8=""><code data-v-7fb764c1="">NSStream<wbr data-v-7fb764c1="">Delegate</wbr></code></span>と<span data-v-c567d8a8=""><code data-v-7fb764c1="">NSURLSession<wbr data-v-7fb764c1="">Task<wbr data-v-7fb764c1="">Delegate</wbr></wbr></code></span>のあなたの実装は、同じクラスであるまたは異なるクラスであるかもしれません。
+</span><!--end_jpstr-->
+</p></aside><p></p>
+<h3 id="3037344"><span class="enstr">Provide the Stream to the Upload Task</span><!--end_enstr-->
+<span class="jpstr">
+ストリームをアップロードタスクに提供する
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">You provide the input stream to the upload task in your implementation of the <span><code data-v-7fb764c1="">NSURLSession<wbr data-v-7fb764c1="">Task<wbr data-v-7fb764c1="">Delegate</wbr></wbr></code></span> method <span><code data-v-7fb764c1="">URLSession:<wbr data-v-7fb764c1="">task:<wbr data-v-7fb764c1="">need<wbr data-v-7fb764c1="">New<wbr data-v-7fb764c1="">Body<wbr data-v-7fb764c1="">Stream:</wbr></wbr></wbr></wbr></wbr></code></span>, which is called after you start the upload task by calling <span><code data-v-7fb764c1="">resume</code></span>. The callback passes in a completion handler, which you call directly, passing in the <code data-v-7fb764c1="">bound<wbr data-v-7fb764c1="">Streams<wbr data-v-7fb764c1="">.input</wbr></wbr></code> stream you created earlier. <a href="../../../documentation/foundation/url_loading_system/uploading_streams_of_data_language-objc.html#3037340" class="">Listing 4</a> shows an implementation of this method.</span><!--end_enstr-->
+<span class="jpstr">
+あなたは、入力ストリームをアップロードタスクへと、<span><code data-v-7fb764c1="">NSURLSession<wbr data-v-7fb764c1="">Task<wbr data-v-7fb764c1="">Delegate</wbr></wbr></code></span>のメソッド<span><code data-v-7fb764c1="">URLSession:<wbr data-v-7fb764c1="">task:<wbr data-v-7fb764c1="">need<wbr data-v-7fb764c1="">New<wbr data-v-7fb764c1="">Body<wbr data-v-7fb764c1="">Stream:</wbr></wbr></wbr></wbr></wbr></code></span>のあなたの実装において提供します、それは後であなたがアップロードタスクを<span><code data-v-7fb764c1="">resume</code></span>を呼び出すことによって開始する後に呼び出されます。このコールバックは完了ハンドラに渡されます、それはあなたが直接に呼び出します、あなたが前に作成した<code data-v-7fb764c1="">bound<wbr data-v-7fb764c1="">Streams<wbr data-v-7fb764c1="">.input</wbr></wbr></code>ストリームを渡して。<a href="../../../documentation/foundation/url_loading_system/uploading_streams_of_data_language-objc.html#3037340" class="">コード出力 4</a> は、このメソッドの実装を示します。
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="3037340"><figcaption data-v-513cf297="" class="caption" data-v-7bf080cc=""><span class="enstr"><strong data-v-513cf297="">Listing 4</strong>&nbsp;Providing the input stream to the upload task in the delegate callback</span><!--end_enstr-->
+<span class="jpstr">
+<strong data-v-513cf297="">コード出力 4</strong>&nbsp;入力ストリームをアップロードタスクに委任先コールバックにおいて提供する
+</span><!--end_jpstr-->
+</figcaption><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-function"><span class="syntax-keyword">func</span> <span class="syntax-title">urlSession</span><span class="syntax-params">(<span class="syntax-number">_</span> session: URLSession, task: URLSessionTask,</span></span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-params">                needNewBodyStream completionHandler: @escaping <span class="syntax-params">(InputStream?)</span></span> -&gt; <span class="syntax-type">Void</span>) {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    completionHandler(boundStreams.input)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">}</span></span></code></pre></div>
+</div></figure><p></p>
+<p></p>
+<h3 id="3037342"><span class="enstr">Write Data to the Stream When It’s Ready</span><!--end_enstr-->
+<span class="jpstr">
+データをストリームにそれが準備できる時に書き出す
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">Write data to an output stream only when the stream is ready for it. You get notified of the stream’s readiness in the <span><code data-v-7fb764c1="">NSStream<wbr data-v-7fb764c1="">Delegate</wbr></code></span> method <a href="../../../documentation/foundation/nsstreamdelegate/1410079-stream_language-objc.html" class=""><code data-v-7fb764c1="">stream:<wbr data-v-7fb764c1="">handle<wbr data-v-7fb764c1="">Event:</wbr></wbr></code></a>. When this callback sends <a href="../../../documentation/foundation/nsstreamevent/nsstreameventhasspaceavailable_language-objc.html" class=""><code data-v-7fb764c1="">NSStream<wbr data-v-7fb764c1="">Event<wbr data-v-7fb764c1="">Has<wbr data-v-7fb764c1="">Space<wbr data-v-7fb764c1="">Available</wbr></wbr></wbr></wbr></code></a> as its <code data-v-7fb764c1="">event<wbr data-v-7fb764c1="">Code</wbr></code> parameter, the stream is ready to accept more data.</span><!--end_enstr-->
+<span class="jpstr">
+データを出力ストリームに、ストリームがそれに対して準備できている時に限り書き出してください。あなたは、ストリームの準備できていることを<span><code data-v-7fb764c1="">NSStream<wbr data-v-7fb764c1="">Delegate</wbr></code></span> method <a href="../../../documentation/foundation/nsstreamdelegate/1410079-stream_language-objc.html" class=""><code data-v-7fb764c1="">stream:<wbr data-v-7fb764c1="">handle<wbr data-v-7fb764c1="">Event:</wbr></wbr></code></a>において通知されます。このコールバックが<a href="../../../documentation/foundation/nsstreamevent/nsstreameventhasspaceavailable_language-objc.html" class=""><code data-v-7fb764c1="">NSStream<wbr data-v-7fb764c1="">Event<wbr data-v-7fb764c1="">Has<wbr data-v-7fb764c1="">Space<wbr data-v-7fb764c1="">Available</wbr></wbr></wbr></wbr></code></a>をそれの<code data-v-7fb764c1="">event<wbr data-v-7fb764c1="">Code</wbr></code>パラメータとして送る場合、ストリームはさらなるデータを受け入れる準備ができています。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">If you’re not ready to write while handling the event, and would prefer to write on your own schedule, you can set a flag variable and check it later to determine whether it’s is safe to write to the stream. <a href="../../../documentation/foundation/url_loading_system/uploading_streams_of_data_language-objc.html#3037351" class="">Listing 5</a> illustrates this technique. It handles the <a href="../../../documentation/foundation/nsstreamevent/nsstreameventhasspaceavailable_language-objc.html" class=""><code data-v-7fb764c1="">NSStream<wbr data-v-7fb764c1="">Event<wbr data-v-7fb764c1="">Has<wbr data-v-7fb764c1="">Space<wbr data-v-7fb764c1="">Available</wbr></wbr></wbr></wbr></code></a> event by just setting a private <code data-v-7fb764c1="">can<wbr data-v-7fb764c1="">Write</wbr></code> property to<code data-v-7fb764c1=""> true.</code></span><!--end_enstr-->
+<span class="jpstr">
+あなたが書き出す準備ができていない一方でそのイベントを処理している、そしてあなた独自の予定で書き出すのを望むならば、あなたはあるフラグ変数を設定してそれを後で確認することで、ストリームに書き出すことが安全であるかどうかを決定できます。<a href="../../../documentation/foundation/url_loading_system/uploading_streams_of_data_language-objc.html#3037351" class="">コード出力 5</a> は、このテクニックを例示します。それは、<a href="../../../documentation/foundation/nsstreamevent/nsstreameventhasspaceavailable_language-objc.html" class=""><code data-v-7fb764c1="">NSStream<wbr data-v-7fb764c1="">Event<wbr data-v-7fb764c1="">Has<wbr data-v-7fb764c1="">Space<wbr data-v-7fb764c1="">Available</wbr></wbr></wbr></wbr></code></a>イベントを、単にあるプライベートな<code data-v-7fb764c1="">can<wbr data-v-7fb764c1="">Write</wbr></code>プロパティを<code data-v-7fb764c1=""> true.</code>に設定することによって処理します。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">While handling stream events, also check whether <code data-v-7fb764c1="">event<wbr data-v-7fb764c1="">Code</wbr></code> is <a href="../../../documentation/foundation/nsstreamevent/nsstreameventerroroccurred_language-objc.html" class=""><code data-v-7fb764c1="">NSStream<wbr data-v-7fb764c1="">Event<wbr data-v-7fb764c1="">Error<wbr data-v-7fb764c1="">Occurred</wbr></wbr></wbr></code></a>. This means that the stream has failed. When this happens, close the streams and abandon the upload.</span><!--end_enstr-->
+<span class="jpstr">
+ストリームイベントを処理する一方で、同様に<code data-v-7fb764c1="">event<wbr data-v-7fb764c1="">Code</wbr></code>が<a href="../../../documentation/foundation/nsstreamevent/nsstreameventerroroccurred_language-objc.html" class=""><code data-v-7fb764c1="">NSStream<wbr data-v-7fb764c1="">Event<wbr data-v-7fb764c1="">Error<wbr data-v-7fb764c1="">Occurred</wbr></wbr></wbr></code></a>であるかどうか確認します。これは、ストリームが失敗したことを意味します。これが起こる場合、ストリームを閉じてアップロードを放棄してください。
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="3037351"><figcaption data-v-513cf297="" class="caption" data-v-7bf080cc=""><span class="enstr"><strong data-v-513cf297="">Listing 5</strong>&nbsp;Handling StreamDelegate events</span><!--end_enstr-->
+<span class="jpstr">
+<strong data-v-513cf297="">コード出力 5</strong>&nbsp;StreamDelegateイベントを処理する
+</span><!--end_jpstr-->
+</figcaption><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-function"><span class="syntax-keyword">func</span> <span class="syntax-title">stream</span><span class="syntax-params">(<span class="syntax-number">_</span> aStream: Stream, handle eventCode: Stream.Event)</span></span> {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">guard</span> aStream == boundStreams.output <span class="syntax-keyword">else</span> {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">return</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="5" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">if</span> eventCode.<span class="syntax-built_in">contains</span>(.hasSpaceAvailable) {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="6" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        canWrite = <span class="syntax-literal">true</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="7" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="8" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">if</span> eventCode.<span class="syntax-built_in">contains</span>(.errorOccurred) {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="9" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-comment">// Close the streams and alert the user that the upload failed.</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="10" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="11" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">}</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="12" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">
+</span></span></code></pre></div>
+</div></figure><p><span class="enstr">Once you’re handling the <a href="../../../documentation/foundation/nsstreamevent/nsstreameventhasspaceavailable_language-objc.html" class=""><code data-v-7fb764c1="">NSStream<wbr data-v-7fb764c1="">Event<wbr data-v-7fb764c1="">Has<wbr data-v-7fb764c1="">Space<wbr data-v-7fb764c1="">Available</wbr></wbr></wbr></wbr></code></a> event, you can write to the stream whenever you know it’s ready to receive more data. You write to the stream by calling its <a href="../../../documentation/foundation/nsoutputstream/1410720-write_language-objc.html" class=""><code data-v-7fb764c1="">write:<wbr data-v-7fb764c1="">max<wbr data-v-7fb764c1="">Length:</wbr></wbr></code></a> method, providing a reference to the raw bytes to be written, and the maximum number of bytes to write.</span><!--end_enstr-->
+<span class="jpstr">
+一旦あなたが<a href="../../../documentation/foundation/nsstreamevent/nsstreameventhasspaceavailable_language-objc.html" class=""><code data-v-7fb764c1="">NSStream<wbr data-v-7fb764c1="">Event<wbr data-v-7fb764c1="">Has<wbr data-v-7fb764c1="">Space<wbr data-v-7fb764c1="">Available</wbr></wbr></wbr></wbr></code></a>イベントを処理するならば、あなたはストリームに書き出せます、それがさらにデータを受け取る準備ができているのをあなたが知る時はいつでも。あなたは、ストリームにそれの<a href="../../../documentation/foundation/nsoutputstream/1410720-write_language-objc.html" class=""><code data-v-7fb764c1="">write:<wbr data-v-7fb764c1="">max<wbr data-v-7fb764c1="">Length:</wbr></wbr></code></a>メソッドを呼び出すことによって書き出します、書き出されることになる生のバイトへの参照、そして書き出される最大バイト数を提供して。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr"><a href="../../../documentation/foundation/url_loading_system/uploading_streams_of_data_language-objc.html#3037345" class="">Listing 6</a> uses a timer to wait for the private <code data-v-7fb764c1="">can<wbr data-v-7fb764c1="">Write</wbr></code> property to become true. Once this is the case, the code creates a string representing the current date and converts it to raw bytes. The listing then calls <a href="../../../documentation/foundation/nsoutputstream/1410720-write_language-objc.html" class=""><code data-v-7fb764c1="">write:<wbr data-v-7fb764c1="">max<wbr data-v-7fb764c1="">Length:</wbr></wbr></code></a> to send these bytes to the output stream. Because this output stream is bound to an input stream, the upload task can then automatically read these bytes from the input stream and send them to the destination URL.</span><!--end_enstr-->
+<span class="jpstr">
+<a href="../../../documentation/foundation/url_loading_system/uploading_streams_of_data_language-objc.html#3037345" class="">コード出力 6</a> は、あるタイマーを使うことで、プライベート<code data-v-7fb764c1="">can<wbr data-v-7fb764c1="">Write</wbr></code>プロパティがtrueになるのを待ちます。一旦そうなるならば、コードは現在のデータを表している文字列を作成して、それを生のバイトに変換します。コード出力は、それから<a href="../../../documentation/foundation/nsoutputstream/1410720-write_language-objc.html" class=""><code data-v-7fb764c1="">write:<wbr data-v-7fb764c1="">max<wbr data-v-7fb764c1="">Length:</wbr></wbr></code></a>を呼び出すことで、それらバイトを出力ストリームに送ります。この出力ストリームがある入力ストリームに束縛されることから、アップロードタスクはそのとき自動的にそれらバイトを入力ストリームから読み出せます、そしてそれらを行き先URLに送ります。
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="3037345"><figcaption data-v-513cf297="" class="caption" data-v-7bf080cc=""><span class="enstr"><strong data-v-513cf297="">Listing 6</strong>&nbsp;Creating a timer to write to the output stream when the stream has space available</span><!--end_enstr-->
+<span class="jpstr">
+<strong data-v-513cf297="">コード出力 6</strong>&nbsp;あるタイマーを作成することで出力ストリームにそのストリームが利用可能な空間を持つ場合に書き出す
+</span><!--end_jpstr-->
+</figcaption><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">timer = <span class="syntax-type">Timer</span>.scheduledTimer(withTimeInterval: <span class="syntax-number">1.0</span>, repeats: <span class="syntax-literal">true</span>) {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    [<span class="syntax-keyword">weak</span> <span class="syntax-keyword">self</span>] timer <span class="syntax-keyword">in</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">guard</span> <span class="syntax-keyword">let</span> <span class="syntax-keyword">self</span> = <span class="syntax-keyword">self</span> <span class="syntax-keyword">else</span> { <span class="syntax-keyword">return</span> }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">
+</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="5" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">if</span> <span class="syntax-keyword">self</span>.canWrite {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="6" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">let</span> message = <span class="syntax-string">"*** \(Date())\r\n"</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="7" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">guard</span> <span class="syntax-keyword">let</span> messageData = message.data(using: .utf8) <span class="syntax-keyword">else</span> { <span class="syntax-keyword">return</span> }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="8" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">let</span> messageCount = messageData.<span class="syntax-built_in">count</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="9" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">let</span> bytesWritten: <span class="syntax-type">Int</span> = messageData.withUnsafeBytes() { (buffer: <span class="syntax-type">UnsafePointer</span>&lt;<span class="syntax-type">UInt8</span>&gt;) <span class="syntax-keyword">in</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="10" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">            <span class="syntax-keyword">self</span>.canWrite = <span class="syntax-literal">false</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="11" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">            <span class="syntax-keyword">return</span> <span class="syntax-keyword">self</span>.boundStreams.output.write(buffer, maxLength: messageCount)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="12" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="13" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">if</span> bytesWritten &lt; messageCount {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="14" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">            <span class="syntax-comment">// Handle writing less data than expected.</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="15" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="16" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="17" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">}</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="18" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">
+</span></span></code></pre></div>
+</div></figure><aside data-v-c567d8a8="" aria-label="tip" class="tip"><p data-v-c567d8a8="" class="label"><span class="enstr">Tip</span><!--end_enstr-->
+<span class="jpstr">
+秘訣
+</span><!--end_jpstr-->
+</p>
+<p data-v-c567d8a8=""><span class="enstr">If the data you want to stream is coming from an asynchronous process, like callbacks from a media capture device, you still have to wait for the output stream to be ready before you write to it. In these situations, you can use a circular buffer to hold your data until the stream is ready to accept it.</span><!--end_enstr-->
+<span class="jpstr">
+あなたがストリーミングしたいデータが非同期プロセスからやって来るならば、メディアキャプチャデバイスからのコールバックのように、あなたは依然として出力ストリームに対して待機することで、あなたがそれに書き出す前に準備できていなければなりません。これらの状況において、あなたはある循環バッファを使って、ストリームがそれを受け入れる準備ができるまであなたのデータを保持できます。
+</span><!--end_jpstr-->
+</p></aside><p><span class="enstr">Once you write to the output stream, you can’t write again until your <span><code data-v-7fb764c1="">NSStream<wbr data-v-7fb764c1="">Delegate</wbr></code></span> receives a new <span><code data-v-7fb764c1="">NSStream<wbr data-v-7fb764c1="">Event<wbr data-v-7fb764c1="">Has<wbr data-v-7fb764c1="">Space<wbr data-v-7fb764c1="">Available</wbr></wbr></wbr></wbr></code></span> event. This example enforces this constraint by setting the class’ <code data-v-7fb764c1="">can<wbr data-v-7fb764c1="">Write</wbr></code> property to <code data-v-7fb764c1="">false</code>. It will be reset to <code data-v-7fb764c1="">true</code> when a new <span><code data-v-7fb764c1="">NSStream<wbr data-v-7fb764c1="">Event<wbr data-v-7fb764c1="">Has<wbr data-v-7fb764c1="">Space<wbr data-v-7fb764c1="">Available</wbr></wbr></wbr></wbr></code></span> event is received by the output stream's delegate, as shown earlier in <a href="../../../documentation/foundation/url_loading_system/uploading_streams_of_data_language-objc.html#3037351" class="">Listing 5</a>.</span><!--end_enstr-->
+<span class="jpstr">
+一旦あなたが出力ストリームに書き出すならば、あなたは再び書き出すことはできません、あなたの<span><code data-v-7fb764c1="">NSStream<wbr data-v-7fb764c1="">Delegate</wbr></code></span>が新しい<span><code data-v-7fb764c1="">NSStream<wbr data-v-7fb764c1="">Event<wbr data-v-7fb764c1="">Has<wbr data-v-7fb764c1="">Space<wbr data-v-7fb764c1="">Available</wbr></wbr></wbr></wbr></code></span>イベントを受け取るまでは。この例は、この制約をそのクラスのもつ<code data-v-7fb764c1="">can<wbr data-v-7fb764c1="">Write</wbr></code>プロパティを<code data-v-7fb764c1="">false</code>に設定することによって強制します。それは<code data-v-7fb764c1="">true</code>に再設定されるでしょう、新しい<span><code data-v-7fb764c1="">NSStream<wbr data-v-7fb764c1="">Event<wbr data-v-7fb764c1="">Has<wbr data-v-7fb764c1="">Space<wbr data-v-7fb764c1="">Available</wbr></wbr></wbr></wbr></code></span>イベントが出力ストリームのもつ委任先によって受け取られる時に、前の<a href="../../../documentation/foundation/url_loading_system/uploading_streams_of_data_language-objc.html#3037351" class="">コード出力 5</a>で示されるように。
+</span><!--end_jpstr-->
+</p>
+</div></div>
+</div><!----><!----><!---->
+<section data-v-8c663d90="" data-v-63527a60="" data-v-2deaa168="" id="see-also" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">See Also</span><!--end_enstr-->
+<span class="jpstr">
+参照
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Uploading</span><!--end_enstr-->
+<span class="jpstr">
+アップロード
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0="">
+<a data-v-01f7f080="" href="../../../documentation/foundation/url_loading_system/uploading_data_to_a_website_language-objc.html" class="link has-adjacent-elements"><svg data-v-a76e93d8="" data-v-a8c6b630="" data-v-01f7f080="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="svg-icon article-icon topic-icon" viewbox="0 0 22 30"><title data-v-a76e93d8="">Article</title>
+<g data-v-a76e93d8=""><path data-v-a76e93d8="" d="M12.87,0H0V2H0V28H0v2H22V9.13ZM20,28H2V2h9V12h9Zm0-18H13V3l7,7Z"></path></g></svg><span data-v-01f7f080=""><span class="enstr">Uploading Data to a Website</span><!--end_enstr-->
+<span class="jpstr">
+データをウェブサイトにアップロードする
+</span><!--end_jpstr-->
+</span><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Post data from your app to servers.</span><!--end_enstr-->
+<span class="jpstr">
+データをあなたのアプリからサービスにポストします。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+</div><!----></section></main>
+</div></div></div>
+<section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo"><nav class="footer-breadory"><a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a><section class="breadcrumbs"><ol class="breadcrumbs-list"></ol></section><div id="directorynav" class="directorynav">
+<div id="dn-cola" class="column">
+<h3><a href="/discover/">Discover</a></h3>
+<ul>
+<li><a href="/ios/">iOS</a></li>
+<li><a href="/ipados/">iPadOS</a></li>
+<li><a href="/macos/">macOS</a></li>
+<li><a href="/tvos/">tvOS</a></li>
+<li><a href="/watchos/">watchOS</a></li>
+<li><a href="/safari/">Safari and Web</a></li>
+<li><a href="/games/">Games</a></li>
+<li><a href="/business/">Business</a></li>
+<li><a href="/education/">Education</a></li>
+<li><a href="/wwdc/">WWDC</a></li>
+</ul>
+</div>
+<div id="dn-colb" class="column">
+<h3><a href="/design/">Design</a></h3>
+<ul>
+<li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
+<li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
+<span class="jpstr">
+リソース
+</span><!--end_jpstr-->
+</a></li>
+<li><a href="/videos/design/">Videos</a></li>
+<li><a href="/design/awards/">Apple Design Awards</a></li>
+<li><a href="/fonts/">Fonts</a></li>
+<li><a href="/accessibility/">Accessibility</a></li>
+<li><a href="/localization/"><span class="enstr">Localization</span><!--end_enstr-->
+<span class="jpstr">
+ローカライゼーション
+</span><!--end_jpstr-->
+</a></li>
+<li><a href="/accessories/">Accessories</a></li>
+</ul>
+</div>
+<div id="dn-colc" class="column">
+<h3><a href="/develop/">Develop</a></h3>
+<ul>
+<li><a href="/xcode/">Xcode</a></li>
+<li><a href="/swift/">Swift</a></li>
+<li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
+<li><a href="/testflight/">TestFlight</a></li>
+<li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
+<li><a href="/videos/">Videos</a></li>
+<li><a href="/download/">Downloads</a></li>
+</ul>
+</div>
+<div id="dn-cold" class="column">
+<h3><a href="/distribute/">Distribute</a></h3>
+<ul>
+<li><a href="/programs/">Developer Program</a></li>
+<li><a href="/app-store/">App Store</a></li>
+<li><a href="/app-store/review/">App Review</a></li>
+<li><a href="/macos/distribution/">Mac Software</a></li>
+<li><a href="/business/distribute/">Apps for Business</a></li>
+<li><a href="/safari/extensions/">Safari Extensions</a></li>
+<li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
+<li><a href="/softwarelicensing/">Trademark Licensing</a></li>
+</ul>
+</div>
+<div id="dn-cole" class="column">
+<h3><a href="/support/">Support</a></h3>
+<ul>
+<li><a href="/support/articles/">Articles</a></li>
+<li><a href="/forums/">Developer Forums</a></li>
+<li><a href="/bug-reporting/">Feedback &amp; Bug Reporting</a></li>
+<li><a href="/system-status/">System Status</a></li>
+<li><a href="/contact/">Contact Us</a></li>
+</ul>
+<h3><a href="/account/">Account</a></h3>
+<ul>
+<li><a href="/account/ios/certificate/">Certificates, Identifiers &amp; Profiles</a></li>
+<li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
+</ul>
+</div>
+</div></nav><div class="ac-gf-footer-legal">
+<div class="ac-gf-footer-news">To view the latest developer news, visit <a href="/news/">News and Updates</a>.</div>
+<div class="ac-gf-footer-language-dropdown-wrapper">
+<select id="footer-language-selector" class="footer-language-select" aria-label="Language Dropdown" autocomplete="off"><option value="https://developer.apple.com/" selected>English</option>
+<option value="https://developer.apple.com/cn/">简体中文</option>
+<option value="https://developer.apple.com/jp/">日本語</option>
+<option value="https://developer.apple.com/kr/">한국어</option></select> <span class="footer-language-select-icon icon icon-chevrondown" aria-hidden="true"></span>
+</div>
+<div class="ac-gf-footer-legal-copyright">Copyright © <span class="footer-current-year">2020</span> <a href="https://www.apple.com">Apple Inc.</a> All rights reserved.</div>
+<div class="ac-gf-footer-legal-links">
+<a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a> <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a> <a href="/terms/">License Agreements</a>
+</div>
+</div></footer></section><script src="../../../tutorials/js/footer.js"></script>
+</body>
+</html>

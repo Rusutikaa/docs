@@ -1,0 +1,855 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- link rel="icon" href="/favicon.ico" -->
+<link rel="mask-icon" href="/apple-logo.svg" color="#333333">
+<link rel="stylesheet" href="../../tutorials/css/_globalnav.css">
+<title>OperationQueue | Apple Developer Documentation</title>
+<link href="../../tutorials/css/chunk-76d5c2b5.00c53891.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic.e358e85c.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css" rel="prefetch">
+<link href="../../tutorials/css/topic.69278f1e.css" rel="prefetch">
+<link href="../../tutorials/css/topic~tutorials-overview.1f93e025.css" rel="prefetch">
+<link href="../../tutorials/css/tutorials-overview.d4ff0b50.css" rel="prefetch">
+<link href="../../tutorials/css/welcome-experience-featured.0537f0f0.css" rel="prefetch">
+<link href="../../tutorials/css/welcome-experience-technologies.60068ae2.css" rel="prefetch">
+<link href="../../tutorials/js/chunk-2d0d3105.459bf725.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-2d21a016.b81cb311.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-503f1ed8.d26c4552.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-530f89ce.621e1d48.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-640db3b2.f8778ca5.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-76d5c2b5.092e3b8a.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic.6abe9458.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js" rel="prefetch">
+<link href="../../tutorials/js/topic.c6ec6b6c.js" rel="prefetch">
+<link href="../../tutorials/js/topic~tutorials-overview.467a8186.js" rel="prefetch">
+<link href="../../tutorials/js/tutorials-overview.d77f61ca.js" rel="prefetch">
+<link href="../../tutorials/js/welcome-experience-featured.04f663e2.js" rel="prefetch">
+<link href="../../tutorials/js/welcome-experience-technologies.56a372c1.js" rel="prefetch">
+<link href="../../tutorials/css/app.2a174a23.css" rel="preload" as="style">
+<link href="../../tutorials/js/app.2c558263.js" rel="preload" as="script">
+<link href="../../tutorials/js/chunk-vendors.c3b68236.js" rel="preload" as="script">
+<link href="../../tutorials/css/app.2a174a23.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../../tutorials/css/chunk-76d5c2b5.00c53891.css">
+<script charset="utf-8" src="../../tutorials/js/chunk-76d5c2b5.092e3b8a.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic.e358e85c.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic.6abe9458.js"></script>
+</head>
+<body>
+<div id="_omniture_top">
+<script>var s_account="awdappledeveloper"</script>
+</div>
+<a href="#main" id="skip-localnav">Skip Navigation</a><aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"><nav id="ac-globalnav" class="js no-touch" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions"><div class="ac-gn-content">
+<ul class="ac-gn-header">
+<li class="ac-gn-item ac-gn-menuicon">
+<label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true"><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span> </span><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span></span></label> <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open"><span class="ac-gn-menuanchor-label">Global Nav Open Menu</span> </a><a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close"><span class="ac-gn-menuanchor-label">Global Nav Close Menu</span></a>
+</li>
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+</ul>
+<div class="ac-gn-search-placeholder-container" role="search"><div class="ac-gn-search ac-gn-search-small"><a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a><div class="ac-gn-search-placeholder-bar">
+<div class="ac-gn-search-placeholder-input"><div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
+<div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
+<span class="ac-gn-search-placeholder">Search Developer</span>
+</div></div>
+<div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></div>
+</div></a></div></div>
+<ul class="ac-gn-list">
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-discover"><a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover"><span class="ac-gn-link-text">Discover</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-design"><a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design"><span class="ac-gn-link-text">Design</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-develop"><a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop"><span class="ac-gn-link-text">Develop</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-distribute"><a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute"><span class="ac-gn-link-text">Distribute</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport"><a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport"><span class="ac-gn-link-text">Support</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-account"><a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account"><span class="ac-gn-link-text">Account</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search"><a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a></li>
+</ul>
+<aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search"><div class="ac-gn-searchview-content">
+<div class="ac-gn-searchview-bar"><div class="ac-gn-searchview-bar-wrapper">
+<form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get"><div class="ac-gn-searchform-wrapper">
+<input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions"> <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button> <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search"><span class="ac-gn-searchform-reset-background"></span></button>
+</div></form>
+<button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></button>
+</div></div>
+<aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
+</div>
+<button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search"><span class="ac-gn-searchview-close-wrapper"><span class="ac-gn-searchview-close-left"></span> <span class="ac-gn-searchview-close-right"></span></span></button></aside>
+</div></nav><div class="ac-gn-blur"></div>
+<div id="ac-gn-curtain" class="ac-gn-curtain"></div>
+<div id="ac-gn-placeholder" class="ac-nav-placeholder"></div>
+<script src="../../tutorials/js/ac-globalnav.built.js"></script>
+<noscript>
+<style>.noscript {
+  font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
+  margin: 92px auto 140px auto;
+  text-align: center;
+  width: 980px;
+}
+
+.noscript-title {
+  color: #111;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -.003em;
+  line-height: 1.08365;
+  margin: 0 auto 54px auto;
+  width: 502px;
+}
+
+@media only screen and (max-width: 1068px) {
+  .noscript {
+    margin: 90px auto 120px auto;
+    width: 692px;
+  }
+
+  .noscript-title {
+    font-size: 40px;
+    letter-spacing: 0;
+    line-height: 1.1;
+    margin: 0 auto 45px auto;
+    width: 420px;
+  }
+}
+
+@media only screen and (max-width: 735px) {
+  .noscript {
+    margin: 45px auto 60px auto;
+    width: 87.5%;
+  }
+
+  .noscript-title {
+    font-size: 32px;
+    letter-spacing: .004em;
+    line-height: 1.125;
+    margin: 0 auto 35px auto;
+    max-width: 330px;
+    width: auto;
+  }
+}
+
+#loading-placeholder {
+  display: none;
+};</style>
+<div class="noscript">
+<h1 class="noscript-title">This page requires JavaScript.</h1>
+<p>Please turn on JavaScript in your browser and refresh the page to view its content.</p>
+</div>
+</noscript>
+<div data-v-0220a4c4="" id="app" class=""><div data-v-0220a4c4=""><div data-v-2deaa168="" class="doc-topic">
+<div data-v-3ceaa5df="" data-v-2deaa168="" class="localnav-container">
+<input data-v-3ceaa5df="" aria-hidden="true" id="localnav-menustate" type="checkbox" class="localnav-menustate"><div id="localnav-sticky-placeholder" class="css-sticky"></div>
+<nav data-v-3ceaa5df="" aria-label="API Reference" data-sticky="" id="localnav" role="navigation" class="localnav localnav-dark theme-dark medium-localnav-collapsible localnav-noborder localnav-scrim css-sticky"><div data-v-3ceaa5df="" class="localnav-wrapper">
+<div data-v-3ceaa5df="" class="referencenav">
+<div data-v-3ceaa5df="" class="localnav-background"></div>
+<div data-v-3ceaa5df="" class="localnav-content">
+<a data-v-3ceaa5df="" href="../../index.html" class="localnav-title">
+            Documentation
+          </a><div data-v-3ceaa5df="" class="localnav-menu">
+<a data-v-3ceaa5df="" href="#localnav-menustate" role="button" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Open Menu</span></a><a data-v-3ceaa5df="" href="#" role="button" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Close Menu</span></a><div data-v-3ceaa5df="" class="localnav-menu-tray">
+<ul data-v-72fd0d2c="" data-v-3ceaa5df="" aria-label="Breadcrumbs" class="localnav-menu-items">
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../documentation/foundation_language-objc.html" class="parent item router-link-active" data-v-23a2ae0d="">
+    Foundation
+  </a></li><!---->
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../documentation/foundation/task_management_language-objc.html" class="parent item" data-v-23a2ae0d="">
+    <span class="enstr">Task Management</span><!--end_enstr-->
+<span class="jpstr">
+タスク管理
+</span><!--end_jpstr-->
+
+  </a></li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item">
+<span data-v-23a2ae0d="" class="current item">
+    OperationQueue
+  </span><!---->
+</li>
+</ul>
+<ul data-v-3ceaa5df="" data-breadcrumbs-count="3" class="localnav-menu-items localnav-menu-settings">
+<li data-v-282336e0="" data-v-3ceaa5df="" class="localnav-menu-setting language-container" breadcrumbcount="3">
+<div data-v-282336e0="" class="language-toggle-container">
+<label data-v-282336e0="" for="language-toggle" class="language-toggle-label">
+      Language:
+    </label><select data-v-282336e0="" id="language-toggle" class="language-dropdown localnav-menu-link" style="width: 38px;"><option data-v-282336e0="" value="swift">
+        Swift
+      </option>
+<option data-v-282336e0="" value="occ">
+        Objective-C
+      </option></select>
+</div>
+<div data-v-282336e0="" class="language-list-container">
+<span data-v-282336e0="" class="localnav-menu-setting-label">
+      Language:
+    </span><ul data-v-282336e0="" class="language-list">
+<li data-v-282336e0="" class="language-list-item"><span data-v-282336e0="" data-language="swift" aria-current="page" class="current-language">
+          Swift
+        </span></li>
+<li data-v-282336e0="" class="language-list-item"><a data-v-282336e0="" href="../../documentation/foundation/nsoperationqueue_language-objc.html" class="localnav-menu-setting-link">
+          Objective-C
+        </a></li>
+</ul>
+</div>
+</li>
+<li data-v-2e9f4ea2="" data-v-3ceaa5df="" class="localnav-menu-setting">
+<label data-v-2e9f4ea2="" for="version-label" class="localnav-menu-setting-label">
+    API Changes:
+  </label><a data-v-2e9f4ea2="" id="version-label" href="#" class="localnav-menu-link version-label version-label-show">
+    Show
+  </a>
+</li><!---->
+
+</ul>
+</div>
+<div data-v-3ceaa5df="" class="localnav-actions"><div data-v-3ceaa5df="" aria-hidden="true" class="localnav-action localnav-action-menucta"><label data-v-3ceaa5df="" for="localnav-menustate" class="localnav-menucta"><span data-v-3ceaa5df="" class="localnav-menucta-chevron"></span></label></div></div>
+</div>
+</div>
+</div><!---->
+
+</div></nav><label data-v-3ceaa5df="" aria-hidden="true" for="localnav-menustate" id="localnav-curtain"></label>
+</div>
+<main data-v-2deaa168="" id="main" role="main" tabindex="0" class="main"><div data-v-4ba5af7c="" data-v-2deaa168="" class="topictitle">
+<span data-v-4ba5af7c="" class="eyebrow">Class</span><h1 data-v-4ba5af7c="" class="title">Operation<wbr data-v-4ba5af7c="">Queue</wbr>
+</h1>
+</div>
+<div data-v-0253ce0e="" data-v-2deaa168="" class="row container">
+<div data-v-9807b2e0="" data-v-5ad0d458="" data-v-2deaa168="" class="col description large-9 medium-9 small-12" data-v-0253ce0e=""><!---->
+<div data-v-7ea0aa49="" data-v-aba749e6="" data-v-2deaa168="" class="abstract content" data-v-9807b2e0=""><span class="enstr">A queue that regulates the execution of operations.</span><!--end_enstr-->
+<span class="jpstr">
+オペレーションいくつかの実行を統制するキュー。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div>
+<div data-v-9807b2e0="" data-v-42fb6bac="" data-v-2deaa168="" class="col summary large-3 medium-3 small-12" data-v-0253ce0e=""><!---->
+<div data-v-e4237090="" data-v-fcdb795a="" data-v-2deaa168="" class="summary-section availability" role="complementary" aria-label="Availability" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-fcdb795a="" class="title" data-v-e4237090=""><span class="enstr">Availability</span><!--end_enstr-->
+<span class="jpstr">
+有効性
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-fcdb795a="" class="summary-list platform-list" data-v-e4237090="">
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="iOS 2.0+, Available on iOS 2.0 and later" title="Available on iOS 2.0 and later" data-v-e3899270="">
+  iOS 2.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="macOS 10.5+, Available on macOS 10.5 and later" title="Available on macOS 10.5 and later" data-v-e3899270="">
+  macOS 10.5+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="Mac Catalyst 13.0+, Available on Mac Catalyst 13.0 and later" title="Available on Mac Catalyst 13.0 and later" data-v-e3899270="">
+  Mac Catalyst 13.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="tvOS 9.0+, Available on tvOS 9.0 and later" title="Available on tvOS 9.0 and later" data-v-e3899270="">
+  tvOS 9.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="watchOS 2.0+, Available on watchOS 2.0 and later" title="Available on watchOS 2.0 and later" data-v-e3899270="">
+  watchOS 2.0+
+</span><!---->
+</li>
+</ul>
+</div>
+<div data-v-e4237090="" data-v-741142ba="" data-v-2deaa168="" class="summary-section frameworks" role="complementary" aria-label="Framework" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-741142ba="" class="title" data-v-e4237090=""><span class="enstr">Framework</span><!--end_enstr-->
+<span class="jpstr">
+フレームワーク
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-741142ba="" class="summary-list" data-v-e4237090=""><li data-v-e3899270="" data-v-741142ba="" class="summary-list-item" data-v-1450532d=""><span data-v-741142ba="" data-v-e3899270="" class="name">Foundation</span></li></ul>
+</div>
+<div data-v-e4237090="" data-v-2b96ab1a="" data-v-2deaa168="" class="summary-section on-this-page" data-v-9807b2e0=""><nav data-v-2b96ab1a="" data-v-e4237090="" aria-labelledby="on-this-page-title"><p data-v-1e0258b0="" data-v-2b96ab1a="" class="title" id="on-this-page-title" data-v-e4237090=""><span class="enstr">On This Page</span><!--end_enstr-->
+<span class="jpstr">
+この項には
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-2b96ab1a="" class="summary-list" data-v-e4237090="">
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/operationqueue_language-objc.html#declaration" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Declaration</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/operationqueue_language-objc.html#overview" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Overview</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/operationqueue_language-objc.html#topics" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Topics</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/operationqueue_language-objc.html#relationships" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Relationships</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/operationqueue_language-objc.html#see-also" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">See Also</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+</ul></nav></div>
+</div>
+<div data-v-9807b2e0="" data-v-1e40f676="" data-v-2deaa168="" class="col primary-content large-9 medium-9 small-12" data-v-0253ce0e="">
+<section data-v-e932e1b8="" data-v-1e40f676="" id="declaration" class="declaration" data-v-9807b2e0=""><h2 data-v-e932e1b8=""><span class="enstr">Declaration</span><!--end_enstr-->
+<span class="jpstr">
+宣言
+</span><!--end_jpstr-->
+</h2>
+<div data-v-29bd318c="" data-v-e932e1b8="" class="declaration-group"><!---->
+<pre data-v-e0a7f756="" data-v-29bd318c="" class="source"><code data-v-e0a7f756=""><span data-v-c9e896f0="" data-v-e0a7f756="" class="token-keyword">class</span> <span data-v-c9e896f0="" data-v-e0a7f756="" class="token-identifier">OperationQueue</span> : <a data-v-c9e896f0="" data-v-e0a7f756="" href="../../documentation/objectivec/nsobject_language-objc.html" class="type-identifier-link"><span data-v-c9e896f0="">NSObject</span></a></code></pre>
+</div><!---->
+</section><div data-v-7ea0aa49="" data-v-1e40f676="" class="content" data-v-9807b2e0="">
+<h2 id="overview"><span class="enstr">Overview</span><!--end_enstr-->
+<span class="jpstr">
+概要
+</span><!--end_jpstr-->
+</h2>
+<p><span class="enstr">An operation queue executes its queued <a href="../../documentation/foundation/operation_language-objc.html" class=""><code data-v-7fb764c1="">Operation</code></a> objects based on their priority and readiness. After being added to an operation queue, an operation remains in its queue until it reports that it is finished with its task. You can’t directly remove an operation from a queue after it has been added.</span><!--end_enstr-->
+<span class="jpstr">
+あるオペレーションキューは、それのキュー内の<a href="../../documentation/foundation/operation_language-objc.html" class=""><code data-v-7fb764c1="">Operation</code></a>オブジェクトをそれらの優先度と準備状況に基づいて遂行します。オペレーションキューに加えられた後、オペレーションはそれのキューの中にそのまま残ります、それがそれのタスクを終了したとそれが報告するまでは。あなたは、オペレーションをそれが加えられてしまった後にキューから直接に取り除くことはできません。
+</span><!--end_jpstr-->
+</p>
+<aside data-v-c567d8a8="" aria-label="note" class="note"><p data-v-c567d8a8="" class="label"><span class="enstr">Note</span><!--end_enstr-->
+<span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+<p data-v-c567d8a8=""><span class="enstr">Operation queues retain operations until they're finished, and queues themselves are retained until all operations are finished. Suspending an operation queue with operations that aren't finished can result in a memory leak.</span><!--end_enstr-->
+<span class="jpstr">
+オペレーションキューは、オペレーションをそれらが終了してしまうまで保持します、そしてキューそれ自身はオペレーション全てが終了してしまうまで保持されます。終了していないオペレーションをもつオペレーションキューを待機（サスペンド）させることは、メモリリークという結果になりえます。
+</span><!--end_jpstr-->
+ </p></aside><p></p>
+<p><span class="enstr">For more information about using operation queues, see <a href="https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008091">Concurrency Programming Guide</a>.</span><!--end_enstr-->
+<span class="jpstr">
+オペレーションキューについてさらなる情報として、<a href="https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008091">Concurrency Programming Guide</a>を見てください。
+</span><!--end_jpstr-->
+ </p>
+<h3 id="2936058"><span class="enstr">Determining Execution Order</span><!--end_enstr-->
+<span class="jpstr">
+遂行順序を決定する
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">Operations within a queue are organized according to their readiness, priority level, and interoperation dependencies, and are executed accordingly. If all of the queued operations have the same <a href="../../documentation/foundation/operation/1411204-queuepriority_language-objc.html" class=""><code data-v-7fb764c1="">queue<wbr data-v-7fb764c1="">Priority</wbr></code></a> and are ready to execute when they are put in the queue—that is, their <a href="../../documentation/foundation/operation/1412992-isready_language-objc.html" class=""><code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Ready</wbr></code></a> property returns <span><code data-v-7fb764c1="">true</code></span>—they’re executed in the order in which they were submitted to the queue. Otherwise, the operation queue always executes the one with the highest priority relative to the other ready operations.</span><!--end_enstr-->
+<span class="jpstr">
+あるキュー内のオペレーションは、それらの準備状況、優先レベル、そして相互運用依存関係によって系統立てられ、そしてそれに沿って遂行されます。キューに入れられたオペレーションの全てが同じ<a href="../../documentation/foundation/operation/1411204-queuepriority_language-objc.html" class=""><code data-v-7fb764c1="">queue<wbr data-v-7fb764c1="">Priority</wbr></code></a>を持ちそしてそれらがキューの中に置かれる時に遂行する準備ができている — すなわち、それらの<a href="../../documentation/foundation/operation/1412992-isready_language-objc.html" class=""><code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Ready</wbr></code></a>プロパティが<span><code data-v-7fb764c1="">true</code></span>を返す — ならば、それらはそれらがキューに提出された順番で遂行されます。そうでなければ、オペレーションキューは他の準備できたオペレーションに相対して最も高い優先度を持つものを常に遂行します。
+</span><!--end_jpstr-->
+ </p>
+<p><span class="enstr">However, you should never rely on queue semantics to ensure a specific execution order of operations, because changes in the readiness of an operation can change the resulting execution order. Interoperation dependencies provide an absolute execution order for operations, even if those operations are located in different operation queues. An operation object is not considered ready to execute until all of its dependent operations have finished executing.</span><!--end_enstr-->
+<span class="jpstr">
+しかしながら、あなたは決してキュー意味論を当てにしてオペレーションそれらのある特定の遂行順序を保証すべきではありません、なぜならあるオペレーションの準備状態での変化がその結果としての遂行順序を変えうるからです。相互作用依存関係は、絶対的な遂行順序をオペレーションそれらに対して提供します、たとえそれらオペレーションが異なるオペレーションキューの中に位置してもです。あるオペレーションオブジェクトは、それの依存オペレーションの全てが遂行を終了してしまうまでは、遂行する準備ができたとみなされません。
+</span><!--end_jpstr-->
+ </p>
+<p><span class="enstr">For details on how to set priority levels and dependencies, see <a href="../../documentation/foundation/operation_language-objc.html#1661485" class="">Managing Dependencies</a> in <a href="../../documentation/foundation/operation_language-objc.html" class=""><code data-v-7fb764c1="">Operation</code></a>.</span><!--end_enstr-->
+<span class="jpstr">
+優先度レベルと依存関係を設定する方法に関する詳細として、<a href="../../documentation/foundation/operation_language-objc.html#1661485" class="">依存関係を管理する</a>を<a href="../../documentation/foundation/operation_language-objc.html" class=""><code data-v-7fb764c1="">Operation</code></a>で見てください。
+</span><!--end_jpstr-->
+</p>
+<h3 id="2936059"><span class="enstr">Canceling Operations</span><!--end_enstr-->
+<span class="jpstr">
+オペレーションの取り消し
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">Finishing its task doesn’t necessarily mean that the operation performed that task to completion; an operation can also be canceled. Canceling an operation object leaves the object in the queue but notifies the object that it should stop its task as quickly as possible. For currently executing operations, this means that the operation object’s work code must check the cancellation state, stop what it is doing, and mark itself as finished. For operations that are queued but not yet executing, the queue must still call the operation object’s <a href="../../documentation/foundation/operation/1416837-start_language-objc.html" class=""><code data-v-7fb764c1="">start()</code></a> method so that it can processes the cancellation event and mark itself as finished.</span><!--end_enstr-->
+<span class="jpstr">
+それのタスクを終了することは、必ずしもオペレーションがそのタスクの実行を完了したことを意味しません；オペレーションはまた取り消されることも可能です。あるオペレーションオブジェクトを取り消すことは、そのオブジェクトをキューの中にそのままにしておきます、しかしそのオブジェクトに、それがそれのタスクを可能な限り素早く停止すべきであることを通知します。現在遂行中のオペレーションに対して、これはオペレーションオブジェクトのもつ作業コードがキャンセル状態を確認して、それがしている何かを停止して、そしてそれ自身を終了したと印しなければならないことを意味します。キューに入れられたがまだ遂行状態になっていないオペレーションそれらに対して、キューは依然としてそのオペレーションオブジェクトのもつ<a href="../../documentation/foundation/operation/1416837-start_language-objc.html" class=""><code data-v-7fb764c1="">start()</code></a>メソッドを呼びださなければなりません、そうすることでそれはキャンセルイベントを処理してそれ自身を終了したと印できます。
+</span><!--end_jpstr-->
+</p>
+<aside data-v-c567d8a8="" aria-label="note" class="note"><p data-v-c567d8a8="" class="label"><span class="enstr">Note</span><!--end_enstr-->
+<span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+<p data-v-c567d8a8=""><span class="enstr">Canceling an operation causes the operation to ignore any dependencies it may have. This behavior makes it possible for the queue to execute the operation’s <span data-v-c567d8a8=""><code data-v-7fb764c1="">start()</code></span> method as soon as possible. The <span data-v-c567d8a8=""><code data-v-7fb764c1="">start()</code></span> method, in turn, moves the operation to the finished state so that it can be removed from the queue.</span><!--end_enstr-->
+<span class="jpstr">
+あるオペレーションを取り消すことは、そのオペレーションに、それが持つかもしれないあらゆる依存関係を無視させます。この挙動は、オペレーションのもつ<span data-v-c567d8a8=""><code data-v-7fb764c1="">start()</code></span>メソッドをできるだけ速やかに遂行することをキューに可能にします。<span data-v-c567d8a8=""><code data-v-7fb764c1="">start()</code></span>メソッドは、今度は、そのオペレーションを終了状態に移し、それでそれはキューから取り除かれることができます。
+</span><!--end_jpstr-->
+</p></aside><p><span class="enstr">For more information about operation cancellation, see <a href="../../documentation/foundation/operation_language-objc.html#1661262" class="">Responding to the Cancel Command</a> in <a href="../../documentation/foundation/operation_language-objc.html" class=""><code data-v-7fb764c1="">Operation</code></a>.</span><!--end_enstr-->
+<span class="jpstr">
+オペレーション取り消しについてのさらなる情報として、<a href="../../documentation/foundation/operation_language-objc.html#1661262" class="">取り消しコマンドに応答する</a>を<a href="../../documentation/foundation/operation_language-objc.html" class=""><code data-v-7fb764c1="">Operation</code></a>で見てください。
+</span><!--end_jpstr-->
+</p>
+<h3 id="1661144"><span class="enstr">KVO-Compliant Properties</span><!--end_enstr-->
+<span class="jpstr">
+KVO準拠プロパティ
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">The <span><code data-v-7fb764c1="">Operation<wbr data-v-7fb764c1="">Queue</wbr></code></span> class is key-value coding (KVC) and key-value observing (KVO) compliant. You can observe these properties as desired to control other parts of your application. To observe the properties, use the following key paths:</span><!--end_enstr-->
+<span class="jpstr">
+<span><code data-v-7fb764c1="">Operation<wbr data-v-7fb764c1="">Queue</wbr></code></span>クラスは、キー値コーディング（KVC）とキー値監視（KVO）準拠です。あなたは、それらのプロパティを望むように監視して、あなたのアプリケーションの他の部分を制御できます。プロパティを監視するには、以下のキーパスを使ってください：
+</span><!--end_jpstr-->
+ </p>
+<ul>
+<li><p><a href="../../documentation/foundation/operationqueue/1415168-operations_language-objc.html" class=""><code data-v-7fb764c1="">operations</code></a> - read-only </p></li>
+<li><p><a href="../../documentation/foundation/operationqueue/1415115-operationcount_language-objc.html" class=""><code data-v-7fb764c1="">operation<wbr data-v-7fb764c1="">Count</wbr></code></a> - read-only </p></li>
+<li><p><a href="../../documentation/foundation/operationqueue/1414982-maxconcurrentoperationcount_language-objc.html" class=""><code data-v-7fb764c1="">max<wbr data-v-7fb764c1="">Concurrent<wbr data-v-7fb764c1="">Operation<wbr data-v-7fb764c1="">Count</wbr></wbr></wbr></code></a> - readable and writable </p></li>
+<li><p><a href="../../documentation/foundation/operationqueue/1415909-issuspended_language-objc.html" class=""><code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Suspended</wbr></code></a> - readable and writable </p></li>
+<li><p><a href="../../documentation/foundation/operationqueue/1418063-name_language-objc.html" class=""><code data-v-7fb764c1="">name</code></a> - readable and writable</p></li>
+</ul>
+<p><span class="enstr">Although you can attach observers to these properties, you shouldn’t use Cocoa bindings to bind them to elements of your application’s user interface. Code associated with your user interface typically must execute only in your app’s main thread. However, KVO notifications associated with an operation queue may occur in any thread.</span><!--end_enstr-->
+<span class="jpstr">
+あなたがオブザーバーをこれらプロパティに添付できるとはいえ、あなたはCocoaバインディングを使ってそれらをあなたのアプリケーションのもつユーザインターフェイスにバインドすべきではありません。あなたのユーザインターフェイスに結びつけられたコードは、概してあなたのアプリのもつメインスレッドにおいてのみ遂行されなければなりません。しかしながら、あるオペレーションキューと結びつけられたKVO通知はどんなスレッドに発生してもかまいません。
+</span><!--end_jpstr-->
+ </p>
+<p><span class="enstr">For more information about key-value observing and how to attach observers to an object, see <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html#//apple_ref/doc/uid/10000177i">Key-Value Observing Programming Guide</a>.</span><!--end_enstr-->
+<span class="jpstr">
+キー値監視とどのようにオブザーバをあるオブジェクトに添付するかについてのさらなる情報として、<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html#//apple_ref/doc/uid/10000177i">Key-Value Observing Programming Guide</a>を見てください。
+</span><!--end_jpstr-->
+</p>
+<h3 id="1661160"><span class="enstr">Thread Safety</span><!--end_enstr-->
+<span class="jpstr">
+スレッド安全
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">It is safe to use a single <span><code data-v-7fb764c1="">Operation<wbr data-v-7fb764c1="">Queue</wbr></code></span> object from multiple threads without creating additional locks to synchronize access to that object.</span><!--end_enstr-->
+<span class="jpstr">
+単一の<span><code data-v-7fb764c1="">Operation<wbr data-v-7fb764c1="">Queue</wbr></code></span>オブジェクトを複数のスレッドから追加のロックを作成してそのオブジェクトへのアクセスを同期することなしに使うことは安全です。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">Operation queues use the <a href="https://developer.apple.com/documentation/dispatch?language=objc" class="">Dispatch</a> framework to initiate the execution of their operations. As a result, operations are always executed on a separate thread, regardless of whether they are designated as synchronous or asynchronous.</span><!--end_enstr-->
+<span class="jpstr">
+オペレーションキューは、<a href="https://developer.apple.com/documentation/dispatch?language=objc" class="">Dispatch</a>フレームワークを使ってそれらのオペレーションの遂行に着手します。結果として、オペレーションそれらは常に別個のスレッド上で遂行されます、それらが同期または非同期として指定されるかどうかに関係なく。
+</span><!--end_jpstr-->
+</p>
+</div>
+</div>
+</div>
+<section data-v-8c663d90="" data-v-63527a60="" data-v-2deaa168="" id="topics" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">Topics</span><!--end_enstr-->
+<span class="jpstr">
+話題
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Accessing Specific Operation Queues</span><!--end_enstr-->
+<span class="jpstr">
+特定のオペレーションキューにアクセスする
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/operationqueue/1409193-main_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class var </span><span data-v-dac213be="" class="identifier">main</span><span data-v-dac213be="" class="decorator">: Operation<wbr data-v-dac213be="">Queue</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the operation queue associated with the main thread.</span><!--end_enstr-->
+<span class="jpstr">
+メインスレッドと結びつけられたオペレーションキューを返します。
+</span><!--end_jpstr-->
+ </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/operationqueue/1413097-current_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class var </span><span data-v-dac213be="" class="identifier">current</span><span data-v-dac213be="" class="decorator">: Operation<wbr data-v-dac213be="">Queue?</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the operation queue that launched the current operation.</span><!--end_enstr-->
+<span class="jpstr">
+現在のオペレーションを開始したオペレーションキューを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Managing Operations in the Queue</span><!--end_enstr-->
+<span class="jpstr">
+キューの中のオペレーションそれらを管理する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/operationqueue/1410704-addoperation_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">add<wbr data-v-dac213be="">Operation</wbr></span><span data-v-dac213be="" class="decorator">(Operation)</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Adds the specified operation to the receiver.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたオペレーションをレシーバに加えます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/operationqueue/1408358-addoperations_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">add<wbr data-v-dac213be="">Operations</wbr></span><span data-v-dac213be="" class="decorator">([Operation], </span><span data-v-dac213be="" class="identifier">wait<wbr data-v-dac213be="">Until<wbr data-v-dac213be="">Finished</wbr></wbr></span><span data-v-dac213be="" class="decorator">: Bool)</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Adds the specified operations to the queue.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたオペレーションをキューに加えます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/operationqueue/1412949-addoperation_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">add<wbr data-v-dac213be="">Operation</wbr></span><span data-v-dac213be="" class="decorator">(() -&gt; Void)</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Wraps the specified block in an operation and adds it to the receiver.</span><!--end_enstr-->
+<span class="jpstr">
+あるオペレーションの中の指定されたブロックをラップして、それをレシーバに加えます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/operationqueue/1415168-operations_language-objc.html" class="link deprecated has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">operations</span><span data-v-dac213be="" class="decorator">: [Operation]</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The operations currently in the queue.</span><!--end_enstr-->
+<span class="jpstr">
+現在キューの中にあるオペレーションそれら。
+</span><!--end_jpstr-->
+ </div><!----><!----><!---->
+
+</div>
+<span data-v-41682aee="" data-v-01f7f080="" role="presentation" class="violator violator-inline"><span class="enstr">Deprecated</span><!--end_enstr-->
+<span class="jpstr">
+非推奨
+</span><!--end_jpstr-->
+</span>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/operationqueue/1415115-operationcount_language-objc.html" class="link deprecated has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">operation<wbr data-v-dac213be="">Count</wbr></span><span data-v-dac213be="" class="decorator">: Int</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The number of operations currently in the queue.</span><!--end_enstr-->
+<span class="jpstr">
+現在キューの中にあるオペレーションの数。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div>
+<span data-v-41682aee="" data-v-01f7f080="" role="presentation" class="violator violator-inline"><span class="enstr">Deprecated</span><!--end_enstr-->
+<span class="jpstr">
+非推奨
+</span><!--end_jpstr-->
+</span>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/operationqueue/1417849-cancelalloperations_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">cancel<wbr data-v-dac213be="">All<wbr data-v-dac213be="">Operations</wbr></wbr></span><span data-v-dac213be="" class="decorator">()</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Cancels all queued and executing operations.</span><!--end_enstr-->
+<span class="jpstr">
+キューに入れられたそして遂行中のオペレーション全てを取り消します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/operationqueue/1407971-waituntilalloperationsarefinishe_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">wait<wbr data-v-dac213be="">Until<wbr data-v-dac213be="">All<wbr data-v-dac213be="">Operations<wbr data-v-dac213be="">Are<wbr data-v-dac213be="">Finished</wbr></wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">()</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Blocks the current thread until all of the receiver’s queued and executing operations finish executing.</span><!--end_enstr-->
+<span class="jpstr">
+レシーバの持つキューの中のそして遂行中のオペレーションの全てが遂行を終了するまで、現在のスレッドを遮断します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Managing the Execution of Operations</span><!--end_enstr-->
+<span class="jpstr">
+オペレーションの遂行を管理する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/operationqueue/1417919-qualityofservice_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">quality<wbr data-v-dac213be="">Of<wbr data-v-dac213be="">Service</wbr></wbr></span><span data-v-dac213be="" class="decorator">: Quality<wbr data-v-dac213be="">Of<wbr data-v-dac213be="">Service</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The default service level to apply to operations executed using the queue.</span><!--end_enstr-->
+<span class="jpstr">
+このキューを使って遂行されるオペレーションに適用する省略時のサービスレベル。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/operationqueue/1414982-maxconcurrentoperationcount_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">max<wbr data-v-dac213be="">Concurrent<wbr data-v-dac213be="">Operation<wbr data-v-dac213be="">Count</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: Int</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The maximum number of queued operations that can execute at the same time.</span><!--end_enstr-->
+<span class="jpstr">
+キューの中の同時に遂行できるオペレーションの最大限の数。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/operationqueue/1411680-defaultmaxconcurrentoperationcou_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class let </span><span data-v-dac213be="" class="identifier">default<wbr data-v-dac213be="">Max<wbr data-v-dac213be="">Concurrent<wbr data-v-dac213be="">Operation<wbr data-v-dac213be="">Count</wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: Int</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The default maximum number of operations to be executed concurrently in a queue.</span><!--end_enstr-->
+<span class="jpstr">
+あるキューにおいて平行に遂行されるオペレーションの省略時の最大限の数。
+</span><!--end_jpstr-->
+   </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Suspending Execution</span><!--end_enstr-->
+<span class="jpstr">
+遂行を一時停止する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/operationqueue/1415909-issuspended_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">is<wbr data-v-dac213be="">Suspended</wbr></span><span data-v-dac213be="" class="decorator">: Bool</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A Boolean value indicating whether the queue is actively scheduling operations for execution.</span><!--end_enstr-->
+<span class="jpstr">
+そのキューが遂行のためにオペレーションを積極的に予定に入れるかどうかを指し示しているブール値。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Configuring the Queue</span><!--end_enstr-->
+<span class="jpstr">
+キューを構成設定する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/operationqueue/1418063-name_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">name</span><span data-v-dac213be="" class="decorator">: String?</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The name of the operation queue.</span><!--end_enstr-->
+<span class="jpstr">
+オペレーションキューの名前。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/operationqueue/1415344-underlyingqueue_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">underlying<wbr data-v-dac213be="">Queue</wbr></span><span data-v-dac213be="" class="decorator">: Dispatch<wbr data-v-dac213be="">Queue?</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The dispatch queue used to execute operations.</span><!--end_enstr-->
+<span class="jpstr">
+オペレーションを遂行するのに使われるディスパッチキュー。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Instance Properties</span><!--end_enstr-->
+<span class="jpstr">
+インスタンスプロパティ 
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/operationqueue/3329362-minimumtolerance_language-objc.html" class="link"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">minimum<wbr data-v-dac213be="">Tolerance</wbr></span><span data-v-dac213be="" class="decorator">: Operation<wbr data-v-dac213be="">Queue<wbr data-v-dac213be="">.Scheduler<wbr data-v-dac213be="">Time<wbr data-v-dac213be="">Type<wbr data-v-dac213be="">.Stride</wbr></wbr></wbr></wbr></wbr></span></code><!----><!----><!----></a>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/operationqueue/3329363-now_language-objc.html" class="link"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">now</span><span data-v-dac213be="" class="decorator">: Operation<wbr data-v-dac213be="">Queue<wbr data-v-dac213be="">.Scheduler<wbr data-v-dac213be="">Time<wbr data-v-dac213be="">Type</wbr></wbr></wbr></wbr></span></code><!----><!----><!----></a>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/operationqueue/3172535-progress_language-objc.html" class="link"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">progress</span><span data-v-dac213be="" class="decorator">: Progress</span></code><!----><!----><!----></a>
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Instance Methods</span><!--end_enstr-->
+<span class="jpstr">
+インスタンス メソッド
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/operationqueue/3172534-addbarrierblock_language-objc.html" class="link"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">add<wbr data-v-dac213be="">Barrier<wbr data-v-dac213be="">Block</wbr></wbr></span><span data-v-dac213be="" class="decorator">(() -&gt; Void)</span></code><!----><!----><!----></a>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/operationqueue/3329364-schedule_language-objc.html" class="link"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">schedule</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">after</span><span data-v-dac213be="" class="decorator">: Operation<wbr data-v-dac213be="">Queue<wbr data-v-dac213be="">.Scheduler<wbr data-v-dac213be="">Time<wbr data-v-dac213be="">Type, </wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="identifier">interval</span><span data-v-dac213be="" class="decorator">: Operation<wbr data-v-dac213be="">Queue<wbr data-v-dac213be="">.Scheduler<wbr data-v-dac213be="">Time<wbr data-v-dac213be="">Type<wbr data-v-dac213be="">.Stride, </wbr></wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="identifier">tolerance</span><span data-v-dac213be="" class="decorator">: Operation<wbr data-v-dac213be="">Queue<wbr data-v-dac213be="">.Scheduler<wbr data-v-dac213be="">Time<wbr data-v-dac213be="">Type<wbr data-v-dac213be="">.Stride, </wbr></wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="identifier">options</span><span data-v-dac213be="" class="decorator">: Operation<wbr data-v-dac213be="">Queue<wbr data-v-dac213be="">.Scheduler<wbr data-v-dac213be="">Options?, () -&gt; Void) -&gt; Cancellable</wbr></wbr></wbr></span></code><!----><!----><!----></a>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/operationqueue/3329365-schedule_language-objc.html" class="link"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">schedule</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">after</span><span data-v-dac213be="" class="decorator">: Operation<wbr data-v-dac213be="">Queue<wbr data-v-dac213be="">.Scheduler<wbr data-v-dac213be="">Time<wbr data-v-dac213be="">Type, </wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="identifier">tolerance</span><span data-v-dac213be="" class="decorator">: Operation<wbr data-v-dac213be="">Queue<wbr data-v-dac213be="">.Scheduler<wbr data-v-dac213be="">Time<wbr data-v-dac213be="">Type<wbr data-v-dac213be="">.Stride, </wbr></wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="identifier">options</span><span data-v-dac213be="" class="decorator">: Operation<wbr data-v-dac213be="">Queue<wbr data-v-dac213be="">.Scheduler<wbr data-v-dac213be="">Options?, () -&gt; Void)</wbr></wbr></wbr></span></code><!----><!----><!----></a>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/operationqueue/3329366-schedule_language-objc.html" class="link"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">schedule</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">options</span><span data-v-dac213be="" class="decorator">: Operation<wbr data-v-dac213be="">Queue<wbr data-v-dac213be="">.Scheduler<wbr data-v-dac213be="">Options?, () -&gt; Void)</wbr></wbr></wbr></span></code><!----><!----><!----></a>
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Structures</span><!--end_enstr-->
+<span class="jpstr">
+構造体 
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/operationqueue/scheduleroptions_language-objc.html" class="link"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">struct </span><span data-v-dac213be="" class="identifier">Operation<wbr data-v-dac213be="">Queue<wbr data-v-dac213be="">.Scheduler<wbr data-v-dac213be="">Options</wbr></wbr></wbr></span></code><!----><!----><!----></a>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic has-inline-element" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/operationqueue/schedulertimetype_language-objc.html" class="link"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">struct </span><span data-v-dac213be="" class="identifier">Operation<wbr data-v-dac213be="">Queue<wbr data-v-dac213be="">.Scheduler<wbr data-v-dac213be="">Time<wbr data-v-dac213be="">Type</wbr></wbr></wbr></wbr></span></code><!----><!----><!----></a>
+</div>
+</div>
+</div>
+</div><!----></section><section data-v-8c663d90="" data-v-2deaa168="" id="relationships" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">Relationships</span><!--end_enstr-->
+<span class="jpstr">
+関係
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Inherits From</span><!--end_enstr-->
+<span class="jpstr">
+継承元
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><ul data-v-4af8f78e="" class="relationships-list inline" data-v-9807b2e0=""><li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/objectivec/nsobject_language-objc.html" class="link"><code data-v-4af8f78e="">NSObject</code></a><!---->
+</li></ul></div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Conforms To</span><!--end_enstr-->
+<span class="jpstr">
+次に準拠
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><ul data-v-4af8f78e="" class="relationships-list column" data-v-9807b2e0="">
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/cvararg_language-objc.html" class="link"><code data-v-4af8f78e="">CVar<wbr data-v-4af8f78e="">Arg</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/equatable_language-objc.html" class="link"><code data-v-4af8f78e="">Equatable</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/hashable_language-objc.html" class="link"><code data-v-4af8f78e="">Hashable</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/progressreporting_language-objc.html" class="link"><code data-v-4af8f78e="">Progress<wbr data-v-4af8f78e="">Reporting</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/combine/scheduler?language=objc" class="link"><code data-v-4af8f78e="">Scheduler</code></a><!---->
+</li>
+</ul></div>
+</div>
+</div></section><section data-v-8c663d90="" data-v-63527a60="" data-v-2deaa168="" id="see-also" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">See Also</span><!--end_enstr-->
+<span class="jpstr">
+参照
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Operations</span><!--end_enstr-->
+<span class="jpstr">
+さまざまな演算
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/operation_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class </span><span data-v-dac213be="" class="identifier">Operation</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">An abstract class that represents the code and data associated with a single task.</span><!--end_enstr-->
+<span class="jpstr">
+ある単一のタスクと結びつけられたコードおよびデータを表す抽象クラス。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/blockoperation_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class </span><span data-v-dac213be="" class="identifier">Block<wbr data-v-dac213be="">Operation</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">An operation that manages the concurrent execution of one or more blocks.</span><!--end_enstr-->
+<span class="jpstr">
+ひとつ以上のブロックの並列実行を管理するある演算。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+</div><!----></section></main>
+</div></div></div>
+<section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo"><nav class="footer-breadory"><a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a><section class="breadcrumbs"><ol class="breadcrumbs-list"></ol></section><div id="directorynav" class="directorynav">
+<div id="dn-cola" class="column">
+<h3><a href="/discover/">Discover</a></h3>
+<ul>
+<li><a href="/ios/">iOS</a></li>
+<li><a href="/ipados/">iPadOS</a></li>
+<li><a href="/macos/">macOS</a></li>
+<li><a href="/tvos/">tvOS</a></li>
+<li><a href="/watchos/">watchOS</a></li>
+<li><a href="/safari/">Safari and Web</a></li>
+<li><a href="/games/">Games</a></li>
+<li><a href="/business/">Business</a></li>
+<li><a href="/education/">Education</a></li>
+<li><a href="/wwdc/">WWDC</a></li>
+</ul>
+</div>
+<div id="dn-colb" class="column">
+<h3><a href="/design/">Design</a></h3>
+<ul>
+<li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
+<li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
+<span class="jpstr">
+リソース
+</span><!--end_jpstr-->
+</a></li>
+<li><a href="/videos/design/">Videos</a></li>
+<li><a href="/design/awards/">Apple Design Awards</a></li>
+<li><a href="/fonts/">Fonts</a></li>
+<li><a href="/accessibility/">Accessibility</a></li>
+<li><a href="/localization/"><span class="enstr">Localization</span><!--end_enstr-->
+<span class="jpstr">
+ローカライゼーション
+</span><!--end_jpstr-->
+</a></li>
+<li><a href="/accessories/">Accessories</a></li>
+</ul>
+</div>
+<div id="dn-colc" class="column">
+<h3><a href="/develop/">Develop</a></h3>
+<ul>
+<li><a href="/xcode/">Xcode</a></li>
+<li><a href="/swift/">Swift</a></li>
+<li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
+<li><a href="/testflight/">TestFlight</a></li>
+<li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
+<li><a href="/videos/">Videos</a></li>
+<li><a href="/download/">Downloads</a></li>
+</ul>
+</div>
+<div id="dn-cold" class="column">
+<h3><a href="/distribute/">Distribute</a></h3>
+<ul>
+<li><a href="/programs/">Developer Program</a></li>
+<li><a href="/app-store/">App Store</a></li>
+<li><a href="/app-store/review/">App Review</a></li>
+<li><a href="/macos/distribution/">Mac Software</a></li>
+<li><a href="/business/distribute/">Apps for Business</a></li>
+<li><a href="/safari/extensions/">Safari Extensions</a></li>
+<li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
+<li><a href="/softwarelicensing/">Trademark Licensing</a></li>
+</ul>
+</div>
+<div id="dn-cole" class="column">
+<h3><a href="/support/">Support</a></h3>
+<ul>
+<li><a href="/support/articles/">Articles</a></li>
+<li><a href="/forums/">Developer Forums</a></li>
+<li><a href="/bug-reporting/">Feedback &amp; Bug Reporting</a></li>
+<li><a href="/system-status/">System Status</a></li>
+<li><a href="/contact/">Contact Us</a></li>
+</ul>
+<h3><a href="/account/">Account</a></h3>
+<ul>
+<li><a href="/account/ios/certificate/">Certificates, Identifiers &amp; Profiles</a></li>
+<li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
+</ul>
+</div>
+</div></nav><div class="ac-gf-footer-legal">
+<div class="ac-gf-footer-news">To view the latest developer news, visit <a href="/news/">News and Updates</a>.</div>
+<div class="ac-gf-footer-language-dropdown-wrapper">
+<select id="footer-language-selector" class="footer-language-select" aria-label="Language Dropdown" autocomplete="off"><option value="https://developer.apple.com/" selected>English</option>
+<option value="https://developer.apple.com/cn/">简体中文</option>
+<option value="https://developer.apple.com/jp/">日本語</option>
+<option value="https://developer.apple.com/kr/">한국어</option></select> <span class="footer-language-select-icon icon icon-chevrondown" aria-hidden="true"></span>
+</div>
+<div class="ac-gf-footer-legal-copyright">Copyright © <span class="footer-current-year">2020</span> <a href="https://www.apple.com">Apple Inc.</a> All rights reserved.</div>
+<div class="ac-gf-footer-legal-links">
+<a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a> <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a> <a href="/terms/">License Agreements</a>
+</div>
+</div></footer></section><script src="../../tutorials/js/footer.js"></script>
+</body>
+</html>

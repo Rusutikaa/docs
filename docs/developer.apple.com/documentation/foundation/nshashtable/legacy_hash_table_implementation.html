@@ -1,370 +1,684 @@
-<!DOCTYPE html><html lang="en" data-reactroot=""><head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>Legacy Hash Table Implementation | Apple Developer Documentation</title><!-- link href="https://www.apple.com/wss/fonts?families=SF+Pro,v1|SF+Mono,v1|SF+Pro+Icons,v1" media="all" rel="stylesheet" type="text/css"/ --><meta content="width=device-width, initial-scale=1 viewport-fit=cover" name="viewport"/><meta data-pid="463568"/><link href="../../../documentation/assets/application-e5bb1544.css" media="all" rel="stylesheet" type="text/css"/><noscript><link href="../../../documentation/assets/nojs-c6be9131.css" media="all" rel="stylesheet" type="text/css"/></noscript><link rel="mask-icon" href="../../../documentation/assets/apple-logo.svg" color="#000"/><link rel="shortcut icon" href="../../../documentation/assets/favicon.ico"/><script src="../../../documentation/assets/shared-b7676010.js"></script></head><body><div id="_omniture_top">
-      <script>
-        var s_account="awdappledeveloper"
-      </script><!-- script src="https://developer.apple.com/assets/metrics/scripts/analytics.js" -->
-      </script>
-      <script>
-        s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
-        s.channel="www.documentation.developer"
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- link rel="icon" href="/favicon.ico" -->
+<link rel="mask-icon" href="/apple-logo.svg" color="#333333">
+<link rel="stylesheet" href="../../../tutorials/css/_globalnav.css">
+<title>Legacy Hash Table Implementation | Apple Developer Documentation</title>
+<link href="../../../tutorials/css/chunk-76d5c2b5.00c53891.css" rel="prefetch">
+<link href="../../../tutorials/css/documentation-topic.e358e85c.css" rel="prefetch">
+<link href="../../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css" rel="prefetch">
+<link href="../../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css" rel="prefetch">
+<link href="../../../tutorials/css/topic.69278f1e.css" rel="prefetch">
+<link href="../../../tutorials/css/topic~tutorials-overview.1f93e025.css" rel="prefetch">
+<link href="../../../tutorials/css/tutorials-overview.d4ff0b50.css" rel="prefetch">
+<link href="../../../tutorials/css/welcome-experience-featured.0537f0f0.css" rel="prefetch">
+<link href="../../../tutorials/css/welcome-experience-technologies.60068ae2.css" rel="prefetch">
+<link href="../../../tutorials/js/chunk-2d0d3105.459bf725.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-2d21a016.b81cb311.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-503f1ed8.d26c4552.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-530f89ce.621e1d48.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-640db3b2.f8778ca5.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-76d5c2b5.092e3b8a.js" rel="prefetch">
+<link href="../../../tutorials/js/documentation-topic.6abe9458.js" rel="prefetch">
+<link href="../../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js" rel="prefetch">
+<link href="../../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js" rel="prefetch">
+<link href="../../../tutorials/js/topic.c6ec6b6c.js" rel="prefetch">
+<link href="../../../tutorials/js/topic~tutorials-overview.467a8186.js" rel="prefetch">
+<link href="../../../tutorials/js/tutorials-overview.d77f61ca.js" rel="prefetch">
+<link href="../../../tutorials/js/welcome-experience-featured.04f663e2.js" rel="prefetch">
+<link href="../../../tutorials/js/welcome-experience-technologies.56a372c1.js" rel="prefetch">
+<link href="../../../tutorials/css/app.2a174a23.css" rel="preload" as="style">
+<link href="../../../tutorials/js/app.2c558263.js" rel="preload" as="script">
+<link href="../../../tutorials/js/chunk-vendors.c3b68236.js" rel="preload" as="script">
+<link href="../../../tutorials/css/app.2a174a23.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../../../tutorials/css/chunk-76d5c2b5.00c53891.css">
+<script charset="utf-8" src="../../../tutorials/js/chunk-76d5c2b5.092e3b8a.js"></script><link rel="stylesheet" type="text/css" href="../../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css">
+<script charset="utf-8" src="../../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js"></script><link rel="stylesheet" type="text/css" href="../../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css">
+<script charset="utf-8" src="../../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js"></script><link rel="stylesheet" type="text/css" href="../../../tutorials/css/documentation-topic.e358e85c.css">
+<script charset="utf-8" src="../../../tutorials/js/documentation-topic.6abe9458.js"></script>
+</head>
+<body>
+<div id="_omniture_top">
+<script>var s_account="awdappledeveloper"</script>
+</div>
+<a href="#main" id="skip-localnav">Skip Navigation</a><aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"><nav id="ac-globalnav" class="js no-touch" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions"><div class="ac-gn-content">
+<ul class="ac-gn-header">
+<li class="ac-gn-item ac-gn-menuicon">
+<label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true"><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span> </span><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span></span></label> <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open"><span class="ac-gn-menuanchor-label">Global Nav Open Menu</span> </a><a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close"><span class="ac-gn-menuanchor-label">Global Nav Close Menu</span></a>
+</li>
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+</ul>
+<div class="ac-gn-search-placeholder-container" role="search"><div class="ac-gn-search ac-gn-search-small"><a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a><div class="ac-gn-search-placeholder-bar">
+<div class="ac-gn-search-placeholder-input"><div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
+<div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
+<span class="ac-gn-search-placeholder">Search Developer</span>
+</div></div>
+<div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></div>
+</div></a></div></div>
+<ul class="ac-gn-list">
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-discover"><a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover"><span class="ac-gn-link-text">Discover</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-design"><a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design"><span class="ac-gn-link-text">Design</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-develop"><a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop"><span class="ac-gn-link-text">Develop</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-distribute"><a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute"><span class="ac-gn-link-text">Distribute</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport"><a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport"><span class="ac-gn-link-text">Support</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-account"><a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account"><span class="ac-gn-link-text">Account</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search"><a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a></li>
+</ul>
+<aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search"><div class="ac-gn-searchview-content">
+<div class="ac-gn-searchview-bar"><div class="ac-gn-searchview-bar-wrapper">
+<form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get"><div class="ac-gn-searchform-wrapper">
+<input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions"> <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button> <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search"><span class="ac-gn-searchform-reset-background"></span></button>
+</div></form>
+<button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></button>
+</div></div>
+<aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
+</div>
+<button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search"><span class="ac-gn-searchview-close-wrapper"><span class="ac-gn-searchview-close-left"></span> <span class="ac-gn-searchview-close-right"></span></span></button></aside>
+</div></nav><div class="ac-gn-blur"></div>
+<div id="ac-gn-curtain" class="ac-gn-curtain"></div>
+<div id="ac-gn-placeholder" class="ac-nav-placeholder"></div>
+<script src="../../../tutorials/js/ac-globalnav.built.js"></script>
+<noscript>
+<style>.noscript {
+  font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
+  margin: 92px auto 140px auto;
+  text-align: center;
+  width: 980px;
+}
 
-        var s_code=s.t();if(s_code)document.write(s_code)
-      </script>
-    </div><div id="app"><div><a href="#main" id="skip-localnav" class="showonfocus hidden">Skip Navigation</a><aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"/><nav id="ac-globalnav" class="no-js" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions/">
-      <div class="ac-gn-content">
-        <ul class="ac-gn-header">
-          <li class="ac-gn-item ac-gn-menuicon">
-            <label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true">
-              <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top">
-                <span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span>
-              </span>
-              <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom">
-                <span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span>
-              </span>
-            </label>
-            <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open">
-              <span class="ac-gn-menuanchor-label">Global Nav Open Menu</span>
-            </a>
-            <a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close">
-              <span class="ac-gn-menuanchor-label">Global Nav Close Menu</span>
-            </a>
-          </li>
-          <li class="ac-gn-item ac-gn-apple">
-            <a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small">
-              <span class="ac-gn-link-text">Apple Developer</span>
-            </a>
-          </li>
-        </ul>
-        <div class="ac-gn-search-placeholder-container" role="search">
-          <div class="ac-gn-search ac-gn-search-small">
-            <a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link aria-label="Search Developer">
-              </a><div class="ac-gn-search-placeholder-bar">
-                <div class="ac-gn-search-placeholder-input">
-                  <div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
-                    <div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
-                    <span class="ac-gn-search-placeholder">Search Developer</span>
-                  </div>
-                </div>
-                <div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close">
-                  <span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-        <ul class="ac-gn-list">
-          <li class="ac-gn-item ac-gn-apple">
-            <a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus">
-              <span class="ac-gn-link-text">Apple Developer</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-discover">
-            <a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover">
-              <span class="ac-gn-link-text">Discover</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-design">
-            <a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design">
-              <span class="ac-gn-link-text">Design</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-develop">
-            <a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop">
-              <span class="ac-gn-link-text">Develop</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-distribute">
-            <a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute">
-              <span class="ac-gn-link-text">Distribute</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport">
-            <a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport">
-              <span class="ac-gn-link-text">Support</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-account">
-            <a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account">
-              <span class="ac-gn-link-text">Account</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search">
-            <a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link aria-label="Search Developer"></a>
-          </li>
-        </ul>
-        <aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search">
-          <div class="ac-gn-searchview-content">
-            <div class="ac-gn-searchview-bar">
-              <div class="ac-gn-searchview-bar-wrapper">
-                <form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get">
-                  <div class="ac-gn-searchform-wrapper">
-                    <input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions" />
-                    <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button>
-                    <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search">
-                        <span class="ac-gn-searchform-reset-background"></span>
-                      </button>
-                  </div>
-                </form>
-                <button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search">
-                    <span class="ac-gn-searchview-close-cancel" aria-hidden="true">
-                      Cancel
-                    </span>
-                  </button>
-              </div>
-            </div>
-            <aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
-          </div>
-          <button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search">
-              <span class="ac-gn-searchview-close-wrapper">
-                <span class="ac-gn-searchview-close-left"></span>
-                <span class="ac-gn-searchview-close-right"></span>
-              </span>
-            </button>
-        </aside>
-          </div>
-    </nav><div class="ac-gn-blur"></div><div id="ac-gn-curtain" class="ac-gn-curtain"></div><div id="ac-gn-placeholder" class="ac-nav-placeholder"></div><input type="checkbox" id="localnav-menustate" class="localnav-menustate" aria-hidden="true"/><nav id="localnav" class="localnav localnav-dark theme-dark localnav-scrim localnav-noborder" role="navigation" aria-label="API Reference" data-sticky="true"><div class="localnav-wrapper"><div class="referencenav"><div class="localnav-background"></div><div class="localnav-content"><a href="../../../index.html" class="localnav-title">Documentation</a><div class="localnav-menu"><a href="#localnav-menustate" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span class="localnav-menucta-anchor-label" aria-hidden="true">Open Menu</span></a><a href="#" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span class="localnav-menucta-anchor-label" aria-hidden="true">Close Menu</span></a><div class="localnav-menu-tray"><ul aria-label="Breadcrumbs" class="localnav-menu-items localnav-menu-breadcrumbs"><li class="localnav-menu-item localnav-menu-breadcrumb-item truncated"><a class="localnav-menu-link" href="../../../documentation/foundation.html">Foundation</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item truncated"><a class="localnav-menu-link" href="../../../documentation/foundation/collections.html"><span class="enstr">Collections</span><!--end_enstr-->
+.noscript-title {
+  color: #111;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -.003em;
+  line-height: 1.08365;
+  margin: 0 auto 54px auto;
+  width: 502px;
+}
+
+@media only screen and (max-width: 1068px) {
+  .noscript {
+    margin: 90px auto 120px auto;
+    width: 692px;
+  }
+
+  .noscript-title {
+    font-size: 40px;
+    letter-spacing: 0;
+    line-height: 1.1;
+    margin: 0 auto 45px auto;
+    width: 420px;
+  }
+}
+
+@media only screen and (max-width: 735px) {
+  .noscript {
+    margin: 45px auto 60px auto;
+    width: 87.5%;
+  }
+
+  .noscript-title {
+    font-size: 32px;
+    letter-spacing: .004em;
+    line-height: 1.125;
+    margin: 0 auto 35px auto;
+    max-width: 330px;
+    width: auto;
+  }
+}
+
+#loading-placeholder {
+  display: none;
+};</style>
+<div class="noscript">
+<h1 class="noscript-title">This page requires JavaScript.</h1>
+<p>Please turn on JavaScript in your browser and refresh the page to view its content.</p>
+</div>
+</noscript>
+<div data-v-0220a4c4="" id="app" class=""><div data-v-0220a4c4=""><div data-v-2deaa168="" class="doc-topic">
+<div data-v-3ceaa5df="" data-v-2deaa168="" class="localnav-container">
+<input data-v-3ceaa5df="" aria-hidden="true" id="localnav-menustate" type="checkbox" class="localnav-menustate"><div id="localnav-sticky-placeholder" class="css-sticky"></div>
+<nav data-v-3ceaa5df="" aria-label="API Reference" data-sticky="" id="localnav" role="navigation" class="localnav localnav-dark theme-dark medium-localnav-collapsible localnav-noborder localnav-scrim css-sticky"><div data-v-3ceaa5df="" class="localnav-wrapper">
+<div data-v-3ceaa5df="" class="referencenav">
+<div data-v-3ceaa5df="" class="localnav-background"></div>
+<div data-v-3ceaa5df="" class="localnav-content">
+<a data-v-3ceaa5df="" href="../../../index.html" class="localnav-title">
+            Documentation
+          </a><div data-v-3ceaa5df="" class="localnav-menu">
+<a data-v-3ceaa5df="" href="#localnav-menustate" role="button" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Open Menu</span></a><a data-v-3ceaa5df="" href="#" role="button" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Close Menu</span></a><div data-v-3ceaa5df="" class="localnav-menu-tray">
+<ul data-v-72fd0d2c="" data-v-3ceaa5df="" aria-label="Breadcrumbs" class="localnav-menu-items">
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item collapsed"><a data-v-72fd0d2c="" href="../../../documentation/foundation.html" class="parent item router-link-active" data-v-23a2ae0d="">
+    Foundation
+  </a></li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item collapsed"><a data-v-72fd0d2c="" href="../../../documentation/foundation/collections.html" class="parent item" data-v-23a2ae0d="">
+    <span class="enstr">Collections</span><!--end_enstr-->
 <span class="jpstr">
 さまざまなコレクション
 </span><!--end_jpstr-->
-</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item truncated-breadcrumbs"><button class="localnav-menu-breadcrumb-link truncated-breadcrumbs-disclosebtn"><span class="truncated-breadcrumbs-disclosebtn-indicator">⋯</span></button><ul class="truncated-breadcrumbs-dropdown"><li class="truncated-breadcrumbs-dropdown-item"><a class="truncated-breadcrumbs-dropdown-item-link" href="../../../documentation/foundation.html">Foundation</a></li><li class="truncated-breadcrumbs-dropdown-item"><a class="truncated-breadcrumbs-dropdown-item-link" href="../../../documentation/foundation/collections.html"><span class="enstr">Collections</span><!--end_enstr-->
+
+  </a></li>
+<li data-v-68bd9d1f="" data-v-72fd0d2c="" class="localnav-menu-item hierarchy-collapsed-items">
+<button data-v-68bd9d1f="" class="toggle"><span data-v-68bd9d1f="" class="indicator">⋯</span></button><ul data-v-68bd9d1f="" class="dropdown collapsed">
+<li data-v-68bd9d1f="" class="dropdown-item"><a data-v-68bd9d1f="" href="../../../documentation/foundation.html" class="link router-link-active">Foundation</a></li>
+<li data-v-68bd9d1f="" class="dropdown-item"><a data-v-68bd9d1f="" href="../../../documentation/foundation/collections.html" class="link"><span class="enstr">Collections</span><!--end_enstr-->
 <span class="jpstr">
 さまざまなコレクション
 </span><!--end_jpstr-->
-</a></li></ul></li><li class="localnav-menu-item localnav-menu-breadcrumb-item"><a class="localnav-menu-link" href="../../../documentation/foundation/nshashtable.html">NSHashTable</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item"><div class="localnav-menu-breadcrumb-current-container localnav-menu-link current"><span aria-current="page" class="localnav-menu-breadcrumb-current"><span class="enstr">Legacy Hash Table Implementation</span><!--end_enstr-->
+</a></li>
+</ul>
+</li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../../documentation/foundation/nshashtable.html" class="parent item router-link-active" data-v-23a2ae0d="">
+    NSHashTable
+  </a></li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item">
+<span data-v-23a2ae0d="" class="current item">
+    <span class="enstr">Legacy Hash Table Implementation</span><!--end_enstr-->
 <span class="jpstr">
 レガシーハッシュテーブル実装
 </span><!--end_jpstr-->
-</span></div></li></ul><ul class="localnav-menu-items localnav-menu-settings" data-breadcrumbs-count="4"><li class="localnav-menu-setting language-container"><div class="language-toggle-container"><label for="language-toggle" class="language-toggle-label">Language:</label><select id="language-toggle" class="language-dropdown localnav-menu-link" style="width:auto"><option selected="" value="swift">Swift</option><option value="occ">Objective-C</option></select></div><div class="language-list-container"><span class="localnav-menu-setting-label">Language:</span><ul class="language-list"><li class="language-list-item"><span data-language="swift" aria-current="page" class="current-language">Swift</span></li><li class="language-list-item"><a href="../../../documentation/foundation/nshashtable/legacy_hash_table_implementation?language=objc.html" class="localnav-menu-setting-link">Objective-C</a></li></ul></div></li><li class="localnav-menu-setting"><span class="localnav-menu-setting-label">API Changes:</span><span class="changes-toggle">None</span></li></ul></div><div class="localnav-actions"><div class="localnav-action localnav-action-menucta" aria-hidden="true"><label for="localnav-menustate" class="localnav-menucta"><span class="localnav-menucta-chevron"></span></label></div></div></div></div></div></div></nav><label for="localnav-menustate" id="localnav-curtain" aria-hidden="true"></label><main role="main" id="main" class="main" tabindex="0"><div class="topic-title"><h1 class="topic-heading"><span><span class="enstr">Legacy Hash Table Implementation</span><!--end_enstr-->
+
+  </span><!---->
+</li>
+</ul>
+<ul data-v-3ceaa5df="" data-breadcrumbs-count="4" class="localnav-menu-items localnav-menu-settings">
+<li data-v-282336e0="" data-v-3ceaa5df="" class="localnav-menu-setting language-container" breadcrumbcount="4">
+<div data-v-282336e0="" class="language-toggle-container">
+<label data-v-282336e0="" for="language-toggle" class="language-toggle-label">
+      Language:
+    </label><select data-v-282336e0="" id="language-toggle" class="language-dropdown localnav-menu-link" style="width: 38px;"><option data-v-282336e0="" value="swift">
+        Swift
+      </option>
+<option data-v-282336e0="" value="occ">
+        Objective-C
+      </option></select>
+</div>
+<div data-v-282336e0="" class="language-list-container">
+<span data-v-282336e0="" class="localnav-menu-setting-label">
+      Language:
+    </span><ul data-v-282336e0="" class="language-list">
+<li data-v-282336e0="" class="language-list-item"><span data-v-282336e0="" data-language="swift" aria-current="page" class="current-language">
+          Swift
+        </span></li>
+<li data-v-282336e0="" class="language-list-item"><a data-v-282336e0="" href="../../../documentation/foundation/nshashtable/legacy_hash_table_implementation_language-objc.html" class="localnav-menu-setting-link">
+          Objective-C
+        </a></li>
+</ul>
+</div>
+</li>
+<li data-v-2e9f4ea2="" data-v-3ceaa5df="" class="localnav-menu-setting">
+<label data-v-2e9f4ea2="" for="version-label" class="localnav-menu-setting-label">
+    API Changes:
+  </label><span data-v-2e9f4ea2=""><span class="enstr">None</span><!--end_enstr-->
+<span class="jpstr">
+なし
+</span><!--end_jpstr-->
+</span>
+</li><!---->
+
+</ul>
+</div>
+<div data-v-3ceaa5df="" class="localnav-actions"><div data-v-3ceaa5df="" aria-hidden="true" class="localnav-action localnav-action-menucta"><label data-v-3ceaa5df="" for="localnav-menustate" class="localnav-menucta"><span data-v-3ceaa5df="" class="localnav-menucta-chevron"></span></label></div></div>
+</div>
+</div>
+</div><!---->
+
+</div></nav><label data-v-3ceaa5df="" aria-hidden="true" for="localnav-menustate" id="localnav-curtain"></label>
+</div>
+<main data-v-2deaa168="" id="main" role="main" tabindex="0" class="main"><div data-v-4ba5af7c="" data-v-2deaa168="" class="topictitle"><!---->
+<h1 data-v-4ba5af7c="" class="title"><span class="enstr">Legacy Hash Table Implementation</span><!--end_enstr-->
 <span class="jpstr">
 レガシーハッシュテーブル実装
 </span><!--end_jpstr-->
-</span></h1></div><div class="topic-container section-content row"><div class="topic-description column large-9 medium-9 small-12"><p class="nodocumentation">No overview available.</p></div><div class="topic-summary column large-3 medium-3 small-12"><div class="topic-summary-section frameworks" role="complementary" aria-label="Framework"><p class="topic-summary-section-label subsection-label"><span class="enstr">Framework</span><!--end_enstr-->
+</h1>
+</div>
+<div data-v-0253ce0e="" data-v-2deaa168="" class="row container">
+<div data-v-9807b2e0="" data-v-5ad0d458="" data-v-2deaa168="" class="col description large-9 medium-9 small-12" data-v-0253ce0e=""><p data-v-5ad0d458="" data-v-9807b2e0="" class="nodocumentation">
+    <span class="enstr">No overview available.</span><!--end_enstr-->
+<span class="jpstr">
+概要は利用可能でありません。
+</span><!--end_jpstr-->
+
+  </p></div>
+<div data-v-9807b2e0="" data-v-42fb6bac="" data-v-2deaa168="" class="col summary large-3 medium-3 small-12" data-v-0253ce0e=""><!----><!---->
+<div data-v-e4237090="" data-v-741142ba="" data-v-2deaa168="" class="summary-section frameworks" role="complementary" aria-label="Framework" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-741142ba="" class="title" data-v-e4237090=""><span class="enstr">Framework</span><!--end_enstr-->
 <span class="jpstr">
 フレームワーク
 </span><!--end_jpstr-->
-</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item"><span>Foundation</span></li></ul></div></div></div><section id="topics" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><span class="enstr">Topics</span><!--end_enstr-->
+</p>
+<ul data-v-1450532d="" data-v-741142ba="" class="summary-list" data-v-e4237090=""><li data-v-e3899270="" data-v-741142ba="" class="summary-list-item" data-v-1450532d=""><span data-v-741142ba="" data-v-e3899270="" class="name">Foundation</span></li></ul>
+</div><!---->
+
+</div><!---->
+
+</div>
+<section data-v-8c663d90="" data-v-63527a60="" data-v-2deaa168="" id="topics" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">Topics</span><!--end_enstr-->
 <span class="jpstr">
 話題
 </span><!--end_jpstr-->
-</h2><section id="1657133" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Functions</span><!--end_enstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Functions</span><!--end_enstr-->
 <span class="jpstr">
 関数
 </span><!--end_jpstr-->
-</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/1410232-nsallhashtableobjects.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">NSAll<wbr/>Hash<wbr/>Table<wbr/>Objects</span><span class="decorator">(NSHash<wbr/>Table&lt;Any<wbr/>Object&gt;) -&gt; [Any]</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns all of the elements in the specified hash table.</span><!--end_enstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/1410232-nsallhashtableobjects.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">NSAll<wbr data-v-dac213be="">Hash<wbr data-v-dac213be="">Table<wbr data-v-dac213be="">Objects</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(NSHash<wbr data-v-dac213be="">Table&lt;Any<wbr data-v-dac213be="">Object&gt;) -&gt; [Any]</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns all of the elements in the specified hash table.</span><!--end_enstr-->
 <span class="jpstr">
 指定されたハッシュテーブルの中の要素のすべてを返します。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/1415768-nscomparehashtables.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">NSCompare<wbr/>Hash<wbr/>Tables</span><span class="decorator">(NSHash<wbr/>Table&lt;Any<wbr/>Object&gt;, NSHash<wbr/>Table&lt;Any<wbr/>Object&gt;) -&gt; Bool</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns a Boolean value that indicates whether the elements of two hash tables are equal.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/1415768-nscomparehashtables.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">NSCompare<wbr data-v-dac213be="">Hash<wbr data-v-dac213be="">Tables</wbr></wbr></span><span data-v-dac213be="" class="decorator">(NSHash<wbr data-v-dac213be="">Table&lt;Any<wbr data-v-dac213be="">Object&gt;, NSHash<wbr data-v-dac213be="">Table&lt;Any<wbr data-v-dac213be="">Object&gt;) -&gt; Bool</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a Boolean value that indicates whether the elements of two hash tables are equal.</span><!--end_enstr-->
 <span class="jpstr">
 ２つのハッシュテーブルのそれら要素が等しいかどうかを指し示すブール値を返します。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/1415351-nscopyhashtablewithzone.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">NSCopy<wbr/>Hash<wbr/>Table<wbr/>With<wbr/>Zone</span><span class="decorator">(NSHash<wbr/>Table&lt;Any<wbr/>Object&gt;, NSZone?) -&gt; NSHash<wbr/>Table&lt;Any<wbr/>Object&gt;</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Performs a shallow copy of the specified hash table.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/1415351-nscopyhashtablewithzone.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">NSCopy<wbr data-v-dac213be="">Hash<wbr data-v-dac213be="">Table<wbr data-v-dac213be="">With<wbr data-v-dac213be="">Zone</wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(NSHash<wbr data-v-dac213be="">Table&lt;Any<wbr data-v-dac213be="">Object&gt;, NSZone?) -&gt; NSHash<wbr data-v-dac213be="">Table&lt;Any<wbr data-v-dac213be="">Object&gt;</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Performs a shallow copy of the specified hash table.</span><!--end_enstr-->
 <span class="jpstr">
 指定されたハッシュテーブルの浅いコピーを実行します。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/1411242-nscounthashtable.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">NSCount<wbr/>Hash<wbr/>Table</span><span class="decorator">(NSHash<wbr/>Table&lt;Any<wbr/>Object&gt;) -&gt; Int</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns the number of elements in a hash table.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/1411242-nscounthashtable.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">NSCount<wbr data-v-dac213be="">Hash<wbr data-v-dac213be="">Table</wbr></wbr></span><span data-v-dac213be="" class="decorator">(NSHash<wbr data-v-dac213be="">Table&lt;Any<wbr data-v-dac213be="">Object&gt;) -&gt; Int</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the number of elements in a hash table.</span><!--end_enstr-->
 <span class="jpstr">
 あるハッシュテーブルの中の要素数を返します。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/1409391-nscreatehashtable.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">NSCreate<wbr/>Hash<wbr/>Table</span><span class="decorator">(NSHash<wbr/>Table<wbr/>Call<wbr/>Backs, Int) -&gt; NSHash<wbr/>Table&lt;Any<wbr/>Object&gt;</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Creates and returns a new hash table.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/1409391-nscreatehashtable.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">NSCreate<wbr data-v-dac213be="">Hash<wbr data-v-dac213be="">Table</wbr></wbr></span><span data-v-dac213be="" class="decorator">(NSHash<wbr data-v-dac213be="">Table<wbr data-v-dac213be="">Call<wbr data-v-dac213be="">Backs, Int) -&gt; NSHash<wbr data-v-dac213be="">Table&lt;Any<wbr data-v-dac213be="">Object&gt;</wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Creates and returns a new hash table.</span><!--end_enstr-->
 <span class="jpstr">
 新しいハッシュテーブルを作成して返します。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/1407249-nscreatehashtablewithzone.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">NSCreate<wbr/>Hash<wbr/>Table<wbr/>With<wbr/>Zone</span><span class="decorator">(NSHash<wbr/>Table<wbr/>Call<wbr/>Backs, Int, NSZone?) -&gt; NSHash<wbr/>Table&lt;Any<wbr/>Object&gt;</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Creates a new hash table in a given zone.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/1407249-nscreatehashtablewithzone.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">NSCreate<wbr data-v-dac213be="">Hash<wbr data-v-dac213be="">Table<wbr data-v-dac213be="">With<wbr data-v-dac213be="">Zone</wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(NSHash<wbr data-v-dac213be="">Table<wbr data-v-dac213be="">Call<wbr data-v-dac213be="">Backs, Int, NSZone?) -&gt; NSHash<wbr data-v-dac213be="">Table&lt;Any<wbr data-v-dac213be="">Object&gt;</wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Creates a new hash table in a given zone.</span><!--end_enstr-->
 <span class="jpstr">
 新しいハッシュテーブルを、与えられたゾーンに作成します。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/1416272-nsendhashtableenumeration.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">NSEnd<wbr/>Hash<wbr/>Table<wbr/>Enumeration</span><span class="decorator">(Unsafe<wbr/>Mutable<wbr/>Pointer&lt;NSHash<wbr/>Enumerator&gt;)</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Used when finished with an enumerator.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/1416272-nsendhashtableenumeration.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">NSEnd<wbr data-v-dac213be="">Hash<wbr data-v-dac213be="">Table<wbr data-v-dac213be="">Enumeration</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;NSHash<wbr data-v-dac213be="">Enumerator&gt;)</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Used when finished with an enumerator.</span><!--end_enstr-->
 <span class="jpstr">
 ある列挙子で終了した時に使われます。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/1418313-nsenumeratehashtable.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">NSEnumerate<wbr/>Hash<wbr/>Table</span><span class="decorator">(NSHash<wbr/>Table&lt;Any<wbr/>Object&gt;) -&gt; NSHash<wbr/>Enumerator</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Creates an enumerator for the specified hash table.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/1418313-nsenumeratehashtable.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">NSEnumerate<wbr data-v-dac213be="">Hash<wbr data-v-dac213be="">Table</wbr></wbr></span><span data-v-dac213be="" class="decorator">(NSHash<wbr data-v-dac213be="">Table&lt;Any<wbr data-v-dac213be="">Object&gt;) -&gt; NSHash<wbr data-v-dac213be="">Enumerator</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Creates an enumerator for the specified hash table.</span><!--end_enstr-->
 <span class="jpstr">
 指定されたハッシュテーブルのための列挙子を作成します。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/1410957-nsfreehashtable.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">NSFree<wbr/>Hash<wbr/>Table</span><span class="decorator">(NSHash<wbr/>Table&lt;Any<wbr/>Object&gt;)</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Deletes the specified hash table.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/1410957-nsfreehashtable.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">NSFree<wbr data-v-dac213be="">Hash<wbr data-v-dac213be="">Table</wbr></wbr></span><span data-v-dac213be="" class="decorator">(NSHash<wbr data-v-dac213be="">Table&lt;Any<wbr data-v-dac213be="">Object&gt;)</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Deletes the specified hash table.</span><!--end_enstr-->
 <span class="jpstr">
 指定されたハッシュテーブルを削除します。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/1415198-nshashget.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">NSHash<wbr/>Get</span><span class="decorator">(NSHash<wbr/>Table&lt;Any<wbr/>Object&gt;, Unsafe<wbr/>Raw<wbr/>Pointer?) -&gt; Unsafe<wbr/>Mutable<wbr/>Raw<wbr/>Pointer</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns an element of the hash table.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/1415198-nshashget.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">NSHash<wbr data-v-dac213be="">Get</wbr></span><span data-v-dac213be="" class="decorator">(NSHash<wbr data-v-dac213be="">Table&lt;Any<wbr data-v-dac213be="">Object&gt;, Unsafe<wbr data-v-dac213be="">Raw<wbr data-v-dac213be="">Pointer?) -&gt; Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Raw<wbr data-v-dac213be="">Pointer</wbr></wbr></wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an element of the hash table.</span><!--end_enstr-->
 <span class="jpstr">
 ハッシュテーブルのある要素を返します。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/1414711-nshashinsert.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">NSHash<wbr/>Insert</span><span class="decorator">(NSHash<wbr/>Table&lt;Any<wbr/>Object&gt;, Unsafe<wbr/>Raw<wbr/>Pointer?)</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Adds an element to the specified hash table.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/1414711-nshashinsert.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">NSHash<wbr data-v-dac213be="">Insert</wbr></span><span data-v-dac213be="" class="decorator">(NSHash<wbr data-v-dac213be="">Table&lt;Any<wbr data-v-dac213be="">Object&gt;, Unsafe<wbr data-v-dac213be="">Raw<wbr data-v-dac213be="">Pointer?)</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Adds an element to the specified hash table.</span><!--end_enstr-->
 <span class="jpstr">
 ある要素を、指定されたハッシュテーブルに追加します。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/1417192-nshashinsertifabsent.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">NSHash<wbr/>Insert<wbr/>If<wbr/>Absent</span><span class="decorator">(NSHash<wbr/>Table&lt;Any<wbr/>Object&gt;, Unsafe<wbr/>Raw<wbr/>Pointer?) -&gt; Unsafe<wbr/>Mutable<wbr/>Raw<wbr/>Pointer?</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Adds an element to the specified hash table only if the table does not already contain the element.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/1417192-nshashinsertifabsent.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">NSHash<wbr data-v-dac213be="">Insert<wbr data-v-dac213be="">If<wbr data-v-dac213be="">Absent</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(NSHash<wbr data-v-dac213be="">Table&lt;Any<wbr data-v-dac213be="">Object&gt;, Unsafe<wbr data-v-dac213be="">Raw<wbr data-v-dac213be="">Pointer?) -&gt; Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Raw<wbr data-v-dac213be="">Pointer?</wbr></wbr></wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Adds an element to the specified hash table only if the table does not already contain the element.</span><!--end_enstr-->
 <span class="jpstr">
 指定されたハッシュテーブルに要素を、そのテーブルがまだその要素を含まない場合にのみ、追加します。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/1418170-nshashinsertknownabsent.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">NSHash<wbr/>Insert<wbr/>Known<wbr/>Absent</span><span class="decorator">(NSHash<wbr/>Table&lt;Any<wbr/>Object&gt;, Unsafe<wbr/>Raw<wbr/>Pointer?)</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Adds an element to the specified hash table.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/1418170-nshashinsertknownabsent.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">NSHash<wbr data-v-dac213be="">Insert<wbr data-v-dac213be="">Known<wbr data-v-dac213be="">Absent</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(NSHash<wbr data-v-dac213be="">Table&lt;Any<wbr data-v-dac213be="">Object&gt;, Unsafe<wbr data-v-dac213be="">Raw<wbr data-v-dac213be="">Pointer?)</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Adds an element to the specified hash table.</span><!--end_enstr-->
 <span class="jpstr">
 ある要素を、指定されたハッシュテーブルに追加します。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/1416751-nshashremove.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">NSHash<wbr/>Remove</span><span class="decorator">(NSHash<wbr/>Table&lt;Any<wbr/>Object&gt;, Unsafe<wbr/>Raw<wbr/>Pointer?)</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Removes an element from the specified hash table.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/1416751-nshashremove.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">NSHash<wbr data-v-dac213be="">Remove</wbr></span><span data-v-dac213be="" class="decorator">(NSHash<wbr data-v-dac213be="">Table&lt;Any<wbr data-v-dac213be="">Object&gt;, Unsafe<wbr data-v-dac213be="">Raw<wbr data-v-dac213be="">Pointer?)</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Removes an element from the specified hash table.</span><!--end_enstr-->
 <span class="jpstr">
 指定されたハッシュテーブルから要素を除去します。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/1415935-nsnexthashenumeratoritem.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">NSNext<wbr/>Hash<wbr/>Enumerator<wbr/>Item</span><span class="decorator">(Unsafe<wbr/>Mutable<wbr/>Pointer&lt;NSHash<wbr/>Enumerator&gt;) -&gt; Unsafe<wbr/>Mutable<wbr/>Raw<wbr/>Pointer?</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns the next hash-table element in the enumeration.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/1415935-nsnexthashenumeratoritem.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">NSNext<wbr data-v-dac213be="">Hash<wbr data-v-dac213be="">Enumerator<wbr data-v-dac213be="">Item</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Pointer&lt;NSHash<wbr data-v-dac213be="">Enumerator&gt;) -&gt; Unsafe<wbr data-v-dac213be="">Mutable<wbr data-v-dac213be="">Raw<wbr data-v-dac213be="">Pointer?</wbr></wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the next hash-table element in the enumeration.</span><!--end_enstr-->
 <span class="jpstr">
 列挙の中の次のハッシュテーブル要素を返します。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/1409494-nsresethashtable.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">NSReset<wbr/>Hash<wbr/>Table</span><span class="decorator">(NSHash<wbr/>Table&lt;Any<wbr/>Object&gt;)</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Deletes the elements of the specified hash table.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/1409494-nsresethashtable.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">NSReset<wbr data-v-dac213be="">Hash<wbr data-v-dac213be="">Table</wbr></wbr></span><span data-v-dac213be="" class="decorator">(NSHash<wbr data-v-dac213be="">Table&lt;Any<wbr data-v-dac213be="">Object&gt;)</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Deletes the elements of the specified hash table.</span><!--end_enstr-->
 <span class="jpstr">
 指定されたハッシュテーブルの要素を削除します。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/1416833-nsstringfromhashtable.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">NSString<wbr/>From<wbr/>Hash<wbr/>Table</span><span class="decorator">(NSHash<wbr/>Table&lt;Any<wbr/>Object&gt;) -&gt; String</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns a string describing the hash table’s contents.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/1416833-nsstringfromhashtable.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">NSString<wbr data-v-dac213be="">From<wbr data-v-dac213be="">Hash<wbr data-v-dac213be="">Table</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(NSHash<wbr data-v-dac213be="">Table&lt;Any<wbr data-v-dac213be="">Object&gt;) -&gt; String</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a string describing the hash table’s contents.</span><!--end_enstr-->
 <span class="jpstr">
 ハッシュテーブルの内容を記述している文字列を返します。
 </span><!--end_jpstr-->
-</p></div></div></div></div></div></div></div></section><section id="2877960" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Data Types</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Data Types</span><!--end_enstr-->
 <span class="jpstr">
 さまざまなデータ型
 </span><!--end_jpstr-->
-</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/nshashenumerator.html"><code class="display-name"><span class="decorator">struct </span><span class="identifier">NSHash<wbr/>Enumerator</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Allows successive elements of a hash table to be returned each time this structure is passed to <a class="symbol-name" href="../../../documentation/foundation/1415935-nsnexthashenumeratoritem.html"><code><span>NSNext<wbr/>Hash<wbr/>Enumerator<wbr/>Item(_:)</span></code></a>.</span><!--end_enstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/nshashenumerator.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">struct </span><span data-v-dac213be="" class="identifier">NSHash<wbr data-v-dac213be="">Enumerator</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Allows successive elements of a hash table to be returned each time this structure is passed to <a href="../../../documentation/foundation/1415935-nsnexthashenumeratoritem.html" class=""><code data-v-7fb764c1="">NSNext<wbr data-v-7fb764c1="">Hash<wbr data-v-7fb764c1="">Enumerator<wbr data-v-7fb764c1="">Item(_:)</wbr></wbr></wbr></code></a>.</span><!--end_enstr-->
 <span class="jpstr">
-ハッシュテーブルの連続する要素が、毎回この構造体が<a class="symbol-name" href="../../../documentation/foundation/1415935-nsnexthashenumeratoritem.html"><code><span>NSNext<wbr/>Hash<wbr/>Enumerator<wbr/>Item(_:)</span></code></a>に渡されるたびに返されるようにします。
+ハッシュテーブルの連続する要素が、毎回この構造体が<a href="../../../documentation/foundation/1415935-nsnexthashenumeratoritem.html" class=""><code data-v-7fb764c1="">NSNext<wbr data-v-7fb764c1="">Hash<wbr data-v-7fb764c1="">Enumerator<wbr data-v-7fb764c1="">Item(_:)</wbr></wbr></wbr></code></a>に渡されるたびに返されるようにします。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/nshashtablecallbacks.html"><code class="display-name"><span class="decorator">struct </span><span class="identifier">NSHash<wbr/>Table<wbr/>Call<wbr/>Backs</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Defines a structure that contains the function pointers used to configure behavior of <code class="code-voice"><span>NSHash<wbr/>Table</span></code> with respect to elements within a hash table.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/nshashtablecallbacks.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">struct </span><span data-v-dac213be="" class="identifier">NSHash<wbr data-v-dac213be="">Table<wbr data-v-dac213be="">Call<wbr data-v-dac213be="">Backs</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Defines a structure that contains the function pointers used to configure behavior of <code data-v-7fb764c1="">NSHash<wbr data-v-7fb764c1="">Table</wbr></code> with respect to elements within a hash table.</span><!--end_enstr-->
 <span class="jpstr">
-ハッシュテーブル内の要素に関して、<code class="code-voice"><span>NSHash<wbr/>Table</span></code>の挙動を設定するのに使われる関数ポインタを含んでいる構造体を定義します。
+ハッシュテーブル内の要素に関して、<code data-v-7fb764c1="">NSHash<wbr data-v-7fb764c1="">Table</wbr></code>の挙動を設定するのに使われる関数ポインタを含んでいる構造体を定義します。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/nshashtableoptions.html"><code class="display-name"><span class="decorator">typealias </span><span class="identifier">NSHash<wbr/>Table<wbr/>Options</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Components in a bit-field to specify the behavior of elements in an <a class="symbol-name" href="../../../documentation/foundation/nshashtable.html"><code><span>NSHash<wbr/>Table</span></code></a> object.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/nshashtableoptions.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">typealias </span><span data-v-dac213be="" class="identifier">NSHash<wbr data-v-dac213be="">Table<wbr data-v-dac213be="">Options</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Components in a bit-field to specify the behavior of elements in an <a href="../../../documentation/foundation/nshashtable.html" class="router-link-active"><code data-v-7fb764c1="">NSHash<wbr data-v-7fb764c1="">Table</wbr></code></a> object.</span><!--end_enstr-->
 <span class="jpstr">
-<a class="symbol-name" href="../../../documentation/foundation/nshashtable.html"><code><span>NSHash<wbr/>Table</span></code></a>オブジェクトの中の要素の挙動を指定するあるビットフィールドの中の構成要素それら。
+<a href="../../../documentation/foundation/nshashtable.html" class="router-link-active"><code data-v-7fb764c1="">NSHash<wbr data-v-7fb764c1="">Table</wbr></code></a>オブジェクトの中の要素の挙動を指定するあるビットフィールドの中の構成要素それら。
 </span><!--end_jpstr-->
-</p></div></div></div></div></div></div></div></section><section id="1680473" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Constants</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Constants</span><!--end_enstr-->
 <span class="jpstr">
 定数
 </span><!--end_jpstr-->
-</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/nsintegerhashcallbacks.html"><code class="display-name"><span class="decorator">let </span><span class="identifier">NSInteger<wbr/>Hash<wbr/>Call<wbr/>Backs</span><span class="decorator">: NSHash<wbr/>Table<wbr/>Call<wbr/>Backs</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">For sets of <code class="code-voice"><span>NSInteger</span></code>-sized quantities or smaller (for example, <code class="code-voice"><span>int</span></code>, <code class="code-voice"><span>long</span></code>, or <code class="code-voice"><span>unichar</span></code>).</span><!--end_enstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/nsintegerhashcallbacks.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">let </span><span data-v-dac213be="" class="identifier">NSInteger<wbr data-v-dac213be="">Hash<wbr data-v-dac213be="">Call<wbr data-v-dac213be="">Backs</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: NSHash<wbr data-v-dac213be="">Table<wbr data-v-dac213be="">Call<wbr data-v-dac213be="">Backs</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">For sets of <code data-v-7fb764c1="">NSInteger</code>-sized quantities or smaller (for example, <code data-v-7fb764c1="">int</code>, <code data-v-7fb764c1="">long</code>, or <code data-v-7fb764c1="">unichar</code>).</span><!--end_enstr-->
 <span class="jpstr">
-<code class="code-voice"><span>NSInteger</span></code>サイズの量またはより小さい集合の用途に（例えば、<code class="code-voice"><span>int</span></code>、<code class="code-voice"><span>long</span></code>、または<code class="code-voice"><span>unichar</span></code>）。
+<code data-v-7fb764c1="">NSInteger</code>サイズの量かより小さい集合の用途に（例えば、<code data-v-7fb764c1="">int</code>、<code data-v-7fb764c1="">long</code>、または<code data-v-7fb764c1="">unichar</code>）。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/nsnonownedpointerhashcallbacks.html"><code class="display-name"><span class="decorator">let </span><span class="identifier">NSNon<wbr/>Owned<wbr/>Pointer<wbr/>Hash<wbr/>Call<wbr/>Backs</span><span class="decorator">: NSHash<wbr/>Table<wbr/>Call<wbr/>Backs</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">For sets of pointers, hashed by address.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/nsnonownedpointerhashcallbacks.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">let </span><span data-v-dac213be="" class="identifier">NSNon<wbr data-v-dac213be="">Owned<wbr data-v-dac213be="">Pointer<wbr data-v-dac213be="">Hash<wbr data-v-dac213be="">Call<wbr data-v-dac213be="">Backs</wbr></wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: NSHash<wbr data-v-dac213be="">Table<wbr data-v-dac213be="">Call<wbr data-v-dac213be="">Backs</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">For sets of pointers, hashed by address.</span><!--end_enstr-->
 <span class="jpstr">
 アドレスによってハッシュ化される、ポインタからなる集合の用途。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/nsnonretainedobjecthashcallbacks.html"><code class="display-name"><span class="decorator">let </span><span class="identifier">NSNon<wbr/>Retained<wbr/>Object<wbr/>Hash<wbr/>Call<wbr/>Backs</span><span class="decorator">: NSHash<wbr/>Table<wbr/>Call<wbr/>Backs</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">For sets of objects, but without retaining/releasing.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/nsnonretainedobjecthashcallbacks.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">let </span><span data-v-dac213be="" class="identifier">NSNon<wbr data-v-dac213be="">Retained<wbr data-v-dac213be="">Object<wbr data-v-dac213be="">Hash<wbr data-v-dac213be="">Call<wbr data-v-dac213be="">Backs</wbr></wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: NSHash<wbr data-v-dac213be="">Table<wbr data-v-dac213be="">Call<wbr data-v-dac213be="">Backs</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">For sets of objects, but without retaining/releasing.</span><!--end_enstr-->
 <span class="jpstr">
 オブジェクトの集合の用途、しかし保持（リテイン）／開放（リリース）なしで。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/nsobjecthashcallbacks.html"><code class="display-name"><span class="decorator">let </span><span class="identifier">NSObject<wbr/>Hash<wbr/>Call<wbr/>Backs</span><span class="decorator">: NSHash<wbr/>Table<wbr/>Call<wbr/>Backs</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">For sets of objects (similar to <code class="code-voice"><span>NSSet</span></code>).</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/nsobjecthashcallbacks.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">let </span><span data-v-dac213be="" class="identifier">NSObject<wbr data-v-dac213be="">Hash<wbr data-v-dac213be="">Call<wbr data-v-dac213be="">Backs</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: NSHash<wbr data-v-dac213be="">Table<wbr data-v-dac213be="">Call<wbr data-v-dac213be="">Backs</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">For sets of objects (similar to <code data-v-7fb764c1="">NSSet</code>).</span><!--end_enstr-->
 <span class="jpstr">
-オブジェクトの集合の用途（<code class="code-voice"><span>NSSet</span></code>と似ている）。
+オブジェクトの集合の用途（<code data-v-7fb764c1="">NSSet</code>と似ている）。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/nsownedobjectidentityhashcallbacks.html"><code class="display-name"><span class="decorator">let </span><span class="identifier">NSOwned<wbr/>Object<wbr/>Identity<wbr/>Hash<wbr/>Call<wbr/>Backs</span><span class="decorator">: NSHash<wbr/>Table<wbr/>Call<wbr/>Backs</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">For sets of objects, with transfer of ownership upon insertion, using pointer equality.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/nsownedobjectidentityhashcallbacks.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">let </span><span data-v-dac213be="" class="identifier">NSOwned<wbr data-v-dac213be="">Object<wbr data-v-dac213be="">Identity<wbr data-v-dac213be="">Hash<wbr data-v-dac213be="">Call<wbr data-v-dac213be="">Backs</wbr></wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: NSHash<wbr data-v-dac213be="">Table<wbr data-v-dac213be="">Call<wbr data-v-dac213be="">Backs</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">For sets of objects, with transfer of ownership upon insertion, using pointer equality.</span><!--end_enstr-->
 <span class="jpstr">
 オブジェクトの集合の用途、挿入に関して所有権の移し替えとともに、ポインタ等式を使って。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/nsownedpointerhashcallbacks.html"><code class="display-name"><span class="decorator">let </span><span class="identifier">NSOwned<wbr/>Pointer<wbr/>Hash<wbr/>Call<wbr/>Backs</span><span class="decorator">: NSHash<wbr/>Table<wbr/>Call<wbr/>Backs</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">For sets of pointers, with transfer of ownership upon insertion.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/nsownedpointerhashcallbacks.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">let </span><span data-v-dac213be="" class="identifier">NSOwned<wbr data-v-dac213be="">Pointer<wbr data-v-dac213be="">Hash<wbr data-v-dac213be="">Call<wbr data-v-dac213be="">Backs</wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: NSHash<wbr data-v-dac213be="">Table<wbr data-v-dac213be="">Call<wbr data-v-dac213be="">Backs</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">For sets of pointers, with transfer of ownership upon insertion.</span><!--end_enstr-->
 <span class="jpstr">
 ポインタの集合の用途、挿入に関して所有権の移し替えとともに。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/nspointertostructhashcallbacks.html"><code class="display-name"><span class="decorator">let </span><span class="identifier">NSPointer<wbr/>To<wbr/>Struct<wbr/>Hash<wbr/>Call<wbr/>Backs</span><span class="decorator">: NSHash<wbr/>Table<wbr/>Call<wbr/>Backs</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">For sets of pointers to structs, when the first field of the struct is <code class="code-voice"><span>int</span></code>-sized.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/nspointertostructhashcallbacks.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">let </span><span data-v-dac213be="" class="identifier">NSPointer<wbr data-v-dac213be="">To<wbr data-v-dac213be="">Struct<wbr data-v-dac213be="">Hash<wbr data-v-dac213be="">Call<wbr data-v-dac213be="">Backs</wbr></wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: NSHash<wbr data-v-dac213be="">Table<wbr data-v-dac213be="">Call<wbr data-v-dac213be="">Backs</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">For sets of pointers to structs, when the first field of the struct is <code data-v-7fb764c1="">int</code>-sized.</span><!--end_enstr-->
 <span class="jpstr">
-structへのポインタの集合の用途、structの最初のフィールドは<code class="code-voice"><span>int</span></code>サイズです。
+structへのポインタの集合の用途、structの最初のフィールドは<code data-v-7fb764c1="">int</code>サイズです。
 </span><!--end_jpstr-->
-</p></div></div></div></div></div></div></div></section></div></div></section></main><section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo">
-        <nav class="footer-breadory">
-          <a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a>
-          <section class="breadcrumbs">
-            <ol class="breadcrumbs-list">
-              <li><a href=/documentation>Documentation</a></li>
-            </ol>
-          </section>
-          <div id="directorynav" class="directorynav">
-            <div id="dn-cola" class="column">
-              <h3><a href="/discover/">Discover</a></h3>
-              <ul>
-                <li><a href="/macos/">macOS</a></li>
-                <li><a href="/ios/">iOS</a></li>
-                <li><a href="/watchos/">watchOS</a></li>
-                <li><a href="/tvos/">tvOS</a></li>
-                <li><a href="/safari/">Safari and Web</a></li>
-                <li><a href="/games/">Games</a></li>
-                <li><a href="/business/">Business</a></li>
-                <li><a href="/education/">Education</a></li>
-                <li><a href="/wwdc/">WWDC</a></li>
-              </ul>
-            </div>
-            <div id="dn-colb" class="column">
-              <h3><a href="/design/">Design</a></h3>
-              <ul>
-                <li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
-                <li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+</div><!----><!----><!----><!----></section></main>
+</div></div></div>
+<section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo"><nav class="footer-breadory"><a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a><section class="breadcrumbs"><ol class="breadcrumbs-list"></ol></section><div id="directorynav" class="directorynav">
+<div id="dn-cola" class="column">
+<h3><a href="/discover/">Discover</a></h3>
+<ul>
+<li><a href="/ios/">iOS</a></li>
+<li><a href="/ipados/">iPadOS</a></li>
+<li><a href="/macos/">macOS</a></li>
+<li><a href="/tvos/">tvOS</a></li>
+<li><a href="/watchos/">watchOS</a></li>
+<li><a href="/safari/">Safari and Web</a></li>
+<li><a href="/games/">Games</a></li>
+<li><a href="/business/">Business</a></li>
+<li><a href="/education/">Education</a></li>
+<li><a href="/wwdc/">WWDC</a></li>
+</ul>
+</div>
+<div id="dn-colb" class="column">
+<h3><a href="/design/">Design</a></h3>
+<ul>
+<li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
+<li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
 <span class="jpstr">
 リソース
 </span><!--end_jpstr-->
 </a></li>
-                <li><a href="/videos/design/">Videos</a></li>
-                <li><a href="/design/awards/">Apple Design Awards</a></li>
-                <li><a href="/accessibility/">Accessibility</a></li>
-                <li><a href="/internationalization/"><span class="enstr">Internationalization</span><!--end_enstr-->
+<li><a href="/videos/design/">Videos</a></li>
+<li><a href="/design/awards/">Apple Design Awards</a></li>
+<li><a href="/fonts/">Fonts</a></li>
+<li><a href="/accessibility/">Accessibility</a></li>
+<li><a href="/localization/"><span class="enstr">Localization</span><!--end_enstr-->
 <span class="jpstr">
-国際化
+ローカライゼーション
 </span><!--end_jpstr-->
 </a></li>
-                <li><a href="/accessories/">Accessories</a></li>
-              </ul>
-            </div>
-            <div id="dn-colc" class="column">
-              <h3><a href="/develop/">Develop</a></h3>
-              <ul>
-                <li><a href="/xcode/">Xcode</a></li>
-                <li><a href="/swift/">Swift</a></li>
-                <li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
-                <li><a href="/testflight/">TestFlight</a></li>
-                <li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
-                <li><a href="/videos/">Videos</a></li>
-                <li><a href="/download/">Downloads</a></li>
-              </ul>
-            </div>
-            <div id="dn-cold" class="column">
-              <h3><a href="/distribute/">Distribute</a></h3>
-              <ul>
-                <li><a href="/programs/">Developer Program</a></li>
-                <li><a href="/app-store/">App Store</a></li>
-                <li><a href="/app-store/review/">App Review</a></li>
-                <li><a href="/macos/distribution/">Mac Software</a></li>
-                <li><a href="/business/distribute/">Apps for Business</a></li>
-                <li><a href="/safari/extensions/">Safari Extensions</a></li>
-                <li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
-                <li><a href="/softwarelicensing/">Trademark Licensing</a></li>
-              </ul>
-            </div>
-            <div id="dn-cole" class="column">
-              <h3><a href="/support/">Support</a></h3>
-              <ul>
-                <li><a href="https://forums.developer.apple.com">Developer Forums</a></li>
-                <li><a href="/bug-reporting/">Bug Reporting</a></li>
-                <li><a href="/terms/">License Agreements</a></li>
-                <li><a href="/system-status/">System Status</a></li>
-                <li><a href="/contact/">Contact Us</a></li>
-              </ul>
-              <h3><a href="/account/">Account</a></h3>
-              <ul>
-                <li><a href="/account/ios/certificate/">Certificates, IDs &amp; Profiles</a></li>
-                <li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-        <div class="ac-gf-footer-legal">
-          <div class="ac-gf-footer-news"> To receive the latest developer news, visit and subscribe to our <a href="/news/">News and Updates</a>.
-          </div>
-          <div class="ac-gf-footer-legal-copyright">Copyright © 2020 Apple Inc. All rights reserved.</div>
-          <div class="ac-gf-footer-legal-links">
-            <a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a>
-            <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
-            <a href="/bug-reporting/">Report Bugs</a>
-            <a href="/contact/submit/?subject=website-feedback">Feedback</a>
-          </div>
-          <div class="ac-gf-footer-language-links">
-            <a href="/cn/" class="first">简体中文</a>
-            <a href="/jp/">日本語</a>
-            <a href="/kr/">한국어</a>
-          </div>
-        </div>
-      </footer></section></div></div><script id="bootstrap-data" type="application/json">{"id":2877957,"title":{"content":"Legacy Hash Table Implementation"},"containingGroup":[{"id":2881026,"role":"task","paths":[],"symbols":[{"id":2877957,"role":"collectionGroup","paths":["documentation\/foundation\/nshashtable\/legacy_hash_table_implementation"],"hasChildren":true,"title":{"content":"Legacy Hash Table Implementation"}}],"title":{"content":"Deprecated"}}],"modules":[{"title":{"content":"Foundation"},"paths":["documentation\/foundation"],"importStatement":"<import xml:space=\"preserve\"><keyWord>import<\/keyWord> Foundation<\/import>","availability":[{"platform":"watchOS","introduced":"2.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"iOS","introduced":"2.0"}]}],"role":"collectionGroup","language":"swift","languages":["occ","swift"],"variants":{"occ":{"paths":["documentation\/foundation\/nshashtable\/legacy_hash_table_implementation"]},"swift":{"paths":["documentation\/foundation\/nshashtable\/legacy_hash_table_implementation"]}},"pid":463568,"paths":["documentation\/foundation\/nshashtable\/legacy_hash_table_implementation"],"hierarchy":[[{"id":1613013,"role":"collection","title":{"content":"Foundation"},"paths":["documentation\/foundation"]},{"id":2877744,"role":"collectionGroup","title":{"content":"Collections"},"paths":["documentation\/foundation\/collections"]},{"id":1417824,"role":"symbol","title":{"content":"NSHashTable"},"usr":"c:objc(cs)NSHashTable","kind":"cl","paths":["documentation\/foundation\/nshashtable"]}]],"legalNotices":{"copyright":"Copyright &copy; 2020 Apple Inc. All rights reserved.","termsOfUse":"https:\/\/www.apple.com\/legal\/internet-services\/terms\/site.html","privacyPolicy":"https:\/\/www.apple.com\/privacy\/privacy-policy"},"tasks":[{"id":1657133,"role":"task","symbols":[{"id":1410232,"role":"symbol","usr":"c:@F@NSAllHashTableObjects","name":"NSAllHashTableObjects(_:)","domain":"swift","kind":"func","availability":[{"platform":"iOS","introduced":"12.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"12.0"},{"platform":"watchOS","introduced":"5.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">NSAll<wbr\/>Hash<wbr\/>Table<wbr\/>Objects<\/span><span class=\"decorator\">(NSHash<wbr\/>Table&lt;Any<wbr\/>Object&gt;) -&gt; [Any]<\/span><\/code>","paths":["documentation\/foundation\/1410232-nsallhashtableobjects"],"title":{"content":"NSAllHashTableObjects(_:)"},"abstract":"<div><p>Returns all of the elements in the specified hash table.<\/p><\/div>"},{"id":1415768,"role":"symbol","usr":"c:@F@NSCompareHashTables","name":"NSCompareHashTables(_:_:)","domain":"swift","kind":"func","availability":[{"platform":"iOS","introduced":"12.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"12.0"},{"platform":"watchOS","introduced":"5.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">NSCompare<wbr\/>Hash<wbr\/>Tables<\/span><span class=\"decorator\">(NSHash<wbr\/>Table&lt;Any<wbr\/>Object&gt;, NSHash<wbr\/>Table&lt;Any<wbr\/>Object&gt;) -&gt; Bool<\/span><\/code>","paths":["documentation\/foundation\/1415768-nscomparehashtables"],"title":{"content":"NSCompareHashTables(_:_:)"},"abstract":"<div><p>Returns a Boolean value that indicates whether the elements of two hash tables are equal.<\/p><\/div>"},{"id":1415351,"role":"symbol","usr":"c:@F@NSCopyHashTableWithZone","name":"NSCopyHashTableWithZone(_:_:)","domain":"swift","kind":"func","availability":[{"platform":"iOS","introduced":"12.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"12.0"},{"platform":"watchOS","introduced":"5.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">NSCopy<wbr\/>Hash<wbr\/>Table<wbr\/>With<wbr\/>Zone<\/span><span class=\"decorator\">(NSHash<wbr\/>Table&lt;Any<wbr\/>Object&gt;, NSZone?) -&gt; NSHash<wbr\/>Table&lt;Any<wbr\/>Object&gt;<\/span><\/code>","paths":["documentation\/foundation\/1415351-nscopyhashtablewithzone"],"title":{"content":"NSCopyHashTableWithZone(_:_:)"},"abstract":"<div><p>Performs a shallow copy of the specified hash table.<\/p><\/div>"},{"id":1411242,"role":"symbol","usr":"c:@F@NSCountHashTable","name":"NSCountHashTable(_:)","domain":"swift","kind":"func","availability":[{"platform":"iOS","introduced":"12.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"12.0"},{"platform":"watchOS","introduced":"5.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">NSCount<wbr\/>Hash<wbr\/>Table<\/span><span class=\"decorator\">(NSHash<wbr\/>Table&lt;Any<wbr\/>Object&gt;) -&gt; Int<\/span><\/code>","paths":["documentation\/foundation\/1411242-nscounthashtable"],"title":{"content":"NSCountHashTable(_:)"},"abstract":"<div><p>Returns the number of elements in a hash table.<\/p><\/div>"},{"id":1409391,"role":"symbol","usr":"c:@F@NSCreateHashTable","name":"NSCreateHashTable(_:_:)","domain":"swift","kind":"func","availability":[{"platform":"iOS","introduced":"12.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"12.0"},{"platform":"watchOS","introduced":"5.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">NSCreate<wbr\/>Hash<wbr\/>Table<\/span><span class=\"decorator\">(NSHash<wbr\/>Table<wbr\/>Call<wbr\/>Backs, Int) -&gt; NSHash<wbr\/>Table&lt;Any<wbr\/>Object&gt;<\/span><\/code>","paths":["documentation\/foundation\/1409391-nscreatehashtable"],"title":{"content":"NSCreateHashTable(_:_:)"},"abstract":"<div><p>Creates and returns a new hash table.<\/p><\/div>"},{"id":1407249,"role":"symbol","usr":"c:@F@NSCreateHashTableWithZone","name":"NSCreateHashTableWithZone(_:_:_:)","domain":"swift","kind":"func","availability":[{"platform":"iOS","introduced":"12.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"12.0"},{"platform":"watchOS","introduced":"5.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">NSCreate<wbr\/>Hash<wbr\/>Table<wbr\/>With<wbr\/>Zone<\/span><span class=\"decorator\">(NSHash<wbr\/>Table<wbr\/>Call<wbr\/>Backs, Int, NSZone?) -&gt; NSHash<wbr\/>Table&lt;Any<wbr\/>Object&gt;<\/span><\/code>","paths":["documentation\/foundation\/1407249-nscreatehashtablewithzone"],"title":{"content":"NSCreateHashTableWithZone(_:_:_:)"},"abstract":"<div><p>Creates a new hash table in a given zone.<\/p><\/div>"},{"id":1416272,"role":"symbol","usr":"c:@F@NSEndHashTableEnumeration","name":"NSEndHashTableEnumeration(_:)","domain":"swift","kind":"func","availability":[{"platform":"iOS","introduced":"12.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"12.0"},{"platform":"watchOS","introduced":"5.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">NSEnd<wbr\/>Hash<wbr\/>Table<wbr\/>Enumeration<\/span><span class=\"decorator\">(Unsafe<wbr\/>Mutable<wbr\/>Pointer&lt;NSHash<wbr\/>Enumerator&gt;)<\/span><\/code>","paths":["documentation\/foundation\/1416272-nsendhashtableenumeration"],"title":{"content":"NSEndHashTableEnumeration(_:)"},"abstract":"<div><p>Used when finished with an enumerator.<\/p><\/div>"},{"id":1418313,"role":"symbol","usr":"c:@F@NSEnumerateHashTable","name":"NSEnumerateHashTable(_:)","domain":"swift","kind":"func","availability":[{"platform":"iOS","introduced":"12.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"12.0"},{"platform":"watchOS","introduced":"5.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">NSEnumerate<wbr\/>Hash<wbr\/>Table<\/span><span class=\"decorator\">(NSHash<wbr\/>Table&lt;Any<wbr\/>Object&gt;) -&gt; NSHash<wbr\/>Enumerator<\/span><\/code>","paths":["documentation\/foundation\/1418313-nsenumeratehashtable"],"title":{"content":"NSEnumerateHashTable(_:)"},"abstract":"<div><p>Creates an enumerator for the specified hash table.<\/p><\/div>"},{"id":1410957,"role":"symbol","usr":"c:@F@NSFreeHashTable","name":"NSFreeHashTable(_:)","domain":"swift","kind":"func","availability":[{"platform":"iOS","introduced":"12.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"12.0"},{"platform":"watchOS","introduced":"5.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">NSFree<wbr\/>Hash<wbr\/>Table<\/span><span class=\"decorator\">(NSHash<wbr\/>Table&lt;Any<wbr\/>Object&gt;)<\/span><\/code>","paths":["documentation\/foundation\/1410957-nsfreehashtable"],"title":{"content":"NSFreeHashTable(_:)"},"abstract":"<div><p>Deletes the specified hash table.<\/p><\/div>"},{"id":1415198,"role":"symbol","usr":"c:@F@NSHashGet","name":"NSHashGet(_:_:)","domain":"swift","kind":"func","availability":[{"platform":"iOS","introduced":"12.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"12.0"},{"platform":"watchOS","introduced":"5.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">NSHash<wbr\/>Get<\/span><span class=\"decorator\">(NSHash<wbr\/>Table&lt;Any<wbr\/>Object&gt;, Unsafe<wbr\/>Raw<wbr\/>Pointer?) -&gt; Unsafe<wbr\/>Mutable<wbr\/>Raw<wbr\/>Pointer<\/span><\/code>","paths":["documentation\/foundation\/1415198-nshashget"],"title":{"content":"NSHashGet(_:_:)"},"abstract":"<div><p>Returns an element of the hash table.<\/p><\/div>"},{"id":1414711,"role":"symbol","usr":"c:@F@NSHashInsert","name":"NSHashInsert(_:_:)","domain":"swift","kind":"func","availability":[{"platform":"iOS","introduced":"12.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"12.0"},{"platform":"watchOS","introduced":"5.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">NSHash<wbr\/>Insert<\/span><span class=\"decorator\">(NSHash<wbr\/>Table&lt;Any<wbr\/>Object&gt;, Unsafe<wbr\/>Raw<wbr\/>Pointer?)<\/span><\/code>","paths":["documentation\/foundation\/1414711-nshashinsert"],"title":{"content":"NSHashInsert(_:_:)"},"abstract":"<div><p>Adds an element to the specified hash table.<\/p><\/div>"},{"id":1417192,"role":"symbol","usr":"c:@F@NSHashInsertIfAbsent","name":"NSHashInsertIfAbsent(_:_:)","domain":"swift","kind":"func","availability":[{"platform":"iOS","introduced":"12.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"12.0"},{"platform":"watchOS","introduced":"5.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">NSHash<wbr\/>Insert<wbr\/>If<wbr\/>Absent<\/span><span class=\"decorator\">(NSHash<wbr\/>Table&lt;Any<wbr\/>Object&gt;, Unsafe<wbr\/>Raw<wbr\/>Pointer?) -&gt; Unsafe<wbr\/>Mutable<wbr\/>Raw<wbr\/>Pointer?<\/span><\/code>","paths":["documentation\/foundation\/1417192-nshashinsertifabsent"],"title":{"content":"NSHashInsertIfAbsent(_:_:)"},"abstract":"<div><p>Adds an element to the specified hash table only if the table does not already contain the element.<\/p><\/div>"},{"id":1418170,"role":"symbol","usr":"c:@F@NSHashInsertKnownAbsent","name":"NSHashInsertKnownAbsent(_:_:)","domain":"swift","kind":"func","availability":[{"platform":"iOS","introduced":"12.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"12.0"},{"platform":"watchOS","introduced":"5.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">NSHash<wbr\/>Insert<wbr\/>Known<wbr\/>Absent<\/span><span class=\"decorator\">(NSHash<wbr\/>Table&lt;Any<wbr\/>Object&gt;, Unsafe<wbr\/>Raw<wbr\/>Pointer?)<\/span><\/code>","paths":["documentation\/foundation\/1418170-nshashinsertknownabsent"],"title":{"content":"NSHashInsertKnownAbsent(_:_:)"},"abstract":"<div><p>Adds an element to the specified hash table.<\/p><\/div>"},{"id":1416751,"role":"symbol","usr":"c:@F@NSHashRemove","name":"NSHashRemove(_:_:)","domain":"swift","kind":"func","availability":[{"platform":"iOS","introduced":"12.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"12.0"},{"platform":"watchOS","introduced":"5.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">NSHash<wbr\/>Remove<\/span><span class=\"decorator\">(NSHash<wbr\/>Table&lt;Any<wbr\/>Object&gt;, Unsafe<wbr\/>Raw<wbr\/>Pointer?)<\/span><\/code>","paths":["documentation\/foundation\/1416751-nshashremove"],"title":{"content":"NSHashRemove(_:_:)"},"abstract":"<div><p>Removes an element from the specified hash table.<\/p><\/div>"},{"id":1415935,"role":"symbol","usr":"c:@F@NSNextHashEnumeratorItem","name":"NSNextHashEnumeratorItem(_:)","domain":"swift","kind":"func","availability":[{"platform":"iOS","introduced":"12.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"12.0"},{"platform":"watchOS","introduced":"5.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">NSNext<wbr\/>Hash<wbr\/>Enumerator<wbr\/>Item<\/span><span class=\"decorator\">(Unsafe<wbr\/>Mutable<wbr\/>Pointer&lt;NSHash<wbr\/>Enumerator&gt;) -&gt; Unsafe<wbr\/>Mutable<wbr\/>Raw<wbr\/>Pointer?<\/span><\/code>","paths":["documentation\/foundation\/1415935-nsnexthashenumeratoritem"],"title":{"content":"NSNextHashEnumeratorItem(_:)"},"abstract":"<div><p>Returns the next hash-table element in the enumeration.<\/p><\/div>"},{"id":1409494,"role":"symbol","usr":"c:@F@NSResetHashTable","name":"NSResetHashTable(_:)","domain":"swift","kind":"func","availability":[{"platform":"iOS","introduced":"12.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"12.0"},{"platform":"watchOS","introduced":"5.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">NSReset<wbr\/>Hash<wbr\/>Table<\/span><span class=\"decorator\">(NSHash<wbr\/>Table&lt;Any<wbr\/>Object&gt;)<\/span><\/code>","paths":["documentation\/foundation\/1409494-nsresethashtable"],"title":{"content":"NSResetHashTable(_:)"},"abstract":"<div><p>Deletes the elements of the specified hash table.<\/p><\/div>"},{"id":1416833,"role":"symbol","usr":"c:@F@NSStringFromHashTable","name":"NSStringFromHashTable(_:)","domain":"swift","kind":"func","availability":[{"platform":"iOS","introduced":"12.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"12.0"},{"platform":"watchOS","introduced":"5.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">NSString<wbr\/>From<wbr\/>Hash<wbr\/>Table<\/span><span class=\"decorator\">(NSHash<wbr\/>Table&lt;Any<wbr\/>Object&gt;) -&gt; String<\/span><\/code>","paths":["documentation\/foundation\/1416833-nsstringfromhashtable"],"title":{"content":"NSStringFromHashTable(_:)"},"abstract":"<div><p>Returns a string describing the hash table’s contents.<\/p><\/div>"}],"title":{"content":"Functions"}},{"id":2877960,"role":"task","symbols":[{"id":1412030,"role":"symbol","usr":"c:@SA@NSHashEnumerator","name":"NSHashEnumerator","domain":"swift","kind":"struct","availability":[{"platform":"iOS","introduced":"12.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"12.0"},{"platform":"watchOS","introduced":"5.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">struct <\/span><span class=\"identifier\">NSHash<wbr\/>Enumerator<\/span><\/code>","paths":["documentation\/foundation\/nshashenumerator"],"title":{"content":"NSHashEnumerator"},"abstract":"<div><p>Allows successive elements of a hash table to be returned each time this structure is passed to <a class=\"symbol-name\" href=\"\/documentation\/foundation\/1415935-nsnexthashenumeratoritem\"><code><span>NSNext<wbr\/>Hash<wbr\/>Enumerator<wbr\/>Item(_:)<\/span><\/code><\/a>.<\/p><\/div>","hasChildren":true},{"id":1407212,"role":"symbol","usr":"c:@SA@NSHashTableCallBacks","name":"NSHashTableCallBacks","domain":"swift","kind":"struct","availability":[{"platform":"iOS","introduced":"12.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"12.0"},{"platform":"watchOS","introduced":"5.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">struct <\/span><span class=\"identifier\">NSHash<wbr\/>Table<wbr\/>Call<wbr\/>Backs<\/span><\/code>","paths":["documentation\/foundation\/nshashtablecallbacks"],"title":{"content":"NSHashTableCallBacks"},"abstract":"<div><p>Defines a structure that contains the function pointers used to configure behavior of <code class=\"code-voice\"><span>NSHash<wbr\/>Table<\/span><\/code> with respect to elements within a hash table.<\/p><\/div>","hasChildren":true},{"id":1412003,"role":"symbol","usr":"c:@T@NSHashTableOptions","name":"NSHashTableOptions","domain":"swift","kind":"tdef","availability":[{"platform":"iOS","introduced":"6.0"},{"platform":"macOS","introduced":"10.5"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">typealias <\/span><span class=\"identifier\">NSHash<wbr\/>Table<wbr\/>Options<\/span><\/code>","paths":["documentation\/foundation\/nshashtableoptions"],"title":{"content":"NSHashTableOptions"},"abstract":"<div><p>Components in a bit-field to specify the behavior of elements in an <a class=\"symbol-name\" href=\"\/documentation\/foundation\/nshashtable\"><code><span>NSHash<wbr\/>Table<\/span><\/code><\/a> object.<\/p><\/div>","hasChildren":true}],"title":{"content":"Data Types"}},{"id":1680473,"role":"task","symbols":[{"id":1415628,"role":"symbol","usr":"c:@NSIntegerHashCallBacks","name":"NSIntegerHashCallBacks","domain":"swift","kind":"data","availability":[{"platform":"macOS","introduced":"10.5"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">let <\/span><span class=\"identifier\">NSInteger<wbr\/>Hash<wbr\/>Call<wbr\/>Backs<\/span><span class=\"decorator\">: NSHash<wbr\/>Table<wbr\/>Call<wbr\/>Backs<\/span><\/code>","paths":["documentation\/foundation\/nsintegerhashcallbacks"],"title":{"content":"NSIntegerHashCallBacks"},"abstract":"<div><p>For sets of <code class=\"code-voice\"><span>NSInteger<\/span><\/code>-sized quantities or smaller (for example, <code class=\"code-voice\"><span>int<\/span><\/code>, <code class=\"code-voice\"><span>long<\/span><\/code>, or <code class=\"code-voice\"><span>unichar<\/span><\/code>).<\/p><\/div>"},{"id":1416661,"role":"symbol","usr":"c:@NSNonOwnedPointerHashCallBacks","name":"NSNonOwnedPointerHashCallBacks","domain":"swift","kind":"data","availability":[{"platform":"iOS","introduced":"12.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"12.0"},{"platform":"watchOS","introduced":"5.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">let <\/span><span class=\"identifier\">NSNon<wbr\/>Owned<wbr\/>Pointer<wbr\/>Hash<wbr\/>Call<wbr\/>Backs<\/span><span class=\"decorator\">: NSHash<wbr\/>Table<wbr\/>Call<wbr\/>Backs<\/span><\/code>","paths":["documentation\/foundation\/nsnonownedpointerhashcallbacks"],"title":{"content":"NSNonOwnedPointerHashCallBacks"},"abstract":"<div><p>For sets of pointers, hashed by address.<\/p><\/div>"},{"id":1407422,"role":"symbol","usr":"c:@NSNonRetainedObjectHashCallBacks","name":"NSNonRetainedObjectHashCallBacks","domain":"swift","kind":"data","availability":[{"platform":"iOS","introduced":"12.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"12.0"},{"platform":"watchOS","introduced":"5.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">let <\/span><span class=\"identifier\">NSNon<wbr\/>Retained<wbr\/>Object<wbr\/>Hash<wbr\/>Call<wbr\/>Backs<\/span><span class=\"decorator\">: NSHash<wbr\/>Table<wbr\/>Call<wbr\/>Backs<\/span><\/code>","paths":["documentation\/foundation\/nsnonretainedobjecthashcallbacks"],"title":{"content":"NSNonRetainedObjectHashCallBacks"},"abstract":"<div><p>For sets of objects, but without retaining\/releasing.<\/p><\/div>"},{"id":1408270,"role":"symbol","usr":"c:@NSObjectHashCallBacks","name":"NSObjectHashCallBacks","domain":"swift","kind":"data","availability":[{"platform":"iOS","introduced":"12.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"12.0"},{"platform":"watchOS","introduced":"5.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">let <\/span><span class=\"identifier\">NSObject<wbr\/>Hash<wbr\/>Call<wbr\/>Backs<\/span><span class=\"decorator\">: NSHash<wbr\/>Table<wbr\/>Call<wbr\/>Backs<\/span><\/code>","paths":["documentation\/foundation\/nsobjecthashcallbacks"],"title":{"content":"NSObjectHashCallBacks"},"abstract":"<div><p>For sets of objects (similar to <code class=\"code-voice\"><span>NSSet<\/span><\/code>).<\/p><\/div>"},{"id":1408515,"role":"symbol","usr":"c:@NSOwnedObjectIdentityHashCallBacks","name":"NSOwnedObjectIdentityHashCallBacks","domain":"swift","kind":"data","availability":[{"platform":"iOS","introduced":"12.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"12.0"},{"platform":"watchOS","introduced":"5.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">let <\/span><span class=\"identifier\">NSOwned<wbr\/>Object<wbr\/>Identity<wbr\/>Hash<wbr\/>Call<wbr\/>Backs<\/span><span class=\"decorator\">: NSHash<wbr\/>Table<wbr\/>Call<wbr\/>Backs<\/span><\/code>","paths":["documentation\/foundation\/nsownedobjectidentityhashcallbacks"],"title":{"content":"NSOwnedObjectIdentityHashCallBacks"},"abstract":"<div><p>For sets of objects, with transfer of ownership upon insertion, using pointer equality.<\/p><\/div>"},{"id":1407243,"role":"symbol","usr":"c:@NSOwnedPointerHashCallBacks","name":"NSOwnedPointerHashCallBacks","domain":"swift","kind":"data","availability":[{"platform":"iOS","introduced":"12.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"12.0"},{"platform":"watchOS","introduced":"5.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">let <\/span><span class=\"identifier\">NSOwned<wbr\/>Pointer<wbr\/>Hash<wbr\/>Call<wbr\/>Backs<\/span><span class=\"decorator\">: NSHash<wbr\/>Table<wbr\/>Call<wbr\/>Backs<\/span><\/code>","paths":["documentation\/foundation\/nsownedpointerhashcallbacks"],"title":{"content":"NSOwnedPointerHashCallBacks"},"abstract":"<div><p>For sets of pointers, with transfer of ownership upon insertion.<\/p><\/div>"},{"id":1416644,"role":"symbol","usr":"c:@NSPointerToStructHashCallBacks","name":"NSPointerToStructHashCallBacks","domain":"swift","kind":"data","availability":[{"platform":"iOS","introduced":"12.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"12.0"},{"platform":"watchOS","introduced":"5.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">let <\/span><span class=\"identifier\">NSPointer<wbr\/>To<wbr\/>Struct<wbr\/>Hash<wbr\/>Call<wbr\/>Backs<\/span><span class=\"decorator\">: NSHash<wbr\/>Table<wbr\/>Call<wbr\/>Backs<\/span><\/code>","paths":["documentation\/foundation\/nspointertostructhashcallbacks"],"title":{"content":"NSPointerToStructHashCallBacks"},"abstract":"<div><p>For sets of pointers to structs, when the first field of the struct is <code class=\"code-voice\"><span>int<\/span><\/code>-sized.<\/p><\/div>"}],"title":{"content":"Constants"}}]}</script></body></html>
+<li><a href="/accessories/">Accessories</a></li>
+</ul>
+</div>
+<div id="dn-colc" class="column">
+<h3><a href="/develop/">Develop</a></h3>
+<ul>
+<li><a href="/xcode/">Xcode</a></li>
+<li><a href="/swift/">Swift</a></li>
+<li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
+<li><a href="/testflight/">TestFlight</a></li>
+<li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
+<li><a href="/videos/">Videos</a></li>
+<li><a href="/download/">Downloads</a></li>
+</ul>
+</div>
+<div id="dn-cold" class="column">
+<h3><a href="/distribute/">Distribute</a></h3>
+<ul>
+<li><a href="/programs/">Developer Program</a></li>
+<li><a href="/app-store/">App Store</a></li>
+<li><a href="/app-store/review/">App Review</a></li>
+<li><a href="/macos/distribution/">Mac Software</a></li>
+<li><a href="/business/distribute/">Apps for Business</a></li>
+<li><a href="/safari/extensions/">Safari Extensions</a></li>
+<li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
+<li><a href="/softwarelicensing/">Trademark Licensing</a></li>
+</ul>
+</div>
+<div id="dn-cole" class="column">
+<h3><a href="/support/">Support</a></h3>
+<ul>
+<li><a href="/support/articles/">Articles</a></li>
+<li><a href="/forums/">Developer Forums</a></li>
+<li><a href="/bug-reporting/">Feedback &amp; Bug Reporting</a></li>
+<li><a href="/system-status/">System Status</a></li>
+<li><a href="/contact/">Contact Us</a></li>
+</ul>
+<h3><a href="/account/">Account</a></h3>
+<ul>
+<li><a href="/account/ios/certificate/">Certificates, Identifiers &amp; Profiles</a></li>
+<li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
+</ul>
+</div>
+</div></nav><div class="ac-gf-footer-legal">
+<div class="ac-gf-footer-news">To view the latest developer news, visit <a href="/news/">News and Updates</a>.</div>
+<div class="ac-gf-footer-language-dropdown-wrapper">
+<select id="footer-language-selector" class="footer-language-select" aria-label="Language Dropdown" autocomplete="off"><option value="https://developer.apple.com/" selected>English</option>
+<option value="https://developer.apple.com/cn/">简体中文</option>
+<option value="https://developer.apple.com/jp/">日本語</option>
+<option value="https://developer.apple.com/kr/">한국어</option></select> <span class="footer-language-select-icon icon icon-chevrondown" aria-hidden="true"></span>
+</div>
+<div class="ac-gf-footer-legal-copyright">Copyright © <span class="footer-current-year">2020</span> <a href="https://www.apple.com">Apple Inc.</a> All rights reserved.</div>
+<div class="ac-gf-footer-legal-links">
+<a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a> <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a> <a href="/terms/">License Agreements</a>
+</div>
+</div></footer></section><script src="../../../tutorials/js/footer.js"></script>
+</body>
+</html>

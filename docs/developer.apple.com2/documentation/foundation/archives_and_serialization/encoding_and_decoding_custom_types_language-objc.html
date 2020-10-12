@@ -1,0 +1,667 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- link rel="icon" href="/favicon.ico" -->
+<link rel="mask-icon" href="/apple-logo.svg" color="#333333">
+<link rel="stylesheet" href="../../../tutorials/css/_globalnav.css">
+<title>Encoding and Decoding Custom Types | Apple Developer Documentation</title>
+<link href="../../../tutorials/css/chunk-76d5c2b5.00c53891.css" rel="prefetch">
+<link href="../../../tutorials/css/documentation-topic.e358e85c.css" rel="prefetch">
+<link href="../../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css" rel="prefetch">
+<link href="../../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css" rel="prefetch">
+<link href="../../../tutorials/css/topic.69278f1e.css" rel="prefetch">
+<link href="../../../tutorials/css/topic~tutorials-overview.1f93e025.css" rel="prefetch">
+<link href="../../../tutorials/css/tutorials-overview.d4ff0b50.css" rel="prefetch">
+<link href="../../../tutorials/css/welcome-experience-featured.0537f0f0.css" rel="prefetch">
+<link href="../../../tutorials/css/welcome-experience-technologies.60068ae2.css" rel="prefetch">
+<link href="../../../tutorials/js/chunk-2d0d3105.459bf725.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-2d21a016.b81cb311.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-503f1ed8.d26c4552.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-530f89ce.621e1d48.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-640db3b2.f8778ca5.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-76d5c2b5.092e3b8a.js" rel="prefetch">
+<link href="../../../tutorials/js/documentation-topic.6abe9458.js" rel="prefetch">
+<link href="../../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js" rel="prefetch">
+<link href="../../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js" rel="prefetch">
+<link href="../../../tutorials/js/topic.c6ec6b6c.js" rel="prefetch">
+<link href="../../../tutorials/js/topic~tutorials-overview.467a8186.js" rel="prefetch">
+<link href="../../../tutorials/js/tutorials-overview.d77f61ca.js" rel="prefetch">
+<link href="../../../tutorials/js/welcome-experience-featured.04f663e2.js" rel="prefetch">
+<link href="../../../tutorials/js/welcome-experience-technologies.56a372c1.js" rel="prefetch">
+<link href="../../../tutorials/css/app.2a174a23.css" rel="preload" as="style">
+<link href="../../../tutorials/js/app.2c558263.js" rel="preload" as="script">
+<link href="../../../tutorials/js/chunk-vendors.c3b68236.js" rel="preload" as="script">
+<link href="../../../tutorials/css/app.2a174a23.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../../../tutorials/css/chunk-76d5c2b5.00c53891.css">
+<script charset="utf-8" src="../../../tutorials/js/chunk-76d5c2b5.092e3b8a.js"></script><link rel="stylesheet" type="text/css" href="../../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css">
+<script charset="utf-8" src="../../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js"></script><link rel="stylesheet" type="text/css" href="../../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css">
+<script charset="utf-8" src="../../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js"></script><link rel="stylesheet" type="text/css" href="../../../tutorials/css/documentation-topic.e358e85c.css">
+<script charset="utf-8" src="../../../tutorials/js/documentation-topic.6abe9458.js"></script>
+</head>
+<body>
+<div id="_omniture_top">
+<script>var s_account="awdappledeveloper"</script>
+</div>
+<a href="#main" id="skip-localnav">Skip Navigation</a><aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"><nav id="ac-globalnav" class="js no-touch" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions"><div class="ac-gn-content">
+<ul class="ac-gn-header">
+<li class="ac-gn-item ac-gn-menuicon">
+<label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true"><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span> </span><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span></span></label> <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open"><span class="ac-gn-menuanchor-label">Global Nav Open Menu</span> </a><a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close"><span class="ac-gn-menuanchor-label">Global Nav Close Menu</span></a>
+</li>
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+</ul>
+<div class="ac-gn-search-placeholder-container" role="search"><div class="ac-gn-search ac-gn-search-small"><a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a><div class="ac-gn-search-placeholder-bar">
+<div class="ac-gn-search-placeholder-input"><div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
+<div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
+<span class="ac-gn-search-placeholder">Search Developer</span>
+</div></div>
+<div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></div>
+</div></a></div></div>
+<ul class="ac-gn-list">
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-discover"><a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover"><span class="ac-gn-link-text">Discover</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-design"><a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design"><span class="ac-gn-link-text">Design</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-develop"><a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop"><span class="ac-gn-link-text">Develop</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-distribute"><a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute"><span class="ac-gn-link-text">Distribute</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport"><a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport"><span class="ac-gn-link-text">Support</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-account"><a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account"><span class="ac-gn-link-text">Account</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search"><a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a></li>
+</ul>
+<aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search"><div class="ac-gn-searchview-content">
+<div class="ac-gn-searchview-bar"><div class="ac-gn-searchview-bar-wrapper">
+<form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get"><div class="ac-gn-searchform-wrapper">
+<input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions"> <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button> <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search"><span class="ac-gn-searchform-reset-background"></span></button>
+</div></form>
+<button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></button>
+</div></div>
+<aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
+</div>
+<button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search"><span class="ac-gn-searchview-close-wrapper"><span class="ac-gn-searchview-close-left"></span> <span class="ac-gn-searchview-close-right"></span></span></button></aside>
+</div></nav><div class="ac-gn-blur"></div>
+<div id="ac-gn-curtain" class="ac-gn-curtain"></div>
+<div id="ac-gn-placeholder" class="ac-nav-placeholder"></div>
+<script src="../../../tutorials/js/ac-globalnav.built.js"></script>
+<noscript>
+<style>.noscript {
+  font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
+  margin: 92px auto 140px auto;
+  text-align: center;
+  width: 980px;
+}
+
+.noscript-title {
+  color: #111;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -.003em;
+  line-height: 1.08365;
+  margin: 0 auto 54px auto;
+  width: 502px;
+}
+
+@media only screen and (max-width: 1068px) {
+  .noscript {
+    margin: 90px auto 120px auto;
+    width: 692px;
+  }
+
+  .noscript-title {
+    font-size: 40px;
+    letter-spacing: 0;
+    line-height: 1.1;
+    margin: 0 auto 45px auto;
+    width: 420px;
+  }
+}
+
+@media only screen and (max-width: 735px) {
+  .noscript {
+    margin: 45px auto 60px auto;
+    width: 87.5%;
+  }
+
+  .noscript-title {
+    font-size: 32px;
+    letter-spacing: .004em;
+    line-height: 1.125;
+    margin: 0 auto 35px auto;
+    max-width: 330px;
+    width: auto;
+  }
+}
+
+#loading-placeholder {
+  display: none;
+};</style>
+<div class="noscript">
+<h1 class="noscript-title">This page requires JavaScript.</h1>
+<p>Please turn on JavaScript in your browser and refresh the page to view its content.</p>
+</div>
+</noscript>
+<div data-v-0220a4c4="" id="app" class=""><div data-v-0220a4c4=""><div data-v-2deaa168="" class="doc-topic">
+<div data-v-3ceaa5df="" data-v-2deaa168="" class="localnav-container">
+<input data-v-3ceaa5df="" aria-hidden="true" id="localnav-menustate" type="checkbox" class="localnav-menustate"><div id="localnav-sticky-placeholder" class="css-sticky"></div>
+<nav data-v-3ceaa5df="" aria-label="API Reference" data-sticky="" id="localnav" role="navigation" class="localnav localnav-dark theme-dark medium-localnav-collapsible localnav-noborder localnav-scrim css-sticky"><div data-v-3ceaa5df="" class="localnav-wrapper">
+<div data-v-3ceaa5df="" class="referencenav">
+<div data-v-3ceaa5df="" class="localnav-background"></div>
+<div data-v-3ceaa5df="" class="localnav-content">
+<a data-v-3ceaa5df="" href="../../../index.html" class="localnav-title">
+            Documentation
+          </a><div data-v-3ceaa5df="" class="localnav-menu">
+<a data-v-3ceaa5df="" href="#localnav-menustate" role="button" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Open Menu</span></a><a data-v-3ceaa5df="" href="#" role="button" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Close Menu</span></a><div data-v-3ceaa5df="" class="localnav-menu-tray">
+<ul data-v-72fd0d2c="" data-v-3ceaa5df="" aria-label="Breadcrumbs" class="localnav-menu-items">
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../../documentation/foundation_language-objc.html" class="parent item router-link-active" data-v-23a2ae0d="">
+    Foundation
+  </a></li><!---->
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../../documentation/foundation/archives_and_serialization_language-objc.html" class="parent item router-link-active" data-v-23a2ae0d="">
+    <span class="enstr">Archives and Serialization</span><!--end_enstr-->
+<span class="jpstr">
+アーカイブとシリアライゼーション
+</span><!--end_jpstr-->
+
+  </a></li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item">
+<span data-v-23a2ae0d="" class="current item">
+    <span class="enstr">Encoding and Decoding Custom Types</span><!--end_enstr-->
+<span class="jpstr">
+あつらえの型のエンコーディングとデコーディング
+</span><!--end_jpstr-->
+
+  </span><!---->
+</li>
+</ul>
+<ul data-v-3ceaa5df="" data-breadcrumbs-count="3" class="localnav-menu-items localnav-menu-settings">
+<li data-v-282336e0="" data-v-3ceaa5df="" class="localnav-menu-setting language-container" breadcrumbcount="3">
+<div data-v-282336e0="" class="">
+<label data-v-282336e0="" class="localnav-menu-setting-label">
+      Language:
+    </label><span data-v-282336e0="" aria-current="page" class="localnav-menu-toggle-none current-language">
+      Swift
+    </span>
+</div><!---->
+
+</li>
+<li data-v-2e9f4ea2="" data-v-3ceaa5df="" class="localnav-menu-setting">
+<label data-v-2e9f4ea2="" for="version-label" class="localnav-menu-setting-label">
+    API Changes:
+  </label><span data-v-2e9f4ea2=""><span class="enstr">None</span><!--end_enstr-->
+<span class="jpstr">
+なし
+</span><!--end_jpstr-->
+</span>
+</li><!---->
+
+</ul>
+</div>
+<div data-v-3ceaa5df="" class="localnav-actions"><div data-v-3ceaa5df="" aria-hidden="true" class="localnav-action localnav-action-menucta"><label data-v-3ceaa5df="" for="localnav-menustate" class="localnav-menucta"><span data-v-3ceaa5df="" class="localnav-menucta-chevron"></span></label></div></div>
+</div>
+</div>
+</div><!---->
+
+</div></nav><label data-v-3ceaa5df="" aria-hidden="true" for="localnav-menustate" id="localnav-curtain"></label>
+</div>
+<main data-v-2deaa168="" id="main" role="main" tabindex="0" class="main"><div data-v-4ba5af7c="" data-v-2deaa168="" class="topictitle">
+<span data-v-4ba5af7c="" class="eyebrow">Article</span><h1 data-v-4ba5af7c="" class="title"><span class="enstr">Encoding and Decoding Custom Types</span><!--end_enstr-->
+<span class="jpstr">
+あつらえの型のエンコーディングとデコーディング
+</span><!--end_jpstr-->
+</h1>
+</div>
+<div data-v-0253ce0e="" data-v-2deaa168="" class="row container">
+<div data-v-9807b2e0="" data-v-5ad0d458="" data-v-2deaa168="" class="col description large-9 medium-9 small-12" data-v-0253ce0e=""><!---->
+<div data-v-7ea0aa49="" data-v-aba749e6="" data-v-2deaa168="" class="abstract content" data-v-9807b2e0=""><span class="enstr">Make your data types encodable and decodable for compatibility with external representations such as JSON.</span><!--end_enstr-->
+<span class="jpstr">
+あなたのデータ型のエンコーディングとデコーディングを外部表現、例えばJSONなどとの互換性のために行います。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div>
+<div data-v-9807b2e0="" data-v-42fb6bac="" data-v-2deaa168="" class="col summary large-3 medium-3 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-e4237090="" data-v-2b96ab1a="" data-v-2deaa168="" class="summary-section on-this-page" data-v-9807b2e0=""><nav data-v-2b96ab1a="" data-v-e4237090="" aria-labelledby="on-this-page-title"><p data-v-1e0258b0="" data-v-2b96ab1a="" class="title" id="on-this-page-title" data-v-e4237090=""><span class="enstr">On This Page</span><!--end_enstr-->
+<span class="jpstr">
+この項には
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-2b96ab1a="" class="summary-list" data-v-e4237090="">
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../../documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types_language-objc.html#overview" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Overview</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../../documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types_language-objc.html#see-also" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">See Also</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+</ul></nav></div>
+</div>
+<div data-v-9807b2e0="" data-v-1e40f676="" data-v-2deaa168="" class="col primary-content large-9 medium-9 small-12" data-v-0253ce0e=""><div data-v-7ea0aa49="" data-v-1e40f676="" class="content" data-v-9807b2e0="">
+<h2 id="overview"><span class="enstr">Overview</span><!--end_enstr-->
+<span class="jpstr">
+概要
+</span><!--end_jpstr-->
+</h2>
+<p><span class="enstr">Many programming tasks involve sending data over a network connection, saving data to disk, or submitting data to APIs and services. These tasks often require data to be encoded and decoded to and from an intermediate format while the data is being transferred.</span><!--end_enstr-->
+<span class="jpstr">
+多くのプログラミング作業がネットワーク接続を越えてのデータの送信、ディスク上でのデータの保存、またはAPIおよびサービスへのデータの提出を伴います。これらの作業がしばしばデータに要求するのは、データが転送される間に中間形式へとおよびそれからエンコードおよびデコードされることです。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">The Swift standard library defines a standardized approach to data encoding and decoding. You adopt this approach by implementing the <a href="../../../documentation/swift/encodable_language-objc.html" class=""><code data-v-7fb764c1="">Encodable</code></a> and <a href="../../../documentation/swift/decodable_language-objc.html" class=""><code data-v-7fb764c1="">Decodable</code></a> protocols on your custom types. Adopting these protocols lets implementations of the <a href="../../../documentation/swift/encoder_language-objc.html" class=""><code data-v-7fb764c1="">Encoder</code></a> and <a href="../../../documentation/swift/decoder_language-objc.html" class=""><code data-v-7fb764c1="">Decoder</code></a> protocols take your data and encode or decode it to and from an external representation such as JSON or property list. To support both encoding and decoding, declare conformance to <a href="../../../documentation/swift/codable_language-objc.html" class=""><code data-v-7fb764c1="">Codable</code></a>, which combines the <span><code data-v-7fb764c1="">Encodable</code></span> and <span><code data-v-7fb764c1="">Decodable</code></span> protocols. This process is known as making your types <em>codable</em>.</span><!--end_enstr-->
+<span class="jpstr">
+Swift標準ライブラリは、標準化された取り組みをデータのエンコードとデコードに対して定義します。あなたはこの取り組みを<a href="../../../documentation/swift/encodable_language-objc.html" class=""><code data-v-7fb764c1="">Encodable</code></a>と<a href="../../../documentation/swift/decodable_language-objc.html" class=""><code data-v-7fb764c1="">Decodable</code></a>プロトコルをあなたのあつらえの型で実装することで採用します。これらのプロトコルの採用は、<a href="../../../documentation/swift/encoder_language-objc.html" class=""><code data-v-7fb764c1="">Encoder</code></a>と<a href="../../../documentation/swift/decoder_language-objc.html" class=""><code data-v-7fb764c1="">Decoder</code></a>プロトコルの実装に、あなたのデータを取らせて、それをJSONやプロパティリストのような外部表現へとそしてそれからエンコードおよびデコードさせます。エンコードとデコードの両方をサポートするには、<a href="../../../documentation/swift/codable_language-objc.html" class=""><code data-v-7fb764c1="">Codable</code></a>への準拠を宣言してください、それは<span><code data-v-7fb764c1="">Encodable</code></span>と<span><code data-v-7fb764c1="">Decodable</code></span>プロトコルを一体化します。この過程は、あなたの型を<em>コード化可能</em>にするとして知られています。
+</span><!--end_jpstr-->
+</p>
+<h3 id="2904055"><span class="enstr">Encode and Decode Automatically</span><!--end_enstr-->
+<span class="jpstr">
+自動的にエンコードおよびデコードする
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">The simplest way to make a type codable is to declare its properties using types that are already <span><code data-v-7fb764c1="">Codable</code></span>. These types include standard library types like <a href="../../../documentation/swift/string_language-objc.html" class=""><code data-v-7fb764c1="">String</code></a>, <a href="../../../documentation/swift/int_language-objc.html" class=""><code data-v-7fb764c1="">Int</code></a>, and <a href="../../../documentation/swift/double_language-objc.html" class=""><code data-v-7fb764c1="">Double</code></a>; and Foundation types like <a href="../../../documentation/foundation/date_language-objc.html" class=""><code data-v-7fb764c1="">Date</code></a>, <a href="../../../documentation/foundation/data_language-objc.html" class=""><code data-v-7fb764c1="">Data</code></a>, and <a href="../../../documentation/foundation/url_language-objc.html" class=""><code data-v-7fb764c1="">URL</code></a>. Any type whose properties are codable automatically conforms to <span><code data-v-7fb764c1="">Codable</code></span> just by declaring that conformance.</span><!--end_enstr-->
+<span class="jpstr">
+ある型をコード化可能にするもっとも単純な方法は、既に<span><code data-v-7fb764c1="">Codable</code></span>である型のどれかを使ってそれのプロパティを宣言することになります。それらの型は、<a href="../../../documentation/swift/string_language-objc.html" class=""><code data-v-7fb764c1="">String</code></a>、<a href="../../../documentation/swift/int_language-objc.html" class=""><code data-v-7fb764c1="">Int</code></a>、そして<a href="../../../documentation/swift/double_language-objc.html" class=""><code data-v-7fb764c1="">Double</code></a>のような標準ライブラリ；そして<a href="../../../documentation/foundation/date_language-objc.html" class=""><code data-v-7fb764c1="">Date</code></a>、<a href="../../../documentation/foundation/data_language-objc.html" class=""><code data-v-7fb764c1="">Data</code></a>、そして<a href="../../../documentation/foundation/url_language-objc.html" class=""><code data-v-7fb764c1="">URL</code></a>のようなFoundation型を含みます。それらのプロパティがコード化可能なあらゆる型は、単にその準拠を宣言することによって自動的に<span><code data-v-7fb764c1="">Codable</code></span>に準拠します。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">Consider a <code data-v-7fb764c1="">Landmark</code> structure that stores the name and founding year of a landmark:</span><!--end_enstr-->
+<span class="jpstr">
+歴史的建築物の名前と建造年を格納する<code data-v-7fb764c1="">Landmark</code>構造体を考えてください：
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="2904068"><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-class"><span class="syntax-keyword">struct</span> <span class="syntax-title">Landmark</span> </span>{</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">var</span> name: <span class="syntax-type">String</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">var</span> foundingYear: <span class="syntax-type">Int</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">}</span></span></code></pre></div>
+</div></figure><p><span class="enstr">Adding <span><code data-v-7fb764c1="">Codable</code></span> to the inheritance list for <code data-v-7fb764c1="">Landmark</code> triggers an automatic conformance that satisfies all of the protocol requirements from <span><code data-v-7fb764c1="">Encodable</code></span> and <span><code data-v-7fb764c1="">Decodable</code></span>:</span><!--end_enstr-->
+<span class="jpstr">
+<span><code data-v-7fb764c1="">Codable</code></span>を<code data-v-7fb764c1="">Landmark</code>に対する継承リストに加えることは、<span><code data-v-7fb764c1="">Encodable</code></span>と<span><code data-v-7fb764c1="">Decodable</code></span>からのプロトコル要件のすべてを満たす自動的準拠を引き起こします。
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="2904069"><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-class"><span class="syntax-keyword">struct</span> <span class="syntax-title">Landmark</span>: <span class="syntax-title">Codable</span> </span>{</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">var</span> name: <span class="syntax-type">String</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">var</span> foundingYear: <span class="syntax-type">Int</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    </span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="5" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-comment">// Landmark now supports the Codable methods init(from:) and encode(to:), </span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="6" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-comment">// even though they aren't written as part of its declaration.</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="7" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">}</span></span></code></pre></div>
+</div></figure><p></p>
+<p><span class="enstr">Adopting <span><code data-v-7fb764c1="">Codable</code></span> on your own types enables you to serialize them to and from any of the built-in data formats, and any formats provided by custom encoders and decoders. For example, the <code data-v-7fb764c1="">Landmark</code> structure can be encoded using both the <a href="../../../documentation/foundation/propertylistencoder_language-objc.html" class=""><code data-v-7fb764c1="">Property<wbr data-v-7fb764c1="">List<wbr data-v-7fb764c1="">Encoder</wbr></wbr></code></a> and <a href="../../../documentation/foundation/jsonencoder_language-objc.html" class=""><code data-v-7fb764c1="">JSONEncoder</code></a> classes, even though <code data-v-7fb764c1="">Landmark</code> itself contains no code to specifically handle property lists or JSON.</span><!--end_enstr-->
+<span class="jpstr">
+<span><code data-v-7fb764c1="">Codable</code></span>をいろいろなあなた独自の型で採用することは、あなたにそれらをあらゆる組込みデータ形式、そしてあつらえのエンコーダとデコーダによって提供されるあらゆる形式へとおよびそれからシリアライズすることを可能にします。例えば、<code data-v-7fb764c1="">Landmark</code>構造体は、<a href="../../../documentation/foundation/propertylistencoder_language-objc.html" class=""><code data-v-7fb764c1="">Property<wbr data-v-7fb764c1="">List<wbr data-v-7fb764c1="">Encoder</wbr></wbr></code></a>と<a href="../../../documentation/foundation/jsonencoder_language-objc.html" class=""><code data-v-7fb764c1="">JSONEncoder</code></a>クラスの両方を使ってエンコードされます、<code data-v-7fb764c1="">Landmark</code>それ自身がプロパティリストまたはJSONを具体的に取り扱うコードを含まないとしてもです。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">The same principle applies to custom types made up of other custom types that are codable. As long as all of its properties are <span><code data-v-7fb764c1="">Codable</code></span>, any custom type can also be <span><code data-v-7fb764c1="">Codable</code></span>.</span><!--end_enstr-->
+<span class="jpstr">
+同じ原理は、コード化可能である他のあつらえの型から成り立っているあつらえの型に適用されます。それのプロパティの全てが<span><code data-v-7fb764c1="">Codable</code></span>である限り、あらゆるあつらえの型もまた<span><code data-v-7fb764c1="">Codable</code></span>です。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">The example below shows how automatic <span><code data-v-7fb764c1="">Codable</code></span> conformance applies when a <code data-v-7fb764c1="">location</code> property is added to the <code data-v-7fb764c1="">Landmark</code> structure:</span><!--end_enstr-->
+<span class="jpstr">
+下の例は、自動的に<span><code data-v-7fb764c1="">Codable</code></span>準拠を、<code data-v-7fb764c1="">location</code>プロパティが<code data-v-7fb764c1="">Landmark</code>構造体に加えられる時に適用する方法を示します：
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="2904070"><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-class"><span class="syntax-keyword">struct</span> <span class="syntax-title">Coordinate</span>: <span class="syntax-title">Codable</span> </span>{</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">var</span> latitude: <span class="syntax-type">Double</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">var</span> longitude: <span class="syntax-type">Double</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">}</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="5" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">
+</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="6" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-class"><span class="syntax-keyword">struct</span> <span class="syntax-title">Landmark</span>: <span class="syntax-title">Codable</span> </span>{</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="7" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-comment">// Double, String, and Int all conform to Codable.</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="8" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">var</span> name: <span class="syntax-type">String</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="9" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">var</span> foundingYear: <span class="syntax-type">Int</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="10" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    </span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="11" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-comment">// Adding a property of a custom Codable type maintains overall Codable conformance.</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="12" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">var</span> location: <span class="syntax-type">Coordinate</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="13" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">}</span></span></code></pre></div>
+</div></figure><p></p>
+<p><span class="enstr">Built-in types such as <a href="../../../documentation/swift/array_language-objc.html" class=""><code data-v-7fb764c1="">Array</code></a>,  <a href="../../../documentation/swift/dictionary_language-objc.html" class=""><code data-v-7fb764c1="">Dictionary</code></a>, and <a href="../../../documentation/swift/optional_language-objc.html" class=""><code data-v-7fb764c1="">Optional</code></a> also conform to <span><code data-v-7fb764c1="">Codable</code></span> whenever they contain codable types. You can add an array of <code data-v-7fb764c1="">Coordinate</code> instances to <code data-v-7fb764c1="">Landmark</code>, and the entire structure will still satisfy <span><code data-v-7fb764c1="">Codable</code></span>.</span><!--end_enstr-->
+<span class="jpstr">
+組込みの型、例えば<a href="../../../documentation/swift/array_language-objc.html" class=""><code data-v-7fb764c1="">Array</code></a>、<a href="../../../documentation/swift/dictionary_language-objc.html" class=""><code data-v-7fb764c1="">Dictionary</code></a>、そして<a href="../../../documentation/swift/optional_language-objc.html" class=""><code data-v-7fb764c1="">Optional</code></a>もまた、それらがコード化可能な型を含む時はいつでも<span><code data-v-7fb764c1="">Codable</code></span>に準拠します。あなたは<code data-v-7fb764c1="">Coordinate</code>インスタンスからなる配列を<code data-v-7fb764c1="">Landmark</code>に追加できます、そして構造体全体は依然として<span><code data-v-7fb764c1="">Codable</code></span>を満たします。
+</span><!--end_jpstr-->
+ </p>
+<p><span class="enstr">The example below shows how automatic conformance still applies when adding multiple properties using built-in codable types within <code data-v-7fb764c1="">Landmark</code>:</span><!--end_enstr-->
+<span class="jpstr">
+下の例は、どのように自動的な準拠が依然として適用されるか、複数のプロパティを組込みのコード化可能型を使って<code data-v-7fb764c1="">Landmark</code>構造体内部に加える場合に示します：
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="2904071"><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-class"><span class="syntax-keyword">struct</span> <span class="syntax-title">Landmark</span>: <span class="syntax-title">Codable</span> </span>{</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">var</span> name: <span class="syntax-type">String</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">var</span> foundingYear: <span class="syntax-type">Int</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">var</span> location: <span class="syntax-type">Coordinate</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="5" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    </span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="6" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-comment">// Landmark is still codable after adding these properties.</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="7" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">var</span> vantagePoints: [<span class="syntax-type">Coordinate</span>]</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="8" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">var</span> metadata: [<span class="syntax-type">String</span>: <span class="syntax-type">String</span>]</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="9" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">var</span> website: <span class="syntax-type">URL?</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="10" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">}</span></span></code></pre></div>
+</div></figure><p></p>
+<p></p>
+<h3 id="2904056"><span class="enstr">Encode or Decode Exclusively</span><!--end_enstr-->
+<span class="jpstr">
+排他的にエンコードおよびデコードする
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">In some cases, you may not need <span><code data-v-7fb764c1="">Codable</code></span>'s support for bidirectional encoding and decoding. For example, some apps only need to make calls to a remote network API and do not need to decode a response containing the same type. Declare conformance to <span><code data-v-7fb764c1="">Encodable</code></span> if you only need to support the encoding of data. Conversely, declare conformance to <span><code data-v-7fb764c1="">Decodable</code></span> if you only need to read data of a given type.</span><!--end_enstr-->
+<span class="jpstr">
+いくつかの場合には、あなたは<span><code data-v-7fb764c1="">Codable</code></span>のもつ双方向のエンコーディングとデコーディングに対する支援を必要としないかもしれません。例えば、いくつかのアプリはリモートネットワークAPIへの呼び出しだけを必要として、同じ型を含んでいる返答をデコードする必要がありません。<span><code data-v-7fb764c1="">Encodable</code></span>への準拠を、あなたがデータのエンコーディングの支援のみを必要とするならば宣言してください。反対に、<span><code data-v-7fb764c1="">Decodable</code></span>への準拠を、あなたが与えられた型のデータを読み込みのみを必要とするならば宣言してください。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">The examples below show alternative declarations of the <code data-v-7fb764c1="">Landmark</code> structure that only encode or decode data:</span><!--end_enstr-->
+<span class="jpstr">
+下の例は、<code data-v-7fb764c1="">Landmark</code>構造体でデータのエンコードまたはデコードのみを行う選択的な宣言を示します：
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="2904076"><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-class"><span class="syntax-keyword">struct</span> <span class="syntax-title">Landmark</span>: <span class="syntax-title">Encodable</span> </span>{</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">var</span> name: <span class="syntax-type">String</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">var</span> foundingYear: <span class="syntax-type">Int</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">}</span></span></code></pre></div>
+</div></figure><figure data-v-7bf080cc="" id="2909111"><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-class"><span class="syntax-keyword">struct</span> <span class="syntax-title">Landmark</span>: <span class="syntax-title">Decodable</span> </span>{</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">var</span> name: <span class="syntax-type">String</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">var</span> foundingYear: <span class="syntax-type">Int</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">}</span></span></code></pre></div>
+</div></figure><p></p>
+<h3 id="2904057"><span class="enstr">Choose Properties to Encode and Decode Using Coding Keys</span><!--end_enstr-->
+<span class="jpstr">
+プロパティを選択してエンコードとデコードをコーディングキーを使って行う
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">Codable types can declare a special nested enumeration named <code data-v-7fb764c1="">Coding<wbr data-v-7fb764c1="">Keys</wbr></code> that conforms to the <a href="../../../documentation/swift/codingkey_language-objc.html" class=""><code data-v-7fb764c1="">Coding<wbr data-v-7fb764c1="">Key</wbr></code></a> protocol. When this enumeration is present, its cases serve as the authoritative list of properties that must be included when instances of a codable type are encoded or decoded. The names of the enumeration cases should match the names you've given to the corresponding properties in your type.</span><!--end_enstr-->
+<span class="jpstr">
+コード化可能型は、<code data-v-7fb764c1="">Coding<wbr data-v-7fb764c1="">Keys</wbr></code>と名前を付けられ、<a href="../../../documentation/swift/codingkey_language-objc.html" class=""><code data-v-7fb764c1="">Coding<wbr data-v-7fb764c1="">Key</wbr></code></a>プロトコルに準拠する、ある特殊な入れ子列挙を宣言できます。この列挙が存在する時、それのケース節は、コード化可能型のインスタンスがエンコードまたはデコードされる時に含められる必要があるプロパティの正式リストとしての機能を果たします。これら列挙ケース節の名前は、あなたの型の中の対応するプロパティにあなたが与えた名前と合致しなければなりません。
+</span><!--end_jpstr-->
+ </p>
+<p><span class="enstr">Omit properties from the <code data-v-7fb764c1="">Coding<wbr data-v-7fb764c1="">Keys</wbr></code> enumeration if they won't be present when decoding instances, or if certain properties shouldn't be included in an encoded representation. A property omitted from <code data-v-7fb764c1="">Coding<wbr data-v-7fb764c1="">Keys</wbr></code> needs a default value in order for its containing type to receive automatic conformance to <span><code data-v-7fb764c1="">Decodable</code></span> or <span><code data-v-7fb764c1="">Codable</code></span>.</span><!--end_enstr-->
+<span class="jpstr">
+これらプロパティを<code data-v-7fb764c1="">Coding<wbr data-v-7fb764c1="">Keys</wbr></code>列挙から省略してください、もしそれらがインスタンスをデコードする時に存在しないならば、または若干のプロパティがエンコード済み表現の中に含められるべきでないならば。<code data-v-7fb764c1="">Coding<wbr data-v-7fb764c1="">Keys</wbr></code>から省略されたあるプロパティは、それの容れ物である型が<span><code data-v-7fb764c1="">Decodable</code></span>または<span><code data-v-7fb764c1="">Codable</code></span>への自動的な準拠を受け取るために初期状態の値が必要です。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">If the keys used in your serialized data format don't match the property names from your data type, provide alternative keys by specifying <span><code data-v-7fb764c1="">String</code></span> as the raw-value type for the <code data-v-7fb764c1="">Coding<wbr data-v-7fb764c1="">Keys</wbr></code> enumeration. The string you use as a raw value for each enumeration case is the key name used during encoding and decoding. The association between the case name and its raw value lets you name your data structures according to the Swift <a href="https://swift.org/documentation/api-design-guidelines/">API Design Guidelines</a> rather than having to match the names, punctuation, and capitalization of the serialization format you're modeling.</span><!--end_enstr-->
+<span class="jpstr">
+あなたの特殊化されたデータ型において使われるキーがあなたのデータ型からのプロパティ名と一致しないならば、代替のキーの提供を<span><code data-v-7fb764c1="">String</code></span>を<code data-v-7fb764c1="">Coding<wbr data-v-7fb764c1="">Keys</wbr></code>列挙に対する生の値型として指定することによって行ってください。あなたが各列挙節に対して生の値として使う文字列は、エンコーディングおよびデコーディングの間に使うキー名です。ケース節名とそれの生の値の間の関連性は、あなたにSwift <a href="https://swift.org/documentation/api-design-guidelines/">API Design Guidelines</a>に従ってあなたのデータ構造体に名前を付けさせます、あなたがモデリングしているシリアライズ形式での名前、句読点、そして大文字の使い方に合わせるのではなく。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">The example below uses alternative keys for the <code data-v-7fb764c1="">name</code> and <code data-v-7fb764c1="">founding<wbr data-v-7fb764c1="">Year</wbr></code> properties of the <code data-v-7fb764c1="">Landmark</code> structure when encoding and decoding:</span><!--end_enstr-->
+<span class="jpstr">
+下の例は、代替キーの使用を、<code data-v-7fb764c1="">Landmark</code>構造体の<code data-v-7fb764c1="">name</code>と<code data-v-7fb764c1="">founding<wbr data-v-7fb764c1="">Year</wbr></code>プロパティに対して、エンコードおよびデコードする時に行います。
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="2904080"><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-class"><span class="syntax-keyword">struct</span> <span class="syntax-title">Landmark</span>: <span class="syntax-title">Codable</span> </span>{</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">var</span> name: <span class="syntax-type">String</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">var</span> foundingYear: <span class="syntax-type">Int</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">var</span> location: <span class="syntax-type">Coordinate</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="5" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">var</span> vantagePoints: [<span class="syntax-type">Coordinate</span>]</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="6" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    </span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="7" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-class"><span class="syntax-keyword">enum</span> <span class="syntax-title">CodingKeys</span>: <span class="syntax-title">String</span>, <span class="syntax-title">CodingKey</span> </span>{</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="8" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">case</span> name = <span class="syntax-string">"title"</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="9" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">case</span> foundingYear = <span class="syntax-string">"founding_date"</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="10" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        </span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="11" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">case</span> location</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="12" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">case</span> vantagePoints</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="13" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="14" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">}</span></span></code></pre></div>
+</div></figure><p></p>
+<h3 id="2904058"><span class="enstr">Encode and Decode Manually</span><!--end_enstr-->
+<span class="jpstr">
+手動でエンコードおよびデコードする
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">If the structure of your Swift type differs from the structure of its encoded form, you can provide a custom implementation of <span><code data-v-7fb764c1="">Encodable</code></span> and <span><code data-v-7fb764c1="">Decodable</code></span> to define your own encoding and decoding logic.</span><!--end_enstr-->
+<span class="jpstr">
+あなたのSwift型の構造体がそれのエンコード形式の構造体と異なるならば、あなたは<span><code data-v-7fb764c1="">Encodable</code></span>および<span><code data-v-7fb764c1="">Decodable</code></span>のあつらえの実装を提供することであなた独自のエンコードおよびデコード論理を定義できます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">In the examples below, the <code data-v-7fb764c1="">Coordinate</code> structure is expanded to support an <code data-v-7fb764c1="">elevation</code> property that's nested inside of an <code data-v-7fb764c1="">additional<wbr data-v-7fb764c1="">Info</wbr></code> container:</span><!--end_enstr-->
+<span class="jpstr">
+下の例において、<code data-v-7fb764c1="">Coordinate</code>構造体は拡張されることで<code data-v-7fb764c1="">elevation</code>プロパティをサポートします、それは<code data-v-7fb764c1="">additional<wbr data-v-7fb764c1="">Info</wbr></code>コンテナの内部に入れ子にされます：
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="2904081"><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-class"><span class="syntax-keyword">struct</span> <span class="syntax-title">Coordinate</span> </span>{</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">var</span> latitude: <span class="syntax-type">Double</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">var</span> longitude: <span class="syntax-type">Double</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">var</span> elevation: <span class="syntax-type">Double</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="5" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">
+</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="6" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-class"><span class="syntax-keyword">enum</span> <span class="syntax-title">CodingKeys</span>: <span class="syntax-title">String</span>, <span class="syntax-title">CodingKey</span> </span>{</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="7" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">case</span> latitude</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="8" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">case</span> longitude</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="9" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">case</span> additionalInfo</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="10" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="11" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    </span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="12" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-class"><span class="syntax-keyword">enum</span> <span class="syntax-title">AdditionalInfoKeys</span>: <span class="syntax-title">String</span>, <span class="syntax-title">CodingKey</span> </span>{</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="13" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">case</span> elevation</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="14" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="15" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">}</span></span></code></pre></div>
+</div></figure><p><span class="enstr">Because the encoded form of the <code data-v-7fb764c1="">Coordinate</code> type contains a second level of nested information, the type's adoption of the <span><code data-v-7fb764c1="">Encodable</code></span> and <span><code data-v-7fb764c1="">Decodable</code></span> protocols uses two enumerations that each list the complete set of coding keys used on a particular level.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">Coordinate</code>型のエンコード形式は入れ子にされた情報の２番目の水準を含むことから、その型のもつ<span><code data-v-7fb764c1="">Encodable</code></span>と<span><code data-v-7fb764c1="">Decodable</code></span>プロトコルの採用は２つの列挙を使います、それはそれぞれが特定の水準で使われるコーディングキーの完全な一揃いを列記します。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">In the example below, the <code data-v-7fb764c1="">Coordinate</code> structure is extended to conform to the <span><code data-v-7fb764c1="">Decodable</code></span> protocol by implementing its required initializer, <a href="../../../documentation/swift/decodable/2894081-init_language-objc.html" class=""><code data-v-7fb764c1="">init(from:)</code></a>:</span><!--end_enstr-->
+<span class="jpstr">
+下の例において、<code data-v-7fb764c1="">Coordinate</code>構造体は拡張されて、<span><code data-v-7fb764c1="">Decodable</code></span>プロトコルにそれの必須イニシャライザ、<a href="../../../documentation/swift/decodable/2894081-init_language-objc.html" class=""><code data-v-7fb764c1="">init(from:)</code></a>を実装することで準拠します：
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="2904082"><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-class"><span class="syntax-keyword">extension</span> <span class="syntax-title">Coordinate</span>: <span class="syntax-title">Decodable</span> </span>{</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">init</span>(from decoder: <span class="syntax-type">Decoder</span>) <span class="syntax-keyword">throws</span> {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">let</span> values = <span class="syntax-keyword">try</span> decoder.container(keyedBy: <span class="syntax-type">CodingKeys</span>.<span class="syntax-keyword">self</span>)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        latitude = <span class="syntax-keyword">try</span> values.decode(<span class="syntax-type">Double</span>.<span class="syntax-keyword">self</span>, forKey: .latitude)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="5" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        longitude = <span class="syntax-keyword">try</span> values.decode(<span class="syntax-type">Double</span>.<span class="syntax-keyword">self</span>, forKey: .longitude)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="6" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        </span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="7" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">let</span> additionalInfo = <span class="syntax-keyword">try</span> values.nestedContainer(keyedBy: <span class="syntax-type">AdditionalInfoKeys</span>.<span class="syntax-keyword">self</span>, forKey: .additionalInfo)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="8" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        elevation = <span class="syntax-keyword">try</span> additionalInfo.decode(<span class="syntax-type">Double</span>.<span class="syntax-keyword">self</span>, forKey: .elevation)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="9" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="10" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">}</span></span></code></pre></div>
+</div></figure><p></p>
+<p><span class="enstr">The initializer populates a <code data-v-7fb764c1="">Coordinate</code> instance by using methods on the <span><code data-v-7fb764c1="">Decoder</code></span> instance it receives as a parameter. The <code data-v-7fb764c1="">Coordinate</code> instance's two properties are initialized using the keyed container APIs provided by the Swift standard library.</span><!--end_enstr-->
+<span class="jpstr">
+このイニシャライザは、それがパラメータとして受け取る<span><code data-v-7fb764c1="">Decoder</code></span>インスタンス上でメソッドを使うことで<code data-v-7fb764c1="">Coordinate</code>インスタンスを満たします。<code data-v-7fb764c1="">Coordinate</code>インスタンスのもつ２つのプロパティは、Swift標準ライブラリによって提供されるキー付きコンテナAPIを使って初期化されます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">The example below shows how the <code data-v-7fb764c1="">Coordinate</code> structure can be extended to conform to the <span><code data-v-7fb764c1="">Encodable</code></span> protocol by implementing its required method, <a href="../../../documentation/swift/encodable/2893603-encode_language-objc.html" class=""><code data-v-7fb764c1="">encode(to:)</code></a>:</span><!--end_enstr-->
+<span class="jpstr">
+下の例は、どのように<code data-v-7fb764c1="">Coordinate</code>構造体が拡張されて、<span><code data-v-7fb764c1="">Encodable</code></span>プロトコルにそれの必須メソッド<a href="../../../documentation/swift/encodable/2893603-encode_language-objc.html" class=""><code data-v-7fb764c1="">encode(to:)</code></a>を実装することで準拠するかを示します：
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="2904083"><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-class"><span class="syntax-keyword">extension</span> <span class="syntax-title">Coordinate</span>: <span class="syntax-title">Encodable</span> </span>{</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-function"><span class="syntax-keyword">func</span> <span class="syntax-title">encode</span><span class="syntax-params">(to encoder: Encoder)</span></span> <span class="syntax-keyword">throws</span> {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">var</span> container = encoder.container(keyedBy: <span class="syntax-type">CodingKeys</span>.<span class="syntax-keyword">self</span>)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">try</span> container.encode(latitude, forKey: .latitude)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="5" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">try</span> container.encode(longitude, forKey: .longitude)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="6" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        </span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="7" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">var</span> additionalInfo = container.nestedContainer(keyedBy: <span class="syntax-type">AdditionalInfoKeys</span>.<span class="syntax-keyword">self</span>, forKey: .additionalInfo)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="8" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">try</span> additionalInfo.encode(elevation, forKey: .elevation)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="9" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="10" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">}</span></span></code></pre></div>
+</div></figure><p><span class="enstr">This implementation of the <span><code data-v-7fb764c1="">encode(to:)</code></span> method reverses the decoding operation from the previous example.</span><!--end_enstr-->
+<span class="jpstr">
+<span><code data-v-7fb764c1="">encode(to:)</code></span>メソッドのこの実装は、デコーディング演算を前の例から入れ替えます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">For more information about the container types used when customizing the encoding and decoding process, see <a href="../../../documentation/swift/keyedencodingcontainerprotocol_language-objc.html" class=""><code data-v-7fb764c1="">Keyed<wbr data-v-7fb764c1="">Encoding<wbr data-v-7fb764c1="">Container<wbr data-v-7fb764c1="">Protocol</wbr></wbr></wbr></code></a> and <a href="../../../documentation/swift/unkeyedencodingcontainer_language-objc.html" class=""><code data-v-7fb764c1="">Unkeyed<wbr data-v-7fb764c1="">Encoding<wbr data-v-7fb764c1="">Container</wbr></wbr></code></a>.</span><!--end_enstr-->
+<span class="jpstr">
+デコーディングとエンコーディング過程をカスタマイズする時に使われるコンテナ型についての詳細は、<a href="../../../documentation/swift/keyedencodingcontainerprotocol_language-objc.html" class=""><code data-v-7fb764c1="">Keyed<wbr data-v-7fb764c1="">Encoding<wbr data-v-7fb764c1="">Container<wbr data-v-7fb764c1="">Protocol</wbr></wbr></wbr></code></a>と<a href="../../../documentation/swift/unkeyedencodingcontainer_language-objc.html" class=""><code data-v-7fb764c1="">Unkeyed<wbr data-v-7fb764c1="">Encoding<wbr data-v-7fb764c1="">Container</wbr></wbr></code></a>を見てください。
+</span><!--end_jpstr-->
+</p>
+</div></div>
+</div><!----><!----><!---->
+<section data-v-8c663d90="" data-v-63527a60="" data-v-2deaa168="" id="see-also" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">See Also</span><!--end_enstr-->
+<span class="jpstr">
+参照
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">First Steps</span><!--end_enstr-->
+<span class="jpstr">
+初歩
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/swift/codable_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">typealias </span><span data-v-dac213be="" class="identifier">Codable</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A type that can convert itself into and out of an external representation.</span><!--end_enstr-->
+<span class="jpstr">
+それ自身を外部表現へとそしてそれをもとに変換できる型。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/nscoding_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">protocol </span><span data-v-dac213be="" class="identifier">NSCoding</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A protocol that enables an object to be encoded and decoded for archiving and distribution.</span><!--end_enstr-->
+<span class="jpstr">
+あるオブジェクトにアーカイブと配布のためにエンコードおよびデコードされることを可能にするプロトコル。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/nssecurecoding_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">protocol </span><span data-v-dac213be="" class="identifier">NSSecure<wbr data-v-dac213be="">Coding</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.</span><!--end_enstr-->
+<span class="jpstr">
+エンコーディングとデコーディングを、オブジェクト置き換え攻撃に対して堅牢なある流儀で可能にするプロトコル。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Related Documentation</span><!--end_enstr-->
+<span class="jpstr">
+関連文書
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0="">
+<a data-v-01f7f080="" href="../../../documentation/foundation/archives_and_serialization/using_json_with_custom_types_language-objc.html" class="link has-adjacent-elements"><svg data-v-a76e93d8="" data-v-a8c6b630="" data-v-01f7f080="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="svg-icon topic-icon" height="15" viewbox="0 0 15 15"><title data-v-a76e93d8="">Sample Code</title>
+<g data-v-a76e93d8="" fill-rule="evenodd" class="svg-icon-small"><path data-v-a76e93d8="" d="M9 15L9 14 11.0104712 14C11.5759162 14 12.1832461 13.86 12.1832461 12.14L12.1832461 10.28C12.1529524 9.27545906 12.5278004 8.29817424 13.2303665 7.55L13.3246073 7.47C12.5372999 6.72356427 12.1089306 5.6990224 12.1413613 4.64L12.1413613 3.42C12.1413613 3 12.1413613 1 11.0104712 1L9 1 9 0 11.0104712 0C12.3926702 0 13.1884817 1.28 13.1884817 3.42L13.1884817 4.64C13.1884817 6 13.8691099 6.95 14.4764398 6.95L15 6.95 15 7.95 14.4764398 7.95C14.2508552 7.96082278 14.0394061 8.05818375 13.8900524 8.22 13.4104115 8.78359074 13.1611361 9.49421163 13.1884817 10.22L13.1884817 12.09C13.1884817 14 12.4764398 15 11.0104712 15L9 15zM6 15L4.28 15C2.87 15 2 13.85 2 12L2 10.13C2 8.46 1.66 8 .5 8L0 8 0 7 .5 7C1.61 6.95 2 6.3 2 4.49L2 3.27C2 1.32 2.92 0 4.28 0L6 0 6 1 4.28 1C3.4 1 3 2.14 3 3.27L3 4.49C3.11371534 5.55342654 2.78458756 6.61676246 2.09 7.43 2.79401717 8.14117553 3.12990379 9.13776222 3 10.13L3 12C3 12.75 3.17 14 4.29 14L6 14 6 15z"></path></g></svg><span data-v-01f7f080=""><span class="enstr">Using JSON with Custom Types</span><!--end_enstr-->
+<span class="jpstr">
+JSONをあつらえの型で使う
+</span><!--end_jpstr-->
+</span><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Encode and decode JSON data, regardless of its structure, using Swift’s JSON support.</span><!--end_enstr-->
+<span class="jpstr">
+JSONデータをエンコードおよびデコードします、それの構造に関係なく、SwiftのJSONサポートを使います。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+</div><!----></section></main>
+</div></div></div>
+<section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo"><nav class="footer-breadory"><a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a><section class="breadcrumbs"><ol class="breadcrumbs-list"></ol></section><div id="directorynav" class="directorynav">
+<div id="dn-cola" class="column">
+<h3><a href="/discover/">Discover</a></h3>
+<ul>
+<li><a href="/ios/">iOS</a></li>
+<li><a href="/ipados/">iPadOS</a></li>
+<li><a href="/macos/">macOS</a></li>
+<li><a href="/tvos/">tvOS</a></li>
+<li><a href="/watchos/">watchOS</a></li>
+<li><a href="/safari/">Safari and Web</a></li>
+<li><a href="/games/">Games</a></li>
+<li><a href="/business/">Business</a></li>
+<li><a href="/education/">Education</a></li>
+<li><a href="/wwdc/">WWDC</a></li>
+</ul>
+</div>
+<div id="dn-colb" class="column">
+<h3><a href="/design/">Design</a></h3>
+<ul>
+<li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
+<li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
+<span class="jpstr">
+リソース
+</span><!--end_jpstr-->
+</a></li>
+<li><a href="/videos/design/">Videos</a></li>
+<li><a href="/design/awards/">Apple Design Awards</a></li>
+<li><a href="/fonts/">Fonts</a></li>
+<li><a href="/accessibility/">Accessibility</a></li>
+<li><a href="/localization/"><span class="enstr">Localization</span><!--end_enstr-->
+<span class="jpstr">
+ローカライゼーション
+</span><!--end_jpstr-->
+</a></li>
+<li><a href="/accessories/">Accessories</a></li>
+</ul>
+</div>
+<div id="dn-colc" class="column">
+<h3><a href="/develop/">Develop</a></h3>
+<ul>
+<li><a href="/xcode/">Xcode</a></li>
+<li><a href="/swift/">Swift</a></li>
+<li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
+<li><a href="/testflight/">TestFlight</a></li>
+<li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
+<li><a href="/videos/">Videos</a></li>
+<li><a href="/download/">Downloads</a></li>
+</ul>
+</div>
+<div id="dn-cold" class="column">
+<h3><a href="/distribute/">Distribute</a></h3>
+<ul>
+<li><a href="/programs/">Developer Program</a></li>
+<li><a href="/app-store/">App Store</a></li>
+<li><a href="/app-store/review/">App Review</a></li>
+<li><a href="/macos/distribution/">Mac Software</a></li>
+<li><a href="/business/distribute/">Apps for Business</a></li>
+<li><a href="/safari/extensions/">Safari Extensions</a></li>
+<li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
+<li><a href="/softwarelicensing/">Trademark Licensing</a></li>
+</ul>
+</div>
+<div id="dn-cole" class="column">
+<h3><a href="/support/">Support</a></h3>
+<ul>
+<li><a href="/support/articles/">Articles</a></li>
+<li><a href="/forums/">Developer Forums</a></li>
+<li><a href="/bug-reporting/">Feedback &amp; Bug Reporting</a></li>
+<li><a href="/system-status/">System Status</a></li>
+<li><a href="/contact/">Contact Us</a></li>
+</ul>
+<h3><a href="/account/">Account</a></h3>
+<ul>
+<li><a href="/account/ios/certificate/">Certificates, Identifiers &amp; Profiles</a></li>
+<li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
+</ul>
+</div>
+</div></nav><div class="ac-gf-footer-legal">
+<div class="ac-gf-footer-news">To view the latest developer news, visit <a href="/news/">News and Updates</a>.</div>
+<div class="ac-gf-footer-language-dropdown-wrapper">
+<select id="footer-language-selector" class="footer-language-select" aria-label="Language Dropdown" autocomplete="off"><option value="https://developer.apple.com/" selected>English</option>
+<option value="https://developer.apple.com/cn/">简体中文</option>
+<option value="https://developer.apple.com/jp/">日本語</option>
+<option value="https://developer.apple.com/kr/">한국어</option></select> <span class="footer-language-select-icon icon icon-chevrondown" aria-hidden="true"></span>
+</div>
+<div class="ac-gf-footer-legal-copyright">Copyright © <span class="footer-current-year">2020</span> <a href="https://www.apple.com">Apple Inc.</a> All rights reserved.</div>
+<div class="ac-gf-footer-legal-links">
+<a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a> <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a> <a href="/terms/">License Agreements</a>
+</div>
+</div></footer></section><script src="../../../tutorials/js/footer.js"></script>
+</body>
+</html>

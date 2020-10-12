@@ -1,0 +1,1200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- link rel="icon" href="/favicon.ico" -->
+<link rel="mask-icon" href="/apple-logo.svg" color="#333333">
+<link rel="stylesheet" href="../../tutorials/css/_globalnav.css">
+<title>NSUserDefaults | Apple Developer Documentation</title>
+<link href="../../tutorials/css/chunk-76d5c2b5.00c53891.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic.e358e85c.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css" rel="prefetch">
+<link href="../../tutorials/css/topic.69278f1e.css" rel="prefetch">
+<link href="../../tutorials/css/topic~tutorials-overview.1f93e025.css" rel="prefetch">
+<link href="../../tutorials/css/tutorials-overview.d4ff0b50.css" rel="prefetch">
+<link href="../../tutorials/css/welcome-experience-featured.0537f0f0.css" rel="prefetch">
+<link href="../../tutorials/css/welcome-experience-technologies.60068ae2.css" rel="prefetch">
+<link href="../../tutorials/js/chunk-2d0d3105.459bf725.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-2d21a016.b81cb311.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-503f1ed8.d26c4552.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-530f89ce.621e1d48.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-640db3b2.f8778ca5.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-76d5c2b5.092e3b8a.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic.6abe9458.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js" rel="prefetch">
+<link href="../../tutorials/js/topic.c6ec6b6c.js" rel="prefetch">
+<link href="../../tutorials/js/topic~tutorials-overview.467a8186.js" rel="prefetch">
+<link href="../../tutorials/js/tutorials-overview.d77f61ca.js" rel="prefetch">
+<link href="../../tutorials/js/welcome-experience-featured.04f663e2.js" rel="prefetch">
+<link href="../../tutorials/js/welcome-experience-technologies.56a372c1.js" rel="prefetch">
+<link href="../../tutorials/css/app.2a174a23.css" rel="preload" as="style">
+<link href="../../tutorials/js/app.2c558263.js" rel="preload" as="script">
+<link href="../../tutorials/js/chunk-vendors.c3b68236.js" rel="preload" as="script">
+<link href="../../tutorials/css/app.2a174a23.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../../tutorials/css/chunk-76d5c2b5.00c53891.css">
+<script charset="utf-8" src="../../tutorials/js/chunk-76d5c2b5.092e3b8a.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic.e358e85c.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic.6abe9458.js"></script>
+</head>
+<body>
+<div id="_omniture_top">
+<script>var s_account="awdappledeveloper"</script>
+</div>
+<a href="#main" id="skip-localnav">Skip Navigation</a><aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"><nav id="ac-globalnav" class="js no-touch" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions"><div class="ac-gn-content">
+<ul class="ac-gn-header">
+<li class="ac-gn-item ac-gn-menuicon">
+<label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true"><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span> </span><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span></span></label> <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open"><span class="ac-gn-menuanchor-label">Global Nav Open Menu</span> </a><a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close"><span class="ac-gn-menuanchor-label">Global Nav Close Menu</span></a>
+</li>
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+</ul>
+<div class="ac-gn-search-placeholder-container" role="search"><div class="ac-gn-search ac-gn-search-small"><a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a><div class="ac-gn-search-placeholder-bar">
+<div class="ac-gn-search-placeholder-input"><div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
+<div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
+<span class="ac-gn-search-placeholder">Search Developer</span>
+</div></div>
+<div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></div>
+</div></a></div></div>
+<ul class="ac-gn-list">
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-discover"><a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover"><span class="ac-gn-link-text">Discover</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-design"><a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design"><span class="ac-gn-link-text">Design</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-develop"><a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop"><span class="ac-gn-link-text">Develop</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-distribute"><a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute"><span class="ac-gn-link-text">Distribute</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport"><a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport"><span class="ac-gn-link-text">Support</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-account"><a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account"><span class="ac-gn-link-text">Account</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search"><a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a></li>
+</ul>
+<aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search"><div class="ac-gn-searchview-content">
+<div class="ac-gn-searchview-bar"><div class="ac-gn-searchview-bar-wrapper">
+<form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get"><div class="ac-gn-searchform-wrapper">
+<input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions"> <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button> <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search"><span class="ac-gn-searchform-reset-background"></span></button>
+</div></form>
+<button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></button>
+</div></div>
+<aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
+</div>
+<button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search"><span class="ac-gn-searchview-close-wrapper"><span class="ac-gn-searchview-close-left"></span> <span class="ac-gn-searchview-close-right"></span></span></button></aside>
+</div></nav><div class="ac-gn-blur"></div>
+<div id="ac-gn-curtain" class="ac-gn-curtain"></div>
+<div id="ac-gn-placeholder" class="ac-nav-placeholder"></div>
+<script src="../../tutorials/js/ac-globalnav.built.js"></script>
+<noscript>
+<style>.noscript {
+  font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
+  margin: 92px auto 140px auto;
+  text-align: center;
+  width: 980px;
+}
+
+.noscript-title {
+  color: #111;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -.003em;
+  line-height: 1.08365;
+  margin: 0 auto 54px auto;
+  width: 502px;
+}
+
+@media only screen and (max-width: 1068px) {
+  .noscript {
+    margin: 90px auto 120px auto;
+    width: 692px;
+  }
+
+  .noscript-title {
+    font-size: 40px;
+    letter-spacing: 0;
+    line-height: 1.1;
+    margin: 0 auto 45px auto;
+    width: 420px;
+  }
+}
+
+@media only screen and (max-width: 735px) {
+  .noscript {
+    margin: 45px auto 60px auto;
+    width: 87.5%;
+  }
+
+  .noscript-title {
+    font-size: 32px;
+    letter-spacing: .004em;
+    line-height: 1.125;
+    margin: 0 auto 35px auto;
+    max-width: 330px;
+    width: auto;
+  }
+}
+
+#loading-placeholder {
+  display: none;
+};</style>
+<div class="noscript">
+<h1 class="noscript-title">This page requires JavaScript.</h1>
+<p>Please turn on JavaScript in your browser and refresh the page to view its content.</p>
+</div>
+</noscript>
+<div data-v-0220a4c4="" id="app" class=""><div data-v-0220a4c4=""><div data-v-2deaa168="" class="doc-topic">
+<div data-v-3ceaa5df="" data-v-2deaa168="" class="localnav-container">
+<input data-v-3ceaa5df="" aria-hidden="true" id="localnav-menustate" type="checkbox" class="localnav-menustate"><div id="localnav-sticky-placeholder" class="css-sticky"></div>
+<nav data-v-3ceaa5df="" aria-label="API Reference" data-sticky="" id="localnav" role="navigation" class="localnav localnav-dark theme-dark medium-localnav-collapsible localnav-noborder localnav-scrim css-sticky"><div data-v-3ceaa5df="" class="localnav-wrapper">
+<div data-v-3ceaa5df="" class="referencenav">
+<div data-v-3ceaa5df="" class="localnav-background"></div>
+<div data-v-3ceaa5df="" class="localnav-content">
+<a data-v-3ceaa5df="" href="../../index.html" class="localnav-title">
+            Documentation
+          </a><div data-v-3ceaa5df="" class="localnav-menu">
+<a data-v-3ceaa5df="" href="#localnav-menustate" role="button" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Open Menu</span></a><a data-v-3ceaa5df="" href="#" role="button" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Close Menu</span></a><div data-v-3ceaa5df="" class="localnav-menu-tray">
+<ul data-v-72fd0d2c="" data-v-3ceaa5df="" aria-label="Breadcrumbs" class="localnav-menu-items">
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../documentation/foundation_language-objc.html" class="parent item router-link-active" data-v-23a2ae0d="">
+    Foundation
+  </a></li><!---->
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../documentation/foundation/preferences_language-objc.html" class="parent item" data-v-23a2ae0d="">
+    <span class="enstr">Preferences</span><!--end_enstr-->
+<span class="jpstr">
+環境設定
+</span><!--end_jpstr-->
+
+  </a></li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item">
+<span data-v-23a2ae0d="" class="current item">
+    NSUserDefaults
+  </span><!---->
+</li>
+</ul>
+<ul data-v-3ceaa5df="" data-breadcrumbs-count="3" class="localnav-menu-items localnav-menu-settings">
+<li data-v-282336e0="" data-v-3ceaa5df="" class="localnav-menu-setting language-container" breadcrumbcount="3">
+<div data-v-282336e0="" class="language-toggle-container">
+<label data-v-282336e0="" for="language-toggle" class="language-toggle-label">
+      Language:
+    </label><select data-v-282336e0="" id="language-toggle" class="language-dropdown localnav-menu-link" style="width: 74px;"><option data-v-282336e0="" value="swift">
+        Swift
+      </option>
+<option data-v-282336e0="" value="occ">
+        Objective-C
+      </option></select>
+</div>
+<div data-v-282336e0="" class="language-list-container">
+<span data-v-282336e0="" class="localnav-menu-setting-label">
+      Language:
+    </span><ul data-v-282336e0="" class="language-list">
+<li data-v-282336e0="" class="language-list-item"><a data-v-282336e0="" href="../../documentation/foundation/userdefaults.html" class="localnav-menu-setting-link">
+          Swift
+        </a></li>
+<li data-v-282336e0="" class="language-list-item"><span data-v-282336e0="" data-language="occ" aria-current="page" class="current-language">
+          Objective-C
+        </span></li>
+</ul>
+</div>
+</li>
+<li data-v-2e9f4ea2="" data-v-3ceaa5df="" class="localnav-menu-setting">
+<label data-v-2e9f4ea2="" for="version-label" class="localnav-menu-setting-label">
+    API Changes:
+  </label><span data-v-2e9f4ea2=""><span class="enstr">None</span><!--end_enstr-->
+<span class="jpstr">
+なし
+</span><!--end_jpstr-->
+</span>
+</li><!---->
+
+</ul>
+</div>
+<div data-v-3ceaa5df="" class="localnav-actions"><div data-v-3ceaa5df="" aria-hidden="true" class="localnav-action localnav-action-menucta"><label data-v-3ceaa5df="" for="localnav-menustate" class="localnav-menucta"><span data-v-3ceaa5df="" class="localnav-menucta-chevron"></span></label></div></div>
+</div>
+</div>
+</div><!---->
+
+</div></nav><label data-v-3ceaa5df="" aria-hidden="true" for="localnav-menustate" id="localnav-curtain"></label>
+</div>
+<main data-v-2deaa168="" id="main" role="main" tabindex="0" class="main"><div data-v-4ba5af7c="" data-v-2deaa168="" class="topictitle">
+<span data-v-4ba5af7c="" class="eyebrow">Class</span><h1 data-v-4ba5af7c="" class="title">NSUser<wbr data-v-4ba5af7c="">Defaults</wbr>
+</h1>
+</div>
+<div data-v-0253ce0e="" data-v-2deaa168="" class="row container">
+<div data-v-9807b2e0="" data-v-5ad0d458="" data-v-2deaa168="" class="col description large-9 medium-9 small-12" data-v-0253ce0e=""><!---->
+<div data-v-7ea0aa49="" data-v-aba749e6="" data-v-2deaa168="" class="abstract content" data-v-9807b2e0=""><span class="enstr">An interface to the user’s defaults database, where you store key-value pairs persistently across launches of your app.</span><!--end_enstr-->
+<span class="jpstr">
+そこにおいてあなたがキー値ペアを永続的にあなたのアプリの起動を越えて格納する、ユーザのもつdefaultsデータベースに対するインターフェイス。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div>
+<div data-v-9807b2e0="" data-v-42fb6bac="" data-v-2deaa168="" class="col summary large-3 medium-3 small-12" data-v-0253ce0e=""><!---->
+<div data-v-e4237090="" data-v-fcdb795a="" data-v-2deaa168="" class="summary-section availability" role="complementary" aria-label="Availability" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-fcdb795a="" class="title" data-v-e4237090=""><span class="enstr">Availability</span><!--end_enstr-->
+<span class="jpstr">
+有効性
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-fcdb795a="" class="summary-list platform-list" data-v-e4237090="">
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="iOS 2.0+, Available on iOS 2.0 and later" title="Available on iOS 2.0 and later" data-v-e3899270="">
+  iOS 2.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="macOS 10.0+, Available on macOS 10.0 and later" title="Available on macOS 10.0 and later" data-v-e3899270="">
+  macOS 10.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="Mac Catalyst 13.0+, Available on Mac Catalyst 13.0 and later" title="Available on Mac Catalyst 13.0 and later" data-v-e3899270="">
+  Mac Catalyst 13.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="tvOS 9.0+, Available on tvOS 9.0 and later" title="Available on tvOS 9.0 and later" data-v-e3899270="">
+  tvOS 9.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="watchOS 2.0+, Available on watchOS 2.0 and later" title="Available on watchOS 2.0 and later" data-v-e3899270="">
+  watchOS 2.0+
+</span><!---->
+</li>
+</ul>
+</div>
+<div data-v-e4237090="" data-v-741142ba="" data-v-2deaa168="" class="summary-section frameworks" role="complementary" aria-label="Framework" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-741142ba="" class="title" data-v-e4237090=""><span class="enstr">Framework</span><!--end_enstr-->
+<span class="jpstr">
+フレームワーク
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-741142ba="" class="summary-list" data-v-e4237090=""><li data-v-e3899270="" data-v-741142ba="" class="summary-list-item" data-v-1450532d=""><span data-v-741142ba="" data-v-e3899270="" class="name">Foundation</span></li></ul>
+</div>
+<div data-v-e4237090="" data-v-2b96ab1a="" data-v-2deaa168="" class="summary-section on-this-page" data-v-9807b2e0=""><nav data-v-2b96ab1a="" data-v-e4237090="" aria-labelledby="on-this-page-title"><p data-v-1e0258b0="" data-v-2b96ab1a="" class="title" id="on-this-page-title" data-v-e4237090=""><span class="enstr">On This Page</span><!--end_enstr-->
+<span class="jpstr">
+この項には
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-2b96ab1a="" class="summary-list" data-v-e4237090="">
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/nsuserdefaults_language-objc.html#declaration" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Declaration</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/nsuserdefaults_language-objc.html#overview" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Overview</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/nsuserdefaults_language-objc.html#topics" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Topics</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/nsuserdefaults_language-objc.html#relationships" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Relationships</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+</ul></nav></div>
+</div>
+<div data-v-9807b2e0="" data-v-1e40f676="" data-v-2deaa168="" class="col primary-content large-9 medium-9 small-12" data-v-0253ce0e="">
+<section data-v-e932e1b8="" data-v-1e40f676="" id="declaration" class="declaration" data-v-9807b2e0=""><h2 data-v-e932e1b8=""><span class="enstr">Declaration</span><!--end_enstr-->
+<span class="jpstr">
+宣言
+</span><!--end_jpstr-->
+</h2>
+<div data-v-29bd318c="" data-v-e932e1b8="" class="declaration-group"><!---->
+<pre data-v-e0a7f756="" data-v-29bd318c="" class="source"><code data-v-e0a7f756=""><span data-v-c9e896f0="" data-v-e0a7f756="" class="token-keyword">@interface</span> <span data-v-c9e896f0="" data-v-e0a7f756="" class="token-identifier">NSUserDefaults</span> : <a data-v-c9e896f0="" data-v-e0a7f756="" href="../../documentation/objectivec/1418956-nsobject_language-objc.html" class="type-identifier-link"><span data-v-c9e896f0="">NSObject</span></a></code></pre>
+</div><!---->
+</section><div data-v-7ea0aa49="" data-v-1e40f676="" class="content" data-v-9807b2e0="">
+<h2 id="overview"><span class="enstr">Overview</span><!--end_enstr-->
+<span class="jpstr">
+概要
+</span><!--end_jpstr-->
+</h2>
+<p><span class="enstr">The <span><code data-v-7fb764c1="">NSUser<wbr data-v-7fb764c1="">Defaults</wbr></code></span> class provides a programmatic interface for interacting with the defaults system. The defaults system allows an app to customize its behavior to match a user’s preferences. For example, you can allow users to specify their preferred units of measurement or media playback speed. Apps store these preferences by assigning values to a set of parameters in a user’s defaults database. The parameters are referred to as <em>defaults</em> because they’re commonly used to determine an app’s default state at startup or the way it acts by default.</span><!--end_enstr-->
+<span class="jpstr">
+<span><code data-v-7fb764c1="">NSUser<wbr data-v-7fb764c1="">Defaults</wbr></code></span>クラスは、初期状態のシステムと相互作用するためのプログラムインターフェイスを提供します。defaultsシステムは、アプリがそれの挙動をカスタマイズしてユーザの好みに合わせることを可能にします。例えば、あなたはユーザにかれらの好む寸法単位またはメディア再生速度を指定させることができます。アプリは、これら環境設定を、ユーザのもつdefaultsデータベースにおいて一揃いのパラメータに値を割り当てることによって格納します。パラメータそれらは、<em>defaults 初期状態</em>として参照されます、なぜならそれらは一般に始動時でのアプリのもつ省略時の状態をまたはそれが初期状態でふるまう方法を決定するために使われるからです。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">At runtime, you use <span><code data-v-7fb764c1="">NSUser<wbr data-v-7fb764c1="">Defaults</wbr></code></span> objects to read the defaults that your app uses from a user’s defaults database. <span><code data-v-7fb764c1="">NSUser<wbr data-v-7fb764c1="">Defaults</wbr></code></span> caches the information to avoid having to open the user’s defaults database each time you need a default value. When you set a default value, it’s changed synchronously within your process, and asynchronously to persistent storage and other processes.</span><!--end_enstr-->
+<span class="jpstr">
+実行時に、あなたは<span><code data-v-7fb764c1="">NSUser<wbr data-v-7fb764c1="">Defaults</wbr></code></span>オブジェクトを使って、あなたのアプリが使うdefaultsをユーザのもつdefaultsデータベースから読み出してください。<span><code data-v-7fb764c1="">NSUser<wbr data-v-7fb764c1="">Defaults</wbr></code></span>は、情報をキャッシュして、ユーザのもつdefaultsデータベースをあなたが初期状態の値を必要とするたびに開かなければならないのを防止します。あなたがある初期状態値を設定する場合、それは、あなたのプロセス内で同期的に、そして非同期に永続ストレージおよび他のプロセスに対して変更されます。
+</span><!--end_jpstr-->
+</p>
+<aside data-v-c567d8a8="" aria-label="important" class="important"><p data-v-c567d8a8="" class="label"><span class="enstr">Important</span><!--end_enstr-->
+<span class="jpstr">
+重要
+</span><!--end_jpstr-->
+</p>
+<p data-v-c567d8a8=""><span class="enstr">Don’t try to access the preferences subsystem directly. Modifying preference property list files may result in loss of changes, delay of reflecting changes, and app crashes. To configure preferences, use the <code data-v-7fb764c1="" data-v-c567d8a8="">defaults</code> command-line utility in macOS instead.</span><!--end_enstr-->
+<span class="jpstr">
+環境設定サブシステムに直接にアクセスを試みないでください。環境設定プロパティリストファイルを修正することは、変更の喪失、変更の反映の遅れ、そしてアプリのクラッシュという結果になるかもしれません。環境設定を構成設定するには、<code data-v-7fb764c1="" data-v-c567d8a8="">defaults</code>コマンドラインユーティリティをmacOSにおいて代わりに使ってください。
+</span><!--end_jpstr-->
+</p></aside><p><span class="enstr">With the exception of managed devices in educational institutions, a user’s defaults are stored locally on a single device, and persisted for backup and restore. To synchronize preferences and other data across a user’s connected devices, use <a href="../../documentation/foundation/nsubiquitouskeyvaluestore_language-objc.html" class=""><code data-v-7fb764c1="">NSUbiquitous<wbr data-v-7fb764c1="">Key<wbr data-v-7fb764c1="">Value<wbr data-v-7fb764c1="">Store</wbr></wbr></wbr></code></a> instead.</span><!--end_enstr-->
+<span class="jpstr">
+教育機関において管理されたデバイスを除いて、ユーザのもつdefaultsはローカルに単一のデバイス上で格納されます、そしてバックアップと修復のために永続されます。環境設定と他のデータをあるユーザのもつ関連したデバイスそれらにわたって同期するには、<a href="../../documentation/foundation/nsubiquitouskeyvaluestore_language-objc.html" class=""><code data-v-7fb764c1="">NSUbiquitous<wbr data-v-7fb764c1="">Key<wbr data-v-7fb764c1="">Value<wbr data-v-7fb764c1="">Store</wbr></wbr></wbr></code></a>を代わりに使ってください。
+</span><!--end_jpstr-->
+</p>
+<h3 id="2926904"><span class="enstr">Storing Default Objects</span><!--end_enstr-->
+<span class="jpstr">
+defaultオブジェクトを格納する
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">The <span><code data-v-7fb764c1="">NSUser<wbr data-v-7fb764c1="">Defaults</wbr></code></span> class provides convenience methods for accessing common types such as floats, doubles, integers, Boolean values, and URLs. These methods are described in <a href="../../documentation/foundation/nsuserdefaults_language-objc.html#1664798" class="">Setting Default Values</a>.</span><!--end_enstr-->
+<span class="jpstr">
+<span><code data-v-7fb764c1="">NSUser<wbr data-v-7fb764c1="">Defaults</wbr></code></span>クラスは、便利なメソッドを一般的な型、たとえばfloat、double、整数、ブール値、そしてURLなどにアクセスするために提供します。これらのメソッドは、<a href="../../documentation/foundation/nsuserdefaults_language-objc.html#1664798" class="">省略時の値を設定する</a>で記述されます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">A default object must be a property list—that is, an instance of (or for collections, a combination of instances of) <a href="../../documentation/foundation/nsdata_language-objc.html" class=""><code data-v-7fb764c1="">NSData</code></a>, <a href="../../documentation/foundation/nsstring_language-objc.html" class=""><code data-v-7fb764c1="">NSString</code></a>, <a href="../../documentation/foundation/nsnumber_language-objc.html" class=""><code data-v-7fb764c1="">NSNumber</code></a>, <a href="../../documentation/foundation/nsdate_language-objc.html" class=""><code data-v-7fb764c1="">NSDate</code></a>, <a href="../../documentation/foundation/nsarray_language-objc.html" class=""><code data-v-7fb764c1="">NSArray</code></a>, or <a href="../../documentation/foundation/nsdictionary_language-objc.html" class=""><code data-v-7fb764c1="">NSDictionary</code></a>. If you want to store any other type of object, you should typically archive it to create an instance of <span>NSData</span>.</span><!--end_enstr-->
+<span class="jpstr">
+defaultオブジェクトはプロパティリストでなければなりません — すなわち、<a href="../../documentation/foundation/nsdata_language-objc.html" class=""><code data-v-7fb764c1="">NSData</code></a>、<a href="../../documentation/foundation/nsstring_language-objc.html" class=""><code data-v-7fb764c1="">NSString</code></a>、<a href="../../documentation/foundation/nsnumber_language-objc.html" class=""><code data-v-7fb764c1="">NSNumber</code></a>、<a href="../../documentation/foundation/nsdate_language-objc.html" class=""><code data-v-7fb764c1="">NSDate</code></a>、<a href="../../documentation/foundation/nsarray_language-objc.html" class=""><code data-v-7fb764c1="">NSArray</code></a>、または<a href="../../documentation/foundation/nsdictionary_language-objc.html" class=""><code data-v-7fb764c1="">NSDictionary</code></a>の（またはそのインスタンスの組み合わせ、コレクションに対する）インスタンス。あなたが何らかの他の型のオブジェクトを格納したいならば、あなたは概してそれをアーカイブして、<span>NSData</span>のインスタンスを作成すべきです。
+</span><!--end_jpstr-->
+ </p>
+<p><span class="enstr">Values returned from <span><code data-v-7fb764c1="">NSUser<wbr data-v-7fb764c1="">Defaults</wbr></code></span> are immutable, even if you set a mutable object as the value. For example, if you set a mutable string as the value for “MyStringDefault”, the string you later retrieve using the <a href="../../documentation/foundation/nsuserdefaults/1416700-stringforkey_language-objc.html" class=""><code data-v-7fb764c1="">string<wbr data-v-7fb764c1="">For<wbr data-v-7fb764c1="">Key:</wbr></wbr></code></a> method will be immutable. If you set a mutable string as a default value and later mutate the string, the default value won’t reflect the mutated string value unless you call <a href="../../documentation/foundation/nsuserdefaults/1414067-setobject_language-objc.html" class=""><code data-v-7fb764c1="">set<wbr data-v-7fb764c1="">Object:<wbr data-v-7fb764c1="">for<wbr data-v-7fb764c1="">Key:</wbr></wbr></wbr></code></a> again.</span><!--end_enstr-->
+<span class="jpstr">
+<span><code data-v-7fb764c1="">NSUser<wbr data-v-7fb764c1="">Defaults</wbr></code></span>から返される値は、不変です、たとえあなたが可変オブジェクトを値として設定したとしてもです。たとえば、あなたが可変文字列を “MyStringDefault” に対する値として設定したならば、あなたが後で<a href="../../documentation/foundation/nsuserdefaults/1416700-stringforkey_language-objc.html" class=""><code data-v-7fb764c1="">string<wbr data-v-7fb764c1="">For<wbr data-v-7fb764c1="">Key:</wbr></wbr></code></a>メソッドを使って回収する文字列は、不変であるでしょう。あなたが可変文字列をあるdefault値として設定したそして後でその文字列を変化させたならば、default値は変化させた文字列値を反映しないでしょう、あなたが<a href="../../documentation/foundation/nsuserdefaults/1414067-setobject_language-objc.html" class=""><code data-v-7fb764c1="">set<wbr data-v-7fb764c1="">Object:<wbr data-v-7fb764c1="">for<wbr data-v-7fb764c1="">Key:</wbr></wbr></wbr></code></a>を再び呼び出さない限りは。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">For more details, see <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/UserDefaults/Introduction/Introduction.html#//apple_ref/doc/uid/10000059i">Preferences and Settings Programming Guide</a>.</span><!--end_enstr-->
+<span class="jpstr">
+詳細として、<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/UserDefaults/Introduction/Introduction.html#//apple_ref/doc/uid/10000059i">Preferences and Settings Programming Guide</a>を見てください。
+</span><!--end_jpstr-->
+</p>
+<h3 id="1664598"><span class="enstr">Persisting File References</span><!--end_enstr-->
+<span class="jpstr">
+ファイル環境設定を永続する
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">A file URL specifies a location in the file system. If you use the <a href="../../documentation/foundation/nsuserdefaults/1414194-seturl_language-objc.html" class=""><code data-v-7fb764c1="">set<wbr data-v-7fb764c1="">URL:<wbr data-v-7fb764c1="">for<wbr data-v-7fb764c1="">Key:</wbr></wbr></wbr></code></a> method to store the location for a particular file and the user moves that file, your app may not be able to locate that file on next launch. To store a reference to a file by its file system identity, you can instead create <span><code data-v-7fb764c1="">NSURL</code></span> bookmark data using the <a href="../../documentation/foundation/nsurl/1417795-bookmarkdatawithoptions_language-objc.html" class=""><code data-v-7fb764c1="">bookmark<wbr data-v-7fb764c1="">Data<wbr data-v-7fb764c1="">With<wbr data-v-7fb764c1="">Options:<wbr data-v-7fb764c1="">including<wbr data-v-7fb764c1="">Resource<wbr data-v-7fb764c1="">Values<wbr data-v-7fb764c1="">For<wbr data-v-7fb764c1="">Keys:<wbr data-v-7fb764c1="">relative<wbr data-v-7fb764c1="">To<wbr data-v-7fb764c1="">URL:<wbr data-v-7fb764c1="">error:</wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></code></a> method and persist it using the <a href="../../documentation/foundation/nsuserdefaults/1414067-setobject_language-objc.html" class=""><code data-v-7fb764c1="">set<wbr data-v-7fb764c1="">Object:<wbr data-v-7fb764c1="">for<wbr data-v-7fb764c1="">Key:</wbr></wbr></wbr></code></a> method. You can then use the <a href="../../documentation/foundation/nsurl/1572035-urlbyresolvingbookmarkdata_language-objc.html" class=""><code data-v-7fb764c1="">URLBy<wbr data-v-7fb764c1="">Resolving<wbr data-v-7fb764c1="">Bookmark<wbr data-v-7fb764c1="">Data:<wbr data-v-7fb764c1="">options:<wbr data-v-7fb764c1="">relative<wbr data-v-7fb764c1="">To<wbr data-v-7fb764c1="">URL:<wbr data-v-7fb764c1="">bookmark<wbr data-v-7fb764c1="">Data<wbr data-v-7fb764c1="">Is<wbr data-v-7fb764c1="">Stale:<wbr data-v-7fb764c1="">error:</wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></code></a> method to resolve the bookmark data stored in user defaults to a file URL.</span><!--end_enstr-->
+<span class="jpstr">
+ファイルURLは、ファイルシステムの中のある位置を指定します。あなたが<a href="../../documentation/foundation/nsuserdefaults/1414194-seturl_language-objc.html" class=""><code data-v-7fb764c1="">set<wbr data-v-7fb764c1="">URL:<wbr data-v-7fb764c1="">for<wbr data-v-7fb764c1="">Key:</wbr></wbr></wbr></code></a>メソッドを使ってある特定のファイルに対する位置を格納するそしてユーザがそのファイルを移動するならば、あなたのアプリはそのファイルを次の起動で位置決めできないかもしれません。ある環境設定をファイルへとそれのファイルシステム識別子によって格納するには、あなたは代わりに<span><code data-v-7fb764c1="">NSURL</code></span>ブックマークデータを<a href="../../documentation/foundation/nsurl/1417795-bookmarkdatawithoptions_language-objc.html" class=""><code data-v-7fb764c1="">bookmark<wbr data-v-7fb764c1="">Data<wbr data-v-7fb764c1="">With<wbr data-v-7fb764c1="">Options:<wbr data-v-7fb764c1="">including<wbr data-v-7fb764c1="">Resource<wbr data-v-7fb764c1="">Values<wbr data-v-7fb764c1="">For<wbr data-v-7fb764c1="">Keys:<wbr data-v-7fb764c1="">relative<wbr data-v-7fb764c1="">To<wbr data-v-7fb764c1="">URL:<wbr data-v-7fb764c1="">error:</wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></code></a>メソッドを使って作成して、それを<a href="../../documentation/foundation/nsuserdefaults/1414067-setobject_language-objc.html" class=""><code data-v-7fb764c1="">set<wbr data-v-7fb764c1="">Object:<wbr data-v-7fb764c1="">for<wbr data-v-7fb764c1="">Key:</wbr></wbr></wbr></code></a>メソッドを使って永続できます。あなたはそれから<a href="../../documentation/foundation/nsurl/1572035-urlbyresolvingbookmarkdata_language-objc.html" class=""><code data-v-7fb764c1="">URLBy<wbr data-v-7fb764c1="">Resolving<wbr data-v-7fb764c1="">Bookmark<wbr data-v-7fb764c1="">Data:<wbr data-v-7fb764c1="">options:<wbr data-v-7fb764c1="">relative<wbr data-v-7fb764c1="">To<wbr data-v-7fb764c1="">URL:<wbr data-v-7fb764c1="">bookmark<wbr data-v-7fb764c1="">Data<wbr data-v-7fb764c1="">Is<wbr data-v-7fb764c1="">Stale:<wbr data-v-7fb764c1="">error:</wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></code></a>メソッドを使って、ユーザdefaultsの中に格納されたブックマークデータをファイルURLへと解決できます。
+</span><!--end_jpstr-->
+</p>
+<h3 id="2926902"><span class="enstr">Responding to Defaults Changes</span><!--end_enstr-->
+<span class="jpstr">
+defaultsの変化を報告する
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">You can use key-value observing to be notified of any updates to a particular default value. You can also register as an observer for <a href="../../documentation/foundation/nsuserdefaultsdidchangenotification_language-objc.html" class=""><code data-v-7fb764c1="">NSUser<wbr data-v-7fb764c1="">Defaults<wbr data-v-7fb764c1="">Did<wbr data-v-7fb764c1="">Change<wbr data-v-7fb764c1="">Notification</wbr></wbr></wbr></wbr></code></a> on the <a href="../../documentation/foundation/nsnotificationcenter/1414169-defaultcenter_language-objc.html" class=""><code data-v-7fb764c1="">default<wbr data-v-7fb764c1="">Center</wbr></code></a> notification center in order to be notified of all updates to a local defaults database.</span><!--end_enstr-->
+<span class="jpstr">
+あなたは、キー値監視を使って、特定のdefault値へのあらゆる更新を通知されることができます。あなたはまた、あるオブザーバを登録することが、<a href="../../documentation/foundation/nsuserdefaultsdidchangenotification_language-objc.html" class=""><code data-v-7fb764c1="">NSUser<wbr data-v-7fb764c1="">Defaults<wbr data-v-7fb764c1="">Did<wbr data-v-7fb764c1="">Change<wbr data-v-7fb764c1="">Notification</wbr></wbr></wbr></wbr></code></a>に対して<a href="../../documentation/foundation/nsnotificationcenter/1414169-defaultcenter_language-objc.html" class=""><code data-v-7fb764c1="">default<wbr data-v-7fb764c1="">Center</wbr></code></a>通知センター上で、あるローカルなdefaultsデータベースへの全ての更新を通知される目的で、行えます。
+</span><!--end_jpstr-->
+   </p>
+<p><span class="enstr">For more details, see <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html#//apple_ref/doc/uid/10000177i">Key-Value Observing Programming Guide</a> and <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Notifications/Introduction/introNotifications.html#//apple_ref/doc/uid/10000043i">Notification Programming Topics</a>.</span><!--end_enstr-->
+<span class="jpstr">
+さらなる詳細として、<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html#//apple_ref/doc/uid/10000177i">Key-Value Observing Programming Guide</a>と<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Notifications/Introduction/introNotifications.html#//apple_ref/doc/uid/10000043i">Notification Programming Topics</a>を見てください。
+</span><!--end_jpstr-->
+</p>
+<h3 id="2926901"><span class="enstr">Using Defaults in Managed Environments</span><!--end_enstr-->
+<span class="jpstr">
+defaultを管理された環境において使用する
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">If your app supports managed environments, you can use <span><code data-v-7fb764c1="">NSUser<wbr data-v-7fb764c1="">Defaults</wbr></code></span> to determine which preferences are managed by an administrator for the benefit of the user. In a managed environment, such as a computer lab or classroom, an administrator or teacher can configure the systems by establishing a set of default preferences for users. If a preference is managed in this manner (as determined by the methods described in <a href="../../documentation/foundation/nsuserdefaults_language-objc.html#1664949" class="">Accessing Managed Environment Keys</a>), your app should prevent users from editing that preference by disabling or hiding controls.</span><!--end_enstr-->
+<span class="jpstr">
+あなたのアプリが管理された環境をサポートするならば、あなたは<span><code data-v-7fb764c1="">NSUser<wbr data-v-7fb764c1="">Defaults</wbr></code></span>使って、どの環境設定がシステム管理者によってユーザの利益のために管理されるか決定できます。管理された環境において、たとえばコンピュータラボまたは教室など、システム管理者または教師は、複数のシステムを構成設定することがある一揃いの省略時の環境設定を複数ユーザに対して確立することによって可能です。ある環境設定がこの流儀で管理されるならば（<a href="../../documentation/foundation/nsuserdefaults_language-objc.html#1664949" class="">管理された環境キーにアクセスする</a>で記述されるメソッドによって決定されるように）、あなたのアプリは、ユーザがその環境設定を編集することを、コントロールそれらを使用不可にするまたは隠すことによって防ぐべきです。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">For more details, see <a href="https://developer.apple.com/library/archive/documentation/Miscellaneous/Reference/MobileDeviceManagementProtocolRef/1-Introduction/Introduction.html#//apple_ref/doc/uid/TP40017387">Mobile Device Management Protocol Reference</a>.</span><!--end_enstr-->
+<span class="jpstr">
+さらなる詳細として、<a href="https://developer.apple.com/library/archive/documentation/Miscellaneous/Reference/MobileDeviceManagementProtocolRef/1-Introduction/Introduction.html#//apple_ref/doc/uid/TP40017387">Mobile Device Management Protocol Reference</a>を見てください。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">An app running on a device managed by an educational institution can use the iCloud key-value store to share small amounts of data with other instances of itself on the user’s other devices. For example, a textbook app might store the current page number being read by the user so that other instances of the app can open to the same page when launched.</span><!--end_enstr-->
+<span class="jpstr">
+教育機関によって管理されるデバイス上で動作しているアプリは、iCloudキー値格納を使って、小さな量のデータをそのユーザのもつ他のデバイス上のそれ自身のほかのインスタンスと共有できます。例えば、教科書アプリは、ユーザによって読まれている現在のページ数を格納するかもしれません、それでそのアプリの他のインスタンスは起動時に同じページが開かれたままであることができます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">For more information, see <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/UserDefaults/StoringPreferenceDatainiCloud/StoringPreferenceDatainiCloud.html#//apple_ref/doc/uid/10000059i-CH7">Storing Preferences in iCloud</a> in <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/UserDefaults/Introduction/Introduction.html#//apple_ref/doc/uid/10000059i">Preferences and Settings Programming Guide</a>.</span><!--end_enstr-->
+<span class="jpstr">
+さらなる情報として、<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/UserDefaults/StoringPreferenceDatainiCloud/StoringPreferenceDatainiCloud.html#//apple_ref/doc/uid/10000059i-CH7">Storing Preferences in iCloud</a>を<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/UserDefaults/Introduction/Introduction.html#//apple_ref/doc/uid/10000059i">Preferences and Settings Programming Guide</a>で見てください。
+</span><!--end_jpstr-->
+</p>
+<h3 id="1664611"><span class="enstr">Sandbox Considerations</span><!--end_enstr-->
+<span class="jpstr">
+サンドボックス考慮
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">A sandboxed app cannot access or modify the preferences for any other app, with the following exceptions:</span><!--end_enstr-->
+<span class="jpstr">
+サンドボックスアプリは、いかなる他のアプリに対する環境設定にアクセスまたは修正できません、以下の例外で：
+</span><!--end_jpstr-->
+</p>
+<ul>
+<li><p><span class="enstr">App extensions on macOS and iOS</span><!--end_enstr-->
+<span class="jpstr">
+macOSとiOS上のアプリ拡張
+</span><!--end_jpstr-->
+</p></li>
+<li><p><span class="enstr">Other apps in your application group on macOS</span><!--end_enstr-->
+<span class="jpstr">
+macOS上のあなたのアプリケーショングループ中の他のアプリ
+</span><!--end_jpstr-->
+</p></li>
+</ul>
+<p><span class="enstr">Adding a third-party app’s domain using the <a href="../../documentation/foundation/nsuserdefaults/1410294-addsuitenamed_language-objc.html" class=""><code data-v-7fb764c1="">add<wbr data-v-7fb764c1="">Suite<wbr data-v-7fb764c1="">Named:</wbr></wbr></code></a> method doesn’t allow your app to access to that app’s preferences. Attempting to access or modify  another app’s preferences doesn’t result in an error; instead, macOS reads and writes files located within your app’s container, rather than the actual preference files for the other application.</span><!--end_enstr-->
+<span class="jpstr">
+サードパーティアプリのもつドメインを<a href="../../documentation/foundation/nsuserdefaults/1410294-addsuitenamed_language-objc.html" class=""><code data-v-7fb764c1="">add<wbr data-v-7fb764c1="">Suite<wbr data-v-7fb764c1="">Named:</wbr></wbr></code></a>メソッドを使って加えることは、あなたのアプリにそのアプリのもつ環境設定へのアクセスを許可しません。別のアプリのもつ環境設定にアクセスまたは修正しようと試みることは、エラーという結果になりません；代わりに、macOSはあなたのアプリのもつコンテナ内に位置するファイルを読み出しおよび書き込みます、他のアプリに対する実際の環境設定ファイルではなく。
+</span><!--end_jpstr-->
+</p>
+<h3 id="2926903"><span class="enstr">Thread Safety</span><!--end_enstr-->
+<span class="jpstr">
+スレッド安全
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">The <span>UserDefaults</span> class is thread-safe.</span><!--end_enstr-->
+<span class="jpstr">
+<span>UserDefaults</span>クラスは、スレッド安全です。
+</span><!--end_jpstr-->
+</p>
+</div>
+</div>
+</div>
+<section data-v-8c663d90="" data-v-63527a60="" data-v-2deaa168="" id="topics" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">Topics</span><!--end_enstr-->
+<span class="jpstr">
+話題
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Getting the Standard User Defaults Object</span><!--end_enstr-->
+<span class="jpstr">
+標準ユーザdefaultsオブジェクトを取得する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1416603-standarduserdefaults_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">standard<wbr data-v-01f7f080="">User<wbr data-v-01f7f080="">Defaults</wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the shared defaults object.</span><!--end_enstr-->
+<span class="jpstr">
+共有defaultsオブジェクトを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Creating User Defaults Objects</span><!--end_enstr-->
+<span class="jpstr">
+ユーザdefaultsオブジェクトを作成する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1414356-init_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">init</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Creates a user defaults object initialized with the defaults for the app and current user.</span><!--end_enstr-->
+<span class="jpstr">
+ユーザdefaultsオブジェクトを作成します、アプリと現在のユーザに対するdefaultsで初期化されます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1409957-initwithsuitename_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">init<wbr data-v-dac213be="">With<wbr data-v-dac213be="">Suite<wbr data-v-dac213be="">Name:</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Creates a user defaults object initialized with the defaults for the specified database name.</span><!--end_enstr-->
+<span class="jpstr">
+ユーザdefaultsオブジェクトを作成します、指定されたデータベース名に対するdefaultsで初期化されます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Getting Default Values</span><!--end_enstr-->
+<span class="jpstr">
+defaults値を取得する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1410095-objectforkey_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">object<wbr data-v-dac213be="">For<wbr data-v-dac213be="">Key:</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the object associated with the specified key.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたキーと結びつけられたオブジェクトを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1408648-urlforkey_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">URLFor<wbr data-v-dac213be="">Key:</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the URL associated with the specified key.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたキーと結びつけられたURLを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1414792-arrayforkey_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">array<wbr data-v-dac213be="">For<wbr data-v-dac213be="">Key:</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the array associated with the specified key.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたキーと結びつけられた配列を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1408563-dictionaryforkey_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">dictionary<wbr data-v-dac213be="">For<wbr data-v-dac213be="">Key:</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the dictionary object associated with the specified key.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたキーと結びつけられた辞書オブジェクトを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1416700-stringforkey_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">string<wbr data-v-dac213be="">For<wbr data-v-dac213be="">Key:</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the string associated with the specified key.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたキーと結びつけられた文字列を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1416414-stringarrayforkey_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">string<wbr data-v-dac213be="">Array<wbr data-v-dac213be="">For<wbr data-v-dac213be="">Key:</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the array of strings associated with the specified key.</span><!--end_enstr-->
+<span class="jpstr">
+この指定されたキーと結びつけられた、文字列それらからなる配列を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1409590-dataforkey_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">data<wbr data-v-dac213be="">For<wbr data-v-dac213be="">Key:</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the data object associated with the specified key.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたキーと結びつけられたデータオブジェクトを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1416388-boolforkey_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">bool<wbr data-v-dac213be="">For<wbr data-v-dac213be="">Key:</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the Boolean value associated with the specified key.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたキーと結びつけられたブール値を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1407405-integerforkey_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">integer<wbr data-v-dac213be="">For<wbr data-v-dac213be="">Key:</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the integer value associated with the specified key.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたキーと結びつけられた整数値を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1414027-floatforkey_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">float<wbr data-v-dac213be="">For<wbr data-v-dac213be="">Key:</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the float value associated with the specified key.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたキーと結びつけられたfloat値を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1416581-doubleforkey_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">double<wbr data-v-dac213be="">For<wbr data-v-dac213be="">Key:</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the double value associated with the specified key.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたキーと結びつけられたdouble値を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1415919-dictionaryrepresentation_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">dictionary<wbr data-v-dac213be="">Representation</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a dictionary that contains a union of all key-value pairs in the domains in the search list.</span><!--end_enstr-->
+<span class="jpstr">
+ある辞書を返します、それは検索リストの中のドメインそれらの中の全てのキー値ペアの和集合を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Setting Default Values</span><!--end_enstr-->
+<span class="jpstr">
+defaultの値を設定する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1414067-setobject_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">set<wbr data-v-dac213be="">Object:<wbr data-v-dac213be="">for<wbr data-v-dac213be="">Key:</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Sets the value of the specified default key.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたdefaultキーの値を設定します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1413320-setfloat_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">set<wbr data-v-dac213be="">Float:<wbr data-v-dac213be="">for<wbr data-v-dac213be="">Key:</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Sets the value of the specified default key to the specified float value.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたdefaultキーの値をこの指定されたfloat値へと設定します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1408646-setdouble_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">set<wbr data-v-dac213be="">Double:<wbr data-v-dac213be="">for<wbr data-v-dac213be="">Key:</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Sets the value of the specified default key to the double value.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたdefaultキーの値をこの指定されたdouble値へと設定します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1413614-setinteger_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">set<wbr data-v-dac213be="">Integer:<wbr data-v-dac213be="">for<wbr data-v-dac213be="">Key:</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Sets the value of the specified default key to the specified integer value.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたdefaultキーの値をこの指定された整数値へと設定します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1408905-setbool_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">set<wbr data-v-dac213be="">Bool:<wbr data-v-dac213be="">for<wbr data-v-dac213be="">Key:</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Sets the value of the specified default key to the specified Boolean value.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたdefaultキーの値をこの指定されたブール値へと設定します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1414194-seturl_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">set<wbr data-v-dac213be="">URL:<wbr data-v-dac213be="">for<wbr data-v-dac213be="">Key:</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Sets the value of the specified default key to the specified URL.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたdefaultキーの値をこの指定されたURLへと設定します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Removing Defaults</span><!--end_enstr-->
+<span class="jpstr">
+defaultsを取り除く
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1411182-removeobjectforkey_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">remove<wbr data-v-dac213be="">Object<wbr data-v-dac213be="">For<wbr data-v-dac213be="">Key:</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Removes the value of the specified default key.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたdefaultキーの値を取り除きます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Maintaining Suites</span><!--end_enstr-->
+<span class="jpstr">
+スイートを保守する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1410294-addsuitenamed_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">add<wbr data-v-dac213be="">Suite<wbr data-v-dac213be="">Named:</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Inserts the specified domain name into the receiver’s search list.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたドメイン名をレシーバのもつ検索リストへと挿入します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1408047-removesuitenamed_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">remove<wbr data-v-dac213be="">Suite<wbr data-v-dac213be="">Named:</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Removes the specified domain name from the receiver’s search list.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたドメイン名をレシーバのもつ検索リストから取り除きます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Registering Defaults</span><!--end_enstr-->
+<span class="jpstr">
+defaultsを登録する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1417065-registerdefaults_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">register<wbr data-v-dac213be="">Defaults:</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Adds the contents of the specified dictionary to the registration domain.</span><!--end_enstr-->
+<span class="jpstr">
+指定された辞書の内容を登録ドメインに加えます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Maintaining Persistent Domains</span><!--end_enstr-->
+<span class="jpstr">
+永続ドメインを保守する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1412197-persistentdomainforname_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">persistent<wbr data-v-dac213be="">Domain<wbr data-v-dac213be="">For<wbr data-v-dac213be="">Name:</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a dictionary representation of the defaults for the specified domain.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたドメインに対するdefaultsの辞書表現を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1408187-setpersistentdomain_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">set<wbr data-v-dac213be="">Persistent<wbr data-v-dac213be="">Domain:<wbr data-v-dac213be="">for<wbr data-v-dac213be="">Name:</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Sets a dictionary for the specified persistent domain.</span><!--end_enstr-->
+<span class="jpstr">
+ある辞書をこの指定されたドメインに対して設定します。
+</span><!--end_jpstr-->
+  </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1417339-removepersistentdomainforname_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">remove<wbr data-v-dac213be="">Persistent<wbr data-v-dac213be="">Domain<wbr data-v-dac213be="">For<wbr data-v-dac213be="">Name:</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Removes the contents of the specified persistent domain from the user’s defaults.</span><!--end_enstr-->
+<span class="jpstr">
+指定された永続ドメインの内容をユーザのもつdefaultsから取り除きます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1589081-persistentdomainnames_language-objc.html" class="link deprecated has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">persistent<wbr data-v-dac213be="">Domain<wbr data-v-dac213be="">Names</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an array of the current persistent domain names.</span><!--end_enstr-->
+<span class="jpstr">
+現在の永続ドメイン名からなるある配列を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div>
+<span data-v-41682aee="" data-v-01f7f080="" role="presentation" class="violator violator-inline"><span class="enstr">Deprecated</span><!--end_enstr-->
+<span class="jpstr">
+非推奨
+</span><!--end_jpstr-->
+</span>
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Maintaining Volatile Domains</span><!--end_enstr-->
+<span class="jpstr">
+揮発性ドメインを保守する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1414231-volatiledomainnames_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">volatile<wbr data-v-01f7f080="">Domain<wbr data-v-01f7f080="">Names</wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The current volatile domain names.</span><!--end_enstr-->
+<span class="jpstr">
+現在の揮発性ドメイン名。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1409592-volatiledomainforname_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">volatile<wbr data-v-dac213be="">Domain<wbr data-v-dac213be="">For<wbr data-v-dac213be="">Name:</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the dictionary for the specified volatile domain.</span><!--end_enstr-->
+<span class="jpstr">
+指定された揮発性ドメインに対する辞書を返します。
+</span><!--end_jpstr-->
+  </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1413720-setvolatiledomain_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">set<wbr data-v-dac213be="">Volatile<wbr data-v-dac213be="">Domain:<wbr data-v-dac213be="">for<wbr data-v-dac213be="">Name:</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Sets the dictionary for the specified volatile domain.</span><!--end_enstr-->
+<span class="jpstr">
+指定された揮発性ドメインに対する辞書を設定します。
+</span><!--end_jpstr-->
+  </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1415955-removevolatiledomainforname_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">remove<wbr data-v-dac213be="">Volatile<wbr data-v-dac213be="">Domain<wbr data-v-dac213be="">For<wbr data-v-dac213be="">Name:</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Removes the specified volatile domain from the user’s defaults.</span><!--end_enstr-->
+<span class="jpstr">
+指定された揮発性ドメインをユーザのもつdefaultsから取り除きます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Accessing Managed Environment Keys</span><!--end_enstr-->
+<span class="jpstr">
+管理された環境キーにアクセスする
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1408635-objectisforcedforkey_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">object<wbr data-v-dac213be="">Is<wbr data-v-dac213be="">Forced<wbr data-v-dac213be="">For<wbr data-v-dac213be="">Key:</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a Boolean value indicating whether the specified key is managed by an administrator.</span><!--end_enstr-->
+<span class="jpstr">
+この指定されたキーがシステム管理者によって管理されるかどうかを指し示しているブール値を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1416306-objectisforcedforkey_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">object<wbr data-v-dac213be="">Is<wbr data-v-dac213be="">Forced<wbr data-v-dac213be="">For<wbr data-v-dac213be="">Key:<wbr data-v-dac213be="">in<wbr data-v-dac213be="">Domain:</wbr></wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a Boolean value indicating whether the key in the specified domain is managed by an administrator.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたドメインの中のこのキーがシステム管理者によって管理されるかどうかを指し示しているブール値を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Domains</span><!--end_enstr-->
+<span class="jpstr">
+ドメイン
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsargumentdomain_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">NSArgument<wbr data-v-01f7f080="">Domain</wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The domain consisting of defaults parsed from the application’s arguments. These are one or more pairs of the form<em> -default value</em> included in the command-line invocation of the application.</span><!--end_enstr-->
+<span class="jpstr">
+アプリケーションのもつ引数から構文解析されるdefaultsからなるドメイン。アプリケーションのコマンドライン発動の中に含まれる形式<em> -default value</em>の１つ以上のペアがあります。
+</span><!--end_jpstr-->
+ </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsglobaldomain_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">NSGlobal<wbr data-v-01f7f080="">Domain</wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The domain consisting of defaults meant to be seen by all applications.</span><!--end_enstr-->
+<span class="jpstr">
+すべてのアプリケーションによって見られることを意図したdefaultsからなるドメイン。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsregistrationdomain_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">NSRegistration<wbr data-v-01f7f080="">Domain</wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The domain consisting of a set of temporary defaults whose values can be set by the application to ensure that searches will always be successful.</span><!--end_enstr-->
+<span class="jpstr">
+それの値がアプリケーションによって設定されて検索が常に成功することが保証できる一揃いの一時的defaultsからなるドメイン。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Notifications</span><!--end_enstr-->
+<span class="jpstr">
+通知
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaultsdidchangenotification_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">NSUser<wbr data-v-01f7f080="">Defaults<wbr data-v-01f7f080="">Did<wbr data-v-01f7f080="">Change<wbr data-v-01f7f080="">Notification</wbr></wbr></wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Posted when user defaults are changed within the current process.</span><!--end_enstr-->
+<span class="jpstr">
+ユーザdefaultsが現在のプロセス内で変更される時に投函されます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaultssizelimitexceedednotification_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">NSUser<wbr data-v-01f7f080="">Defaults<wbr data-v-01f7f080="">Size<wbr data-v-01f7f080="">Limit<wbr data-v-01f7f080="">Exceeded<wbr data-v-01f7f080="">Notification</wbr></wbr></wbr></wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Posted when more data is stored in user defaults than is allowed.</span><!--end_enstr-->
+<span class="jpstr">
+許可されるより多くのデータがユーザdefaultsに格納される時に投函されます。
+</span><!--end_jpstr-->
+ </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsubiquitoususerdefaultscompletedinitialsyncnotification_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">NSUbiquitous<wbr data-v-01f7f080="">User<wbr data-v-01f7f080="">Defaults<wbr data-v-01f7f080="">Completed<wbr data-v-01f7f080="">Initial<wbr data-v-01f7f080="">Sync<wbr data-v-01f7f080="">Notification</wbr></wbr></wbr></wbr></wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Posted when ubiquitous defaults finish downloading data, either the first time a device is connected to an iCloud account or when a user switches their primary iCloud account.</span><!--end_enstr-->
+<span class="jpstr">
+デバイスがiCloudアカウントに接続される最初の時またはユーザが彼らのプライマリiCloudアカウントを切り替える場合のどちらかで、ユビキタスdefaultsがデータのダウンロードを終了する時に投函されます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsubiquitoususerdefaultsdidchangeaccountsnotification_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">NSUbiquitous<wbr data-v-01f7f080="">User<wbr data-v-01f7f080="">Defaults<wbr data-v-01f7f080="">Did<wbr data-v-01f7f080="">Change<wbr data-v-01f7f080="">Accounts<wbr data-v-01f7f080="">Notification</wbr></wbr></wbr></wbr></wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Posted when the user changes the primary iCloud account.</span><!--end_enstr-->
+<span class="jpstr">
+ユーザはプライマリiCloudアカウントを変更する時に投函されます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsubiquitoususerdefaultsnocloudaccountnotification_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">NSUbiquitous<wbr data-v-01f7f080="">User<wbr data-v-01f7f080="">Defaults<wbr data-v-01f7f080="">No<wbr data-v-01f7f080="">Cloud<wbr data-v-01f7f080="">Account<wbr data-v-01f7f080="">Notification</wbr></wbr></wbr></wbr></wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Posted when a cloud default is set, but no iCloud user is logged in.</span><!--end_enstr-->
+<span class="jpstr">
+あるクラウドdefaultが設定される、しかしどんなiCloudユーザもログインされない場合に投函されます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Legacy</span><!--end_enstr-->
+<span class="jpstr">
+レガシー
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1589066-initwithuser_language-objc.html" class="link deprecated has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">init<wbr data-v-dac213be="">With<wbr data-v-dac213be="">User:</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Creates a user defaults object initialized with the defaults for the specified user account.</span><!--end_enstr-->
+<span class="jpstr">
+あるユーザdefaultsオブジェクトを作成します、この指定されたユーザアカウントに対するdefaultsで初期化されます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div>
+<span data-v-41682aee="" data-v-01f7f080="" role="presentation" class="violator violator-inline"><span class="enstr">Deprecated</span><!--end_enstr-->
+<span class="jpstr">
+非推奨
+</span><!--end_jpstr-->
+</span>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1414005-synchronize_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">synchronize</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Waits for any pending asynchronous updates to the defaults database and returns; this method is unnecessary and shouldn't be used.</span><!--end_enstr-->
+<span class="jpstr">
+defaultsデータベースへのなんらかの未解決の非同期更新に対して待機してそして返ります；このメソッドは不必要です、そして使われるべきではありません。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/1407708-resetstandarduserdefaults_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">+ </span><span data-v-dac213be="" class="identifier">reset<wbr data-v-dac213be="">Standard<wbr data-v-dac213be="">User<wbr data-v-dac213be="">Defaults</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">This method has no effect and shouldn't be used.</span><!--end_enstr-->
+<span class="jpstr">
+このメソッドは、効果を持ちません、そして使われるべきではありません。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0="">
+<a data-v-01f7f080="" href="../../documentation/foundation/nsuserdefaults/language-dependent_information_constants_language-objc.html" class="link has-adjacent-elements"><svg data-v-a76e93d8="" data-v-a8c6b630="" data-v-01f7f080="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="svg-icon topic-icon" height="16" viewbox="0 0 15 16"><title data-v-a76e93d8="">API Reference</title>
+<g data-v-a76e93d8="" fill-rule="evenodd" class="svg-icon-small"><path data-v-a76e93d8="" fill-rule="nonzero" d="M0,0 L15,0 L15,15 L0,15 L0,0 Z M1,14 L14,14 L14,1 L1,1 L1,14 Z"></path><polygon data-v-a76e93d8="" points="4 11 3 11 3 10 4 10"></polygon><polygon data-v-a76e93d8="" points="4 8 3 8 3 7 4 7"></polygon><polygon data-v-a76e93d8="" points="4 5 3 5 3 4 4 4"></polygon><polygon data-v-a76e93d8="" points="12 11 5 11 5 10 12 10"></polygon><polygon data-v-a76e93d8="" points="12 8 5 8 5 7 12 7"></polygon><polygon data-v-a76e93d8="" points="12 5 5 5 5 4 12 4"></polygon></g></svg><span data-v-01f7f080=""><span class="enstr">Language-Dependent Information Constants</span><!--end_enstr-->
+<span class="jpstr">
+言語依存の情報定数
+</span><!--end_jpstr-->
+</span><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">These constants are deprecated and shouldn't be used.</span><!--end_enstr-->
+<span class="jpstr">
+これらの定数は、非推奨にされます、そして使われるべきではありません。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+</div><!----></section><section data-v-8c663d90="" data-v-2deaa168="" id="relationships" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">Relationships</span><!--end_enstr-->
+<span class="jpstr">
+関係
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Inherits From</span><!--end_enstr-->
+<span class="jpstr">
+継承元
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><ul data-v-4af8f78e="" class="relationships-list inline" data-v-9807b2e0=""><li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/objectivec/nsobject_language-objc.html" class="link"><code data-v-4af8f78e="">NSObject</code></a><!---->
+</li></ul></div>
+</div>
+</div><!----><!----></section></main>
+</div></div></div>
+<section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo"><nav class="footer-breadory"><a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a><section class="breadcrumbs"><ol class="breadcrumbs-list"></ol></section><div id="directorynav" class="directorynav">
+<div id="dn-cola" class="column">
+<h3><a href="/discover/">Discover</a></h3>
+<ul>
+<li><a href="/ios/">iOS</a></li>
+<li><a href="/ipados/">iPadOS</a></li>
+<li><a href="/macos/">macOS</a></li>
+<li><a href="/tvos/">tvOS</a></li>
+<li><a href="/watchos/">watchOS</a></li>
+<li><a href="/safari/">Safari and Web</a></li>
+<li><a href="/games/">Games</a></li>
+<li><a href="/business/">Business</a></li>
+<li><a href="/education/">Education</a></li>
+<li><a href="/wwdc/">WWDC</a></li>
+</ul>
+</div>
+<div id="dn-colb" class="column">
+<h3><a href="/design/">Design</a></h3>
+<ul>
+<li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
+<li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
+<span class="jpstr">
+リソース
+</span><!--end_jpstr-->
+</a></li>
+<li><a href="/videos/design/">Videos</a></li>
+<li><a href="/design/awards/">Apple Design Awards</a></li>
+<li><a href="/fonts/">Fonts</a></li>
+<li><a href="/accessibility/">Accessibility</a></li>
+<li><a href="/localization/"><span class="enstr">Localization</span><!--end_enstr-->
+<span class="jpstr">
+ローカライゼーション
+</span><!--end_jpstr-->
+</a></li>
+<li><a href="/accessories/">Accessories</a></li>
+</ul>
+</div>
+<div id="dn-colc" class="column">
+<h3><a href="/develop/">Develop</a></h3>
+<ul>
+<li><a href="/xcode/">Xcode</a></li>
+<li><a href="/swift/">Swift</a></li>
+<li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
+<li><a href="/testflight/">TestFlight</a></li>
+<li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
+<li><a href="/videos/">Videos</a></li>
+<li><a href="/download/">Downloads</a></li>
+</ul>
+</div>
+<div id="dn-cold" class="column">
+<h3><a href="/distribute/">Distribute</a></h3>
+<ul>
+<li><a href="/programs/">Developer Program</a></li>
+<li><a href="/app-store/">App Store</a></li>
+<li><a href="/app-store/review/">App Review</a></li>
+<li><a href="/macos/distribution/">Mac Software</a></li>
+<li><a href="/business/distribute/">Apps for Business</a></li>
+<li><a href="/safari/extensions/">Safari Extensions</a></li>
+<li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
+<li><a href="/softwarelicensing/">Trademark Licensing</a></li>
+</ul>
+</div>
+<div id="dn-cole" class="column">
+<h3><a href="/support/">Support</a></h3>
+<ul>
+<li><a href="/support/articles/">Articles</a></li>
+<li><a href="/forums/">Developer Forums</a></li>
+<li><a href="/bug-reporting/">Feedback &amp; Bug Reporting</a></li>
+<li><a href="/system-status/">System Status</a></li>
+<li><a href="/contact/">Contact Us</a></li>
+</ul>
+<h3><a href="/account/">Account</a></h3>
+<ul>
+<li><a href="/account/ios/certificate/">Certificates, Identifiers &amp; Profiles</a></li>
+<li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
+</ul>
+</div>
+</div></nav><div class="ac-gf-footer-legal">
+<div class="ac-gf-footer-news">To view the latest developer news, visit <a href="/news/">News and Updates</a>.</div>
+<div class="ac-gf-footer-language-dropdown-wrapper">
+<select id="footer-language-selector" class="footer-language-select" aria-label="Language Dropdown" autocomplete="off"><option value="https://developer.apple.com/" selected>English</option>
+<option value="https://developer.apple.com/cn/">简体中文</option>
+<option value="https://developer.apple.com/jp/">日本語</option>
+<option value="https://developer.apple.com/kr/">한국어</option></select> <span class="footer-language-select-icon icon icon-chevrondown" aria-hidden="true"></span>
+</div>
+<div class="ac-gf-footer-legal-copyright">Copyright © <span class="footer-current-year">2020</span> <a href="https://www.apple.com">Apple Inc.</a> All rights reserved.</div>
+<div class="ac-gf-footer-legal-links">
+<a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a> <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a> <a href="/terms/">License Agreements</a>
+</div>
+</div></footer></section><script src="../../tutorials/js/footer.js"></script>
+</body>
+</html>

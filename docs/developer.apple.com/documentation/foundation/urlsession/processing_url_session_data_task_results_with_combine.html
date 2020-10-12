@@ -1,453 +1,617 @@
-<!DOCTYPE html><html lang="en" data-reactroot=""><head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>Processing URL Session Data Task Results with Combine | Apple Developer Documentation</title><!-- link href="https://www.apple.com/wss/fonts?families=SF+Pro,v1|SF+Mono,v1|SF+Pro+Icons,v1" media="all" rel="stylesheet" type="text/css"/ --><meta content="width=device-width, initial-scale=1 viewport-fit=cover" name="viewport"/><meta data-pid="463568"/><link href="../../../documentation/assets/application-e5bb1544.css" media="all" rel="stylesheet" type="text/css"/><noscript><link href="../../../documentation/assets/nojs-c6be9131.css" media="all" rel="stylesheet" type="text/css"/></noscript><link rel="mask-icon" href="../../../documentation/assets/apple-logo.svg" color="#000"/><link rel="shortcut icon" href="../../../documentation/assets/favicon.ico"/><script src="../../../documentation/assets/shared-b7676010.js"></script></head><body><div id="_omniture_top">
-      <script>
-        var s_account="awdappledeveloper"
-      </script><!-- script src="https://developer.apple.com/assets/metrics/scripts/analytics.js" -->
-      </script>
-      <script>
-        s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
-        s.channel="www.documentation.developer"
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- link rel="icon" href="/favicon.ico" -->
+<link rel="mask-icon" href="/apple-logo.svg" color="#333333">
+<link rel="stylesheet" href="../../../tutorials/css/_globalnav.css">
+<title>Processing URL Session Data Task Results with Combine | Apple Developer Documentation</title>
+<link href="../../../tutorials/css/chunk-76d5c2b5.00c53891.css" rel="prefetch">
+<link href="../../../tutorials/css/documentation-topic.e358e85c.css" rel="prefetch">
+<link href="../../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css" rel="prefetch">
+<link href="../../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css" rel="prefetch">
+<link href="../../../tutorials/css/topic.69278f1e.css" rel="prefetch">
+<link href="../../../tutorials/css/topic~tutorials-overview.1f93e025.css" rel="prefetch">
+<link href="../../../tutorials/css/tutorials-overview.d4ff0b50.css" rel="prefetch">
+<link href="../../../tutorials/css/welcome-experience-featured.0537f0f0.css" rel="prefetch">
+<link href="../../../tutorials/css/welcome-experience-technologies.60068ae2.css" rel="prefetch">
+<link href="../../../tutorials/js/chunk-2d0d3105.459bf725.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-2d21a016.b81cb311.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-503f1ed8.d26c4552.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-530f89ce.621e1d48.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-640db3b2.f8778ca5.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-76d5c2b5.092e3b8a.js" rel="prefetch">
+<link href="../../../tutorials/js/documentation-topic.6abe9458.js" rel="prefetch">
+<link href="../../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js" rel="prefetch">
+<link href="../../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js" rel="prefetch">
+<link href="../../../tutorials/js/topic.c6ec6b6c.js" rel="prefetch">
+<link href="../../../tutorials/js/topic~tutorials-overview.467a8186.js" rel="prefetch">
+<link href="../../../tutorials/js/tutorials-overview.d77f61ca.js" rel="prefetch">
+<link href="../../../tutorials/js/welcome-experience-featured.04f663e2.js" rel="prefetch">
+<link href="../../../tutorials/js/welcome-experience-technologies.56a372c1.js" rel="prefetch">
+<link href="../../../tutorials/css/app.2a174a23.css" rel="preload" as="style">
+<link href="../../../tutorials/js/app.2c558263.js" rel="preload" as="script">
+<link href="../../../tutorials/js/chunk-vendors.c3b68236.js" rel="preload" as="script">
+<link href="../../../tutorials/css/app.2a174a23.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../../../tutorials/css/chunk-76d5c2b5.00c53891.css">
+<script charset="utf-8" src="../../../tutorials/js/chunk-76d5c2b5.092e3b8a.js"></script><link rel="stylesheet" type="text/css" href="../../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css">
+<script charset="utf-8" src="../../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js"></script><link rel="stylesheet" type="text/css" href="../../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css">
+<script charset="utf-8" src="../../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js"></script><link rel="stylesheet" type="text/css" href="../../../tutorials/css/documentation-topic.e358e85c.css">
+<script charset="utf-8" src="../../../tutorials/js/documentation-topic.6abe9458.js"></script>
+</head>
+<body>
+<div id="_omniture_top">
+<script>var s_account="awdappledeveloper"</script>
+</div>
+<a href="#main" id="skip-localnav">Skip Navigation</a><aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"><nav id="ac-globalnav" class="js no-touch" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions"><div class="ac-gn-content">
+<ul class="ac-gn-header">
+<li class="ac-gn-item ac-gn-menuicon">
+<label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true"><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span> </span><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span></span></label> <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open"><span class="ac-gn-menuanchor-label">Global Nav Open Menu</span> </a><a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close"><span class="ac-gn-menuanchor-label">Global Nav Close Menu</span></a>
+</li>
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+</ul>
+<div class="ac-gn-search-placeholder-container" role="search"><div class="ac-gn-search ac-gn-search-small"><a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a><div class="ac-gn-search-placeholder-bar">
+<div class="ac-gn-search-placeholder-input"><div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
+<div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
+<span class="ac-gn-search-placeholder">Search Developer</span>
+</div></div>
+<div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></div>
+</div></a></div></div>
+<ul class="ac-gn-list">
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-discover"><a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover"><span class="ac-gn-link-text">Discover</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-design"><a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design"><span class="ac-gn-link-text">Design</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-develop"><a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop"><span class="ac-gn-link-text">Develop</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-distribute"><a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute"><span class="ac-gn-link-text">Distribute</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport"><a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport"><span class="ac-gn-link-text">Support</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-account"><a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account"><span class="ac-gn-link-text">Account</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search"><a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a></li>
+</ul>
+<aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search"><div class="ac-gn-searchview-content">
+<div class="ac-gn-searchview-bar"><div class="ac-gn-searchview-bar-wrapper">
+<form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get"><div class="ac-gn-searchform-wrapper">
+<input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions"> <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button> <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search"><span class="ac-gn-searchform-reset-background"></span></button>
+</div></form>
+<button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></button>
+</div></div>
+<aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
+</div>
+<button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search"><span class="ac-gn-searchview-close-wrapper"><span class="ac-gn-searchview-close-left"></span> <span class="ac-gn-searchview-close-right"></span></span></button></aside>
+</div></nav><div class="ac-gn-blur"></div>
+<div id="ac-gn-curtain" class="ac-gn-curtain"></div>
+<div id="ac-gn-placeholder" class="ac-nav-placeholder"></div>
+<script src="../../../tutorials/js/ac-globalnav.built.js"></script>
+<noscript>
+<style>.noscript {
+  font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
+  margin: 92px auto 140px auto;
+  text-align: center;
+  width: 980px;
+}
 
-        var s_code=s.t();if(s_code)document.write(s_code)
-      </script>
-    </div><div id="app"><div><a href="#main" id="skip-localnav" class="showonfocus hidden">Skip Navigation</a><aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"/><nav id="ac-globalnav" class="no-js" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions/">
-      <div class="ac-gn-content">
-        <ul class="ac-gn-header">
-          <li class="ac-gn-item ac-gn-menuicon">
-            <label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true">
-              <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top">
-                <span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span>
-              </span>
-              <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom">
-                <span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span>
-              </span>
-            </label>
-            <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open">
-              <span class="ac-gn-menuanchor-label">Global Nav Open Menu</span>
-            </a>
-            <a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close">
-              <span class="ac-gn-menuanchor-label">Global Nav Close Menu</span>
-            </a>
-          </li>
-          <li class="ac-gn-item ac-gn-apple">
-            <a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small">
-              <span class="ac-gn-link-text">Apple Developer</span>
-            </a>
-          </li>
-        </ul>
-        <div class="ac-gn-search-placeholder-container" role="search">
-          <div class="ac-gn-search ac-gn-search-small">
-            <a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link aria-label="Search Developer">
-              </a><div class="ac-gn-search-placeholder-bar">
-                <div class="ac-gn-search-placeholder-input">
-                  <div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
-                    <div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
-                    <span class="ac-gn-search-placeholder">Search Developer</span>
-                  </div>
-                </div>
-                <div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close">
-                  <span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-        <ul class="ac-gn-list">
-          <li class="ac-gn-item ac-gn-apple">
-            <a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus">
-              <span class="ac-gn-link-text">Apple Developer</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-discover">
-            <a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover">
-              <span class="ac-gn-link-text">Discover</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-design">
-            <a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design">
-              <span class="ac-gn-link-text">Design</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-develop">
-            <a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop">
-              <span class="ac-gn-link-text">Develop</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-distribute">
-            <a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute">
-              <span class="ac-gn-link-text">Distribute</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport">
-            <a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport">
-              <span class="ac-gn-link-text">Support</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-account">
-            <a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account">
-              <span class="ac-gn-link-text">Account</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search">
-            <a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link aria-label="Search Developer"></a>
-          </li>
-        </ul>
-        <aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search">
-          <div class="ac-gn-searchview-content">
-            <div class="ac-gn-searchview-bar">
-              <div class="ac-gn-searchview-bar-wrapper">
-                <form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get">
-                  <div class="ac-gn-searchform-wrapper">
-                    <input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions" />
-                    <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button>
-                    <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search">
-                        <span class="ac-gn-searchform-reset-background"></span>
-                      </button>
-                  </div>
-                </form>
-                <button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search">
-                    <span class="ac-gn-searchview-close-cancel" aria-hidden="true">
-                      Cancel
-                    </span>
-                  </button>
-              </div>
-            </div>
-            <aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
-          </div>
-          <button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search">
-              <span class="ac-gn-searchview-close-wrapper">
-                <span class="ac-gn-searchview-close-left"></span>
-                <span class="ac-gn-searchview-close-right"></span>
-              </span>
-            </button>
-        </aside>
-          </div>
-    </nav><div class="ac-gn-blur"></div><div id="ac-gn-curtain" class="ac-gn-curtain"></div><div id="ac-gn-placeholder" class="ac-nav-placeholder"></div><input type="checkbox" id="localnav-menustate" class="localnav-menustate" aria-hidden="true"/><nav id="localnav" class="localnav localnav-dark theme-dark localnav-scrim localnav-noborder" role="navigation" aria-label="API Reference" data-sticky="true"><div class="localnav-wrapper"><div class="referencenav"><div class="localnav-background"></div><div class="localnav-content"><a href="../../../index.html" class="localnav-title">Documentation</a><div class="localnav-menu"><a href="#localnav-menustate" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span class="localnav-menucta-anchor-label" aria-hidden="true">Open Menu</span></a><a href="#" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span class="localnav-menucta-anchor-label" aria-hidden="true">Close Menu</span></a><div class="localnav-menu-tray"><ul aria-label="Breadcrumbs" class="localnav-menu-items localnav-menu-breadcrumbs"><li class="localnav-menu-item localnav-menu-breadcrumb-item truncated"><a class="localnav-menu-link" href="../../../documentation/foundation.html">Foundation</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item truncated"><a class="localnav-menu-link" href="../../../documentation/foundation/url_loading_system.html"><span class="enstr">URL Loading System</span><!--end_enstr-->
+.noscript-title {
+  color: #111;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -.003em;
+  line-height: 1.08365;
+  margin: 0 auto 54px auto;
+  width: 502px;
+}
+
+@media only screen and (max-width: 1068px) {
+  .noscript {
+    margin: 90px auto 120px auto;
+    width: 692px;
+  }
+
+  .noscript-title {
+    font-size: 40px;
+    letter-spacing: 0;
+    line-height: 1.1;
+    margin: 0 auto 45px auto;
+    width: 420px;
+  }
+}
+
+@media only screen and (max-width: 735px) {
+  .noscript {
+    margin: 45px auto 60px auto;
+    width: 87.5%;
+  }
+
+  .noscript-title {
+    font-size: 32px;
+    letter-spacing: .004em;
+    line-height: 1.125;
+    margin: 0 auto 35px auto;
+    max-width: 330px;
+    width: auto;
+  }
+}
+
+#loading-placeholder {
+  display: none;
+};</style>
+<div class="noscript">
+<h1 class="noscript-title">This page requires JavaScript.</h1>
+<p>Please turn on JavaScript in your browser and refresh the page to view its content.</p>
+</div>
+</noscript>
+<div data-v-0220a4c4="" id="app" class=""><div data-v-0220a4c4=""><div data-v-2deaa168="" class="doc-topic">
+<div data-v-3ceaa5df="" data-v-2deaa168="" class="localnav-container">
+<input data-v-3ceaa5df="" aria-hidden="true" id="localnav-menustate" type="checkbox" class="localnav-menustate"><div id="localnav-sticky-placeholder" class="css-sticky"></div>
+<nav data-v-3ceaa5df="" aria-label="API Reference" data-sticky="" id="localnav" role="navigation" class="localnav localnav-dark theme-dark medium-localnav-collapsible localnav-noborder localnav-scrim css-sticky"><div data-v-3ceaa5df="" class="localnav-wrapper">
+<div data-v-3ceaa5df="" class="referencenav">
+<div data-v-3ceaa5df="" class="localnav-background"></div>
+<div data-v-3ceaa5df="" class="localnav-content">
+<a data-v-3ceaa5df="" href="../../../index.html" class="localnav-title">
+            Documentation
+          </a><div data-v-3ceaa5df="" class="localnav-menu">
+<a data-v-3ceaa5df="" href="#localnav-menustate" role="button" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Open Menu</span></a><a data-v-3ceaa5df="" href="#" role="button" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Close Menu</span></a><div data-v-3ceaa5df="" class="localnav-menu-tray">
+<ul data-v-72fd0d2c="" data-v-3ceaa5df="" aria-label="Breadcrumbs" class="localnav-menu-items">
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item collapsed"><a data-v-72fd0d2c="" href="../../../documentation/foundation.html" class="parent item router-link-active" data-v-23a2ae0d="">
+    Foundation
+  </a></li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item collapsed"><a data-v-72fd0d2c="" href="../../../documentation/foundation/url_loading_system.html" class="parent item" data-v-23a2ae0d="">
+    <span class="enstr">URL Loading System</span><!--end_enstr-->
 <span class="jpstr">
 URLローディングシステム
 </span><!--end_jpstr-->
-</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item truncated-breadcrumbs"><button class="localnav-menu-breadcrumb-link truncated-breadcrumbs-disclosebtn"><span class="truncated-breadcrumbs-disclosebtn-indicator">⋯</span></button><ul class="truncated-breadcrumbs-dropdown"><li class="truncated-breadcrumbs-dropdown-item"><a class="truncated-breadcrumbs-dropdown-item-link" href="../../../documentation/foundation.html">Foundation</a></li><li class="truncated-breadcrumbs-dropdown-item"><a class="truncated-breadcrumbs-dropdown-item-link" href="../../../documentation/foundation/url_loading_system.html"><span class="enstr">URL Loading System</span><!--end_enstr-->
+
+  </a></li>
+<li data-v-68bd9d1f="" data-v-72fd0d2c="" class="localnav-menu-item hierarchy-collapsed-items">
+<button data-v-68bd9d1f="" class="toggle"><span data-v-68bd9d1f="" class="indicator">⋯</span></button><ul data-v-68bd9d1f="" class="dropdown collapsed">
+<li data-v-68bd9d1f="" class="dropdown-item"><a data-v-68bd9d1f="" href="../../../documentation/foundation.html" class="link router-link-active">Foundation</a></li>
+<li data-v-68bd9d1f="" class="dropdown-item"><a data-v-68bd9d1f="" href="../../../documentation/foundation/url_loading_system.html" class="link"><span class="enstr">URL Loading System</span><!--end_enstr-->
 <span class="jpstr">
 URLローディングシステム
 </span><!--end_jpstr-->
-</a></li></ul></li><li class="localnav-menu-item localnav-menu-breadcrumb-item"><a class="localnav-menu-link" href="../../../documentation/foundation/urlsession.html">URLSession</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item"><div class="localnav-menu-breadcrumb-current-container localnav-menu-link current"><span aria-current="page" class="localnav-menu-breadcrumb-current"><span class="enstr">Processing URL Session Data Task Results with Combine</span><!--end_enstr-->
+</a></li>
+</ul>
+</li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../../documentation/foundation/urlsession.html" class="parent item router-link-active" data-v-23a2ae0d="">
+    URLSession
+  </a></li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item">
+<span data-v-23a2ae0d="" class="current item">
+    <span class="enstr">Processing URL Session Data Task Results with Combine</span><!--end_enstr-->
 <span class="jpstr">
 URLセッションデータタスク結果をCombineで処理する
 </span><!--end_jpstr-->
-</span></div></li></ul><ul class="localnav-menu-items localnav-menu-settings" data-breadcrumbs-count="4"><li class="localnav-menu-setting language-container"><span class="localnav-menu-setting-label">Language:</span><span class="localnav-menu-toggle-none current-language" aria-current="page">Swift</span></li><li class="localnav-menu-setting"><span class="localnav-menu-setting-label">API Changes:</span><span class="changes-toggle">None</span></li></ul></div><div class="localnav-actions"><div class="localnav-action localnav-action-menucta" aria-hidden="true"><label for="localnav-menustate" class="localnav-menucta"><span class="localnav-menucta-chevron"></span></label></div></div></div></div></div></div></nav><label for="localnav-menustate" id="localnav-curtain" aria-hidden="true"></label><main role="main" id="main" class="main" tabindex="0"><div class="topic-title"><span class="eyebrow">Article</span><h1 class="topic-heading"><span><span class="enstr">Processing URL Session Data Task Results with Combine</span><!--end_enstr-->
+
+  </span><!---->
+</li>
+</ul>
+<ul data-v-3ceaa5df="" data-breadcrumbs-count="4" class="localnav-menu-items localnav-menu-settings">
+<li data-v-282336e0="" data-v-3ceaa5df="" class="localnav-menu-setting language-container" breadcrumbcount="4">
+<div data-v-282336e0="" class="">
+<label data-v-282336e0="" class="localnav-menu-setting-label">
+      Language:
+    </label><span data-v-282336e0="" aria-current="page" class="localnav-menu-toggle-none current-language">
+      Swift
+    </span>
+</div><!---->
+
+</li>
+<li data-v-2e9f4ea2="" data-v-3ceaa5df="" class="localnav-menu-setting">
+<label data-v-2e9f4ea2="" for="version-label" class="localnav-menu-setting-label">
+    API Changes:
+  </label><span data-v-2e9f4ea2=""><span class="enstr">None</span><!--end_enstr-->
+<span class="jpstr">
+なし
+</span><!--end_jpstr-->
+</span>
+</li><!---->
+
+</ul>
+</div>
+<div data-v-3ceaa5df="" class="localnav-actions"><div data-v-3ceaa5df="" aria-hidden="true" class="localnav-action localnav-action-menucta"><label data-v-3ceaa5df="" for="localnav-menustate" class="localnav-menucta"><span data-v-3ceaa5df="" class="localnav-menucta-chevron"></span></label></div></div>
+</div>
+</div>
+</div><!---->
+
+</div></nav><label data-v-3ceaa5df="" aria-hidden="true" for="localnav-menustate" id="localnav-curtain"></label>
+</div>
+<main data-v-2deaa168="" id="main" role="main" tabindex="0" class="main"><div data-v-4ba5af7c="" data-v-2deaa168="" class="topictitle">
+<span data-v-4ba5af7c="" class="eyebrow">Article</span><h1 data-v-4ba5af7c="" class="title"><span class="enstr">Processing URL Session Data Task Results with Combine</span><!--end_enstr-->
 <span class="jpstr">
 URLセッションデータタスク結果をCombineで処理する
 </span><!--end_jpstr-->
-</span></h1></div><div class="topic-container section-content row"><div class="topic-description column large-9 medium-9 small-12"><div class="topic-abstract abstract formatted-content"><div><p><span class="enstr">Use a chain of asynchronous operators to receive and process data fetched from a URL.</span><!--end_enstr-->
+</h1>
+</div>
+<div data-v-0253ce0e="" data-v-2deaa168="" class="row container">
+<div data-v-9807b2e0="" data-v-5ad0d458="" data-v-2deaa168="" class="col description large-9 medium-9 small-12" data-v-0253ce0e=""><!---->
+<div data-v-7ea0aa49="" data-v-aba749e6="" data-v-2deaa168="" class="abstract content" data-v-9807b2e0=""><span class="enstr">Use a chain of asynchronous operators to receive and process data fetched from a URL.</span><!--end_enstr-->
 <span class="jpstr">
 あるURLから取って来たデータを受け取りそして処理するために、非同期演算子の連鎖を使ってください。
 </span><!--end_jpstr-->
-</p></div></div></div><div class="topic-summary column large-3 medium-3 small-12"><div class="topic-summary-section frameworks" role="complementary" aria-label="Framework"><p class="topic-summary-section-label subsection-label"><span class="enstr">Framework</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div>
+<div data-v-9807b2e0="" data-v-42fb6bac="" data-v-2deaa168="" class="col summary large-3 medium-3 small-12" data-v-0253ce0e=""><!----><!---->
+<div data-v-e4237090="" data-v-741142ba="" data-v-2deaa168="" class="summary-section frameworks" role="complementary" aria-label="Framework" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-741142ba="" class="title" data-v-e4237090=""><span class="enstr">Framework</span><!--end_enstr-->
 <span class="jpstr">
 フレームワーク
 </span><!--end_jpstr-->
-</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item"><span>Foundation</span></li></ul></div><div class="topic-summary-section onthispage"><nav class="onthispage-nav" aria-labelledby="onthispage-title"><p id="onthispage-title" class="topic-summary-section-label subsection-label"><span class="enstr">On This Page</span><!--end_enstr-->
+</p>
+<ul data-v-1450532d="" data-v-741142ba="" class="summary-list" data-v-e4237090=""><li data-v-e3899270="" data-v-741142ba="" class="summary-list-item" data-v-1450532d=""><span data-v-741142ba="" data-v-e3899270="" class="name">Foundation</span></li></ul>
+</div>
+<div data-v-e4237090="" data-v-2b96ab1a="" data-v-2deaa168="" class="summary-section on-this-page" data-v-9807b2e0=""><nav data-v-2b96ab1a="" data-v-e4237090="" aria-labelledby="on-this-page-title"><p data-v-1e0258b0="" data-v-2b96ab1a="" class="title" id="on-this-page-title" data-v-e4237090=""><span class="enstr">On This Page</span><!--end_enstr-->
 <span class="jpstr">
 この項には
 </span><!--end_jpstr-->
-</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item"><a href="#overview" class="icon icon-after icon-chevrondowncircle"><span class="enstr">Overview</span><!--end_enstr-->
+</p>
+<ul data-v-1450532d="" data-v-2b96ab1a="" class="summary-list" data-v-e4237090="">
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../../documentation/foundation/urlsession/processing_url_session_data_task_results_with_combine.html#overview" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Overview</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../../documentation/foundation/urlsession/processing_url_session_data_task_results_with_combine.html#see-also" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">See Also</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+</ul></nav></div>
+</div>
+<div data-v-9807b2e0="" data-v-1e40f676="" data-v-2deaa168="" class="col primary-content large-9 medium-9 small-12" data-v-0253ce0e=""><div data-v-7ea0aa49="" data-v-1e40f676="" class="content" data-v-9807b2e0="">
+<h2 id="overview"><span class="enstr">Overview</span><!--end_enstr-->
 <span class="jpstr">
 概要
 </span><!--end_jpstr-->
-</a></li><li class="topic-summary-section-item"><a href="#see-also" class="icon icon-after icon-chevrondowncircle"><span class="enstr">See Also</span><!--end_enstr-->
+</h2>
+<p><span class="enstr">Performing tasks with URL sessions is inherently asynchronous; it takes time to fetch data from network endpoints, file systems, and other URL-based sources. The URL Loading System accounts for this by delivering results asynchronously to delegates or completion handlers. The <a href="https://developer.apple.com/documentation/combine" class="">Combine</a> framework also handles asynchronicity; using it to process your URL task results simplifies and empowers your code.</span><!--end_enstr-->
 <span class="jpstr">
-参照
+URLセッションを伴うタスクの実行は、本質的に非同期です；それはデータをネットワークエンドポイント、ファイルシステム、および他のURL基盤ソースから取ってくるのに時間がかかります。URLローディングシステムは、これに責任を持ちます、結果を非同期に委任先または完了ハンドラに配達することによって。<a href="https://developer.apple.com/documentation/combine" class="">Combine</a>フレームワークもまた非同期にうまく処理します；それを使ってあなたのURLタスク結果それらを平易に処理して、そしてあなたのコードの能力を高めてください。
 </span><!--end_jpstr-->
-</a></li></ul></nav></div></div><div class="topic-content column large-9 medium-9 small-12" id="topic-content"><section id="overview" class="section"><h2><span class="enstr">Overview</span><!--end_enstr-->
-<span class="jpstr">
-概要
-</span><!--end_jpstr-->
-</h2><div class="formatted-content"><div><p><span class="enstr">Performing tasks with URL sessions is inherently asynchronous; it takes time to fetch data from network endpoints, file systems, and other URL-based sources. The URL Loading System accounts for this by delivering results asynchronously to delegates or completion handlers. The <a href="https://developer.apple.com/documentation/combine">Combine</a> framework also handles asynchronicity; using it to process your URL task results simplifies and empowers your code.</span><!--end_enstr-->
-<span class="jpstr">
-URLセッションを伴うタスクの実行は、本質的に非同期です；それはデータをネットワークエンドポイント、ファイルシステム、および他のURL基盤ソースから取ってくるのに時間がかかります。URLローディングシステムは、これに責任を持ちます、結果を非同期に委任先または完了ハンドラに配達することによって。<a href="https://developer.apple.com/documentation/combine">Combine</a>フレームワークもまた非同期にうまく処理します；それを使ってあなたのURLタスク結果それらを平易に処理して、そしてあなたのコードの能力を高めてください。
-</span><!--end_jpstr-->
-</p></div><h3 id="3559540"><span class="enstr">Create a Data Task Publisher</span><!--end_enstr-->
+</p>
+<h3 id="3559540"><span class="enstr">Create a Data Task Publisher</span><!--end_enstr-->
 <span class="jpstr">
 データタスクパブリッシャーを作成する
 </span><!--end_jpstr-->
-</h3><div><p><span class="enstr"><a class="symbol-name" href="../../../documentation/foundation/urlsession.html"><code><span>URLSession</span></code></a> offers a Combine publisher, <a class="symbol-name" href="../../../documentation/foundation/urlsession/datataskpublisher.html"><code><span>URLSession<wbr/>.Data<wbr/>Task<wbr/>Publisher</span></code></a>, which publishes the results of fetching data from a <a class="symbol-name" href="../../../documentation/foundation/url.html"><code><span>URL</span></code></a> or <a class="symbol-name" href="../../../documentation/foundation/urlrequest.html"><code><span>URLRequest</span></code></a>. You create this publisher with the method <a class="symbol-name" href="../../../documentation/foundation/urlsession/3329708-datataskpublisher.html"><code><span>data<wbr/>Task<wbr/>Publisher(for:)</span></code></a>. When the task completes, it publishes either:</span><!--end_enstr-->
+</h3>
+<p><span class="enstr"><a href="../../../documentation/foundation/urlsession.html" class="router-link-active"><code data-v-7fb764c1="">URLSession</code></a> offers a Combine publisher, <a href="../../../documentation/foundation/urlsession/datataskpublisher.html" class=""><code data-v-7fb764c1="">URLSession<wbr data-v-7fb764c1="">.Data<wbr data-v-7fb764c1="">Task<wbr data-v-7fb764c1="">Publisher</wbr></wbr></wbr></code></a>, which publishes the results of fetching data from a <a href="../../../documentation/foundation/url.html" class=""><code data-v-7fb764c1="">URL</code></a> or <a href="../../../documentation/foundation/urlrequest.html" class=""><code data-v-7fb764c1="">URLRequest</code></a>. You create this publisher with the method <a href="../../../documentation/foundation/urlsession/3329708-datataskpublisher.html" class=""><code data-v-7fb764c1="">data<wbr data-v-7fb764c1="">Task<wbr data-v-7fb764c1="">Publisher(for:)</wbr></wbr></code></a>. When the task completes, it publishes either:</span><!--end_enstr-->
 <span class="jpstr">
-<a class="symbol-name" href="../../../documentation/foundation/urlsession.html"><code><span>URLSession</span></code></a>はCombineパブリッシャー、<a class="symbol-name" href="../../../documentation/foundation/urlsession/datataskpublisher.html"><code><span>URLSession<wbr/>.Data<wbr/>Task<wbr/>Publisher</span></code></a>を提供します、それはデータを<a class="symbol-name" href="../../../documentation/foundation/url.html"><code><span>URL</span></code></a>または<a class="symbol-name" href="../../../documentation/foundation/urlrequest.html"><code><span>URLRequest</span></code></a>から取って来ることの結果を出版（パブリッシュ）します。あなたは、このパブリッシャーをメソッド<a class="symbol-name" href="../../../documentation/foundation/urlsession/3329708-datataskpublisher.html"><code><span>data<wbr/>Task<wbr/>Publisher(for:)</span></code></a>で作成します。タスクが完了する時、それが出版するのはこのどちらかです：
+<a href="../../../documentation/foundation/urlsession.html" class="router-link-active"><code data-v-7fb764c1="">URLSession</code></a>はCombineパブリッシャー、<a href="../../../documentation/foundation/urlsession/datataskpublisher.html" class=""><code data-v-7fb764c1="">URLSession<wbr data-v-7fb764c1="">.Data<wbr data-v-7fb764c1="">Task<wbr data-v-7fb764c1="">Publisher</wbr></wbr></wbr></code></a>を提供します、それはデータを<a href="../../../documentation/foundation/url.html" class=""><code data-v-7fb764c1="">URL</code></a>または<a href="../../../documentation/foundation/urlrequest.html" class=""><code data-v-7fb764c1="">URLRequest</code></a>から取って来ることの結果を出版（パブリッシュ）します。あなたは、このパブリッシャーをメソッド<a href="../../../documentation/foundation/urlsession/3329708-datataskpublisher.html" class=""><code data-v-7fb764c1="">data<wbr data-v-7fb764c1="">Task<wbr data-v-7fb764c1="">Publisher(for:)</wbr></wbr></code></a>で作成します。タスクが完了する時、それが出版するのはこのどちらかです：
 </span><!--end_jpstr-->
-</p><ul><li><p><span class="enstr">A tuple that contains the fetched data and a <a class="symbol-name" href="../../../documentation/foundation/urlresponse.html"><code><span>URLResponse</span></code></a>, if the task succeeds.</span><!--end_enstr-->
+</p>
+<ul>
+<li><p><span class="enstr">A tuple that contains the fetched data and a <a href="../../../documentation/foundation/urlresponse.html" class=""><code data-v-7fb764c1="">URLResponse</code></a>, if the task succeeds.</span><!--end_enstr-->
 <span class="jpstr">
-あるタプル、それは取って来たデータと<a class="symbol-name" href="../../../documentation/foundation/urlresponse.html"><code><span>URLResponse</span></code></a>を含みます、もしタスクが成功するならば。
+あるタプル、それは取って来たデータと<a href="../../../documentation/foundation/urlresponse.html" class=""><code data-v-7fb764c1="">URLResponse</code></a>を含みます、もしタスクが成功するならば。
 </span><!--end_jpstr-->
-</p></li><li><p><span class="enstr">An error, if the task fails.</span><!--end_enstr-->
+</p></li>
+<li><p><span class="enstr">An error, if the task fails.</span><!--end_enstr-->
 <span class="jpstr">
 あるエラー、もしタスクが失敗するならば。
 </span><!--end_jpstr-->
-</p></li></ul><p><span class="enstr">Unlike the completion handler passed to <a class="symbol-name" href="../../../documentation/foundation/urlsession/1410330-datatask.html"><code><span>data<wbr/>Task(with:<wbr/>completion<wbr/>Handler:)</span></code></a>, the types received by your code aren’t optionals, since the publisher has already unwrapped the data or error.</span><!--end_enstr-->
+</p></li>
+</ul>
+<p><span class="enstr">Unlike the completion handler passed to <a href="../../../documentation/foundation/urlsession/1410330-datatask.html" class=""><code data-v-7fb764c1="">data<wbr data-v-7fb764c1="">Task(with:<wbr data-v-7fb764c1="">completion<wbr data-v-7fb764c1="">Handler:)</wbr></wbr></wbr></code></a>, the types received by your code aren’t optionals, since the publisher has already unwrapped the data or error.</span><!--end_enstr-->
 <span class="jpstr">
-<a class="symbol-name" href="../../../documentation/foundation/urlsession/1410330-datatask.html"><code><span>data<wbr/>Task(with:<wbr/>completion<wbr/>Handler:)</span></code></a>に渡された完了ハンドラとは違い、あなたのコードによって受け取られる型はオプショナルではありません、パブリッシャーが既にアンラップされたデータまたはエラーを持つことから。
+<a href="../../../documentation/foundation/urlsession/1410330-datatask.html" class=""><code data-v-7fb764c1="">data<wbr data-v-7fb764c1="">Task(with:<wbr data-v-7fb764c1="">completion<wbr data-v-7fb764c1="">Handler:)</wbr></wbr></wbr></code></a>に渡された完了ハンドラとは違い、あなたのコードによって受け取られる型はオプショナルではありません、パブリッシャーが既にアンラップされたデータまたはエラーを持つことから。
 </span><!--end_jpstr-->
-</p><p><span class="enstr">When using <a class="symbol-name" href="../../../documentation/foundation/urlsession.html"><code><span>URLSession</span></code></a>’s completion handler-based code, you need to do all your work in the handler closure: error-handling, data parsing, and so on. When you instead use the data task publisher, you can move many of these responsibilities to Combine operators.</span><!--end_enstr-->
+</p>
+<p><span class="enstr">When using <a href="../../../documentation/foundation/urlsession.html" class="router-link-active"><code data-v-7fb764c1="">URLSession</code></a>’s completion handler-based code, you need to do all your work in the handler closure: error-handling, data parsing, and so on. When you instead use the data task publisher, you can move many of these responsibilities to Combine operators.</span><!--end_enstr-->
 <span class="jpstr">
-<a class="symbol-name" href="../../../documentation/foundation/urlsession.html"><code><span>URLSession</span></code></a>のもつ完了ハンドラ基盤のコードを使う場合、あなたはあなたの仕事を全てハンドラクロージャにおいて行う必要があります：エラー処理、データ解析、など。あなたが代わりにデータタスクパブリッシャーを使う場合、あなたはこれらの責任の多くをCombine演算子へと移せます。
+<a href="../../../documentation/foundation/urlsession.html" class="router-link-active"><code data-v-7fb764c1="">URLSession</code></a>のもつ完了ハンドラ基盤のコードを使う場合、あなたはあなたの仕事を全てハンドラクロージャにおいて行う必要があります：エラー処理、データ解析、など。あなたが代わりにデータタスクパブリッシャーを使う場合、あなたはこれらの責任の多くをCombine演算子へと移せます。
 </span><!--end_jpstr-->
-</p></div><h3 id="3526671"><span class="enstr">Convert Incoming Raw Data to Your Types with Combine Operators</span><!--end_enstr-->
+</p>
+<h3 id="3526671"><span class="enstr">Convert Incoming Raw Data to Your Types with Combine Operators</span><!--end_enstr-->
 <span class="jpstr">
 やって来る生の値をあなたの型へとCombineの演算子それらで変換する
 </span><!--end_jpstr-->
-</h3><div><p><span class="enstr">When a data task completes successfully, it delivers a block of raw <a class="symbol-name" href="../../../documentation/foundation/data.html"><code><span>Data</span></code></a> to your app. Most apps need to convert this data to their own types. Combine provides operators to perform these conversions, allowing you to declare a chain of processing operations.</span><!--end_enstr-->
+</h3>
+<p><span class="enstr">When a data task completes successfully, it delivers a block of raw <a href="../../../documentation/foundation/data.html" class=""><code data-v-7fb764c1="">Data</code></a> to your app. Most apps need to convert this data to their own types. Combine provides operators to perform these conversions, allowing you to declare a chain of processing operations.</span><!--end_enstr-->
 <span class="jpstr">
-データタスクがうまく完了する場合、それは生の<a class="symbol-name" href="../../../documentation/foundation/data.html"><code><span>Data</span></code></a>のある塊をあなたのアプリに配達します。ほとんどのアプリは、このデータをそれら独自の型へと変換する必要があります。Combineは、これら変換を実行する演算子を提供して、あなたに演算処理の連鎖を宣言可能にしています。
+データタスクがうまく完了する場合、それは生の<a href="../../../documentation/foundation/data.html" class=""><code data-v-7fb764c1="">Data</code></a>のある塊をあなたのアプリに配達します。ほとんどのアプリは、このデータをそれら独自の型へと変換する必要があります。Combineは、これら変換を実行する演算子を提供して、あなたに演算処理の連鎖を宣言可能にしています。
 </span><!--end_jpstr-->
-</p><p><span class="enstr">The data task publisher produces a tuple that contains a <code class="code-voice"><span>Data</span></code> and a <code class="code-voice"><span>URLResponse</span></code>. You can use the <a class="symbol-name" href="https://developer.apple.com/documentation/combine/publisher/3204718-map"><code><span>map(_:)</span></code></a> operator to convert the contents of this tuple to another type. If you want to inspect the response before inspecing the data, use <a class="symbol-name" href="https://developer.apple.com/documentation/combine/publisher/3204772-trymap"><code><span>try<wbr/>Map(_:)</span></code></a> and throw an error if the response is unacceptable.</span><!--end_enstr-->
+</p>
+<p><span class="enstr">The data task publisher produces a tuple that contains a <span><code data-v-7fb764c1="">Data</code></span> and a <span><code data-v-7fb764c1="">URLResponse</code></span>. You can use the <a href="https://developer.apple.com/documentation/combine/publisher/map(_:)-99evh" class=""><code data-v-7fb764c1="">map(_:)</code></a> operator to convert the contents of this tuple to another type. If you want to inspect the response before inspecing the data, use <a href="https://developer.apple.com/documentation/combine/publisher/trymap(_:)" class=""><code data-v-7fb764c1="">try<wbr data-v-7fb764c1="">Map(_:)</wbr></code></a> and throw an error if the response is unacceptable.</span><!--end_enstr-->
 <span class="jpstr">
-データタスクパブリッシャーは、あるタプルを生成します、それはある<code class="code-voice"><span>Data</span></code>とある<code class="code-voice"><span>URLResponse</span></code>を含みます。あなたは、<a class="symbol-name" href="https://developer.apple.com/documentation/combine/publisher/3204718-map"><code><span>map(_:)</span></code></a>演算子を使って、このタプルの内容を別の型へと変換できます。あなたがデータを調査する前にその応答を調査したいならば、<a class="symbol-name" href="https://developer.apple.com/documentation/combine/publisher/3204772-trymap"><code><span>try<wbr/>Map(_:)</span></code></a>を使ってください、そしてその応答が受け入れられないものならばエラーをスローしてください。
+データタスクパブリッシャーは、あるタプルを生成します、それはある<span><code data-v-7fb764c1="">Data</code></span>とある<span><code data-v-7fb764c1="">URLResponse</code></span>を含みます。あなたは、<a href="https://developer.apple.com/documentation/combine/publisher/map(_:)-99evh" class=""><code data-v-7fb764c1="">map(_:)</code></a>演算子を使って、このタプルの内容を別の型へと変換できます。あなたがデータを調査する前にその応答を調査したいならば、<a href="https://developer.apple.com/documentation/combine/publisher/trymap(_:)" class=""><code data-v-7fb764c1="">try<wbr data-v-7fb764c1="">Map(_:)</wbr></code></a>を使ってください、そしてその応答が受け入れられないものならばエラーをスローしてください。
 </span><!--end_jpstr-->
-</p><p><span class="enstr">To convert raw data to your own types that conform to the <a class="symbol-name" href="../../../documentation/swift/decodable.html"><code><span>Decodable</span></code></a> protocol, use Combine’s <a class="symbol-name" href="https://developer.apple.com/documentation/combine/publisher/3204703-decode"><code><span>decode(type:<wbr/>decoder:)</span></code></a> operator.</span><!--end_enstr-->
+</p>
+<p><span class="enstr">To convert raw data to your own types that conform to the <a href="../../../documentation/swift/decodable.html" class=""><code data-v-7fb764c1="">Decodable</code></a> protocol, use Combine’s <a href="https://developer.apple.com/documentation/combine/publisher/decode(type:decoder:)" class=""><code data-v-7fb764c1="">decode(type:<wbr data-v-7fb764c1="">decoder:)</wbr></code></a> operator.</span><!--end_enstr-->
 <span class="jpstr">
-生の値を<a class="symbol-name" href="../../../documentation/swift/decodable.html"><code><span>Decodable</span></code></a>プロトコルに準拠するあなた独自の型へと変換するには、Combineのもつ<a class="symbol-name" href="https://developer.apple.com/documentation/combine/publisher/3204703-decode"><code><span>decode(type:<wbr/>decoder:)</span></code></a>演算子を使ってください。
+生の値を<a href="../../../documentation/swift/decodable.html" class=""><code data-v-7fb764c1="">Decodable</code></a>プロトコルに準拠するあなた独自の型へと変換するには、Combineのもつ<a href="https://developer.apple.com/documentation/combine/publisher/decode(type:decoder:)" class=""><code data-v-7fb764c1="">decode(type:<wbr data-v-7fb764c1="">decoder:)</wbr></code></a>演算子を使ってください。
 </span><!--end_jpstr-->
-</p><p><span class="enstr">The following example combines both these operators to parse JSON data from a URL endpoint into a custom <code class="code-voice"><span>User</span></code> type:</span><!--end_enstr-->
+</p>
+<p><span class="enstr">The following example combines both these operators to parse JSON data from a URL endpoint into a custom <code data-v-7fb764c1="">User</code> type:</span><!--end_enstr-->
 <span class="jpstr">
-以下の例は、これら演算子の両方を結合して、あるURLからのJSONデータをあるあつらえの<code class="code-voice"><span>User</span></code>型へと構文解析します：
+以下の例は、これら演算子の両方を結合して、あるURLからのJSONデータをあるあつらえの<code data-v-7fb764c1="">User</code>型へと構文解析します：
 </span><!--end_jpstr-->
-</p><figure id="3526670"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>struct User: Codable {
-    let name: String
-    let userID: String
-}
-let url = URL(string: "https://example.com/endpoint")!
-cancellable = urlSession
-    .dataTaskPublisher(for: url)
-    .tryMap() { element -&gt; Data in
-        guard let httpResponse = element.response as? HTTPURLResponse,
-            httpResponse.statusCode == 200 else {
-                throw URLError(.badServerResponse)
-            }
-        return element.data
-        }
-    .decode(type: User.self, decoder: JSONDecoder())
-    .sink(receiveCompletion: { print ("Received completion: \($0).") },
-          receiveValue: { user in print ("Received user: \(user).")})
-</code></pre></div></div></figure><p></p></div><h3 id="3526672"><span class="enstr">Retry Transient Errors and Catch and Replace Persistent Errors</span><!--end_enstr-->
+</p>
+<figure data-v-7bf080cc="" id="3526670"><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-class"><span class="syntax-keyword">struct</span> <span class="syntax-title">User</span>: <span class="syntax-title">Codable</span> </span>{</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">let</span> name: <span class="syntax-type">String</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">let</span> userID: <span class="syntax-type">String</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">}</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="5" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-keyword">let</span> url = <span class="syntax-type">URL</span>(string: <span class="syntax-string">"https://example.com/endpoint"</span>)!</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="6" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">cancellable = urlSession</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="7" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    .dataTaskPublisher(<span class="syntax-keyword">for</span>: url)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="8" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    .tryMap() { element -&gt; <span class="syntax-type">Data</span> <span class="syntax-keyword">in</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="9" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">guard</span> <span class="syntax-keyword">let</span> httpResponse = element.response <span class="syntax-keyword">as</span>? <span class="syntax-type">HTTPURLResponse</span>,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="10" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">            httpResponse.statusCode == <span class="syntax-number">200</span> <span class="syntax-keyword">else</span> {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="11" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">                <span class="syntax-keyword">throw</span> <span class="syntax-type">URLError</span>(.badServerResponse)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="12" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">            }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="13" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">return</span> element.data</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="14" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="15" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    .decode(type: <span class="syntax-type">User</span>.<span class="syntax-keyword">self</span>, decoder: <span class="syntax-type">JSONDecoder</span>())</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="16" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    .sink(receiveCompletion: { <span class="syntax-built_in">print</span> (<span class="syntax-string">"Received completion: \($0)."</span>) },</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="17" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">          receiveValue: { user <span class="syntax-keyword">in</span> <span class="syntax-built_in">print</span> (<span class="syntax-string">"Received user: \(user)."</span>)})</span></span></code></pre></div>
+</div></figure><p></p>
+<h3 id="3526672"><span class="enstr">Retry Transient Errors and Catch and Replace Persistent Errors</span><!--end_enstr-->
 <span class="jpstr">
 一時的エラーを再試行するそして永続的エラーを捉えて置き換える
 </span><!--end_jpstr-->
-</h3><div><p><span class="enstr">Any app that uses the network should expect to encounter errors, and your app should handle them gracefully. Because transient network errors are fairly common, you may want to immediately retry a failed data task. With <code class="code-voice"><span>URLSession</span></code>’s completion handler idiom, you need to create a whole new task to perform a retry. With the data task publisher, you can instead use Combine’s <a class="symbol-name" href="https://developer.apple.com/documentation/combine/publisher/3204751-retry"><code><span>retry(_:)</span></code></a> operator. This handles errors by recreating the subscription to the upstream publisher a specified number of times. However, since network operations are expensive, only retry a small number of times, and ensure all requests are idempotent.</span><!--end_enstr-->
+</h3>
+<p><span class="enstr">Any app that uses the network should expect to encounter errors, and your app should handle them gracefully. Because transient network errors are fairly common, you may want to immediately retry a failed data task. With <span><code data-v-7fb764c1="">URLSession</code></span>’s completion handler idiom, you need to create a whole new task to perform a retry. With the data task publisher, you can instead use Combine’s <a href="https://developer.apple.com/documentation/combine/publisher/retry(_:)" class=""><code data-v-7fb764c1="">retry(_:)</code></a> operator. This handles errors by recreating the subscription to the upstream publisher a specified number of times. However, since network operations are expensive, only retry a small number of times, and ensure all requests are idempotent.</span><!--end_enstr-->
 <span class="jpstr">
-ネットワークを使うあらゆるアプリは、出くわすエラーを予測すべきです、そしてあなたのアプリはそれらを美しく取り扱うべきです。一時的ネットワークエラーはかなり普通であることから、あなたは失敗したデータタスクを直ぐに再試行したいかもしれません。<code class="code-voice"><span>URLSession</span></code>のもつ完了ハンドラ慣用句では、あなたは再試行を実行する新しいタスク全体を作成する必要があります。データタスクパブリッシャーでは、あなたは代わりにCombineのもつ<a class="symbol-name" href="https://developer.apple.com/documentation/combine/publisher/3204751-retry"><code><span>retry(_:)</span></code></a>演算子を使用できます。これは、ある指定された回数アップストリームパブリッシャーへのサブスクリプションを再度作成することによってエラーを取り扱います。しかしながら、ネットワーク演算が高くつくことから、少ない回数を再試行するだけにしてください、そして全ての要請がべき等であるのを確実にしてください。
+ネットワークを使うあらゆるアプリは、出くわすエラーを予測すべきです、そしてあなたのアプリはそれらを美しく取り扱うべきです。一時的ネットワークエラーはかなり普通であることから、あなたは失敗したデータタスクを直ぐに再試行したいかもしれません。<span><code data-v-7fb764c1="">URLSession</code></span>のもつ完了ハンドラ慣用句では、あなたは再試行を実行する新しいタスク全体を作成する必要があります。データタスクパブリッシャーでは、あなたは代わりにCombineのもつ<a href="https://developer.apple.com/documentation/combine/publisher/retry(_:)" class=""><code data-v-7fb764c1="">retry(_:)</code></a>演算子を使用できます。これは、ある指定された回数アップストリームパブリッシャーへのサブスクリプションを再度作成することによってエラーを取り扱います。しかしながら、ネットワーク演算が高くつくことから、少ない回数を再試行するだけにしてください、そして全ての要請がべき等であるのを確実にしてください。
 </span><!--end_jpstr-->
-</p><p><span class="enstr">You can also use Combine operators to replace the error, rather than letting it reach the subscriber:</span><!--end_enstr-->
+</p>
+<p><span class="enstr">You can also use Combine operators to replace the error, rather than letting it reach the subscriber:</span><!--end_enstr-->
 <span class="jpstr">
 あなたはまたCombine演算子それらを使ってエラーを置き換え可能です、それが加入者に届くのを許すのではなく：
 </span><!--end_jpstr-->
-</p><ul><li><p><span class="enstr"><a class="symbol-name" href="https://developer.apple.com/documentation/combine/publisher/3204690-catch"><code><span>catch(_:)</span></code></a> replaces the error with another publisher. You can use this with another <a class="symbol-name" href="../../../documentation/foundation/urlsession/datataskpublisher.html"><code><span>URLSession<wbr/>.Data<wbr/>Task<wbr/>Publisher</span></code></a>, such as one that loads data from a fallback URL.</span><!--end_enstr-->
+</p>
+<ul>
+<li><p><span class="enstr"><a href="https://developer.apple.com/documentation/combine/publisher/catch(_:)" class=""><code data-v-7fb764c1="">catch(_:)</code></a> replaces the error with another publisher. You can use this with another <a href="../../../documentation/foundation/urlsession/datataskpublisher.html" class=""><code data-v-7fb764c1="">URLSession<wbr data-v-7fb764c1="">.Data<wbr data-v-7fb764c1="">Task<wbr data-v-7fb764c1="">Publisher</wbr></wbr></wbr></code></a>, such as one that loads data from a fallback URL.</span><!--end_enstr-->
 <span class="jpstr">
-<a class="symbol-name" href="https://developer.apple.com/documentation/combine/publisher/3204690-catch"><code><span>catch(_:)</span></code></a>は、エラーを別のパブリッシャーで置き換えます。あなたは、これを別の<a class="symbol-name" href="../../../documentation/foundation/urlsession/datataskpublisher.html"><code><span>URLSession<wbr/>.Data<wbr/>Task<wbr/>Publisher</span></code></a>、たとえばデータを予備URLからロードするものとともに使用できます。
+<a href="https://developer.apple.com/documentation/combine/publisher/catch(_:)" class=""><code data-v-7fb764c1="">catch(_:)</code></a>は、エラーを別のパブリッシャーで置き換えます。あなたは、これを別の<a href="../../../documentation/foundation/urlsession/datataskpublisher.html" class=""><code data-v-7fb764c1="">URLSession<wbr data-v-7fb764c1="">.Data<wbr data-v-7fb764c1="">Task<wbr data-v-7fb764c1="">Publisher</wbr></wbr></wbr></code></a>、たとえばデータを予備URLからロードするものとともに使用できます。
 </span><!--end_jpstr-->
-</p></li><li><p><span class="enstr"><a class="symbol-name" href="https://developer.apple.com/documentation/combine/publisher/3204748-replaceerror"><code><span>replace<wbr/>Error(with:)</span></code></a> replaces the error with an element you provide. If it makes sense in your application, you can use this to provide a substitute for the value you expected to load from the URL.</span><!--end_enstr-->
+</p></li>
+<li><p><span class="enstr"><a href="https://developer.apple.com/documentation/combine/publisher/replaceerror(with:)" class=""><code data-v-7fb764c1="">replace<wbr data-v-7fb764c1="">Error(with:)</wbr></code></a> replaces the error with an element you provide. If it makes sense in your application, you can use this to provide a substitute for the value you expected to load from the URL.</span><!--end_enstr-->
 <span class="jpstr">
-<a class="symbol-name" href="https://developer.apple.com/documentation/combine/publisher/3204748-replaceerror"><code><span>replace<wbr/>Error(with:)</span></code></a>は、エラーをあなたが提供する要素と置き換えます。それがあなたのアプリケーションにおいて意味をなすならば、あなたはこれを使ってある代用品を、あなたがそのURLからロードするつもりだった値に対して提供できます。
+<a href="https://developer.apple.com/documentation/combine/publisher/replaceerror(with:)" class=""><code data-v-7fb764c1="">replace<wbr data-v-7fb764c1="">Error(with:)</wbr></code></a>は、エラーをあなたが提供する要素と置き換えます。それがあなたのアプリケーションにおいて意味をなすならば、あなたはこれを使ってある代用品を、あなたがそのURLからロードするつもりだった値に対して提供できます。
 </span><!--end_jpstr-->
-</p></li></ul><p><span class="enstr">The following example shows both of these techniques, retrying a failed request once, and using a fallback URL after that. If either the original request, the retry, or the fallback request succeeds, the <a class="symbol-name" href="https://developer.apple.com/documentation/combine/publisher/3362666-sink"><code><span>sink(receive<wbr/>Value:)</span></code></a> operator receives data from the endpoint. If all three fail, the sink receives a <a class="symbol-name" href="https://developer.apple.com/documentation/combine/subscribers/completion/failure"><code><span>Subscribers<wbr/>.Completion<wbr/>.failure(_:)</span></code></a>.</span><!--end_enstr-->
+</p></li>
+</ul>
+<p><span class="enstr">The following example shows both of these techniques, retrying a failed request once, and using a fallback URL after that. If either the original request, the retry, or the fallback request succeeds, the <a href="https://developer.apple.com/documentation/combine/publisher/sink(receivevalue:)" class=""><code data-v-7fb764c1="">sink(receive<wbr data-v-7fb764c1="">Value:)</wbr></code></a> operator receives data from the endpoint.</span><!--end_enstr-->
 <span class="jpstr">
-以下の例は、これらテクニックの両方、失敗したリクエストをもう一度再試行すること、そして予備URLをその後で使うことを示します。元のリクエスト、再試行、または予備リクエストのどれかが成功するならば、<a class="symbol-name" href="https://developer.apple.com/documentation/combine/publisher/3362666-sink"><code><span>sink(receive<wbr/>Value:)</span></code></a>演算子はデータをエンドポイントから受け取ります。３つ全てが失敗するならば、sinkは、<a class="symbol-name" href="https://developer.apple.com/documentation/combine/subscribers/completion/failure"><code><span>Subscribers<wbr/>.Completion<wbr/>.failure(_:)</span></code></a>を受け取ります。
+以下の例は、これらテクニックの両方、失敗したリクエストをもう一度再試行すること、そして予備URLをその後で使うことを示します。元のリクエスト、再試行、または予備リクエストのどれかが成功するならば、<a href="https://developer.apple.com/documentation/combine/publisher/sink(receivevalue:)" class=""><code data-v-7fb764c1="">sink(receive<wbr data-v-7fb764c1="">Value:)</wbr></code></a>演算子はデータをエンドポイントから受け取ります。
 </span><!--end_jpstr-->
-</p><figure id="3538239"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>let pub = urlSession
-    .dataTaskPublisher(for: url)
-    .retry(1)
-    .catch() { _ in
-        self.fallbackUrlSession.dataTaskPublisher(for: fallbackURL)
-    }
-cancellable = pub
-    .sink(receiveCompletion: { print("Received completion: \($0).") },
-          receiveValue: { print("Received data: \($0.data).") })
-</code></pre></div></div></figure><p></p></div><h3 id="3526667"><span class="enstr">Move Work Between Dispatch Queues With Scheduling Operators</span><!--end_enstr-->
+If all three fail, the sink receives a <a href="https://developer.apple.com/documentation/combine/subscribers/completion/failure(_:)" class=""><code data-v-7fb764c1="">failure(_:)</code></a>.</p>
+<figure data-v-7bf080cc="" id="3538239"><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-keyword">let</span> pub = urlSession</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    .dataTaskPublisher(<span class="syntax-keyword">for</span>: url)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    .retry(<span class="syntax-number">1</span>)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    .<span class="syntax-keyword">catch</span>() { <span class="syntax-number">_</span> <span class="syntax-keyword">in</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="5" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">self</span>.fallbackUrlSession.dataTaskPublisher(<span class="syntax-keyword">for</span>: fallbackURL)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="6" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="7" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">cancellable = pub</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="8" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    .sink(receiveCompletion: { <span class="syntax-built_in">print</span>(<span class="syntax-string">"Received completion: \($0)."</span>) },</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="9" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">          receiveValue: { <span class="syntax-built_in">print</span>(<span class="syntax-string">"Received data: \($0.data)."</span>) })</span></span></code></pre></div>
+</div></figure><p></p>
+<h3 id="3526667"><span class="enstr">Move Work Between Dispatch Queues With Scheduling Operators</span><!--end_enstr-->
 <span class="jpstr">
 作業をディスパッチキューの間でスケジューリング演算子をつかって移動する
 </span><!--end_jpstr-->
-</h3><div><p><span class="enstr">When using <a class="symbol-name" href="../../../documentation/foundation/urlsession.html"><code><span>URLSession</span></code></a>’s delegate and completion handler idioms, the session calls back to your code on a fixed <a class="symbol-name" href="../../../documentation/foundation/urlsession/1411571-delegatequeue.html"><code><span>delegate<wbr/>Queue</span></code></a>. Sometimes, this means your callback code has to manually use dispatch queues or other scheduling APIs to put work on a specific queue.</span><!--end_enstr-->
+</h3>
+<p><span class="enstr">When using <a href="../../../documentation/foundation/urlsession.html" class="router-link-active"><code data-v-7fb764c1="">URLSession</code></a>’s delegate and completion handler idioms, the session calls back to your code on a fixed <a href="../../../documentation/foundation/urlsession/1411571-delegatequeue.html" class=""><code data-v-7fb764c1="">delegate<wbr data-v-7fb764c1="">Queue</wbr></code></a>. Sometimes, this means your callback code has to manually use dispatch queues or other scheduling APIs to put work on a specific queue.</span><!--end_enstr-->
 <span class="jpstr">
-<a class="symbol-name" href="../../../documentation/foundation/urlsession.html"><code><span>URLSession</span></code></a>のもつ委任先と完了ハンドラ慣用句を使っている場合、セッションは逆にあなたのコードを<a class="symbol-name" href="../../../documentation/foundation/urlsession/1411571-delegatequeue.html"><code><span>delegate<wbr/>Queue</span></code></a>上で呼び出します。時々、これはあなたのコールバックコードが手動でディスパッチキューや他のスケジューリングAPIを使って仕事を特定のキュー上に置かなければならないことを意味します。
+<a href="../../../documentation/foundation/urlsession.html" class="router-link-active"><code data-v-7fb764c1="">URLSession</code></a>のもつ委任先と完了ハンドラ慣用句を使っている場合、セッションは逆にあなたのコードを<a href="../../../documentation/foundation/urlsession/1411571-delegatequeue.html" class=""><code data-v-7fb764c1="">delegate<wbr data-v-7fb764c1="">Queue</wbr></code></a>上で呼び出します。時々、これはあなたのコールバックコードが手動でディスパッチキューや他のスケジューリングAPIを使って仕事を特定のキュー上に置かなければならないことを意味します。
 </span><!--end_jpstr-->
-</p><p><span class="enstr">With <a class="symbol-name" href="../../../documentation/foundation/urlsession/datataskpublisher.html"><code><span>URLSession<wbr/>.Data<wbr/>Task<wbr/>Publisher</span></code></a>, you can use Combine’s scheduling operators instead. Use <a class="symbol-name" href="https://developer.apple.com/documentation/combine/publisher/3204743-receive"><code><span>receive(on:<wbr/>options:)</span></code></a> to specify how you want later operators in the chain and your subscriber, to schedule the work. <a class="symbol-name" href="https://developer.apple.com/documentation/dispatch/dispatchqueue"><code><span>Dispatch<wbr/>Queue</span></code></a> and <a class="symbol-name" href="../../../documentation/foundation/runloop.html"><code><span>Run<wbr/>Loop</span></code></a> both implement Combine’s <a class="symbol-name" href="https://developer.apple.com/documentation/combine/scheduler"><code><span>Scheduler</span></code></a> protocol, so you can use them to receive URL session data. The following snippet ensures that the sink logs its results on the main dispatch queue.</span><!--end_enstr-->
+</p>
+<p><span class="enstr">With <a href="../../../documentation/foundation/urlsession/datataskpublisher.html" class=""><code data-v-7fb764c1="">URLSession<wbr data-v-7fb764c1="">.Data<wbr data-v-7fb764c1="">Task<wbr data-v-7fb764c1="">Publisher</wbr></wbr></wbr></code></a>, you can use Combine’s scheduling operators instead. Use <a href="https://developer.apple.com/documentation/combine/publisher/receive(on:options:)" class=""><code data-v-7fb764c1="">receive(on:<wbr data-v-7fb764c1="">options:)</wbr></code></a> to specify how you want later operators in the chain and your subscriber, to schedule the work. <a href="https://developer.apple.com/documentation/dispatch/dispatchqueue" class=""><code data-v-7fb764c1="">Dispatch<wbr data-v-7fb764c1="">Queue</wbr></code></a> and <a href="../../../documentation/foundation/runloop.html" class=""><code data-v-7fb764c1="">Run<wbr data-v-7fb764c1="">Loop</wbr></code></a> both implement Combine’s <a href="https://developer.apple.com/documentation/combine/scheduler" class=""><code data-v-7fb764c1="">Scheduler</code></a> protocol, so you can use them to receive URL session data. The following snippet ensures that the sink logs its results on the main dispatch queue.</span><!--end_enstr-->
 <span class="jpstr">
-<a class="symbol-name" href="../../../documentation/foundation/urlsession/datataskpublisher.html"><code><span>URLSession<wbr/>.Data<wbr/>Task<wbr/>Publisher</span></code></a>では、あなたはCombineのもつスケジューリング演算子を代わりに使用できます。<a class="symbol-name" href="https://developer.apple.com/documentation/combine/publisher/3204743-receive"><code><span>receive(on:<wbr/>options:)</span></code></a>を使ってください、どのくらいあなたがより後に演算子それらをある連鎖において望むかを指定するために、仕事を予定するために。<a class="symbol-name" href="https://developer.apple.com/documentation/dispatch/dispatchqueue"><code><span>Dispatch<wbr/>Queue</span></code></a>および<a class="symbol-name" href="../../../documentation/foundation/runloop.html"><code><span>Run<wbr/>Loop</span></code></a>両方ともCombineのもつ<a class="symbol-name" href="https://developer.apple.com/documentation/combine/scheduler"><code><span>Scheduler</span></code></a>プロトコルを実装します、なのであなたはそれらを使ってURLセッションデータを受け取ることができます。以下の小片は、sinkがそれの結果をメインディスパッチキュー上で記録することを確実にします。
+<a href="../../../documentation/foundation/urlsession/datataskpublisher.html" class=""><code data-v-7fb764c1="">URLSession<wbr data-v-7fb764c1="">.Data<wbr data-v-7fb764c1="">Task<wbr data-v-7fb764c1="">Publisher</wbr></wbr></wbr></code></a>では、あなたはCombineのもつスケジューリング演算子を代わりに使用できます。<a href="https://developer.apple.com/documentation/combine/publisher/receive(on:options:)" class=""><code data-v-7fb764c1="">receive(on:<wbr data-v-7fb764c1="">options:)</wbr></code></a>を使ってください、どのくらいあなたがより後に演算子それらをある連鎖において望むかを指定するために、仕事を予定するために。<a href="https://developer.apple.com/documentation/dispatch/dispatchqueue" class=""><code data-v-7fb764c1="">Dispatch<wbr data-v-7fb764c1="">Queue</wbr></code></a>および<a href="../../../documentation/foundation/runloop.html" class=""><code data-v-7fb764c1="">Run<wbr data-v-7fb764c1="">Loop</wbr></code></a>両方ともCombineのもつ<a href="https://developer.apple.com/documentation/combine/scheduler" class=""><code data-v-7fb764c1="">Scheduler</code></a>プロトコルを実装します、なのであなたはそれらを使ってURLセッションデータを受け取ることができます。以下の小片は、sinkがそれの結果をメインディスパッチキュー上で記録することを確実にします。
 </span><!--end_jpstr-->
-</p><figure id="3527559"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>cancellable = urlSession
-    .dataTaskPublisher(for: url)
-    .receive(on: DispatchQueue.main)
-    .sink(receiveCompletion: { print ("Received completion: \($0).") },
-          receiveValue: { print ("Received data: \($0.data).")})
-</code></pre></div></div></figure><p></p></div><h3 id="3526668"><span class="enstr">Share the Result of a Data Task Publisher with Multiple Subscribers</span><!--end_enstr-->
+</p>
+<figure data-v-7bf080cc="" id="3527559"><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">cancellable = urlSession</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    .dataTaskPublisher(<span class="syntax-keyword">for</span>: url)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    .receive(on: <span class="syntax-type">DispatchQueue</span>.main)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    .sink(receiveCompletion: { <span class="syntax-built_in">print</span> (<span class="syntax-string">"Received completion: \($0)."</span>) },</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="5" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">          receiveValue: { <span class="syntax-built_in">print</span> (<span class="syntax-string">"Received data: \($0.data)."</span>)})</span></span></code></pre></div>
+</div></figure><p></p>
+<h3 id="3526668"><span class="enstr">Share the Result of a Data Task Publisher with Multiple Subscribers</span><!--end_enstr-->
 <span class="jpstr">
 データタスクパブリッシャーの結果を複数の加入者で共有する
 </span><!--end_jpstr-->
-</h3><div><p><span class="enstr">You may want to use data from the URL endpoint in different parts of your application. Because network requests are expensive, don’t reissue them needlessly. Combine lets you use multiple subscribers to a single <code class="code-voice"><span>URLSession<wbr/>.Data<wbr/>Task<wbr/>Publisher</span></code>, while allowing the publisher to service all of them with a single request.</span><!--end_enstr-->
+</h3>
+<p><span class="enstr">You may want to use data from the URL endpoint in different parts of your application. Because network requests are expensive, don’t reissue them needlessly. Combine lets you use multiple subscribers to a single <span><code data-v-7fb764c1="">URLSession<wbr data-v-7fb764c1="">.Data<wbr data-v-7fb764c1="">Task<wbr data-v-7fb764c1="">Publisher</wbr></wbr></wbr></code></span>, while allowing the publisher to service all of them with a single request.</span><!--end_enstr-->
 <span class="jpstr">
-あなたは、URLエンドポイントからのデータをあなたのアプリケーションの異なる部分において使いたいと望むかもしれません。ネットワークリクエストは高くつくことから、それらを必要もないのに再度発令しないでください。Combineは、あなたに複数の加入者を単一の<code class="code-voice"><span>URLSession<wbr/>.Data<wbr/>Task<wbr/>Publisher</span></code>に扱わせます、一方でそのパブリッシャーが彼らの全員に単一のリクエストでサービスを提供できるようにします。
+あなたは、URLエンドポイントからのデータをあなたのアプリケーションの異なる部分において使いたいと望むかもしれません。ネットワークリクエストは高くつくことから、それらを必要もないのに再度発令しないでください。Combineは、あなたに複数の加入者を単一の<span><code data-v-7fb764c1="">URLSession<wbr data-v-7fb764c1="">.Data<wbr data-v-7fb764c1="">Task<wbr data-v-7fb764c1="">Publisher</wbr></wbr></wbr></code></span>に扱わせます、一方でそのパブリッシャーが彼らの全員に単一のリクエストでサービスを提供できるようにします。
 </span><!--end_jpstr-->
-</p><p><span class="enstr">To support multiple downstream subscribers, use the <a class="symbol-name" href="https://developer.apple.com/documentation/combine/publisher/3204754-share"><code><span>share()</span></code></a> operator. This operator works like a combination of the <a class="symbol-name" href="https://developer.apple.com/documentation/combine/publishers/multicast"><code><span>Publishers<wbr/>.Multicast</span></code></a> and <a class="symbol-name" href="https://developer.apple.com/documentation/combine/currentvaluesubject"><code><span>Current<wbr/>Value<wbr/>Subject</span></code></a> publishers. You can connect multiple operator chains or subscribers to the <code class="code-voice"><span>share()</span></code> operator, and any upstream publisher only sees one downstream. In the case of a <code class="code-voice"><span>URLSession<wbr/>.Data<wbr/>Task<wbr/>Publisher</span></code>, this means it only performs the data task once.</span><!--end_enstr-->
+</p>
+<p><span class="enstr">To support multiple downstream subscribers, use the <a href="https://developer.apple.com/documentation/combine/publisher/share()" class=""><code data-v-7fb764c1="">share()</code></a> operator. This operator works like a combination of the <a href="https://developer.apple.com/documentation/combine/publishers/multicast" class=""><code data-v-7fb764c1="">Publishers<wbr data-v-7fb764c1="">.Multicast</wbr></code></a> and <a href="https://developer.apple.com/documentation/combine/passthroughsubject" class=""><code data-v-7fb764c1="">Passthrough<wbr data-v-7fb764c1="">Subject</wbr></code></a> publishers. You can connect multiple operator chains or subscribers to the <span><code data-v-7fb764c1="">share()</code></span> operator, and any upstream publisher only sees one downstream. In the case of a <span><code data-v-7fb764c1="">URLSession<wbr data-v-7fb764c1="">.Data<wbr data-v-7fb764c1="">Task<wbr data-v-7fb764c1="">Publisher</wbr></wbr></wbr></code></span>, this means it only performs the data task once.</span><!--end_enstr-->
 <span class="jpstr">
-複数のダウンストリーム加入者をサポートするには、<a class="symbol-name" href="https://developer.apple.com/documentation/combine/publisher/3204754-share"><code><span>share()</span></code></a>演算子を使ってください。この演算子は、<a class="symbol-name" href="https://developer.apple.com/documentation/combine/publishers/multicast"><code><span>Publishers<wbr/>.Multicast</span></code></a>と<a class="symbol-name" href="https://developer.apple.com/documentation/combine/currentvaluesubject"><code><span>Current<wbr/>Value<wbr/>Subject</span></code></a>パブリッシャーの結合物のように働きます。あなたは、複数の演算子連鎖や加入者を<code class="code-voice"><span>share()</span></code>演算子に接続できます、そしてどんなアップストリームパブリッシャーも１つのダウンストリームを見るだけです。<code class="code-voice"><span>URLSession<wbr/>.Data<wbr/>Task<wbr/>Publisher</span></code>の場合において、これは、それがデータタスクを一度実行するだけであるのを意味します。
+複数のダウンストリーム加入者をサポートするには、<a href="https://developer.apple.com/documentation/combine/publisher/share()" class=""><code data-v-7fb764c1="">share()</code></a>演算子を使ってください。この演算子は、<a href="https://developer.apple.com/documentation/combine/publishers/multicast" class=""><code data-v-7fb764c1="">Publishers<wbr data-v-7fb764c1="">.Multicast</wbr></code></a>と<a href="https://developer.apple.com/documentation/combine/passthroughsubject" class=""><code data-v-7fb764c1="">Passthrough<wbr data-v-7fb764c1="">Subject</wbr></code></a>パブリッシャーの結合物のように働きます。あなたは、複数の演算子連鎖や加入者を<span><code data-v-7fb764c1="">share()</code></span>演算子に接続できます、そしてどんなアップストリームパブリッシャーも１つのダウンストリームを見るだけです。<span><code data-v-7fb764c1="">URLSession<wbr data-v-7fb764c1="">.Data<wbr data-v-7fb764c1="">Task<wbr data-v-7fb764c1="">Publisher</wbr></wbr></wbr></code></span>の場合において、これは、それがデータタスクを一度実行するだけであるのを意味します。
 </span><!--end_jpstr-->
-</p><p><span class="enstr">The following example uses a URL session data task for two unrelated purposes. One subscriber uses the returned data to parse the custom <code class="code-voice"><span>User</span></code> type seen earlier, and logs it on the main dispatch queue. A second subscriber is only concerned with the <code class="code-voice"><span>URLResponse</span></code>, which it inspects to print an HTTP status code, and doesn’t care which queue it uses. By using <code class="code-voice"><span>share()</span></code>, the data task publisher can serve both subscribers with a single load from the URL endpoint.</span><!--end_enstr-->
+</p>
+<p><span class="enstr">The following example uses a URL session data task for two unrelated purposes. One subscriber uses the returned data to parse the custom <code data-v-7fb764c1="">User</code> type seen earlier, and logs it on the main dispatch queue. A second subscriber is only concerned with the <span><code data-v-7fb764c1="">URLResponse</code></span>, which it inspects to print an HTTP status code, and doesn’t care which queue it uses. By using <span><code data-v-7fb764c1="">share()</code></span>, the data task publisher can serve both subscribers with a single load from the URL endpoint.</span><!--end_enstr-->
 <span class="jpstr">
-以下の例は、URLセッションデータタスクを２つの関係のない目的に使います。一方の加入者は、返されるデータを使って、前に見たあつらえの<code class="code-voice"><span>User</span></code>型を解析します、そしてそれをメインディスパッチキュー上で記録します。２番目の加入者は、それがHTTP状態コードを出力するために調査する<code class="code-voice"><span>URLResponse</span></code>に関心があるだけです、そしてどのキューをそれが使うのかは気にしません。<code class="code-voice"><span>share()</span></code>を使うことによって、データタスクパブリッシャーは、両方の加入者にURLエンドポイントからのある単一のロードで奉仕できます。
+以下の例は、URLセッションデータタスクを２つの関係のない目的に使います。一方の加入者は、返されるデータを使って、前に見たあつらえの<code data-v-7fb764c1="">User</code>型を解析します、そしてそれをメインディスパッチキュー上で記録します。２番目の加入者は、それがHTTP状態コードを出力するために調査する<span><code data-v-7fb764c1="">URLResponse</code></span>に関心があるだけです、そしてどのキューをそれが使うのかは気にしません。<span><code data-v-7fb764c1="">share()</code></span>を使うことによって、データタスクパブリッシャーは、両方の加入者にURLエンドポイントからのある単一のロードで奉仕できます。
 </span><!--end_jpstr-->
-</p><figure id="3527561"><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>let sharedPublisher = urlSession
-    .dataTaskPublisher(for: url)
-    .share()
-
-cancellable1 = sharedPublisher
-    .tryMap() {
-        guard $0.data.count &gt; 0 else { throw URLError(.zeroByteResource) }
-        return $0.data
-    }
-    .decode(type: User.self, decoder: JSONDecoder())
-    .receive(on: DispatchQueue.main)
-    .sink(receiveCompletion: { print ("Received completion 1: \($0).") },
-          receiveValue: { print ("Received id: \($0.userID).")})
-
-cancellable2 = sharedPublisher
-    .map() {
-        $0.response
-    }
-    .sink(receiveCompletion: { print ("Received completion 2: \($0).") },
-           receiveValue: { response in
-            if let httpResponse = response as?HTTPURLResponse {
-                print ("Received HTTP status: \(httpResponse.statusCode).")
-            } else {
-                print ("Response was not an HTTPURLResponse.")
-            }
-    }
-)
-
-</code></pre></div></div></figure><p><span class="enstr">To prove that this code only loads the data once, temporarily put a <a class="symbol-name" href="https://developer.apple.com/documentation/combine/publisher/3235805-print"><code><span>print(_:<wbr/>to:)</span></code></a> debugging operator before the <code class="code-voice"><span>share()</span></code> operator. When the app runs, Xcode’s console output shows it receives only a single value from the data task publisher, even though both subscribers receive their expected results.</span><!--end_enstr-->
+</p>
+<figure data-v-7bf080cc="" id="3527561"><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-keyword">let</span> sharedPublisher = urlSession</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    .dataTaskPublisher(<span class="syntax-keyword">for</span>: url)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    .share()</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">
+</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="5" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">cancellable1 = sharedPublisher</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="6" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    .tryMap() {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="7" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">guard</span> $<span class="syntax-number">0</span>.data.<span class="syntax-built_in">count</span> &gt; <span class="syntax-number">0</span> <span class="syntax-keyword">else</span> { <span class="syntax-keyword">throw</span> <span class="syntax-type">URLError</span>(.zeroByteResource) }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="8" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">return</span> $<span class="syntax-number">0</span>.data</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="9" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="10" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    .decode(type: <span class="syntax-type">User</span>.<span class="syntax-keyword">self</span>, decoder: <span class="syntax-type">JSONDecoder</span>())</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="11" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    .receive(on: <span class="syntax-type">DispatchQueue</span>.main)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="12" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    .sink(receiveCompletion: { <span class="syntax-built_in">print</span> (<span class="syntax-string">"Received completion 1: \($0)."</span>) },</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="13" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">          receiveValue: { <span class="syntax-built_in">print</span> (<span class="syntax-string">"Received id: \($0.userID)."</span>)})</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="14" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">
+</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="15" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">cancellable2 = sharedPublisher</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="16" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    .<span class="syntax-built_in">map</span>() {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="17" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        $<span class="syntax-number">0</span>.response</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="18" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="19" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    .sink(receiveCompletion: { <span class="syntax-built_in">print</span> (<span class="syntax-string">"Received completion 2: \($0)."</span>) },</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="20" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">           receiveValue: { response <span class="syntax-keyword">in</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="21" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">            <span class="syntax-keyword">if</span> <span class="syntax-keyword">let</span> httpResponse = response <span class="syntax-keyword">as</span>? <span class="syntax-type">HTTPURLResponse</span> {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="22" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">                <span class="syntax-built_in">print</span> (<span class="syntax-string">"Received HTTP status: \(httpResponse.statusCode)."</span>)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="23" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">            } <span class="syntax-keyword">else</span> {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="24" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">                <span class="syntax-built_in">print</span> (<span class="syntax-string">"Response was not an HTTPURLResponse."</span>)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="25" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">            }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="26" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="27" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="28" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">
+</span></span></code></pre></div>
+</div></figure><p><span class="enstr">To prove that this code only loads the data once, temporarily put a <a href="https://developer.apple.com/documentation/combine/publisher/print(_:to:)" class=""><code data-v-7fb764c1="">print(_:<wbr data-v-7fb764c1="">to:)</wbr></code></a> debugging operator before the <span><code data-v-7fb764c1="">share()</code></span> operator. When the app runs, Xcode’s console output shows it receives only a single value from the data task publisher, even though both subscribers receive their expected results.</span><!--end_enstr-->
 <span class="jpstr">
-このコードがデータを一度ロードするだけであることを立証するには、一時的に<a class="symbol-name" href="https://developer.apple.com/documentation/combine/publisher/3235805-print"><code><span>print(_:<wbr/>to:)</span></code></a>デバッギング演算子を<code class="code-voice"><span>share()</span></code>演算子の前に置いてください。アプリが動作する時、Xcodeのもつコンソール出力は、それがある単一の値だけをデータタスクパブリッシャーから受け取ることを示します、たとえ両方の加入者が彼らの期待する結果を受け取るとしてもです。
+このコードがデータを一度ロードするだけであることを立証するには、一時的に<a href="https://developer.apple.com/documentation/combine/publisher/print(_:to:)" class=""><code data-v-7fb764c1="">print(_:<wbr data-v-7fb764c1="">to:)</wbr></code></a>デバッギング演算子を<span><code data-v-7fb764c1="">share()</code></span>演算子の前に置いてください。アプリが動作する時、Xcodeのもつコンソール出力は、それがある単一の値だけをデータタスクパブリッシャーから受け取ることを示します、たとえ両方の加入者が彼らの期待する結果を受け取るとしてもです。
 </span><!--end_jpstr-->
-</p><p><span class="enstr">Be aware that the URL session starts loading data as soon as the <code class="code-voice"><span>URLSession<wbr/>.Data<wbr/>Task<wbr/>Publisher</span></code> has unsatisfied demand from a downstream subscriber. In this case, that happens when the first sink subscriber attaches. If you need extra time to attach other subscribers, use <a class="symbol-name" href="https://developer.apple.com/documentation/combine/publisher/3235803-makeconnectable"><code><span>make<wbr/>Connectable()</span></code></a> to wrap the <a class="symbol-name" href="https://developer.apple.com/documentation/combine/publishers/share"><code><span>Publishers<wbr/>.Share</span></code></a> publisher with a <a class="symbol-name" href="https://developer.apple.com/documentation/combine/connectablepublisher"><code><span>Connectable<wbr/>Publisher</span></code></a>. After connecting all subscribers, call <a class="symbol-name" href="https://developer.apple.com/documentation/combine/connectablepublisher/3204394-connect"><code><span>connect()</span></code></a> on the connectable publisher to allow the data load to begin.</span><!--end_enstr-->
+</p>
+<p><span class="enstr">Be aware that the URL session starts loading data as soon as the <span><code data-v-7fb764c1="">URLSession<wbr data-v-7fb764c1="">.Data<wbr data-v-7fb764c1="">Task<wbr data-v-7fb764c1="">Publisher</wbr></wbr></wbr></code></span> has unsatisfied demand from a downstream subscriber. In this case, that happens when the first sink subscriber attaches. If you need extra time to attach other subscribers, use <a href="https://developer.apple.com/documentation/combine/publisher/makeconnectable()" class=""><code data-v-7fb764c1="">make<wbr data-v-7fb764c1="">Connectable()</wbr></code></a> to wrap the <a href="https://developer.apple.com/documentation/combine/publishers/share" class=""><code data-v-7fb764c1="">Publishers<wbr data-v-7fb764c1="">.Share</wbr></code></a> publisher with a <a href="https://developer.apple.com/documentation/combine/connectablepublisher" class=""><code data-v-7fb764c1="">Connectable<wbr data-v-7fb764c1="">Publisher</wbr></code></a>. After connecting all subscribers, call <a href="https://developer.apple.com/documentation/combine/connectablepublisher/connect()" class=""><code data-v-7fb764c1="">connect()</code></a> on the connectable publisher to allow the data load to begin.</span><!--end_enstr-->
 <span class="jpstr">
-<code class="code-voice"><span>URLSession<wbr/>.Data<wbr/>Task<wbr/>Publisher</span></code>がダウンストリーム加入者からの満たされない要求を持つやいなや、URLセッションがデータのロードを始めることを承知していてください。この場合では、それが起こるのは最初のsink加入者が所属する時です。あなたが他の加入者を所属させるのに余分な時間が必要ならば、<a class="symbol-name" href="https://developer.apple.com/documentation/combine/publisher/3235803-makeconnectable"><code><span>make<wbr/>Connectable()</span></code></a>を使って<a class="symbol-name" href="https://developer.apple.com/documentation/combine/publishers/share"><code><span>Publishers<wbr/>.Share</span></code></a>パブリッシャーを<a class="symbol-name" href="https://developer.apple.com/documentation/combine/connectablepublisher"><code><span>Connectable<wbr/>Publisher</span></code></a>でラップしてください。全ての加入者が接続する後、<a class="symbol-name" href="https://developer.apple.com/documentation/combine/connectablepublisher/3204394-connect"><code><span>connect()</span></code></a>を接続可能パブリッシャー上で呼び出して、データロードの開始を許可してください。
+<span><code data-v-7fb764c1="">URLSession<wbr data-v-7fb764c1="">.Data<wbr data-v-7fb764c1="">Task<wbr data-v-7fb764c1="">Publisher</wbr></wbr></wbr></code></span>がダウンストリーム加入者からの満たされない要求を持つやいなや、URLセッションがデータのロードを始めることを承知していてください。この場合では、それが起こるのは最初のsink加入者が所属する時です。あなたが他の加入者を所属させるのに余分な時間が必要ならば、<a href="https://developer.apple.com/documentation/combine/publisher/makeconnectable()" class=""><code data-v-7fb764c1="">make<wbr data-v-7fb764c1="">Connectable()</wbr></code></a>を使って<a href="https://developer.apple.com/documentation/combine/publishers/share" class=""><code data-v-7fb764c1="">Publishers<wbr data-v-7fb764c1="">.Share</wbr></code></a>パブリッシャーを<a href="https://developer.apple.com/documentation/combine/connectablepublisher" class=""><code data-v-7fb764c1="">Connectable<wbr data-v-7fb764c1="">Publisher</wbr></code></a>でラップしてください。全ての加入者が接続する後、<a href="https://developer.apple.com/documentation/combine/connectablepublisher/connect()" class=""><code data-v-7fb764c1="">connect()</code></a>を接続可能パブリッシャー上で呼び出して、データロードの開始を許可してください。
 </span><!--end_jpstr-->
-</p><p></p><p></p></div></div></section></div></div><section id="see-also" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><span class="enstr">See Also</span><!--end_enstr-->
+</p>
+<p></p>
+<p></p>
+</div></div>
+</div><!----><!----><!---->
+<section data-v-8c663d90="" data-v-63527a60="" data-v-2deaa168="" id="see-also" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">See Also</span><!--end_enstr-->
 <span class="jpstr">
 参照
 </span><!--end_jpstr-->
-</h2><section id="3330097" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Performing Tasks as a Combine Publisher</span><!--end_enstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Performing Tasks as a Combine Publisher</span><!--end_enstr-->
 <span class="jpstr">
 タスクをCombineパブリッシャーとして実行する
 </span><!--end_jpstr-->
-</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlsession/3329707-datataskpublisher.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">data<wbr/>Task<wbr/>Publisher</span><span class="decorator">(</span><span class="identifier">for</span><span class="decorator">: URLRequest) -&gt; URLSession<wbr/>.Data<wbr/>Task<wbr/>Publisher</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns a publisher that wraps a URL session data task for a given URL request.</span><!--end_enstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlsession/3329707-datataskpublisher.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">data<wbr data-v-dac213be="">Task<wbr data-v-dac213be="">Publisher</wbr></wbr></span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">for</span><span data-v-dac213be="" class="decorator">: URLRequest) -&gt; URLSession<wbr data-v-dac213be="">.Data<wbr data-v-dac213be="">Task<wbr data-v-dac213be="">Publisher</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a publisher that wraps a URL session data task for a given URL request.</span><!--end_enstr-->
 <span class="jpstr">
 あるパブリッシャーを返します、それは与えられたURLリクエストに対するURLセッションデータタスクをラップするものです。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlsession/3329708-datataskpublisher.html"><code class="display-name"><span class="decorator">func </span><span class="identifier">data<wbr/>Task<wbr/>Publisher</span><span class="decorator">(</span><span class="identifier">for</span><span class="decorator">: URL) -&gt; URLSession<wbr/>.Data<wbr/>Task<wbr/>Publisher</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Returns a publisher that wraps a URL session data task for a given URL.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlsession/3329708-datataskpublisher.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">data<wbr data-v-dac213be="">Task<wbr data-v-dac213be="">Publisher</wbr></wbr></span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">for</span><span data-v-dac213be="" class="decorator">: URL) -&gt; URLSession<wbr data-v-dac213be="">.Data<wbr data-v-dac213be="">Task<wbr data-v-dac213be="">Publisher</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a publisher that wraps a URL session data task for a given URL.</span><!--end_enstr-->
 <span class="jpstr">
 あるパブリッシャーを返します、それは与えられたURLに対するURLセッションデータタスクをラップするものです。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name symbol-name-decorated" href="../../../documentation/foundation/urlsession/datataskpublisher.html"><code class="display-name"><span class="decorator">struct </span><span class="identifier">URLSession<wbr/>.Data<wbr/>Task<wbr/>Publisher</span></code></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">A publisher that delivers the results of performing URL session data tasks.</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/urlsession/datataskpublisher.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">struct </span><span data-v-dac213be="" class="identifier">URLSession<wbr data-v-dac213be="">.Data<wbr data-v-dac213be="">Task<wbr data-v-dac213be="">Publisher</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A publisher that delivers the results of performing URL session data tasks.</span><!--end_enstr-->
 <span class="jpstr">
 あるパブリッシャー、それはURLセッションデータタスクを実行する結果を配達します。
 </span><!--end_jpstr-->
-</p></div></div></div></div></div></div></div></section></div></div></section></main><section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo">
-        <nav class="footer-breadory">
-          <a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a>
-          <section class="breadcrumbs">
-            <ol class="breadcrumbs-list">
-              <li><a href=/documentation>Documentation</a></li>
-            </ol>
-          </section>
-          <div id="directorynav" class="directorynav">
-            <div id="dn-cola" class="column">
-              <h3><a href="/discover/">Discover</a></h3>
-              <ul>
-                <li><a href="/macos/">macOS</a></li>
-                <li><a href="/ios/">iOS</a></li>
-                <li><a href="/watchos/">watchOS</a></li>
-                <li><a href="/tvos/">tvOS</a></li>
-                <li><a href="/safari/">Safari and Web</a></li>
-                <li><a href="/games/">Games</a></li>
-                <li><a href="/business/">Business</a></li>
-                <li><a href="/education/">Education</a></li>
-                <li><a href="/wwdc/">WWDC</a></li>
-              </ul>
-            </div>
-            <div id="dn-colb" class="column">
-              <h3><a href="/design/">Design</a></h3>
-              <ul>
-                <li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
-                <li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+</div><!----></section></main>
+</div></div></div>
+<section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo"><nav class="footer-breadory"><a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a><section class="breadcrumbs"><ol class="breadcrumbs-list"></ol></section><div id="directorynav" class="directorynav">
+<div id="dn-cola" class="column">
+<h3><a href="/discover/">Discover</a></h3>
+<ul>
+<li><a href="/ios/">iOS</a></li>
+<li><a href="/ipados/">iPadOS</a></li>
+<li><a href="/macos/">macOS</a></li>
+<li><a href="/tvos/">tvOS</a></li>
+<li><a href="/watchos/">watchOS</a></li>
+<li><a href="/safari/">Safari and Web</a></li>
+<li><a href="/games/">Games</a></li>
+<li><a href="/business/">Business</a></li>
+<li><a href="/education/">Education</a></li>
+<li><a href="/wwdc/">WWDC</a></li>
+</ul>
+</div>
+<div id="dn-colb" class="column">
+<h3><a href="/design/">Design</a></h3>
+<ul>
+<li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
+<li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
 <span class="jpstr">
 リソース
 </span><!--end_jpstr-->
 </a></li>
-                <li><a href="/videos/design/">Videos</a></li>
-                <li><a href="/design/awards/">Apple Design Awards</a></li>
-                <li><a href="/accessibility/">Accessibility</a></li>
-                <li><a href="/internationalization/"><span class="enstr">Internationalization</span><!--end_enstr-->
+<li><a href="/videos/design/">Videos</a></li>
+<li><a href="/design/awards/">Apple Design Awards</a></li>
+<li><a href="/fonts/">Fonts</a></li>
+<li><a href="/accessibility/">Accessibility</a></li>
+<li><a href="/localization/"><span class="enstr">Localization</span><!--end_enstr-->
 <span class="jpstr">
-国際化
+ローカライゼーション
 </span><!--end_jpstr-->
 </a></li>
-                <li><a href="/accessories/">Accessories</a></li>
-              </ul>
-            </div>
-            <div id="dn-colc" class="column">
-              <h3><a href="/develop/">Develop</a></h3>
-              <ul>
-                <li><a href="/xcode/">Xcode</a></li>
-                <li><a href="/swift/">Swift</a></li>
-                <li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
-                <li><a href="/testflight/">TestFlight</a></li>
-                <li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
-                <li><a href="/videos/">Videos</a></li>
-                <li><a href="/download/">Downloads</a></li>
-              </ul>
-            </div>
-            <div id="dn-cold" class="column">
-              <h3><a href="/distribute/">Distribute</a></h3>
-              <ul>
-                <li><a href="/programs/">Developer Program</a></li>
-                <li><a href="/app-store/">App Store</a></li>
-                <li><a href="/app-store/review/">App Review</a></li>
-                <li><a href="/macos/distribution/">Mac Software</a></li>
-                <li><a href="/business/distribute/">Apps for Business</a></li>
-                <li><a href="/safari/extensions/">Safari Extensions</a></li>
-                <li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
-                <li><a href="/softwarelicensing/">Trademark Licensing</a></li>
-              </ul>
-            </div>
-            <div id="dn-cole" class="column">
-              <h3><a href="/support/">Support</a></h3>
-              <ul>
-                <li><a href="https://forums.developer.apple.com">Developer Forums</a></li>
-                <li><a href="/bug-reporting/">Bug Reporting</a></li>
-                <li><a href="/terms/">License Agreements</a></li>
-                <li><a href="/system-status/">System Status</a></li>
-                <li><a href="/contact/">Contact Us</a></li>
-              </ul>
-              <h3><a href="/account/">Account</a></h3>
-              <ul>
-                <li><a href="/account/ios/certificate/">Certificates, IDs &amp; Profiles</a></li>
-                <li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-        <div class="ac-gf-footer-legal">
-          <div class="ac-gf-footer-news"> To receive the latest developer news, visit and subscribe to our <a href="/news/">News and Updates</a>.
-          </div>
-          <div class="ac-gf-footer-legal-copyright">Copyright © 2020 Apple Inc. All rights reserved.</div>
-          <div class="ac-gf-footer-legal-links">
-            <a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a>
-            <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
-            <a href="/bug-reporting/">Report Bugs</a>
-            <a href="/contact/submit/?subject=website-feedback">Feedback</a>
-          </div>
-          <div class="ac-gf-footer-language-links">
-            <a href="/cn/" class="first">简体中文</a>
-            <a href="/jp/">日本語</a>
-            <a href="/kr/">한국어</a>
-          </div>
-        </div>
-      </footer></section></div></div><script id="bootstrap-data" type="application/json">{"id":3526669,"title":{"content":"Processing URL Session Data Task Results with Combine"},"discussion":"<div><p>Performing tasks with URL sessions is inherently asynchronous; it takes time to fetch data from network endpoints, file systems, and other URL-based sources. The URL Loading System accounts for this by delivering results asynchronously to delegates or completion handlers. The <a href=\"\/documentation\/combine\">Combine<\/a> framework also handles asynchronicity; using it to process your URL task results simplifies and empowers your code.<\/p><\/div><h3 id=\"3559540\">Create a Data Task Publisher<\/h3><div><p><a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsession\"><code><span>URLSession<\/span><\/code><\/a> offers a Combine publisher, <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsession\/datataskpublisher\"><code><span>URLSession<wbr\/>.Data<wbr\/>Task<wbr\/>Publisher<\/span><\/code><\/a>, which publishes the results of fetching data from a <a class=\"symbol-name\" href=\"\/documentation\/foundation\/url\"><code><span>URL<\/span><\/code><\/a> or <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlrequest\"><code><span>URLRequest<\/span><\/code><\/a>. You create this publisher with the method <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsession\/3329708-datataskpublisher\"><code><span>data<wbr\/>Task<wbr\/>Publisher(for:)<\/span><\/code><\/a>. When the task completes, it publishes either:<\/p><ul><li><p>A tuple that contains the fetched data and a <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlresponse\"><code><span>URLResponse<\/span><\/code><\/a>, if the task succeeds.<\/p><\/li><li><p>An error, if the task fails.<\/p><\/li><\/ul><p>Unlike the completion handler passed to <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsession\/1410330-datatask\"><code><span>data<wbr\/>Task(with:<wbr\/>completion<wbr\/>Handler:)<\/span><\/code><\/a>, the types received by your code aren’t optionals, since the publisher has already unwrapped the data or error.<\/p><p>When using <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsession\"><code><span>URLSession<\/span><\/code><\/a>’s completion handler-based code, you need to do all your work in the handler closure: error-handling, data parsing, and so on. When you instead use the data task publisher, you can move many of these responsibilities to Combine operators.<\/p><\/div><h3 id=\"3526671\">Convert Incoming Raw Data to Your Types with Combine Operators<\/h3><div><p>When a data task completes successfully, it delivers a block of raw <a class=\"symbol-name\" href=\"\/documentation\/foundation\/data\"><code><span>Data<\/span><\/code><\/a> to your app. Most apps need to convert this data to their own types. Combine provides operators to perform these conversions, allowing you to declare a chain of processing operations.<\/p><p>The data task publisher produces a tuple that contains a <code class=\"code-voice\"><span>Data<\/span><\/code> and a <code class=\"code-voice\"><span>URLResponse<\/span><\/code>. You can use the <a class=\"symbol-name\" href=\"\/documentation\/combine\/publisher\/3204718-map\"><code><span>map(_:)<\/span><\/code><\/a> operator to convert the contents of this tuple to another type. If you want to inspect the response before inspecing the data, use <a class=\"symbol-name\" href=\"\/documentation\/combine\/publisher\/3204772-trymap\"><code><span>try<wbr\/>Map(_:)<\/span><\/code><\/a> and throw an error if the response is unacceptable.<\/p><p>To convert raw data to your own types that conform to the <a class=\"symbol-name\" href=\"\/documentation\/swift\/decodable\"><code><span>Decodable<\/span><\/code><\/a> protocol, use Combine’s <a class=\"symbol-name\" href=\"\/documentation\/combine\/publisher\/3204703-decode\"><code><span>decode(type:<wbr\/>decoder:)<\/span><\/code><\/a> operator.<\/p><p>The following example combines both these operators to parse JSON data from a URL endpoint into a custom <code class=\"code-voice\"><span>User<\/span><\/code> type:<\/p><figure id=\"3526670\"><div class=\"formatted-content\"><div class=\"code-listing\"><pre class=\"code-source\" data-language=\"swift\"><code>struct User: Codable {\n    let name: String\n    let userID: String\n}\nlet url = URL(string: &quot;https:\/\/example.com\/endpoint&quot;)!\ncancellable = urlSession\n    .dataTaskPublisher(for: url)\n    .tryMap() { element -&gt; Data in\n        guard let httpResponse = element.response as? HTTPURLResponse,\n            httpResponse.statusCode == 200 else {\n                throw URLError(.badServerResponse)\n            }\n        return element.data\n        }\n    .decode(type: User.self, decoder: JSONDecoder())\n    .sink(receiveCompletion: { print (&quot;Received completion: \\($0).&quot;) },\n          receiveValue: { user in print (&quot;Received user: \\(user).&quot;)})\n<\/code><\/pre><\/div><\/div><\/figure><p><\/p><\/div><h3 id=\"3526672\">Retry Transient Errors and Catch and Replace Persistent Errors<\/h3><div><p>Any app that uses the network should expect to encounter errors, and your app should handle them gracefully. Because transient network errors are fairly common, you may want to immediately retry a failed data task. With <code class=\"code-voice\"><span>URLSession<\/span><\/code>’s completion handler idiom, you need to create a whole new task to perform a retry. With the data task publisher, you can instead use Combine’s <a class=\"symbol-name\" href=\"\/documentation\/combine\/publisher\/3204751-retry\"><code><span>retry(_:)<\/span><\/code><\/a> operator. This handles errors by recreating the subscription to the upstream publisher a specified number of times. However, since network operations are expensive, only retry a small number of times, and ensure all requests are idempotent.<\/p><p>You can also use Combine operators to replace the error, rather than letting it reach the subscriber:<\/p><ul><li><p><a class=\"symbol-name\" href=\"\/documentation\/combine\/publisher\/3204690-catch\"><code><span>catch(_:)<\/span><\/code><\/a> replaces the error with another publisher. You can use this with another <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsession\/datataskpublisher\"><code><span>URLSession<wbr\/>.Data<wbr\/>Task<wbr\/>Publisher<\/span><\/code><\/a>, such as one that loads data from a fallback URL.<\/p><\/li><li><p><a class=\"symbol-name\" href=\"\/documentation\/combine\/publisher\/3204748-replaceerror\"><code><span>replace<wbr\/>Error(with:)<\/span><\/code><\/a> replaces the error with an element you provide. If it makes sense in your application, you can use this to provide a substitute for the value you expected to load from the URL.<\/p><\/li><\/ul><p>The following example shows both of these techniques, retrying a failed request once, and using a fallback URL after that. If either the original request, the retry, or the fallback request succeeds, the <a class=\"symbol-name\" href=\"\/documentation\/combine\/publisher\/3362666-sink\"><code><span>sink(receive<wbr\/>Value:)<\/span><\/code><\/a> operator receives data from the endpoint. If all three fail, the sink receives a <a class=\"symbol-name\" href=\"\/documentation\/combine\/subscribers\/completion\/failure\"><code><span>Subscribers<wbr\/>.Completion<wbr\/>.failure(_:)<\/span><\/code><\/a>.<\/p><figure id=\"3538239\"><div class=\"formatted-content\"><div class=\"code-listing\"><pre class=\"code-source\" data-language=\"swift\"><code>let pub = urlSession\n    .dataTaskPublisher(for: url)\n    .retry(1)\n    .catch() { _ in\n        self.fallbackUrlSession.dataTaskPublisher(for: fallbackURL)\n    }\ncancellable = pub\n    .sink(receiveCompletion: { print(&quot;Received completion: \\($0).&quot;) },\n          receiveValue: { print(&quot;Received data: \\($0.data).&quot;) })\n<\/code><\/pre><\/div><\/div><\/figure><p><\/p><\/div><h3 id=\"3526667\">Move Work Between Dispatch Queues With Scheduling Operators<\/h3><div><p>When using <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsession\"><code><span>URLSession<\/span><\/code><\/a>’s delegate and completion handler idioms, the session calls back to your code on a fixed <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsession\/1411571-delegatequeue\"><code><span>delegate<wbr\/>Queue<\/span><\/code><\/a>. Sometimes, this means your callback code has to manually use dispatch queues or other scheduling APIs to put work on a specific queue.<\/p><p>With <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsession\/datataskpublisher\"><code><span>URLSession<wbr\/>.Data<wbr\/>Task<wbr\/>Publisher<\/span><\/code><\/a>, you can use Combine’s scheduling operators instead. Use <a class=\"symbol-name\" href=\"\/documentation\/combine\/publisher\/3204743-receive\"><code><span>receive(on:<wbr\/>options:)<\/span><\/code><\/a> to specify how you want later operators in the chain and your subscriber, to schedule the work. <a class=\"symbol-name\" href=\"\/documentation\/dispatch\/dispatchqueue\"><code><span>Dispatch<wbr\/>Queue<\/span><\/code><\/a> and <a class=\"symbol-name\" href=\"\/documentation\/foundation\/runloop\"><code><span>Run<wbr\/>Loop<\/span><\/code><\/a> both implement Combine’s <a class=\"symbol-name\" href=\"\/documentation\/combine\/scheduler\"><code><span>Scheduler<\/span><\/code><\/a> protocol, so you can use them to receive URL session data. The following snippet ensures that the sink logs its results on the main dispatch queue.<\/p><figure id=\"3527559\"><div class=\"formatted-content\"><div class=\"code-listing\"><pre class=\"code-source\" data-language=\"swift\"><code>cancellable = urlSession\n    .dataTaskPublisher(for: url)\n    .receive(on: DispatchQueue.main)\n    .sink(receiveCompletion: { print (&quot;Received completion: \\($0).&quot;) },\n          receiveValue: { print (&quot;Received data: \\($0.data).&quot;)})\n<\/code><\/pre><\/div><\/div><\/figure><p><\/p><\/div><h3 id=\"3526668\">Share the Result of a Data Task Publisher with Multiple Subscribers<\/h3><div><p>You may want to use data from the URL endpoint in different parts of your application. Because network requests are expensive, don’t reissue them needlessly. Combine lets you use multiple subscribers to a single <code class=\"code-voice\"><span>URLSession<wbr\/>.Data<wbr\/>Task<wbr\/>Publisher<\/span><\/code>, while allowing the publisher to service all of them with a single request.<\/p><p>To support multiple downstream subscribers, use the <a class=\"symbol-name\" href=\"\/documentation\/combine\/publisher\/3204754-share\"><code><span>share()<\/span><\/code><\/a> operator. This operator works like a combination of the <a class=\"symbol-name\" href=\"\/documentation\/combine\/publishers\/multicast\"><code><span>Publishers<wbr\/>.Multicast<\/span><\/code><\/a> and <a class=\"symbol-name\" href=\"\/documentation\/combine\/currentvaluesubject\"><code><span>Current<wbr\/>Value<wbr\/>Subject<\/span><\/code><\/a> publishers. You can connect multiple operator chains or subscribers to the <code class=\"code-voice\"><span>share()<\/span><\/code> operator, and any upstream publisher only sees one downstream. In the case of a <code class=\"code-voice\"><span>URLSession<wbr\/>.Data<wbr\/>Task<wbr\/>Publisher<\/span><\/code>, this means it only performs the data task once.<\/p><p>The following example uses a URL session data task for two unrelated purposes. One subscriber uses the returned data to parse the custom <code class=\"code-voice\"><span>User<\/span><\/code> type seen earlier, and logs it on the main dispatch queue. A second subscriber is only concerned with the <code class=\"code-voice\"><span>URLResponse<\/span><\/code>, which it inspects to print an HTTP status code, and doesn’t care which queue it uses. By using <code class=\"code-voice\"><span>share()<\/span><\/code>, the data task publisher can serve both subscribers with a single load from the URL endpoint.<\/p><figure id=\"3527561\"><div class=\"formatted-content\"><div class=\"code-listing\"><pre class=\"code-source\" data-language=\"swift\"><code>let sharedPublisher = urlSession\n    .dataTaskPublisher(for: url)\n    .share()\n\ncancellable1 = sharedPublisher\n    .tryMap() {\n        guard $0.data.count &gt; 0 else { throw URLError(.zeroByteResource) }\n        return $0.data\n    }\n    .decode(type: User.self, decoder: JSONDecoder())\n    .receive(on: DispatchQueue.main)\n    .sink(receiveCompletion: { print (&quot;Received completion 1: \\($0).&quot;) },\n          receiveValue: { print (&quot;Received id: \\($0.userID).&quot;)})\n\ncancellable2 = sharedPublisher\n    .map() {\n        $0.response\n    }\n    .sink(receiveCompletion: { print (&quot;Received completion 2: \\($0).&quot;) },\n           receiveValue: { response in\n            if let httpResponse = response as? HTTPURLResponse {\n                print (&quot;Received HTTP status: \\(httpResponse.statusCode).&quot;)\n            } else {\n                print (&quot;Response was not an HTTPURLResponse.&quot;)\n            }\n    }\n)\n\n<\/code><\/pre><\/div><\/div><\/figure><p>To prove that this code only loads the data once, temporarily put a <a class=\"symbol-name\" href=\"\/documentation\/combine\/publisher\/3235805-print\"><code><span>print(_:<wbr\/>to:)<\/span><\/code><\/a> debugging operator before the <code class=\"code-voice\"><span>share()<\/span><\/code> operator. When the app runs, Xcode’s console output shows it receives only a single value from the data task publisher, even though both subscribers receive their expected results.<\/p><p>Be aware that the URL session starts loading data as soon as the <code class=\"code-voice\"><span>URLSession<wbr\/>.Data<wbr\/>Task<wbr\/>Publisher<\/span><\/code> has unsatisfied demand from a downstream subscriber. In this case, that happens when the first sink subscriber attaches. If you need extra time to attach other subscribers, use <a class=\"symbol-name\" href=\"\/documentation\/combine\/publisher\/3235803-makeconnectable\"><code><span>make<wbr\/>Connectable()<\/span><\/code><\/a> to wrap the <a class=\"symbol-name\" href=\"\/documentation\/combine\/publishers\/share\"><code><span>Publishers<wbr\/>.Share<\/span><\/code><\/a> publisher with a <a class=\"symbol-name\" href=\"\/documentation\/combine\/connectablepublisher\"><code><span>Connectable<wbr\/>Publisher<\/span><\/code><\/a>. After connecting all subscribers, call <a class=\"symbol-name\" href=\"\/documentation\/combine\/connectablepublisher\/3204394-connect\"><code><span>connect()<\/span><\/code><\/a> on the connectable publisher to allow the data load to begin.<\/p><p><\/p><p><\/p><\/div>","abstract":"<div><p>Use a chain of asynchronous operators to receive and process data fetched from a URL.<\/p><\/div>","containingGroup":[{"id":3330097,"role":"task","paths":[],"symbols":[{"id":3526669,"role":"article","paths":["documentation\/foundation\/urlsession\/processing_url_session_data_task_results_with_combine"],"abstract":"<div><p>Use a chain of asynchronous operators to receive and process data fetched from a URL.<\/p><\/div>","title":{"content":"Processing URL Session Data Task Results with Combine"}},{"id":3329707,"role":"symbol","usr":"s:So12NSURLSessionC10FoundationE17dataTaskPublisher3forAbCE04DatadE0VAC10URLRequestV_tF","name":"dataTaskPublisher(for:)","domain":"swift","kind":"instm","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"11.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">data<wbr\/>Task<wbr\/>Publisher<\/span><span class=\"decorator\">(<\/span><span class=\"identifier\">for<\/span><span class=\"decorator\">: URLRequest) -&gt; URLSession<wbr\/>.Data<wbr\/>Task<wbr\/>Publisher<\/span><\/code>","paths":["documentation\/foundation\/urlsession\/3329707-datataskpublisher"],"title":{"content":"dataTaskPublisher(for:)"},"abstract":"<div><p>Returns a publisher that wraps a URL session data task for a given URL request.<\/p><\/div>"},{"id":3329708,"role":"symbol","usr":"s:So12NSURLSessionC10FoundationE17dataTaskPublisher3forAbCE04DatadE0VAC3URLV_tF","name":"dataTaskPublisher(for:)","domain":"swift","kind":"instm","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"11.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">func <\/span><span class=\"identifier\">data<wbr\/>Task<wbr\/>Publisher<\/span><span class=\"decorator\">(<\/span><span class=\"identifier\">for<\/span><span class=\"decorator\">: URL) -&gt; URLSession<wbr\/>.Data<wbr\/>Task<wbr\/>Publisher<\/span><\/code>","paths":["documentation\/foundation\/urlsession\/3329708-datataskpublisher"],"title":{"content":"dataTaskPublisher(for:)"},"abstract":"<div><p>Returns a publisher that wraps a URL session data task for a given URL.<\/p><\/div>"},{"id":3329608,"role":"symbol","usr":"s:So12NSURLSessionC10FoundationE17DataTaskPublisherV","name":"URLSession.DataTaskPublisher","domain":"swift","kind":"struct","availability":[{"platform":"iOS","introduced":"7.0"},{"platform":"macOS","introduced":"10.9"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"watchOS","introduced":"2.0"},{"platform":"Xcode","introduced":"11.0"}],"displayName":"<code class=\"display-name\"><span class=\"decorator\">struct <\/span><span class=\"identifier\">URLSession<wbr\/>.Data<wbr\/>Task<wbr\/>Publisher<\/span><\/code>","paths":["documentation\/foundation\/urlsession\/datataskpublisher"],"title":{"content":"URLSession.DataTaskPublisher"},"abstract":"<div><p>A publisher that delivers the results of performing URL session data tasks.<\/p><\/div>","hasChildren":true}],"title":{"content":"Performing Tasks as a Combine Publisher"}}],"modules":[{"title":{"content":"Foundation"},"paths":["documentation\/foundation"],"importStatement":"<import xml:space=\"preserve\"><keyWord>import<\/keyWord> Foundation<\/import>","availability":[{"platform":"watchOS","introduced":"2.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"iOS","introduced":"2.0"}]}],"role":"article","language":"swift","roleHeading":"Article","languages":["swift"],"variants":{"swift":{"paths":["documentation\/foundation\/urlsession\/processing_url_session_data_task_results_with_combine"]}},"pid":463568,"paths":["documentation\/foundation\/urlsession\/processing_url_session_data_task_results_with_combine"],"hierarchy":[[{"id":1613013,"role":"collection","title":{"content":"Foundation"},"paths":["documentation\/foundation"]},{"id":2877756,"role":"collectionGroup","title":{"content":"URL Loading System"},"paths":["documentation\/foundation\/url_loading_system"]},{"id":1411632,"role":"symbol","title":{"content":"URLSession"},"usr":"c:objc(cs)NSURLSession","kind":"cl","paths":["documentation\/foundation\/urlsession"]}]],"legalNotices":{"copyright":"Copyright &copy; 2020 Apple Inc. All rights reserved.","termsOfUse":"https:\/\/www.apple.com\/legal\/internet-services\/terms\/site.html","privacyPolicy":"https:\/\/www.apple.com\/privacy\/privacy-policy"}}</script></body></html>
+<li><a href="/accessories/">Accessories</a></li>
+</ul>
+</div>
+<div id="dn-colc" class="column">
+<h3><a href="/develop/">Develop</a></h3>
+<ul>
+<li><a href="/xcode/">Xcode</a></li>
+<li><a href="/swift/">Swift</a></li>
+<li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
+<li><a href="/testflight/">TestFlight</a></li>
+<li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
+<li><a href="/videos/">Videos</a></li>
+<li><a href="/download/">Downloads</a></li>
+</ul>
+</div>
+<div id="dn-cold" class="column">
+<h3><a href="/distribute/">Distribute</a></h3>
+<ul>
+<li><a href="/programs/">Developer Program</a></li>
+<li><a href="/app-store/">App Store</a></li>
+<li><a href="/app-store/review/">App Review</a></li>
+<li><a href="/macos/distribution/">Mac Software</a></li>
+<li><a href="/business/distribute/">Apps for Business</a></li>
+<li><a href="/safari/extensions/">Safari Extensions</a></li>
+<li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
+<li><a href="/softwarelicensing/">Trademark Licensing</a></li>
+</ul>
+</div>
+<div id="dn-cole" class="column">
+<h3><a href="/support/">Support</a></h3>
+<ul>
+<li><a href="/support/articles/">Articles</a></li>
+<li><a href="/forums/">Developer Forums</a></li>
+<li><a href="/bug-reporting/">Feedback &amp; Bug Reporting</a></li>
+<li><a href="/system-status/">System Status</a></li>
+<li><a href="/contact/">Contact Us</a></li>
+</ul>
+<h3><a href="/account/">Account</a></h3>
+<ul>
+<li><a href="/account/ios/certificate/">Certificates, Identifiers &amp; Profiles</a></li>
+<li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
+</ul>
+</div>
+</div></nav><div class="ac-gf-footer-legal">
+<div class="ac-gf-footer-news">To view the latest developer news, visit <a href="/news/">News and Updates</a>.</div>
+<div class="ac-gf-footer-language-dropdown-wrapper">
+<select id="footer-language-selector" class="footer-language-select" aria-label="Language Dropdown" autocomplete="off"><option value="https://developer.apple.com/" selected>English</option>
+<option value="https://developer.apple.com/cn/">简体中文</option>
+<option value="https://developer.apple.com/jp/">日本語</option>
+<option value="https://developer.apple.com/kr/">한국어</option></select> <span class="footer-language-select-icon icon icon-chevrondown" aria-hidden="true"></span>
+</div>
+<div class="ac-gf-footer-legal-copyright">Copyright © <span class="footer-current-year">2020</span> <a href="https://www.apple.com">Apple Inc.</a> All rights reserved.</div>
+<div class="ac-gf-footer-legal-links">
+<a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a> <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a> <a href="/terms/">License Agreements</a>
+</div>
+</div></footer></section><script src="../../../tutorials/js/footer.js"></script>
+</body>
+</html>

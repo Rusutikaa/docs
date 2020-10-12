@@ -1,0 +1,900 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- link rel="icon" href="/favicon.ico" -->
+<link rel="mask-icon" href="/apple-logo.svg" color="#333333">
+<link rel="stylesheet" href="../../tutorials/css/_globalnav.css">
+<title>NSCoding | Apple Developer Documentation</title>
+<link href="../../tutorials/css/chunk-76d5c2b5.00c53891.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic.e358e85c.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css" rel="prefetch">
+<link href="../../tutorials/css/topic.69278f1e.css" rel="prefetch">
+<link href="../../tutorials/css/topic~tutorials-overview.1f93e025.css" rel="prefetch">
+<link href="../../tutorials/css/tutorials-overview.d4ff0b50.css" rel="prefetch">
+<link href="../../tutorials/css/welcome-experience-featured.0537f0f0.css" rel="prefetch">
+<link href="../../tutorials/css/welcome-experience-technologies.60068ae2.css" rel="prefetch">
+<link href="../../tutorials/js/chunk-2d0d3105.459bf725.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-2d21a016.b81cb311.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-503f1ed8.d26c4552.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-530f89ce.621e1d48.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-640db3b2.f8778ca5.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-76d5c2b5.092e3b8a.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic.6abe9458.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js" rel="prefetch">
+<link href="../../tutorials/js/topic.c6ec6b6c.js" rel="prefetch">
+<link href="../../tutorials/js/topic~tutorials-overview.467a8186.js" rel="prefetch">
+<link href="../../tutorials/js/tutorials-overview.d77f61ca.js" rel="prefetch">
+<link href="../../tutorials/js/welcome-experience-featured.04f663e2.js" rel="prefetch">
+<link href="../../tutorials/js/welcome-experience-technologies.56a372c1.js" rel="prefetch">
+<link href="../../tutorials/css/app.2a174a23.css" rel="preload" as="style">
+<link href="../../tutorials/js/app.2c558263.js" rel="preload" as="script">
+<link href="../../tutorials/js/chunk-vendors.c3b68236.js" rel="preload" as="script">
+<link href="../../tutorials/css/app.2a174a23.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../../tutorials/css/chunk-76d5c2b5.00c53891.css">
+<script charset="utf-8" src="../../tutorials/js/chunk-76d5c2b5.092e3b8a.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic.e358e85c.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic.6abe9458.js"></script>
+</head>
+<body>
+<div id="_omniture_top">
+<script>var s_account="awdappledeveloper"</script>
+</div>
+<a href="#main" id="skip-localnav">Skip Navigation</a><aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"><nav id="ac-globalnav" class="js no-touch" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions"><div class="ac-gn-content">
+<ul class="ac-gn-header">
+<li class="ac-gn-item ac-gn-menuicon">
+<label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true"><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span> </span><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span></span></label> <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open"><span class="ac-gn-menuanchor-label">Global Nav Open Menu</span> </a><a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close"><span class="ac-gn-menuanchor-label">Global Nav Close Menu</span></a>
+</li>
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+</ul>
+<div class="ac-gn-search-placeholder-container" role="search"><div class="ac-gn-search ac-gn-search-small"><a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a><div class="ac-gn-search-placeholder-bar">
+<div class="ac-gn-search-placeholder-input"><div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
+<div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
+<span class="ac-gn-search-placeholder">Search Developer</span>
+</div></div>
+<div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></div>
+</div></a></div></div>
+<ul class="ac-gn-list">
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-discover"><a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover"><span class="ac-gn-link-text">Discover</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-design"><a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design"><span class="ac-gn-link-text">Design</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-develop"><a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop"><span class="ac-gn-link-text">Develop</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-distribute"><a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute"><span class="ac-gn-link-text">Distribute</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport"><a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport"><span class="ac-gn-link-text">Support</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-account"><a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account"><span class="ac-gn-link-text">Account</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search"><a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a></li>
+</ul>
+<aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search"><div class="ac-gn-searchview-content">
+<div class="ac-gn-searchview-bar"><div class="ac-gn-searchview-bar-wrapper">
+<form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get"><div class="ac-gn-searchform-wrapper">
+<input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions"> <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button> <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search"><span class="ac-gn-searchform-reset-background"></span></button>
+</div></form>
+<button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></button>
+</div></div>
+<aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
+</div>
+<button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search"><span class="ac-gn-searchview-close-wrapper"><span class="ac-gn-searchview-close-left"></span> <span class="ac-gn-searchview-close-right"></span></span></button></aside>
+</div></nav><div class="ac-gn-blur"></div>
+<div id="ac-gn-curtain" class="ac-gn-curtain"></div>
+<div id="ac-gn-placeholder" class="ac-nav-placeholder"></div>
+<script src="../../tutorials/js/ac-globalnav.built.js"></script>
+<noscript>
+<style>.noscript {
+  font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
+  margin: 92px auto 140px auto;
+  text-align: center;
+  width: 980px;
+}
+
+.noscript-title {
+  color: #111;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -.003em;
+  line-height: 1.08365;
+  margin: 0 auto 54px auto;
+  width: 502px;
+}
+
+@media only screen and (max-width: 1068px) {
+  .noscript {
+    margin: 90px auto 120px auto;
+    width: 692px;
+  }
+
+  .noscript-title {
+    font-size: 40px;
+    letter-spacing: 0;
+    line-height: 1.1;
+    margin: 0 auto 45px auto;
+    width: 420px;
+  }
+}
+
+@media only screen and (max-width: 735px) {
+  .noscript {
+    margin: 45px auto 60px auto;
+    width: 87.5%;
+  }
+
+  .noscript-title {
+    font-size: 32px;
+    letter-spacing: .004em;
+    line-height: 1.125;
+    margin: 0 auto 35px auto;
+    max-width: 330px;
+    width: auto;
+  }
+}
+
+#loading-placeholder {
+  display: none;
+};</style>
+<div class="noscript">
+<h1 class="noscript-title">This page requires JavaScript.</h1>
+<p>Please turn on JavaScript in your browser and refresh the page to view its content.</p>
+</div>
+</noscript>
+<div data-v-0220a4c4="" id="app" class=""><div data-v-0220a4c4=""><div data-v-2deaa168="" class="doc-topic">
+<div data-v-3ceaa5df="" data-v-2deaa168="" class="localnav-container">
+<input data-v-3ceaa5df="" aria-hidden="true" id="localnav-menustate" type="checkbox" class="localnav-menustate"><div id="localnav-sticky-placeholder" class="css-sticky"></div>
+<nav data-v-3ceaa5df="" aria-label="API Reference" data-sticky="" id="localnav" role="navigation" class="localnav localnav-dark theme-dark medium-localnav-collapsible localnav-noborder localnav-scrim css-sticky"><div data-v-3ceaa5df="" class="localnav-wrapper">
+<div data-v-3ceaa5df="" class="referencenav">
+<div data-v-3ceaa5df="" class="localnav-background"></div>
+<div data-v-3ceaa5df="" class="localnav-content">
+<a data-v-3ceaa5df="" href="../../index.html" class="localnav-title">
+            Documentation
+          </a><div data-v-3ceaa5df="" class="localnav-menu">
+<a data-v-3ceaa5df="" href="#localnav-menustate" role="button" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Open Menu</span></a><a data-v-3ceaa5df="" href="#" role="button" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Close Menu</span></a><div data-v-3ceaa5df="" class="localnav-menu-tray">
+<ul data-v-72fd0d2c="" data-v-3ceaa5df="" aria-label="Breadcrumbs" class="localnav-menu-items">
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../documentation/foundation_language-objc.html" class="parent item router-link-active" data-v-23a2ae0d="">
+    Foundation
+  </a></li><!---->
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../documentation/foundation/archives_and_serialization_language-objc.html" class="parent item" data-v-23a2ae0d="">
+    <span class="enstr">Archives and Serialization</span><!--end_enstr-->
+<span class="jpstr">
+アーカイブとシリアライゼーション
+</span><!--end_jpstr-->
+
+  </a></li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item">
+<span data-v-23a2ae0d="" class="current item">
+    NSCoding
+  </span><!---->
+</li>
+</ul>
+<ul data-v-3ceaa5df="" data-breadcrumbs-count="3" class="localnav-menu-items localnav-menu-settings">
+<li data-v-282336e0="" data-v-3ceaa5df="" class="localnav-menu-setting language-container" breadcrumbcount="3">
+<div data-v-282336e0="" class="language-toggle-container">
+<label data-v-282336e0="" for="language-toggle" class="language-toggle-label">
+      Language:
+    </label><select data-v-282336e0="" id="language-toggle" class="language-dropdown localnav-menu-link" style="width: 74px;"><option data-v-282336e0="" value="swift">
+        Swift
+      </option>
+<option data-v-282336e0="" value="occ">
+        Objective-C
+      </option></select>
+</div>
+<div data-v-282336e0="" class="language-list-container">
+<span data-v-282336e0="" class="localnav-menu-setting-label">
+      Language:
+    </span><ul data-v-282336e0="" class="language-list">
+<li data-v-282336e0="" class="language-list-item"><a data-v-282336e0="" href="../../documentation/foundation/nscoding.html" class="localnav-menu-setting-link router-link-active">
+          Swift
+        </a></li>
+<li data-v-282336e0="" class="language-list-item"><span data-v-282336e0="" data-language="occ" aria-current="page" class="current-language">
+          Objective-C
+        </span></li>
+</ul>
+</div>
+</li>
+<li data-v-2e9f4ea2="" data-v-3ceaa5df="" class="localnav-menu-setting">
+<label data-v-2e9f4ea2="" for="version-label" class="localnav-menu-setting-label">
+    API Changes:
+  </label><span data-v-2e9f4ea2=""><span class="enstr">None</span><!--end_enstr-->
+<span class="jpstr">
+なし
+</span><!--end_jpstr-->
+</span>
+</li><!---->
+
+</ul>
+</div>
+<div data-v-3ceaa5df="" class="localnav-actions"><div data-v-3ceaa5df="" aria-hidden="true" class="localnav-action localnav-action-menucta"><label data-v-3ceaa5df="" for="localnav-menustate" class="localnav-menucta"><span data-v-3ceaa5df="" class="localnav-menucta-chevron"></span></label></div></div>
+</div>
+</div>
+</div><!---->
+
+</div></nav><label data-v-3ceaa5df="" aria-hidden="true" for="localnav-menustate" id="localnav-curtain"></label>
+</div>
+<main data-v-2deaa168="" id="main" role="main" tabindex="0" class="main"><div data-v-4ba5af7c="" data-v-2deaa168="" class="topictitle">
+<span data-v-4ba5af7c="" class="eyebrow">Protocol</span><h1 data-v-4ba5af7c="" class="title">NSCoding</h1>
+</div>
+<div data-v-0253ce0e="" data-v-2deaa168="" class="row container">
+<div data-v-9807b2e0="" data-v-5ad0d458="" data-v-2deaa168="" class="col description large-9 medium-9 small-12" data-v-0253ce0e=""><!---->
+<div data-v-7ea0aa49="" data-v-aba749e6="" data-v-2deaa168="" class="abstract content" data-v-9807b2e0=""><span class="enstr">A protocol that enables an object to be encoded and decoded for archiving and distribution.</span><!--end_enstr-->
+<span class="jpstr">
+あるオブジェクトにアーカイブと配布のためにエンコードおよびデコードされることを可能にするプロトコル。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div>
+<div data-v-9807b2e0="" data-v-42fb6bac="" data-v-2deaa168="" class="col summary large-3 medium-3 small-12" data-v-0253ce0e=""><!---->
+<div data-v-e4237090="" data-v-fcdb795a="" data-v-2deaa168="" class="summary-section availability" role="complementary" aria-label="Availability" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-fcdb795a="" class="title" data-v-e4237090=""><span class="enstr">Availability</span><!--end_enstr-->
+<span class="jpstr">
+有効性
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-fcdb795a="" class="summary-list platform-list" data-v-e4237090="">
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="iOS 2.0+, Available on iOS 2.0 and later" title="Available on iOS 2.0 and later" data-v-e3899270="">
+  iOS 2.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="macOS 10.0+, Available on macOS 10.0 and later" title="Available on macOS 10.0 and later" data-v-e3899270="">
+  macOS 10.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="Mac Catalyst 13.0+, Available on Mac Catalyst 13.0 and later" title="Available on Mac Catalyst 13.0 and later" data-v-e3899270="">
+  Mac Catalyst 13.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="tvOS 9.0+, Available on tvOS 9.0 and later" title="Available on tvOS 9.0 and later" data-v-e3899270="">
+  tvOS 9.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="watchOS 2.0+, Available on watchOS 2.0 and later" title="Available on watchOS 2.0 and later" data-v-e3899270="">
+  watchOS 2.0+
+</span><!---->
+</li>
+</ul>
+</div>
+<div data-v-e4237090="" data-v-741142ba="" data-v-2deaa168="" class="summary-section frameworks" role="complementary" aria-label="Framework" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-741142ba="" class="title" data-v-e4237090=""><span class="enstr">Framework</span><!--end_enstr-->
+<span class="jpstr">
+フレームワーク
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-741142ba="" class="summary-list" data-v-e4237090=""><li data-v-e3899270="" data-v-741142ba="" class="summary-list-item" data-v-1450532d=""><span data-v-741142ba="" data-v-e3899270="" class="name">Foundation</span></li></ul>
+</div>
+<div data-v-e4237090="" data-v-2b96ab1a="" data-v-2deaa168="" class="summary-section on-this-page" data-v-9807b2e0=""><nav data-v-2b96ab1a="" data-v-e4237090="" aria-labelledby="on-this-page-title"><p data-v-1e0258b0="" data-v-2b96ab1a="" class="title" id="on-this-page-title" data-v-e4237090=""><span class="enstr">On This Page</span><!--end_enstr-->
+<span class="jpstr">
+この項には
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-2b96ab1a="" class="summary-list" data-v-e4237090="">
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/nscoding_language-objc.html#declaration" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Declaration</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/nscoding_language-objc.html#overview" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Overview</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/nscoding_language-objc.html#topics" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Topics</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/nscoding_language-objc.html#relationships" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Relationships</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/nscoding_language-objc.html#see-also" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">See Also</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+</ul></nav></div>
+</div>
+<div data-v-9807b2e0="" data-v-1e40f676="" data-v-2deaa168="" class="col primary-content large-9 medium-9 small-12" data-v-0253ce0e="">
+<section data-v-e932e1b8="" data-v-1e40f676="" id="declaration" class="declaration" data-v-9807b2e0=""><h2 data-v-e932e1b8=""><span class="enstr">Declaration</span><!--end_enstr-->
+<span class="jpstr">
+宣言
+</span><!--end_jpstr-->
+</h2>
+<div data-v-29bd318c="" data-v-e932e1b8="" class="declaration-group"><!---->
+<pre data-v-e0a7f756="" data-v-29bd318c="" class="source"><code data-v-e0a7f756=""><span data-v-c9e896f0="" data-v-e0a7f756="" class="token-keyword">@protocol</span> <span data-v-c9e896f0="" data-v-e0a7f756="" class="token-identifier">NSCoding</span></code></pre>
+</div><!---->
+</section><div data-v-7ea0aa49="" data-v-1e40f676="" class="content" data-v-9807b2e0="">
+<h2 id="overview"><span class="enstr">Overview</span><!--end_enstr-->
+<span class="jpstr">
+概要
+</span><!--end_jpstr-->
+</h2>
+<p><span class="enstr">The <code data-v-7fb764c1="">NSCoding</code> protocol declares the two methods that a class must implement so that instances of that class can be encoded and decoded. This capability provides the basis for archiving (where objects and other structures are stored on disk) and distribution (where objects are copied to different address spaces).</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">NSCoding</code>プロトコルは、２つのメソッドを宣言します、それはそのクラスのインスタンスがエンコードおよびデコードされることができるために、あるクラスが実装する必要があるものです。この能力は、アーカイブ（そこにおいてオブジェクトや他の構造体がディスク上に保管されます）と分散（そこにおいてオブジェクトが異なるアドレス空間へコピーされます）の基礎を提供します。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">In keeping with object-oriented design principles, an object being encoded or decoded is responsible for encoding and decoding its instance variables. A coder instructs the object to do so by invoking <a href="../../documentation/foundation/nscoding/1413933-encodewithcoder_language-objc.html" class=""><code data-v-7fb764c1="">encode<wbr data-v-7fb764c1="">With<wbr data-v-7fb764c1="">Coder:</wbr></wbr></code></a> or <a href="../../documentation/foundation/nscoding/1416145-initwithcoder_language-objc.html" class=""><code data-v-7fb764c1="">init<wbr data-v-7fb764c1="">With<wbr data-v-7fb764c1="">Coder:</wbr></wbr></code></a>. <a href="../../documentation/foundation/nscoding/1413933-encodewithcoder_language-objc.html" class=""><code data-v-7fb764c1="">encode<wbr data-v-7fb764c1="">With<wbr data-v-7fb764c1="">Coder:</wbr></wbr></code></a> instructs the object to encode its instance variables to the coder provided; an object can receive this method any number of times. <a href="../../documentation/foundation/nscoding/1416145-initwithcoder_language-objc.html" class=""><code data-v-7fb764c1="">init<wbr data-v-7fb764c1="">With<wbr data-v-7fb764c1="">Coder:</wbr></wbr></code></a> instructs the object to initialize itself from data in the coder provided; as such, it replaces any other initialization method and is sent only once per object. Any object class that should be codeable must adopt the <code data-v-7fb764c1="">NSCoding</code> protocol and implement its methods.</span><!--end_enstr-->
+<span class="jpstr">
+オブジェクト指向デザイン原則に従って、符号化または複合されるオブジェクトは、それのインスタンス変数を符号化および復号する責任を負います。コーダーは、<a href="../../documentation/foundation/nscoding/1413933-encodewithcoder_language-objc.html" class=""><code data-v-7fb764c1="">encode<wbr data-v-7fb764c1="">With<wbr data-v-7fb764c1="">Coder:</wbr></wbr></code></a>または<a href="../../documentation/foundation/nscoding/1416145-initwithcoder_language-objc.html" class=""><code data-v-7fb764c1="">init<wbr data-v-7fb764c1="">With<wbr data-v-7fb764c1="">Coder:</wbr></wbr></code></a>を発動することによってそうするようにオブジェクトに指示します。<a href="../../documentation/foundation/nscoding/1413933-encodewithcoder_language-objc.html" class=""><code data-v-7fb764c1="">encode<wbr data-v-7fb764c1="">With<wbr data-v-7fb764c1="">Coder:</wbr></wbr></code></a>はオブジェクトに、提供されたコーダーに対するそれのインスタンス変数を符号化するように指示します；オブジェクトはこのメソッドを任意の回数受け取ることができます。<a href="../../documentation/foundation/nscoding/1416145-initwithcoder_language-objc.html" class=""><code data-v-7fb764c1="">init<wbr data-v-7fb764c1="">With<wbr data-v-7fb764c1="">Coder:</wbr></wbr></code></a>はオブジェクトに、提供されたコーダーにおいてデータからそれ自身を初期化するように指示します；そういうものとして、それは何か他の初期化メソッドを置き換えて、オブジェクトごとに一度だけ送られます。コーダブルであるべきあらゆるオブジェクトクラスは、<code data-v-7fb764c1="">NSCoding</code>プロトコルを採用してそれのメソッドを実装しなければなりません。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">It is important to consider the possible types of archiving that a coder supports. In macOS 10.2 and later, keyed archiving is preferred. You may, however, need to support classic archiving. For details, see <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Archiving/Archiving.html#//apple_ref/doc/uid/10000047i">Archives and Serializations Programming Guide</a>.</span><!--end_enstr-->
+<span class="jpstr">
+重要なのは、コーダーがサポートする、アーカイブに可能な型を考慮することです。macOS 10.2以降では、キー付きアーカイブが好まれます。あなたは、しかしながら、古典的なアーカイブをサポートする必要があるかもしれません。詳細として、<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Archiving/Archiving.html#//apple_ref/doc/uid/10000047i">Archives and Serializations Programming Guide</a>を見てください。
+</span><!--end_jpstr-->
+</p>
+</div>
+</div>
+</div>
+<section data-v-8c663d90="" data-v-63527a60="" data-v-2deaa168="" id="topics" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">Topics</span><!--end_enstr-->
+<span class="jpstr">
+話題
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Initializing with a coder</span><!--end_enstr-->
+<span class="jpstr">
+コーダーを使って初期化する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nscoding/1416145-initwithcoder_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">init<wbr data-v-dac213be="">With<wbr data-v-dac213be="">Coder:</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an object initialized from data in a given unarchiver.</span><!--end_enstr-->
+<span class="jpstr">
+与えられたアンアーカイバの中のデータから初期化されるオブジェクトを返します。
+</span><!--end_jpstr-->
+</div><!---->
+<p data-v-01f7f080="" class="requirement-metadata topic-required"><strong data-v-01f7f080=""><span class="enstr">Required.</span><!--end_enstr-->
+<span class="jpstr">
+必須。
+</span><!--end_jpstr-->
+</strong><!----></p><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Encoding with a coder</span><!--end_enstr-->
+<span class="jpstr">
+コーダーを使って符号化する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nscoding/1413933-encodewithcoder_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">encode<wbr data-v-dac213be="">With<wbr data-v-dac213be="">Coder:</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Encodes the receiver using a given archiver.</span><!--end_enstr-->
+<span class="jpstr">
+与えられたアーカイバを使ってレシーバを符号化します。
+</span><!--end_jpstr-->
+</div><!---->
+<p data-v-01f7f080="" class="requirement-metadata topic-required"><strong data-v-01f7f080=""><span class="enstr">Required.</span><!--end_enstr-->
+<span class="jpstr">
+必須。
+</span><!--end_jpstr-->
+</strong><!----></p><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+</div><!----></section><section data-v-8c663d90="" data-v-2deaa168="" id="relationships" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">Relationships</span><!--end_enstr-->
+<span class="jpstr">
+関係
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Inherited By</span><!--end_enstr-->
+<span class="jpstr">
+継承される先
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><ul data-v-4af8f78e="" class="relationships-list inline" data-v-9807b2e0="">
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/nssecurecoding_language-objc.html" class="link"><code data-v-4af8f78e="">NSSecure<wbr data-v-4af8f78e="">Coding</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uitimingcurveprovider?language=objc" class="link"><code data-v-4af8f78e="">UITiming<wbr data-v-4af8f78e="">Curve<wbr data-v-4af8f78e="">Provider</wbr></wbr></code></a><!---->
+</li>
+</ul></div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Conforming Types</span><!--end_enstr-->
+<span class="jpstr">
+これらの型が準拠
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><ul data-v-4af8f78e="" class="relationships-list column" data-v-9807b2e0="">
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/collaboration/cbidentity?language=objc" class="link"><code data-v-4af8f78e="">CBIdentity</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/collaboration/cbuseridentity?language=objc" class="link"><code data-v-4af8f78e="">CBUser<wbr data-v-4af8f78e="">Identity</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/gamekit/gkachievement?language=objc" class="link"><code data-v-4af8f78e="">GKAchievement</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/gamekit/gkachievementdescription?language=objc" class="link"><code data-v-4af8f78e="">GKAchievement<wbr data-v-4af8f78e="">Description</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/gamekit/gkchallenge?language=objc" class="link"><code data-v-4af8f78e="">GKChallenge</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/gamekit/gkleaderboardset?language=objc" class="link"><code data-v-4af8f78e="">GKLeaderboard<wbr data-v-4af8f78e="">Set</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/gamekit/gkscore?language=objc" class="link"><code data-v-4af8f78e="">GKScore</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/glkit/glkview?language=objc" class="link"><code data-v-4af8f78e="">GLKView</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/glkit/glkviewcontroller?language=objc" class="link"><code data-v-4af8f78e="">GLKView<wbr data-v-4af8f78e="">Controller</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/iobluetooth/iobluetoothdevice?language=objc" class="link"><code data-v-4af8f78e="">IOBluetooth<wbr data-v-4af8f78e="">Device</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/iobluetooth/iobluetoothsdpdataelement?language=objc" class="link"><code data-v-4af8f78e="">IOBluetooth<wbr data-v-4af8f78e="">SDPData<wbr data-v-4af8f78e="">Element</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/iobluetooth/iobluetoothsdpserviceattribute?language=objc" class="link"><code data-v-4af8f78e="">IOBluetooth<wbr data-v-4af8f78e="">SDPService<wbr data-v-4af8f78e="">Attribute</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/iobluetooth/iobluetoothsdpservicerecord?language=objc" class="link"><code data-v-4af8f78e="">IOBluetooth<wbr data-v-4af8f78e="">SDPService<wbr data-v-4af8f78e="">Record</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/iobluetooth/iobluetoothsdpuuid?language=objc" class="link"><code data-v-4af8f78e="">IOBluetooth<wbr data-v-4af8f78e="">SDPUUID</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/mapkit/mkmapview?language=objc" class="link"><code data-v-4af8f78e="">MKMap<wbr data-v-4af8f78e="">View</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/mediaplayer/mpvolumeview?language=objc" class="link"><code data-v-4af8f78e="">MPVolume<wbr data-v-4af8f78e="">View</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/metalkit/mtkview?language=objc" class="link"><code data-v-4af8f78e="">MTKView</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nsanimation?language=objc" class="link"><code data-v-4af8f78e="">NSAnimation</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nscell?language=objc" class="link"><code data-v-4af8f78e="">NSCell</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nsclickgesturerecognizer?language=objc" class="link"><code data-v-4af8f78e="">NSClick<wbr data-v-4af8f78e="">Gesture<wbr data-v-4af8f78e="">Recognizer</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nscollectionviewlayout?language=objc" class="link"><code data-v-4af8f78e="">NSCollection<wbr data-v-4af8f78e="">View<wbr data-v-4af8f78e="">Layout</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nscontroller?language=objc" class="link"><code data-v-4af8f78e="">NSController</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nscursor?language=objc" class="link"><code data-v-4af8f78e="">NSCursor</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/nsdecimalnumberhandler_language-objc.html" class="link"><code data-v-4af8f78e="">NSDecimal<wbr data-v-4af8f78e="">Number<wbr data-v-4af8f78e="">Handler</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/nsdistantobject_language-objc.html" class="link"><code data-v-4af8f78e="">NSDistant<wbr data-v-4af8f78e="">Object</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nsdocumentcontroller?language=objc" class="link"><code data-v-4af8f78e="">NSDocument<wbr data-v-4af8f78e="">Controller</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/coredata/nsentitydescription?language=objc" class="link"><code data-v-4af8f78e="">NSEntity<wbr data-v-4af8f78e="">Description</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nsevent?language=objc" class="link"><code data-v-4af8f78e="">NSEvent</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/coredata/nsfetchindexdescription?language=objc" class="link"><code data-v-4af8f78e="">NSFetch<wbr data-v-4af8f78e="">Index<wbr data-v-4af8f78e="">Description</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/coredata/nsfetchindexelementdescription?language=objc" class="link"><code data-v-4af8f78e="">NSFetch<wbr data-v-4af8f78e="">Index<wbr data-v-4af8f78e="">Element<wbr data-v-4af8f78e="">Description</wbr></wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/coredata/nsfetchrequest?language=objc" class="link"><code data-v-4af8f78e="">NSFetch<wbr data-v-4af8f78e="">Request</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nsfontcollection?language=objc" class="link"><code data-v-4af8f78e="">NSFont<wbr data-v-4af8f78e="">Collection</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/nsformatter_language-objc.html" class="link"><code data-v-4af8f78e="">NSFormatter</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nsgesturerecognizer?language=objc" class="link"><code data-v-4af8f78e="">NSGesture<wbr data-v-4af8f78e="">Recognizer</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nsgridcell?language=objc" class="link"><code data-v-4af8f78e="">NSGrid<wbr data-v-4af8f78e="">Cell</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nsgridcolumn?language=objc" class="link"><code data-v-4af8f78e="">NSGrid<wbr data-v-4af8f78e="">Column</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nsgridrow?language=objc" class="link"><code data-v-4af8f78e="">NSGrid<wbr data-v-4af8f78e="">Row</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nsimagecell?language=objc" class="link"><code data-v-4af8f78e="">NSImage<wbr data-v-4af8f78e="">Cell</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nsimagerep?language=objc" class="link"><code data-v-4af8f78e="">NSImage<wbr data-v-4af8f78e="">Rep</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/nslayoutanchor?language=objc" class="link"><code data-v-4af8f78e="">NSLayout<wbr data-v-4af8f78e="">Anchor</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nslayoutguide?language=objc" class="link"><code data-v-4af8f78e="">NSLayout<wbr data-v-4af8f78e="">Guide</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext?language=objc" class="link"><code data-v-4af8f78e="">NSManaged<wbr data-v-4af8f78e="">Object<wbr data-v-4af8f78e="">Context</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel?language=objc" class="link"><code data-v-4af8f78e="">NSManaged<wbr data-v-4af8f78e="">Object<wbr data-v-4af8f78e="">Model</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nsmenu?language=objc" class="link"><code data-v-4af8f78e="">NSMenu</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nsmenuitem?language=objc" class="link"><code data-v-4af8f78e="">NSMenu<wbr data-v-4af8f78e="">Item</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nsnib?language=objc" class="link"><code data-v-4af8f78e="">NSNib</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nsnibconnector?language=objc" class="link"><code data-v-4af8f78e="">NSNib<wbr data-v-4af8f78e="">Connector</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/nsnotification_language-objc.html" class="link"><code data-v-4af8f78e="">NSNotification</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nsopenglpixelformat?language=objc" class="link"><code data-v-4af8f78e="">NSOpen<wbr data-v-4af8f78e="">GLPixel<wbr data-v-4af8f78e="">Format</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nspdfinfo?language=objc" class="link"><code data-v-4af8f78e="">NSPDFInfo</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nspagecontroller?language=objc" class="link"><code data-v-4af8f78e="">NSPage<wbr data-v-4af8f78e="">Controller</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nspangesturerecognizer?language=objc" class="link"><code data-v-4af8f78e="">NSPan<wbr data-v-4af8f78e="">Gesture<wbr data-v-4af8f78e="">Recognizer</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/nsport_language-objc.html" class="link"><code data-v-4af8f78e="">NSPort</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate?language=objc" class="link"><code data-v-4af8f78e="">NSPredicate<wbr data-v-4af8f78e="">Editor<wbr data-v-4af8f78e="">Row<wbr data-v-4af8f78e="">Template</wbr></wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nspressgesturerecognizer?language=objc" class="link"><code data-v-4af8f78e="">NSPress<wbr data-v-4af8f78e="">Gesture<wbr data-v-4af8f78e="">Recognizer</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nsprintinfo?language=objc" class="link"><code data-v-4af8f78e="">NSPrint<wbr data-v-4af8f78e="">Info</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nsprinter?language=objc" class="link"><code data-v-4af8f78e="">NSPrinter</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/coredata/nspropertydescription?language=objc" class="link"><code data-v-4af8f78e="">NSProperty<wbr data-v-4af8f78e="">Description</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nsresponder?language=objc" class="link"><code data-v-4af8f78e="">NSResponder</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nsrulermarker?language=objc" class="link"><code data-v-4af8f78e="">NSRuler<wbr data-v-4af8f78e="">Marker</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/nsscriptcommand_language-objc.html" class="link"><code data-v-4af8f78e="">NSScript<wbr data-v-4af8f78e="">Command</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/nsscriptcommanddescription_language-objc.html" class="link"><code data-v-4af8f78e="">NSScript<wbr data-v-4af8f78e="">Command<wbr data-v-4af8f78e="">Description</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/nsscriptobjectspecifier_language-objc.html" class="link"><code data-v-4af8f78e="">NSScript<wbr data-v-4af8f78e="">Object<wbr data-v-4af8f78e="">Specifier</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/nsscriptwhosetest_language-objc.html" class="link"><code data-v-4af8f78e="">NSScript<wbr data-v-4af8f78e="">Whose<wbr data-v-4af8f78e="">Test</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nsscrubberlayout?language=objc" class="link"><code data-v-4af8f78e="">NSScrubber<wbr data-v-4af8f78e="">Layout</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nsscrubberselectionstyle?language=objc" class="link"><code data-v-4af8f78e="">NSScrubber<wbr data-v-4af8f78e="">Selection<wbr data-v-4af8f78e="">Style</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nsslideraccessory?language=objc" class="link"><code data-v-4af8f78e="">NSSlider<wbr data-v-4af8f78e="">Accessory</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nsslideraccessorybehavior?language=objc" class="link"><code data-v-4af8f78e="">NSSlider<wbr data-v-4af8f78e="">Accessory<wbr data-v-4af8f78e="">Behavior</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nssplitviewitem?language=objc" class="link"><code data-v-4af8f78e="">NSSplit<wbr data-v-4af8f78e="">View<wbr data-v-4af8f78e="">Item</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nstabviewitem?language=objc" class="link"><code data-v-4af8f78e="">NSTab<wbr data-v-4af8f78e="">View<wbr data-v-4af8f78e="">Item</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nstablecolumn?language=objc" class="link"><code data-v-4af8f78e="">NSTable<wbr data-v-4af8f78e="">Column</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nstextfinder?language=objc" class="link"><code data-v-4af8f78e="">NSText<wbr data-v-4af8f78e="">Finder</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/nstexttab?language=objc" class="link"><code data-v-4af8f78e="">NSText<wbr data-v-4af8f78e="">Tab</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nstouchbar?language=objc" class="link"><code data-v-4af8f78e="">NSTouch<wbr data-v-4af8f78e="">Bar</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nstouchbaritem?language=objc" class="link"><code data-v-4af8f78e="">NSTouch<wbr data-v-4af8f78e="">Bar<wbr data-v-4af8f78e="">Item</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nstrackingarea?language=objc" class="link"><code data-v-4af8f78e="">NSTracking<wbr data-v-4af8f78e="">Area</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/appkit/nsuserinterfacecompressionoptions?language=objc" class="link"><code data-v-4af8f78e="">NSUser<wbr data-v-4af8f78e="">Interface<wbr data-v-4af8f78e="">Compression<wbr data-v-4af8f78e="">Options</wbr></wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/pdfkit/pdfannotation?language=objc" class="link"><code data-v-4af8f78e="">PDFAnnotation</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/pdfkit/pdfannotationfreetext?language=objc" class="link"><code data-v-4af8f78e="">PDFAnnotation<wbr data-v-4af8f78e="">Free<wbr data-v-4af8f78e="">Text</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/pdfkit/pdfannotationink?language=objc" class="link"><code data-v-4af8f78e="">PDFAnnotation<wbr data-v-4af8f78e="">Ink</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/pdfkit/pdfannotationline?language=objc" class="link"><code data-v-4af8f78e="">PDFAnnotation<wbr data-v-4af8f78e="">Line</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/pdfkit/pdfannotationmarkup?language=objc" class="link"><code data-v-4af8f78e="">PDFAnnotation<wbr data-v-4af8f78e="">Markup</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/pdfkit/pdfannotationpopup?language=objc" class="link"><code data-v-4af8f78e="">PDFAnnotation<wbr data-v-4af8f78e="">Popup</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/pdfkit/pdfannotationsquare?language=objc" class="link"><code data-v-4af8f78e="">PDFAnnotation<wbr data-v-4af8f78e="">Square</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/pdfkit/pdfannotationtext?language=objc" class="link"><code data-v-4af8f78e="">PDFAnnotation<wbr data-v-4af8f78e="">Text</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/pdfkit/pdfborder?language=objc" class="link"><code data-v-4af8f78e="">PDFBorder</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/pdfkit/pdfthumbnailview?language=objc" class="link"><code data-v-4af8f78e="">PDFThumbnail<wbr data-v-4af8f78e="">View</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/replaykit/rpbroadcastconfiguration?language=objc" class="link"><code data-v-4af8f78e="">RPBroadcast<wbr data-v-4af8f78e="">Configuration</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/replaykit/rpsystembroadcastpickerview?language=objc" class="link"><code data-v-4af8f78e="">RPSystem<wbr data-v-4af8f78e="">Broadcast<wbr data-v-4af8f78e="">Picker<wbr data-v-4af8f78e="">View</wbr></wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/scriptingbridge/sbapplication?language=objc" class="link"><code data-v-4af8f78e="">SBApplication</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/scriptingbridge/sbobject?language=objc" class="link"><code data-v-4af8f78e="">SBObject</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uiactivityindicatorview?language=objc" class="link"><code data-v-4af8f78e="">UIActivity<wbr data-v-4af8f78e="">Indicator<wbr data-v-4af8f78e="">View</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uibarbuttonitem?language=objc" class="link"><code data-v-4af8f78e="">UIBar<wbr data-v-4af8f78e="">Button<wbr data-v-4af8f78e="">Item</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uibarbuttonitemgroup?language=objc" class="link"><code data-v-4af8f78e="">UIBar<wbr data-v-4af8f78e="">Button<wbr data-v-4af8f78e="">Item<wbr data-v-4af8f78e="">Group</wbr></wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uibaritem?language=objc" class="link"><code data-v-4af8f78e="">UIBar<wbr data-v-4af8f78e="">Item</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uibutton?language=objc" class="link"><code data-v-4af8f78e="">UIButton</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uicollectionviewlayout?language=objc" class="link"><code data-v-4af8f78e="">UICollection<wbr data-v-4af8f78e="">View<wbr data-v-4af8f78e="">Layout</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uidatepicker?language=objc" class="link"><code data-v-4af8f78e="">UIDate<wbr data-v-4af8f78e="">Picker</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uidocumentbrowserviewcontroller?language=objc" class="link"><code data-v-4af8f78e="">UIDocument<wbr data-v-4af8f78e="">Browser<wbr data-v-4af8f78e="">View<wbr data-v-4af8f78e="">Controller</wbr></wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uiimagepickercontroller?language=objc" class="link"><code data-v-4af8f78e="">UIImage<wbr data-v-4af8f78e="">Picker<wbr data-v-4af8f78e="">Controller</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uikey?language=objc" class="link"><code data-v-4af8f78e="">UIKey</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uilabel?language=objc" class="link"><code data-v-4af8f78e="">UILabel</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uilayoutguide?language=objc" class="link"><code data-v-4af8f78e="">UILayout<wbr data-v-4af8f78e="">Guide</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uilocalnotification?language=objc" class="link"><code data-v-4af8f78e="">UILocal<wbr data-v-4af8f78e="">Notification</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uimotioneffect?language=objc" class="link"><code data-v-4af8f78e="">UIMotion<wbr data-v-4af8f78e="">Effect</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uinavigationbar?language=objc" class="link"><code data-v-4af8f78e="">UINavigation<wbr data-v-4af8f78e="">Bar</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uinavigationitem?language=objc" class="link"><code data-v-4af8f78e="">UINavigation<wbr data-v-4af8f78e="">Item</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uipickerview?language=objc" class="link"><code data-v-4af8f78e="">UIPicker<wbr data-v-4af8f78e="">View</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uiprintinfo?language=objc" class="link"><code data-v-4af8f78e="">UIPrint<wbr data-v-4af8f78e="">Info</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uiprogressview?language=objc" class="link"><code data-v-4af8f78e="">UIProgress<wbr data-v-4af8f78e="">View</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uiregion?language=objc" class="link"><code data-v-4af8f78e="">UIRegion</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uiscrollview?language=objc" class="link"><code data-v-4af8f78e="">UIScroll<wbr data-v-4af8f78e="">View</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uisegmentedcontrol?language=objc" class="link"><code data-v-4af8f78e="">UISegmented<wbr data-v-4af8f78e="">Control</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uislider?language=objc" class="link"><code data-v-4af8f78e="">UISlider</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uiswitch?language=objc" class="link"><code data-v-4af8f78e="">UISwitch</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uitabbarcontroller?language=objc" class="link"><code data-v-4af8f78e="">UITab<wbr data-v-4af8f78e="">Bar<wbr data-v-4af8f78e="">Controller</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uitableview?language=objc" class="link"><code data-v-4af8f78e="">UITable<wbr data-v-4af8f78e="">View</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uitableviewcell?language=objc" class="link"><code data-v-4af8f78e="">UITable<wbr data-v-4af8f78e="">View<wbr data-v-4af8f78e="">Cell</wbr></wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uitextfield?language=objc" class="link"><code data-v-4af8f78e="">UIText<wbr data-v-4af8f78e="">Field</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uiview?language=objc" class="link"><code data-v-4af8f78e="">UIView</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uiviewcontroller?language=objc" class="link"><code data-v-4af8f78e="">UIView<wbr data-v-4af8f78e="">Controller</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/uikit/uiwebview?language=objc" class="link"><code data-v-4af8f78e="">UIWeb<wbr data-v-4af8f78e="">View</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/webkit/webarchive?language=objc" class="link"><code data-v-4af8f78e="">Web<wbr data-v-4af8f78e="">Archive</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/webkit/webpreferences?language=objc" class="link"><code data-v-4af8f78e="">Web<wbr data-v-4af8f78e="">Preferences</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/webkit/webresource?language=objc" class="link"><code data-v-4af8f78e="">Web<wbr data-v-4af8f78e="">Resource</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="https://developer.apple.com/documentation/webkit/webundefined?language=objc" class="link"><code data-v-4af8f78e="">Web<wbr data-v-4af8f78e="">Undefined</wbr></code></a><!---->
+</li>
+</ul></div>
+</div>
+</div></section><section data-v-8c663d90="" data-v-63527a60="" data-v-2deaa168="" id="see-also" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">See Also</span><!--end_enstr-->
+<span class="jpstr">
+参照
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">First Steps</span><!--end_enstr-->
+<span class="jpstr">
+初歩
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nssecurecoding_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">NSSecure<wbr data-v-01f7f080="">Coding</wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.</span><!--end_enstr-->
+<span class="jpstr">
+エンコーディングとデコーディングを、オブジェクト置き換え攻撃に対して堅牢なある流儀で可能にするプロトコル。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+</div><!----></section></main>
+</div></div></div>
+<section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo"><nav class="footer-breadory"><a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a><section class="breadcrumbs"><ol class="breadcrumbs-list"></ol></section><div id="directorynav" class="directorynav">
+<div id="dn-cola" class="column">
+<h3><a href="/discover/">Discover</a></h3>
+<ul>
+<li><a href="/ios/">iOS</a></li>
+<li><a href="/ipados/">iPadOS</a></li>
+<li><a href="/macos/">macOS</a></li>
+<li><a href="/tvos/">tvOS</a></li>
+<li><a href="/watchos/">watchOS</a></li>
+<li><a href="/safari/">Safari and Web</a></li>
+<li><a href="/games/">Games</a></li>
+<li><a href="/business/">Business</a></li>
+<li><a href="/education/">Education</a></li>
+<li><a href="/wwdc/">WWDC</a></li>
+</ul>
+</div>
+<div id="dn-colb" class="column">
+<h3><a href="/design/">Design</a></h3>
+<ul>
+<li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
+<li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
+<span class="jpstr">
+リソース
+</span><!--end_jpstr-->
+</a></li>
+<li><a href="/videos/design/">Videos</a></li>
+<li><a href="/design/awards/">Apple Design Awards</a></li>
+<li><a href="/fonts/">Fonts</a></li>
+<li><a href="/accessibility/">Accessibility</a></li>
+<li><a href="/localization/"><span class="enstr">Localization</span><!--end_enstr-->
+<span class="jpstr">
+ローカライゼーション
+</span><!--end_jpstr-->
+</a></li>
+<li><a href="/accessories/">Accessories</a></li>
+</ul>
+</div>
+<div id="dn-colc" class="column">
+<h3><a href="/develop/">Develop</a></h3>
+<ul>
+<li><a href="/xcode/">Xcode</a></li>
+<li><a href="/swift/">Swift</a></li>
+<li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
+<li><a href="/testflight/">TestFlight</a></li>
+<li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
+<li><a href="/videos/">Videos</a></li>
+<li><a href="/download/">Downloads</a></li>
+</ul>
+</div>
+<div id="dn-cold" class="column">
+<h3><a href="/distribute/">Distribute</a></h3>
+<ul>
+<li><a href="/programs/">Developer Program</a></li>
+<li><a href="/app-store/">App Store</a></li>
+<li><a href="/app-store/review/">App Review</a></li>
+<li><a href="/macos/distribution/">Mac Software</a></li>
+<li><a href="/business/distribute/">Apps for Business</a></li>
+<li><a href="/safari/extensions/">Safari Extensions</a></li>
+<li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
+<li><a href="/softwarelicensing/">Trademark Licensing</a></li>
+</ul>
+</div>
+<div id="dn-cole" class="column">
+<h3><a href="/support/">Support</a></h3>
+<ul>
+<li><a href="/support/articles/">Articles</a></li>
+<li><a href="/forums/">Developer Forums</a></li>
+<li><a href="/bug-reporting/">Feedback &amp; Bug Reporting</a></li>
+<li><a href="/system-status/">System Status</a></li>
+<li><a href="/contact/">Contact Us</a></li>
+</ul>
+<h3><a href="/account/">Account</a></h3>
+<ul>
+<li><a href="/account/ios/certificate/">Certificates, Identifiers &amp; Profiles</a></li>
+<li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
+</ul>
+</div>
+</div></nav><div class="ac-gf-footer-legal">
+<div class="ac-gf-footer-news">To view the latest developer news, visit <a href="/news/">News and Updates</a>.</div>
+<div class="ac-gf-footer-language-dropdown-wrapper">
+<select id="footer-language-selector" class="footer-language-select" aria-label="Language Dropdown" autocomplete="off"><option value="https://developer.apple.com/" selected>English</option>
+<option value="https://developer.apple.com/cn/">简体中文</option>
+<option value="https://developer.apple.com/jp/">日本語</option>
+<option value="https://developer.apple.com/kr/">한국어</option></select> <span class="footer-language-select-icon icon icon-chevrondown" aria-hidden="true"></span>
+</div>
+<div class="ac-gf-footer-legal-copyright">Copyright © <span class="footer-current-year">2020</span> <a href="https://www.apple.com">Apple Inc.</a> All rights reserved.</div>
+<div class="ac-gf-footer-legal-links">
+<a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a> <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a> <a href="/terms/">License Agreements</a>
+</div>
+</div></footer></section><script src="../../tutorials/js/footer.js"></script>
+</body>
+</html>

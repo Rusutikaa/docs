@@ -10,7 +10,7 @@
     <meta name="author" content="Apple Inc." />
     <meta name="viewport" content="width=device-width initial-scale=1" />
     
-    <title>Generics — The Swift Programming Language (Swift 5.2)</title>
+    <title>Generics — The Swift Programming Language (Swift 5.3)</title>
     
     <link rel="license" href="/LICENSE.txt" />
     <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
@@ -41,7 +41,7 @@
 
     <div id="menu-toggle" class="menu-toggle open"></div>
 
-    <h2>The Swift Programming Language<div>Swift 5.2</div></h2>
+    <h2>The Swift Programming Language<div>Swift 5.3</div></h2>
 
     <ul>
     <ul class="current">
@@ -310,6 +310,11 @@
 <li><a class="reference internal" href="#ID553"><span class="enstr">Extensions with a Generic Where Clause</span><!--end_enstr-->
 <span class="jpstr">
 総称体where節を持つ拡張
+</span><!--end_jpstr-->
+</a></li>
+<li><a class="reference internal" href="#ID628"><span class="enstr">Contextual Where Clauses</span><!--end_enstr-->
+<span class="jpstr">
+文脈where節
 </span><!--end_jpstr-->
 </a></li>
 <li><a class="reference internal" href="#ID557"><span class="enstr">Associated Types with a Generic Where Clause</span><!--end_enstr-->
@@ -765,9 +770,9 @@
 例えば、スウィフトの<code class="docutils literal notranslate"><span class="pre">Dictionary</span></code>型は、辞書のキーとして使われることができる型に制限を置きます。<a class="reference internal" href="CollectionTypes.html#ID113"><span class="std std-ref">辞書</span></a>で記述されるように、辞書のキーの型は、<em>ハッシュ化</em>できなければなりません。すなわち、それはそれ自身を特有に表わすことを可能にする方法を提供しなければなりません。<code class="docutils literal notranslate"><span class="pre">Dictionary</span></code>は、それが特定のキーのためにすでに値を含むかどうか確認できるように、そのキーにハッシュ化できることを必要とします。この要件なしでは、<code class="docutils literal notranslate"><span class="pre">Dictionary</span></code>はそれが特定のキーのために値を差し込んだり取り替えたりするべきかどうか伝えることができませんし、それはすでに辞書の中にある指定されたキーに対する値を見つけることもできません。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">This requirement is enforced by a type constraint on the key type for <code class="docutils literal notranslate"><span class="pre">Dictionary</span></code>, which specifies that the key type must conform to the <code class="docutils literal notranslate"><span class="pre">Hashable</span></code> protocol, a special protocol defined in the Swift standard library. All of Swift’s basic types (such as <code class="docutils literal notranslate"><span class="pre">String</span></code>, <code class="docutils literal notranslate"><span class="pre">Int</span></code>, <code class="docutils literal notranslate"><span class="pre">Double</span></code>, and <code class="docutils literal notranslate"><span class="pre">Bool</span></code>) are hashable by default.</span><!--end_enstr-->
+<p><span class="enstr">This requirement is enforced by a type constraint on the key type for <code class="docutils literal notranslate"><span class="pre">Dictionary</span></code>, which specifies that the key type must conform to the <code class="docutils literal notranslate"><span class="pre">Hashable</span></code> protocol, a special protocol defined in the Swift standard library. All of Swift’s basic types (such as <code class="docutils literal notranslate"><span class="pre">String</span></code>, <code class="docutils literal notranslate"><span class="pre">Int</span></code>, <code class="docutils literal notranslate"><span class="pre">Double</span></code>, and <code class="docutils literal notranslate"><span class="pre">Bool</span></code>) are hashable by default. For information about making your own custom types conform to the <code class="docutils literal notranslate"><span class="pre">Hashable</span></code> protocol, see <a class="reference external" href="../../../developer.apple.com/documentation/swift/hashable.html#2849490">Conforming to the Hashable Protocol</a>.</span><!--end_enstr-->
 <span class="jpstr">
-この要件は、<code class="docutils literal notranslate"><span class="pre">Dictionary</span></code>のためのキー型に関する型制約によって強制されます、それは、キー型がスウィフト標準ライブラリで定義される特別なプロトコル、<code class="docutils literal notranslate"><span class="pre">Hashable</span></code>プロトコルに準拠しなければならないことを示します。スウィフトの基本の型（例えば<code class="docutils literal notranslate"><span class="pre">String</span></code>、<code class="docutils literal notranslate"><span class="pre">Int</span></code>、<code class="docutils literal notranslate"><span class="pre">Double</span></code>、そして<code class="docutils literal notranslate"><span class="pre">Bool</span></code>）の全ては、初期状態でハッシュ化されます。
+この要件は、<code class="docutils literal notranslate"><span class="pre">Dictionary</span></code>のためのキー型に関する型制約によって強制されます、それは、キー型がスウィフト標準ライブラリで定義される特別なプロトコル、<code class="docutils literal notranslate"><span class="pre">Hashable</span></code>プロトコルに準拠しなければならないことを示します。スウィフトの基本の型（例えば<code class="docutils literal notranslate"><span class="pre">String</span></code>、<code class="docutils literal notranslate"><span class="pre">Int</span></code>、<code class="docutils literal notranslate"><span class="pre">Double</span></code>、そして<code class="docutils literal notranslate"><span class="pre">Bool</span></code>）の全ては、初期状態でハッシュ化されます。あなた独自のあつらえの型を<code class="docutils literal notranslate"><span class="pre">Hashable</span></code>プロトコルに準拠させることについての情報として、<a class="reference external" href="../../../developer.apple.com/documentation/swift/hashable.html#2849490">Hashableプロトコルに準拠する</a>を見てください。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">You can define your own type constraints when creating custom generic types, and these constraints provide much of the power of generic programming. Abstract concepts like <code class="docutils literal notranslate"><span class="pre">Hashable</span></code> characterize types in terms of their conceptual characteristics, rather than their concrete type.</span><!--end_enstr-->
@@ -1103,7 +1108,7 @@
 </p>
 <p><span class="enstr">Here’s an extension of the <code class="docutils literal notranslate"><span class="pre">Stack</span></code> type from <a class="reference internal" href="#ID184"><span class="std std-ref">Generic Types</span></a> above that adds conformance to the <code class="docutils literal notranslate"><span class="pre">SuffixableContainer</span></code> protocol:</span><!--end_enstr-->
 <span class="jpstr">
-ここに、上の<a class="reference internal" href="#ID184"><span class="std std-ref">Generic Types</span></a>からの<code class="docutils literal notranslate">Stack</code>型の拡張があります、それは<code class="docutils literal notranslate"><span class="pre">SuffixableContainer</span></code>プロトコルへの準拠を加えます：
+ここに、上の<a class="reference internal" href="#ID184"><span class="std std-ref">Generic Types</span></a>からの<code class="docutils literal notranslate"><span class="pre">Stack</span></code>型の拡張があります、それは<code class="docutils literal notranslate"><span class="pre">SuffixableContainer</span></code>プロトコルへの準拠を加えます：
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">extension</span> <span class="nc">Stack</span>: <span class="nc">SuffixableContainer</span> {
@@ -1397,6 +1402,66 @@
 <p><span class="enstr">You can include multiple requirements in a generic <code class="docutils literal notranslate"><span class="pre">where</span></code> clause that is part of an extension, just like you can for a generic <code class="docutils literal notranslate"><span class="pre">where</span></code> clause that you write elsewhere. Separate each requirement in the list with a comma.</span><!--end_enstr-->
 <span class="jpstr">
 あなたは、複数の要件を拡張の一部であるひとつの<code class="docutils literal notranslate"><span class="pre">where</span></code>節の中に含めることができます、ちょうどあなたがどこか他で書く総称体<code class="docutils literal notranslate"><span class="pre">where</span></code>節に対してできるように。リストの中の各要件をコンマで区切ってください。
+</span><!--end_jpstr-->
+</p>
+</div>
+<div class="section" id="ID628">
+<h2><span class="enstr">Contextual Where Clauses<a class="headerlink" href="#ID628" title="Permalink to this headline">¶</a></span><!--end_enstr-->
+<span class="jpstr">
+文脈where節<a class="headerlink" href="#ID628" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h2>
+<p><span class="enstr">You can write a generic <code class="docutils literal notranslate"><span class="pre">where</span></code> clause as part of a declaration that doesn’t have its own generic type constraints, when you’re already working in the context of generic types. For example, you can write a generic <code class="docutils literal notranslate"><span class="pre">where</span></code> clause on a subscript of a generic type or on a method in an extension to a generic type. The <code class="docutils literal notranslate"><span class="pre">Container</span></code> structure is generic, and the <code class="docutils literal notranslate"><span class="pre">where</span></code> clauses in the example below specify what type constraints have to be satisfied to make these new methods available on a container.</span><!--end_enstr-->
+<span class="jpstr">
+あなたは総称体<code class="docutils literal notranslate"><span class="pre">where</span></code>節を、それ自身の総称体型制約を持たないある宣言の一部として書くことが、あなたが既に総称体型の文脈の中で作業している時は可能です。例えば、あなたは総称体<code class="docutils literal notranslate"><span class="pre">where</span></code>節をある総称体型の添え字上でまたはある総称体型への拡張の中のメソッド上で書くことができます。<code class="docutils literal notranslate"><span class="pre">Container</span></code>構造体は総称体です、そして下の例の中の<code class="docutils literal notranslate"><span class="pre">where</span></code>節は、どんな型制約がそれら新しいメソッドをあるコンテナ上で利用可能にするためには満たされなければならないかを指定します。
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">extension</span> <span class="nc">Container</span> {
+</li><li>    <span class="k">func</span> <span class="nv">average</span>() -&gt; <span class="nc">Double</span> <span class="k">where</span> <span class="nv">Item</span> == <span class="nv">Int</span> {
+</li><li>        <span class="k">var</span> <span class="nv">sum</span> = <span class="m">0.0</span>
+</li><li>        <span class="k">for</span> <span class="nv">index</span> <span class="k">in</span> <span class="m">0</span>..&lt;<span class="nv">count</span> {
+</li><li>            <span class="nv">sum</span> += <span class="nv">Double</span>(<span class="k">self</span>[<span class="nv">index</span>])
+</li><li>        }
+</li><li>        <span class="k">return</span> <span class="nv">sum</span> / <span class="nv">Double</span>(<span class="nv">count</span>)
+</li><li>    }
+</li><li>    <span class="k">func</span> <span class="nv">endsWith</span>(<span class="k">_</span> <span class="nv">item</span>: <span class="nc">Item</span>) -&gt; <span class="nc">Bool</span> <span class="k">where</span> <span class="nv">Item</span>: <span class="nv">Equatable</span> {
+</li><li>        <span class="k">return</span> <span class="nv">count</span> &gt;= <span class="m">1</span> &amp;&amp; <span class="k">self</span>[<span class="nv">count</span>-<span class="m">1</span>] == <span class="nv">item</span>
+</li><li>    }
+</li><li>}
+</li><li><span class="k">let</span> <span class="nv">numbers</span> = [<span class="m">1260</span>, <span class="m">1200</span>, <span class="m">98</span>, <span class="m">37</span>]
+</li><li><span class="nv">print</span>(<span class="nv">numbers</span>.<span class="nv">average</span>())
+</li><li><span class="c"><span class="enstr">// Prints "648.75"</span><!--end_enstr--><span class="jpstr">（「648.75」を出力します）</span><!--end_jpstr--></span>
+</li><li><span class="nv">print</span>(<span class="nv">numbers</span>.<span class="nv">endsWith</span>(<span class="m">37</span>))
+</li><li><span class="c"><span class="enstr">// Prints "true"</span><!--end_enstr--><span class="jpstr">（「true」を出力します）</span><!--end_jpstr--></span>
+</li></ol></div></div></div>
+<p><span class="enstr">This example adds an <code class="docutils literal notranslate"><span class="pre">average()</span></code> method to <code class="docutils literal notranslate"><span class="pre">Container</span></code> when the items are integers, and it adds an <code class="docutils literal notranslate"><span class="pre">endsWith(_:)</span></code> method when the items are equatable. Both functions include a generic <code class="docutils literal notranslate"><span class="pre">where</span></code> clause that adds type constraints to the generic <code class="docutils literal notranslate"><span class="pre">Item</span></code> type parameter from the original declaration of <code class="docutils literal notranslate"><span class="pre">Container</span></code>.</span><!--end_enstr-->
+<span class="jpstr">
+この例は、<code class="docutils literal notranslate"><span class="pre">average()</span></code>メソッドを<code class="docutils literal notranslate"><span class="pre">Container</span></code>へとその項目が整数である場合は加えます、そしてそれは<code class="docutils literal notranslate"><span class="pre">endsWith(_:)</span></code>メソッドを項目が同等評価可能である場合は加えます。両方の関数は、ある総称体<code class="docutils literal notranslate"><span class="pre">where</span></code>節を含みます、それは型制約を<code class="docutils literal notranslate"><span class="pre">Container</span></code>の元の宣言由来の総称体<code class="docutils literal notranslate"><span class="pre">Item</span></code>型パラメータに加えます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">If you want to write this code without using contextual <code class="docutils literal notranslate"><span class="pre">where</span></code> clauses, you write two extensions, one for each generic <code class="docutils literal notranslate"><span class="pre">where</span></code> clause. The example above and the example below have the same behavior.</span><!--end_enstr-->
+<span class="jpstr">
+あなたがこのコードを文脈<code class="docutils literal notranslate"><span class="pre">where</span></code>節を使うことなく書きたいならば、あなたは２つの拡張を書きます、各<code class="docutils literal notranslate"><span class="pre">where</span></code>節のために１つ。上の例と下の例は同じ挙動を持ちます。
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">extension</span> <span class="nc">Container</span> <span class="k">where</span> <span class="nc">Item</span> == <span class="nc">Int</span> {
+</li><li>    <span class="k">func</span> <span class="nv">average</span>() -&gt; <span class="nc">Double</span> {
+</li><li>        <span class="k">var</span> <span class="nv">sum</span> = <span class="m">0.0</span>
+</li><li>        <span class="k">for</span> <span class="nv">index</span> <span class="k">in</span> <span class="m">0</span>..&lt;<span class="nv">count</span> {
+</li><li>            <span class="nv">sum</span> += <span class="nv">Double</span>(<span class="k">self</span>[<span class="nv">index</span>])
+</li><li>        }
+</li><li>        <span class="k">return</span> <span class="nv">sum</span> / <span class="nv">Double</span>(<span class="nv">count</span>)
+</li><li>    }
+</li><li>}
+</li><li><span class="k">extension</span> <span class="nc">Container</span> <span class="k">where</span> <span class="nc">Item</span>: <span class="nc">Equatable</span> {
+</li><li>    <span class="k">func</span> <span class="nv">endsWith</span>(<span class="k">_</span> <span class="nv">item</span>: <span class="nc">Item</span>) -&gt; <span class="nc">Bool</span> {
+</li><li>        <span class="k">return</span> <span class="nv">count</span> &gt;= <span class="m">1</span> &amp;&amp; <span class="k">self</span>[<span class="nv">count</span>-<span class="m">1</span>] == <span class="nv">item</span>
+</li><li>    }
+</li><li>}
+</li></ol></div></div></div>
+<p><span class="enstr">In the version of this example that uses contextual <code class="docutils literal notranslate"><span class="pre">where</span></code> clauses, the implementation of <code class="docutils literal notranslate"><span class="pre">average()</span></code> and <code class="docutils literal notranslate"><span class="pre">endsWith(_:)</span></code> are both in the same extension because each method’s generic <code class="docutils literal notranslate"><span class="pre">where</span></code> clause states the requirements that need to be satisfied to make that method available. Moving those requirements to the extensions’ generic <code class="docutils literal notranslate"><span class="pre">where</span></code> clauses makes the methods available in the same situations, but requires one extension per requirement.</span><!--end_enstr-->
+<span class="jpstr">
+この例の文脈<code class="docutils literal notranslate"><span class="pre">where</span></code>節を使うバージョンでは、<code class="docutils literal notranslate"><span class="pre">average()</span></code>と<code class="docutils literal notranslate"><span class="pre">endsWith(_:)</span></code>の実装は両方とも同じ拡張の中にあります、なぜなら各メソッドのもつ総称体<code class="docutils literal notranslate"><span class="pre">where</span></code>節それらが、そのメソッドを利用可能にするのに満足させる必要がある要件を述べるからです。それらの要件を拡張のもつ総称体<code class="docutils literal notranslate"><span class="pre">where</span></code>節に移動することは、メソッドそれらを同じ状況で利用可能にします、しかし要件ごとに１つの拡張を要します。
 </span><!--end_jpstr-->
 </p>
 </div>

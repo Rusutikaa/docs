@@ -1,0 +1,693 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- link rel="icon" href="/favicon.ico" -->
+<link rel="mask-icon" href="/apple-logo.svg" color="#333333">
+<link rel="stylesheet" href="../../../tutorials/css/_globalnav.css">
+<title>Increasing App Usage with Suggestions Based on User Activities | Apple Developer Documentation</title>
+<link href="../../../tutorials/css/chunk-76d5c2b5.00c53891.css" rel="prefetch">
+<link href="../../../tutorials/css/documentation-topic.e358e85c.css" rel="prefetch">
+<link href="../../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css" rel="prefetch">
+<link href="../../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css" rel="prefetch">
+<link href="../../../tutorials/css/topic.69278f1e.css" rel="prefetch">
+<link href="../../../tutorials/css/topic~tutorials-overview.1f93e025.css" rel="prefetch">
+<link href="../../../tutorials/css/tutorials-overview.d4ff0b50.css" rel="prefetch">
+<link href="../../../tutorials/css/welcome-experience-featured.0537f0f0.css" rel="prefetch">
+<link href="../../../tutorials/css/welcome-experience-technologies.60068ae2.css" rel="prefetch">
+<link href="../../../tutorials/js/chunk-2d0d3105.459bf725.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-2d21a016.b81cb311.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-503f1ed8.d26c4552.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-530f89ce.621e1d48.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-640db3b2.f8778ca5.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-76d5c2b5.092e3b8a.js" rel="prefetch">
+<link href="../../../tutorials/js/documentation-topic.6abe9458.js" rel="prefetch">
+<link href="../../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js" rel="prefetch">
+<link href="../../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js" rel="prefetch">
+<link href="../../../tutorials/js/topic.c6ec6b6c.js" rel="prefetch">
+<link href="../../../tutorials/js/topic~tutorials-overview.467a8186.js" rel="prefetch">
+<link href="../../../tutorials/js/tutorials-overview.d77f61ca.js" rel="prefetch">
+<link href="../../../tutorials/js/welcome-experience-featured.04f663e2.js" rel="prefetch">
+<link href="../../../tutorials/js/welcome-experience-technologies.56a372c1.js" rel="prefetch">
+<link href="../../../tutorials/css/app.2a174a23.css" rel="preload" as="style">
+<link href="../../../tutorials/js/app.2c558263.js" rel="preload" as="script">
+<link href="../../../tutorials/js/chunk-vendors.c3b68236.js" rel="preload" as="script">
+<link href="../../../tutorials/css/app.2a174a23.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../../../tutorials/css/chunk-76d5c2b5.00c53891.css">
+<script charset="utf-8" src="../../../tutorials/js/chunk-76d5c2b5.092e3b8a.js"></script><link rel="stylesheet" type="text/css" href="../../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css">
+<script charset="utf-8" src="../../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js"></script><link rel="stylesheet" type="text/css" href="../../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css">
+<script charset="utf-8" src="../../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js"></script><link rel="stylesheet" type="text/css" href="../../../tutorials/css/documentation-topic.e358e85c.css">
+<script charset="utf-8" src="../../../tutorials/js/documentation-topic.6abe9458.js"></script>
+</head>
+<body>
+<div id="_omniture_top">
+<script>var s_account="awdappledeveloper"</script>
+</div>
+<a href="#main" id="skip-localnav">Skip Navigation</a><aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"><nav id="ac-globalnav" class="js no-touch" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions"><div class="ac-gn-content">
+<ul class="ac-gn-header">
+<li class="ac-gn-item ac-gn-menuicon">
+<label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true"><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span> </span><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span></span></label> <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open"><span class="ac-gn-menuanchor-label">Global Nav Open Menu</span> </a><a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close"><span class="ac-gn-menuanchor-label">Global Nav Close Menu</span></a>
+</li>
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+</ul>
+<div class="ac-gn-search-placeholder-container" role="search"><div class="ac-gn-search ac-gn-search-small"><a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a><div class="ac-gn-search-placeholder-bar">
+<div class="ac-gn-search-placeholder-input"><div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
+<div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
+<span class="ac-gn-search-placeholder">Search Developer</span>
+</div></div>
+<div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></div>
+</div></a></div></div>
+<ul class="ac-gn-list">
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-discover"><a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover"><span class="ac-gn-link-text">Discover</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-design"><a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design"><span class="ac-gn-link-text">Design</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-develop"><a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop"><span class="ac-gn-link-text">Develop</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-distribute"><a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute"><span class="ac-gn-link-text">Distribute</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport"><a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport"><span class="ac-gn-link-text">Support</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-account"><a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account"><span class="ac-gn-link-text">Account</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search"><a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a></li>
+</ul>
+<aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search"><div class="ac-gn-searchview-content">
+<div class="ac-gn-searchview-bar"><div class="ac-gn-searchview-bar-wrapper">
+<form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get"><div class="ac-gn-searchform-wrapper">
+<input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions"> <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button> <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search"><span class="ac-gn-searchform-reset-background"></span></button>
+</div></form>
+<button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></button>
+</div></div>
+<aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
+</div>
+<button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search"><span class="ac-gn-searchview-close-wrapper"><span class="ac-gn-searchview-close-left"></span> <span class="ac-gn-searchview-close-right"></span></span></button></aside>
+</div></nav><div class="ac-gn-blur"></div>
+<div id="ac-gn-curtain" class="ac-gn-curtain"></div>
+<div id="ac-gn-placeholder" class="ac-nav-placeholder"></div>
+<script src="../../../tutorials/js/ac-globalnav.built.js"></script>
+<noscript>
+<style>.noscript {
+  font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
+  margin: 92px auto 140px auto;
+  text-align: center;
+  width: 980px;
+}
+
+.noscript-title {
+  color: #111;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -.003em;
+  line-height: 1.08365;
+  margin: 0 auto 54px auto;
+  width: 502px;
+}
+
+@media only screen and (max-width: 1068px) {
+  .noscript {
+    margin: 90px auto 120px auto;
+    width: 692px;
+  }
+
+  .noscript-title {
+    font-size: 40px;
+    letter-spacing: 0;
+    line-height: 1.1;
+    margin: 0 auto 45px auto;
+    width: 420px;
+  }
+}
+
+@media only screen and (max-width: 735px) {
+  .noscript {
+    margin: 45px auto 60px auto;
+    width: 87.5%;
+  }
+
+  .noscript-title {
+    font-size: 32px;
+    letter-spacing: .004em;
+    line-height: 1.125;
+    margin: 0 auto 35px auto;
+    max-width: 330px;
+    width: auto;
+  }
+}
+
+#loading-placeholder {
+  display: none;
+};</style>
+<div class="noscript">
+<h1 class="noscript-title">This page requires JavaScript.</h1>
+<p>Please turn on JavaScript in your browser and refresh the page to view its content.</p>
+</div>
+</noscript>
+<div data-v-0220a4c4="" id="app" class=""><div data-v-0220a4c4=""><div data-v-2deaa168="" class="doc-topic">
+<div data-v-3ceaa5df="" data-v-2deaa168="" class="localnav-container">
+<input data-v-3ceaa5df="" aria-hidden="true" id="localnav-menustate" type="checkbox" class="localnav-menustate"><div id="localnav-sticky-placeholder" class="css-sticky"></div>
+<nav data-v-3ceaa5df="" aria-label="API Reference" data-sticky="" id="localnav" role="navigation" class="localnav localnav-dark theme-dark medium-localnav-collapsible localnav-noborder localnav-scrim css-sticky"><div data-v-3ceaa5df="" class="localnav-wrapper">
+<div data-v-3ceaa5df="" class="referencenav">
+<div data-v-3ceaa5df="" class="localnav-background"></div>
+<div data-v-3ceaa5df="" class="localnav-content">
+<a data-v-3ceaa5df="" href="../../../index.html" class="localnav-title">
+            Documentation
+          </a><div data-v-3ceaa5df="" class="localnav-menu">
+<a data-v-3ceaa5df="" href="#localnav-menustate" role="button" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Open Menu</span></a><a data-v-3ceaa5df="" href="#" role="button" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Close Menu</span></a><div data-v-3ceaa5df="" class="localnav-menu-tray">
+<ul data-v-72fd0d2c="" data-v-3ceaa5df="" aria-label="Breadcrumbs" class="localnav-menu-items">
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../../documentation/foundation_language-objc.html" class="parent item router-link-active" data-v-23a2ae0d="">
+    Foundation
+  </a></li><!---->
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../../documentation/foundation/task_management_language-objc.html" class="parent item router-link-active" data-v-23a2ae0d="">
+    <span class="enstr">Task Management</span><!--end_enstr-->
+<span class="jpstr">
+タスク管理
+</span><!--end_jpstr-->
+
+  </a></li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item">
+<span data-v-23a2ae0d="" class="current item">
+    <span class="enstr">Increasing App Usage with Suggestions Based on User Activities</span><!--end_enstr-->
+<span class="jpstr">
+ユーザアクションに基づく提案でアプリ利用を拡大する
+</span><!--end_jpstr-->
+
+  </span><!---->
+</li>
+</ul>
+<ul data-v-3ceaa5df="" data-breadcrumbs-count="3" class="localnav-menu-items localnav-menu-settings">
+<li data-v-282336e0="" data-v-3ceaa5df="" class="localnav-menu-setting language-container" breadcrumbcount="3">
+<div data-v-282336e0="" class="language-toggle-container">
+<label data-v-282336e0="" for="language-toggle" class="language-toggle-label">
+      Language:
+    </label><select data-v-282336e0="" id="language-toggle" class="language-dropdown localnav-menu-link" style="width: 74px;"><option data-v-282336e0="" value="swift">
+        Swift
+      </option>
+<option data-v-282336e0="" value="occ">
+        Objective-C
+      </option></select>
+</div>
+<div data-v-282336e0="" class="language-list-container">
+<span data-v-282336e0="" class="localnav-menu-setting-label">
+      Language:
+    </span><ul data-v-282336e0="" class="language-list">
+<li data-v-282336e0="" class="language-list-item"><a data-v-282336e0="" href="../../../documentation/foundation/task_management/increasing_app_usage_with_suggestions_based_on_user_activities.html" class="localnav-menu-setting-link router-link-active">
+          Swift
+        </a></li>
+<li data-v-282336e0="" class="language-list-item"><span data-v-282336e0="" data-language="occ" aria-current="page" class="current-language">
+          Objective-C
+        </span></li>
+</ul>
+</div>
+</li>
+<li data-v-2e9f4ea2="" data-v-3ceaa5df="" class="localnav-menu-setting">
+<label data-v-2e9f4ea2="" for="version-label" class="localnav-menu-setting-label">
+    API Changes:
+  </label><span data-v-2e9f4ea2=""><span class="enstr">None</span><!--end_enstr-->
+<span class="jpstr">
+なし
+</span><!--end_jpstr-->
+</span>
+</li><!---->
+
+</ul>
+</div>
+<div data-v-3ceaa5df="" class="localnav-actions"><div data-v-3ceaa5df="" aria-hidden="true" class="localnav-action localnav-action-menucta"><label data-v-3ceaa5df="" for="localnav-menustate" class="localnav-menucta"><span data-v-3ceaa5df="" class="localnav-menucta-chevron"></span></label></div></div>
+</div>
+</div>
+</div><!---->
+
+</div></nav><label data-v-3ceaa5df="" aria-hidden="true" for="localnav-menustate" id="localnav-curtain"></label>
+</div>
+<main data-v-2deaa168="" id="main" role="main" tabindex="0" class="main"><div data-v-4ba5af7c="" data-v-2deaa168="" class="topictitle">
+<span data-v-4ba5af7c="" class="eyebrow">Sample Code</span><h1 data-v-4ba5af7c="" class="title"><span class="enstr">Increasing App Usage with Suggestions Based on User Activities</span><!--end_enstr-->
+<span class="jpstr">
+ユーザアクションに基づく提案でアプリ利用を拡大する
+</span><!--end_jpstr-->
+</h1>
+</div>
+<div data-v-0253ce0e="" data-v-2deaa168="" class="row container">
+<div data-v-9807b2e0="" data-v-5ad0d458="" data-v-2deaa168="" class="col description large-9 medium-9 small-12" data-v-0253ce0e=""><!---->
+<div data-v-7ea0aa49="" data-v-aba749e6="" data-v-2deaa168="" class="abstract content" data-v-9807b2e0=""><span class="enstr">Provide a continuous user experience by capturing information from your app and displaying this information as proactive suggestions across the system.</span><!--end_enstr-->
+<span class="jpstr">
+情報をあなたのアプリからキャプチャして、この情報を積極的提案としてシステムの至る所で表示することによって、途切れのないユーザ体験を提供してください。
+</span><!--end_jpstr-->
+</div><!----><!---->
+<a data-v-8a83aba8="" data-v-2deaa168="" href="../../../../docs-assets.developer.apple.com/published/dad8147b37/IncreasingAppUsageWithSuggestionsBasedOnUserActivities.zip?language=objc" class="button button-cta" data-v-9807b2e0="">Download</a>
+</div>
+<div data-v-9807b2e0="" data-v-42fb6bac="" data-v-2deaa168="" class="col summary large-3 medium-3 small-12" data-v-0253ce0e=""><!---->
+<div data-v-e4237090="" data-v-fcdb795a="" data-v-2deaa168="" class="summary-section availability" role="complementary" aria-label="Availability" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-fcdb795a="" class="title" data-v-e4237090=""><span class="enstr">Availability</span><!--end_enstr-->
+<span class="jpstr">
+有効性
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-fcdb795a="" class="summary-list platform-list" data-v-e4237090="">
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="iOS 13.0+, Available on iOS 13.0 and later" title="Available on iOS 13.0 and later" data-v-e3899270="">
+  iOS 13.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="Xcode 11.0+, Available on Xcode 11.0 and later" title="Available on Xcode 11.0 and later" data-v-e3899270="">
+  Xcode 11.0+
+</span><!---->
+</li>
+</ul>
+</div>
+<div data-v-e4237090="" data-v-741142ba="" data-v-2deaa168="" class="summary-section frameworks" role="complementary" aria-label="Framework" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-741142ba="" class="title" data-v-e4237090=""><span class="enstr">Framework</span><!--end_enstr-->
+<span class="jpstr">
+フレームワーク
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-741142ba="" class="summary-list" data-v-e4237090=""><li data-v-e3899270="" data-v-741142ba="" class="summary-list-item" data-v-1450532d=""><span data-v-741142ba="" data-v-e3899270="" class="name">Foundation</span></li></ul>
+</div>
+<div data-v-e4237090="" data-v-2b96ab1a="" data-v-2deaa168="" class="summary-section on-this-page" data-v-9807b2e0=""><nav data-v-2b96ab1a="" data-v-e4237090="" aria-labelledby="on-this-page-title"><p data-v-1e0258b0="" data-v-2b96ab1a="" class="title" id="on-this-page-title" data-v-e4237090=""><span class="enstr">On This Page</span><!--end_enstr-->
+<span class="jpstr">
+この項には
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-2b96ab1a="" class="summary-list" data-v-e4237090="">
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../../documentation/foundation/task_management/increasing_app_usage_with_suggestions_based_on_user_activities_language-objc.html#overview" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Overview</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../../documentation/foundation/task_management/increasing_app_usage_with_suggestions_based_on_user_activities_language-objc.html#see-also" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">See Also</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+</ul></nav></div>
+</div>
+<div data-v-9807b2e0="" data-v-1e40f676="" data-v-2deaa168="" class="col primary-content large-9 medium-9 small-12" data-v-0253ce0e=""><div data-v-7ea0aa49="" data-v-1e40f676="" class="content" data-v-9807b2e0="">
+<h2 id="overview"><span class="enstr">Overview</span><!--end_enstr-->
+<span class="jpstr">
+概要
+</span><!--end_jpstr-->
+</h2>
+<p><span class="enstr">This sample app shows a list of pizza restaurants, near your current location, in a table view. Select a restaurant from the table view to donate its location information to the system as a user activity object. The system then displays the registered location information proactively as suggestions, such as in Search, used with Siri Shortcuts.</span><!--end_enstr-->
+<span class="jpstr">
+この見本アプリは、あなたの現在の場所近くの、ピザレストランの一覧をテーブルビューで示します。レストランをテーブルビューから選んで、それの位置情報をシステムへとユーザアクティビティオブジェクトとして提供してください。システムはそれから登録された位置情報を積極的に提案として表示します、たとえば「Siriショートカット」で使われる、「検索」において。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">When a user interacts with a proactive suggestion, the system continues the activity by associating the object’s activity type with the sample app.</span><!--end_enstr-->
+<span class="jpstr">
+ユーザが積極的提案と相互作用する時、システムは、オブジェクトのもつアクティビティ型を見本アプリと結びつけることによって、アクティビティを継続します。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">When donating location information, this sample app also verifies whether the previously captured information appears, as QuickType keyboard suggestions, within other apps installed on a device.</span><!--end_enstr-->
+<span class="jpstr">
+位置情報を提供する時、この見本アプリはまた、QuickTypeキーボード提案として、デバイス上にインストールされた他のアプリ内で、以前にキャプチャされた情報が現れるかどうか検証します。
+</span><!--end_jpstr-->
+</p>
+<h3 id="3376397"><span class="enstr">Declare a User Activity Type</span><!--end_enstr-->
+<span class="jpstr">
+ユーザアクティビティ型を宣言する
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">You implement proactive suggestions by determining specific activities that a user can perform in your app, and whose state you can recreate at a later time. The sample app has one user activity, <code data-v-7fb764c1="">view-location</code>, which represents the user viewing details of a specific restaurant location.</span><!--end_enstr-->
+<span class="jpstr">
+あなたは積極的提案の実装を、ユーザがあなたのアプリで実行できる特定のアクティビティそれら、そしてあなたが後で再度作成できるそれの状態を決定することによって行います。見本アプリは１つのユーザアクティビティ、<code data-v-7fb764c1="">view-location</code>を持ちます、それはユーザが眺めているある特定のレストランの場所の詳細を表します。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">In the sample app, the target includes the <code data-v-7fb764c1="">view-location</code> activity in its <a href="https://developer.apple.com/documentation/bundleresources/information_property_list?language=objc" class="">Information Property List</a> file, as an entry with the key name <code data-v-7fb764c1=""></code>. The type of this entry is <code data-v-7fb764c1="">Array</code>, and each member is a <code data-v-7fb764c1="">String</code> representing a supported user activity in reverse DNS notation.</span><!--end_enstr-->
+<span class="jpstr">
+見本アプリにおいて、ターゲットは<code data-v-7fb764c1="">view-location</code>アクティビティをそれの<a href="https://developer.apple.com/documentation/bundleresources/information_property_list?language=objc" class="">Information Property List</a>ファイルの中に、キー名<code data-v-7fb764c1=""></code>をもつある登録項目として含みます。この登録項目の型は<code data-v-7fb764c1="">Array</code>です、そして各メンバーは、サポートされるユーザアクティビティを逆DNS表記で表している<code data-v-7fb764c1="">String</code>です。
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="3376382"><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">&lt;key&gt;<span class="syntax-type">NSUserActivityTypes</span>&lt;/key&gt;</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">&lt;array&gt;</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">&lt;string&gt;com.example.apple-samplecode.<span class="syntax-type">ProactiveToolbox</span>.view-location&lt;/string&gt;</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">&lt;/array&gt;</span></span></code></pre></div>
+</div></figure><h3 id="3376398"><span class="enstr">Manage a User Activity</span><!--end_enstr-->
+<span class="jpstr">
+ユーザアクティビティを管理する
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">At runtime, you represent a user activity with the <a href="../../../documentation/foundation/nsuseractivity_language-objc.html" class=""><code data-v-7fb764c1="">NSUser<wbr data-v-7fb764c1="">Activity</wbr></code></a> object. You initialize a user activity object with a string identifier, the same one declared earlier in the <code data-v-7fb764c1="">Info<wbr data-v-7fb764c1="">.plist</wbr></code> file.</span><!--end_enstr-->
+<span class="jpstr">
+実行時に、あなたはユーザアクティビティを<a href="../../../documentation/foundation/nsuseractivity_language-objc.html" class=""><code data-v-7fb764c1="">NSUser<wbr data-v-7fb764c1="">Activity</wbr></code></a>オブジェクトで表します。あなたは、ユーザアクティビティオブジェクトを、以前に<code data-v-7fb764c1="">Info<wbr data-v-7fb764c1="">.plist</wbr></code>ファイルにおいて宣言されたものと同じ文字列識別子で初期化します。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">In the sample app, <code data-v-7fb764c1="">Location<wbr data-v-7fb764c1="">View<wbr data-v-7fb764c1="">Controller</wbr></wbr></code> manages a single <code data-v-7fb764c1="">NSUser<wbr data-v-7fb764c1="">Activity</wbr></code> object, representing the <code data-v-7fb764c1="">view-location</code> activity type. When you select a restaurant, the view controller sets its <a href="https://developer.apple.com/documentation/uikit/uiresponder/1621089-useractivity?language=objc" class=""><code data-v-7fb764c1="">user<wbr data-v-7fb764c1="">Activity</wbr></code></a> property to the <code data-v-7fb764c1="">view-location</code> activity—registering the user activity object as the current activity, replacing any other activity previously sent to Siri or the system.</span><!--end_enstr-->
+<span class="jpstr">
+見本アプリにおいて、<code data-v-7fb764c1="">Location<wbr data-v-7fb764c1="">View<wbr data-v-7fb764c1="">Controller</wbr></wbr></code>は、<code data-v-7fb764c1="">view-location</code>アクティビティ型を表している、ある単一の<code data-v-7fb764c1="">NSUser<wbr data-v-7fb764c1="">Activity</wbr></code>オブジェクトを管理します。あなたがあるレストランを選ぶ時、ビューコントローラはそれの<a href="https://developer.apple.com/documentation/uikit/uiresponder/1621089-useractivity?language=objc" class=""><code data-v-7fb764c1="">user<wbr data-v-7fb764c1="">Activity</wbr></code></a>プロパティを<code data-v-7fb764c1="">view-location</code>アクティビティに設定します — ユーザアクティビティオブジェクトを現在のアクティビティとして登録して、以前にSiriまたはシステムに送られた何らかの他のアクティビティを置き換えて。
+</span><!--end_jpstr-->
+</p>
+<aside data-v-c567d8a8="" aria-label="important" class="important"><p data-v-c567d8a8="" class="label"><span class="enstr">Important</span><!--end_enstr-->
+<span class="jpstr">
+重要
+</span><!--end_jpstr-->
+</p>
+<p data-v-c567d8a8=""><span class="enstr">When the user activity object is not contained within the responder chain, you must call the <a href="../../../documentation/foundation/nsuseractivity/1413665-becomecurrent_language-objc.html" class="" data-v-c567d8a8=""><code data-v-7fb764c1="">become<wbr data-v-7fb764c1="">Current</wbr></code></a> method to mark the object as current, which also registers the object with the system.</span><!--end_enstr-->
+<span class="jpstr">
+ユーザアクティビティオブジェクトがレスポンダチェーン内に含まれない場合、あなたは<a href="../../../documentation/foundation/nsuseractivity/1413665-becomecurrent_language-objc.html" class="" data-v-c567d8a8=""><code data-v-7fb764c1="">become<wbr data-v-7fb764c1="">Current</wbr></code></a>メソッドを呼び出すことで、オブジェクトを現在のものとして印しなければなりません、それはまたオブジェクトをシステムに登録します。
+</span><!--end_jpstr-->
+</p></aside><p><span class="enstr">The view controller also sets <a href="../../../documentation/foundation/nsuseractivity/1408791-needssave_language-objc.html" class=""><code data-v-7fb764c1="">needs<wbr data-v-7fb764c1="">Save</wbr></code></a> to <code data-v-7fb764c1="">true</code>, indicating that the activity will be updated with new data in the future, which eventually results in a callback to the <a href="https://developer.apple.com/documentation/uikit/uiresponder/1621095-updateuseractivitystate?language=objc" class=""><code data-v-7fb764c1="">update<wbr data-v-7fb764c1="">User<wbr data-v-7fb764c1="">Activity<wbr data-v-7fb764c1="">State:</wbr></wbr></wbr></code></a> method. This is the app’s opportunity to refresh the activity object’s <a href="../../../documentation/foundation/nsuseractivity/1411706-userinfo_language-objc.html" class=""><code data-v-7fb764c1="">user<wbr data-v-7fb764c1="">Info</wbr></code></a> property, with the minimal amount of information needed to restore the state of the app, before Siri or the system receives the activity.</span><!--end_enstr-->
+<span class="jpstr">
+ビューコントローラはまた、<a href="../../../documentation/foundation/nsuseractivity/1408791-needssave_language-objc.html" class=""><code data-v-7fb764c1="">needs<wbr data-v-7fb764c1="">Save</wbr></code></a>を<code data-v-7fb764c1="">true</code>に設定します、そのアクティビティが新しいデータで将来に更新されることを指し示しています、それは結局は<a href="https://developer.apple.com/documentation/uikit/uiresponder/1621095-updateuseractivitystate?language=objc" class=""><code data-v-7fb764c1="">update<wbr data-v-7fb764c1="">User<wbr data-v-7fb764c1="">Activity<wbr data-v-7fb764c1="">State:</wbr></wbr></wbr></code></a>メソッドへのコールバックという結果になります。これは、アプリにとって、アプリの状態を復元するのに必要とされる最小限の情報量で、Siriまたはシステムがアクティビティを受け取る前に、アクティビティオブジェクトのもつ<a href="../../../documentation/foundation/nsuseractivity/1411706-userinfo_language-objc.html" class=""><code data-v-7fb764c1="">user<wbr data-v-7fb764c1="">Info</wbr></code></a>プロパティをリフレッシュする好機です。
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="3376384"><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-comment">/*</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span class="enstr"><span data-v-39580a24="" class="code-line"><span class="syntax-comment"> Provide just enough information in the `userInfo` dictionary to be able to restore state.</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span> <span data-v-39580a24="" class="code-line"><span class="syntax-comment"> The larger the dictionary, the longer it takes to deliver that payload and resume the activity.</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span></span><!--end_enstr-->
+<span class="jpstr">
+<span data-v-39580a24="" class="code-line"><span class="syntax-comment"> 状態を復元できるようになるのに十分なだけの情報を `userInfo` 辞書において提供します。</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span><span data-v-39580a24="" class="code-line"><span class="syntax-comment"> より大きな辞書は、その積荷を配達するそしてアクティビティを再開するのにより長くかかります。</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+</span><!--end_jpstr-->
+
+<span data-v-39580a24="" class="code-line"><span class="syntax-comment"> */</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="5" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-keyword">var</span> userInfo = [<span class="syntax-type">String</span>: <span class="syntax-type">Any</span>]()</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="6" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-keyword">do</span> {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="7" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">let</span> data = <span class="syntax-keyword">try</span> <span class="syntax-type">NSKeyedArchiver</span>.archivedData(withRootObject: mapItem.placemark, requiringSecureCoding: <span class="syntax-literal">true</span>)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="8" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    userInfo[<span class="syntax-string">"placemark"</span>] = data</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="9" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">} <span class="syntax-keyword">catch</span> {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="10" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    os_log(<span class="syntax-string">"Could not encode placemark data"</span>, type: .error)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="11" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">}</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="12" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">
+</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="13" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-keyword">if</span> <span class="syntax-keyword">let</span> url = mapItem.url {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="14" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    userInfo[<span class="syntax-string">"url"</span>] = url</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="15" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">}</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="16" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">
+</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="17" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-keyword">if</span> <span class="syntax-keyword">let</span> phoneNumber = mapItem.phoneNumber {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="18" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    userInfo[<span class="syntax-string">"phoneNumber"</span>] = phoneNumber</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="19" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">}</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="20" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">
+</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="21" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">activity.addUserInfoEntries(from: userInfo)</span></span></code></pre></div>
+</div></figure><p></p>
+<h3 id="3376399"><span class="enstr">Provide Support for Improved Search Results</span><!--end_enstr-->
+<span class="jpstr">
+改善された検索結果に対するサポートを提供する
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">If your user activity objects contain information that the user might want to search for later, you can have Search index those objects and consider them during subsequent on-device searches.</span><!--end_enstr-->
+<span class="jpstr">
+あなたのユーザアクティビティオブジェクトそれらが、ユーザが後で検索したいかもしれない情報を含むならば、あなたは「検索」にそれらオブジェクトのインデックスを作らせて、そして以降のデバイス上の検索の間にそれらを考慮に入れることができます、
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">To enable support for Search on a user activity object, set the <a href="../../../documentation/foundation/nsuseractivity/1417761-eligibleforsearch_language-objc.html" class=""><code data-v-7fb764c1="">eligible<wbr data-v-7fb764c1="">For<wbr data-v-7fb764c1="">Search</wbr></wbr></code></a> property to <code data-v-7fb764c1="">true</code>. Additionally, you can make an activity object publicly accessible to all iOS users by setting the <a href="../../../documentation/foundation/nsuseractivity/1414701-eligibleforpublicindexing_language-objc.html" class=""><code data-v-7fb764c1="">eligible<wbr data-v-7fb764c1="">For<wbr data-v-7fb764c1="">Public<wbr data-v-7fb764c1="">Indexing</wbr></wbr></wbr></code></a> property to <code data-v-7fb764c1="">true</code>.</span><!--end_enstr-->
+<span class="jpstr">
+ユーザアクティビティオブジェクト上で「検索」に対するサポートを可能にするには、<a href="../../../documentation/foundation/nsuseractivity/1417761-eligibleforsearch_language-objc.html" class=""><code data-v-7fb764c1="">eligible<wbr data-v-7fb764c1="">For<wbr data-v-7fb764c1="">Search</wbr></wbr></code></a>プロパティを<code data-v-7fb764c1="">true</code>に設定してください。加えて、あなたはあるアクティビティオブジェクトを全てのiOSユーザに公然とアクセス可能にできます、<a href="../../../documentation/foundation/nsuseractivity/1414701-eligibleforpublicindexing_language-objc.html" class=""><code data-v-7fb764c1="">eligible<wbr data-v-7fb764c1="">For<wbr data-v-7fb764c1="">Public<wbr data-v-7fb764c1="">Indexing</wbr></wbr></wbr></code></a>プロパティを<code data-v-7fb764c1="">true</code>に設定することによって。
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="3376386"><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-comment">// The following properties enable the activity to be indexed in Search.</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">activity.isEligibleForPublicIndexing = <span class="syntax-literal">true</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">activity.isEligibleForSearch = <span class="syntax-literal">true</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">activity.title = mapItem?.name</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="5" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">activity.keywords = [<span class="syntax-string">"pizza"</span>]</span></span></code></pre></div>
+</div></figure><p></p>
+<p><span class="enstr">Provide the activity object with as much rich information about the activity as possible, by configuring the <a href="../../../documentation/foundation/nsuseractivity/1616398-contentattributeset_language-objc.html" class=""><code data-v-7fb764c1="">content<wbr data-v-7fb764c1="">Attribute<wbr data-v-7fb764c1="">Set</wbr></wbr></code></a>, <a href="../../../documentation/foundation/nsuseractivity/1408023-keywords_language-objc.html" class=""><code data-v-7fb764c1="">keywords</code></a>, or <a href="../../../documentation/foundation/nsuseractivity/1418086-webpageurl_language-objc.html" class=""><code data-v-7fb764c1="">webpage<wbr data-v-7fb764c1="">URL</wbr></code></a> properties so that the system can index the object. The app must also maintain a strong reference to any activity objects that the system uses for search results.</span><!--end_enstr-->
+<span class="jpstr">
+アクティビティオブジェクトを、できるだけ豊かなアクティビティについての情報とともに提供してください、<a href="../../../documentation/foundation/nsuseractivity/1616398-contentattributeset_language-objc.html" class=""><code data-v-7fb764c1="">content<wbr data-v-7fb764c1="">Attribute<wbr data-v-7fb764c1="">Set</wbr></wbr></code></a>、<a href="../../../documentation/foundation/nsuseractivity/1408023-keywords_language-objc.html" class=""><code data-v-7fb764c1="">keywords</code></a>、または<a href="../../../documentation/foundation/nsuseractivity/1418086-webpageurl_language-objc.html" class=""><code data-v-7fb764c1="">webpage<wbr data-v-7fb764c1="">URL</wbr></code></a>プロパティを構成設定することによって、それでシステムはオブジェクトのインデックスをつくれます。アプリはまた、あらゆるアクティビティオブジェクトに対する強い参照を保守しなければなりません、それらはシステムが結果を検索するために使うものです。
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="3376387"><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-comment">// Provide additional searchable attributes.</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">activity.contentAttributeSet?.supportsNavigation = <span class="syntax-literal">true</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">activity.contentAttributeSet?.supportsPhoneCall = <span class="syntax-literal">true</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">activity.contentAttributeSet?.thumbnailData = #imageLiteral(resourceName: <span class="syntax-string">"pizza"</span>).pngData()</span></span></code></pre></div>
+</div></figure><p></p>
+<p><span class="enstr">To learn more about Search, see <a href="https://developer.apple.com/library/archive/documentation/General/Conceptual/AppSearch">App Search Programming Guide</a>.</span><!--end_enstr-->
+<span class="jpstr">
+「検索」についてもっと学ぶには、<a href="https://developer.apple.com/library/archive/documentation/General/Conceptual/AppSearch">App Search Programming Guide</a>を見てください。
+</span><!--end_jpstr-->
+</p>
+<h3 id="3376400"><span class="enstr">Provide Support for Shortcuts</span><!--end_enstr-->
+<span class="jpstr">
+ショートカットに対するサポートを提供する
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">Siri learns about the shortcuts available to your app through donations that your app makes to Siri. You can make donations from a user activity when the action involves a view within your app, such as the sample app, which displays a list of nearby restaurants.</span><!--end_enstr-->
+<span class="jpstr">
+Siriは、あなたのアプリに利用可能なショートカットを、あなたのアプリがSiriにする提供を通して学びます。あなたは、アクションがビューをあなたのアプリ内、たとえば近くのレストランの一覧を表示する見本アプリなど、から発動する時に、ユーザアクティビティから提供をすることができます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">The sample app enables support for Siri Shortcuts on a user activity object by setting the <a href="../../../documentation/foundation/nsuseractivity/2980674-eligibleforprediction_language-objc.html" class=""><code data-v-7fb764c1="">eligible<wbr data-v-7fb764c1="">For<wbr data-v-7fb764c1="">Prediction</wbr></wbr></code></a> property to <code data-v-7fb764c1="">true</code>. The app suggests an invocation phrase, which is displayed to the user when they create a shortcut, by setting a short, memorable phrase to the <a href="../../../documentation/foundation/nsuseractivity/2976237-suggestedinvocationphrase_language-objc.html" class=""><code data-v-7fb764c1="">suggested<wbr data-v-7fb764c1="">Invocation<wbr data-v-7fb764c1="">Phrase</wbr></wbr></code></a> property.</span><!--end_enstr-->
+<span class="jpstr">
+見本アプリは、<a href="../../../documentation/foundation/nsuseractivity/2980674-eligibleforprediction_language-objc.html" class=""><code data-v-7fb764c1="">eligible<wbr data-v-7fb764c1="">For<wbr data-v-7fb764c1="">Prediction</wbr></wbr></code></a>プロパティを<code data-v-7fb764c1="">true</code>に設定することによって、ユーザアクティビティオブジェクト上でSiriショートカットに対するサポートを可能にします。アプリは、ユーザがショートカットを作成する時にかれらに表示される発動フレーズを提案します、ある短い、覚えやすいフレーズを<a href="../../../documentation/foundation/nsuseractivity/2976237-suggestedinvocationphrase_language-objc.html" class=""><code data-v-7fb764c1="">suggested<wbr data-v-7fb764c1="">Invocation<wbr data-v-7fb764c1="">Phrase</wbr></wbr></code></a>プロパティに対して設定することによって。
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="3376389"><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-comment">// The following properties enable the activity to be used as a shortcut with Siri.</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">activity.isEligibleForPrediction = <span class="syntax-literal">true</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">activity.suggestedInvocationPhrase = <span class="syntax-string">"Show my favorite pizzeria"</span></span></span></code></pre></div>
+</div></figure><p></p>
+<p><span class="enstr">During development, the system provides developer settings to modify the display behavior of shortcuts, and force sync shortcuts to an Apple Watch from an iPhone device. Go to Settings &gt; Developer on the iPhone device to test an app’s behavior with Siri Shortcuts.</span><!--end_enstr-->
+<span class="jpstr">
+開発の間に、システムは、ショートカットの表示挙動を修正する、そして同期ショートカットをiPhoneデバイスからApple Watchへと強制するために、開発者設定を提供します。Settings &gt; Developerに行って、アプリの挙動を「Siriショートカット」でテストしてください。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">For more information, see <a href="https://developer.apple.com/documentation/sirikit/donating_shortcuts?language=objc" class="">Donating Shortcuts</a>.</span><!--end_enstr-->
+<span class="jpstr">
+さらなる情報は、<a href="https://developer.apple.com/documentation/sirikit/donating_shortcuts?language=objc" class="">Donating Shortcuts</a>を見てください。
+</span><!--end_jpstr-->
+</p>
+<h3 id="3376401"><span class="enstr">Handle Activities</span><!--end_enstr-->
+<span class="jpstr">
+アクティティビティを取り扱う
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">When a user interacts with a proactive suggestion for your app, such as through Siri Shortcuts, the system restores your app to the foreground, receives data associated with its user activity, and calls <a href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623072-application?language=objc" class=""><code data-v-7fb764c1="">application:<wbr data-v-7fb764c1="">continue<wbr data-v-7fb764c1="">User<wbr data-v-7fb764c1="">Activity:<wbr data-v-7fb764c1="">restoration<wbr data-v-7fb764c1="">Handler:</wbr></wbr></wbr></wbr></wbr></code></a>.</span><!--end_enstr-->
+<span class="jpstr">
+ユーザがあなたのアプリに対する積極的提案と相互作用を、たとえば「Siriショートカット」を通して行う時、システムはあなたのアプリを前面に戻して、そのユーザアクティビティと結びつけられたデータを受け取ります、そして<a href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623072-application?language=objc" class=""><code data-v-7fb764c1="">application:<wbr data-v-7fb764c1="">continue<wbr data-v-7fb764c1="">User<wbr data-v-7fb764c1="">Activity:<wbr data-v-7fb764c1="">restoration<wbr data-v-7fb764c1="">Handler:</wbr></wbr></wbr></wbr></wbr></code></a>を呼び出します。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">To give <code data-v-7fb764c1="">Search<wbr data-v-7fb764c1="">View<wbr data-v-7fb764c1="">Controller</wbr></wbr></code> a chance to perform its state restoration operation through <a href="https://developer.apple.com/documentation/uikit/uiresponder/1621111-restoreuseractivitystate?language=objc" class=""><code data-v-7fb764c1="">restore<wbr data-v-7fb764c1="">User<wbr data-v-7fb764c1="">Activity<wbr data-v-7fb764c1="">State:</wbr></wbr></wbr></code></a>, the sample app verifies the activity type of the user activity object, and passes the first tab’s view controller hierarchy to the <code data-v-7fb764c1="">restoration<wbr data-v-7fb764c1="">Handler</wbr></code> block parameter.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">Search<wbr data-v-7fb764c1="">View<wbr data-v-7fb764c1="">Controller</wbr></wbr></code>に、それの状態復元操作を<a href="https://developer.apple.com/documentation/uikit/uiresponder/1621111-restoreuseractivitystate?language=objc" class=""><code data-v-7fb764c1="">restore<wbr data-v-7fb764c1="">User<wbr data-v-7fb764c1="">Activity<wbr data-v-7fb764c1="">State:</wbr></wbr></wbr></code></a>を通して実行する機会を与えるために、見本アプリはユーザアクティビティオブジェクトのアクティビティ型を検証します、そして最初のタブのもつビューコントローラ階層を<code data-v-7fb764c1="">restoration<wbr data-v-7fb764c1="">Handler</wbr></code>ブロックパラメータに渡します。
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="3376391"><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-function"><span class="syntax-keyword">func</span> <span class="syntax-title">application</span><span class="syntax-params">(<span class="syntax-number">_</span> application: UIApplication,</span></span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-params">                 <span class="syntax-keyword">continue</span> userActivity: NSUserActivity,</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-params">                 restorationHandler: @escaping <span class="syntax-params">([UIUserActivityRestoring]?)</span></span> -&gt; <span class="syntax-type">Void</span>) -&gt; <span class="syntax-type">Bool</span> {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    </span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="5" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">guard</span> userActivity.activityType == <span class="syntax-string">"com.example.apple-samplecode.ProactiveToolbox.view-location"</span>,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="6" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">let</span> tabBarController = window?.rootViewController <span class="syntax-keyword">as</span>? <span class="syntax-type">UITabBarController</span>,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="7" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">let</span> navigationController = tabBarController.viewControllers?.first <span class="syntax-keyword">as</span>? <span class="syntax-type">UINavigationController</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="8" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">else</span> { <span class="syntax-keyword">return</span> <span class="syntax-literal">false</span> }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="9" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    </span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="10" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    tabBarController.selectedIndex = <span class="syntax-number">0</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="11" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    </span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="12" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-comment">/*</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="13" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-comment">     Calling the restoration handler is optional and is only needed</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="14" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-comment">     when specific objects are capable of continuing the activity.</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="15" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-comment">     */</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="16" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    restorationHandler(navigationController.viewControllers)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="17" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    </span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="18" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">return</span> <span class="syntax-literal">true</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="19" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">}</span></span></code></pre></div>
+</div></figure><p></p>
+<p><span class="enstr">The sample app validates the user activity, consumes any necessary information from the <code data-v-7fb764c1="">user<wbr data-v-7fb764c1="">Info</wbr></code> dictionary, and updates its UI to continue the requested activity from where the user left off.</span><!--end_enstr-->
+<span class="jpstr">
+見本アプリはユーザアクティビティを検証します、あらゆる必要な情報を<code data-v-7fb764c1="">user<wbr data-v-7fb764c1="">Info</wbr></code>から使い果たします、そして要請されたアクティビティをユーザがやめたところから継続するために、それのUIを更新します。
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="3376392"><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-keyword">override</span> <span class="syntax-function"><span class="syntax-keyword">func</span> <span class="syntax-title">restoreUserActivityState</span><span class="syntax-params">(<span class="syntax-number">_</span> activity: NSUserActivity)</span></span> {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">super</span>.restoreUserActivityState(activity)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    </span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">do</span> {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="5" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">guard</span> <span class="syntax-keyword">let</span> userInfo = activity.userInfo,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="6" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">            <span class="syntax-keyword">let</span> url = userInfo[<span class="syntax-string">"url"</span>] <span class="syntax-keyword">as</span>? <span class="syntax-type">URL</span>,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="7" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">            <span class="syntax-keyword">let</span> phoneNumber = userInfo[<span class="syntax-string">"phoneNumber"</span>] <span class="syntax-keyword">as</span>? <span class="syntax-type">String</span>,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="8" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">            <span class="syntax-keyword">let</span> placemarkData = userInfo[<span class="syntax-string">"placemark"</span>] <span class="syntax-keyword">as</span>? <span class="syntax-type">Data</span>,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="9" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">            <span class="syntax-keyword">let</span> placemark = <span class="syntax-keyword">try</span> <span class="syntax-type">NSKeyedUnarchiver</span>.unarchivedObject(ofClass: <span class="syntax-type">MKPlacemark</span>.<span class="syntax-keyword">self</span>, from: placemarkData)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="10" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">            <span class="syntax-keyword">else</span> { <span class="syntax-keyword">return</span> }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="11" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        </span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="12" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">let</span> mapItem = <span class="syntax-type">MKMapItem</span>(placemark: placemark)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="13" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        mapItem.name = activity.title</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="14" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        </span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="15" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">if</span> navigationController?.visibleViewController == <span class="syntax-keyword">self</span> {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="16" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">            restoreMapItem(mapItem, url: url, phoneNumber: phoneNumber)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="17" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        } <span class="syntax-keyword">else</span> <span class="syntax-keyword">if</span> <span class="syntax-keyword">let</span> modalController = navigationController?.visibleViewController <span class="syntax-keyword">as</span>? <span class="syntax-type">LocationViewController</span> {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="18" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">            modalController.restoreMapItem(mapItem, url: url, phoneNumber: phoneNumber)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="19" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="20" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    } <span class="syntax-keyword">catch</span> {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="21" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        os_log(<span class="syntax-string">"Could not convert user activity placemark data to placemark object"</span>, type: .error)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="22" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="23" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">}</span></span></code></pre></div>
+</div></figure><p></p>
+<h3 id="3376402"><span class="enstr">Verify QuickType Keyboard Integration</span><!--end_enstr-->
+<span class="jpstr">
+QuickTypeキーボード統合を検証する
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">Text fields describe the intended purpose of input data, like country name or postal code, via the <a href="https://developer.apple.com/documentation/uikit/uitextinputtraits/1649656-textcontenttype?language=objc" class=""><code data-v-7fb764c1="">text<wbr data-v-7fb764c1="">Content<wbr data-v-7fb764c1="">Type</wbr></wbr></code></a> property. If any app on the device recently donated information matching the expected text content type, that information is suggested in the QuickType keyboard as the user types in the text field.</span><!--end_enstr-->
+<span class="jpstr">
+テキストフィールドは、入力データの意図される目的を、国名または郵便番号のように、<a href="https://developer.apple.com/documentation/uikit/uitextinputtraits/1649656-textcontenttype?language=objc" class=""><code data-v-7fb764c1="">text<wbr data-v-7fb764c1="">Content<wbr data-v-7fb764c1="">Type</wbr></wbr></code></a>プロパティによって、記述します。デバイス上のなんらかのアプリがその期待されるテキスト内容型と一致する情報を提供したならば、その情報はQuickTypeキーボードにおいてユーザがテキスト欄にタイプするにつれて提案されます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">For example, in the sample app, a user selects a pizza restaurant, and its address is suggested in Messages or a search field in Apple Maps.</span><!--end_enstr-->
+<span class="jpstr">
+たとえば、見本アプリにおいて、ユーザはあるピザレストランを選択します、そしてそれのアドレスはMessagesまたはApple Mapsでの検索欄において提案されます。
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="3376394"><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-comment">// These properties can also be set on the field in Interface Builder.</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">nameTextField.textContentType = .organizationName</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">streetAddressLine1TextField.textContentType = .streetAddressLine1</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">streetAddressLine2TextField.textContentType = .streetAddressLine2</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="5" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">cityTextField.textContentType = .addressCity</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="6" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">stateTextField.textContentType = .addressState</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="7" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">postalCodeTextField.textContentType = .postalCode</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="8" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">countryTextField.textContentType = .countryName</span></span></code></pre></div>
+</div></figure><p><span class="enstr">To verify this behavior, select a point of interest in Apple Maps, then return to this sample app to see the donated information populated in the QuickType keyboard.</span><!--end_enstr-->
+<span class="jpstr">
+この挙動を検証するには、Apple Mapsにおいて興味を引く地点を選択します、それからこの見本アプリに戻って、QuickTypeキーボードに現れる提供された情報を見てください。
+</span><!--end_jpstr-->
+</p>
+<p></p>
+</div></div>
+</div><!----><!----><!---->
+<section data-v-8c663d90="" data-v-63527a60="" data-v-2deaa168="" id="see-also" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">See Also</span><!--end_enstr-->
+<span class="jpstr">
+参照
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Activity Sharing</span><!--end_enstr-->
+<span class="jpstr">
+アクティビティを共有する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0="">
+<a data-v-01f7f080="" href="../../../documentation/foundation/task_management/implementing_handoff_in_your_app_language-objc.html" class="link has-adjacent-elements"><svg data-v-a76e93d8="" data-v-a8c6b630="" data-v-01f7f080="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="svg-icon article-icon topic-icon" viewbox="0 0 22 30"><title data-v-a76e93d8="">Article</title>
+<g data-v-a76e93d8=""><path data-v-a76e93d8="" d="M12.87,0H0V2H0V28H0v2H22V9.13ZM20,28H2V2h9V12h9Zm0-18H13V3l7,7Z"></path></g></svg><span data-v-01f7f080=""><span class="enstr">Implementing Handoff in Your App</span><!--end_enstr-->
+<span class="jpstr">
+Handoffをあなたのアプリにおいて実装する
+</span><!--end_jpstr-->
+</span><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Create, send, and receive user activities directly.</span><!--end_enstr-->
+<span class="jpstr">
+ユーザアクティビティを直接に作成、送信、そして受信します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/nsuseractivity_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">NSUser<wbr data-v-01f7f080="">Activity</wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A representation of the state of your app at a moment in time.</span><!--end_enstr-->
+<span class="jpstr">
+現時点でのあなたのアプリの状態の表現。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../../documentation/foundation/nsuseractivitydelegate_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">NSUser<wbr data-v-01f7f080="">Activity<wbr data-v-01f7f080="">Delegate</wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The interface through which a user activity instance notifies its delegate of updates.</span><!--end_enstr-->
+<span class="jpstr">
+それを通してユーザ活動インスタンスがそれの更新の委任先を通知するインターフェイス。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+</div><!----></section></main>
+</div></div></div>
+<section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo"><nav class="footer-breadory"><a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a><section class="breadcrumbs"><ol class="breadcrumbs-list"></ol></section><div id="directorynav" class="directorynav">
+<div id="dn-cola" class="column">
+<h3><a href="/discover/">Discover</a></h3>
+<ul>
+<li><a href="/ios/">iOS</a></li>
+<li><a href="/ipados/">iPadOS</a></li>
+<li><a href="/macos/">macOS</a></li>
+<li><a href="/tvos/">tvOS</a></li>
+<li><a href="/watchos/">watchOS</a></li>
+<li><a href="/safari/">Safari and Web</a></li>
+<li><a href="/games/">Games</a></li>
+<li><a href="/business/">Business</a></li>
+<li><a href="/education/">Education</a></li>
+<li><a href="/wwdc/">WWDC</a></li>
+</ul>
+</div>
+<div id="dn-colb" class="column">
+<h3><a href="/design/">Design</a></h3>
+<ul>
+<li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
+<li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
+<span class="jpstr">
+リソース
+</span><!--end_jpstr-->
+</a></li>
+<li><a href="/videos/design/">Videos</a></li>
+<li><a href="/design/awards/">Apple Design Awards</a></li>
+<li><a href="/fonts/">Fonts</a></li>
+<li><a href="/accessibility/">Accessibility</a></li>
+<li><a href="/localization/"><span class="enstr">Localization</span><!--end_enstr-->
+<span class="jpstr">
+ローカライゼーション
+</span><!--end_jpstr-->
+</a></li>
+<li><a href="/accessories/">Accessories</a></li>
+</ul>
+</div>
+<div id="dn-colc" class="column">
+<h3><a href="/develop/">Develop</a></h3>
+<ul>
+<li><a href="/xcode/">Xcode</a></li>
+<li><a href="/swift/">Swift</a></li>
+<li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
+<li><a href="/testflight/">TestFlight</a></li>
+<li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
+<li><a href="/videos/">Videos</a></li>
+<li><a href="/download/">Downloads</a></li>
+</ul>
+</div>
+<div id="dn-cold" class="column">
+<h3><a href="/distribute/">Distribute</a></h3>
+<ul>
+<li><a href="/programs/">Developer Program</a></li>
+<li><a href="/app-store/">App Store</a></li>
+<li><a href="/app-store/review/">App Review</a></li>
+<li><a href="/macos/distribution/">Mac Software</a></li>
+<li><a href="/business/distribute/">Apps for Business</a></li>
+<li><a href="/safari/extensions/">Safari Extensions</a></li>
+<li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
+<li><a href="/softwarelicensing/">Trademark Licensing</a></li>
+</ul>
+</div>
+<div id="dn-cole" class="column">
+<h3><a href="/support/">Support</a></h3>
+<ul>
+<li><a href="/support/articles/">Articles</a></li>
+<li><a href="/forums/">Developer Forums</a></li>
+<li><a href="/bug-reporting/">Feedback &amp; Bug Reporting</a></li>
+<li><a href="/system-status/">System Status</a></li>
+<li><a href="/contact/">Contact Us</a></li>
+</ul>
+<h3><a href="/account/">Account</a></h3>
+<ul>
+<li><a href="/account/ios/certificate/">Certificates, Identifiers &amp; Profiles</a></li>
+<li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
+</ul>
+</div>
+</div></nav><div class="ac-gf-footer-legal">
+<div class="ac-gf-footer-news">To view the latest developer news, visit <a href="/news/">News and Updates</a>.</div>
+<div class="ac-gf-footer-language-dropdown-wrapper">
+<select id="footer-language-selector" class="footer-language-select" aria-label="Language Dropdown" autocomplete="off"><option value="https://developer.apple.com/" selected>English</option>
+<option value="https://developer.apple.com/cn/">简体中文</option>
+<option value="https://developer.apple.com/jp/">日本語</option>
+<option value="https://developer.apple.com/kr/">한국어</option></select> <span class="footer-language-select-icon icon icon-chevrondown" aria-hidden="true"></span>
+</div>
+<div class="ac-gf-footer-legal-copyright">Copyright © <span class="footer-current-year">2020</span> <a href="https://www.apple.com">Apple Inc.</a> All rights reserved.</div>
+<div class="ac-gf-footer-legal-links">
+<a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a> <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a> <a href="/terms/">License Agreements</a>
+</div>
+</div></footer></section><script src="../../../tutorials/js/footer.js"></script>
+</body>
+</html>

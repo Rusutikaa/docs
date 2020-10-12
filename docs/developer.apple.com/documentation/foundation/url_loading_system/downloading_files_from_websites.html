@@ -1,479 +1,616 @@
-<!DOCTYPE html><html lang="en" data-reactroot=""><head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>Downloading Files from Websites | Apple Developer Documentation</title><!-- link href="https://www.apple.com/wss/fonts?families=SF+Pro,v1|SF+Mono,v1|SF+Pro+Icons,v1" media="all" rel="stylesheet" type="text/css"/ --><meta content="width=device-width, initial-scale=1 viewport-fit=cover" name="viewport"/><meta data-pid="463568"/><link href="../../../documentation/assets/application-e5bb1544.css" media="all" rel="stylesheet" type="text/css"/><noscript><link href="../../../documentation/assets/nojs-c6be9131.css" media="all" rel="stylesheet" type="text/css"/></noscript><link rel="mask-icon" href="../../../documentation/assets/apple-logo.svg" color="#000"/><link rel="shortcut icon" href="../../../documentation/assets/favicon.ico"/><script src="../../../documentation/assets/shared-b7676010.js"></script></head><body><div id="_omniture_top">
-      <script>
-        var s_account="awdappledeveloper"
-      </script><!-- script src="https://developer.apple.com/assets/metrics/scripts/analytics.js" -->
-      </script>
-      <script>
-        s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
-        s.channel="www.documentation.developer"
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- link rel="icon" href="/favicon.ico" -->
+<link rel="mask-icon" href="/apple-logo.svg" color="#333333">
+<link rel="stylesheet" href="../../../tutorials/css/_globalnav.css">
+<title>Downloading Files from Websites | Apple Developer Documentation</title>
+<link href="../../../tutorials/css/chunk-76d5c2b5.00c53891.css" rel="prefetch">
+<link href="../../../tutorials/css/documentation-topic.e358e85c.css" rel="prefetch">
+<link href="../../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css" rel="prefetch">
+<link href="../../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css" rel="prefetch">
+<link href="../../../tutorials/css/topic.69278f1e.css" rel="prefetch">
+<link href="../../../tutorials/css/topic~tutorials-overview.1f93e025.css" rel="prefetch">
+<link href="../../../tutorials/css/tutorials-overview.d4ff0b50.css" rel="prefetch">
+<link href="../../../tutorials/css/welcome-experience-featured.0537f0f0.css" rel="prefetch">
+<link href="../../../tutorials/css/welcome-experience-technologies.60068ae2.css" rel="prefetch">
+<link href="../../../tutorials/js/chunk-2d0d3105.459bf725.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-2d21a016.b81cb311.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-503f1ed8.d26c4552.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-530f89ce.621e1d48.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-640db3b2.f8778ca5.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-76d5c2b5.092e3b8a.js" rel="prefetch">
+<link href="../../../tutorials/js/documentation-topic.6abe9458.js" rel="prefetch">
+<link href="../../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js" rel="prefetch">
+<link href="../../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js" rel="prefetch">
+<link href="../../../tutorials/js/topic.c6ec6b6c.js" rel="prefetch">
+<link href="../../../tutorials/js/topic~tutorials-overview.467a8186.js" rel="prefetch">
+<link href="../../../tutorials/js/tutorials-overview.d77f61ca.js" rel="prefetch">
+<link href="../../../tutorials/js/welcome-experience-featured.04f663e2.js" rel="prefetch">
+<link href="../../../tutorials/js/welcome-experience-technologies.56a372c1.js" rel="prefetch">
+<link href="../../../tutorials/css/app.2a174a23.css" rel="preload" as="style">
+<link href="../../../tutorials/js/app.2c558263.js" rel="preload" as="script">
+<link href="../../../tutorials/js/chunk-vendors.c3b68236.js" rel="preload" as="script">
+<link href="../../../tutorials/css/app.2a174a23.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../../../tutorials/css/chunk-76d5c2b5.00c53891.css">
+<script charset="utf-8" src="../../../tutorials/js/chunk-76d5c2b5.092e3b8a.js"></script><link rel="stylesheet" type="text/css" href="../../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css">
+<script charset="utf-8" src="../../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js"></script><link rel="stylesheet" type="text/css" href="../../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css">
+<script charset="utf-8" src="../../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js"></script><link rel="stylesheet" type="text/css" href="../../../tutorials/css/documentation-topic.e358e85c.css">
+<script charset="utf-8" src="../../../tutorials/js/documentation-topic.6abe9458.js"></script>
+</head>
+<body>
+<div id="_omniture_top">
+<script>var s_account="awdappledeveloper"</script>
+</div>
+<a href="#main" id="skip-localnav">Skip Navigation</a><aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"><nav id="ac-globalnav" class="js no-touch" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions"><div class="ac-gn-content">
+<ul class="ac-gn-header">
+<li class="ac-gn-item ac-gn-menuicon">
+<label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true"><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span> </span><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span></span></label> <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open"><span class="ac-gn-menuanchor-label">Global Nav Open Menu</span> </a><a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close"><span class="ac-gn-menuanchor-label">Global Nav Close Menu</span></a>
+</li>
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+</ul>
+<div class="ac-gn-search-placeholder-container" role="search"><div class="ac-gn-search ac-gn-search-small"><a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a><div class="ac-gn-search-placeholder-bar">
+<div class="ac-gn-search-placeholder-input"><div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
+<div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
+<span class="ac-gn-search-placeholder">Search Developer</span>
+</div></div>
+<div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></div>
+</div></a></div></div>
+<ul class="ac-gn-list">
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-discover"><a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover"><span class="ac-gn-link-text">Discover</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-design"><a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design"><span class="ac-gn-link-text">Design</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-develop"><a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop"><span class="ac-gn-link-text">Develop</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-distribute"><a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute"><span class="ac-gn-link-text">Distribute</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport"><a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport"><span class="ac-gn-link-text">Support</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-account"><a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account"><span class="ac-gn-link-text">Account</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search"><a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a></li>
+</ul>
+<aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search"><div class="ac-gn-searchview-content">
+<div class="ac-gn-searchview-bar"><div class="ac-gn-searchview-bar-wrapper">
+<form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get"><div class="ac-gn-searchform-wrapper">
+<input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions"> <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button> <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search"><span class="ac-gn-searchform-reset-background"></span></button>
+</div></form>
+<button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></button>
+</div></div>
+<aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
+</div>
+<button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search"><span class="ac-gn-searchview-close-wrapper"><span class="ac-gn-searchview-close-left"></span> <span class="ac-gn-searchview-close-right"></span></span></button></aside>
+</div></nav><div class="ac-gn-blur"></div>
+<div id="ac-gn-curtain" class="ac-gn-curtain"></div>
+<div id="ac-gn-placeholder" class="ac-nav-placeholder"></div>
+<script src="../../../tutorials/js/ac-globalnav.built.js"></script>
+<noscript>
+<style>.noscript {
+  font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
+  margin: 92px auto 140px auto;
+  text-align: center;
+  width: 980px;
+}
 
-        var s_code=s.t();if(s_code)document.write(s_code)
-      </script>
-    </div><div id="app"><div><a href="#main" id="skip-localnav" class="showonfocus hidden">Skip Navigation</a><aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"/><nav id="ac-globalnav" class="no-js" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions/">
-      <div class="ac-gn-content">
-        <ul class="ac-gn-header">
-          <li class="ac-gn-item ac-gn-menuicon">
-            <label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true">
-              <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top">
-                <span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span>
-              </span>
-              <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom">
-                <span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span>
-              </span>
-            </label>
-            <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open">
-              <span class="ac-gn-menuanchor-label">Global Nav Open Menu</span>
-            </a>
-            <a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close">
-              <span class="ac-gn-menuanchor-label">Global Nav Close Menu</span>
-            </a>
-          </li>
-          <li class="ac-gn-item ac-gn-apple">
-            <a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small">
-              <span class="ac-gn-link-text">Apple Developer</span>
-            </a>
-          </li>
-        </ul>
-        <div class="ac-gn-search-placeholder-container" role="search">
-          <div class="ac-gn-search ac-gn-search-small">
-            <a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link aria-label="Search Developer">
-              </a><div class="ac-gn-search-placeholder-bar">
-                <div class="ac-gn-search-placeholder-input">
-                  <div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
-                    <div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
-                    <span class="ac-gn-search-placeholder">Search Developer</span>
-                  </div>
-                </div>
-                <div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close">
-                  <span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-        <ul class="ac-gn-list">
-          <li class="ac-gn-item ac-gn-apple">
-            <a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus">
-              <span class="ac-gn-link-text">Apple Developer</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-discover">
-            <a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover">
-              <span class="ac-gn-link-text">Discover</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-design">
-            <a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design">
-              <span class="ac-gn-link-text">Design</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-develop">
-            <a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop">
-              <span class="ac-gn-link-text">Develop</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-distribute">
-            <a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute">
-              <span class="ac-gn-link-text">Distribute</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport">
-            <a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport">
-              <span class="ac-gn-link-text">Support</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-account">
-            <a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account">
-              <span class="ac-gn-link-text">Account</span>
-              </a>
-          </li>
-          <li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search">
-            <a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link aria-label="Search Developer"></a>
-          </li>
-        </ul>
-        <aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search">
-          <div class="ac-gn-searchview-content">
-            <div class="ac-gn-searchview-bar">
-              <div class="ac-gn-searchview-bar-wrapper">
-                <form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get">
-                  <div class="ac-gn-searchform-wrapper">
-                    <input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions" />
-                    <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button>
-                    <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search">
-                        <span class="ac-gn-searchform-reset-background"></span>
-                      </button>
-                  </div>
-                </form>
-                <button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search">
-                    <span class="ac-gn-searchview-close-cancel" aria-hidden="true">
-                      Cancel
-                    </span>
-                  </button>
-              </div>
-            </div>
-            <aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
-          </div>
-          <button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search">
-              <span class="ac-gn-searchview-close-wrapper">
-                <span class="ac-gn-searchview-close-left"></span>
-                <span class="ac-gn-searchview-close-right"></span>
-              </span>
-            </button>
-        </aside>
-          </div>
-    </nav><div class="ac-gn-blur"></div><div id="ac-gn-curtain" class="ac-gn-curtain"></div><div id="ac-gn-placeholder" class="ac-nav-placeholder"></div><input type="checkbox" id="localnav-menustate" class="localnav-menustate" aria-hidden="true"/><nav id="localnav" class="localnav localnav-dark theme-dark localnav-scrim localnav-noborder" role="navigation" aria-label="API Reference" data-sticky="true"><div class="localnav-wrapper"><div class="referencenav"><div class="localnav-background"></div><div class="localnav-content"><a href="../../../index.html" class="localnav-title">Documentation</a><div class="localnav-menu"><a href="#localnav-menustate" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span class="localnav-menucta-anchor-label" aria-hidden="true">Open Menu</span></a><a href="#" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span class="localnav-menucta-anchor-label" aria-hidden="true">Close Menu</span></a><div class="localnav-menu-tray"><ul aria-label="Breadcrumbs" class="localnav-menu-items localnav-menu-breadcrumbs"><li class="localnav-menu-item localnav-menu-breadcrumb-item"><a class="localnav-menu-link" href="../../../documentation/foundation.html">Foundation</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item"><a class="localnav-menu-link" href="../../../documentation/foundation/url_loading_system.html"><span class="enstr">URL Loading System</span><!--end_enstr-->
+.noscript-title {
+  color: #111;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -.003em;
+  line-height: 1.08365;
+  margin: 0 auto 54px auto;
+  width: 502px;
+}
+
+@media only screen and (max-width: 1068px) {
+  .noscript {
+    margin: 90px auto 120px auto;
+    width: 692px;
+  }
+
+  .noscript-title {
+    font-size: 40px;
+    letter-spacing: 0;
+    line-height: 1.1;
+    margin: 0 auto 45px auto;
+    width: 420px;
+  }
+}
+
+@media only screen and (max-width: 735px) {
+  .noscript {
+    margin: 45px auto 60px auto;
+    width: 87.5%;
+  }
+
+  .noscript-title {
+    font-size: 32px;
+    letter-spacing: .004em;
+    line-height: 1.125;
+    margin: 0 auto 35px auto;
+    max-width: 330px;
+    width: auto;
+  }
+}
+
+#loading-placeholder {
+  display: none;
+};</style>
+<div class="noscript">
+<h1 class="noscript-title">This page requires JavaScript.</h1>
+<p>Please turn on JavaScript in your browser and refresh the page to view its content.</p>
+</div>
+</noscript>
+<div data-v-0220a4c4="" id="app" class=""><div data-v-0220a4c4=""><div data-v-2deaa168="" class="doc-topic">
+<div data-v-3ceaa5df="" data-v-2deaa168="" class="localnav-container">
+<input data-v-3ceaa5df="" aria-hidden="true" id="localnav-menustate" type="checkbox" class="localnav-menustate"><div id="localnav-sticky-placeholder" class="css-sticky"></div>
+<nav data-v-3ceaa5df="" aria-label="API Reference" data-sticky="" id="localnav" role="navigation" class="localnav localnav-dark theme-dark medium-localnav-collapsible localnav-noborder localnav-scrim css-sticky"><div data-v-3ceaa5df="" class="localnav-wrapper">
+<div data-v-3ceaa5df="" class="referencenav">
+<div data-v-3ceaa5df="" class="localnav-background"></div>
+<div data-v-3ceaa5df="" class="localnav-content">
+<a data-v-3ceaa5df="" href="../../../index.html" class="localnav-title">
+            Documentation
+          </a><div data-v-3ceaa5df="" class="localnav-menu">
+<a data-v-3ceaa5df="" href="#localnav-menustate" role="button" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Open Menu</span></a><a data-v-3ceaa5df="" href="#" role="button" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Close Menu</span></a><div data-v-3ceaa5df="" class="localnav-menu-tray">
+<ul data-v-72fd0d2c="" data-v-3ceaa5df="" aria-label="Breadcrumbs" class="localnav-menu-items">
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../../documentation/foundation.html" class="parent item router-link-active" data-v-23a2ae0d="">
+    Foundation
+  </a></li><!---->
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../../documentation/foundation/url_loading_system.html" class="parent item router-link-active" data-v-23a2ae0d="">
+    <span class="enstr">URL Loading System</span><!--end_enstr-->
 <span class="jpstr">
 URLローディングシステム
 </span><!--end_jpstr-->
-</a></li><li class="localnav-menu-item localnav-menu-breadcrumb-item"><div class="localnav-menu-breadcrumb-current-container localnav-menu-link current"><span aria-current="page" class="localnav-menu-breadcrumb-current"><span class="enstr">Downloading Files from Websites</span><!--end_enstr-->
+
+  </a></li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item">
+<span data-v-23a2ae0d="" class="current item">
+    <span class="enstr">Downloading Files from Websites</span><!--end_enstr-->
 <span class="jpstr">
 ファイルをウェブサイトからダウンロードする
 </span><!--end_jpstr-->
-</span></div></li></ul><ul class="localnav-menu-items localnav-menu-settings" data-breadcrumbs-count="3"><li class="localnav-menu-setting language-container"><div class="language-toggle-container"><label for="language-toggle" class="language-toggle-label">Language:</label><select id="language-toggle" class="language-dropdown localnav-menu-link" style="width:auto"><option selected="" value="swift">Swift</option><option value="occ">Objective-C</option></select></div><div class="language-list-container"><span class="localnav-menu-setting-label">Language:</span><ul class="language-list"><li class="language-list-item"><span data-language="swift" aria-current="page" class="current-language">Swift</span></li><li class="language-list-item"><a href="../../../documentation/foundation/url_loading_system/downloading_files_from_websites?language=objc.html" class="localnav-menu-setting-link">Objective-C</a></li></ul></div></li><li class="localnav-menu-setting"><span class="localnav-menu-setting-label">API Changes:</span><span class="changes-toggle">None</span></li></ul></div><div class="localnav-actions"><div class="localnav-action localnav-action-menucta" aria-hidden="true"><label for="localnav-menustate" class="localnav-menucta"><span class="localnav-menucta-chevron"></span></label></div></div></div></div></div></div></nav><label for="localnav-menustate" id="localnav-curtain" aria-hidden="true"></label><main role="main" id="main" class="main" tabindex="0"><div class="topic-title"><span class="eyebrow">Article</span><h1 class="topic-heading"><span><span class="enstr">Downloading Files from Websites</span><!--end_enstr-->
+
+  </span><!---->
+</li>
+</ul>
+<ul data-v-3ceaa5df="" data-breadcrumbs-count="3" class="localnav-menu-items localnav-menu-settings">
+<li data-v-282336e0="" data-v-3ceaa5df="" class="localnav-menu-setting language-container" breadcrumbcount="3">
+<div data-v-282336e0="" class="language-toggle-container">
+<label data-v-282336e0="" for="language-toggle" class="language-toggle-label">
+      Language:
+    </label><select data-v-282336e0="" id="language-toggle" class="language-dropdown localnav-menu-link" style="width: 38px;"><option data-v-282336e0="" value="swift">
+        Swift
+      </option>
+<option data-v-282336e0="" value="occ">
+        Objective-C
+      </option></select>
+</div>
+<div data-v-282336e0="" class="language-list-container">
+<span data-v-282336e0="" class="localnav-menu-setting-label">
+      Language:
+    </span><ul data-v-282336e0="" class="language-list">
+<li data-v-282336e0="" class="language-list-item"><span data-v-282336e0="" data-language="swift" aria-current="page" class="current-language">
+          Swift
+        </span></li>
+<li data-v-282336e0="" class="language-list-item"><a data-v-282336e0="" href="../../../documentation/foundation/url_loading_system/downloading_files_from_websites_language-objc.html" class="localnav-menu-setting-link">
+          Objective-C
+        </a></li>
+</ul>
+</div>
+</li>
+<li data-v-2e9f4ea2="" data-v-3ceaa5df="" class="localnav-menu-setting">
+<label data-v-2e9f4ea2="" for="version-label" class="localnav-menu-setting-label">
+    API Changes:
+  </label><span data-v-2e9f4ea2=""><span class="enstr">None</span><!--end_enstr-->
+<span class="jpstr">
+なし
+</span><!--end_jpstr-->
+</span>
+</li><!---->
+
+</ul>
+</div>
+<div data-v-3ceaa5df="" class="localnav-actions"><div data-v-3ceaa5df="" aria-hidden="true" class="localnav-action localnav-action-menucta"><label data-v-3ceaa5df="" for="localnav-menustate" class="localnav-menucta"><span data-v-3ceaa5df="" class="localnav-menucta-chevron"></span></label></div></div>
+</div>
+</div>
+</div><!---->
+
+</div></nav><label data-v-3ceaa5df="" aria-hidden="true" for="localnav-menustate" id="localnav-curtain"></label>
+</div>
+<main data-v-2deaa168="" id="main" role="main" tabindex="0" class="main"><div data-v-4ba5af7c="" data-v-2deaa168="" class="topictitle">
+<span data-v-4ba5af7c="" class="eyebrow">Article</span><h1 data-v-4ba5af7c="" class="title"><span class="enstr">Downloading Files from Websites</span><!--end_enstr-->
 <span class="jpstr">
 ファイルをウェブサイトからダウンロードする
 </span><!--end_jpstr-->
-</span></h1></div><div class="topic-container section-content row"><div class="topic-description column large-9 medium-9 small-12"><div class="topic-abstract abstract formatted-content"><div><p><span class="enstr">Download files directly to the filesystem.</span><!--end_enstr-->
+</h1>
+</div>
+<div data-v-0253ce0e="" data-v-2deaa168="" class="row container">
+<div data-v-9807b2e0="" data-v-5ad0d458="" data-v-2deaa168="" class="col description large-9 medium-9 small-12" data-v-0253ce0e=""><!---->
+<div data-v-7ea0aa49="" data-v-aba749e6="" data-v-2deaa168="" class="abstract content" data-v-9807b2e0=""><span class="enstr">Download files directly to the filesystem.</span><!--end_enstr-->
 <span class="jpstr">
 ファイルを直接にファイルシステムにダウンロードします。
 </span><!--end_jpstr-->
-</p></div></div></div><div class="topic-summary column large-3 medium-3 small-12"><div class="topic-summary-section frameworks" role="complementary" aria-label="Framework"><p class="topic-summary-section-label subsection-label"><span class="enstr">Framework</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div>
+<div data-v-9807b2e0="" data-v-42fb6bac="" data-v-2deaa168="" class="col summary large-3 medium-3 small-12" data-v-0253ce0e=""><!----><!---->
+<div data-v-e4237090="" data-v-741142ba="" data-v-2deaa168="" class="summary-section frameworks" role="complementary" aria-label="Framework" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-741142ba="" class="title" data-v-e4237090=""><span class="enstr">Framework</span><!--end_enstr-->
 <span class="jpstr">
 フレームワーク
 </span><!--end_jpstr-->
-</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item"><span>Foundation</span></li></ul></div><div class="topic-summary-section onthispage"><nav class="onthispage-nav" aria-labelledby="onthispage-title"><p id="onthispage-title" class="topic-summary-section-label subsection-label"><span class="enstr">On This Page</span><!--end_enstr-->
+</p>
+<ul data-v-1450532d="" data-v-741142ba="" class="summary-list" data-v-e4237090=""><li data-v-e3899270="" data-v-741142ba="" class="summary-list-item" data-v-1450532d=""><span data-v-741142ba="" data-v-e3899270="" class="name">Foundation</span></li></ul>
+</div>
+<div data-v-e4237090="" data-v-2b96ab1a="" data-v-2deaa168="" class="summary-section on-this-page" data-v-9807b2e0=""><nav data-v-2b96ab1a="" data-v-e4237090="" aria-labelledby="on-this-page-title"><p data-v-1e0258b0="" data-v-2b96ab1a="" class="title" id="on-this-page-title" data-v-e4237090=""><span class="enstr">On This Page</span><!--end_enstr-->
 <span class="jpstr">
 この項には
 </span><!--end_jpstr-->
-</p><ul class="topic-summary-section-list"><li class="topic-summary-section-item"><a href="#overview" class="icon icon-after icon-chevrondowncircle"><span class="enstr">Overview</span><!--end_enstr-->
+</p>
+<ul data-v-1450532d="" data-v-2b96ab1a="" class="summary-list" data-v-e4237090="">
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../../documentation/foundation/url_loading_system/downloading_files_from_websites.html#overview" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Overview</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../../documentation/foundation/url_loading_system/downloading_files_from_websites.html#see-also" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">See Also</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+</ul></nav></div>
+</div>
+<div data-v-9807b2e0="" data-v-1e40f676="" data-v-2deaa168="" class="col primary-content large-9 medium-9 small-12" data-v-0253ce0e=""><div data-v-7ea0aa49="" data-v-1e40f676="" class="content" data-v-9807b2e0="">
+<h2 id="overview"><span class="enstr">Overview</span><!--end_enstr-->
 <span class="jpstr">
 概要
 </span><!--end_jpstr-->
-</a></li><li class="topic-summary-section-item"><a href="#see-also" class="icon icon-after icon-chevrondowncircle"><span class="enstr">See Also</span><!--end_enstr-->
-<span class="jpstr">
-参照
-</span><!--end_jpstr-->
-</a></li></ul></nav></div></div><div class="topic-content column large-9 medium-9 small-12" id="topic-content"><section id="overview" class="section"><h2><span class="enstr">Overview</span><!--end_enstr-->
-<span class="jpstr">
-概要
-</span><!--end_jpstr-->
-</h2><div class="formatted-content"><div><p><span class="enstr">For network resources that are already stored as files, like images and documents, you can use download tasks to fetch these items directly to the local filesystem.</span><!--end_enstr-->
+</h2>
+<p><span class="enstr">For network resources that are already stored as files, like images and documents, you can use download tasks to fetch these items directly to the local filesystem.</span><!--end_enstr-->
 <span class="jpstr">
 既にファイルとして格納されるネットワークリソース、画像および書類などに対して、あなたはダウンロードタスクを使ってそれらの項目を直接にローカルファイルシステムに取って来ることができます。
 </span><!--end_jpstr-->
-</p><aside class="aside aside-tip" aria-label="tip"><p class="aside-name"><span class="enstr">Tip</span><!--end_enstr-->
+</p>
+<aside data-v-c567d8a8="" aria-label="tip" class="tip"><p data-v-c567d8a8="" class="label"><span class="enstr">Tip</span><!--end_enstr-->
 <span class="jpstr">
 秘訣
 </span><!--end_jpstr-->
-</p><p><span class="enstr">You can also configure download tasks to operate while your application is suspended or terminated in the background. See <a href="../../../documentation/foundation/url_loading_system/downloading_files_in_the_background.html">Downloading Files in the Background</a> for details.</span><!--end_enstr-->
+</p>
+<p data-v-c567d8a8=""><span class="enstr">You can also configure download tasks to operate while your application is suspended or terminated in the background. See <a href="../../../documentation/foundation/url_loading_system/downloading_files_in_the_background.html" class="" data-v-c567d8a8="">Downloading Files in the Background</a> for details.</span><!--end_enstr-->
 <span class="jpstr">
-あなたはまた、あなたのアプリケーションが一時停止されるまたは終了される間にバックグラウンドで働くようにダウンロードタスクを構成設定できます。<a href="../../../documentation/foundation/url_loading_system/downloading_files_in_the_background.html">ファイルをバックグラウンドでダウンロードする</a>を詳細として見てください。
+あなたはまた、あなたのアプリケーションが一時停止されるまたは終了される間にバックグラウンドで働くようにダウンロードタスクを構成設定できます。<a href="../../../documentation/foundation/url_loading_system/downloading_files_in_the_background.html" class="" data-v-c567d8a8="">ファイルをバックグラウンドでダウンロードする</a>を詳細として見てください。
 </span><!--end_jpstr-->
-</p></aside><p></p></div><h3 id="3038357"><span class="enstr">For Simple Downloads, Use a Completion Handler</span><!--end_enstr-->
+</p></aside><p></p>
+<h3 id="3038357"><span class="enstr">For Simple Downloads, Use a Completion Handler</span><!--end_enstr-->
 <span class="jpstr">
 単純なダウンロードのために、完了ハンドラを使ってください
 </span><!--end_jpstr-->
-</h3><div><p><span class="enstr">To download files, you create a <a class="symbol-name" href="../../../documentation/foundation/urlsessiondownloadtask.html"><code><span>URLSession<wbr/>Download<wbr/>Task</span></code></a> from a <a class="symbol-name" href="../../../documentation/foundation/urlsession.html"><code><span>URLSession</span></code></a>. If you don’t care about receiving progress updates or other delegate callbacks during the download, you can use a completion handler. The task calls the completion handler when the download ends, either at the end of a successful download or when downloading fails.</span><!--end_enstr-->
+</h3>
+<p><span class="enstr">To download files, you create a <a href="../../../documentation/foundation/urlsessiondownloadtask.html" class=""><code data-v-7fb764c1="">URLSession<wbr data-v-7fb764c1="">Download<wbr data-v-7fb764c1="">Task</wbr></wbr></code></a> from a <a href="../../../documentation/foundation/urlsession.html" class=""><code data-v-7fb764c1="">URLSession</code></a>. If you don’t care about receiving progress updates or other delegate callbacks during the download, you can use a completion handler. The task calls the completion handler when the download ends, either at the end of a successful download or when downloading fails.</span><!--end_enstr-->
 <span class="jpstr">
-ファイルをダウンロードするには、あなたは<a class="symbol-name" href="../../../documentation/foundation/urlsessiondownloadtask.html"><code><span>URLSession<wbr/>Download<wbr/>Task</span></code></a>を<a class="symbol-name" href="../../../documentation/foundation/urlsession.html"><code><span>URLSession</span></code></a>から作成します。あなたが進捗最新情報を受け取るまたは他のコールバックについてそのダウンロードの間に関心がないならば、あなたは完了ハンドラを使うことができます。タスクは、完了ハンドラをダウンロードが終わる時に呼び出します、うまくいったダウンロードの終わりでまたはダウンロードが失敗する時のどちらかで。
+ファイルをダウンロードするには、あなたは<a href="../../../documentation/foundation/urlsessiondownloadtask.html" class=""><code data-v-7fb764c1="">URLSession<wbr data-v-7fb764c1="">Download<wbr data-v-7fb764c1="">Task</wbr></wbr></code></a>を<a href="../../../documentation/foundation/urlsession.html" class=""><code data-v-7fb764c1="">URLSession</code></a>から作成します。あなたが進捗最新情報を受け取るまたは他のコールバックについてそのダウンロードの間に関心がないならば、あなたは完了ハンドラを使うことができます。タスクは、完了ハンドラをダウンロードが終わる時に呼び出します、うまくいったダウンロードの終わりでまたはダウンロードが失敗する時のどちらかで。
 </span><!--end_jpstr-->
-</p><p><span class="enstr">Your completion handler may receive a client-side error, indicating a local problem like not being able to reach the network. If there is no client-side error, you also receive a <a class="symbol-name" href="../../../documentation/foundation/urlresponse.html"><code><span>URLResponse</span></code></a>, which you should inspect to ensure that it indicates a successful response from the server.</span><!--end_enstr-->
+</p>
+<p><span class="enstr">Your completion handler may receive a client-side error, indicating a local problem like not being able to reach the network. If there is no client-side error, you also receive a <a href="../../../documentation/foundation/urlresponse.html" class=""><code data-v-7fb764c1="">URLResponse</code></a>, which you should inspect to ensure that it indicates a successful response from the server.</span><!--end_enstr-->
 <span class="jpstr">
-あなたの完了ハンドラは、ネットワークに接続できないなどのローカルな問題を指し示している、クライアント側エラーを受け取るかもしれません。クライアント側エラーがないならば、あなたはまた<a class="symbol-name" href="../../../documentation/foundation/urlresponse.html"><code><span>URLResponse</span></code></a>を受け取ります、それは、あなたが検査して、それがサーバーからのある成功した応答を指し示すことを保証すべきものです。
+あなたの完了ハンドラは、ネットワークに接続できないなどのローカルな問題を指し示している、クライアント側エラーを受け取るかもしれません。クライアント側エラーがないならば、あなたはまた<a href="../../../documentation/foundation/urlresponse.html" class=""><code data-v-7fb764c1="">URLResponse</code></a>を受け取ります、それは、あなたが検査して、それがサーバーからのある成功した応答を指し示すことを保証すべきものです。
 </span><!--end_jpstr-->
-</p><p><span class="enstr">If the download is successful, your completion handler receives a URL indicating the location of the downloaded file on the local filesystem. This storage is temporary. If you want to preserve the file, you <em>must</em> copy or move it from this location before returning from the completion handler.</span><!--end_enstr-->
+</p>
+<p><span class="enstr">If the download is successful, your completion handler receives a URL indicating the location of the downloaded file on the local filesystem. This storage is temporary. If you want to preserve the file, you <em>must</em> copy or move it from this location before returning from the completion handler.</span><!--end_enstr-->
 <span class="jpstr">
 ダウンロードが成功するならば、あなたの完了ハンドラはダウンロードされたファイルの位置をローカルファイルシステム上で指し示しているURLを受け取ります。このストレージ（貯蔵）は、一時的です。あなたがそのファイルを保存しておきたいならば、あなたはそれをこの場所からコピーまたは移動する<em>必要があります</em>、完了ハンドラから返る前に。
 </span><!--end_jpstr-->
-</p><p><span class="enstr"><a href="../../../documentation/foundation/url_loading_system/downloading_files_from_websites.html#3038356">Listing 1</a> shows a simple example of creating a download task with a completion handler. If no errors are indicated, the completion handler moves the downloaded file to the app’s <code class="code-voice"><span>Documents</span></code> directory. Start the task by calling <a class="symbol-name" href="../../../documentation/foundation/urlsessiontask/1411121-resume.html"><code><span>resume()</span></code></a>.</span><!--end_enstr-->
+</p>
+<p><span class="enstr"><a href="../../../documentation/foundation/url_loading_system/downloading_files_from_websites.html#3038356" class="">Listing 1</a> shows a simple example of creating a download task with a completion handler. If no errors are indicated, the completion handler moves the downloaded file to the app’s <code data-v-7fb764c1="">Documents</code> directory. Start the task by calling <a href="../../../documentation/foundation/urlsessiontask/1411121-resume.html" class=""><code data-v-7fb764c1="">resume()</code></a>.</span><!--end_enstr-->
 <span class="jpstr">
-<a href="../../../documentation/foundation/url_loading_system/downloading_files_from_websites.html#3038356">コード出力 1</a> は、ダウンロードタスクを完了ハンドラで作成するある単純な例を示します。ひとつのエラーも指し示されないならば、完了ハンドラはこのダウンロードされたファイルをアプリのもつ<code class="code-voice"><span>Documents</span></code>ディレクトリに移動します。このタスクを<a class="symbol-name" href="../../../documentation/foundation/urlsessiontask/1411121-resume.html"><code><span>resume()</span></code></a>を呼び出すことによって開始してください。
+<a href="../../../documentation/foundation/url_loading_system/downloading_files_from_websites.html#3038356" class="">コード出力 1</a> は、ダウンロードタスクを完了ハンドラで作成するある単純な例を示します。ひとつのエラーも指し示されないならば、完了ハンドラはこのダウンロードされたファイルをアプリのもつ<code data-v-7fb764c1="">Documents</code>ディレクトリに移動します。このタスクを<a href="../../../documentation/foundation/urlsessiontask/1411121-resume.html" class=""><code data-v-7fb764c1="">resume()</code></a>を呼び出すことによって開始してください。
 </span><!--end_jpstr-->
-</p><figure id="3038356"><figcaption><strong class="caption-title"><span class="enstr">Listing 1</span><!--end_enstr-->
+</p>
+<figure data-v-7bf080cc="" id="3038356"><figcaption data-v-513cf297="" class="caption" data-v-7bf080cc=""><span class="enstr"><strong data-v-513cf297="">Listing 1</strong>&nbsp;Creating a download task with a completion handler</span><!--end_enstr-->
 <span class="jpstr">
-コード出力 1
+<strong data-v-513cf297="">コード出力 1</strong> ダウンロードタスクを完了ハンドラで作成する
 </span><!--end_jpstr-->
-</strong> <div class="caption-content formatted-content"><div><p><span class="enstr">Creating a download task with a completion handler</span><!--end_enstr-->
-<span class="jpstr">
-ダウンロードタスクを完了ハンドラで作成する
-</span><!--end_jpstr-->
-</p></div></div></figcaption><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>let downloadTask = URLSession.shared.downloadTask(with: url) {
-    urlOrNil, responseOrNil, errorOrNil in
-    // check for and handle errors:
-    // * errorOrNil should be nil
-    // * responseOrNil should be an HTTPURLResponse with statusCode in 200..&lt;299
-    
-    guard let fileURL = urlOrNil else { return }
-    do {
-        let documentsURL = try
-            FileManager.default.url(for: .documentDirectory,
-                                    in: .userDomainMask,
-                                    appropriateFor: nil,
-                                    create: false)
-        let savedURL = documentsURL.appendingPathComponent(
-            fileUrl.lastPathComponent)
-        try FileManager.default.moveItem(at: fileUrl, to: savedURL)
-    } catch {
-        print ("file error: \(error)")
-    }
-}
-downloadTask.resume()
-
-</code></pre></div></div></figure><p></p><aside class="aside aside-tip" aria-label="tip"><p class="aside-name"><span class="enstr">Tip</span><!--end_enstr-->
+</figcaption><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-keyword">let</span> downloadTask = <span class="syntax-type">URLSession</span>.shared.downloadTask(with: url) {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    urlOrNil, responseOrNil, errorOrNil <span class="syntax-keyword">in</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-comment">// check for and handle errors:</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-comment">// * errorOrNil should be nil</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="5" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-comment">// * responseOrNil should be an HTTPURLResponse with statusCode in 200..&lt;299</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="6" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    </span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="7" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">guard</span> <span class="syntax-keyword">let</span> fileURL = urlOrNil <span class="syntax-keyword">else</span> { <span class="syntax-keyword">return</span> }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="8" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">do</span> {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="9" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">let</span> documentsURL = <span class="syntax-keyword">try</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="10" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">            <span class="syntax-type">FileManager</span>.<span class="syntax-keyword">default</span>.url(<span class="syntax-keyword">for</span>: .documentDirectory,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="11" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">                                    <span class="syntax-keyword">in</span>: .userDomainMask,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="12" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">                                    appropriateFor: <span class="syntax-literal">nil</span>,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="13" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">                                    create: <span class="syntax-literal">false</span>)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="14" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">let</span> savedURL = documentsURL.appendingPathComponent(fileURL.lastPathComponent)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="15" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">try</span> <span class="syntax-type">FileManager</span>.<span class="syntax-keyword">default</span>.moveItem(at: fileURL, to: savedURL)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="16" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    } <span class="syntax-keyword">catch</span> {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="17" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-built_in">print</span> (<span class="syntax-string">"file error: \(error)"</span>)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="18" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="19" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">}</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="20" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">downloadTask.resume()</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="21" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">
+</span></span></code></pre></div>
+</div></figure><p></p>
+<aside data-v-c567d8a8="" aria-label="tip" class="tip"><p data-v-c567d8a8="" class="label"><span class="enstr">Tip</span><!--end_enstr-->
 <span class="jpstr">
 秘訣
 </span><!--end_jpstr-->
-</p><p><span class="enstr"><span class="reference">Listing 1</span> creates the download task with <a class="symbol-name" href="../../../documentation/foundation/urlsession/1411482-downloadtask.html"><code><span>download<wbr/>Task(with:)</span></code></a>, which simply takes a <a class="symbol-name" href="../../../documentation/foundation/url.html"><code><span>URL</span></code></a> parameter. If you need to customize the request you send to the server, create the task with <a class="symbol-name" href="../../../documentation/foundation/urlsession/1411481-downloadtask.html"><code><span>download<wbr/>Task(with:)</span></code></a> and pass in a customized <a class="symbol-name" href="../../../documentation/foundation/urlrequest.html"><code><span>URLRequest</span></code></a>.</span><!--end_enstr-->
+</p>
+<p data-v-c567d8a8=""><span class="enstr"><span data-v-c567d8a8="">Listing 1</span> creates the download task with <a href="../../../documentation/foundation/urlsession/1411482-downloadtask.html" class="" data-v-c567d8a8=""><code data-v-7fb764c1="">download<wbr data-v-7fb764c1="">Task(with:)</wbr></code></a>, which simply takes a <a href="../../../documentation/foundation/url.html" class="" data-v-c567d8a8=""><code data-v-7fb764c1="">URL</code></a> parameter. If you need to customize the request you send to the server, create the task with <a href="../../../documentation/foundation/urlsession/1411481-downloadtask.html" class="" data-v-c567d8a8=""><code data-v-7fb764c1="">download<wbr data-v-7fb764c1="">Task(with:)</wbr></code></a> and pass in a customized <a href="../../../documentation/foundation/urlrequest.html" class="" data-v-c567d8a8=""><code data-v-7fb764c1="">URLRequest</code></a>.</span><!--end_enstr-->
 <span class="jpstr">
-<span class="reference">コード出力 1</span> は、ダウンロードタスクを<a class="symbol-name" href="../../../documentation/foundation/urlsession/1411482-downloadtask.html"><code><span>download<wbr/>Task(with:)</span></code></a>で作成します、それは単純にひとつの<a class="symbol-name" href="../../../documentation/foundation/url.html"><code><span>URL</span></code></a>パラメータを取ります。あなたがサーバーに送信するリクエストをカスタマイズする必要があるならば、タスクを<a class="symbol-name" href="../../../documentation/foundation/urlsession/1411481-downloadtask.html"><code><span>download<wbr/>Task(with:)</span></code></a>で作成して、カスタマイズされた<a class="symbol-name" href="../../../documentation/foundation/urlrequest.html"><code><span>URLRequest</span></code></a>に渡してください。
+<span data-v-c567d8a8="">コード出力 1</span> は、ダウンロードタスクを<a href="../../../documentation/foundation/urlsession/1411482-downloadtask.html" class="" data-v-c567d8a8=""><code data-v-7fb764c1="">download<wbr data-v-7fb764c1="">Task(with:)</wbr></code></a>で作成します、それは単純にひとつの<a href="../../../documentation/foundation/url.html" class="" data-v-c567d8a8=""><code data-v-7fb764c1="">URL</code></a>パラメータを取ります。あなたがサーバーに送信するリクエストをカスタマイズする必要があるならば、タスクを<a href="../../../documentation/foundation/urlsession/1411481-downloadtask.html" class="" data-v-c567d8a8=""><code data-v-7fb764c1="">download<wbr data-v-7fb764c1="">Task(with:)</wbr></code></a>で作成して、カスタマイズされた<a href="../../../documentation/foundation/urlrequest.html" class="" data-v-c567d8a8=""><code data-v-7fb764c1="">URLRequest</code></a>に渡してください。
 </span><!--end_jpstr-->
-</p></aside><p></p></div><h3 id="3038358"><span class="enstr">To Receive Progress Updates, Use a Delegate</span><!--end_enstr-->
+</p></aside><p></p>
+<h3 id="3038358"><span class="enstr">To Receive Progress Updates, Use a Delegate</span><!--end_enstr-->
 <span class="jpstr">
 進捗最新情報を受け取るには、委任先を使ってください
 </span><!--end_jpstr-->
-</h3><div><p><span class="enstr">If you want to receive progress updates as the download proceeds, you must use a delegate. Instead of receiving the results in a completion handler, you receive callbacks to your implementations of methods from the <a class="symbol-name" href="../../../documentation/foundation/urlsessiontaskdelegate.html"><code><span>URLSession<wbr/>Task<wbr/>Delegate</span></code></a> and <a class="symbol-name" href="../../../documentation/foundation/urlsessiondownloaddelegate.html"><code><span>URLSession<wbr/>Download<wbr/>Delegate</span></code></a> protocols.</span><!--end_enstr-->
+</h3>
+<p><span class="enstr">If you want to receive progress updates as the download proceeds, you must use a delegate. Instead of receiving the results in a completion handler, you receive callbacks to your implementations of methods from the <a href="../../../documentation/foundation/urlsessiontaskdelegate.html" class=""><code data-v-7fb764c1="">URLSession<wbr data-v-7fb764c1="">Task<wbr data-v-7fb764c1="">Delegate</wbr></wbr></code></a> and <a href="../../../documentation/foundation/urlsessiondownloaddelegate.html" class=""><code data-v-7fb764c1="">URLSession<wbr data-v-7fb764c1="">Download<wbr data-v-7fb764c1="">Delegate</wbr></wbr></code></a> protocols.</span><!--end_enstr-->
 <span class="jpstr">
-あなたが進捗更新をダウンロードが進行するにつれて受け取りたいならば、あなたはある委任先を使わなければなりません。完了ハンドラにおいて結果を受け取る代わりに、あなたは、<a class="symbol-name" href="../../../documentation/foundation/urlsessiontaskdelegate.html"><code><span>URLSession<wbr/>Task<wbr/>Delegate</span></code></a>と<a class="symbol-name" href="../../../documentation/foundation/urlsessiondownloaddelegate.html"><code><span>URLSession<wbr/>Download<wbr/>Delegate</span></code></a>プロトコル由来のメソッドのあなたの実装へのコールバックを受け取ります。
+あなたが進捗更新をダウンロードが進行するにつれて受け取りたいならば、あなたはある委任先を使わなければなりません。完了ハンドラにおいて結果を受け取る代わりに、あなたは、<a href="../../../documentation/foundation/urlsessiontaskdelegate.html" class=""><code data-v-7fb764c1="">URLSession<wbr data-v-7fb764c1="">Task<wbr data-v-7fb764c1="">Delegate</wbr></wbr></code></a>と<a href="../../../documentation/foundation/urlsessiondownloaddelegate.html" class=""><code data-v-7fb764c1="">URLSession<wbr data-v-7fb764c1="">Download<wbr data-v-7fb764c1="">Delegate</wbr></wbr></code></a>プロトコル由来のメソッドのあなたの実装へのコールバックを受け取ります。
 </span><!--end_jpstr-->
-</p><p><span class="enstr">Create your own <code class="code-voice"><span>URLSession</span></code> instance, and set its <code class="code-voice"><span>delegate</span></code> property. <a href="../../../documentation/foundation/url_loading_system/downloading_files_from_websites.html#3038353">Listing 2</a> shows a lazily instantiated <code class="code-voice"><span>url<wbr/>Session</span></code> property that sets <code class="code-voice"><span>self</span></code> as its delegate.</span><!--end_enstr-->
+</p>
+<p><span class="enstr">Create your own <span><code data-v-7fb764c1="">URLSession</code></span> instance, and set its <code data-v-7fb764c1="">delegate</code> property. <a href="../../../documentation/foundation/url_loading_system/downloading_files_from_websites.html#3038353" class="">Listing 2</a> shows a lazily instantiated <code data-v-7fb764c1="">url<wbr data-v-7fb764c1="">Session</wbr></code> property that sets <code data-v-7fb764c1="">self</code> as its delegate.</span><!--end_enstr-->
 <span class="jpstr">
-あなた独自の<code class="code-voice"><span>URLSession</span></code>インスタンスを作成して、そしてそれの<code class="code-voice"><span>delegate</span></code>プロパティを設定してください。<a href="../../../documentation/foundation/url_loading_system/downloading_files_from_websites.html#3038353">コード出力 2</a> は、遅延にインスタンス化される<code class="code-voice"><span>url<wbr/>Session</span></code>プロパティを示します、それは<code class="code-voice"><span>self</span></code>をそれの委任先として設定します。
+あなた独自の<span><code data-v-7fb764c1="">URLSession</code></span>インスタンスを作成して、そしてそれの<code data-v-7fb764c1="">delegate</code>プロパティを設定してください。<a href="../../../documentation/foundation/url_loading_system/downloading_files_from_websites.html#3038353" class="">コード出力 2</a> は、遅延にインスタンス化される<code data-v-7fb764c1="">url<wbr data-v-7fb764c1="">Session</wbr></code>プロパティを示します、それは<code data-v-7fb764c1="">self</code>をそれの委任先として設定します。
 </span><!--end_jpstr-->
-</p><figure id="3038353"><figcaption><strong class="caption-title"><span class="enstr">Listing 2</span><!--end_enstr-->
+</p>
+<figure data-v-7bf080cc="" id="3038353"><figcaption data-v-513cf297="" class="caption" data-v-7bf080cc=""><span class="enstr"><strong data-v-513cf297="">Listing 2</strong>&nbsp;Creating a URL session with a delegate</span><!--end_enstr-->
 <span class="jpstr">
-コード出力 2 
+<strong data-v-513cf297="">コード出力 2</strong> URLセッションをある委任先で作成する
 </span><!--end_jpstr-->
-</strong> <div class="caption-content formatted-content"><div><p><span class="enstr">Creating a URL session with a delegate</span><!--end_enstr-->
+</figcaption><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-keyword">private</span> <span class="syntax-built_in">lazy</span> <span class="syntax-keyword">var</span> urlSession = <span class="syntax-type">URLSession</span>(configuration: .<span class="syntax-keyword">default</span>,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">                                         delegate: <span class="syntax-keyword">self</span>,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">                                         delegateQueue: <span class="syntax-literal">nil</span>)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">
+</span></span></code></pre></div>
+</div></figure><p><span class="enstr">To start downloading, use this <span><code data-v-7fb764c1="">URLSession</code></span> to create a <span><code data-v-7fb764c1="">URLSession<wbr data-v-7fb764c1="">Download<wbr data-v-7fb764c1="">Task</wbr></wbr></code></span>, and then start the task by calling <span><code data-v-7fb764c1="">resume()</code></span>, as shown in <a href="../../../documentation/foundation/url_loading_system/downloading_files_from_websites.html#3038360" class="">Listing 3</a>.</span><!--end_enstr-->
 <span class="jpstr">
-URLセッションをある委任先で作成する
+ダウンロードを開始するには、この<span><code data-v-7fb764c1="">URLSession</code></span>を使って<span><code data-v-7fb764c1="">URLSession<wbr data-v-7fb764c1="">Download<wbr data-v-7fb764c1="">Task</wbr></wbr></code></span>を作成します、それからそのタスクを<span><code data-v-7fb764c1="">resume()</code></span>を呼び出すことによって開始します、<a href="../../../documentation/foundation/url_loading_system/downloading_files_from_websites.html#3038360" class="">コード出力 3</a>で示されるように。
 </span><!--end_jpstr-->
-</p></div></div></figcaption><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>private lazy var urlSession = URLSession(configuration: .default,
-                                         delegate: self,
-                                         delegateQueue: nil)
-
-</code></pre></div></div></figure><p><span class="enstr">To start downloading, use this <code class="code-voice"><span>URLSession</span></code> to create a <code class="code-voice"><span>URLSession<wbr/>Download<wbr/>Task</span></code>, and then start the task by calling <code class="code-voice"><span>resume()</span></code>, as shown in <a href="../../../documentation/foundation/url_loading_system/downloading_files_from_websites.html#3038360">Listing 3</a>.</span><!--end_enstr-->
+</p>
+<figure data-v-7bf080cc="" id="3038360"><figcaption data-v-513cf297="" class="caption" data-v-7bf080cc=""><span class="enstr"><strong data-v-513cf297="">Listing 3</strong>&nbsp;Creating and starting a download task that uses a delegate</span><!--end_enstr-->
 <span class="jpstr">
-ダウンロードを開始するには、この<code class="code-voice"><span>URLSession</span></code>を使って<code class="code-voice"><span>URLSession<wbr/>Download<wbr/>Task</span></code>を作成します、それからそのタスクを<code class="code-voice"><span>resume()</span></code>を呼び出すことによって開始します、<a href="../../../documentation/foundation/url_loading_system/downloading_files_from_websites.html#3038360">コード出力 3</a>で示されるように。
+<strong data-v-513cf297="">コード出力 3</strong>&nbsp;委任先を使用するダウンロードタスクを作成して開始する
 </span><!--end_jpstr-->
-</p><figure id="3038360"><figcaption><strong class="caption-title"><span class="enstr">Listing 3</span><!--end_enstr-->
-<span class="jpstr">
-コード出力 3 
-</span><!--end_jpstr-->
-</strong> <div class="caption-content formatted-content"><div><p><span class="enstr">Creating and starting a download task that uses a delegate</span><!--end_enstr-->
-<span class="jpstr">
-委任先を使用するダウンロードタスクを作成して開始する
-</span><!--end_jpstr-->
-</p></div></div></figcaption><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>private func startDownload(url: URL) {
-    let downloadTask = urlSession.downloadTask(with: url)
-    downloadTask.resume()
-    self.downloadTask = downloadTask
-}
-
-</code></pre></div></div></figure><p></p><p></p></div><h3 id="3087626"><span class="enstr">Receive Progress Updates</span><!--end_enstr-->
+</figcaption><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-keyword">private</span> <span class="syntax-function"><span class="syntax-keyword">func</span> <span class="syntax-title">startDownload</span><span class="syntax-params">(url: URL)</span></span> {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">let</span> downloadTask = urlSession.downloadTask(with: url)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    downloadTask.resume()</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">self</span>.downloadTask = downloadTask</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="5" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">}</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="6" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">
+</span></span></code></pre></div>
+</div></figure><p></p>
+<p></p>
+<h3 id="3087626"><span class="enstr">Receive Progress Updates</span><!--end_enstr-->
 <span class="jpstr">
 進捗最新情報を受け取る
 </span><!--end_jpstr-->
-</h3><div><p><span class="enstr">Once the download starts, you receive periodic progress updates in the <code class="code-voice"><span>URLSession<wbr/>Download<wbr/>Delegate</span></code> method <a class="symbol-name" href="../../../documentation/foundation/urlsessiondownloaddelegate/1409408-urlsession.html"><code><span>url<wbr/>Session(_:<wbr/>download<wbr/>Task:<wbr/>did<wbr/>Write<wbr/>Data:<wbr/>total<wbr/>Bytes<wbr/>Written:<wbr/>total<wbr/>Bytes<wbr/>Expected<wbr/>To<wbr/>Write:)</span></code></a>. You can use the byte counts provided by this callback to update a progress UI in your app.</span><!--end_enstr-->
+</h3>
+<p><span class="enstr">Once the download starts, you receive periodic progress updates in the <span><code data-v-7fb764c1="">URLSession<wbr data-v-7fb764c1="">Download<wbr data-v-7fb764c1="">Delegate</wbr></wbr></code></span> method <a href="../../../documentation/foundation/urlsessiondownloaddelegate/1409408-urlsession.html" class=""><code data-v-7fb764c1="">url<wbr data-v-7fb764c1="">Session(_:<wbr data-v-7fb764c1="">download<wbr data-v-7fb764c1="">Task:<wbr data-v-7fb764c1="">did<wbr data-v-7fb764c1="">Write<wbr data-v-7fb764c1="">Data:<wbr data-v-7fb764c1="">total<wbr data-v-7fb764c1="">Bytes<wbr data-v-7fb764c1="">Written:<wbr data-v-7fb764c1="">total<wbr data-v-7fb764c1="">Bytes<wbr data-v-7fb764c1="">Expected<wbr data-v-7fb764c1="">To<wbr data-v-7fb764c1="">Write:)</wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></code></a>. You can use the byte counts provided by this callback to update a progress UI in your app.</span><!--end_enstr-->
 <span class="jpstr">
-一旦ダウンロードが始まるならば、あなたは周期的な進捗最新情報を<code class="code-voice"><span>URLSession<wbr/>Download<wbr/>Delegate</span></code>のメソッド<a class="symbol-name" href="../../../documentation/foundation/urlsessiondownloaddelegate/1409408-urlsession.html"><code><span>url<wbr/>Session(_:<wbr/>download<wbr/>Task:<wbr/>did<wbr/>Write<wbr/>Data:<wbr/>total<wbr/>Bytes<wbr/>Written:<wbr/>total<wbr/>Bytes<wbr/>Expected<wbr/>To<wbr/>Write:)</span></code></a>において受け取ります。あなたは、このコールバックによって提供されるバイト計数を使って、進捗UIをあなたのアプリにおいて更新できます。
+一旦ダウンロードが始まるならば、あなたは周期的な進捗最新情報を<span><code data-v-7fb764c1="">URLSession<wbr data-v-7fb764c1="">Download<wbr data-v-7fb764c1="">Delegate</wbr></wbr></code></span>のメソッド<a href="../../../documentation/foundation/urlsessiondownloaddelegate/1409408-urlsession.html" class=""><code data-v-7fb764c1="">url<wbr data-v-7fb764c1="">Session(_:<wbr data-v-7fb764c1="">download<wbr data-v-7fb764c1="">Task:<wbr data-v-7fb764c1="">did<wbr data-v-7fb764c1="">Write<wbr data-v-7fb764c1="">Data:<wbr data-v-7fb764c1="">total<wbr data-v-7fb764c1="">Bytes<wbr data-v-7fb764c1="">Written:<wbr data-v-7fb764c1="">total<wbr data-v-7fb764c1="">Bytes<wbr data-v-7fb764c1="">Expected<wbr data-v-7fb764c1="">To<wbr data-v-7fb764c1="">Write:)</wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></wbr></code></a>において受け取ります。あなたは、このコールバックによって提供されるバイト計数を使って、進捗UIをあなたのアプリにおいて更新できます。
 </span><!--end_jpstr-->
-</p><p><span class="enstr"><a href="../../../documentation/foundation/url_loading_system/downloading_files_from_websites.html#3087625">Listing 4</a> shows an implementation of this callback method. This implementation calculates the fractional progress of the download, and uses it to update a label that shows progress as a percentage. Because the callback is performed on an unknown Grand Central Dispatch queue, you <em>must</em> explicitly perform the UI update on the main queue.</span><!--end_enstr-->
+</p>
+<p><span class="enstr"><a href="../../../documentation/foundation/url_loading_system/downloading_files_from_websites.html#3087625" class="">Listing 4</a> shows an implementation of this callback method. This implementation calculates the fractional progress of the download, and uses it to update a label that shows progress as a percentage. Because the callback is performed on an unknown Grand Central Dispatch queue, you <em>must</em> explicitly perform the UI update on the main queue.</span><!--end_enstr-->
 <span class="jpstr">
-<a href="../../../documentation/foundation/url_loading_system/downloading_files_from_websites.html#3087625">コード出力 4</a> は、このコールバックメソッドの実装を示します。この実装は、ダウンロードの分数の進捗を計算します、そしてそれを使って、百分率として進捗を示すあるラベルを更新します。コールバックが未知の「グランドセントラルディスパッチ」キュー上で実行されることから、あなたは明示的にUI更新をメインキュー上で実行する<em>必要があります</em>。
+<a href="../../../documentation/foundation/url_loading_system/downloading_files_from_websites.html#3087625" class="">コード出力 4</a> は、このコールバックメソッドの実装を示します。この実装は、ダウンロードの分数の進捗を計算します、そしてそれを使って、百分率として進捗を示すあるラベルを更新します。コールバックが未知の「グランドセントラルディスパッチ」キュー上で実行されることから、あなたは明示的にUI更新をメインキュー上で実行する<em>必要があります</em>。
 </span><!--end_jpstr-->
-</p><figure id="3087625"><figcaption><strong class="caption-title"><span class="enstr">Listing 4</span><!--end_enstr-->
+</p>
+<figure data-v-7bf080cc="" id="3087625"><figcaption data-v-513cf297="" class="caption" data-v-7bf080cc=""><span class="enstr"><strong data-v-513cf297="">Listing 4</strong>&nbsp;Using a delegate method to update download progress in a UI</span><!--end_enstr-->
 <span class="jpstr">
-コード出力 4 
+<strong data-v-513cf297="">コード出力 4</strong>&nbsp;委任先メソッドを使ってタウンロード進捗をUIにおいて更新する
 </span><!--end_jpstr-->
-</strong> <div class="caption-content formatted-content"><div><p><span class="enstr">Using a delegate method to update download progress in a UI</span><!--end_enstr-->
-<span class="jpstr">
-委任先メソッドを使ってタウンロード進捗をUIにおいて更新する
-</span><!--end_jpstr-->
-</p></div></div></figcaption><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>func urlSession(_ session: URLSession,
-                downloadTask: URLSessionDownloadTask,
-                didWriteData bytesWritten: Int64,
-                totalBytesWritten: Int64,
-                totalBytesExpectedToWrite: Int64) {
-     if downloadTask == self.downloadTask {
-        let calculatedProgress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
-        DispatchQueue.main.async {
-            self.progressLabel.text = self.percentFormatter.string(from:
-                NSNumber(value: calculatedProgress))
-    }
-}
-
-</code></pre></div></div></figure><aside class="aside aside-tip" aria-label="tip"><p class="aside-name"><span class="enstr">Tip</span><!--end_enstr-->
+</figcaption><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-function"><span class="syntax-keyword">func</span> <span class="syntax-title">urlSession</span><span class="syntax-params">(<span class="syntax-number">_</span> session: URLSession,</span></span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-params">                downloadTask: URLSessionDownloadTask,</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-params">                didWriteData bytesWritten: Int64,</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-params">                totalBytesWritten: Int64,</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="5" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-params">                totalBytesExpectedToWrite: Int64)</span> {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="6" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">     <span class="syntax-keyword">if</span> downloadTask == <span class="syntax-keyword">self</span>.downloadTask {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="7" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">let</span> calculatedProgress = <span class="syntax-type">Float</span>(totalBytesWritten) / <span class="syntax-type">Float</span>(totalBytesExpectedToWrite)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="8" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-type">DispatchQueue</span>.main.async {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="9" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">            <span class="syntax-keyword">self</span>.progressLabel.text = <span class="syntax-keyword">self</span>.percentFormatter.string(from:</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="10" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">                <span class="syntax-type">NSNumber</span>(value: calculatedProgress))</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="11" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="12" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">}</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="13" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">
+</span></span></code></pre></div>
+</div></figure><aside data-v-c567d8a8="" aria-label="tip" class="tip"><p data-v-c567d8a8="" class="label"><span class="enstr">Tip</span><!--end_enstr-->
 <span class="jpstr">
 秘訣
 </span><!--end_jpstr-->
-</p><p><span class="enstr">If the only UI update you need to perform during the download is to update a <a class="symbol-name" href="https://developer.apple.com/documentation/uikit/uiprogressview"><code><span>UIProgress<wbr/>View</span></code></a>, then use the task’s <a class="symbol-name" href="../../../documentation/foundation/urlsessiontask/2908821-progress.html"><code><span>progress</span></code></a> property instead of performing your own progress calculations. This property is an instance of <a class="symbol-name" href="../../../documentation/foundation/progress.html"><code><span>Progress</span></code></a> that you can assign to the <code class="code-voice"><span>UIProgress<wbr/>View</span></code> property <a class="symbol-name" href="https://developer.apple.com/documentation/uikit/uiprogressview/1619840-observedprogress"><code><span>observed<wbr/>Progress</span></code></a> when you create the task to get automatic updating of the progress view.</span><!--end_enstr-->
+</p>
+<p data-v-c567d8a8=""><span class="enstr">If the only UI update you need to perform during the download is to update a <a href="https://developer.apple.com/documentation/uikit/uiprogressview" class="" data-v-c567d8a8=""><code data-v-7fb764c1="">UIProgress<wbr data-v-7fb764c1="">View</wbr></code></a>, then use the task’s <a href="../../../documentation/foundation/urlsessiontask/2908821-progress.html" class="" data-v-c567d8a8=""><code data-v-7fb764c1="">progress</code></a> property instead of performing your own progress calculations. This property is an instance of <a href="../../../documentation/foundation/progress.html" class="" data-v-c567d8a8=""><code data-v-7fb764c1="">Progress</code></a> that you can assign to the <span data-v-c567d8a8=""><code data-v-7fb764c1="">UIProgress<wbr data-v-7fb764c1="">View</wbr></code></span> property <a href="https://developer.apple.com/documentation/uikit/uiprogressview/1619840-observedprogress" class="" data-v-c567d8a8=""><code data-v-7fb764c1="">observed<wbr data-v-7fb764c1="">Progress</wbr></code></a> when you create the task to get automatic updating of the progress view.</span><!--end_enstr-->
 <span class="jpstr">
-あなたがダウンロードの間に実行する必要があるUI更新だけが<a class="symbol-name" href="https://developer.apple.com/documentation/uikit/uiprogressview"><code><span>UIProgress<wbr/>View</span></code></a>を更新するならば、そのときタスクのもつ<a class="symbol-name" href="../../../documentation/foundation/urlsessiontask/2908821-progress.html"><code><span>progress</span></code></a>プロパティを使ってください、あなた独自の進捗計算を実行する代わりに。このプロパティは<a class="symbol-name" href="../../../documentation/foundation/progress.html"><code><span>Progress</span></code></a>のインスタンスです、それはあなたが<code class="code-voice"><span>UIProgress<wbr/>View</span></code>のプロパティ<a class="symbol-name" href="https://developer.apple.com/documentation/uikit/uiprogressview/1619840-observedprogress"><code><span>observed<wbr/>Progress</span></code></a>へと割り当てることが、あなたがタスクを作成して進捗ビューの自動更新を取得する時に可能なものです。
+あなたがダウンロードの間に実行する必要があるUI更新だけが<a href="https://developer.apple.com/documentation/uikit/uiprogressview" class="" data-v-c567d8a8=""><code data-v-7fb764c1="">UIProgress<wbr data-v-7fb764c1="">View</wbr></code></a>を更新するならば、そのときタスクのもつ<a href="../../../documentation/foundation/urlsessiontask/2908821-progress.html" class="" data-v-c567d8a8=""><code data-v-7fb764c1="">progress</code></a>プロパティを使ってください、あなた独自の進捗計算を実行する代わりに。このプロパティは<a href="../../../documentation/foundation/progress.html" class="" data-v-c567d8a8=""><code data-v-7fb764c1="">Progress</code></a>のインスタンスです、それはあなたが<span data-v-c567d8a8=""><code data-v-7fb764c1="">UIProgress<wbr data-v-7fb764c1="">View</wbr></code></span>のプロパティ<a href="https://developer.apple.com/documentation/uikit/uiprogressview/1619840-observedprogress" class="" data-v-c567d8a8=""><code data-v-7fb764c1="">observed<wbr data-v-7fb764c1="">Progress</wbr></code></a>へと割り当てることが、あなたがタスクを作成して進捗ビューの自動更新を取得する時に可能なものです。
 </span><!--end_jpstr-->
-</p></aside><p></p></div><h3 id="3038359"><span class="enstr">Handle Download Completion or Errors in Your Delegate</span><!--end_enstr-->
+</p></aside><p></p>
+<h3 id="3038359"><span class="enstr">Handle Download Completion or Errors in Your Delegate</span><!--end_enstr-->
 <span class="jpstr">
 ダウンロード完了またはエラーをあなたの委任先において取り扱う
 </span><!--end_jpstr-->
-</h3><div><p><span class="enstr">When you use a delegate instead of a completion handler, you handle the completion of the download by implementing <a class="symbol-name" href="../../../documentation/foundation/urlsessiondownloaddelegate/1411575-urlsession.html"><code><span>url<wbr/>Session(_:<wbr/>download<wbr/>Task:<wbr/>did<wbr/>Finish<wbr/>Downloading<wbr/>To:)</span></code></a>. Check the <code class="code-voice"><span>download<wbr/>Task</span></code>’s <a class="symbol-name" href="../../../documentation/foundation/urlsessiontask/1410586-response.html"><code><span>response</span></code></a> property to ensure that the server response indicates success. If so, the <code class="code-voice"><span>location</span></code> parameter provides a local URL where the file has been stored. This location is valid only until the end of the callback. This means you <em>must</em> either read the file immediately, or move it to another location such as the app’s <code class="code-voice"><span>Documents</span></code> directory before you return from the callback method. <a href="../../../documentation/foundation/url_loading_system/downloading_files_from_websites.html#3038355">Listing 5</a> shows how to preserve the downloaded file.</span><!--end_enstr-->
+</h3>
+<p><span class="enstr">When you use a delegate instead of a completion handler, you handle the completion of the download by implementing <a href="../../../documentation/foundation/urlsessiondownloaddelegate/1411575-urlsession.html" class=""><code data-v-7fb764c1="">url<wbr data-v-7fb764c1="">Session(_:<wbr data-v-7fb764c1="">download<wbr data-v-7fb764c1="">Task:<wbr data-v-7fb764c1="">did<wbr data-v-7fb764c1="">Finish<wbr data-v-7fb764c1="">Downloading<wbr data-v-7fb764c1="">To:)</wbr></wbr></wbr></wbr></wbr></wbr></wbr></code></a>. Check the <code data-v-7fb764c1="">download<wbr data-v-7fb764c1="">Task</wbr></code>’s <a href="../../../documentation/foundation/urlsessiontask/1410586-response.html" class=""><code data-v-7fb764c1="">response</code></a> property to ensure that the server response indicates success. If so, the <code data-v-7fb764c1="">location</code> parameter provides a local URL where the file has been stored. This location is valid only until the end of the callback. This means you <em>must</em> either read the file immediately, or move it to another location such as the app’s <code data-v-7fb764c1="">Documents</code> directory before you return from the callback method. <a href="../../../documentation/foundation/url_loading_system/downloading_files_from_websites.html#3038355" class="">Listing 5</a> shows how to preserve the downloaded file.</span><!--end_enstr-->
 <span class="jpstr">
-あなたがある委任先を完了ハンドラの代わりに使う場合、あなたはダウンロードの完了を<a class="symbol-name" href="../../../documentation/foundation/urlsessiondownloaddelegate/1411575-urlsession.html"><code><span>url<wbr/>Session(_:<wbr/>download<wbr/>Task:<wbr/>did<wbr/>Finish<wbr/>Downloading<wbr/>To:)</span></code></a>を実装することによって取り扱います。<code class="code-voice"><span>download<wbr/>Task</span></code>のもつ<a class="symbol-name" href="../../../documentation/foundation/urlsessiontask/1410586-response.html"><code><span>response</span></code></a>プロパティを確認することで、サーバー応答が成功を指し示すことを確実にしてください。もしそうならば、<code class="code-voice"><span>location</span></code>パラメータはそこにおいてファイルが格納されているローカルURLを提供します。この位置は、コールバックの終わりまでのみ有効です。これはあなたが、ファイルを直接に読み出す、またはそれを別の場所にたとえばアプリのもつ<code class="code-voice"><span>Documents</span></code>ディレクトリに移動する、どちらかをあなたがコールバックメソッドから返る前に<em>しなければならない</em>ことを意味します。<a href="../../../documentation/foundation/url_loading_system/downloading_files_from_websites.html#3038355">コード出力 5</a> はダウンロードファイルを取っておく方法を示します。
+あなたがある委任先を完了ハンドラの代わりに使う場合、あなたはダウンロードの完了を<a href="../../../documentation/foundation/urlsessiondownloaddelegate/1411575-urlsession.html" class=""><code data-v-7fb764c1="">url<wbr data-v-7fb764c1="">Session(_:<wbr data-v-7fb764c1="">download<wbr data-v-7fb764c1="">Task:<wbr data-v-7fb764c1="">did<wbr data-v-7fb764c1="">Finish<wbr data-v-7fb764c1="">Downloading<wbr data-v-7fb764c1="">To:)</wbr></wbr></wbr></wbr></wbr></wbr></wbr></code></a>を実装することによって取り扱います。<code data-v-7fb764c1="">download<wbr data-v-7fb764c1="">Task</wbr></code>のもつ<a href="../../../documentation/foundation/urlsessiontask/1410586-response.html" class=""><code data-v-7fb764c1="">response</code></a>プロパティを確認することで、サーバー応答が成功を指し示すことを確実にしてください。もしそうならば、<code data-v-7fb764c1="">location</code>パラメータはそこにおいてファイルが格納されているローカルURLを提供します。この位置は、コールバックの終わりまでのみ有効です。これはあなたが、ファイルを直接に読み出す、またはそれを別の場所にたとえばアプリのもつ<code data-v-7fb764c1="">Documents</code>ディレクトリに移動する、どちらかをあなたがコールバックメソッドから返る前に<em>しなければならない</em>ことを意味します。<a href="../../../documentation/foundation/url_loading_system/downloading_files_from_websites.html#3038355" class="">コード出力 5</a> はダウンロードファイルを取っておく方法を示します。
 </span><!--end_jpstr-->
-</p><figure id="3038355"><figcaption><strong class="caption-title"><span class="enstr">Listing 5</span><!--end_enstr-->
+</p>
+<figure data-v-7bf080cc="" id="3038355"><figcaption data-v-513cf297="" class="caption" data-v-7bf080cc=""><span class="enstr"><strong data-v-513cf297="">Listing 5</strong>&nbsp;Saving the downloaded file in the delegate callback</span><!--end_enstr-->
 <span class="jpstr">
-コード出力 5 
+<strong data-v-513cf297="">コード出力 5</strong>&nbsp;委任先コールバックにおいてダウンロードされたファイルを保存する
 </span><!--end_jpstr-->
-</strong> <div class="caption-content formatted-content"><div><p><span class="enstr">Saving the downloaded file in the delegate callback</span><!--end_enstr-->
+</figcaption><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-function"><span class="syntax-keyword">func</span> <span class="syntax-title">urlSession</span><span class="syntax-params">(<span class="syntax-number">_</span> session: URLSession,</span></span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-params">                downloadTask: URLSessionDownloadTask,</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-params">                didFinishDownloadingTo location: URL)</span> {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="4" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-comment">// check for and handle errors:</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="5" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-comment">// * downloadTask.response should be an HTTPURLResponse with statusCode in 200..&lt;299</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="6" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">
+</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="7" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    <span class="syntax-keyword">do</span> {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="8" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">let</span> documentsURL = <span class="syntax-keyword">try</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="9" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">            <span class="syntax-type">FileManager</span>.<span class="syntax-keyword">default</span>.url(<span class="syntax-keyword">for</span>: .documentDirectory,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="10" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">                                    <span class="syntax-keyword">in</span>: .userDomainMask,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="11" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">                                    appropriateFor: <span class="syntax-literal">nil</span>,</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="12" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">                                    create: <span class="syntax-literal">false</span>)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="13" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">let</span> savedURL = documentsURL.appendingPathComponent(</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="14" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">            location.lastPathComponent)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="15" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-keyword">try</span> <span class="syntax-type">FileManager</span>.<span class="syntax-keyword">default</span>.moveItem(at: location, to: savedURL)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="16" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    } <span class="syntax-keyword">catch</span> {</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="17" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">        <span class="syntax-comment">// handle filesystem error</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="18" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">    }</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="19" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">}</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="20" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">
+</span></span></code></pre></div>
+</div></figure><p><span class="enstr">If a client-side error occurs, your delegate receives it in a callback to the <a href="../../../documentation/foundation/urlsessiontaskdelegate/1411610-urlsession.html" class=""><code data-v-7fb764c1="">url<wbr data-v-7fb764c1="">Session(_:<wbr data-v-7fb764c1="">task:<wbr data-v-7fb764c1="">did<wbr data-v-7fb764c1="">Complete<wbr data-v-7fb764c1="">With<wbr data-v-7fb764c1="">Error:)</wbr></wbr></wbr></wbr></wbr></wbr></code></a> delegate method. On the other hand, if the download completes successfully, this method is called after <span><code data-v-7fb764c1="">url<wbr data-v-7fb764c1="">Session(_:<wbr data-v-7fb764c1="">download<wbr data-v-7fb764c1="">Task:<wbr data-v-7fb764c1="">did<wbr data-v-7fb764c1="">Finish<wbr data-v-7fb764c1="">Downloading<wbr data-v-7fb764c1="">To:)</wbr></wbr></wbr></wbr></wbr></wbr></wbr></code></span> and the error is <code data-v-7fb764c1="">nil</code>.</span><!--end_enstr-->
 <span class="jpstr">
-委任先コールバックにおいてダウンロードされたファイルを保存する
+クライアント側エラーが発生するならば、あなたの委任先はそれを<a href="../../../documentation/foundation/urlsessiontaskdelegate/1411610-urlsession.html" class=""><code data-v-7fb764c1="">url<wbr data-v-7fb764c1="">Session(_:<wbr data-v-7fb764c1="">task:<wbr data-v-7fb764c1="">did<wbr data-v-7fb764c1="">Complete<wbr data-v-7fb764c1="">With<wbr data-v-7fb764c1="">Error:)</wbr></wbr></wbr></wbr></wbr></wbr></code></a>委任先メソッドへのコールバックにおいて受け取ります。言い換えれば、ダウンロードがうまく完了するならば、このメソッドは<span><code data-v-7fb764c1="">url<wbr data-v-7fb764c1="">Session(_:<wbr data-v-7fb764c1="">download<wbr data-v-7fb764c1="">Task:<wbr data-v-7fb764c1="">did<wbr data-v-7fb764c1="">Finish<wbr data-v-7fb764c1="">Downloading<wbr data-v-7fb764c1="">To:)</wbr></wbr></wbr></wbr></wbr></wbr></wbr></code></span>の後に呼び出されます、そしてエラーは<code data-v-7fb764c1="">nil</code>です。
 </span><!--end_jpstr-->
-</p></div></div></figcaption><div class="formatted-content"><div class="code-listing"><pre class="code-source" data-language="swift"><code>func urlSession(_ session: URLSession,
-                downloadTask: URLSessionDownloadTask,
-                didFinishDownloadingTo location: URL) {
-    // check for and handle errors:
-    // * downloadTask.response should be an HTTPURLResponse with statusCode in 200..&lt;299
-
-    do {
-        let documentsURL = try
-            FileManager.default.url(for: .documentDirectory,
-                                    in: .userDomainMask,
-                                    appropriateFor: nil,
-                                    create: false)
-        let savedURL = documentsURL.appendingPathComponent(
-            location.lastPathComponent)
-        try FileManager.default.moveItem(at: location, to: savedURL)
-    } catch {
-        // handle filesystem error
-    }
-}
-
-</code></pre></div></div></figure><p><span class="enstr">If a client-side error occurs, your delegate receives it in a callback to the <a class="symbol-name" href="../../../documentation/foundation/urlsessiontaskdelegate/1411610-urlsession.html"><code><span>url<wbr/>Session(_:<wbr/>task:<wbr/>did<wbr/>Complete<wbr/>With<wbr/>Error:)</span></code></a> delegate method. On the other hand, if the download completes successfully, this method is called after <code class="code-voice"><span>url<wbr/>Session(_:<wbr/>download<wbr/>Task:<wbr/>did<wbr/>Finish<wbr/>Downloading<wbr/>To:)</span></code> and the error is <code class="code-voice"><span>nil</span></code>.</span><!--end_enstr-->
-<span class="jpstr">
-クライアント側エラーが発生するならば、あなたの委任先はそれを<a class="symbol-name" href="../../../documentation/foundation/urlsessiontaskdelegate/1411610-urlsession.html"><code><span>url<wbr/>Session(_:<wbr/>task:<wbr/>did<wbr/>Complete<wbr/>With<wbr/>Error:)</span></code></a>委任先メソッドへのコールバックにおいて受け取ります。言い換えれば、ダウンロードがうまく完了するならば、このメソッドは<code class="code-voice"><span>url<wbr/>Session(_:<wbr/>download<wbr/>Task:<wbr/>did<wbr/>Finish<wbr/>Downloading<wbr/>To:)</span></code>の後に呼び出されます、そしてエラーは<code class="code-voice"><span>nil</span></code>です。
-</span><!--end_jpstr-->
-</p></div></div></section></div></div><section id="see-also" class="contenttable section alt-light-container row"><div class="alt-light"><div class="section-content"><h2 class="contenttable-title"><span class="enstr">See Also</span><!--end_enstr-->
+</p>
+</div></div>
+</div><!----><!----><!---->
+<section data-v-8c663d90="" data-v-63527a60="" data-v-2deaa168="" id="see-also" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">See Also</span><!--end_enstr-->
 <span class="jpstr">
 参照
 </span><!--end_jpstr-->
-</h2><section id="3038364" class="contenttable-section"><div class="contenttable-container row"><div class="contenttable-section-title-container column large-3 medium-3 small-12"><h3 class="contenttable-section-title"><span class="enstr">Downloading</span><!--end_enstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Downloading</span><!--end_enstr-->
 <span class="jpstr">
 ダウンロード
 </span><!--end_jpstr-->
-</h3></div><div class="contenttable-section-content column large-9 medium-9 small-12"><div class="task-topics"><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../../documentation/foundation/url_loading_system/pausing_and_resuming_downloads.html"><svg xmlns="http://www.w3.org/2000/svg" height="15" viewBox="0 0 22 30" class="svg-icon symbol-name-icon" aria-hidden="true"><title>Article</title><g id="Article" class="svg-icon-small"><path d="M12.87,0H0V2H0V28H0v2H22V9.13ZM20,28H2V2h9V12h9Zm0-18H13V3l7,7Z"></path></g></svg><span><span class="enstr">Pausing and Resuming Downloads</span><!--end_enstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0="">
+<a data-v-01f7f080="" href="../../../documentation/foundation/url_loading_system/pausing_and_resuming_downloads.html" class="link has-adjacent-elements"><svg data-v-a76e93d8="" data-v-a8c6b630="" data-v-01f7f080="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="svg-icon article-icon topic-icon" viewbox="0 0 22 30"><title data-v-a76e93d8="">Article</title>
+<g data-v-a76e93d8=""><path data-v-a76e93d8="" d="M12.87,0H0V2H0V28H0v2H22V9.13ZM20,28H2V2h9V12h9Zm0-18H13V3l7,7Z"></path></g></svg><span data-v-01f7f080=""><span class="enstr">Pausing and Resuming Downloads</span><!--end_enstr-->
 <span class="jpstr">
 ダウンロードを一時停止および再開する
 </span><!--end_jpstr-->
-</span></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Allow the user to resume a download without starting over.</span><!--end_enstr-->
+</span><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Allow the user to resume a download without starting over.</span><!--end_enstr-->
 <span class="jpstr">
 ユーザにダウンロードを最初からやり直すことなく再開させます。
 </span><!--end_jpstr-->
-</p></div></div></div></div><div class="task-topic"><div class="task-topic-info"><a class="has-adjacent-element symbol-name" href="../../../documentation/foundation/url_loading_system/downloading_files_in_the_background.html"><svg xmlns="http://www.w3.org/2000/svg" height="15" viewBox="0 0 22 30" class="svg-icon symbol-name-icon" aria-hidden="true"><title>Article</title><g id="Article" class="svg-icon-small"><path d="M12.87,0H0V2H0V28H0v2H22V9.13ZM20,28H2V2h9V12h9Zm0-18H13V3l7,7Z"></path></g></svg><span><span class="enstr">Downloading Files in the Background</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0="">
+<a data-v-01f7f080="" href="../../../documentation/foundation/url_loading_system/downloading_files_in_the_background.html" class="link has-adjacent-elements"><svg data-v-a76e93d8="" data-v-a8c6b630="" data-v-01f7f080="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="svg-icon article-icon topic-icon" viewbox="0 0 22 30"><title data-v-a76e93d8="">Article</title>
+<g data-v-a76e93d8=""><path data-v-a76e93d8="" d="M12.87,0H0V2H0V28H0v2H22V9.13ZM20,28H2V2h9V12h9Zm0-18H13V3l7,7Z"></path></g></svg><span data-v-01f7f080=""><span class="enstr">Downloading Files in the Background</span><!--end_enstr-->
 <span class="jpstr">
 ファイルをバックグラウンドでダウンロードする
 </span><!--end_jpstr-->
-</span></a><div class="task-topic-abstract task-topic-data abstract formatted-content"><div><p><span class="enstr">Create tasks that download files while your app is inactive.</span><!--end_enstr-->
+</span><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Create tasks that download files while your app is inactive.</span><!--end_enstr-->
 <span class="jpstr">
 あなたのアプリが活動していない間にファイルをダウンロードする、そういうタスクを作成します。
 </span><!--end_jpstr-->
-</p></div></div></div></div></div></div></div></section></div></div></section></main><section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo">
-        <nav class="footer-breadory">
-          <a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a>
-          <section class="breadcrumbs">
-            <ol class="breadcrumbs-list">
-              <li><a href=/documentation>Documentation</a></li>
-            </ol>
-          </section>
-          <div id="directorynav" class="directorynav">
-            <div id="dn-cola" class="column">
-              <h3><a href="/discover/">Discover</a></h3>
-              <ul>
-                <li><a href="/macos/">macOS</a></li>
-                <li><a href="/ios/">iOS</a></li>
-                <li><a href="/watchos/">watchOS</a></li>
-                <li><a href="/tvos/">tvOS</a></li>
-                <li><a href="/safari/">Safari and Web</a></li>
-                <li><a href="/games/">Games</a></li>
-                <li><a href="/business/">Business</a></li>
-                <li><a href="/education/">Education</a></li>
-                <li><a href="/wwdc/">WWDC</a></li>
-              </ul>
-            </div>
-            <div id="dn-colb" class="column">
-              <h3><a href="/design/">Design</a></h3>
-              <ul>
-                <li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
-                <li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+</div><!----></section></main>
+</div></div></div>
+<section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo"><nav class="footer-breadory"><a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a><section class="breadcrumbs"><ol class="breadcrumbs-list"></ol></section><div id="directorynav" class="directorynav">
+<div id="dn-cola" class="column">
+<h3><a href="/discover/">Discover</a></h3>
+<ul>
+<li><a href="/ios/">iOS</a></li>
+<li><a href="/ipados/">iPadOS</a></li>
+<li><a href="/macos/">macOS</a></li>
+<li><a href="/tvos/">tvOS</a></li>
+<li><a href="/watchos/">watchOS</a></li>
+<li><a href="/safari/">Safari and Web</a></li>
+<li><a href="/games/">Games</a></li>
+<li><a href="/business/">Business</a></li>
+<li><a href="/education/">Education</a></li>
+<li><a href="/wwdc/">WWDC</a></li>
+</ul>
+</div>
+<div id="dn-colb" class="column">
+<h3><a href="/design/">Design</a></h3>
+<ul>
+<li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
+<li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
 <span class="jpstr">
 リソース
 </span><!--end_jpstr-->
 </a></li>
-                <li><a href="/videos/design/">Videos</a></li>
-                <li><a href="/design/awards/">Apple Design Awards</a></li>
-                <li><a href="/accessibility/">Accessibility</a></li>
-                <li><a href="/internationalization/"><span class="enstr">Internationalization</span><!--end_enstr-->
+<li><a href="/videos/design/">Videos</a></li>
+<li><a href="/design/awards/">Apple Design Awards</a></li>
+<li><a href="/fonts/">Fonts</a></li>
+<li><a href="/accessibility/">Accessibility</a></li>
+<li><a href="/localization/"><span class="enstr">Localization</span><!--end_enstr-->
 <span class="jpstr">
-国際化
+ローカライゼーション
 </span><!--end_jpstr-->
 </a></li>
-                <li><a href="/accessories/">Accessories</a></li>
-              </ul>
-            </div>
-            <div id="dn-colc" class="column">
-              <h3><a href="/develop/">Develop</a></h3>
-              <ul>
-                <li><a href="/xcode/">Xcode</a></li>
-                <li><a href="/swift/">Swift</a></li>
-                <li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
-                <li><a href="/testflight/">TestFlight</a></li>
-                <li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
-                <li><a href="/videos/">Videos</a></li>
-                <li><a href="/download/">Downloads</a></li>
-              </ul>
-            </div>
-            <div id="dn-cold" class="column">
-              <h3><a href="/distribute/">Distribute</a></h3>
-              <ul>
-                <li><a href="/programs/">Developer Program</a></li>
-                <li><a href="/app-store/">App Store</a></li>
-                <li><a href="/app-store/review/">App Review</a></li>
-                <li><a href="/macos/distribution/">Mac Software</a></li>
-                <li><a href="/business/distribute/">Apps for Business</a></li>
-                <li><a href="/safari/extensions/">Safari Extensions</a></li>
-                <li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
-                <li><a href="/softwarelicensing/">Trademark Licensing</a></li>
-              </ul>
-            </div>
-            <div id="dn-cole" class="column">
-              <h3><a href="/support/">Support</a></h3>
-              <ul>
-                <li><a href="https://forums.developer.apple.com">Developer Forums</a></li>
-                <li><a href="/bug-reporting/">Bug Reporting</a></li>
-                <li><a href="/terms/">License Agreements</a></li>
-                <li><a href="/system-status/">System Status</a></li>
-                <li><a href="/contact/">Contact Us</a></li>
-              </ul>
-              <h3><a href="/account/">Account</a></h3>
-              <ul>
-                <li><a href="/account/ios/certificate/">Certificates, IDs &amp; Profiles</a></li>
-                <li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-        <div class="ac-gf-footer-legal">
-          <div class="ac-gf-footer-news"> To receive the latest developer news, visit and subscribe to our <a href="/news/">News and Updates</a>.
-          </div>
-          <div class="ac-gf-footer-legal-copyright">Copyright © 2020 Apple Inc. All rights reserved.</div>
-          <div class="ac-gf-footer-legal-links">
-            <a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a>
-            <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
-            <a href="/bug-reporting/">Report Bugs</a>
-            <a href="/contact/submit/?subject=website-feedback">Feedback</a>
-          </div>
-          <div class="ac-gf-footer-language-links">
-            <a href="/cn/" class="first">简体中文</a>
-            <a href="/jp/">日本語</a>
-            <a href="/kr/">한국어</a>
-          </div>
-        </div>
-      </footer></section></div></div><script id="bootstrap-data" type="application/json">{"id":3037341,"abstract":"<div><p>Download files directly to the filesystem.<\/p><\/div>","title":{"content":"Downloading Files from Websites"},"discussion":"<div><p>For network resources that are already stored as files, like images and documents, you can use download tasks to fetch these items directly to the local filesystem.<\/p><aside class=\"aside aside-tip\" aria-label=\"tip\"><p class=\"aside-name\">Tip<\/p><p>You can also configure download tasks to operate while your application is suspended or terminated in the background. See <a href=\"\/documentation\/foundation\/url_loading_system\/downloading_files_in_the_background\">Downloading Files in the Background<\/a> for details.<\/p><\/aside><p><\/p><\/div><h3 id=\"3038357\">For Simple Downloads, Use a Completion Handler<\/h3><div><p>To download files, you create a <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsessiondownloadtask\"><code><span>URLSession<wbr\/>Download<wbr\/>Task<\/span><\/code><\/a> from a <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsession\"><code><span>URLSession<\/span><\/code><\/a>. If you don’t care about receiving progress updates or other delegate callbacks during the download, you can use a completion handler. The task calls the completion handler when the download ends, either at the end of a successful download or when downloading fails.<\/p><p>Your completion handler may receive a client-side error, indicating a local problem like not being able to reach the network. If there is no client-side error, you also receive a <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlresponse\"><code><span>URLResponse<\/span><\/code><\/a>, which you should inspect to ensure that it indicates a successful response from the server.<\/p><p>If the download is successful, your completion handler receives a URL indicating the location of the downloaded file on the local filesystem. This storage is temporary. If you want to preserve the file, you <em>must<\/em> copy or move it from this location before returning from the completion handler.<\/p><p><a href=\"\/documentation\/foundation\/url_loading_system\/downloading_files_from_websites#3038356\">Listing 1<\/a> shows a simple example of creating a download task with a completion handler. If no errors are indicated, the completion handler moves the downloaded file to the app’s <code class=\"code-voice\"><span>Documents<\/span><\/code> directory. Start the task by calling <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsessiontask\/1411121-resume\"><code><span>resume()<\/span><\/code><\/a>.<\/p><figure id=\"3038356\"><figcaption><strong class=\"caption-title\">Listing 1<\/strong> <div class=\"caption-content formatted-content\"><div><p>Creating a download task with a completion handler<\/p><\/div><\/div><\/figcaption><div class=\"formatted-content\"><div class=\"code-listing\"><pre class=\"code-source\" data-language=\"swift\"><code>let downloadTask = URLSession.shared.downloadTask(with: url) {\n    urlOrNil, responseOrNil, errorOrNil in\n    \/\/ check for and handle errors:\n    \/\/ * errorOrNil should be nil\n    \/\/ * responseOrNil should be an HTTPURLResponse with statusCode in 200..&lt;299\n    \n    guard let fileURL = urlOrNil else { return }\n    do {\n        let documentsURL = try\n            FileManager.default.url(for: .documentDirectory,\n                                    in: .userDomainMask,\n                                    appropriateFor: nil,\n                                    create: false)\n        let savedURL = documentsURL.appendingPathComponent(\n            fileUrl.lastPathComponent)\n        try FileManager.default.moveItem(at: fileUrl, to: savedURL)\n    } catch {\n        print (&quot;file error: \\(error)&quot;)\n    }\n}\ndownloadTask.resume()\n\n<\/code><\/pre><\/div><\/div><\/figure><p><\/p><aside class=\"aside aside-tip\" aria-label=\"tip\"><p class=\"aside-name\">Tip<\/p><p><span class=\"reference\">Listing 1<\/span> creates the download task with <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsession\/1411482-downloadtask\"><code><span>download<wbr\/>Task(with:)<\/span><\/code><\/a>, which simply takes a <a class=\"symbol-name\" href=\"\/documentation\/foundation\/url\"><code><span>URL<\/span><\/code><\/a> parameter. If you need to customize the request you send to the server, create the task with <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsession\/1411481-downloadtask\"><code><span>download<wbr\/>Task(with:)<\/span><\/code><\/a> and pass in a customized <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlrequest\"><code><span>URLRequest<\/span><\/code><\/a>.<\/p><\/aside><p><\/p><\/div><h3 id=\"3038358\">To Receive Progress Updates, Use a Delegate<\/h3><div><p>If you want to receive progress updates as the download proceeds, you must use a delegate. Instead of receiving the results in a completion handler, you receive callbacks to your implementations of methods from the <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsessiontaskdelegate\"><code><span>URLSession<wbr\/>Task<wbr\/>Delegate<\/span><\/code><\/a> and <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsessiondownloaddelegate\"><code><span>URLSession<wbr\/>Download<wbr\/>Delegate<\/span><\/code><\/a> protocols.<\/p><p>Create your own <code class=\"code-voice\"><span>URLSession<\/span><\/code> instance, and set its <code class=\"code-voice\"><span>delegate<\/span><\/code> property. <a href=\"\/documentation\/foundation\/url_loading_system\/downloading_files_from_websites#3038353\">Listing 2<\/a> shows a lazily instantiated <code class=\"code-voice\"><span>url<wbr\/>Session<\/span><\/code> property that sets <code class=\"code-voice\"><span>self<\/span><\/code> as its delegate.<\/p><figure id=\"3038353\"><figcaption><strong class=\"caption-title\">Listing 2<\/strong> <div class=\"caption-content formatted-content\"><div><p>Creating a URL session with a delegate<\/p><\/div><\/div><\/figcaption><div class=\"formatted-content\"><div class=\"code-listing\"><pre class=\"code-source\" data-language=\"swift\"><code>private lazy var urlSession = URLSession(configuration: .default,\n                                         delegate: self,\n                                         delegateQueue: nil)\n\n<\/code><\/pre><\/div><\/div><\/figure><p>To start downloading, use this <code class=\"code-voice\"><span>URLSession<\/span><\/code> to create a <code class=\"code-voice\"><span>URLSession<wbr\/>Download<wbr\/>Task<\/span><\/code>, and then start the task by calling <code class=\"code-voice\"><span>resume()<\/span><\/code>, as shown in <a href=\"\/documentation\/foundation\/url_loading_system\/downloading_files_from_websites#3038360\">Listing 3<\/a>.<\/p><figure id=\"3038360\"><figcaption><strong class=\"caption-title\">Listing 3<\/strong> <div class=\"caption-content formatted-content\"><div><p>Creating and starting a download task that uses a delegate<\/p><\/div><\/div><\/figcaption><div class=\"formatted-content\"><div class=\"code-listing\"><pre class=\"code-source\" data-language=\"swift\"><code>private func startDownload(url: URL) {\n    let downloadTask = urlSession.downloadTask(with: url)\n    downloadTask.resume()\n    self.downloadTask = downloadTask\n}\n\n<\/code><\/pre><\/div><\/div><\/figure><p><\/p><p><\/p><\/div><h3 id=\"3087626\">Receive Progress Updates<\/h3><div><p>Once the download starts, you receive periodic progress updates in the <code class=\"code-voice\"><span>URLSession<wbr\/>Download<wbr\/>Delegate<\/span><\/code> method <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsessiondownloaddelegate\/1409408-urlsession\"><code><span>url<wbr\/>Session(_:<wbr\/>download<wbr\/>Task:<wbr\/>did<wbr\/>Write<wbr\/>Data:<wbr\/>total<wbr\/>Bytes<wbr\/>Written:<wbr\/>total<wbr\/>Bytes<wbr\/>Expected<wbr\/>To<wbr\/>Write:)<\/span><\/code><\/a>. You can use the byte counts provided by this callback to update a progress UI in your app.<\/p><p><a href=\"\/documentation\/foundation\/url_loading_system\/downloading_files_from_websites#3087625\">Listing 4<\/a> shows an implementation of this callback method. This implementation calculates the fractional progress of the download, and uses it to update a label that shows progress as a percentage. Because the callback is performed on an unknown Grand Central Dispatch queue, you <em>must<\/em> explicitly perform the UI update on the main queue.<\/p><figure id=\"3087625\"><figcaption><strong class=\"caption-title\">Listing 4<\/strong> <div class=\"caption-content formatted-content\"><div><p>Using a delegate method to update download progress in a UI<\/p><\/div><\/div><\/figcaption><div class=\"formatted-content\"><div class=\"code-listing\"><pre class=\"code-source\" data-language=\"swift\"><code>func urlSession(_ session: URLSession,\n                downloadTask: URLSessionDownloadTask,\n                didWriteData bytesWritten: Int64,\n                totalBytesWritten: Int64,\n                totalBytesExpectedToWrite: Int64) {\n     if downloadTask == self.downloadTask {\n        let calculatedProgress = Float(totalBytesWritten) \/ Float(totalBytesExpectedToWrite)\n        DispatchQueue.main.async {\n            self.progressLabel.text = self.percentFormatter.string(from:\n                NSNumber(value: calculatedProgress))\n    }\n}\n\n<\/code><\/pre><\/div><\/div><\/figure><aside class=\"aside aside-tip\" aria-label=\"tip\"><p class=\"aside-name\">Tip<\/p><p>If the only UI update you need to perform during the download is to update a <a class=\"symbol-name\" href=\"\/documentation\/uikit\/uiprogressview\"><code><span>UIProgress<wbr\/>View<\/span><\/code><\/a>, then use the task’s <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsessiontask\/2908821-progress\"><code><span>progress<\/span><\/code><\/a> property instead of performing your own progress calculations. This property is an instance of <a class=\"symbol-name\" href=\"\/documentation\/foundation\/progress\"><code><span>Progress<\/span><\/code><\/a> that you can assign to the <code class=\"code-voice\"><span>UIProgress<wbr\/>View<\/span><\/code> property <a class=\"symbol-name\" href=\"\/documentation\/uikit\/uiprogressview\/1619840-observedprogress\"><code><span>observed<wbr\/>Progress<\/span><\/code><\/a> when you create the task to get automatic updating of the progress view.<\/p><\/aside><p><\/p><\/div><h3 id=\"3038359\">Handle Download Completion or Errors in Your Delegate<\/h3><div><p>When you use a delegate instead of a completion handler, you handle the completion of the download by implementing <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsessiondownloaddelegate\/1411575-urlsession\"><code><span>url<wbr\/>Session(_:<wbr\/>download<wbr\/>Task:<wbr\/>did<wbr\/>Finish<wbr\/>Downloading<wbr\/>To:)<\/span><\/code><\/a>. Check the <code class=\"code-voice\"><span>download<wbr\/>Task<\/span><\/code>’s <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsessiontask\/1410586-response\"><code><span>response<\/span><\/code><\/a> property to ensure that the server response indicates success. If so, the <code class=\"code-voice\"><span>location<\/span><\/code> parameter provides a local URL where the file has been stored. This location is valid only until the end of the callback. This means you <em>must<\/em> either read the file immediately, or move it to another location such as the app’s <code class=\"code-voice\"><span>Documents<\/span><\/code> directory before you return from the callback method. <a href=\"\/documentation\/foundation\/url_loading_system\/downloading_files_from_websites#3038355\">Listing 5<\/a> shows how to preserve the downloaded file.<\/p><figure id=\"3038355\"><figcaption><strong class=\"caption-title\">Listing 5<\/strong> <div class=\"caption-content formatted-content\"><div><p>Saving the downloaded file in the delegate callback<\/p><\/div><\/div><\/figcaption><div class=\"formatted-content\"><div class=\"code-listing\"><pre class=\"code-source\" data-language=\"swift\"><code>func urlSession(_ session: URLSession,\n                downloadTask: URLSessionDownloadTask,\n                didFinishDownloadingTo location: URL) {\n    \/\/ check for and handle errors:\n    \/\/ * downloadTask.response should be an HTTPURLResponse with statusCode in 200..&lt;299\n\n    do {\n        let documentsURL = try\n            FileManager.default.url(for: .documentDirectory,\n                                    in: .userDomainMask,\n                                    appropriateFor: nil,\n                                    create: false)\n        let savedURL = documentsURL.appendingPathComponent(\n            location.lastPathComponent)\n        try FileManager.default.moveItem(at: location, to: savedURL)\n    } catch {\n        \/\/ handle filesystem error\n    }\n}\n\n<\/code><\/pre><\/div><\/div><\/figure><p>If a client-side error occurs, your delegate receives it in a callback to the <a class=\"symbol-name\" href=\"\/documentation\/foundation\/urlsessiontaskdelegate\/1411610-urlsession\"><code><span>url<wbr\/>Session(_:<wbr\/>task:<wbr\/>did<wbr\/>Complete<wbr\/>With<wbr\/>Error:)<\/span><\/code><\/a> delegate method. On the other hand, if the download completes successfully, this method is called after <code class=\"code-voice\"><span>url<wbr\/>Session(_:<wbr\/>download<wbr\/>Task:<wbr\/>did<wbr\/>Finish<wbr\/>Downloading<wbr\/>To:)<\/span><\/code> and the error is <code class=\"code-voice\"><span>nil<\/span><\/code>.<\/p><\/div>","containingGroup":[{"id":3038364,"role":"task","paths":[],"symbols":[{"id":3037341,"role":"article","paths":["documentation\/foundation\/url_loading_system\/downloading_files_from_websites"],"abstract":"<div><p>Download files directly to the filesystem.<\/p><\/div>","title":{"content":"Downloading Files from Websites"}},{"id":3038374,"role":"article","paths":["documentation\/foundation\/url_loading_system\/pausing_and_resuming_downloads"],"abstract":"<div><p>Allow the user to resume a download without starting over.<\/p><\/div>","title":{"content":"Pausing and Resuming Downloads"}},{"id":2919403,"role":"article","paths":["documentation\/foundation\/url_loading_system\/downloading_files_in_the_background"],"abstract":"<div><p>Create tasks that download files while your app is inactive.<\/p><\/div>","title":{"content":"Downloading Files in the Background"}}],"title":{"content":"Downloading"}}],"modules":[{"title":{"content":"Foundation"},"paths":["documentation\/foundation"],"importStatement":"<import xml:space=\"preserve\"><keyWord>import<\/keyWord> Foundation<\/import>","availability":[{"platform":"watchOS","introduced":"2.0"},{"platform":"macOS","introduced":"10.0"},{"platform":"Mac Catalyst","introduced":"13.0"},{"platform":"tvOS","introduced":"9.0"},{"platform":"iOS","introduced":"2.0"}]}],"role":"article","language":"swift","roleHeading":"Article","languages":["occ","swift"],"variants":{"occ":{"paths":["documentation\/foundation\/url_loading_system\/downloading_files_from_websites"]},"swift":{"paths":["documentation\/foundation\/url_loading_system\/downloading_files_from_websites"]}},"pid":463568,"paths":["documentation\/foundation\/url_loading_system\/downloading_files_from_websites"],"hierarchy":[[{"id":1613013,"role":"collection","title":{"content":"Foundation"},"paths":["documentation\/foundation"]},{"id":2877756,"role":"collectionGroup","title":{"content":"URL Loading System"},"paths":["documentation\/foundation\/url_loading_system"]}]],"legalNotices":{"copyright":"Copyright &copy; 2020 Apple Inc. All rights reserved.","termsOfUse":"https:\/\/www.apple.com\/legal\/internet-services\/terms\/site.html","privacyPolicy":"https:\/\/www.apple.com\/privacy\/privacy-policy"}}</script></body></html>
+<li><a href="/accessories/">Accessories</a></li>
+</ul>
+</div>
+<div id="dn-colc" class="column">
+<h3><a href="/develop/">Develop</a></h3>
+<ul>
+<li><a href="/xcode/">Xcode</a></li>
+<li><a href="/swift/">Swift</a></li>
+<li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
+<li><a href="/testflight/">TestFlight</a></li>
+<li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
+<li><a href="/videos/">Videos</a></li>
+<li><a href="/download/">Downloads</a></li>
+</ul>
+</div>
+<div id="dn-cold" class="column">
+<h3><a href="/distribute/">Distribute</a></h3>
+<ul>
+<li><a href="/programs/">Developer Program</a></li>
+<li><a href="/app-store/">App Store</a></li>
+<li><a href="/app-store/review/">App Review</a></li>
+<li><a href="/macos/distribution/">Mac Software</a></li>
+<li><a href="/business/distribute/">Apps for Business</a></li>
+<li><a href="/safari/extensions/">Safari Extensions</a></li>
+<li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
+<li><a href="/softwarelicensing/">Trademark Licensing</a></li>
+</ul>
+</div>
+<div id="dn-cole" class="column">
+<h3><a href="/support/">Support</a></h3>
+<ul>
+<li><a href="/support/articles/">Articles</a></li>
+<li><a href="/forums/">Developer Forums</a></li>
+<li><a href="/bug-reporting/">Feedback &amp; Bug Reporting</a></li>
+<li><a href="/system-status/">System Status</a></li>
+<li><a href="/contact/">Contact Us</a></li>
+</ul>
+<h3><a href="/account/">Account</a></h3>
+<ul>
+<li><a href="/account/ios/certificate/">Certificates, Identifiers &amp; Profiles</a></li>
+<li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
+</ul>
+</div>
+</div></nav><div class="ac-gf-footer-legal">
+<div class="ac-gf-footer-news">To view the latest developer news, visit <a href="/news/">News and Updates</a>.</div>
+<div class="ac-gf-footer-language-dropdown-wrapper">
+<select id="footer-language-selector" class="footer-language-select" aria-label="Language Dropdown" autocomplete="off"><option value="https://developer.apple.com/" selected>English</option>
+<option value="https://developer.apple.com/cn/">简体中文</option>
+<option value="https://developer.apple.com/jp/">日本語</option>
+<option value="https://developer.apple.com/kr/">한국어</option></select> <span class="footer-language-select-icon icon icon-chevrondown" aria-hidden="true"></span>
+</div>
+<div class="ac-gf-footer-legal-copyright">Copyright © <span class="footer-current-year">2020</span> <a href="https://www.apple.com">Apple Inc.</a> All rights reserved.</div>
+<div class="ac-gf-footer-legal-links">
+<a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a> <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a> <a href="/terms/">License Agreements</a>
+</div>
+</div></footer></section><script src="../../../tutorials/js/footer.js"></script>
+</body>
+</html>

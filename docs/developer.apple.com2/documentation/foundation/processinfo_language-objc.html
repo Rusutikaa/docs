@@ -1,0 +1,1184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- link rel="icon" href="/favicon.ico" -->
+<link rel="mask-icon" href="/apple-logo.svg" color="#333333">
+<link rel="stylesheet" href="../../tutorials/css/_globalnav.css">
+<title>ProcessInfo | Apple Developer Documentation</title>
+<link href="../../tutorials/css/chunk-76d5c2b5.00c53891.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic.e358e85c.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css" rel="prefetch">
+<link href="../../tutorials/css/topic.69278f1e.css" rel="prefetch">
+<link href="../../tutorials/css/topic~tutorials-overview.1f93e025.css" rel="prefetch">
+<link href="../../tutorials/css/tutorials-overview.d4ff0b50.css" rel="prefetch">
+<link href="../../tutorials/css/welcome-experience-featured.0537f0f0.css" rel="prefetch">
+<link href="../../tutorials/css/welcome-experience-technologies.60068ae2.css" rel="prefetch">
+<link href="../../tutorials/js/chunk-2d0d3105.459bf725.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-2d21a016.b81cb311.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-503f1ed8.d26c4552.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-530f89ce.621e1d48.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-640db3b2.f8778ca5.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-76d5c2b5.092e3b8a.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic.6abe9458.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js" rel="prefetch">
+<link href="../../tutorials/js/topic.c6ec6b6c.js" rel="prefetch">
+<link href="../../tutorials/js/topic~tutorials-overview.467a8186.js" rel="prefetch">
+<link href="../../tutorials/js/tutorials-overview.d77f61ca.js" rel="prefetch">
+<link href="../../tutorials/js/welcome-experience-featured.04f663e2.js" rel="prefetch">
+<link href="../../tutorials/js/welcome-experience-technologies.56a372c1.js" rel="prefetch">
+<link href="../../tutorials/css/app.2a174a23.css" rel="preload" as="style">
+<link href="../../tutorials/js/app.2c558263.js" rel="preload" as="script">
+<link href="../../tutorials/js/chunk-vendors.c3b68236.js" rel="preload" as="script">
+<link href="../../tutorials/css/app.2a174a23.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../../tutorials/css/chunk-76d5c2b5.00c53891.css">
+<script charset="utf-8" src="../../tutorials/js/chunk-76d5c2b5.092e3b8a.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic.e358e85c.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic.6abe9458.js"></script>
+</head>
+<body>
+<div id="_omniture_top">
+<script>var s_account="awdappledeveloper"</script>
+</div>
+<a href="#main" id="skip-localnav">Skip Navigation</a><aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"><nav id="ac-globalnav" class="js no-touch" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions"><div class="ac-gn-content">
+<ul class="ac-gn-header">
+<li class="ac-gn-item ac-gn-menuicon">
+<label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true"><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span> </span><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span></span></label> <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open"><span class="ac-gn-menuanchor-label">Global Nav Open Menu</span> </a><a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close"><span class="ac-gn-menuanchor-label">Global Nav Close Menu</span></a>
+</li>
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+</ul>
+<div class="ac-gn-search-placeholder-container" role="search"><div class="ac-gn-search ac-gn-search-small"><a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a><div class="ac-gn-search-placeholder-bar">
+<div class="ac-gn-search-placeholder-input"><div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
+<div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
+<span class="ac-gn-search-placeholder">Search Developer</span>
+</div></div>
+<div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></div>
+</div></a></div></div>
+<ul class="ac-gn-list">
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-discover"><a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover"><span class="ac-gn-link-text">Discover</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-design"><a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design"><span class="ac-gn-link-text">Design</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-develop"><a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop"><span class="ac-gn-link-text">Develop</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-distribute"><a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute"><span class="ac-gn-link-text">Distribute</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport"><a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport"><span class="ac-gn-link-text">Support</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-account"><a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account"><span class="ac-gn-link-text">Account</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search"><a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a></li>
+</ul>
+<aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search"><div class="ac-gn-searchview-content">
+<div class="ac-gn-searchview-bar"><div class="ac-gn-searchview-bar-wrapper">
+<form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get"><div class="ac-gn-searchform-wrapper">
+<input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions"> <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button> <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search"><span class="ac-gn-searchform-reset-background"></span></button>
+</div></form>
+<button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></button>
+</div></div>
+<aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
+</div>
+<button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search"><span class="ac-gn-searchview-close-wrapper"><span class="ac-gn-searchview-close-left"></span> <span class="ac-gn-searchview-close-right"></span></span></button></aside>
+</div></nav><div class="ac-gn-blur"></div>
+<div id="ac-gn-curtain" class="ac-gn-curtain"></div>
+<div id="ac-gn-placeholder" class="ac-nav-placeholder"></div>
+<script src="../../tutorials/js/ac-globalnav.built.js"></script>
+<noscript>
+<style>.noscript {
+  font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
+  margin: 92px auto 140px auto;
+  text-align: center;
+  width: 980px;
+}
+
+.noscript-title {
+  color: #111;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -.003em;
+  line-height: 1.08365;
+  margin: 0 auto 54px auto;
+  width: 502px;
+}
+
+@media only screen and (max-width: 1068px) {
+  .noscript {
+    margin: 90px auto 120px auto;
+    width: 692px;
+  }
+
+  .noscript-title {
+    font-size: 40px;
+    letter-spacing: 0;
+    line-height: 1.1;
+    margin: 0 auto 45px auto;
+    width: 420px;
+  }
+}
+
+@media only screen and (max-width: 735px) {
+  .noscript {
+    margin: 45px auto 60px auto;
+    width: 87.5%;
+  }
+
+  .noscript-title {
+    font-size: 32px;
+    letter-spacing: .004em;
+    line-height: 1.125;
+    margin: 0 auto 35px auto;
+    max-width: 330px;
+    width: auto;
+  }
+}
+
+#loading-placeholder {
+  display: none;
+};</style>
+<div class="noscript">
+<h1 class="noscript-title">This page requires JavaScript.</h1>
+<p>Please turn on JavaScript in your browser and refresh the page to view its content.</p>
+</div>
+</noscript>
+<div data-v-0220a4c4="" id="app" class=""><div data-v-0220a4c4=""><div data-v-2deaa168="" class="doc-topic">
+<div data-v-3ceaa5df="" data-v-2deaa168="" class="localnav-container">
+<input data-v-3ceaa5df="" aria-hidden="true" id="localnav-menustate" type="checkbox" class="localnav-menustate"><div id="localnav-sticky-placeholder" class="css-sticky"></div>
+<nav data-v-3ceaa5df="" aria-label="API Reference" data-sticky="" id="localnav" role="navigation" class="localnav localnav-dark theme-dark medium-localnav-collapsible localnav-noborder localnav-scrim css-sticky"><div data-v-3ceaa5df="" class="localnav-wrapper">
+<div data-v-3ceaa5df="" class="referencenav">
+<div data-v-3ceaa5df="" class="localnav-background"></div>
+<div data-v-3ceaa5df="" class="localnav-content">
+<a data-v-3ceaa5df="" href="../../index.html" class="localnav-title">
+            Documentation
+          </a><div data-v-3ceaa5df="" class="localnav-menu">
+<a data-v-3ceaa5df="" href="#localnav-menustate" role="button" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Open Menu</span></a><a data-v-3ceaa5df="" href="#" role="button" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Close Menu</span></a><div data-v-3ceaa5df="" class="localnav-menu-tray">
+<ul data-v-72fd0d2c="" data-v-3ceaa5df="" aria-label="Breadcrumbs" class="localnav-menu-items">
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../documentation/foundation_language-objc.html" class="parent item router-link-active" data-v-23a2ae0d="">
+    Foundation
+  </a></li><!---->
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../documentation/foundation/task_management_language-objc.html" class="parent item" data-v-23a2ae0d="">
+    <span class="enstr">Task Management</span><!--end_enstr-->
+<span class="jpstr">
+タスク管理
+</span><!--end_jpstr-->
+
+  </a></li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item">
+<span data-v-23a2ae0d="" class="current item">
+    ProcessInfo
+  </span><!---->
+</li>
+</ul>
+<ul data-v-3ceaa5df="" data-breadcrumbs-count="3" class="localnav-menu-items localnav-menu-settings">
+<li data-v-282336e0="" data-v-3ceaa5df="" class="localnav-menu-setting language-container" breadcrumbcount="3">
+<div data-v-282336e0="" class="language-toggle-container">
+<label data-v-282336e0="" for="language-toggle" class="language-toggle-label">
+      Language:
+    </label><select data-v-282336e0="" id="language-toggle" class="language-dropdown localnav-menu-link" style="width: 38px;"><option data-v-282336e0="" value="swift">
+        Swift
+      </option>
+<option data-v-282336e0="" value="occ">
+        Objective-C
+      </option></select>
+</div>
+<div data-v-282336e0="" class="language-list-container">
+<span data-v-282336e0="" class="localnav-menu-setting-label">
+      Language:
+    </span><ul data-v-282336e0="" class="language-list">
+<li data-v-282336e0="" class="language-list-item"><span data-v-282336e0="" data-language="swift" aria-current="page" class="current-language">
+          Swift
+        </span></li>
+<li data-v-282336e0="" class="language-list-item"><a data-v-282336e0="" href="../../documentation/foundation/nsprocessinfo_language-objc.html" class="localnav-menu-setting-link">
+          Objective-C
+        </a></li>
+</ul>
+</div>
+</li>
+<li data-v-2e9f4ea2="" data-v-3ceaa5df="" class="localnav-menu-setting">
+<label data-v-2e9f4ea2="" for="version-label" class="localnav-menu-setting-label">
+    API Changes:
+  </label><span data-v-2e9f4ea2=""><span class="enstr">None</span><!--end_enstr-->
+<span class="jpstr">
+なし
+</span><!--end_jpstr-->
+</span>
+</li><!---->
+
+</ul>
+</div>
+<div data-v-3ceaa5df="" class="localnav-actions"><div data-v-3ceaa5df="" aria-hidden="true" class="localnav-action localnav-action-menucta"><label data-v-3ceaa5df="" for="localnav-menustate" class="localnav-menucta"><span data-v-3ceaa5df="" class="localnav-menucta-chevron"></span></label></div></div>
+</div>
+</div>
+</div><!---->
+
+</div></nav><label data-v-3ceaa5df="" aria-hidden="true" for="localnav-menustate" id="localnav-curtain"></label>
+</div>
+<main data-v-2deaa168="" id="main" role="main" tabindex="0" class="main"><div data-v-4ba5af7c="" data-v-2deaa168="" class="topictitle">
+<span data-v-4ba5af7c="" class="eyebrow">Class</span><h1 data-v-4ba5af7c="" class="title">Process<wbr data-v-4ba5af7c="">Info</wbr>
+</h1>
+</div>
+<div data-v-0253ce0e="" data-v-2deaa168="" class="row container">
+<div data-v-9807b2e0="" data-v-5ad0d458="" data-v-2deaa168="" class="col description large-9 medium-9 small-12" data-v-0253ce0e=""><!---->
+<div data-v-7ea0aa49="" data-v-aba749e6="" data-v-2deaa168="" class="abstract content" data-v-9807b2e0=""><span class="enstr">A collection of information about the current process.</span><!--end_enstr-->
+<span class="jpstr">
+現在のプロセスについての情報のコレクション。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div>
+<div data-v-9807b2e0="" data-v-42fb6bac="" data-v-2deaa168="" class="col summary large-3 medium-3 small-12" data-v-0253ce0e=""><!---->
+<div data-v-e4237090="" data-v-fcdb795a="" data-v-2deaa168="" class="summary-section availability" role="complementary" aria-label="Availability" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-fcdb795a="" class="title" data-v-e4237090=""><span class="enstr">Availability</span><!--end_enstr-->
+<span class="jpstr">
+有効性
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-fcdb795a="" class="summary-list platform-list" data-v-e4237090="">
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="iOS 2.0+, Available on iOS 2.0 and later" title="Available on iOS 2.0 and later" data-v-e3899270="">
+  iOS 2.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="macOS 10.0+, Available on macOS 10.0 and later" title="Available on macOS 10.0 and later" data-v-e3899270="">
+  macOS 10.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="Mac Catalyst 13.0+, Available on Mac Catalyst 13.0 and later" title="Available on Mac Catalyst 13.0 and later" data-v-e3899270="">
+  Mac Catalyst 13.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="tvOS 9.0+, Available on tvOS 9.0 and later" title="Available on tvOS 9.0 and later" data-v-e3899270="">
+  tvOS 9.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="watchOS 2.0+, Available on watchOS 2.0 and later" title="Available on watchOS 2.0 and later" data-v-e3899270="">
+  watchOS 2.0+
+</span><!---->
+</li>
+</ul>
+</div>
+<div data-v-e4237090="" data-v-741142ba="" data-v-2deaa168="" class="summary-section frameworks" role="complementary" aria-label="Framework" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-741142ba="" class="title" data-v-e4237090=""><span class="enstr">Framework</span><!--end_enstr-->
+<span class="jpstr">
+フレームワーク
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-741142ba="" class="summary-list" data-v-e4237090=""><li data-v-e3899270="" data-v-741142ba="" class="summary-list-item" data-v-1450532d=""><span data-v-741142ba="" data-v-e3899270="" class="name">Foundation</span></li></ul>
+</div>
+<div data-v-e4237090="" data-v-2b96ab1a="" data-v-2deaa168="" class="summary-section on-this-page" data-v-9807b2e0=""><nav data-v-2b96ab1a="" data-v-e4237090="" aria-labelledby="on-this-page-title"><p data-v-1e0258b0="" data-v-2b96ab1a="" class="title" id="on-this-page-title" data-v-e4237090=""><span class="enstr">On This Page</span><!--end_enstr-->
+<span class="jpstr">
+この項には
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-2b96ab1a="" class="summary-list" data-v-e4237090="">
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/processinfo_language-objc.html#declaration" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Declaration</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/processinfo_language-objc.html#overview" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Overview</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/processinfo_language-objc.html#topics" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Topics</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/processinfo_language-objc.html#relationships" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Relationships</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/processinfo_language-objc.html#see-also" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">See Also</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+</ul></nav></div>
+</div>
+<div data-v-9807b2e0="" data-v-1e40f676="" data-v-2deaa168="" class="col primary-content large-9 medium-9 small-12" data-v-0253ce0e="">
+<section data-v-e932e1b8="" data-v-1e40f676="" id="declaration" class="declaration" data-v-9807b2e0=""><h2 data-v-e932e1b8=""><span class="enstr">Declaration</span><!--end_enstr-->
+<span class="jpstr">
+宣言
+</span><!--end_jpstr-->
+</h2>
+<div data-v-29bd318c="" data-v-e932e1b8="" class="declaration-group"><!---->
+<pre data-v-e0a7f756="" data-v-29bd318c="" class="source"><code data-v-e0a7f756=""><span data-v-c9e896f0="" data-v-e0a7f756="" class="token-keyword">class</span> <span data-v-c9e896f0="" data-v-e0a7f756="" class="token-identifier">ProcessInfo</span> : <a data-v-c9e896f0="" data-v-e0a7f756="" href="../../documentation/objectivec/nsobject_language-objc.html" class="type-identifier-link"><span data-v-c9e896f0="">NSObject</span></a></code></pre>
+</div><!---->
+</section><div data-v-7ea0aa49="" data-v-1e40f676="" class="content" data-v-9807b2e0="">
+<h2 id="overview"><span class="enstr">Overview</span><!--end_enstr-->
+<span class="jpstr">
+概要
+</span><!--end_jpstr-->
+</h2>
+<p><span class="enstr">Each process has a single, shared <span><code data-v-7fb764c1="">Process<wbr data-v-7fb764c1="">Info</wbr></code></span> object, known as a <em>process information agent</em>.</span><!--end_enstr-->
+<span class="jpstr">
+各プロセスは、単一の、共有される<span><code data-v-7fb764c1="">Process<wbr data-v-7fb764c1="">Info</wbr></code></span>オブジェクトで、<em>プロセス情報エージェント</em>として知られるものを持ちます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">The process information agent can return information such as arguments, environment variables, host name, and process name. The <a href="../../documentation/foundation/processinfo/1408734-processinfo_language-objc.html" class=""><code data-v-7fb764c1="">process<wbr data-v-7fb764c1="">Info</wbr></code></a> class method returns the shared agent for the current process—that is, the process whose object sent the message. For example, the following line returns the <span><code data-v-7fb764c1="">Process<wbr data-v-7fb764c1="">Info</wbr></code></span> object, which then provides the name of the current process:</span><!--end_enstr-->
+<span class="jpstr">
+プロセス情報エージェントは、たとえば、引数、環境変数、ホスト名、およびプロセス名のような情報を返すことができます。<a href="../../documentation/foundation/processinfo/1408734-processinfo_language-objc.html" class=""><code data-v-7fb764c1="">process<wbr data-v-7fb764c1="">Info</wbr></code></a>クラスメソッドは、現在のプロセス — すなわち、それのもつオブジェクトがメッセージを送ったところのプロセスに対する共有エージェントを返します。例えば、以下の行は<span><code data-v-7fb764c1="">Process<wbr data-v-7fb764c1="">Info</wbr></code></span>オブジェクトを返します、それはそれから現在のプロセスの名前を提供します：
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="2555782"><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-keyword">let</span> processName = <span class="syntax-type">NSProcessInfo</span>.processInfo().processName</span></span></code></pre></div>
+</div></figure><aside data-v-c567d8a8="" aria-label="note" class="note"><p data-v-c567d8a8="" class="label"><span class="enstr">Note</span><!--end_enstr-->
+<span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+<p data-v-c567d8a8=""><span class="enstr"><span data-v-c567d8a8=""><code data-v-7fb764c1="">Process<wbr data-v-7fb764c1="">Info</wbr></code></span> is thread-safe in macOS 10.7 and later.</span><!--end_enstr-->
+<span class="jpstr">
+<span data-v-c567d8a8=""><code data-v-7fb764c1="">Process<wbr data-v-7fb764c1="">Info</wbr></code></span>は、macOS 10.7以降ではスレッド安全です。
+</span><!--end_jpstr-->
+</p></aside><p><span class="enstr">The <span><code data-v-7fb764c1="">Process<wbr data-v-7fb764c1="">Info</wbr></code></span> class also includes the <a href="../../documentation/foundation/processinfo/1416341-operatingsystem_language-objc.html" class=""><code data-v-7fb764c1="">operating<wbr data-v-7fb764c1="">System()</wbr></code></a> method, which returns an enum constant identifying the operating system on which the process is executing.</span><!--end_enstr-->
+<span class="jpstr">
+<span><code data-v-7fb764c1="">Process<wbr data-v-7fb764c1="">Info</wbr></code></span>クラスはまた<a href="../../documentation/foundation/processinfo/1416341-operatingsystem_language-objc.html" class=""><code data-v-7fb764c1="">operating<wbr data-v-7fb764c1="">System()</wbr></code></a>メソッドを含みます、それはそれの上でそのプロセスが遂行されているオペレーティングシステムを識別するあるenum定数を返します。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr"><span><code data-v-7fb764c1="">Process<wbr data-v-7fb764c1="">Info</wbr></code></span> objects attempt to interpret environment variables and command-line arguments in the user's default C string encoding if they cannot be converted to Unicode as UTF-8 strings. If neither the Unicode nor C string conversion works, these values are ignored by the <span><code data-v-7fb764c1="">Process<wbr data-v-7fb764c1="">Info</wbr></code></span> object.</span><!--end_enstr-->
+<span class="jpstr">
+<span><code data-v-7fb764c1="">Process<wbr data-v-7fb764c1="">Info</wbr></code></span>オブジェクトは、環境変数とコマンドライン引数をユーザのもつ省略時のC文字列エンコーディングにおいて解釈しようと試みます、もしそれらがユニコードへとUTF-8文字列として変換されることができないならば。ユニコードまたはC文字列変換のどちらも機能しないならば、それらの値は<span><code data-v-7fb764c1="">Process<wbr data-v-7fb764c1="">Info</wbr></code></span>に無視されます。
+</span><!--end_jpstr-->
+</p>
+<h3 id="1651116"><span class="enstr">Managing Activities</span><!--end_enstr-->
+<span class="jpstr">
+アクティビティ（活動状態）を管理する
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">The system has heuristics to improve battery life, performance, and responsiveness of applications for the benefit of the user. You can use the following methods to manage <em>activities</em> that give hints to the system that your application has special requirements:</span><!--end_enstr-->
+<span class="jpstr">
+システムは、バッテリー寿命、性能、そしてアプリケーションの応答性をユーザの利益のために改善する発見的手法を持ちます。あなたは、以下のメソッドを使って<em>アクティビティ</em>を管理できます、それは、システムにあなたのアプリケーションが特別な要件を持つというヒントを与えるものです。
+</span><!--end_jpstr-->
+</p>
+<ul>
+<li><p><a href="../../documentation/foundation/processinfo/1415995-beginactivity_language-objc.html" class=""><code data-v-7fb764c1="">begin<wbr data-v-7fb764c1="">Activity(options:<wbr data-v-7fb764c1="">reason:)</wbr></wbr></code></a></p></li>
+<li><p><a href="../../documentation/foundation/processinfo/1411321-endactivity_language-objc.html" class=""><code data-v-7fb764c1="">end<wbr data-v-7fb764c1="">Activity(_:)</wbr></code></a></p></li>
+<li><p><a href="../../documentation/foundation/processinfo/1418048-performactivity_language-objc.html" class=""><code data-v-7fb764c1="">perform<wbr data-v-7fb764c1="">Activity(options:<wbr data-v-7fb764c1="">reason:<wbr data-v-7fb764c1="">using:)</wbr></wbr></wbr></code></a></p></li>
+</ul>
+<p><span class="enstr">In response to creating an activity, the system will disable some or all of the heuristics so your application can finish quickly while still providing responsive behavior if the user needs it.</span><!--end_enstr-->
+<span class="jpstr">
+あるアクティビティを作成することに答えて、システムは発見的手法の幾つかまたは全てを作動しないようにするでしょう、それであなたのアプリケーションは素早くやり終えられます、一方で依然として応答性の挙動を提供しています、もしユーザがそれを必要とするならば。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">You use activities when your application is performing a long-running operation. If the activity can take different amounts of time (for example, calculating the next move in a chess game), it should use this API. This will ensure correct behavior when the amount of data or the capabilities of the user's computer varies. You should put your activity into one of two major categories:</span><!--end_enstr-->
+<span class="jpstr">
+あなたがアクティビティを使うのは、あなたのアプリケーションが長い動作の演算を実行している場合です。アクティビティが異なる量の時間をとる可能性があるならば（例えば、チェスゲームにおいて次の動きを計算する）、それはこのAPIを使うべきです。これは、データ量またはユーザのもつコンピュータの能力が様々である場合に、正しい挙動を保証するでしょう。あなたは、あなたのアクティビティを２つの大きな部門の１つに置くべきです：
+</span><!--end_jpstr-->
+</p>
+<ol>
+<li><p><span class="enstr"><em>User initiated:</em> These are finite length activities that the user has explicitly started. Examples include exporting or downloading a user specified file.</span><!--end_enstr-->
+<span class="jpstr">
+<em>ユーザ着手の：</em> ユーザが明示的に始める有限長のアクティビティがいくつかあります。例としては、ユーザ指定のファイルの移出やダウンロードが含まれます。
+</span><!--end_jpstr-->
+</p></li>
+<li><p><span class="enstr"><em>Background:</em> These are finite length activities that are part of the normal operation of your application but are not explicitly started by the user. Examples include autosaving, indexing, and automatic downloading of files.</span><!--end_enstr-->
+<span class="jpstr">
+<em>バックグラウンド（背後）の：</em> あなたのアプリケーションの通常の演算の一部であるがユーザによって明示的に開始されない有限長のアクティビティがいくつかあります。例としては、自動保存、索引作成、そしてファイルの自動ダウンロードが含まれます。
+</span><!--end_jpstr-->
+</p></li>
+</ol>
+<p><span class="enstr">In addition, if your application requires high priority I/O, you can include the <a href="../../documentation/foundation/processinfo/activityoptions/1415541-latencycritical_language-objc.html" class=""><code data-v-7fb764c1="">latency<wbr data-v-7fb764c1="">Critical</wbr></code></a> flag (using a bitwise <code data-v-7fb764c1="">OR</code>). You should only use this flag for activities like audio or video recording that really do require high priority.</span><!--end_enstr-->
+<span class="jpstr">
+加えて、あなたのアプリケーションが高い優先順位のI/Oを要求するならば、あなたは<a href="../../documentation/foundation/processinfo/activityoptions/1415541-latencycritical_language-objc.html" class=""><code data-v-7fb764c1="">latency<wbr data-v-7fb764c1="">Critical</wbr></code></a>フラグを含めることができます（ビット単位<code data-v-7fb764c1="">OR</code>を使って）。あなたは、このフラグをオーディオまたはビデオレコーディングのようなアクティビティに対してのみ使用すべきです、それらは本当に高い優先順位を必要とします。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">If your activity takes place synchronously inside an event callback on the main thread, you do not need to use this API.</span><!--end_enstr-->
+<span class="jpstr">
+あなたのアクティビティがメインスレッド上のあるイベントコールバック内部で同期的に起こるならば、あなたはこのAPIを使う必要はありません。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">Be aware that failing to end these activities for an extended period of time can have significant negative impacts to the performance of your user's computer, so be sure to use only the minimum amount of time required. User preferences may override your application’s request.</span><!--end_enstr-->
+<span class="jpstr">
+自覚してください、これらアクティビティを長期間にわたり終え損なうことは、重大な悪影響をあなたのユーザのコンピュータの性能に与える可能性があります、なので必要とされる最小限の時間だけ使うことを確実にしてください。ユーザ環境設定は、あなたのアプリケーションの要求をオーバーライドするかもしれません。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">You can also use this API to control automatic termination or sudden termination (see <a href="../../documentation/foundation/processinfo_language-objc.html#1651129" class="">Sudden Termination</a>). For example:</span><!--end_enstr-->
+<span class="jpstr">
+あなたはまた、このAPIを使って自動終了または即時終了を制御できます（<a href="../../documentation/foundation/processinfo_language-objc.html#1651129" class="">即時終了</a>を見てください）。例えば：
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="2555785"><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-keyword">let</span> activity = <span class="syntax-type">NSProcessInfo</span>.processInfo().beginActivityWithOptions(.<span class="syntax-type">AutomaticTerminationDisabled</span>, reason: <span class="syntax-string">"Good Reason"</span>)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-comment">// Perform some work</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-type">NSProcessInfo</span>.processInfo().endActivity(activity)</span></span></code></pre></div>
+</div></figure><p><span class="enstr">is equivalent to:</span><!--end_enstr-->
+<span class="jpstr">
+これは次と同等です：
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="2555791"><div data-v-39580a24="" data-syntax="swift" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-type">NSProcessInfo</span>.processInfo().disableAutomaticTermination(<span class="syntax-string">"Good Reason"</span>)</span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="2" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-comment">// Perform some work</span></span></span><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="3" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line"><span class="syntax-type">NSProcessInfo</span>.processInfo().enableAutomaticTermination(<span class="syntax-string">"Good Reason"</span>)</span></span></code></pre></div>
+</div></figure><p><span class="enstr">Because this API returns an object, it may be easier to pair begins and ends than when using the automatic termination API—if the object is deallocated before the <a href="../../documentation/foundation/processinfo/1411321-endactivity_language-objc.html" class=""><code data-v-7fb764c1="">end<wbr data-v-7fb764c1="">Activity(_:)</wbr></code></a> call, the activity will be automatically ended.</span><!--end_enstr-->
+<span class="jpstr">
+このAPIがあるオブジェクトを返すことから、始まりと終わりを対にするのは自動終了APIを使う場合よりも簡単かもしれません — <a href="../../documentation/foundation/processinfo/1411321-endactivity_language-objc.html" class=""><code data-v-7fb764c1="">end<wbr data-v-7fb764c1="">Activity(_:)</wbr></code></a>呼び出しの前にオブジェクトがデアロケートされるならば、そのアクティビティは自動的に終わらされるでしょう。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">This API also provides a mechanism to disable system-wide idle sleep and display idle sleep. These can have a large impact on the user experience, so be sure not to forget to end activities that disable sleep (including <a href="../../documentation/foundation/processinfo/activityoptions/1412233-userinitiated_language-objc.html" class=""><code data-v-7fb764c1="">user<wbr data-v-7fb764c1="">Initiated</wbr></code></a>).</span><!--end_enstr-->
+<span class="jpstr">
+このAPIはまた、システム全体の休眠とディスプレイの休眠に対する仕組みを提供します。これらは、ユーザ体験に大きな影響を与えます、なのでスリープを作動しなくするアクティビティの終了を忘れないよう確実にしてください（<a href="../../documentation/foundation/processinfo/activityoptions/1412233-userinitiated_language-objc.html" class=""><code data-v-7fb764c1="">user<wbr data-v-7fb764c1="">Initiated</wbr></code></a>を含む）。
+</span><!--end_jpstr-->
+</p>
+<h3 id="1651129"><span class="enstr">Sudden Termination</span><!--end_enstr-->
+<span class="jpstr">
+即時終了
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">macOS 10.6 and later includes a mechanism that allows the system to log out or shut down more quickly by, whenever possible, killing applications instead of requesting that they quit themselves.</span><!--end_enstr-->
+<span class="jpstr">
+macOS 10.6以降は、システムにログアウトやシャットダウンをより素早く行わせるある仕組みを含みます、可能ならいつでも、アプリケーションそれらをキルする（殺す）ことによって、それらがそれら自身を終了するように要請する代わりにです。
+</span><!--end_jpstr-->
+ </p>
+<p><span class="enstr">Your application can enable this capability on a global basis and then manually override its availability during actions that could cause data corruption or a poor user experience by allowing sudden termination. Alternately, your application can just manually enable and disable this functionality.</span><!--end_enstr-->
+<span class="jpstr">
+あなたのアプリケーションは、この能力を全面的規模で可能にする、そしてそれから手動でそれの利用可能性をオーバーライドすることが、即時終了を可能にすることによってデータ汚染または貧弱なユーザ体験の原因となりうるいくつかの動作の間に可能です。交互に、あなたのアプリケーションはこの機動性を単に手動で作動せさたり作動しないようにできます。
+</span><!--end_jpstr-->
+ </p>
+<p><span class="enstr">The methods <a href="../../documentation/foundation/processinfo/1409836-enablesuddentermination_language-objc.html" class=""><code data-v-7fb764c1="">enable<wbr data-v-7fb764c1="">Sudden<wbr data-v-7fb764c1="">Termination()</wbr></wbr></code></a> and <a href="../../documentation/foundation/processinfo/1412841-disablesuddentermination_language-objc.html" class=""><code data-v-7fb764c1="">disable<wbr data-v-7fb764c1="">Sudden<wbr data-v-7fb764c1="">Termination()</wbr></wbr></code></a> decrement or increment, respectively, a counter whose value is <code data-v-7fb764c1="">1</code> when the process is first created. When the counter's value is 0 the application is considered to be safely killable and may be killed by the system without any notification or event being sent to the process first.</span><!--end_enstr-->
+<span class="jpstr">
+メソッド<a href="../../documentation/foundation/processinfo/1409836-enablesuddentermination_language-objc.html" class=""><code data-v-7fb764c1="">enable<wbr data-v-7fb764c1="">Sudden<wbr data-v-7fb764c1="">Termination()</wbr></wbr></code></a>および<a href="../../documentation/foundation/processinfo/1412841-disablesuddentermination_language-objc.html" class=""><code data-v-7fb764c1="">disable<wbr data-v-7fb764c1="">Sudden<wbr data-v-7fb764c1="">Termination()</wbr></wbr></code></a>は、それぞれ、あるカウンタを漸減または漸増します、それの値はプロセスが最初に作成される時に<code data-v-7fb764c1="">1</code>です。そのカウンタの値が 0 である場合、アプリケーションは安全にキル可能であるとみなされます、そしてプロセスに最初に送られるあらゆる通知やイベントなしにシステムによってキルされるかもしれません。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">Your application can support sudden termination upon launch by adding a key to the application’s Info.plist. If the <code data-v-7fb764c1="">NSSupports<wbr data-v-7fb764c1="">Sudden<wbr data-v-7fb764c1="">Termination</wbr></wbr></code> key exists in the Info.plist and has a value of <span><code data-v-7fb764c1="">true</code></span>, it is the equivalent of calling <a href="../../documentation/foundation/processinfo/1409836-enablesuddentermination_language-objc.html" class=""><code data-v-7fb764c1="">enable<wbr data-v-7fb764c1="">Sudden<wbr data-v-7fb764c1="">Termination()</wbr></wbr></code></a> during your application launch. This renders the application process killable right away. You can still override this behavior by invoking <a href="../../documentation/foundation/processinfo/1412841-disablesuddentermination_language-objc.html" class=""><code data-v-7fb764c1="">disable<wbr data-v-7fb764c1="">Sudden<wbr data-v-7fb764c1="">Termination()</wbr></wbr></code></a>.</span><!--end_enstr-->
+<span class="jpstr">
+あなたのアプリケーションは、あるキーをアプリケーションのもつInfo.plistに加えることによって起動時に即時終了をサポートできます。<code data-v-7fb764c1="">NSSupports<wbr data-v-7fb764c1="">Sudden<wbr data-v-7fb764c1="">Termination</wbr></wbr></code>キーがInfo.plistの中に存在するそして<span><code data-v-7fb764c1="">true</code></span>の値を持つならば、それは<a href="../../documentation/foundation/processinfo/1409836-enablesuddentermination_language-objc.html" class=""><code data-v-7fb764c1="">enable<wbr data-v-7fb764c1="">Sudden<wbr data-v-7fb764c1="">Termination()</wbr></wbr></code></a>をあなたのアプリケーションが起動する間に呼び出すことに相当します。これは、アプリケーションプロセスを直ちにキル可能な状態にします。あなたは、依然としてこの挙動をオーバーライドすることが<a href="../../documentation/foundation/processinfo/1412841-disablesuddentermination_language-objc.html" class=""><code data-v-7fb764c1="">disable<wbr data-v-7fb764c1="">Sudden<wbr data-v-7fb764c1="">Termination()</wbr></wbr></code></a>を発動することで可能です。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">Typically, you disable sudden termination whenever your application defers work that must be done before the application terminates. If, for example, your application defers writing data to disk, and sudden termination is enabled, you should bracket the sensitive operations with a call to <a href="../../documentation/foundation/processinfo/1412841-disablesuddentermination_language-objc.html" class=""><code data-v-7fb764c1="">disable<wbr data-v-7fb764c1="">Sudden<wbr data-v-7fb764c1="">Termination()</wbr></wbr></code></a>, perform the necessary operations, and then send a balancing <a href="../../documentation/foundation/processinfo/1409836-enablesuddentermination_language-objc.html" class=""><code data-v-7fb764c1="">enable<wbr data-v-7fb764c1="">Sudden<wbr data-v-7fb764c1="">Termination()</wbr></wbr></code></a> message.</span><!--end_enstr-->
+<span class="jpstr">
+概して、あなたは、アプリケーションが終了する前に行わなければならない仕事をあなたのアプリケーションが延期する時はいつでも、即時終了を作動しないようにします。例えば、あなたのアプリケーションがデータのディスクへの書き込みを延期する、そして即時終了が可能にされているならば、あなたは繊細な演算を<a href="../../documentation/foundation/processinfo/1412841-disablesuddentermination_language-objc.html" class=""><code data-v-7fb764c1="">disable<wbr data-v-7fb764c1="">Sudden<wbr data-v-7fb764c1="">Termination()</wbr></wbr></code></a>への呼び出しと一括にして、その不可欠な演算を実行して、それから収支を合わせる<a href="../../documentation/foundation/processinfo/1409836-enablesuddentermination_language-objc.html" class=""><code data-v-7fb764c1="">enable<wbr data-v-7fb764c1="">Sudden<wbr data-v-7fb764c1="">Termination()</wbr></wbr></code></a>メッセージを送るべきです。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">In agents or daemon executables that don't depend on AppKit you can manually invoke <a href="../../documentation/foundation/processinfo/1409836-enablesuddentermination_language-objc.html" class=""><code data-v-7fb764c1="">enable<wbr data-v-7fb764c1="">Sudden<wbr data-v-7fb764c1="">Termination()</wbr></wbr></code></a> right away. You can then use the enable and disable methods whenever the process has work it must do before it terminates.</span><!--end_enstr-->
+<span class="jpstr">
+AppKitに依存しないエージェントまたはデーモン実行可能ファイルではあなたは手動で<a href="../../documentation/foundation/processinfo/1409836-enablesuddentermination_language-objc.html" class=""><code data-v-7fb764c1="">enable<wbr data-v-7fb764c1="">Sudden<wbr data-v-7fb764c1="">Termination()</wbr></wbr></code></a>を直ちに発動できます。あなたはそれから使用可能および使用不可能にするメソッドを、そのプロセスがそれが終了する前にそれが行わなければならない仕事を持つ場合はいつでも使用できます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">Some AppKit functionality automatically disables sudden termination on a temporary basis to ensure data integrity.</span><!--end_enstr-->
+<span class="jpstr">
+いくらかのAppKit機能性は自動的に即時終了を一時的に使用不可能にして、データ完全性を確かなものにします。
+</span><!--end_jpstr-->
+</p>
+<ul>
+<li><p><span class="enstr"><a href="../../documentation/foundation/userdefaults_language-objc.html" class=""><code data-v-7fb764c1="">User<wbr data-v-7fb764c1="">Defaults</wbr></code></a> temporarily disables sudden termination to prevent process killing between the time at which a default has been set and the time at which the preferences file including that default has been written to disk.</span><!--end_enstr-->
+<span class="jpstr">
+<a href="../../documentation/foundation/userdefaults_language-objc.html" class=""><code data-v-7fb764c1="">User<wbr data-v-7fb764c1="">Defaults</wbr></code></a>は、一時的に即時終了を使用不可能にして、ある初期状態が設定された時間とその初期状態を含む初期設定ファイルがディスクに書き込まれた時間の間、プロセスのキルを防ぎます
+</span><!--end_jpstr-->
+</p></li>
+<li><p><span class="enstr"><a href="https://developer.apple.com/documentation/appkit/nsdocument?language=objc" class=""><code data-v-7fb764c1="">NSDocument</code></a> temporarily disables sudden termination to prevent process killing between the time at which the user has made a change to a document and the time at which the user's change has been written to disk.</span><!--end_enstr-->
+<span class="jpstr">
+<a href="https://developer.apple.com/documentation/appkit/nsdocument?language=objc" class=""><code data-v-7fb764c1="">NSDocument</code></a>は、一時的に即時終了を使用不可能にして、ユーザが変更をある書類にした時間とユーザの変更がディスクに書き込まれた時間の間、プロセスのキルを防ぎます。
+</span><!--end_jpstr-->
+</p></li>
+</ul>
+<aside data-v-c567d8a8="" aria-label="note" class="note"><p data-v-c567d8a8="" class="label"><span class="enstr">Debugging tip</span><!--end_enstr-->
+<span class="jpstr">
+デバッグの秘訣
+</span><!--end_jpstr-->
+</p>
+<p data-v-c567d8a8=""><span class="enstr">You can determine the value of the sudden termination using the following LLDB command.</span><!--end_enstr-->
+<span class="jpstr">
+あなたは、即時終了の値を以下のLLDBコマンドを使って決定できます。
+</span><!--end_jpstr-->
+</p>
+<figure data-v-7bf080cc="" id="2555793" data-v-c567d8a8=""><div data-v-39580a24="" data-syntax="objc" class="code-listing" data-v-7bf080cc=""><!---->
+<div data-v-39580a24="" class="container-general"><pre data-v-39580a24=""><code data-v-39580a24=""><span data-v-39580a24="" class="code-line-container"><span data-v-39580a24="" data-line-number="1" class="code-number" style="display: none;"></span>
+<span data-v-39580a24="" class="code-line">print (<span class="syntax-keyword">long</span>)[[<span class="syntax-built_in">NSClassFromString</span>(<span class="syntax-string">@"NSProcessInfo"</span>) processInfo] _suddenTerminationDisablingCount]</span></span></code></pre></div>
+</div></figure><p data-v-c567d8a8=""><span class="enstr">Do not attempt to invoke or override <code data-v-7fb764c1="" data-v-c567d8a8="">sudden<wbr data-v-7fb764c1="">Termination<wbr data-v-7fb764c1="">Disabling<wbr data-v-7fb764c1="">Count</wbr></wbr></wbr></code> (a private method) in your application. It is there just for this debugging purpose, and may disappear at any time.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="" data-v-c567d8a8="">sudden<wbr data-v-7fb764c1="">Termination<wbr data-v-7fb764c1="">Disabling<wbr data-v-7fb764c1="">Count</wbr></wbr></wbr></code>（プライベートメソッド）をあなたのアプリケーションにおいて発動またはオーバーライドしようとしないでください。それはこのデバッグ目的のためにあるだけです、そしていつ何時存在しなくなるかもしれません。
+</span><!--end_jpstr-->
+ </p></aside><h3 id="1651138"><span class="enstr">Thermal State and App Performance in macOS</span><!--end_enstr-->
+<span class="jpstr">
+macOSにおける温度状態とアプリ性能
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">In macOS, use the current thermal state to determine if your app should reduce system usage. In macOS 10.10.3 and later, you can register for the <a href="../../documentation/foundation/processinfo/1410656-thermalstatedidchangenotificatio_language-objc.html" class=""><code data-v-7fb764c1="">thermal<wbr data-v-7fb764c1="">State<wbr data-v-7fb764c1="">Did<wbr data-v-7fb764c1="">Change<wbr data-v-7fb764c1="">Notification</wbr></wbr></wbr></wbr></code></a> to be notified when the thermal state changes. Use <a href="../../documentation/foundation/processinfo/1417480-thermalstate_language-objc.html" class=""><code data-v-7fb764c1="">thermal<wbr data-v-7fb764c1="">State</wbr></code></a> to query the current state. Your app should reduce system usage at higher thermal states. For recommended actions, see <a href="../../documentation/foundation/processinfo/thermalstate_language-objc.html" class=""><code data-v-7fb764c1="">Process<wbr data-v-7fb764c1="">Info<wbr data-v-7fb764c1="">.Thermal<wbr data-v-7fb764c1="">State</wbr></wbr></wbr></code></a>.</span><!--end_enstr-->
+<span class="jpstr">
+macOSでは、現在の温度状態を使ってあなたのアプリがシステム利用を減らすべきかどうか決定します。macOS 10.10.3以降では、あなたは<a href="../../documentation/foundation/processinfo/1410656-thermalstatedidchangenotificatio_language-objc.html" class=""><code data-v-7fb764c1="">thermal<wbr data-v-7fb764c1="">State<wbr data-v-7fb764c1="">Did<wbr data-v-7fb764c1="">Change<wbr data-v-7fb764c1="">Notification</wbr></wbr></wbr></wbr></code></a>に登録することで、温度状態が変化する時に通知されるようにできます。<a href="../../documentation/foundation/processinfo/1417480-thermalstate_language-objc.html" class=""><code data-v-7fb764c1="">thermal<wbr data-v-7fb764c1="">State</wbr></code></a>を使って現在の状態を問い合わせてください。あなたのアプリは、より高い温度状態ではシステム利用を減らすべきです。推奨される動作のために、<a href="../../documentation/foundation/processinfo/thermalstate_language-objc.html" class=""><code data-v-7fb764c1="">Process<wbr data-v-7fb764c1="">Info<wbr data-v-7fb764c1="">.Thermal<wbr data-v-7fb764c1="">State</wbr></wbr></wbr></code></a>を見てください。
+</span><!--end_jpstr-->
+</p>
+</div>
+</div>
+</div>
+<section data-v-8c663d90="" data-v-63527a60="" data-v-2deaa168="" id="topics" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">Topics</span><!--end_enstr-->
+<span class="jpstr">
+話題
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Getting the Process Information Agent</span><!--end_enstr-->
+<span class="jpstr">
+プロセス情報エージェントを取得する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/1408734-processinfo_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class var </span><span data-v-dac213be="" class="identifier">process<wbr data-v-dac213be="">Info</wbr></span><span data-v-dac213be="" class="decorator">: Process<wbr data-v-dac213be="">Info</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the process information agent for the process.</span><!--end_enstr-->
+<span class="jpstr">
+そのプロセスに対するプロセス情報エージェントを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Accessing Process Information</span><!--end_enstr-->
+<span class="jpstr">
+プロセス情報にアクセスする
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/1415596-arguments_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">arguments</span><span data-v-dac213be="" class="decorator">: [String]</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Array of strings with the command-line arguments for the process.</span><!--end_enstr-->
+<span class="jpstr">
+そのプロセスに対するコマンドライン引数をもつ文字列からなるある配列。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/1417911-environment_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">environment</span><span data-v-dac213be="" class="decorator">: [String : String]</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The variable names (keys) and their values in the environment from which the process was launched.</span><!--end_enstr-->
+<span class="jpstr">
+それからプロセスが起動された環境における変数名（キー）とそれの値。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/1416432-globallyuniquestring_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">globally<wbr data-v-dac213be="">Unique<wbr data-v-dac213be="">String</wbr></wbr></span><span data-v-dac213be="" class="decorator">: String</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Global unique identifier for the process.</span><!--end_enstr-->
+<span class="jpstr">
+プロセスに対するグローバルな固有識別子。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/3362531-ismaccatalystapp_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">is<wbr data-v-dac213be="">Mac<wbr data-v-dac213be="">Catalyst<wbr data-v-dac213be="">App</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: Bool</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A Boolean value that indicates whether the process originated as an iOS app and runs on macOS.</span><!--end_enstr-->
+<span class="jpstr">
+あるブール値、それはプロセスが、iOSアプリとして起源を発した、そしてmacOS上で動作するかどうかを指し示します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/3608556-isiosapponmac_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">isi<wbr data-v-dac213be="">OSApp<wbr data-v-dac213be="">On<wbr data-v-dac213be="">Mac</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: Bool</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A Boolean value that indicates whether the process is an iPhone or iPad app running on a Mac.</span><!--end_enstr-->
+<span class="jpstr">
+あるブール値、それはプロセスがMac上で動作しているiPhoneやiPadアプリであるかどうかを指し示します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/1415929-processidentifier_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">process<wbr data-v-dac213be="">Identifier</wbr></span><span data-v-dac213be="" class="decorator">: Int32</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The identifier of the process (often called process ID).</span><!--end_enstr-->
+<span class="jpstr">
+プロセスに対する識別子（しばしばプロセスIDと呼ばれます）。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/1416428-processname_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">process<wbr data-v-dac213be="">Name</wbr></span><span data-v-dac213be="" class="decorator">: String</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The name of the process.</span><!--end_enstr-->
+<span class="jpstr">
+プロセスの名前。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Accessing User Information</span><!--end_enstr-->
+<span class="jpstr">
+ユーザ情報にアクセスする
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e="">
+<div data-v-7ea0aa49="" data-v-63527a60="" class="content" data-v-9807b2e0=""><span class="enstr">Each user account in macOS has a full name (e.g., “Johnny Appleseed”) and an account name (e.g., “jappleseed”). You can view these names from the <em>Users &amp; Groups</em> pane of System Preferences, and you can use either name to log in to your Mac.</span><!--end_enstr-->
+<span class="jpstr">
+macOSにおける各ユーザアカウントは、完全な名前（たとえば、“Johnny Appleseed”）とアカウント名（たとえば、“jappleseed”）。あなたは、これら名前をシステム環境設定の<em>ユーザとグループ</em>ペインから眺められます、そしてあなたはどちらの名前を使ってもあなたのMacにログインできます。
+</span><!--end_jpstr-->
+</div><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/1643193-username_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">user<wbr data-v-dac213be="">Name</wbr></span><span data-v-dac213be="" class="decorator">: String</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the account name of the current user.</span><!--end_enstr-->
+<span class="jpstr">
+現在のユーザのアカウント名を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/1643199-fullusername_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">full<wbr data-v-dac213be="">User<wbr data-v-dac213be="">Name</wbr></wbr></span><span data-v-dac213be="" class="decorator">: String</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the full name of the current user.</span><!--end_enstr-->
+<span class="jpstr">
+現在のユーザの完全な名前を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Sudden Application Termination</span><!--end_enstr-->
+<span class="jpstr">
+即時アプリケーション終了
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/1412841-disablesuddentermination_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">disable<wbr data-v-dac213be="">Sudden<wbr data-v-dac213be="">Termination</wbr></wbr></span><span data-v-dac213be="" class="decorator">()</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Disables the application for quickly killing using sudden termination.</span><!--end_enstr-->
+<span class="jpstr">
+アプリケーションに即時終了を使って素早くキルをすることを使用不可能にします。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/1409836-enablesuddentermination_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">enable<wbr data-v-dac213be="">Sudden<wbr data-v-dac213be="">Termination</wbr></wbr></span><span data-v-dac213be="" class="decorator">()</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Enables the application for quick killing using sudden termination.</span><!--end_enstr-->
+<span class="jpstr">
+アプリケーションに即時終了を使って素早いキルをすることを使用可能にします。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Controlling Automatic Termination</span><!--end_enstr-->
+<span class="jpstr">
+自動終了を制御する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/1417402-disableautomatictermination_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">disable<wbr data-v-dac213be="">Automatic<wbr data-v-dac213be="">Termination</wbr></wbr></span><span data-v-dac213be="" class="decorator">(String)</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Disables automatic termination for the application.</span><!--end_enstr-->
+<span class="jpstr">
+アプリケーションに自動終了を利用不可能にします。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/1409422-enableautomatictermination_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">enable<wbr data-v-dac213be="">Automatic<wbr data-v-dac213be="">Termination</wbr></wbr></span><span data-v-dac213be="" class="decorator">(String)</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Enables automatic termination for the application.</span><!--end_enstr-->
+<span class="jpstr">
+アプリケーションに自動終了を利用可能にします。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/1407578-automaticterminationsupportenabl_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">automatic<wbr data-v-dac213be="">Termination<wbr data-v-dac213be="">Support<wbr data-v-dac213be="">Enabled</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: Bool</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A Boolean value indicating whether the app supports automatic termination.</span><!--end_enstr-->
+<span class="jpstr">
+アプリが自動終了をサポートするかどうかを指し示しているブール値。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Getting Host Information</span><!--end_enstr-->
+<span class="jpstr">
+ホスト情報を得る
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/1417236-hostname_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">host<wbr data-v-dac213be="">Name</wbr></span><span data-v-dac213be="" class="decorator">: String</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The name of the host computer on which the process is executing.</span><!--end_enstr-->
+<span class="jpstr">
+それの上でプロセスが遂行しているホストコンピュータの名前。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/1416341-operatingsystem_language-objc.html" class="link deprecated has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">operating<wbr data-v-dac213be="">System</wbr></span><span data-v-dac213be="" class="decorator">() -&gt; Int</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a constant to indicate the operating system on which the process is executing.</span><!--end_enstr-->
+<span class="jpstr">
+それの上でプロセスが遂行しているオペレーティングシステムを指し示している定数を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div>
+<span data-v-41682aee="" data-v-01f7f080="" role="presentation" class="violator violator-inline"><span class="enstr">Deprecated</span><!--end_enstr-->
+<span class="jpstr">
+非推奨
+</span><!--end_jpstr-->
+</span>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/1407388-operatingsystemname_language-objc.html" class="link deprecated has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">operating<wbr data-v-dac213be="">System<wbr data-v-dac213be="">Name</wbr></wbr></span><span data-v-dac213be="" class="decorator">() -&gt; String</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a string containing the name of the operating system on which the process is executing.</span><!--end_enstr-->
+<span class="jpstr">
+それの上でプロセスが遂行しているオペレーティングシステムの名前を含んでいるある文字列を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div>
+<span data-v-41682aee="" data-v-01f7f080="" role="presentation" class="violator violator-inline"><span class="enstr">Deprecated</span><!--end_enstr-->
+<span class="jpstr">
+非推奨
+</span><!--end_jpstr-->
+</span>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/1408730-operatingsystemversionstring_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">operating<wbr data-v-dac213be="">System<wbr data-v-dac213be="">Version<wbr data-v-dac213be="">String</wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: String</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A string containing the version of the operating system on which the process is executing.</span><!--end_enstr-->
+<span class="jpstr">
+それの上でプロセスが遂行しているオペレーティングシステムのバージョンを含んでいるある文字列。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/1410906-operatingsystemversion_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">operating<wbr data-v-dac213be="">System<wbr data-v-dac213be="">Version</wbr></wbr></span><span data-v-dac213be="" class="decorator">: Operating<wbr data-v-dac213be="">System<wbr data-v-dac213be="">Version</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The version of the operating system on which the process is executing.</span><!--end_enstr-->
+<span class="jpstr">
+それの上でプロセスが遂行しているオペレーティングシステムのバージョン。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/1414876-isoperatingsystematleast_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">is<wbr data-v-dac213be="">Operating<wbr data-v-dac213be="">System<wbr data-v-dac213be="">At<wbr data-v-dac213be="">Least</wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">(Operating<wbr data-v-dac213be="">System<wbr data-v-dac213be="">Version) -&gt; Bool</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns a Boolean value indicating whether the version of the operating system on which the process is executing is the same or later than the given version.</span><!--end_enstr-->
+<span class="jpstr">
+それの上でプロセスが遂行しているオペレーティングシステムのバージョンがこの与えられたバージョンと同じかより後かを指し示しているブール値を返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Getting Computer Information</span><!--end_enstr-->
+<span class="jpstr">
+コンピュータ情報を取得する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/1415622-processorcount_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">processor<wbr data-v-dac213be="">Count</wbr></span><span data-v-dac213be="" class="decorator">: Int</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The number of processing cores available on the computer.</span><!--end_enstr-->
+<span class="jpstr">
+コンピュータ上で利用可能なプロセッシングコアの数。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/1408184-activeprocessorcount_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">active<wbr data-v-dac213be="">Processor<wbr data-v-dac213be="">Count</wbr></wbr></span><span data-v-dac213be="" class="decorator">: Int</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The number of active processing cores available on the computer.</span><!--end_enstr-->
+<span class="jpstr">
+コンピュータ上で利用可能なアクティブプロセッシングコアの数。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/1408211-physicalmemory_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">physical<wbr data-v-dac213be="">Memory</wbr></span><span data-v-dac213be="" class="decorator">: UInt64</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The amount of physical memory on the computer in bytes.</span><!--end_enstr-->
+<span class="jpstr">
+コンピュータ上の物理メモリの総量、バイト数で。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/1414553-systemuptime_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">system<wbr data-v-dac213be="">Uptime</wbr></span><span data-v-dac213be="" class="decorator">: Time<wbr data-v-dac213be="">Interval</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The amount of time the system has been awake since the last time it was restarted.</span><!--end_enstr-->
+<span class="jpstr">
+それが再始動された最後の時からシステムが起きている時間。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Managing Activities</span><!--end_enstr-->
+<span class="jpstr">
+アクティビティ（活動状態）を管理する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/1415995-beginactivity_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">begin<wbr data-v-dac213be="">Activity</wbr></span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">options</span><span data-v-dac213be="" class="decorator">: Process<wbr data-v-dac213be="">Info<wbr data-v-dac213be="">.Activity<wbr data-v-dac213be="">Options, </wbr></wbr></wbr></span><span data-v-dac213be="" class="identifier">reason</span><span data-v-dac213be="" class="decorator">: String) -&gt; NSObject<wbr data-v-dac213be="">Protocol</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Begin an activity using the given options and reason.</span><!--end_enstr-->
+<span class="jpstr">
+あるアクティビティをこの与えられたオプションと理由を使って開始します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/1411321-endactivity_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">end<wbr data-v-dac213be="">Activity</wbr></span><span data-v-dac213be="" class="decorator">(NSObject<wbr data-v-dac213be="">Protocol)</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Ends the given activity.</span><!--end_enstr-->
+<span class="jpstr">
+与えられたアクティビティを終わります。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/1418048-performactivity_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">perform<wbr data-v-dac213be="">Activity</wbr></span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">options</span><span data-v-dac213be="" class="decorator">: Process<wbr data-v-dac213be="">Info<wbr data-v-dac213be="">.Activity<wbr data-v-dac213be="">Options, </wbr></wbr></wbr></span><span data-v-dac213be="" class="identifier">reason</span><span data-v-dac213be="" class="decorator">: String, </span><span data-v-dac213be="" class="identifier">using</span><span data-v-dac213be="" class="decorator">: () -&gt; Void)</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Synchronously perform an activity defined by a given block using the given options.</span><!--end_enstr-->
+<span class="jpstr">
+与えられたブロックによってある与えられたオプション使って定義されたアクティビティを同期的に実行します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/1617030-performexpiringactivity_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">perform<wbr data-v-dac213be="">Expiring<wbr data-v-dac213be="">Activity</wbr></wbr></span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">with<wbr data-v-dac213be="">Reason</wbr></span><span data-v-dac213be="" class="decorator">: String, </span><span data-v-dac213be="" class="identifier">using</span><span data-v-dac213be="" class="decorator">: (Bool) -&gt; Void)</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Performs the specified block asynchronously and notifies you if the process is about to be suspended.</span><!--end_enstr-->
+<span class="jpstr">
+指定されたブロックを非同期に実行します、そしてプロセスがまさに一時停止されようとしているならばあなたに通知します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Getting the Thermal State</span><!--end_enstr-->
+<span class="jpstr">
+温度状態を取得する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/1417480-thermalstate_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">thermal<wbr data-v-dac213be="">State</wbr></span><span data-v-dac213be="" class="decorator">: Process<wbr data-v-dac213be="">Info<wbr data-v-dac213be="">.Thermal<wbr data-v-dac213be="">State</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The current thermal state of the system.</span><!--end_enstr-->
+<span class="jpstr">
+システムの現在の温度状態。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Determining Whether Low Power Mode is Enabled</span><!--end_enstr-->
+<span class="jpstr">
+低電力モードが可能にされるかどうか決定する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/1617047-islowpowermodeenabled_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">is<wbr data-v-dac213be="">Low<wbr data-v-dac213be="">Power<wbr data-v-dac213be="">Mode<wbr data-v-dac213be="">Enabled</wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: Bool</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A Boolean indicating whether Low Power Mode is enabled on an iOS device.</span><!--end_enstr-->
+<span class="jpstr">
+低電力モードが iOS デバイス上で可能にされるかどうかを指し示すブール値。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Constants</span><!--end_enstr-->
+<span class="jpstr">
+定数
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/operatingsystemversion_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">struct </span><span data-v-dac213be="" class="identifier">Operating<wbr data-v-dac213be="">System<wbr data-v-dac213be="">Version</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Operating system version structure used with <a href="../../documentation/foundation/processinfo/1410906-operatingsystemversion_language-objc.html" class=""><code data-v-7fb764c1="">operating<wbr data-v-7fb764c1="">System<wbr data-v-7fb764c1="">Version</wbr></wbr></code></a> and <a href="../../documentation/foundation/processinfo/1414876-isoperatingsystematleast_language-objc.html" class=""><code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Operating<wbr data-v-7fb764c1="">System<wbr data-v-7fb764c1="">At<wbr data-v-7fb764c1="">Least(_:)</wbr></wbr></wbr></wbr></code></a>.</span><!--end_enstr-->
+<span class="jpstr">
+<a href="../../documentation/foundation/processinfo/1410906-operatingsystemversion_language-objc.html" class=""><code data-v-7fb764c1="">operating<wbr data-v-7fb764c1="">System<wbr data-v-7fb764c1="">Version</wbr></wbr></code></a>と<a href="../../documentation/foundation/processinfo/1414876-isoperatingsystematleast_language-objc.html" class=""><code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Operating<wbr data-v-7fb764c1="">System<wbr data-v-7fb764c1="">At<wbr data-v-7fb764c1="">Least(_:)</wbr></wbr></wbr></wbr></code></a>で使われるオペレーティングシステムバージョン構造体。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/activityoptions_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">struct </span><span data-v-dac213be="" class="identifier">Process<wbr data-v-dac213be="">Info<wbr data-v-dac213be="">.Activity<wbr data-v-dac213be="">Options</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Option flags used with <a href="../../documentation/foundation/processinfo/1415995-beginactivity_language-objc.html" class=""><code data-v-7fb764c1="">begin<wbr data-v-7fb764c1="">Activity(options:<wbr data-v-7fb764c1="">reason:)</wbr></wbr></code></a> and <a href="../../documentation/foundation/processinfo/1418048-performactivity_language-objc.html" class=""><code data-v-7fb764c1="">perform<wbr data-v-7fb764c1="">Activity(options:<wbr data-v-7fb764c1="">reason:<wbr data-v-7fb764c1="">using:)</wbr></wbr></wbr></code></a>.</span><!--end_enstr-->
+<span class="jpstr">
+<a href="../../documentation/foundation/processinfo/1415995-beginactivity_language-objc.html" class=""><code data-v-7fb764c1="">begin<wbr data-v-7fb764c1="">Activity(options:<wbr data-v-7fb764c1="">reason:)</wbr></wbr></code></a>と<a href="../../documentation/foundation/processinfo/1418048-performactivity_language-objc.html" class=""><code data-v-7fb764c1="">perform<wbr data-v-7fb764c1="">Activity(options:<wbr data-v-7fb764c1="">reason:<wbr data-v-7fb764c1="">using:)</wbr></wbr></wbr></code></a>で使用されるオプションフラグ。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/thermalstate_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">enum </span><span data-v-dac213be="" class="identifier">Process<wbr data-v-dac213be="">Info<wbr data-v-dac213be="">.Thermal<wbr data-v-dac213be="">State</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Values used to indicate the system’s thermal state.</span><!--end_enstr-->
+<span class="jpstr">
+システムの温度状態を指し示すために使われる値。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0="">
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/1552984-anonymous_language-objc.html" class="link has-adjacent-elements"><svg data-v-a76e93d8="" data-v-a8c6b630="" data-v-01f7f080="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="svg-icon topic-icon" height="16" viewbox="0 0 15 16"><title data-v-a76e93d8="">API Reference</title>
+<g data-v-a76e93d8="" fill-rule="evenodd" class="svg-icon-small"><path data-v-a76e93d8="" fill-rule="nonzero" d="M0,0 L15,0 L15,15 L0,15 L0,0 Z M1,14 L14,14 L14,1 L1,1 L1,14 Z"></path><polygon data-v-a76e93d8="" points="4 11 3 11 3 10 4 10"></polygon><polygon data-v-a76e93d8="" points="4 8 3 8 3 7 4 7"></polygon><polygon data-v-a76e93d8="" points="4 5 3 5 3 4 4 4"></polygon><polygon data-v-a76e93d8="" points="12 11 5 11 5 10 12 10"></polygon><polygon data-v-a76e93d8="" points="12 8 5 8 5 7 12 7"></polygon><polygon data-v-a76e93d8="" points="12 5 5 5 5 4 12 4"></polygon></g></svg><span data-v-01f7f080="">Anonymous</span><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The following constants are provided by the <code data-v-7fb764c1="">NSProcess<wbr data-v-7fb764c1="">Info</wbr></code> class as return values for <a href="../../documentation/foundation/processinfo/1416341-operatingsystem_language-objc.html" class=""><code data-v-7fb764c1="">operating<wbr data-v-7fb764c1="">System()</wbr></code></a>.</span><!--end_enstr-->
+<span class="jpstr">
+以下の定数は、<code data-v-7fb764c1="">NSProcess<wbr data-v-7fb764c1="">Info</wbr></code>クラスによって<a href="../../documentation/foundation/processinfo/1416341-operatingsystem_language-objc.html" class=""><code data-v-7fb764c1="">operating<wbr data-v-7fb764c1="">System()</wbr></code></a>に対する戻り値として提供されます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Notifications</span><!--end_enstr-->
+<span class="jpstr">
+通知
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/processinfo/1410656-thermalstatedidchangenotificatio_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class let </span><span data-v-dac213be="" class="identifier">thermal<wbr data-v-dac213be="">State<wbr data-v-dac213be="">Did<wbr data-v-dac213be="">Change<wbr data-v-dac213be="">Notification</wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: NSNotification<wbr data-v-dac213be="">.Name</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Posted when the thermal state of the system changes.</span><!--end_enstr-->
+<span class="jpstr">
+システムの温度状態が変化するときに投函されます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsnotification/name/1617322-nsprocessinfopowerstatedidchange_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">static let </span><span data-v-dac213be="" class="identifier">NSProcess<wbr data-v-dac213be="">Info<wbr data-v-dac213be="">Power<wbr data-v-dac213be="">State<wbr data-v-dac213be="">Did<wbr data-v-dac213be="">Change</wbr></wbr></wbr></wbr></wbr></span><span data-v-dac213be="" class="decorator">: NSNotification<wbr data-v-dac213be="">.Name</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Posted when the power state (Low Power Mode is enabled or disabled) of an iOS device changes.</span><!--end_enstr-->
+<span class="jpstr">
+iOSデバイスのパワー状態が変化する（「低電力モード」が作動または非作動にされる）時に投函されます。
+</span><!--end_jpstr-->
+ </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+</div><!----></section><section data-v-8c663d90="" data-v-2deaa168="" id="relationships" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">Relationships</span><!--end_enstr-->
+<span class="jpstr">
+関係
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Inherits From</span><!--end_enstr-->
+<span class="jpstr">
+継承元
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><ul data-v-4af8f78e="" class="relationships-list inline" data-v-9807b2e0=""><li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/objectivec/nsobject_language-objc.html" class="link"><code data-v-4af8f78e="">NSObject</code></a><!---->
+</li></ul></div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Conforms To</span><!--end_enstr-->
+<span class="jpstr">
+次に準拠
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><ul data-v-4af8f78e="" class="relationships-list inline" data-v-9807b2e0="">
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/cvararg_language-objc.html" class="link"><code data-v-4af8f78e="">CVar<wbr data-v-4af8f78e="">Arg</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/equatable_language-objc.html" class="link"><code data-v-4af8f78e="">Equatable</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/hashable_language-objc.html" class="link"><code data-v-4af8f78e="">Hashable</code></a><!---->
+</li>
+</ul></div>
+</div>
+</div></section><section data-v-8c663d90="" data-v-63527a60="" data-v-2deaa168="" id="see-also" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">See Also</span><!--end_enstr-->
+<span class="jpstr">
+参照
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">System Interaction</span><!--end_enstr-->
+<span class="jpstr">
+システム相互作用
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsbackgroundactivityscheduler_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class </span><span data-v-dac213be="" class="identifier">NSBackground<wbr data-v-dac213be="">Activity<wbr data-v-dac213be="">Scheduler</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A task scheduler suitable for low priority operations that can run in the background.</span><!--end_enstr-->
+<span class="jpstr">
+低優先度演算に適している作業（タスク）スケジューラ、それはバックグラウンドで実行できます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+</div><!----></section></main>
+</div></div></div>
+<section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo"><nav class="footer-breadory"><a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a><section class="breadcrumbs"><ol class="breadcrumbs-list"></ol></section><div id="directorynav" class="directorynav">
+<div id="dn-cola" class="column">
+<h3><a href="/discover/">Discover</a></h3>
+<ul>
+<li><a href="/ios/">iOS</a></li>
+<li><a href="/ipados/">iPadOS</a></li>
+<li><a href="/macos/">macOS</a></li>
+<li><a href="/tvos/">tvOS</a></li>
+<li><a href="/watchos/">watchOS</a></li>
+<li><a href="/safari/">Safari and Web</a></li>
+<li><a href="/games/">Games</a></li>
+<li><a href="/business/">Business</a></li>
+<li><a href="/education/">Education</a></li>
+<li><a href="/wwdc/">WWDC</a></li>
+</ul>
+</div>
+<div id="dn-colb" class="column">
+<h3><a href="/design/">Design</a></h3>
+<ul>
+<li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
+<li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
+<span class="jpstr">
+リソース
+</span><!--end_jpstr-->
+</a></li>
+<li><a href="/videos/design/">Videos</a></li>
+<li><a href="/design/awards/">Apple Design Awards</a></li>
+<li><a href="/fonts/">Fonts</a></li>
+<li><a href="/accessibility/">Accessibility</a></li>
+<li><a href="/localization/"><span class="enstr">Localization</span><!--end_enstr-->
+<span class="jpstr">
+ローカライゼーション
+</span><!--end_jpstr-->
+</a></li>
+<li><a href="/accessories/">Accessories</a></li>
+</ul>
+</div>
+<div id="dn-colc" class="column">
+<h3><a href="/develop/">Develop</a></h3>
+<ul>
+<li><a href="/xcode/">Xcode</a></li>
+<li><a href="/swift/">Swift</a></li>
+<li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
+<li><a href="/testflight/">TestFlight</a></li>
+<li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
+<li><a href="/videos/">Videos</a></li>
+<li><a href="/download/">Downloads</a></li>
+</ul>
+</div>
+<div id="dn-cold" class="column">
+<h3><a href="/distribute/">Distribute</a></h3>
+<ul>
+<li><a href="/programs/">Developer Program</a></li>
+<li><a href="/app-store/">App Store</a></li>
+<li><a href="/app-store/review/">App Review</a></li>
+<li><a href="/macos/distribution/">Mac Software</a></li>
+<li><a href="/business/distribute/">Apps for Business</a></li>
+<li><a href="/safari/extensions/">Safari Extensions</a></li>
+<li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
+<li><a href="/softwarelicensing/">Trademark Licensing</a></li>
+</ul>
+</div>
+<div id="dn-cole" class="column">
+<h3><a href="/support/">Support</a></h3>
+<ul>
+<li><a href="/support/articles/">Articles</a></li>
+<li><a href="/forums/">Developer Forums</a></li>
+<li><a href="/bug-reporting/">Feedback &amp; Bug Reporting</a></li>
+<li><a href="/system-status/">System Status</a></li>
+<li><a href="/contact/">Contact Us</a></li>
+</ul>
+<h3><a href="/account/">Account</a></h3>
+<ul>
+<li><a href="/account/ios/certificate/">Certificates, Identifiers &amp; Profiles</a></li>
+<li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
+</ul>
+</div>
+</div></nav><div class="ac-gf-footer-legal">
+<div class="ac-gf-footer-news">To view the latest developer news, visit <a href="/news/">News and Updates</a>.</div>
+<div class="ac-gf-footer-language-dropdown-wrapper">
+<select id="footer-language-selector" class="footer-language-select" aria-label="Language Dropdown" autocomplete="off"><option value="https://developer.apple.com/" selected>English</option>
+<option value="https://developer.apple.com/cn/">简体中文</option>
+<option value="https://developer.apple.com/jp/">日本語</option>
+<option value="https://developer.apple.com/kr/">한국어</option></select> <span class="footer-language-select-icon icon icon-chevrondown" aria-hidden="true"></span>
+</div>
+<div class="ac-gf-footer-legal-copyright">Copyright © <span class="footer-current-year">2020</span> <a href="https://www.apple.com">Apple Inc.</a> All rights reserved.</div>
+<div class="ac-gf-footer-legal-links">
+<a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a> <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a> <a href="/terms/">License Agreements</a>
+</div>
+</div></footer></section><script src="../../tutorials/js/footer.js"></script>
+</body>
+</html>

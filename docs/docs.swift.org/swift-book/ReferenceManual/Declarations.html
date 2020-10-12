@@ -10,7 +10,7 @@
     <meta name="author" content="Apple Inc." />
     <meta name="viewport" content="width=device-width initial-scale=1" />
     
-    <title>Declarations — The Swift Programming Language (Swift 5.2)</title>
+    <title>Declarations — The Swift Programming Language (Swift 5.3)</title>
     
     <link rel="license" href="/LICENSE.txt" />
     <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
@@ -41,7 +41,7 @@
 
     <div id="menu-toggle" class="menu-toggle open"></div>
 
-    <h2>The Swift Programming Language<div>Swift 5.2</div></h2>
+    <h2>The Swift Programming Language<div>Swift 5.3</div></h2>
 
     <ul>
     <ul class="current">
@@ -220,7 +220,11 @@ In-Outパラメータ
 特別な種類のメソッド
 </span><!--end_jpstr-->
 </a></li>
-<li><a class="reference internal" href="#ID622">Methods with Special Names</a></li>
+<li><a class="reference internal" href="#ID622"><span class="enstr">Methods with Special Names</span><!--end_enstr-->
+<span class="jpstr">
+特殊名を持つメソッド
+</span><!--end_jpstr-->
+</a></li>
 <li><a class="reference internal" href="#ID530"><span class="enstr">Throwing Functions and Methods</span><!--end_enstr-->
 <span class="jpstr">
 スローを行う関数とメソッド
@@ -367,7 +371,11 @@ In-Outパラメータ
 添え字宣言
 </span><!--end_jpstr-->
 </a><ul>
-<li><a class="reference internal" href="#ID611">Type Subscript Declarations</a></li>
+<li><a class="reference internal" href="#ID611"><span class="enstr">Type Subscript Declarations</span><!--end_enstr-->
+<span class="jpstr">
+型添え字宣言
+</span><!--end_jpstr-->
+</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#ID380"><span class="enstr">Operator Declaration</span><!--end_enstr-->
@@ -431,6 +439,16 @@ In-Outパラメータ
 <p><span class="enstr">The top-level code in a Swift source file consists of zero or more statements, declarations, and expressions. By default, variables, constants, and other named declarations that are declared at the top-level of a source file are accessible to code in every source file that is part of the same module. You can override this default behavior by marking the declaration with an access-level modifier, as described in <a class="reference internal" href="#ID382"><span class="std std-ref">Access Control Levels</span></a>.</span><!--end_enstr-->
 <span class="jpstr">
 あるスウィフトソースコードにおけるトップレベル・コードは、０個以上の文、宣言、そして式から成ります。初期状態では、あるソースファイルのトップレベルで宣言される変数、定数、そして他の名前をつけられる宣言は、同じモジュールの一部であるすべてのソースファイルの中のコードにアクセス可能です。あなたは、<a class="reference internal" href="#ID382"><span class="std std-ref">アクセス制御ラベル</span></a>で記述されるように、この初期状態のふるまいをその宣言をアクセス水準修飾子で印することによってオーバーライドすることができます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">There are two kinds of top-level code: top-level declarations and executable top-level code. Top-level declarations consist of only declarations, and are allowed in all Swift source files. Executable top-level code contains statements and expressions, not just declarations, and is allowed only as the top-level entry point for the program.</span><!--end_enstr-->
+<span class="jpstr">
+２つの種類のトップレベルコードがあります：トップレベル宣言と実行可能トップレベルコード。トップレベル宣言は、宣言それらからのみ構成されます、そしてスウィフトソースファイルにおいて許可されます。実行可能トップレベルコードは、文と式を含みます、宣言だけでなく、そしてプログラムのトップレベルエントリポイントとしてのみ許可されます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">The Swift code you compile to make an executable can contain at most one of the following approaches to mark the top-level entry point, regardless of how the code is organized into files and modules: the <code class="docutils literal notranslate"><span class="pre">main</span></code> attribute, the <code class="docutils literal notranslate"><span class="pre">NSApplicationMain</span></code> attribute, the <code class="docutils literal notranslate"><span class="pre">UIApplicationMain</span></code> attribute, a <code class="docutils literal notranslate"><span class="pre">main.swift</span></code> file, or a file that contains top-level executable code.</span><!--end_enstr-->
+<span class="jpstr">
+あなたがコンパイルして実行可能にするスウィフトコードは、トップレベルエントリポイントを印するために次の進入口のうち最大で１つを含むことができます、どのコードがファイルおよびモジュールに組織化されるかに関係になく：<code class="docutils literal notranslate"><span class="pre">main</span></code>属性、<code class="docutils literal notranslate"><span class="pre">NSApplicationMain</span></code>属性、<code class="docutils literal notranslate"><span class="pre">UIApplicationMain</span></code>属性、<code class="docutils literal notranslate"><span class="pre">main.swift</span></code>ファイル、またはトップレベル実行コードを含むファイル。
 </span><!--end_jpstr-->
 </p>
 <div class="admonition grammar"><p class="first admonition-title"><span class="enstr">Grammar of a top-level declaration</span><!--end_enstr-->
@@ -692,9 +710,9 @@ In-Outパラメータ
 あなたは、プロパティオブザーバーをどんな格納プロパティにでも加えることができます。あなたは、また、プロパティオブザーバーをあらゆる継承されたプロパティ（格納されるか、計算されるかに関係なく）にでも加えることが、サブクラスの内部でプロパティをオーバーライドすることによって、<a class="reference internal" href="../LanguageGuide/Inheritance.html#ID201"><span class="std std-ref">プロパティオブザーバーのオーバーライド</span></a>で記述されるように、可能です。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">The initializer <em>expression</em> is optional in the context of a class or structure declaration, but required elsewhere. The <em>type</em> annotation is optional when the type can be inferred from the initializer <em>expression</em>.</span><!--end_enstr-->
+<p><span class="enstr">The initializer <em>expression</em> is optional in the context of a class or structure declaration, but required elsewhere. The <em>type</em> annotation is optional when the type can be inferred from the initializer <em>expression</em>. This expression is evaluated the first time you read the property’s value. If you overwrite the property’s initial value without reading it, this expression is evaluated before the first time you write to the property.</span><!--end_enstr-->
 <span class="jpstr">
-イニシャライザ<em>式</em>は、クラスまたは構造体宣言の文脈では任意です、しかしその他では必須です。<em>型</em>注釈は、その型が初期化<em>式</em>から推論されることができる場合は随意です。
+イニシャライザ<em>式</em>は、クラスまたは構造体宣言の文脈では任意です、しかしその他では必須です。<em>型</em>注釈は、その型が初期化<em>式</em>から推論されることができる場合は随意です。この式は、あなたがプロパティのもつ値を読み出す最初の時に評価されます。あなたがプロパティのもつ初期値をそれを読み出すことなくオーバーライドするならば、この式は、あなたがプロパティに書き込む最初の時の前に評価されます。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">The <code class="docutils literal notranslate"><span class="pre">willSet</span></code> and <code class="docutils literal notranslate"><span class="pre">didSet</span></code> observers provide a way to observe (and to respond appropriately) when the value of a variable or property is being set. The observers are not called when the variable or property is first initialized. Instead, they are called only when the value is set outside of an initialization context.</span><!--end_enstr-->
@@ -717,6 +735,46 @@ In-Outパラメータ
 あなたが<code class="docutils literal notranslate"><span class="pre">willSet</span></code>節を提供するとき、<code class="docutils literal notranslate"><span class="pre">didSet</span></code>節は任意です。同様に、あなたが<code class="docutils literal notranslate"><span class="pre">didSet</span></code>節を提供するとき、<code class="docutils literal notranslate"><span class="pre">willSet</span></code>節は任意です。
 </span><!--end_jpstr-->
 </p>
+<p><span class="enstr">If the body of the <code class="docutils literal notranslate"><span class="pre">didSet</span></code> observer refers to the old value, the getter is called before the observer, to make the old value available. Otherwise, the new value is stored without calling the superclass’s getter. The example below shows a computed property that’s defined by the superclass and overridden by its subclasses to add an observer.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">didSet</span></code>オブザーバの本文が古い値を参照するならば、ゲッターはオブザーバの前に呼び出されます、古い値を利用可能にするために。そうでなければ、新しい値はスーパークラスのもつゲッターを呼び出すことなく格納されます。下の例は、ある計算プロパティを示します、それはスーパークラスによって定義されます、そしてそれのサブクラスそれらによってオーバーライドされて、あるオブザーバを加えます。
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">class</span> <span class="nv">Superclass</span> {
+</li><li>    <span class="k">private</span> <span class="k">var</span> <span class="nv">xValue</span> = <span class="m">12</span>
+</li><li>    <span class="k">var</span> <span class="nv">x</span>: <span class="nc">Int</span> {
+</li><li>        <span class="k">get</span> { <span class="nv">print</span>(<span class="s">"Getter was called"</span>); <span class="k">return</span> <span class="nv">xValue</span> }
+</li><li>        <span class="k">set</span> { <span class="nv">print</span>(<span class="s">"Setter was called"</span>); <span class="nv">xValue</span> = <span class="nv">newValue</span> }
+</li><li>    }
+</li><li>}
+</li><li>
+</li><li><span class="c"><span class="enstr">// This subclass doesn't refer to oldValue in its observer, so the</span><!--end_enstr--><span class="jpstr">（このサブクラスはoldValueをそれのオブザーバの中で参照しません、それで）</span><!--end_jpstr--></span>
+</li><li><span class="c"><span class="enstr">// superclass's getter is called only once to print the value.</span><!--end_enstr--><span class="jpstr">（スーパークラスのもつゲッターはただ一度だけ呼び出されて、値を出力します。）</span><!--end_jpstr--></span>
+</li><li><span class="k">class</span> <span class="nv">New</span>: <span class="nc">Superclass</span> {
+</li><li>    <span class="k">override</span> <span class="k">var</span> <span class="nv">x</span>: <span class="nc">Int</span> {
+</li><li>        <span class="k">didSet</span> { <span class="nv">print</span>(<span class="s">"New value </span>\<span class="p">(</span><span class="nv">x</span><span class="p">)</span><span class="s">"</span>) }
+</li><li>    }
+</li><li>}
+</li><li><span class="k">let</span> <span class="nv">new</span> = <span class="nv">New</span>()
+</li><li><span class="nv">new</span>.<span class="nv">x</span> = <span class="m">100</span>
+</li><li><span class="c">// Prints "Setter was called"</span>
+</li><li><span class="c">// Prints "Getter was called"</span>
+</li><li><span class="c">// Prints "New value 100"</span>
+</li><li>
+</li><li><span class="c"><span class="enstr">// This subclass refers to oldValue in its observer, so the superclass's</span><!--end_enstr--><span class="jpstr">（このサブクラスはoldValueをそれのオブザーバの中で参照します、それでスーパークラスのもつ）</span><!--end_jpstr--></span>
+</li><li><span class="c"><span class="enstr">// getter is called once before the setter, and again to print the value.</span><!--end_enstr--><span class="jpstr">（ゲッターは、セッターの前に一度、そして値を出力するためにもう一度呼び出されます。）</span><!--end_jpstr--></span>
+</li><li><span class="k">class</span> <span class="nv">NewAndOld</span>: <span class="nc">Superclass</span> {
+</li><li>    <span class="k">override</span> <span class="k">var</span> <span class="nv">x</span>: <span class="nc">Int</span> {
+</li><li>        <span class="k">didSet</span> { <span class="nv">print</span>(<span class="s">"Old value </span>\<span class="p">(</span><span class="nv">oldValue</span><span class="p">)</span><span class="s"> - new value </span>\<span class="p">(</span><span class="nv">x</span><span class="p">)</span><span class="s">"</span>) }
+</li><li>    }
+</li><li>}
+</li><li><span class="k">let</span> <span class="nv">newAndOld</span> = <span class="nv">NewAndOld</span>()
+</li><li><span class="nv">newAndOld</span>.<span class="nv">x</span> = <span class="m">200</span>
+</li><li><span class="c">// Prints "Getter was called"</span>
+</li><li><span class="c">// Prints "Setter was called"</span>
+</li><li><span class="c">// Prints "Getter was called"</span>
+</li><li><span class="c">// Prints "Old value 12 - new value 200"</span>
+</li></ol></div></div></div>
 <p><span class="enstr">For more information and to see an example of how to use property observers, see <a class="reference internal" href="../LanguageGuide/Properties.html#ID262"><span class="std std-ref">Property Observers</span></a>.</span><!--end_enstr-->
 <span class="jpstr">
 より多くの情報のために、そして、プロパティオブザーバーを使う方法の例を見るために、<a class="reference internal" href="../LanguageGuide/Properties.html#ID262"><span class="std std-ref">プロパティオブザーバー</span></a>を見てください。
@@ -846,9 +904,9 @@ In-Outパラメータ
 各パラメータの型は、含められなければなりません ― それは、推論されることができません。あなたが<code class="docutils literal notranslate"><span class="pre">inout</span></code>をパラメータの型のすぐ前に書くならば、そのパラメータは関数のスコープ内部において修正されることができます。in-outパラメータは詳細に、下で、<a class="reference internal" href="#ID545"><span class="std std-ref">in-outパラメータ</span></a>において議論されます。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">A function declaration whose <em>statements</em> include only a single expression is understood to return the value of that expression.</span><!--end_enstr-->
+<p><span class="enstr">A function declaration whose <em>statements</em> include only a single expression is understood to return the value of that expression. This implicit return syntax is considered only when the expression’s type and the function’s return type aren’t <code class="docutils literal notranslate"><span class="pre">Void</span></code> and aren’t an enumeration like <code class="docutils literal notranslate"><span class="pre">Never</span></code> that doesn’t have any cases.</span><!--end_enstr-->
 <span class="jpstr">
-それの<em>statements</em>がただ１つの式だけを含む関数宣言は、その式の値を返すものと理解されます。
+それの<em>statements</em>がただ１つの式だけを含む関数宣言は、その式の値を返すものと理解されます。この暗黙的な戻り構文は、式のもつ型と関数のもつ戻り型が<code class="docutils literal notranslate"><span class="pre">Void</span></code>でないそして何らケース節を持たない<code class="docutils literal notranslate"><span class="pre">Never</span></code>のような列挙ではない場合にのみ考慮されます。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">Functions can return multiple values using a tuple type as the return type of the function.</span><!--end_enstr-->
@@ -1491,7 +1549,7 @@ call-as-functionメソッド、または<code class="docutils literal notranslat
 </p>
 <p><span class="enstr">A class type can inherit from only one parent class, its <em>superclass</em>, but can adopt any number of protocols. The <em>superclass</em> appears first after the <em>class name</em> and colon, followed by any <em>adopted protocols</em>. Generic classes can inherit from other generic and nongeneric classes, but a nongeneric class can inherit only from other nongeneric classes. When you write the name of a generic superclass class after the colon, you must include the full name of that generic class, including its generic parameter clause.</span><!--end_enstr-->
 <span class="jpstr">
-クラス型は、ただ１つの親クラス、それの<em>スーパークラス</em>から継承することだけが許されます、しかし随意の数のプロトコルに準拠することはできます。<em>スーパークラス</em>がまず<em>クラス名</em>とコロンの後に現れ、続いて随意の<em>準拠するプロトコル</em>が続きます。総称体クラスは、他の総称体および非総称体クラスから継承することができます、しかし非総称体クラスはただ他の非総称体クラスからのみ継承することができます。あなたがコロンの後に総称体スーパークラスの名前を書く時、あなたはその総称体クラスの名前全体を、それの総称体パラメーター節を含めて書く必要があります。
+クラス型は、ただ１つの親クラス、それの<em>スーパークラス</em>から継承することだけが許されます、しかし随意の数のプロトコルに準拠することはできます。<em>スーパークラス</em>がまず<em>クラス名</em>とコロンの後に現れ、続いて随意の<em>採用プロトコル</em>が続きます。総称体クラスは、他の総称体および非総称体クラスから継承することができます、しかし非総称体クラスはただ他の非総称体クラスからのみ継承することができます。あなたがコロンの後に総称体スーパークラスの名前を書く時、あなたはその総称体クラスの名前全体を、それの総称体パラメーター節を含めて書く必要があります。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">As discussed in <a class="reference internal" href="#ID375"><span class="std std-ref">Initializer Declaration</span></a>, classes can have designated and convenience initializers. The designated initializer of a class must initialize all of the class’s declared properties and it must do so before calling any of its superclass’s designated initializers.</span><!--end_enstr-->
@@ -1598,6 +1656,20 @@ call-as-functionメソッド、または<code class="docutils literal notranslat
 初期状態では、あるプロトコルに準拠する型は、そのプロトコルにおいて宣言される全てのプロパティ、メソッド、そして添え字を実装しなければなりません。とは言え、 あなたはこれらのプロトコルメンバー宣言を<code class="docutils literal notranslate"><span class="pre">optional</span></code>宣言修飾子を使って印して、ある準拠型にとってそれらの実装が随意であると指定することができます。<code class="docutils literal notranslate"><span class="pre">optional</span></code>修飾子は、<code class="docutils literal notranslate"><span class="pre">objc</span></code>属性で印されるメンバにだけ、そして<code class="docutils literal notranslate"><span class="pre">objc</span></code>属性で印されるプロトコルのメンバにだけ適用されることができます。結果として、クラス型だけがオプショナルメンバー要件を含むプロトコルを採用および準拠することができます。<code class="docutils literal notranslate"><span class="pre">optional</span></code>宣言修飾子を働かせる方法に関する詳細は、そして、オプショナルのプロトコルメンバーにアクセスする方法 ― 例えば、ある準拠している型がそれらを実装するかどうかについてあなたが確信が持てない時など ― についての手引きとして<a class="reference internal" href="../LanguageGuide/Protocols.html#ID284"><span class="std std-ref">オプショナルのプロトコル要件</span></a>を見てください。
 </span><!--end_jpstr-->
 </p>
+<p><span class="enstr">The cases of an enumeration can satisfy protocol requirements for type members. Specifically, an enumeration case without any associated values satisfies a protocol requirement for a get-only type variable of type <code class="docutils literal notranslate"><span class="pre">Self</span></code>, and an enumeration case with associated values satisfies a protocol requirement for a function that returns <code class="docutils literal notranslate"><span class="pre">Self</span></code> whose parameters and their argument labels match the case’s associated values. For example:</span><!--end_enstr-->
+<span class="jpstr">
+列挙のケース節は、型メンバーに対するプロトコル要件を満たすことができます。とりわけ、どんな関連値を持たない列挙ケース節は、型<code class="docutils literal notranslate"><span class="pre">Self</span></code>のある取得専用の型変数に対するプロトコル要件を満たします、そして関連値を持つ列挙ケース節は、<code class="docutils literal notranslate"><span class="pre">Self</span></code>を返すある関数に対するプロトコル要件を満たします、それは、それのもつパラメータそれらとそれらの引数ラベルがケース節のもつ関連値それらと合致するものです。例えば：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">protocol</span> <span class="nv">SomeProtocol</span> {
+</li><li>    <span class="k">static</span> <span class="k">var</span> <span class="nv">someValue</span>: <span class="nc">Self</span> { <span class="k">get</span> }
+</li><li>    <span class="k">static</span> <span class="k">func</span> <span class="nv">someFunction</span>(<span class="nv">x</span>: <span class="nc">Int</span>) -&gt; <span class="nc">Self</span>
+</li><li>}
+</li><li><span class="k">enum</span> <span class="nv">MyEnum</span>: <span class="nc">SomeProtocol</span> {
+</li><li>    <span class="k">case</span> <span class="nv">someValue</span>
+</li><li>    <span class="k">case</span> <span class="nv">someFunction</span>(<span class="nv">x</span>: <span class="nv">Int</span>)
+</li><li>}
+</li></ol></div></div></div>
 <p><span class="enstr">To restrict the adoption of a protocol to class types only, include the <code class="docutils literal notranslate"><span class="pre">AnyObject</span></code> protocol in the <em>inherited protocols</em> list after the colon. For example, the following protocol can be adopted only by class types:</span><!--end_enstr-->
 <span class="jpstr">
 あるプロトコルの採用をクラス型のみに制約するには、<code class="docutils literal notranslate"><span class="pre">AnyObject</span></code>プロトコルを<em>継承されたプロトコル</em>のリストの中にコロンの後で加えてください。例えば、以下のプロトコルはクラス型によってのみ採用されることができます：
@@ -2048,7 +2120,7 @@ call-as-functionメソッド、または<code class="docutils literal notranslat
 </p>
 <p><span class="enstr">Extension declarations can add protocol conformance to an existing class, structure, or enumeration type by specifying <em>adopted protocols</em>:</span><!--end_enstr-->
 <span class="jpstr">
-拡張宣言は、プロトコル準拠を既存のクラス、構造体、または列挙型に加えることが<em>adopted protocols 採用プロトコル</em>を指定することによって可能です：
+拡張宣言は、プロトコル準拠を既存のクラス、構造体、または列挙型に加えることが<em>採用プロトコル</em>を指定することによって可能です：
 </span><!--end_jpstr-->
 </p>
 <div class="syntax-outline highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">extension</span> <span class="gi">type name</span>: <span class="gi">adopted protocols</span> <span class="k">where</span> <span class="gi">requirements</span> {

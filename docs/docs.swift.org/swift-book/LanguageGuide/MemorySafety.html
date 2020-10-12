@@ -10,7 +10,7 @@
     <meta name="author" content="Apple Inc." />
     <meta name="viewport" content="width=device-width initial-scale=1" />
     
-    <title>Memory Safety — The Swift Programming Language (Swift 5.2)</title>
+    <title>Memory Safety — The Swift Programming Language (Swift 5.3)</title>
     
     <link rel="license" href="/LICENSE.txt" />
     <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
@@ -41,7 +41,7 @@
 
     <div id="menu-toggle" class="menu-toggle open"></div>
 
-    <h2>The Swift Programming Language<div>Swift 5.2</div></h2>
+    <h2>The Swift Programming Language<div>Swift 5.3</div></h2>
 
     <ul>
     <ul class="current">
@@ -348,9 +348,9 @@ in-outパラメータに対するアクセスの衝突
 </span><!--end_jpstr-->
 </p>
 <ul class="simple">
-<li><span class="enstr">At least one is a write access.</span><!--end_enstr-->
+<li><span class="enstr">At least one is a write access or a nonatomic access.</span><!--end_enstr-->
 <span class="jpstr">
-少なくとも１つが書き込みアクセスである。
+少なくとも１つが書き込みアクセスか非アトミックアクセスである。
 </span><!--end_jpstr-->
 </li>
 <li><span class="enstr">They access the same location in memory.</span><!--end_enstr-->
@@ -367,6 +367,11 @@ in-outパラメータに対するアクセスの衝突
 <p><span class="enstr">The difference between a read and write access is usually obvious: a write access changes the location in memory, but a read access doesn’t. The location in memory refers to what is being accessed—for example, a variable, constant, or property. The duration of a memory access is either instantaneous or long-term.</span><!--end_enstr-->
 <span class="jpstr">
 読み出しと書き込みアクセスの間の違いは、通常は明白です：書き込みアクセスはメモリ中の位置を変更します、しかし読み出しアクセスはそうしません。メモリ中の位置はアクセスされているのは何かを参照します — 例えば、変数、定数、またはプロパティ。メモリアクセスの期間は、即時か長期のどちらかです。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">An operation is <em>atomic</em> if it uses only C atomic operations; otherwise it’s nonatomic. For a list of those functions, see the <code class="docutils literal notranslate"><span class="pre">stdatomic(3)</span></code> man page.</span><!--end_enstr-->
+<span class="jpstr">
+ある演算は、<em>アトミック</em>です、もしそれがCアトミック演算子だけを使うならば；そうでなければそれは非アトミックです。そういった演算子の一覧として、<code class="docutils literal notranslate"><span class="pre">stdatomic(3)</span></code> manページを見てください。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">An access is <em>instantaneous</em> if it’s not possible for other code to run after that access starts but before it ends. By their nature, two instantaneous accesses can’t happen at the same time. Most memory access is instantaneous. For example, all the read and write accesses in the code listing below are instantaneous:</span><!--end_enstr-->

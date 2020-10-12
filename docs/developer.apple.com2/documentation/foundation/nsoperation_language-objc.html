@@ -1,0 +1,1039 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- link rel="icon" href="/favicon.ico" -->
+<link rel="mask-icon" href="/apple-logo.svg" color="#333333">
+<link rel="stylesheet" href="../../tutorials/css/_globalnav.css">
+<title>NSOperation | Apple Developer Documentation</title>
+<link href="../../tutorials/css/chunk-76d5c2b5.00c53891.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic.e358e85c.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css" rel="prefetch">
+<link href="../../tutorials/css/topic.69278f1e.css" rel="prefetch">
+<link href="../../tutorials/css/topic~tutorials-overview.1f93e025.css" rel="prefetch">
+<link href="../../tutorials/css/tutorials-overview.d4ff0b50.css" rel="prefetch">
+<link href="../../tutorials/css/welcome-experience-featured.0537f0f0.css" rel="prefetch">
+<link href="../../tutorials/css/welcome-experience-technologies.60068ae2.css" rel="prefetch">
+<link href="../../tutorials/js/chunk-2d0d3105.459bf725.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-2d21a016.b81cb311.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-503f1ed8.d26c4552.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-530f89ce.621e1d48.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-640db3b2.f8778ca5.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-76d5c2b5.092e3b8a.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic.6abe9458.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js" rel="prefetch">
+<link href="../../tutorials/js/topic.c6ec6b6c.js" rel="prefetch">
+<link href="../../tutorials/js/topic~tutorials-overview.467a8186.js" rel="prefetch">
+<link href="../../tutorials/js/tutorials-overview.d77f61ca.js" rel="prefetch">
+<link href="../../tutorials/js/welcome-experience-featured.04f663e2.js" rel="prefetch">
+<link href="../../tutorials/js/welcome-experience-technologies.56a372c1.js" rel="prefetch">
+<link href="../../tutorials/css/app.2a174a23.css" rel="preload" as="style">
+<link href="../../tutorials/js/app.2c558263.js" rel="preload" as="script">
+<link href="../../tutorials/js/chunk-vendors.c3b68236.js" rel="preload" as="script">
+<link href="../../tutorials/css/app.2a174a23.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../../tutorials/css/chunk-76d5c2b5.00c53891.css">
+<script charset="utf-8" src="../../tutorials/js/chunk-76d5c2b5.092e3b8a.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic.e358e85c.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic.6abe9458.js"></script>
+</head>
+<body>
+<div id="_omniture_top">
+<script>var s_account="awdappledeveloper"</script>
+</div>
+<a href="#main" id="skip-localnav">Skip Navigation</a><aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"><nav id="ac-globalnav" class="js no-touch" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions"><div class="ac-gn-content">
+<ul class="ac-gn-header">
+<li class="ac-gn-item ac-gn-menuicon">
+<label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true"><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span> </span><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span></span></label> <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open"><span class="ac-gn-menuanchor-label">Global Nav Open Menu</span> </a><a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close"><span class="ac-gn-menuanchor-label">Global Nav Close Menu</span></a>
+</li>
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+</ul>
+<div class="ac-gn-search-placeholder-container" role="search"><div class="ac-gn-search ac-gn-search-small"><a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a><div class="ac-gn-search-placeholder-bar">
+<div class="ac-gn-search-placeholder-input"><div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
+<div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
+<span class="ac-gn-search-placeholder">Search Developer</span>
+</div></div>
+<div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></div>
+</div></a></div></div>
+<ul class="ac-gn-list">
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-discover"><a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover"><span class="ac-gn-link-text">Discover</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-design"><a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design"><span class="ac-gn-link-text">Design</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-develop"><a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop"><span class="ac-gn-link-text">Develop</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-distribute"><a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute"><span class="ac-gn-link-text">Distribute</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport"><a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport"><span class="ac-gn-link-text">Support</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-account"><a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account"><span class="ac-gn-link-text">Account</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search"><a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a></li>
+</ul>
+<aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search"><div class="ac-gn-searchview-content">
+<div class="ac-gn-searchview-bar"><div class="ac-gn-searchview-bar-wrapper">
+<form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get"><div class="ac-gn-searchform-wrapper">
+<input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions"> <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button> <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search"><span class="ac-gn-searchform-reset-background"></span></button>
+</div></form>
+<button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></button>
+</div></div>
+<aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
+</div>
+<button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search"><span class="ac-gn-searchview-close-wrapper"><span class="ac-gn-searchview-close-left"></span> <span class="ac-gn-searchview-close-right"></span></span></button></aside>
+</div></nav><div class="ac-gn-blur"></div>
+<div id="ac-gn-curtain" class="ac-gn-curtain"></div>
+<div id="ac-gn-placeholder" class="ac-nav-placeholder"></div>
+<script src="../../tutorials/js/ac-globalnav.built.js"></script>
+<noscript>
+<style>.noscript {
+  font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
+  margin: 92px auto 140px auto;
+  text-align: center;
+  width: 980px;
+}
+
+.noscript-title {
+  color: #111;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -.003em;
+  line-height: 1.08365;
+  margin: 0 auto 54px auto;
+  width: 502px;
+}
+
+@media only screen and (max-width: 1068px) {
+  .noscript {
+    margin: 90px auto 120px auto;
+    width: 692px;
+  }
+
+  .noscript-title {
+    font-size: 40px;
+    letter-spacing: 0;
+    line-height: 1.1;
+    margin: 0 auto 45px auto;
+    width: 420px;
+  }
+}
+
+@media only screen and (max-width: 735px) {
+  .noscript {
+    margin: 45px auto 60px auto;
+    width: 87.5%;
+  }
+
+  .noscript-title {
+    font-size: 32px;
+    letter-spacing: .004em;
+    line-height: 1.125;
+    margin: 0 auto 35px auto;
+    max-width: 330px;
+    width: auto;
+  }
+}
+
+#loading-placeholder {
+  display: none;
+};</style>
+<div class="noscript">
+<h1 class="noscript-title">This page requires JavaScript.</h1>
+<p>Please turn on JavaScript in your browser and refresh the page to view its content.</p>
+</div>
+</noscript>
+<div data-v-0220a4c4="" id="app" class=""><div data-v-0220a4c4=""><div data-v-2deaa168="" class="doc-topic">
+<div data-v-3ceaa5df="" data-v-2deaa168="" class="localnav-container">
+<input data-v-3ceaa5df="" aria-hidden="true" id="localnav-menustate" type="checkbox" class="localnav-menustate"><div id="localnav-sticky-placeholder" class="css-sticky"></div>
+<nav data-v-3ceaa5df="" aria-label="API Reference" data-sticky="" id="localnav" role="navigation" class="localnav localnav-dark theme-dark medium-localnav-collapsible localnav-noborder localnav-scrim css-sticky"><div data-v-3ceaa5df="" class="localnav-wrapper">
+<div data-v-3ceaa5df="" class="referencenav">
+<div data-v-3ceaa5df="" class="localnav-background"></div>
+<div data-v-3ceaa5df="" class="localnav-content">
+<a data-v-3ceaa5df="" href="../../index.html" class="localnav-title">
+            Documentation
+          </a><div data-v-3ceaa5df="" class="localnav-menu">
+<a data-v-3ceaa5df="" href="#localnav-menustate" role="button" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Open Menu</span></a><a data-v-3ceaa5df="" href="#" role="button" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Close Menu</span></a><div data-v-3ceaa5df="" class="localnav-menu-tray">
+<ul data-v-72fd0d2c="" data-v-3ceaa5df="" aria-label="Breadcrumbs" class="localnav-menu-items">
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../documentation/foundation_language-objc.html" class="parent item router-link-active" data-v-23a2ae0d="">
+    Foundation
+  </a></li><!---->
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../documentation/foundation/task_management_language-objc.html" class="parent item" data-v-23a2ae0d="">
+    <span class="enstr">Task Management</span><!--end_enstr-->
+<span class="jpstr">
+タスク管理
+</span><!--end_jpstr-->
+
+  </a></li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item">
+<span data-v-23a2ae0d="" class="current item">
+    NSOperation
+  </span><!---->
+</li>
+</ul>
+<ul data-v-3ceaa5df="" data-breadcrumbs-count="3" class="localnav-menu-items localnav-menu-settings">
+<li data-v-282336e0="" data-v-3ceaa5df="" class="localnav-menu-setting language-container" breadcrumbcount="3">
+<div data-v-282336e0="" class="language-toggle-container">
+<label data-v-282336e0="" for="language-toggle" class="language-toggle-label">
+      Language:
+    </label><select data-v-282336e0="" id="language-toggle" class="language-dropdown localnav-menu-link" style="width: 74px;"><option data-v-282336e0="" value="swift">
+        Swift
+      </option>
+<option data-v-282336e0="" value="occ">
+        Objective-C
+      </option></select>
+</div>
+<div data-v-282336e0="" class="language-list-container">
+<span data-v-282336e0="" class="localnav-menu-setting-label">
+      Language:
+    </span><ul data-v-282336e0="" class="language-list">
+<li data-v-282336e0="" class="language-list-item"><a data-v-282336e0="" href="../../documentation/foundation/operation.html" class="localnav-menu-setting-link">
+          Swift
+        </a></li>
+<li data-v-282336e0="" class="language-list-item"><span data-v-282336e0="" data-language="occ" aria-current="page" class="current-language">
+          Objective-C
+        </span></li>
+</ul>
+</div>
+</li>
+<li data-v-2e9f4ea2="" data-v-3ceaa5df="" class="localnav-menu-setting">
+<label data-v-2e9f4ea2="" for="version-label" class="localnav-menu-setting-label">
+    API Changes:
+  </label><span data-v-2e9f4ea2=""><span class="enstr">None</span><!--end_enstr-->
+<span class="jpstr">
+なし
+</span><!--end_jpstr-->
+</span>
+</li><!---->
+
+</ul>
+</div>
+<div data-v-3ceaa5df="" class="localnav-actions"><div data-v-3ceaa5df="" aria-hidden="true" class="localnav-action localnav-action-menucta"><label data-v-3ceaa5df="" for="localnav-menustate" class="localnav-menucta"><span data-v-3ceaa5df="" class="localnav-menucta-chevron"></span></label></div></div>
+</div>
+</div>
+</div><!---->
+
+</div></nav><label data-v-3ceaa5df="" aria-hidden="true" for="localnav-menustate" id="localnav-curtain"></label>
+</div>
+<main data-v-2deaa168="" id="main" role="main" tabindex="0" class="main"><div data-v-4ba5af7c="" data-v-2deaa168="" class="topictitle">
+<span data-v-4ba5af7c="" class="eyebrow">Class</span><h1 data-v-4ba5af7c="" class="title">NSOperation</h1>
+</div>
+<div data-v-0253ce0e="" data-v-2deaa168="" class="row container">
+<div data-v-9807b2e0="" data-v-5ad0d458="" data-v-2deaa168="" class="col description large-9 medium-9 small-12" data-v-0253ce0e=""><!---->
+<div data-v-7ea0aa49="" data-v-aba749e6="" data-v-2deaa168="" class="abstract content" data-v-9807b2e0=""><span class="enstr">An abstract class that represents the code and data associated with a single task.</span><!--end_enstr-->
+<span class="jpstr">
+ある単一のタスクと結びつけられたコードおよびデータを表す抽象クラス。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div>
+<div data-v-9807b2e0="" data-v-42fb6bac="" data-v-2deaa168="" class="col summary large-3 medium-3 small-12" data-v-0253ce0e=""><!---->
+<div data-v-e4237090="" data-v-fcdb795a="" data-v-2deaa168="" class="summary-section availability" role="complementary" aria-label="Availability" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-fcdb795a="" class="title" data-v-e4237090=""><span class="enstr">Availability</span><!--end_enstr-->
+<span class="jpstr">
+有効性
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-fcdb795a="" class="summary-list platform-list" data-v-e4237090="">
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="iOS 2.0+, Available on iOS 2.0 and later" title="Available on iOS 2.0 and later" data-v-e3899270="">
+  iOS 2.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="macOS 10.5+, Available on macOS 10.5 and later" title="Available on macOS 10.5 and later" data-v-e3899270="">
+  macOS 10.5+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="Mac Catalyst 13.0+, Available on Mac Catalyst 13.0 and later" title="Available on Mac Catalyst 13.0 and later" data-v-e3899270="">
+  Mac Catalyst 13.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="tvOS 9.0+, Available on tvOS 9.0 and later" title="Available on tvOS 9.0 and later" data-v-e3899270="">
+  tvOS 9.0+
+</span><!---->
+</li>
+<li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="watchOS 2.0+, Available on watchOS 2.0 and later" title="Available on watchOS 2.0 and later" data-v-e3899270="">
+  watchOS 2.0+
+</span><!---->
+</li>
+</ul>
+</div>
+<div data-v-e4237090="" data-v-741142ba="" data-v-2deaa168="" class="summary-section frameworks" role="complementary" aria-label="Framework" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-741142ba="" class="title" data-v-e4237090=""><span class="enstr">Framework</span><!--end_enstr-->
+<span class="jpstr">
+フレームワーク
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-741142ba="" class="summary-list" data-v-e4237090=""><li data-v-e3899270="" data-v-741142ba="" class="summary-list-item" data-v-1450532d=""><span data-v-741142ba="" data-v-e3899270="" class="name">Foundation</span></li></ul>
+</div>
+<div data-v-e4237090="" data-v-2b96ab1a="" data-v-2deaa168="" class="summary-section on-this-page" data-v-9807b2e0=""><nav data-v-2b96ab1a="" data-v-e4237090="" aria-labelledby="on-this-page-title"><p data-v-1e0258b0="" data-v-2b96ab1a="" class="title" id="on-this-page-title" data-v-e4237090=""><span class="enstr">On This Page</span><!--end_enstr-->
+<span class="jpstr">
+この項には
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-2b96ab1a="" class="summary-list" data-v-e4237090="">
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/nsoperation_language-objc.html#declaration" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Declaration</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/nsoperation_language-objc.html#overview" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Overview</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/nsoperation_language-objc.html#topics" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Topics</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/nsoperation_language-objc.html#relationships" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Relationships</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/nsoperation_language-objc.html#see-also" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">See Also</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+</ul></nav></div>
+</div>
+<div data-v-9807b2e0="" data-v-1e40f676="" data-v-2deaa168="" class="col primary-content large-9 medium-9 small-12" data-v-0253ce0e="">
+<section data-v-e932e1b8="" data-v-1e40f676="" id="declaration" class="declaration" data-v-9807b2e0=""><h2 data-v-e932e1b8=""><span class="enstr">Declaration</span><!--end_enstr-->
+<span class="jpstr">
+宣言
+</span><!--end_jpstr-->
+</h2>
+<div data-v-29bd318c="" data-v-e932e1b8="" class="declaration-group"><!---->
+<pre data-v-e0a7f756="" data-v-29bd318c="" class="source"><code data-v-e0a7f756=""><span data-v-c9e896f0="" data-v-e0a7f756="" class="token-keyword">@interface</span> <span data-v-c9e896f0="" data-v-e0a7f756="" class="token-identifier">NSOperation</span> : <a data-v-c9e896f0="" data-v-e0a7f756="" href="../../documentation/objectivec/1418956-nsobject_language-objc.html" class="type-identifier-link"><span data-v-c9e896f0="">NSObject</span></a></code></pre>
+</div><!---->
+</section><div data-v-7ea0aa49="" data-v-1e40f676="" class="content" data-v-9807b2e0="">
+<h2 id="overview"><span class="enstr">Overview</span><!--end_enstr-->
+<span class="jpstr">
+概要
+</span><!--end_jpstr-->
+</h2>
+<p><span class="enstr">Because the <span><code data-v-7fb764c1="">NSOperation</code></span> class is an abstract class, you do not use it directly but instead subclass or use one of the system-defined subclasses (<a href="../../documentation/foundation/nsinvocationoperation_language-objc.html" class=""><code data-v-7fb764c1="">NSInvocation<wbr data-v-7fb764c1="">Operation</wbr></code></a> or <a href="../../documentation/foundation/nsblockoperation_language-objc.html" class=""><code data-v-7fb764c1="">NSBlock<wbr data-v-7fb764c1="">Operation</wbr></code></a>) to perform the actual task. Despite being abstract, the base implementation of <span><code data-v-7fb764c1="">NSOperation</code></span> does include significant logic to coordinate the safe execution of your task. The presence of this built-in logic allows you to focus on the actual implementation of your task, rather than on the glue code needed to ensure it works correctly with other system objects.</span><!--end_enstr-->
+<span class="jpstr">
+<span><code data-v-7fb764c1="">NSOperation</code></span>クラスは抽象クラスであるので、あなたはそれを直接に使いません、そうしないで代わりにサブクラスを作成するかまたはシステム定義のサブクラス（<a href="../../documentation/foundation/nsinvocationoperation_language-objc.html" class=""><code data-v-7fb764c1="">NSInvocation<wbr data-v-7fb764c1="">Operation</wbr></code></a>または<a href="../../documentation/foundation/nsblockoperation_language-objc.html" class=""><code data-v-7fb764c1="">NSBlock<wbr data-v-7fb764c1="">Operation</wbr></code></a>）の１つを使って実際のタスクを実行します。抽象的であるにもかかわらず、<span><code data-v-7fb764c1="">NSOperation</code></span>の基礎実装は、あなたのタスクの安全な遂行をうまく調整するための重大な論理を含んでいます。この組み込みの論理の存在は、あなたをあなたのタスクの実際の実装に集中させます、それが他のシステムオブジェクトと正しく仕事するのを確実にするために必要とされるグルー（糊）コードにではなく。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">An operation object is a single-shot object—that is, it executes its task once and cannot be used to execute it again. You typically execute operations by adding them to an operation queue (an instance of the <a href="../../documentation/foundation/nsoperationqueue_language-objc.html" class=""><code data-v-7fb764c1="">NSOperation<wbr data-v-7fb764c1="">Queue</wbr></code></a> class). An operation queue executes its operations either directly, by running them on secondary threads, or indirectly using the <code data-v-7fb764c1="">libdispatch</code> library (also known as Grand Central Dispatch). For more information about how queues execute operations, see <a href="../../documentation/foundation/nsoperationqueue_language-objc.html" class=""><code data-v-7fb764c1="">NSOperation<wbr data-v-7fb764c1="">Queue</wbr></code></a>.</span><!--end_enstr-->
+<span class="jpstr">
+オペレーションオブジェクトは単発オブジェクトです — すなわち、それはそれのタスクをただ一度だけ遂行します、そしてそれは再び遂行するために使用されることは出来ません。あなたは概してオペレーションを、それらをオペレーションキュー（<a href="../../documentation/foundation/nsoperationqueue_language-objc.html" class=""><code data-v-7fb764c1="">NSOperation<wbr data-v-7fb764c1="">Queue</wbr></code></a>クラスのインスタンス）に加えることによって遂行します。あるオペレーションキューは、それのオペレーションを、それらを副次スレッド上で実行することによって直接に、または<code data-v-7fb764c1="">libdispatch</code>ライブラリ（またGrand Central Dispatchとしても知られる）を使って間接的にのどちらかで遂行します。どのようにキューがオペレーションを遂行するかについてのさらなる情報として、<a href="../../documentation/foundation/nsoperationqueue_language-objc.html" class=""><code data-v-7fb764c1="">NSOperation<wbr data-v-7fb764c1="">Queue</wbr></code></a>を見てください。
+</span><!--end_jpstr-->
+ </p>
+<p><span class="enstr">If you do not want to use an operation queue, you can execute an operation yourself by calling its <span><code data-v-7fb764c1="">start</code></span> method directly from your code. Executing operations manually does put more of a burden on your code, because starting an operation that is not in the ready state triggers an exception. The <span><code data-v-7fb764c1="">ready</code></span> property reports on the operation’s readiness.</span><!--end_enstr-->
+<span class="jpstr">
+あなたがオペレーションキューを使いたくないならば、あなたは<span><code data-v-7fb764c1="">start</code></span>メソッドを直接にあなたのコードから呼び出すことによってあなた自身でオペレーションを遂行できます。手動でのオペレーション遂行は、あなたのコードにさらに多くの負担をかけます、なぜなら準備ができた状態にないオペレーションを開始することは例外を引き起こすからです。<span><code data-v-7fb764c1="">ready</code></span>プロパティは、オペレーションの準備ができていることを報告します。
+</span><!--end_jpstr-->
+</p>
+<h3 id="1661157"><span class="enstr">Operation Dependencies</span><!--end_enstr-->
+<span class="jpstr">
+オペレーション依存関係
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">Dependencies are a convenient way to execute operations in a specific order. You can add and remove dependencies for an operation using the <span><code data-v-7fb764c1="">add<wbr data-v-7fb764c1="">Dependency:</wbr></code></span> and <span><code data-v-7fb764c1="">remove<wbr data-v-7fb764c1="">Dependency:</wbr></code></span> methods. By default, an operation object that has dependencies is not considered ready until all of its dependent operation objects have finished executing. Once the last dependent operation finishes, however, the operation object becomes ready and able to execute.</span><!--end_enstr-->
+<span class="jpstr">
+依存関係は、オペレーションそれらをある特定の順序で実行する便利な方法です。あなたは、あるオペレーションに対する依存関係を<span><code data-v-7fb764c1="">add<wbr data-v-7fb764c1="">Dependency:</wbr></code></span>および<span><code data-v-7fb764c1="">remove<wbr data-v-7fb764c1="">Dependency:</wbr></code></span>メソッドを使って追加および除去できます。初期状態では、依存関係を持つあるオペレーションオブジェクトは、それの依存しているオペレーションオブジェクトの全てが実行を終了してしまうまで準備ができているとみなされません。いったん最後の依存オペレーションが終了すれば、しかしながら、そのオペレーションオブジェクトは準備ができて実行が可能になります
+</span><!--end_jpstr-->
+ </p>
+<p><span class="enstr">The dependencies supported by <code data-v-7fb764c1="">NSOperation</code> make no distinction about whether a dependent operation finished successfully or unsuccessfully. (In other words, canceling an operation similarly marks it as finished.) It is up to you to determine whether an operation with dependencies should proceed in cases where its dependent operations were cancelled or did not complete their task successfully. This may require you to incorporate some additional error tracking capabilities into your operation objects.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">NSOperation</code>によってサポートされる依存関係は、依存するオペレーションが成功または不成功に終わったかどうかについて区別しません。（言い換えれば、オペレーションをキャンセルすることは同様にそれを終了したと印します。）依存関係を持つあるオペレーションが、それの依存オペレーションがキャンセルされたかそれらのタスクがうまく完了しなかった場合において、続行すべきかどうかを決定するのはあなた次第です。これは、あなたにいくつかの追加のエラー追跡能力をあなたのオペレーションオブジェクトに組み込むことを要求するかもしれません。
+</span><!--end_jpstr-->
+</p>
+<h3 id="1661183"><span class="enstr">KVO-Compliant Properties</span><!--end_enstr-->
+<span class="jpstr">
+KVO準拠プロパティ
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">The <code data-v-7fb764c1="">NSOperation</code> class is key-value coding (KVC) and key-value observing (KVO) compliant for several of its properties. As needed, you can observe these properties to control other parts of your application. To observe the properties, use the following key paths:</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">NSOperation</code>クラスは、それのプロパティのいくつかに対してキー値コーディング（KVC）とキー値監視（KVO）準拠です。必要ならば、あなたはそれらのプロパティを監視して、あなたのアプリケーションの他の部分を制御できます。プロパティを監視するには、以下のキーパスを使ってください：
+</span><!--end_jpstr-->
+ </p>
+<ul>
+<li><p><code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Cancelled</wbr></code> - read-only </p></li>
+<li><p><code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Asynchronous</wbr></code> - read-only </p></li>
+<li><p><code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Executing</wbr></code> - read-only </p></li>
+<li><p><code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Finished</wbr></code> - read-only</p></li>
+<li><p><code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Ready</wbr></code> - read-only </p></li>
+<li><p><code data-v-7fb764c1="">dependencies</code> - read-only </p></li>
+<li><p><code data-v-7fb764c1="">queue<wbr data-v-7fb764c1="">Priority</wbr></code> - readable and writable </p></li>
+<li><p><code data-v-7fb764c1="">completion<wbr data-v-7fb764c1="">Block</wbr></code> - readable and writable</p></li>
+</ul>
+<p><span class="enstr">Although you can attach observers to these properties, you should not use Cocoa bindings to bind them to elements of your application’s user interface. Code associated with your user interface typically must execute only in your application’s main thread. Because an operation may execute in any thread, KVO notifications associated with that operation may similarly occur in any thread.</span><!--end_enstr-->
+<span class="jpstr">
+あなたがオブザーバーをこれらプロパティに添付できるとはいえ、あなたはCocoaバインディングを使ってそれらをあなたのアプリケーションのもつユーザインターフェイスにバインドすべきではありません。あなたのユーザインターフェイスに結びつけられたコードは、概してあなたのアプリケーションのもつメインスレッドにおいてのみ遂行されなければなりません。あるオペレーションがどんなスレッドで遂行してもかまわないことから、そのオペレーションと結びつけられたKVO通知は同様にどんなスレッドに発生してもかまいません。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">If you provide custom implementations for any of the preceding properties, your implementations must maintain KVC and KVO compliance. If you define additional properties for your <code data-v-7fb764c1="">NSOperation</code> objects, it is recommended that you make those properties KVC and KVO compliant as well. For information on how to support key-value coding, see <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/index.html#//apple_ref/doc/uid/10000107i">Key-Value Coding Programming Guide</a>. For information on how to support key-value observing, see <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html#//apple_ref/doc/uid/10000177i">Key-Value Observing Programming Guide</a>.</span><!--end_enstr-->
+<span class="jpstr">
+あなたが前述のプロパティに対してあつらえの実装を提供するならば、あなたの実装はKVCおよびKVO準拠を保守しなければなりません。あなたが追加のプロパティをあなたの<code data-v-7fb764c1="">NSOperation</code>オブジェクトに対して定義するならば、あなたがそれらプロパティを同じくKVCおよびKVO準拠させることは推奨されます。どのようにキー値コーディングをサポートするかに関する情報として、<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/index.html#//apple_ref/doc/uid/10000107i">Key-Value Coding Programming Guide</a>を見てください。どのようにキー値監視をサポートするかに関する情報として、<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html#//apple_ref/doc/uid/10000177i">Key-Value Observing Programming Guide</a>を見てください。
+</span><!--end_jpstr-->
+ </p>
+<h3 id="1661204"><span class="enstr">Multicore Considerations</span><!--end_enstr-->
+<span class="jpstr">
+マルチコア考慮
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">The <code data-v-7fb764c1="">NSOperation</code> class is itself multicore aware. It is therefore safe to call the methods of an <code data-v-7fb764c1="">NSOperation</code> object from multiple threads without creating additional locks to synchronize access to the object. This behavior is necessary because an operation typically runs in a separate thread from the one that created and is monitoring it.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">NSOperation</code>クラスは、それ自身マルチコアを万事心得ています。したがって<code data-v-7fb764c1="">NSOperation</code>オブジェクトのメソッドを複数のスレッドから追加のロックを作成してそのオブジェクトへのアクセスを同期することなしに呼び出すのは安全です。この挙動は不可欠です、なぜならあるオペレーションは通常は作成されたものとは独立したスレッドにおいて動作して、それを監視するからです。
+</span><!--end_jpstr-->
+  </p>
+<p><span class="enstr">When you subclass <code data-v-7fb764c1="">NSOperation</code>, you must make sure that any overridden methods remain safe to call from multiple threads. If you implement custom methods in your subclass, such as custom data accessors, you must also make sure those methods are thread-safe. Thus, access to any data variables in the operation must be synchronized to prevent potential data corruption. For more information about synchronization, see <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Multithreading/Introduction/Introduction.html#//apple_ref/doc/uid/10000057i">Threading Programming Guide</a>.</span><!--end_enstr-->
+<span class="jpstr">
+あなたが<code data-v-7fb764c1="">NSOperation</code>のサブクラスを作成する場合、あなたはあらゆるオーバーライドされたメソッドを複数のスレッドからの呼び出しに対して安全なままであることを確実にしなければなりません。あなたがあつらえのメソッドをあなたのサブクラスにおいて実装するならば、たとえばあつらえのデータアクセッサなど、あなたはまたそれらメソッドがスレッド安全であることを確実にしなければなりません。したがって、そのオペレーションにおけるあらゆるデータ変数それらへのアクセスは、同期されることで潜在的なデータ汚染を防止されなければなりません。同期についてのさらなる情報として、<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Multithreading/Introduction/Introduction.html#//apple_ref/doc/uid/10000057i">Threading Programming Guide</a>を見てください。
+</span><!--end_jpstr-->
+ </p>
+<h3 id="1661231"><span class="enstr">Asynchronous Versus Synchronous Operations</span><!--end_enstr-->
+<span class="jpstr">
+「非同期」対「同期」オペレーション
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">If you plan on executing an operation object manually, instead of adding it to a queue, you can design your operation to execute in a synchronous or asynchronous manner. Operation objects are synchronous by default. In a synchronous operation, the operation object does not create a separate thread on which to run its task. When you call the <span><code data-v-7fb764c1="">start</code></span> method of a synchronous operation directly from your code, the operation executes immediately in the current thread. By the time the <span><code data-v-7fb764c1="">start</code></span> method of such an object returns control to the caller, the task itself is complete.</span><!--end_enstr-->
+<span class="jpstr">
+あなたがあるオペレーションオブジェクトを手動で遂行する計画を立てるならば、それをキューに追加する代わりに、あなたはあなたのオペレーションを同期または非同期の流儀で遂行するように設計できます。オペレーションオブジェクトは、省略時には同期的です。同期的オペレーションにおいて、オペレーションオブジェクトは、それの上でそれのタスクを実行することになる独立したスレッドを作成しません。あなたが同期的オペレーションの<span><code data-v-7fb764c1="">start</code></span>メソッドを直接にあなたのコードから呼び出す場合、そのオペレーションは直ぐに現在のスレッドにおいて遂行します。そのようなオブジェクトの<span><code data-v-7fb764c1="">start</code></span>メソッドが制御をその呼び出し側に返すまでに、タスクそれ自体は完了します。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">When you call the <span><code data-v-7fb764c1="">start</code></span> method of an asynchronous operation, that method may return before the corresponding task is completed. An asynchronous operation object is responsible for scheduling its task on a separate thread. The operation could do that by starting a new thread directly, by calling an asynchronous method, or by submitting a block to a dispatch queue for execution. It does not actually matter if the operation is ongoing when control returns to the caller, only that it could be ongoing.</span><!--end_enstr-->
+<span class="jpstr">
+あなたが非同期的オペレーションの<span><code data-v-7fb764c1="">start</code></span>メソッドを呼び出す場合、そのメソッドは対応しているタスクが完了される前に返るかもしれません。非同期的オペレーションオブジェクトは、別個のスレッド上でのそれのタスクを予定することに対して責任があります。オペレーションはそれを行えます、新しいスレッドを直接に開始することによって、非同期的メソッドを呼び出すことによって、または遂行のためのディスパッチ（派遣、発送）キューに対してあるブロックを提出することによって。それは実際は問題ではありません、もし制御が呼び出し側に返る時にオペレーションが進行中であるならば、ただそれは進行中のままでよいだけです。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">If you always plan to use queues to execute your operations, it is simpler to define them as synchronous. If you execute operations manually, though, you might want to define your operation objects as asynchronous. Defining an asynchronous operation requires more work, because you have to monitor the ongoing state of your task and report changes in that state using KVO notifications. But defining asynchronous operations is useful in cases where you want to ensure that a manually executed operation does not block the calling thread.</span><!--end_enstr-->
+<span class="jpstr">
+あなたが常にキューを使ってあなたのオペレーションそれらを遂行するよう計画するならば、それらを同期的に定義するのがより簡単です。あなたがオペレーションを手動で遂行するならば、そうはいうものの、あなたはあなたのオペレーションオブジェクトを非同期的に定義したいかもしれません。非同期オペレーションの定義はさらなる仕事を要求します、なぜならあなたはあなたのタスクの進行状態を監視してその状態の変化をKVO通知を使って報告しなければならないからです。しかし非同期オペレーションを定義することは、手動遂行オペレーションがその呼び出しているスレッドを封鎖しないことをあなたが確実にしたい場合に役に立ちます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">When you add an operation to an operation queue, the queue ignores the value of the <a href="../../documentation/foundation/nsoperation/1408275-asynchronous_language-objc.html" class=""><code data-v-7fb764c1="">asynchronous</code></a> property and always calls the <span><code data-v-7fb764c1="">start</code></span> method from a separate thread. Therefore, if you always run operations by adding them to an operation queue, there is no reason to make them asynchronous.</span><!--end_enstr-->
+<span class="jpstr">
+あなたがあるオペレーションをオペレーションキューに加える場合、そのキューは<a href="../../documentation/foundation/nsoperation/1408275-asynchronous_language-objc.html" class=""><code data-v-7fb764c1="">asynchronous</code></a>プロパティの値を無視します、そして常に<span><code data-v-7fb764c1="">start</code></span>メソッドを別個のスレッドから呼び出します。それゆえに、あなたが常にオペレーションの実行を、それらをオペレーションキューに加えることによってするならば、それらを非同期的にする理由はありません。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">For information on how to define both synchronous and asynchronous operations, see the subclassing notes.</span><!--end_enstr-->
+<span class="jpstr">
+どのように同期的にそして非同期的にオペレーションを定義するかに関する情報として、サブクラス作成の注意を見てください。
+</span><!--end_jpstr-->
+ </p>
+<h3 id="1673799"><span class="enstr">Subclassing Notes</span><!--end_enstr-->
+<span class="jpstr">
+サブクラス作成の注意
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">The <code data-v-7fb764c1="">NSOperation</code> class provides the basic logic to track the execution state of your operation but otherwise must be subclassed to do any real work. How you create your subclass depends on whether your operation is designed to execute concurrently or non-concurrently.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">NSOperation</code>クラスは、あなたのオペレーションの遂行状態を追跡するための基本的な論理を提供します、しかしそれ以外は何らの本当の仕事をするサブクラスが作成されなければなりません。どのようにあなたがあなたのサブクラスを作成するかは、あなたのオペレーションが並行にまたは非並行に遂行するように設計されるかどうかに依存します。
+</span><!--end_jpstr-->
+  </p>
+<h4 id="1673803"><span class="enstr">Methods to Override</span><!--end_enstr-->
+<span class="jpstr">
+メソッドのオーバーライド
+</span><!--end_jpstr-->
+</h4>
+<p><span class="enstr">For non-concurrent operations, you typically override only one method:</span><!--end_enstr-->
+<span class="jpstr">
+非並行オペレーションに対して、あなたは概してただ１つのメソッドをオーバーライドします：
+</span><!--end_jpstr-->
+</p>
+<ul><li><p><a href="../../documentation/foundation/nsoperation/1407732-main_language-objc.html" class=""><code data-v-7fb764c1="">main</code></a></p></li></ul>
+<p><span class="enstr">Into this method, you place the code needed to perform the given task. Of course, you should also define a custom initialization method to make it easier to create instances of your custom class. You might also want to define getter and setter methods to access the data from the operation. However, if you do define custom getter and setter methods, you must make sure those methods can be called safely from multiple threads.</span><!--end_enstr-->
+<span class="jpstr">
+このメソッドへと、あなたは与えられたタスクを実行するのに必要とされるコードを置きます。もちろん、あなたはまたあつらえの初期化メソッドを定義して、あなたのあつらえのクラスのインスタンスを作成することをより簡単にするべきです。あなたはまた、そのオペレーションからデータにアクセスするためにゲッターおよびセッターメソッドを定義したいかもしれません。しかしながら、あなたがあつらえのゲッターおよびセッターメソッドを定義するならば、あなたはそれらのメソッドが安全に複数のスレッドから呼び出されることが可能であるのを確実にしなければなりません。
+</span><!--end_jpstr-->
+ </p>
+<p><span class="enstr">If you are creating a concurrent operation, you need to override the following methods and properties at a minimum:</span><!--end_enstr-->
+<span class="jpstr">
+あなたが並行オペレーションを作成しているならば、あなたは少なくとも以下のメソッドとプロパティをオーパーライドする必要があります：
+</span><!--end_jpstr-->
+</p>
+<ul>
+<li><p><a href="../../documentation/foundation/nsoperation/1416837-start_language-objc.html" class=""><code data-v-7fb764c1="">start</code></a></p></li>
+<li><p><a href="../../documentation/foundation/nsoperation/1408275-asynchronous_language-objc.html" class=""><code data-v-7fb764c1="">asynchronous</code></a></p></li>
+<li><p><a href="../../documentation/foundation/nsoperation/1415621-executing_language-objc.html" class=""><code data-v-7fb764c1="">executing</code></a></p></li>
+<li><p><a href="../../documentation/foundation/nsoperation/1413540-finished_language-objc.html" class=""><code data-v-7fb764c1="">finished</code></a></p></li>
+</ul>
+<p><span class="enstr">In a concurrent operation, your <span><code data-v-7fb764c1="">start</code></span> method is responsible for starting the operation in an asynchronous manner. Whether you spawn a thread or call an asynchronous function, you do it from this method. Upon starting the operation, your <span><code data-v-7fb764c1="">start</code></span> method should also update the execution state of the operation as reported by the <span><code data-v-7fb764c1="">executing</code></span> property. You do this by sending out KVO notifications for the <span><code data-v-7fb764c1="">executing</code></span> key path, which lets interested clients know that the operation is now running. Your <span><code data-v-7fb764c1="">executing</code></span> property must also provide the status in a thread-safe manner.</span><!--end_enstr-->
+<span class="jpstr">
+ある並行オペレーションにおいて、あなたの<span><code data-v-7fb764c1="">start</code></span>メソッドはオペレーションを非同期流儀で開始する責任を持ちます。あなたがあるスレッドを生み出そうともまたはある非同期関数を呼び出そうとも、あなたはそれをこのメソッドから行います。オペレーションの開始に関して、あなたの<span><code data-v-7fb764c1="">start</code></span>メソッドはまた、オペレーションの遂行状態を<span><code data-v-7fb764c1="">executing</code></span>プロパティによって報告されるとおりに更新すべきです。あなたはこれをKVO通知を<span><code data-v-7fb764c1="">executing</code></span>キーパスに対して送り出すことで行います、それは興味を持ったクライアントにそのオペレーションが今実行中であることを知らせます。あなたの<span><code data-v-7fb764c1="">executing</code></span>プロパティはまた、その状態をスレッド安全な流儀で提供しなければなりません。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">Upon completion or cancellation of its task, your concurrent operation object must generate KVO notifications for both the <code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Executing</wbr></code> and <code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Finished</wbr></code> key paths to mark the final change of state for your operation. (In the case of cancellation, it is still important to update the <code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Finished</wbr></code> key path, even if the operation did not completely finish its task. Queued operations must report that they are finished before they can be removed from a queue.) In addition to generating KVO notifications, your overrides of the <span><code data-v-7fb764c1="">executing</code></span> and <span><code data-v-7fb764c1="">finished</code></span> properties should also continue to report accurate values based on the state of your operation.</span><!--end_enstr-->
+<span class="jpstr">
+このタスクの完了または取り消しにおいて、あなたの並行オペレーションオブジェクトはKVO通知を<code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Executing</wbr></code>および<code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Finished</wbr></code>キーパスの両方に対して生成して、あなたのオペレーションに対する状態の最終変更であると印しなければなりません。（取り消しの場合において、<code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Finished</wbr></code>キーパスの更新は依然として重要です、たとえそのオペレーションがそれのタスクを完全に終了しないとしてもです。キューに入れられたオペレーションは、それらが終了されることを報告しなければなりません、それらがキューから除去可能になる前にです。）KVO通知を生成することに加えて、<span><code data-v-7fb764c1="">executing</code></span>および<span><code data-v-7fb764c1="">finished</code></span>プロパティのあなたのオーバーライドは同様に、あなたのオペレーションの状態に基づく精度の高い値の報告を継続すべきです。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">For additional information and guidance on how to define concurrent operations, see <a href="https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008091">Concurrency Programming Guide</a>.</span><!--end_enstr-->
+<span class="jpstr">
+どのように並行オペレーションを定義するかに関する追加の情報と案内として、<a href="https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008091">Concurrency Programming Guide</a>を見てください。
+</span><!--end_jpstr-->
+</p>
+<aside data-v-c567d8a8="" aria-label="important" class="important"><p data-v-c567d8a8="" class="label"><span class="enstr">Important</span><!--end_enstr-->
+<span class="jpstr">
+重要
+</span><!--end_jpstr-->
+</p>
+<p data-v-c567d8a8=""><span class="enstr">At no time in your <span data-v-c567d8a8=""><code data-v-7fb764c1="">start</code></span> method should you ever call <code data-v-7fb764c1="" data-v-c567d8a8="">super</code>. When you define a concurrent operation, you take it upon yourself to provide the same behavior that the default <span data-v-c567d8a8=""><code data-v-7fb764c1="">start</code></span> method provides, which includes starting the task and generating the appropriate KVO notifications. Your <span data-v-c567d8a8=""><code data-v-7fb764c1="">start</code></span> method should also check to see if the operation itself was cancelled before actually starting the task. For more information about cancellation semantics, see <a href="../../documentation/foundation/nsoperation_language-objc.html#1661262" class="" data-v-c567d8a8="">Responding to the Cancel Command</a>.</span><!--end_enstr-->
+<span class="jpstr">
+決してあなたの<span data-v-c567d8a8=""><code data-v-7fb764c1="">start</code></span>メソッドにおいてすべきでないのは、あなたが一度でも<code data-v-7fb764c1="" data-v-c567d8a8="">super</code>を呼び出すことです。あなたが<span data-v-c567d8a8=""><code data-v-7fb764c1="">start</code></span>オブジェクトを使ってコピー、移動、リンク、または除去操作を始める時、ファイルマネージャはそれの委任先に、操作がそもそも始まるべきかどうかそしてそれはエラー発生の時に続けるべきか尋ねます。あなたの<span data-v-c567d8a8=""><code data-v-7fb764c1="">start</code></span>メソッドはまた、オペレーションそれ自身が本当にタスクを開始する前に取り消されたかどうか見るために調べるべきです。取り消し意味論についてのさらなる情報として、<a href="../../documentation/foundation/nsoperation_language-objc.html#1661262" class="" data-v-c567d8a8="">Responding to the Cancel Command</a>を見てください。
+</span><!--end_jpstr-->
+</p></aside><p><span class="enstr">Even for concurrent operations, there should be little need to override methods other than those described above. However, if you customize the dependency features of operations, you might have to override additional methods and provide additional KVO notifications. In the case of dependencies, this would likely only require providing notifications for the <code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Ready</wbr></code> key path. Because the <span><code data-v-7fb764c1="">dependencies</code></span> property contains the list of dependent operations, changes to it are already handled by the default <code data-v-7fb764c1="">NSOperation</code> class.</span><!--end_enstr-->
+<span class="jpstr">
+並行オペレーションに対してさえ、上で記述されたものの他にメソッドをオーバーライドする必要はほとんどないはずです。しかしながら、あなたがオペレーションの依存関係特徴をカスタマイズするならば、あなたは追加のメソッドをオーバーライドして、そして追加のKVO通知を提供する必要があるかもしれません。依存関係に関しては、これは<code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Ready</wbr></code>キーパスに対する通知を提供することを要求するだけの可能性が高いでしょう。なぜなら<span><code data-v-7fb764c1="">dependencies</code></span>プロパティは依存オペレーションのリストを含むからです、それに対する変化は、既に省略時の<code data-v-7fb764c1="">NSOperation</code>クラスによって取り扱われます。
+</span><!--end_jpstr-->
+</p>
+<h4 id="1661245"><span class="enstr">Maintaining Operation Object States</span><!--end_enstr-->
+<span class="jpstr">
+オペレーションオブジェクト状態を保守する
+</span><!--end_jpstr-->
+</h4>
+<p><span class="enstr">Operation objects maintain state information internally to determine when it is safe to execute and also to notify external clients of the progression through the operation’s life cycle. Your custom subclasses maintains this state information to ensure the correct execution of operations in your code. The key paths associated with an operation's states are:</span><!--end_enstr-->
+<span class="jpstr">
+オペレーションオブジェクトは状態情報を内部的に保守することで、遂行するのにそしてまた外部クライアントに進捗を通知するのに安全である場合をそのオペレーションのもつライフサイクルを通して決定します。あなたのあつらえのサブクラスは、この状態情報を保守して、あなたのコードにおいてオペレーションの正しい遂行を保証します。オペレーションのもつ状態と結びつけられるキーパスは以下のものがあります：
+</span><!--end_jpstr-->
+</p>
+<dl>
+<dt><strong><code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Ready</wbr></code></strong></dt>
+<dd>
+<p><span class="enstr">The <code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Ready</wbr></code> key path lets clients know when an operation is ready to execute. The <a href="../../documentation/foundation/nsoperation/1412992-ready_language-objc.html" class=""><code data-v-7fb764c1="">ready</code></a> property contains the value <code data-v-7fb764c1="">true</code> when the operation is ready to execute now or <code data-v-7fb764c1="">false</code> if there are still unfinished operations on which it is dependent.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Ready</wbr></code>キーパスは、クライアントにオペレーションが遂行するための準備ができる場合に知らせます。<a href="../../documentation/foundation/nsoperation/1412992-ready_language-objc.html" class=""><code data-v-7fb764c1="">ready</code></a>プロパティは、値<code data-v-7fb764c1="">true</code>をオペレーションがいま遂行する準備ができている場合に、または<code data-v-7fb764c1="">false</code>をもしまだ終了されないそれが依存するオペレーションがあるならば含みます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">In most cases, you do not have to manage the state of this key path yourself. If the readiness of your operations is determined by factors other than dependent operations, however—such as by some external condition in your program—you can provide your own implementation of the <a href="../../documentation/foundation/nsoperation/1412992-ready_language-objc.html" class=""><code data-v-7fb764c1="">ready</code></a> property and track your operation’s readiness yourself. It is often simpler though just to create operation objects only when your external state allows it.</span><!--end_enstr-->
+<span class="jpstr">
+ほとんどの場合、あなたはこのキーパスの状態をあなた自身で管理する必要はありません。しかしながら、あなたのオペレーションの準備状況が依存オペレーションの他の要因で決定されるならば — たとえばあなたのプログラムでの何らかの外部状態によって — あなたは<a href="../../documentation/foundation/nsoperation/1412992-ready_language-objc.html" class=""><code data-v-7fb764c1="">ready</code></a>プロパティのあなた独自の実装を提供して、そしてあなたのオペレーションのもつ準備状態を追跡することができます。しばしばより簡単なのはしかし単にオペレーションオブジェクトをあなたの外部状態がそれを許す場合にのみ作成することです。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">In macOS 10.6 and later, if you cancel an operation while it is waiting on the completion of one or more dependent operations, those dependencies are thereafter ignored and the value of this property is updated to reflect that it is now ready to run. This behavior gives an operation queue the chance to flush cancelled operations out of its queue more quickly.</span><!--end_enstr-->
+<span class="jpstr">
+macOS 10.6以降では、あなたがあるオペレーションをそれが１つまたはそれ以上の依存オペレーションの完了を待っている間にキャンセルするならば、それら依存関係はそれ以降は無視されます、そしてこのプロパティの値は更新されてそれがいま実行する準備ができていることを反映します。この挙動は、あるオペレーションキューにそれら取り消されたオペレーションをそれのキューの外へより素早く一掃する機会を与えます。
+</span><!--end_jpstr-->
+ </p>
+</dd>
+<dt><strong><code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Executing</wbr></code></strong></dt>
+<dd>
+<p><span class="enstr">The <code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Executing</wbr></code> key path lets clients know whether the operation is actively working on its assigned task. The <a href="../../documentation/foundation/nsoperation/1415621-executing_language-objc.html" class=""><code data-v-7fb764c1="">executing</code></a> property must report the value <code data-v-7fb764c1="">true</code> if the operation is working on its task or <code data-v-7fb764c1="">false</code> if it is not.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Executing</wbr></code>キーパスは、クライアントにオペレーションが活発にそれの割り当てられたタスクに取り組んでいるかどうかを知らせます。<a href="../../documentation/foundation/nsoperation/1415621-executing_language-objc.html" class=""><code data-v-7fb764c1="">executing</code></a>プロパティは、値<code data-v-7fb764c1="">true</code>をオペレーションがそれのタスクに取り組んでいるならば、または<code data-v-7fb764c1="">false</code>をそうでないならば報告しなければなりません。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">If you replace the <a href="../../documentation/foundation/nsoperation/1416837-start_language-objc.html" class=""><code data-v-7fb764c1="">start</code></a> method of your operation object, you must also replace the <a href="../../documentation/foundation/nsoperation/1415621-executing_language-objc.html" class=""><code data-v-7fb764c1="">executing</code></a> property and generate KVO notifications when the execution state of your operation changes.</span><!--end_enstr-->
+<span class="jpstr">
+あなたがあなたのオペレーションオブジェクトの<a href="../../documentation/foundation/nsoperation/1416837-start_language-objc.html" class=""><code data-v-7fb764c1="">start</code></a>メソッドを置き換えるならば、あなたはまた<a href="../../documentation/foundation/nsoperation/1415621-executing_language-objc.html" class=""><code data-v-7fb764c1="">executing</code></a>プロパティを置き換えて、そしてKVO通知をあなたのオペレーションの遂行状態が変化する場合に生成しなければなりません。
+</span><!--end_jpstr-->
+ </p>
+</dd>
+<dt><strong><code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Finished</wbr></code></strong></dt>
+<dd>
+<p><span class="enstr">The <code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Finished</wbr></code> key path lets clients know that an operation finished its task successfully or was cancelled and is exiting. An operation object does not clear a dependency until the value at the <code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Finished</wbr></code> key path changes to <code data-v-7fb764c1="">true</code>. Similarly, an operation queue does not dequeue an operation until the <a href="../../documentation/foundation/nsoperation/1413540-finished_language-objc.html" class=""><code data-v-7fb764c1="">finished</code></a> property contains the value <code data-v-7fb764c1="">true</code>. Thus, marking operations as finished is critical to keeping queues from backing up with in-progress or cancelled operations.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Finished</wbr></code>キーパスは、クライアントにあるオペレーションがそれのタスクを成功裏に終了したかまたは取り消されたそして退出していることを知らせます。オペレーションオブジェクトは、ある依存関係を<code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Finished</wbr></code>キーパスでの値が<code data-v-7fb764c1="">true</code>に変わるまで清算しません。同様に、オペレーションキューはあるオペレーションを<a href="../../documentation/foundation/nsoperation/1413540-finished_language-objc.html" class=""><code data-v-7fb764c1="">finished</code></a>プロパティが値<code data-v-7fb764c1="">true</code>を含むまではデキューしません。したがって、オペレーションを終了したと印することは、進行中にまたは取り消されたオペレーションで、キューのバックアップを防ぐために重大なことです。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">If you replace the <a href="../../documentation/foundation/nsoperation/1416837-start_language-objc.html" class=""><code data-v-7fb764c1="">start</code></a> method or your operation object, you must also replace the <a href="../../documentation/foundation/nsoperation/1413540-finished_language-objc.html" class=""><code data-v-7fb764c1="">finished</code></a> property and generate KVO notifications when the operation finishes executing or is cancelled.</span><!--end_enstr-->
+<span class="jpstr">
+あなたが<a href="../../documentation/foundation/nsoperation/1416837-start_language-objc.html" class=""><code data-v-7fb764c1="">start</code></a>メソッドまたはあなたのオペレーションオブジェクトを置き換えるならば、あなたはまた<a href="../../documentation/foundation/nsoperation/1413540-finished_language-objc.html" class=""><code data-v-7fb764c1="">finished</code></a>プロパティを置き換えて、そしてKVO通知をオペレーションが遂行を終了するまたは取り消される場合に生成しなければなりません。
+</span><!--end_jpstr-->
+ </p>
+</dd>
+<dt><strong><code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Cancelled</wbr></code></strong></dt>
+<dd><p><span class="enstr">The <code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Cancelled</wbr></code> key path lets clients know that the cancellation of an operation was requested. Support for cancellation is voluntary but encouraged and your own code should not have to send KVO notifications for this key path. The handling of cancellation notices in an operation is described in more detail in <a href="../../documentation/foundation/nsoperation_language-objc.html#1661262" class="">Responding to the Cancel Command</a>.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="">is<wbr data-v-7fb764c1="">Cancelled</wbr></code>キーパスは、クライアントにあるオペレーションの取り消しが要請されたことを知らせます。取り消しに対するサポートは自主的です、しかし推奨されます、そしてあなた独自のコードはこのキーパスに対するKVO通知を送らなければならないことはあるべきではありません。オペレーションにおける取り消し警告の取り扱いは、さらに詳細に<a href="../../documentation/foundation/nsoperation_language-objc.html#1661262" class="">取り消しコマンドに応答する</a>で記述されます。
+</span><!--end_jpstr-->
+ </p></dd>
+</dl>
+<h4 id="1661262"><span class="enstr">Responding to the Cancel Command</span><!--end_enstr-->
+<span class="jpstr">
+取り消しコマンドに応答する
+</span><!--end_jpstr-->
+</h4>
+<p><span class="enstr">Once you add an operation to a queue, the operation is out of your hands. The queue takes over and handles the scheduling of that task. However, if you decide later that you do not want to execute the operation after all—because the user pressed a cancel button in a progress panel or quit the application, for example—you can cancel the operation to prevent it from consuming CPU time needlessly. You do this by calling the <span><code data-v-7fb764c1="">cancel</code></span> method of the operation object itself or by calling the <a href="../../documentation/foundation/nsoperationqueue/1417849-cancelalloperations_language-objc.html" class=""><code data-v-7fb764c1="">cancel<wbr data-v-7fb764c1="">All<wbr data-v-7fb764c1="">Operations</wbr></wbr></code></a> method of the <span><code data-v-7fb764c1="">NSOperation<wbr data-v-7fb764c1="">Queue</wbr></code></span> class.</span><!--end_enstr-->
+<span class="jpstr">
+一旦あなたがあるオペレーションをキューに加えたならば、そのオペレーションはあなたの手の外です。キューが引き継いで、そのタスクの予定を取り扱います。しかしながら、オペレーションを遂行することを全くあなたが望まないことをあなたが後で決定するならば — ユーザがキャンセルボタンを進捗パネルにおいて押したまたはそのアプリケーションを終了したために、例えば — あなたはそのオペレーションを取り消してそれがCPU時間を必要なく消費することを防止できます。あなたはこれをそのオペレーションオブジェクトそれ自身の<span><code data-v-7fb764c1="">cancel</code></span>メソッドを呼び出すことによってまたは<span><code data-v-7fb764c1="">NSOperation<wbr data-v-7fb764c1="">Queue</wbr></code></span>クラスの<a href="../../documentation/foundation/nsoperationqueue/1417849-cancelalloperations_language-objc.html" class=""><code data-v-7fb764c1="">cancel<wbr data-v-7fb764c1="">All<wbr data-v-7fb764c1="">Operations</wbr></wbr></code></a>メソッドを呼び出すことによって行います。
+</span><!--end_jpstr-->
+ </p>
+<p><span class="enstr">Canceling an operation does not immediately force it to stop what it is doing. Although respecting the value in the <span><code data-v-7fb764c1="">cancelled</code></span> property is expected of all operations, your code must explicitly check the value in this property and abort as needed. The default implementation of <code data-v-7fb764c1="">NSOperation</code> includes checks for cancellation. For example, if you cancel an operation before its <span><code data-v-7fb764c1="">start</code></span> method is called, the <span><code data-v-7fb764c1="">start</code></span> method exits without starting the task.</span><!--end_enstr-->
+<span class="jpstr">
+あるオペレーションを取り消すことは、直ぐにそれにそれがしていることを停止するよう強要しません。<span><code data-v-7fb764c1="">cancelled</code></span>プロパティの中の値を尊重することが全てのオペレーションに期待されるとはいえ、あなたのコードは明示的にこのプロパティの値を調べてそして必要に応じて終了しなければなりません。<code data-v-7fb764c1="">NSOperation</code>の省略時の実装は、取り消しに対する確認を含みます。例えば、あなたがあるオペレーションをそれの<span><code data-v-7fb764c1="">start</code></span>メソッドが呼び出される前に取り消すならば、<span><code data-v-7fb764c1="">start</code></span>メソッドはそのタスクを開始することなく退出します。
+</span><!--end_jpstr-->
+</p>
+<aside data-v-c567d8a8="" aria-label="note" class="note"><p data-v-c567d8a8="" class="label"><span class="enstr">Note</span><!--end_enstr-->
+<span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+<p data-v-c567d8a8=""><span class="enstr">In macOS 10.6 and later, if you call the <span data-v-c567d8a8=""><code data-v-7fb764c1="">cancel</code></span> method on an operation that is in an operation queue and has unfinished dependent operations, those dependent operations are subsequently ignored. Because the operation is already cancelled, this behavior allows the queue to call the operation’s <span data-v-c567d8a8=""><code data-v-7fb764c1="">start</code></span> method to remove the operation from the queue without calling its <span data-v-c567d8a8=""><code data-v-7fb764c1="">main</code></span> method. If you call the <span data-v-c567d8a8=""><code data-v-7fb764c1="">cancel</code></span> method on an operation that is not in a queue, the operation is immediately marked as being cancelled. In each case, marking the operation as ready or finished results in the generation of the appropriate KVO notifications.</span><!--end_enstr-->
+<span class="jpstr">
+macOS 10.6以降では、あなたが<span data-v-c567d8a8=""><code data-v-7fb764c1="">cancel</code></span>メソッドをあるオペレーションキューの中にありそして依存オペレーションを終了し終わっていないオペレーション上で呼び出すならば、それら依存オペレーションはその後は無視されます。そのオペレーションがすでに取り消されることから、この挙動はキューにオペレーションのもつ<span data-v-c567d8a8=""><code data-v-7fb764c1="">start</code></span>メソッドを呼び出してそのオペレーションをキューからそれの<span data-v-c567d8a8=""><code data-v-7fb764c1="">main</code></span>メソッドを呼び出すことなく取り除くことを許可します。あなたが<span data-v-c567d8a8=""><code data-v-7fb764c1="">cancel</code></span>メソッドをキューの中にないオペレーション上で呼び出すならば、そのオペレーションは直ぐに取り消されていると印されます。それぞれの場合において、オペレーションを準備できているまたは終了したと印することは、適切なKVO通知の生成という結果になります。
+</span><!--end_jpstr-->
+</p></aside><p><span class="enstr">You should always support cancellation semantics in any custom code you write. In particular, your main task code should periodically check the value of the <span><code data-v-7fb764c1="">cancelled</code></span> property. If the property reports the value <span><code data-v-7fb764c1="">YES</code></span>, your operation object should clean up and exit as quickly as possible. If you implement a custom <span><code data-v-7fb764c1="">start</code></span> method, that method should include early checks for cancellation and behave appropriately. Your custom <span><code data-v-7fb764c1="">start</code></span> method must be prepared to handle this type of early cancellation.</span><!--end_enstr-->
+<span class="jpstr">
+あなたは常に取り消し意味論をあなたが書くあらゆるあつらえのコードにおいてサポートするべきです。とりわけ、あなたのメインタスクコードは定期的に<span><code data-v-7fb764c1="">cancelled</code></span>プロパティの値を検査すべきです。そのプロパティが値<span><code data-v-7fb764c1="">YES</code></span>を報告するならば、あなたのオペレーションオブジェクトは可能な限りすばやくクリーンアップして退出すべきです。あなたがあつらえの<span><code data-v-7fb764c1="">start</code></span>メソッドを実装するならば、そのメソッドは取り消しに対する早期の検査を含んで、適切に振る舞うべきです。あなたのあつらえの<span><code data-v-7fb764c1="">start</code></span>メソッドは、この種の早期の取り消しを取り扱う用意がなければなりません。
+</span><!--end_jpstr-->
+ </p>
+<p><span class="enstr">In addition to simply exiting when an operation is cancelled, it is also important that you move a cancelled operation to the appropriate final state. Specifically, if you manage the values for the <span><code data-v-7fb764c1="">finished</code></span> and <span><code data-v-7fb764c1="">executing</code></span> properties yourself (perhaps because you are implementing a concurrent operation), you must update those properties accordingly. Specifically, you must change the value returned by <span><code data-v-7fb764c1="">finished</code></span> to <span><code data-v-7fb764c1="">YES</code></span> and the value returned by <span><code data-v-7fb764c1="">executing</code></span> to <span><code data-v-7fb764c1="">NO</code></span>. You must make these changes even if the operation was cancelled before it started executing.</span><!--end_enstr-->
+<span class="jpstr">
+オペレーションが取り消される場合に単純に退出することに加えて、あなたがある取り消されたオペレーションを適切な最終状態へと移動することはまた重要です。特に、あなたが<span><code data-v-7fb764c1="">finished</code></span>と<span><code data-v-7fb764c1="">executing</code></span>プロパティに対する値をあなた自身で管理するならば（おそらくはあなたが並列オペレーションを実装しているために）、あなたはこれらプロパティをそれ相応に更新しなければなりません。特に、あなたが<span><code data-v-7fb764c1="">finished</code></span>によって返される値を<span><code data-v-7fb764c1="">YES</code></span>に、そして<span><code data-v-7fb764c1="">executing</code></span>によって返される値を<span><code data-v-7fb764c1="">NO</code></span>に変更しなければなりません。あなたはそれらを変更しなければなりません、たとえオペレーションがキャンセルされたそれが遂行を開始するより前にとしてもです。
+</span><!--end_jpstr-->
+ </p>
+</div>
+</div>
+</div>
+<section data-v-8c663d90="" data-v-63527a60="" data-v-2deaa168="" id="topics" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">Topics</span><!--end_enstr-->
+<span class="jpstr">
+話題
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Initialization</span><!--end_enstr-->
+<span class="jpstr">
+初期化
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsoperation/1808546-init_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">init</code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns an initialized <code data-v-7fb764c1="">NSOperation</code> object.</span><!--end_enstr-->
+<span class="jpstr">
+初期化された<code data-v-7fb764c1="">NSOperation</code>オブジェクトを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Executing the Operation</span><!--end_enstr-->
+<span class="jpstr">
+オペレーションを遂行する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsoperation/1416837-start_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">start</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Begins the execution of the operation.</span><!--end_enstr-->
+<span class="jpstr">
+オペレーションの遂行を開始します。
+</span><!--end_jpstr-->
+ </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsoperation/1407732-main_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">main</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Performs the receiver’s non-concurrent task.</span><!--end_enstr-->
+<span class="jpstr">
+レシーバのもつ非並行タスクを実行します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsoperation/1408085-completionblock_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">completion<wbr data-v-01f7f080="">Block</wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The block to execute after the operation’s main task is completed.</span><!--end_enstr-->
+<span class="jpstr">
+そのオペレーションのもつメインタスクが完了される後に遂行を遮断します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Canceling Operations</span><!--end_enstr-->
+<span class="jpstr">
+オペレーションの取り消し
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsoperation/1411672-cancel_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">cancel</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Advises the operation object that it should stop executing its task.</span><!--end_enstr-->
+<span class="jpstr">
+それがそれのタスクの遂行を停止すべきオペレーションオブジェクトを勧告します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Getting the Operation Status</span><!--end_enstr-->
+<span class="jpstr">
+オペレーション状態を取得する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsoperation/1408418-cancelled_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">cancelled</code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A Boolean value indicating whether the operation has been cancelled</span><!--end_enstr-->
+<span class="jpstr">
+オペレーションが取れ消されたかどうかを指し示すブール値。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsoperation/1415621-executing_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">executing</code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A Boolean value indicating whether the operation is currently executing.</span><!--end_enstr-->
+<span class="jpstr">
+オペレーションが現在遂行中かどうかを指し示すブール値。
+</span><!--end_jpstr-->
+ </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsoperation/1413540-finished_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">finished</code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A Boolean value indicating whether the operation has finished executing its task.</span><!--end_enstr-->
+<span class="jpstr">
+オペレーションがそれのタスクの遂行を終了したかどうかを指し示すブール値。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsoperation/1411089-concurrent_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">concurrent</code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A Boolean value indicating whether the operation executes its task asynchronously.</span><!--end_enstr-->
+<span class="jpstr">
+オペレーションがそれのタスクを非同期に遂行するかどうかを指し示すブール値。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsoperation/1408275-asynchronous_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">asynchronous</code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A Boolean value indicating whether the operation executes its task asynchronously.</span><!--end_enstr-->
+<span class="jpstr">
+オペレーションがそれのタスクを非同期に遂行するかどうかを指し示すブール値。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsoperation/1412992-ready_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">ready</code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A Boolean value indicating whether the operation can be performed now.</span><!--end_enstr-->
+<span class="jpstr">
+オペレーションがいま実行されることが可能かどうかを指し示すブール値。
+</span><!--end_jpstr-->
+ </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsoperation/1416089-name_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">name</code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The name of the operation.</span><!--end_enstr-->
+<span class="jpstr">
+オペレーションの名前。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Managing Dependencies</span><!--end_enstr-->
+<span class="jpstr">
+依存関係を管理する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsoperation/1412859-adddependency_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">add<wbr data-v-dac213be="">Dependency:</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Makes the receiver dependent on the completion of the specified operation.</span><!--end_enstr-->
+<span class="jpstr">
+レシーバをこの指定されたオペレーションの完了に依存するようにします。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsoperation/1414945-removedependency_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">remove<wbr data-v-dac213be="">Dependency:</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Removes the receiver’s dependence on the specified operation.</span><!--end_enstr-->
+<span class="jpstr">
+この指定されたオペレーションに関する、レシーバのもつ依存関係を取り除きます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsoperation/1416668-dependencies_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">dependencies</code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">An array of the operation objects that must finish executing before the current object can begin executing.</span><!--end_enstr-->
+<span class="jpstr">
+現在のオブジェクトが遂行を開始できる前に遂行を終了しなければならないオペレーションオブジェクトそれらからなるある配列。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Configuring the Execution Priority</span><!--end_enstr-->
+<span class="jpstr">
+遂行優先度を構成設定する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsoperation/1413553-qualityofservice_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">quality<wbr data-v-01f7f080="">Of<wbr data-v-01f7f080="">Service</wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The relative amount of importance for granting system resources to the operation.</span><!--end_enstr-->
+<span class="jpstr">
+そのオペレーションにシステムリソースを認めることに対する相対重要度。
+</span><!--end_jpstr-->
+ </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsoperation/1409020-threadpriority_language-objc.html" class="link deprecated has-adjacent-elements"><code data-v-01f7f080="">thread<wbr data-v-01f7f080="">Priority</wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The thread priority to use when executing the operation</span><!--end_enstr-->
+<span class="jpstr">
+オペレーションを遂行する場合に使用するスレッド優先度。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div>
+<span data-v-41682aee="" data-v-01f7f080="" role="presentation" class="violator violator-inline"><span class="enstr">Deprecated</span><!--end_enstr-->
+<span class="jpstr">
+非推奨
+</span><!--end_jpstr-->
+</span>
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsoperation/1411204-queuepriority_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">queue<wbr data-v-01f7f080="">Priority</wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">The execution priority of the operation in an operation queue.</span><!--end_enstr-->
+<span class="jpstr">
+あるオペレーションキューの中のそのオペレーションの遂行優先度。
+</span><!--end_jpstr-->
+ </div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Waiting on an Operation Object</span><!--end_enstr-->
+<span class="jpstr">
+オペレーションオブジェクトを待機する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsoperation/1409256-waituntilfinished_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">- </span><span data-v-dac213be="" class="identifier">wait<wbr data-v-dac213be="">Until<wbr data-v-dac213be="">Finished</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Blocks execution of the current thread until the operation object finishes its task.</span><!--end_enstr-->
+<span class="jpstr">
+そのオペレーションオブジェクトがそれのタスクを終了するまで現在のスレッドの遂行を遮断します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Constants</span><!--end_enstr-->
+<span class="jpstr">
+定数
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsoperationqueuepriority_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">NSOperation<wbr data-v-01f7f080="">Queue<wbr data-v-01f7f080="">Priority</wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">These constants let you prioritize the order in which operations execute.</span><!--end_enstr-->
+<span class="jpstr">
+これらの定数は、それにおいてオペレーションが遂行する順番を、あなたに順位付けさせます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsqualityofservice_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">NSQuality<wbr data-v-01f7f080="">Of<wbr data-v-01f7f080="">Service</wbr></wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Used to indicate the nature and importance of work to the system. Work with higher quality of service classes receive more resources than work with lower quality of service classes whenever there is resource contention.</span><!--end_enstr-->
+<span class="jpstr">
+仕事の性質と重要性をシステムに指し示すために使われます。より高い質のサービスクラスを扱う作業は、より低い質のサービスクラスを扱う作業より多くのリソースを受け取ります、リソース競合がある時はいつでも。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+</div><!----></section><section data-v-8c663d90="" data-v-2deaa168="" id="relationships" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">Relationships</span><!--end_enstr-->
+<span class="jpstr">
+関係
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Inherits From</span><!--end_enstr-->
+<span class="jpstr">
+継承元
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><ul data-v-4af8f78e="" class="relationships-list inline" data-v-9807b2e0=""><li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/objectivec/nsobject_language-objc.html" class="link"><code data-v-4af8f78e="">NSObject</code></a><!---->
+</li></ul></div>
+</div>
+</div></section><section data-v-8c663d90="" data-v-63527a60="" data-v-2deaa168="" id="see-also" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">See Also</span><!--end_enstr-->
+<span class="jpstr">
+参照
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Operations</span><!--end_enstr-->
+<span class="jpstr">
+さまざまな演算
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsoperationqueue_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">NSOperation<wbr data-v-01f7f080="">Queue</wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">A queue that regulates the execution of operations.</span><!--end_enstr-->
+<span class="jpstr">
+オペレーションいくつかの実行を統制するキュー。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsblockoperation_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">NSBlock<wbr data-v-01f7f080="">Operation</wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">An operation that manages the concurrent execution of one or more blocks.</span><!--end_enstr-->
+<span class="jpstr">
+ひとつ以上のブロックの並列実行を管理するある演算。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/nsinvocationoperation_language-objc.html" class="link has-adjacent-elements"><code data-v-01f7f080="">NSInvocation<wbr data-v-01f7f080="">Operation</wbr></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">An operation that manages the execution of a single encapsulated task specified as an invocation.</span><!--end_enstr-->
+<span class="jpstr">
+ある発動として指定される単一のカプセル化されたタスクの実行を管理する演算。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+</div><!----></section></main>
+</div></div></div>
+<section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo"><nav class="footer-breadory"><a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a><section class="breadcrumbs"><ol class="breadcrumbs-list"></ol></section><div id="directorynav" class="directorynav">
+<div id="dn-cola" class="column">
+<h3><a href="/discover/">Discover</a></h3>
+<ul>
+<li><a href="/ios/">iOS</a></li>
+<li><a href="/ipados/">iPadOS</a></li>
+<li><a href="/macos/">macOS</a></li>
+<li><a href="/tvos/">tvOS</a></li>
+<li><a href="/watchos/">watchOS</a></li>
+<li><a href="/safari/">Safari and Web</a></li>
+<li><a href="/games/">Games</a></li>
+<li><a href="/business/">Business</a></li>
+<li><a href="/education/">Education</a></li>
+<li><a href="/wwdc/">WWDC</a></li>
+</ul>
+</div>
+<div id="dn-colb" class="column">
+<h3><a href="/design/">Design</a></h3>
+<ul>
+<li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
+<li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
+<span class="jpstr">
+リソース
+</span><!--end_jpstr-->
+</a></li>
+<li><a href="/videos/design/">Videos</a></li>
+<li><a href="/design/awards/">Apple Design Awards</a></li>
+<li><a href="/fonts/">Fonts</a></li>
+<li><a href="/accessibility/">Accessibility</a></li>
+<li><a href="/localization/"><span class="enstr">Localization</span><!--end_enstr-->
+<span class="jpstr">
+ローカライゼーション
+</span><!--end_jpstr-->
+</a></li>
+<li><a href="/accessories/">Accessories</a></li>
+</ul>
+</div>
+<div id="dn-colc" class="column">
+<h3><a href="/develop/">Develop</a></h3>
+<ul>
+<li><a href="/xcode/">Xcode</a></li>
+<li><a href="/swift/">Swift</a></li>
+<li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
+<li><a href="/testflight/">TestFlight</a></li>
+<li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
+<li><a href="/videos/">Videos</a></li>
+<li><a href="/download/">Downloads</a></li>
+</ul>
+</div>
+<div id="dn-cold" class="column">
+<h3><a href="/distribute/">Distribute</a></h3>
+<ul>
+<li><a href="/programs/">Developer Program</a></li>
+<li><a href="/app-store/">App Store</a></li>
+<li><a href="/app-store/review/">App Review</a></li>
+<li><a href="/macos/distribution/">Mac Software</a></li>
+<li><a href="/business/distribute/">Apps for Business</a></li>
+<li><a href="/safari/extensions/">Safari Extensions</a></li>
+<li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
+<li><a href="/softwarelicensing/">Trademark Licensing</a></li>
+</ul>
+</div>
+<div id="dn-cole" class="column">
+<h3><a href="/support/">Support</a></h3>
+<ul>
+<li><a href="/support/articles/">Articles</a></li>
+<li><a href="/forums/">Developer Forums</a></li>
+<li><a href="/bug-reporting/">Feedback &amp; Bug Reporting</a></li>
+<li><a href="/system-status/">System Status</a></li>
+<li><a href="/contact/">Contact Us</a></li>
+</ul>
+<h3><a href="/account/">Account</a></h3>
+<ul>
+<li><a href="/account/ios/certificate/">Certificates, Identifiers &amp; Profiles</a></li>
+<li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
+</ul>
+</div>
+</div></nav><div class="ac-gf-footer-legal">
+<div class="ac-gf-footer-news">To view the latest developer news, visit <a href="/news/">News and Updates</a>.</div>
+<div class="ac-gf-footer-language-dropdown-wrapper">
+<select id="footer-language-selector" class="footer-language-select" aria-label="Language Dropdown" autocomplete="off"><option value="https://developer.apple.com/" selected>English</option>
+<option value="https://developer.apple.com/cn/">简体中文</option>
+<option value="https://developer.apple.com/jp/">日本語</option>
+<option value="https://developer.apple.com/kr/">한국어</option></select> <span class="footer-language-select-icon icon icon-chevrondown" aria-hidden="true"></span>
+</div>
+<div class="ac-gf-footer-legal-copyright">Copyright © <span class="footer-current-year">2020</span> <a href="https://www.apple.com">Apple Inc.</a> All rights reserved.</div>
+<div class="ac-gf-footer-legal-links">
+<a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a> <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a> <a href="/terms/">License Agreements</a>
+</div>
+</div></footer></section><script src="../../tutorials/js/footer.js"></script>
+</body>
+</html>

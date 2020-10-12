@@ -1,0 +1,693 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- link rel="icon" href="/favicon.ico" -->
+<link rel="mask-icon" href="/apple-logo.svg" color="#333333">
+<link rel="stylesheet" href="../../tutorials/css/_globalnav.css">
+<title>DistributedNotificationCenter | Apple Developer Documentation</title>
+<link href="../../tutorials/css/chunk-76d5c2b5.00c53891.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic.e358e85c.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css" rel="prefetch">
+<link href="../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css" rel="prefetch">
+<link href="../../tutorials/css/topic.69278f1e.css" rel="prefetch">
+<link href="../../tutorials/css/topic~tutorials-overview.1f93e025.css" rel="prefetch">
+<link href="../../tutorials/css/tutorials-overview.d4ff0b50.css" rel="prefetch">
+<link href="../../tutorials/css/welcome-experience-featured.0537f0f0.css" rel="prefetch">
+<link href="../../tutorials/css/welcome-experience-technologies.60068ae2.css" rel="prefetch">
+<link href="../../tutorials/js/chunk-2d0d3105.459bf725.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-2d21a016.b81cb311.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-503f1ed8.d26c4552.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-530f89ce.621e1d48.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-640db3b2.f8778ca5.js" rel="prefetch">
+<link href="../../tutorials/js/chunk-76d5c2b5.092e3b8a.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic.6abe9458.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js" rel="prefetch">
+<link href="../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js" rel="prefetch">
+<link href="../../tutorials/js/topic.c6ec6b6c.js" rel="prefetch">
+<link href="../../tutorials/js/topic~tutorials-overview.467a8186.js" rel="prefetch">
+<link href="../../tutorials/js/tutorials-overview.d77f61ca.js" rel="prefetch">
+<link href="../../tutorials/js/welcome-experience-featured.04f663e2.js" rel="prefetch">
+<link href="../../tutorials/js/welcome-experience-technologies.56a372c1.js" rel="prefetch">
+<link href="../../tutorials/css/app.2a174a23.css" rel="preload" as="style">
+<link href="../../tutorials/js/app.2c558263.js" rel="preload" as="script">
+<link href="../../tutorials/js/chunk-vendors.c3b68236.js" rel="preload" as="script">
+<link href="../../tutorials/css/app.2a174a23.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../../tutorials/css/chunk-76d5c2b5.00c53891.css">
+<script charset="utf-8" src="../../tutorials/js/chunk-76d5c2b5.092e3b8a.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.28a14398.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.f80dcf09.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic~welcome-experience-featured~welcome-experience-technologies.16f6e0ce.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic~welcome-experience-featured~welcome-experience-technologies.bff03c33.js"></script><link rel="stylesheet" type="text/css" href="../../tutorials/css/documentation-topic.e358e85c.css">
+<script charset="utf-8" src="../../tutorials/js/documentation-topic.6abe9458.js"></script>
+</head>
+<body>
+<div id="_omniture_top">
+<script>var s_account="awdappledeveloper"</script>
+</div>
+<a href="#main" id="skip-localnav">Skip Navigation</a><aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"><nav id="ac-globalnav" class="js no-touch" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions"><div class="ac-gn-content">
+<ul class="ac-gn-header">
+<li class="ac-gn-item ac-gn-menuicon">
+<label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true"><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span> </span><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span></span></label> <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open"><span class="ac-gn-menuanchor-label">Global Nav Open Menu</span> </a><a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close"><span class="ac-gn-menuanchor-label">Global Nav Close Menu</span></a>
+</li>
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+</ul>
+<div class="ac-gn-search-placeholder-container" role="search"><div class="ac-gn-search ac-gn-search-small"><a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a><div class="ac-gn-search-placeholder-bar">
+<div class="ac-gn-search-placeholder-input"><div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
+<div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
+<span class="ac-gn-search-placeholder">Search Developer</span>
+</div></div>
+<div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></div>
+</div></a></div></div>
+<ul class="ac-gn-list">
+<li class="ac-gn-item ac-gn-apple"><a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-discover"><a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover"><span class="ac-gn-link-text">Discover</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-design"><a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design"><span class="ac-gn-link-text">Design</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-develop"><a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop"><span class="ac-gn-link-text">Develop</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-distribute"><a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute"><span class="ac-gn-link-text">Distribute</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport"><a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport"><span class="ac-gn-link-text">Support</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-account"><a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account"><span class="ac-gn-link-text">Account</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search"><a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" role="button" aria-haspopup="true"></a></li>
+</ul>
+<aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search"><div class="ac-gn-searchview-content">
+<div class="ac-gn-searchview-bar"><div class="ac-gn-searchview-bar-wrapper">
+<form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get"><div class="ac-gn-searchform-wrapper">
+<input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions"> <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button> <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search"><span class="ac-gn-searchform-reset-background"></span></button>
+</div></form>
+<button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search"><span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span></button>
+</div></div>
+<aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
+</div>
+<button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search"><span class="ac-gn-searchview-close-wrapper"><span class="ac-gn-searchview-close-left"></span> <span class="ac-gn-searchview-close-right"></span></span></button></aside>
+</div></nav><div class="ac-gn-blur"></div>
+<div id="ac-gn-curtain" class="ac-gn-curtain"></div>
+<div id="ac-gn-placeholder" class="ac-nav-placeholder"></div>
+<script src="../../tutorials/js/ac-globalnav.built.js"></script>
+<noscript>
+<style>.noscript {
+  font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
+  margin: 92px auto 140px auto;
+  text-align: center;
+  width: 980px;
+}
+
+.noscript-title {
+  color: #111;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -.003em;
+  line-height: 1.08365;
+  margin: 0 auto 54px auto;
+  width: 502px;
+}
+
+@media only screen and (max-width: 1068px) {
+  .noscript {
+    margin: 90px auto 120px auto;
+    width: 692px;
+  }
+
+  .noscript-title {
+    font-size: 40px;
+    letter-spacing: 0;
+    line-height: 1.1;
+    margin: 0 auto 45px auto;
+    width: 420px;
+  }
+}
+
+@media only screen and (max-width: 735px) {
+  .noscript {
+    margin: 45px auto 60px auto;
+    width: 87.5%;
+  }
+
+  .noscript-title {
+    font-size: 32px;
+    letter-spacing: .004em;
+    line-height: 1.125;
+    margin: 0 auto 35px auto;
+    max-width: 330px;
+    width: auto;
+  }
+}
+
+#loading-placeholder {
+  display: none;
+};</style>
+<div class="noscript">
+<h1 class="noscript-title">This page requires JavaScript.</h1>
+<p>Please turn on JavaScript in your browser and refresh the page to view its content.</p>
+</div>
+</noscript>
+<div data-v-0220a4c4="" id="app" class=""><div data-v-0220a4c4=""><div data-v-2deaa168="" class="doc-topic">
+<div data-v-3ceaa5df="" data-v-2deaa168="" class="localnav-container">
+<input data-v-3ceaa5df="" aria-hidden="true" id="localnav-menustate" type="checkbox" class="localnav-menustate"><div id="localnav-sticky-placeholder" class="css-sticky"></div>
+<nav data-v-3ceaa5df="" aria-label="API Reference" data-sticky="" id="localnav" role="navigation" class="localnav localnav-dark theme-dark medium-localnav-collapsible localnav-noborder localnav-scrim css-sticky"><div data-v-3ceaa5df="" class="localnav-wrapper">
+<div data-v-3ceaa5df="" class="referencenav">
+<div data-v-3ceaa5df="" class="localnav-background"></div>
+<div data-v-3ceaa5df="" class="localnav-content">
+<a data-v-3ceaa5df="" href="../../index.html" class="localnav-title">
+            Documentation
+          </a><div data-v-3ceaa5df="" class="localnav-menu">
+<a data-v-3ceaa5df="" href="#localnav-menustate" role="button" id="localnav-menustate-open" class="localnav-menucta-anchor localnav-menucta-anchor-open"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Open Menu</span></a><a data-v-3ceaa5df="" href="#" role="button" id="localnav-menustate-close" class="localnav-menucta-anchor localnav-menucta-anchor-close"><span data-v-3ceaa5df="" class="localnav-menucta-anchor-label">Local Nav Close Menu</span></a><div data-v-3ceaa5df="" class="localnav-menu-tray">
+<ul data-v-72fd0d2c="" data-v-3ceaa5df="" aria-label="Breadcrumbs" class="localnav-menu-items">
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../documentation/foundation_language-objc.html" class="parent item router-link-active" data-v-23a2ae0d="">
+    Foundation
+  </a></li><!---->
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item"><a data-v-72fd0d2c="" href="../../documentation/foundation/notifications_language-objc.html" class="parent item" data-v-23a2ae0d="">
+    <span class="enstr">Notifications</span><!--end_enstr-->
+<span class="jpstr">
+通知
+</span><!--end_jpstr-->
+
+  </a></li>
+<li data-v-23a2ae0d="" class="localnav-menu-item hierarchy-item">
+<span data-v-23a2ae0d="" class="current item">
+    DistributedNotificationCenter
+  </span><!---->
+</li>
+</ul>
+<ul data-v-3ceaa5df="" data-breadcrumbs-count="3" class="localnav-menu-items localnav-menu-settings">
+<li data-v-282336e0="" data-v-3ceaa5df="" class="localnav-menu-setting language-container" breadcrumbcount="3">
+<div data-v-282336e0="" class="language-toggle-container">
+<label data-v-282336e0="" for="language-toggle" class="language-toggle-label">
+      Language:
+    </label><select data-v-282336e0="" id="language-toggle" class="language-dropdown localnav-menu-link" style="width: 38px;"><option data-v-282336e0="" value="swift">
+        Swift
+      </option>
+<option data-v-282336e0="" value="occ">
+        Objective-C
+      </option></select>
+</div>
+<div data-v-282336e0="" class="language-list-container">
+<span data-v-282336e0="" class="localnav-menu-setting-label">
+      Language:
+    </span><ul data-v-282336e0="" class="language-list">
+<li data-v-282336e0="" class="language-list-item"><span data-v-282336e0="" data-language="swift" aria-current="page" class="current-language">
+          Swift
+        </span></li>
+<li data-v-282336e0="" class="language-list-item"><a data-v-282336e0="" href="../../documentation/foundation/nsdistributednotificationcenter_language-objc.html" class="localnav-menu-setting-link">
+          Objective-C
+        </a></li>
+</ul>
+</div>
+</li>
+<li data-v-2e9f4ea2="" data-v-3ceaa5df="" class="localnav-menu-setting">
+<label data-v-2e9f4ea2="" for="version-label" class="localnav-menu-setting-label">
+    API Changes:
+  </label><span data-v-2e9f4ea2=""><span class="enstr">None</span><!--end_enstr-->
+<span class="jpstr">
+なし
+</span><!--end_jpstr-->
+</span>
+</li><!---->
+
+</ul>
+</div>
+<div data-v-3ceaa5df="" class="localnav-actions"><div data-v-3ceaa5df="" aria-hidden="true" class="localnav-action localnav-action-menucta"><label data-v-3ceaa5df="" for="localnav-menustate" class="localnav-menucta"><span data-v-3ceaa5df="" class="localnav-menucta-chevron"></span></label></div></div>
+</div>
+</div>
+</div><!---->
+
+</div></nav><label data-v-3ceaa5df="" aria-hidden="true" for="localnav-menustate" id="localnav-curtain"></label>
+</div>
+<main data-v-2deaa168="" id="main" role="main" tabindex="0" class="main"><div data-v-4ba5af7c="" data-v-2deaa168="" class="topictitle">
+<span data-v-4ba5af7c="" class="eyebrow">Class</span><h1 data-v-4ba5af7c="" class="title">Distributed<wbr data-v-4ba5af7c="">Notification<wbr data-v-4ba5af7c="">Center</wbr></wbr>
+</h1>
+</div>
+<div data-v-0253ce0e="" data-v-2deaa168="" class="row container">
+<div data-v-9807b2e0="" data-v-5ad0d458="" data-v-2deaa168="" class="col description large-9 medium-9 small-12" data-v-0253ce0e=""><!---->
+<div data-v-7ea0aa49="" data-v-aba749e6="" data-v-2deaa168="" class="abstract content" data-v-9807b2e0=""><span class="enstr">A notification dispatch mechanism that enables the broadcast of notifications across task boundaries.</span><!--end_enstr-->
+<span class="jpstr">
+タスク境界を横切って通知の放送を可能にする通知ディスパッチの仕組み。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div>
+<div data-v-9807b2e0="" data-v-42fb6bac="" data-v-2deaa168="" class="col summary large-3 medium-3 small-12" data-v-0253ce0e=""><!---->
+<div data-v-e4237090="" data-v-fcdb795a="" data-v-2deaa168="" class="summary-section availability" role="complementary" aria-label="Availability" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-fcdb795a="" class="title" data-v-e4237090=""><span class="enstr">Availability</span><!--end_enstr-->
+<span class="jpstr">
+有効性
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-fcdb795a="" class="summary-list platform-list" data-v-e4237090=""><li data-v-e3899270="" data-v-fcdb795a="" class="summary-list-item platform" data-v-1450532d="">
+<span data-v-fcdb795a="" role="text" aria-label="macOS 10.0+, Available on macOS 10.0 and later" title="Available on macOS 10.0 and later" data-v-e3899270="">
+  macOS 10.0+
+</span><!---->
+</li></ul>
+</div>
+<div data-v-e4237090="" data-v-741142ba="" data-v-2deaa168="" class="summary-section frameworks" role="complementary" aria-label="Framework" data-v-9807b2e0="">
+<p data-v-1e0258b0="" data-v-741142ba="" class="title" data-v-e4237090=""><span class="enstr">Framework</span><!--end_enstr-->
+<span class="jpstr">
+フレームワーク
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-741142ba="" class="summary-list" data-v-e4237090=""><li data-v-e3899270="" data-v-741142ba="" class="summary-list-item" data-v-1450532d=""><span data-v-741142ba="" data-v-e3899270="" class="name">Foundation</span></li></ul>
+</div>
+<div data-v-e4237090="" data-v-2b96ab1a="" data-v-2deaa168="" class="summary-section on-this-page" data-v-9807b2e0=""><nav data-v-2b96ab1a="" data-v-e4237090="" aria-labelledby="on-this-page-title"><p data-v-1e0258b0="" data-v-2b96ab1a="" class="title" id="on-this-page-title" data-v-e4237090=""><span class="enstr">On This Page</span><!--end_enstr-->
+<span class="jpstr">
+この項には
+</span><!--end_jpstr-->
+</p>
+<ul data-v-1450532d="" data-v-2b96ab1a="" class="summary-list" data-v-e4237090="">
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/distributednotificationcenter_language-objc.html#declaration" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Declaration</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/distributednotificationcenter_language-objc.html#overview" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Overview</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/distributednotificationcenter_language-objc.html#topics" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Topics</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+<li data-v-e3899270="" data-v-2b96ab1a="" class="summary-list-item" data-v-1450532d=""><a data-v-2b96ab1a="" href="../../documentation/foundation/distributednotificationcenter_language-objc.html#relationships" class="link" data-v-e3899270=""><span data-v-2b96ab1a="" class="link-text">Relationships</span><span data-v-2b96ab1a="" aria-hidden="true" class="icon-holder">&nbsp;<i data-v-2b96ab1a="" class="icon icon-chevrondowncircle"></i></span></a></li>
+</ul></nav></div>
+</div>
+<div data-v-9807b2e0="" data-v-1e40f676="" data-v-2deaa168="" class="col primary-content large-9 medium-9 small-12" data-v-0253ce0e="">
+<section data-v-e932e1b8="" data-v-1e40f676="" id="declaration" class="declaration" data-v-9807b2e0=""><h2 data-v-e932e1b8=""><span class="enstr">Declaration</span><!--end_enstr-->
+<span class="jpstr">
+宣言
+</span><!--end_jpstr-->
+</h2>
+<div data-v-29bd318c="" data-v-e932e1b8="" class="declaration-group"><!---->
+<pre data-v-e0a7f756="" data-v-29bd318c="" class="source"><code data-v-e0a7f756=""><span data-v-c9e896f0="" data-v-e0a7f756="" class="token-keyword">class</span> <span data-v-c9e896f0="" data-v-e0a7f756="" class="token-identifier">DistributedNotificationCenter</span> : <a data-v-c9e896f0="" data-v-e0a7f756="" href="../../documentation/foundation/notificationcenter_language-objc.html" class="type-identifier-link"><span data-v-c9e896f0="">Notification<wbr data-v-c9e896f0="">Center</wbr></span></a></code></pre>
+</div><!---->
+</section><div data-v-7ea0aa49="" data-v-1e40f676="" class="content" data-v-9807b2e0="">
+<h2 id="overview"><span class="enstr">Overview</span><!--end_enstr-->
+<span class="jpstr">
+概要
+</span><!--end_jpstr-->
+</h2>
+<p><span class="enstr">A <span><code data-v-7fb764c1="">Distributed<wbr data-v-7fb764c1="">Notification<wbr data-v-7fb764c1="">Center</wbr></wbr></code></span> instance broadcasts <a href="../../documentation/foundation/nsnotification_language-objc.html" class=""><code data-v-7fb764c1="">NSNotification</code></a> objects to objects in other tasks that have registered for the notification with their task’s default distributed notification center.</span><!--end_enstr-->
+<span class="jpstr">
+<span><code data-v-7fb764c1="">Distributed<wbr data-v-7fb764c1="">Notification<wbr data-v-7fb764c1="">Center</wbr></wbr></code></span>インスタンスは、<a href="../../documentation/foundation/nsnotification_language-objc.html" class=""><code data-v-7fb764c1="">NSNotification</code></a>オブジェクトを他のタスクの中のオブジェクトそれらに対して放送します、それらは、それらのタスクの持つ省略時の分散通知センターを使って、通知に対して登録されます。
+</span><!--end_jpstr-->
+</p>
+<h3 id="1770614"><span class="enstr">Principal Attributes</span><!--end_enstr-->
+<span class="jpstr">
+プリンシパル属性
+</span><!--end_jpstr-->
+</h3>
+<ul><li>
+<p><span class="enstr"><strong>Notification dispatch table.</strong> See “Class at a Glance” &gt; “Principal Attributes” in <a href="../../documentation/foundation/notificationcenter_language-objc.html" class=""><code data-v-7fb764c1="">Notification<wbr data-v-7fb764c1="">Center</wbr></code></a> for information about the dispatch table.</span><!--end_enstr-->
+<span class="jpstr">
+<strong>Notificationディスパッチテーブル。</strong> “Class at a Glance” &gt; “Principal Attributes” を <a href="../../documentation/foundation/notificationcenter_language-objc.html" class=""><code data-v-7fb764c1="">Notification<wbr data-v-7fb764c1="">Center</wbr></code></a> において、ディスパッチテーブルについての情報として見てください。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">In addition to the notification name and sender, dispatch table entries for distributed notification centers specify when the notification center delivers notifications to its observers. See the <a href="../../documentation/foundation/distributednotificationcenter/1418360-postnotificationname_language-objc.html" class=""><code data-v-7fb764c1="">post<wbr data-v-7fb764c1="">Notification<wbr data-v-7fb764c1="">Name(_:<wbr data-v-7fb764c1="">object:<wbr data-v-7fb764c1="">user<wbr data-v-7fb764c1="">Info:<wbr data-v-7fb764c1="">deliver<wbr data-v-7fb764c1="">Immediately:)</wbr></wbr></wbr></wbr></wbr></wbr></wbr></code></a> method, <a href="../../documentation/foundation/distributednotificationcenter_language-objc.html#1651293" class="">Suspending and Resuming Notification Delivery</a>, and <a href="../../documentation/foundation/distributednotificationcenter/suspensionbehavior_language-objc.html" class=""><code data-v-7fb764c1="">Distributed<wbr data-v-7fb764c1="">Notification<wbr data-v-7fb764c1="">Center<wbr data-v-7fb764c1="">.Suspension<wbr data-v-7fb764c1="">Behavior</wbr></wbr></wbr></wbr></code></a> for details.</span><!--end_enstr-->
+<span class="jpstr">
+通知名と送り手に加えて、分散通知センターそれぞれに対するディスパッチテーブル登録項目は、通知センターが通知をそれのオブザーバ（監視者）に送付する場合を細かく指定します。<a href="../../documentation/foundation/distributednotificationcenter/1418360-postnotificationname_language-objc.html" class=""><code data-v-7fb764c1="">post<wbr data-v-7fb764c1="">Notification<wbr data-v-7fb764c1="">Name(_:<wbr data-v-7fb764c1="">object:<wbr data-v-7fb764c1="">user<wbr data-v-7fb764c1="">Info:<wbr data-v-7fb764c1="">deliver<wbr data-v-7fb764c1="">Immediately:)</wbr></wbr></wbr></wbr></wbr></wbr></wbr></code></a>メソッド、<a href="../../documentation/foundation/distributednotificationcenter_language-objc.html#1651293" class="">通知配達の待機と再開</a>、そして<a href="../../documentation/foundation/distributednotificationcenter/suspensionbehavior_language-objc.html" class=""><code data-v-7fb764c1="">Distributed<wbr data-v-7fb764c1="">Notification<wbr data-v-7fb764c1="">Center<wbr data-v-7fb764c1="">.Suspension<wbr data-v-7fb764c1="">Behavior</wbr></wbr></wbr></wbr></code></a>を詳細として見てください。
+</span><!--end_jpstr-->
+</p>
+</li></ul>
+<h3 id="1770615"><span class="enstr">Commonly Used Methods</span><!--end_enstr-->
+<span class="jpstr">
+頻繁に使われるメソッド
+</span><!--end_jpstr-->
+</h3>
+<dl>
+<dt><a href="../../documentation/foundation/distributednotificationcenter/1412063-default_language-objc.html" class=""><code data-v-7fb764c1="">default()</code></a></dt>
+<dd><p><span class="enstr">Accesses the default distributed notification center.</span><!--end_enstr-->
+<span class="jpstr">
+省略時の分散通知センターにアクセスします。
+</span><!--end_jpstr-->
+</p></dd>
+<dt><a href="../../documentation/foundation/distributednotificationcenter/1414136-addobserver_language-objc.html" class=""><code data-v-7fb764c1="">add<wbr data-v-7fb764c1="">Observer(_:<wbr data-v-7fb764c1="">selector:<wbr data-v-7fb764c1="">name:<wbr data-v-7fb764c1="">object:<wbr data-v-7fb764c1="">suspension<wbr data-v-7fb764c1="">Behavior:)</wbr></wbr></wbr></wbr></wbr></wbr></code></a></dt>
+<dd><p><span class="enstr">Registers an object to receive a notification with a specified behavior when notification delivery is suspended.</span><!--end_enstr-->
+<span class="jpstr">
+通知配達が待機させられる場合に指定される挙動とともに、オブジェクトを登録して通知を受け取るようにします。
+</span><!--end_jpstr-->
+</p></dd>
+<dt><a href="../../documentation/foundation/distributednotificationcenter/1418360-postnotificationname_language-objc.html" class=""><code data-v-7fb764c1="">post<wbr data-v-7fb764c1="">Notification<wbr data-v-7fb764c1="">Name(_:<wbr data-v-7fb764c1="">object:<wbr data-v-7fb764c1="">user<wbr data-v-7fb764c1="">Info:<wbr data-v-7fb764c1="">deliver<wbr data-v-7fb764c1="">Immediately:)</wbr></wbr></wbr></wbr></wbr></wbr></wbr></code></a></dt>
+<dd><p><span class="enstr">Creates and posts a notification.</span><!--end_enstr-->
+<span class="jpstr">
+通知を作成して投函します。
+</span><!--end_jpstr-->
+</p></dd>
+<dt><a href="../../documentation/foundation/distributednotificationcenter/1416236-removeobserver_language-objc.html" class=""><code data-v-7fb764c1="">remove<wbr data-v-7fb764c1="">Observer(_:<wbr data-v-7fb764c1="">name:<wbr data-v-7fb764c1="">object:)</wbr></wbr></wbr></code></a></dt>
+<dd><p><span class="enstr">Specifies that an object no longer wants to receive certain notifications.</span><!--end_enstr-->
+<span class="jpstr">
+あるオブジェクトがもはや特定の通知の受け取りを望まないことを指定します。
+</span><!--end_jpstr-->
+</p></dd>
+</dl>
+<h3 id="1770616"><span class="enstr">Overview</span><!--end_enstr-->
+<span class="jpstr">
+概要
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">Each task has a default distributed notification center that you access with the <a href="../../documentation/foundation/distributednotificationcenter/1412063-default_language-objc.html" class=""><code data-v-7fb764c1="">default()</code></a> class method. There may be different types of distributed notification centers. Currently there is a single type—<code data-v-7fb764c1="">NSLocal<wbr data-v-7fb764c1="">Notification<wbr data-v-7fb764c1="">Center<wbr data-v-7fb764c1="">Type</wbr></wbr></wbr></code>. This type of distributed notification center handles notifications that can be sent between tasks on a single computer. For communication between tasks on different computers, use <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DistrObjects/DistrObjects.html#//apple_ref/doc/uid/10000102i">Distributed Objects Programming Topics</a>.</span><!--end_enstr-->
+<span class="jpstr">
+各タスクは、異なる分散通知センターを持ちます、それはあなたが<a href="../../documentation/foundation/distributednotificationcenter/1412063-default_language-objc.html" class=""><code data-v-7fb764c1="">default()</code></a>クラスメソッドを使ってアクセスします。分散通知センターの異なる型があるかもしれません。現在はただ１つの型 — <code data-v-7fb764c1="">NSLocal<wbr data-v-7fb764c1="">Notification<wbr data-v-7fb764c1="">Center<wbr data-v-7fb764c1="">Type</wbr></wbr></wbr></code>があります。この型の分散通知センターは、単一のコンピュータ上のタスク間で送られることができる通知を取り扱います。異なるコンピュータ上のタスク間通信については、<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DistrObjects/DistrObjects.html#//apple_ref/doc/uid/10000102i">Distributed Objects Programming Topics</a>を使ってください。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">Posting a <em>distributed notification</em> is an expensive operation. The notification gets sent to a system-wide server that distributes it to all the tasks that have objects registered for distributed notifications. The latency between posting the notification and the notification’s arrival in another task is unbounded. In fact, when too many notifications are posted and the server’s queue fills up, notifications may be dropped.</span><!--end_enstr-->
+<span class="jpstr">
+<em>分散通知</em>を投函することは、高くつく業務です。通知は、いろいろな分散通知に登録されるいろいろなオブジェクトを持つタスク全てにそれを分散する、あるシステムワイドサーバに送られます。通知の投函と、別タスクでの通知到着との間の待ち時間は、限界がありません。実際、多すぎる通知が投函されるそしてサーバーのクエリがいっぱいになる場合、通知はボツにされるかもしれません。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">Distributed notifications are delivered via a task’s run loop. A task must be running a run loop in one of the “common” modes, such as <code data-v-7fb764c1="">NSDefault<wbr data-v-7fb764c1="">Run<wbr data-v-7fb764c1="">Loop<wbr data-v-7fb764c1="">Mode</wbr></wbr></wbr></code>, to receive a distributed notification. For multithreaded applications running in macOS 10.3 and later, distributed notifications are always delivered to the main thread. For multithreaded applications running in OS X v10.2.8 and earlier, notifications are delivered to the thread that first used the distributed notifications API, which in most cases is the main thread.</span><!--end_enstr-->
+<span class="jpstr">
+分散通知は、あるタスクの持つ実行ループ経由で配達されます。あるタスクは、分散通知を受け取るために、ある実行ループを “通常” モードの１つ、例えば<code data-v-7fb764c1="">NSDefault<wbr data-v-7fb764c1="">Run<wbr data-v-7fb764c1="">Loop<wbr data-v-7fb764c1="">Mode</wbr></wbr></wbr></code>において実行中でなければなりません。macOS 10.3以降で動作しているマルチスレッドアプリケーションに対して、分散通知は常にメインスレッドに配達されます。OS X v10.2.8以前で動作しているマルチスレッドアプリケーションに対して、通知は、最初に分散通知APIを使ったスレッド、ほとんどの場合メインスレッド、に配達されます。
+</span><!--end_jpstr-->
+</p>
+<aside data-v-c567d8a8="" aria-label="important" class="important"><p data-v-c567d8a8="" class="label"><span class="enstr">Important</span><!--end_enstr-->
+<span class="jpstr">
+重要
+</span><!--end_jpstr-->
+</p>
+<p data-v-c567d8a8=""><span class="enstr"><code data-v-7fb764c1="" data-v-c567d8a8="">NSDistributed<wbr data-v-7fb764c1="">Notification<wbr data-v-7fb764c1="">Center</wbr></wbr></code> does not implement a secure communications protocol. When using distributed notifications, your app should treat any data passed in the notification as untrusted. See <a data-v-c567d8a8="" href="https://developer.apple.com/library/archive/documentation/Security/Conceptual/Security_Overview/Introduction/Introduction.html#//apple_ref/doc/uid/TP30000976">Security Overview</a> for general guidance on secure coding practices.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="" data-v-c567d8a8="">NSDistributed<wbr data-v-7fb764c1="">Notification<wbr data-v-7fb764c1="">Center</wbr></wbr></code>は、安全な通信プロトコルを実装しません。分散通知を使おうとする場合、あなたのアプリは通知において渡されるあらゆるデータを信用できないものとして扱うべきです。<a data-v-c567d8a8="" href="https://developer.apple.com/library/archive/documentation/Security/Conceptual/Security_Overview/Introduction/Introduction.html#//apple_ref/doc/uid/TP30000976">Security Overview</a>を安全なコーディング習慣での全般的な指針として見てください。
+</span><!--end_jpstr-->
+</p></aside><aside data-v-c567d8a8="" aria-label="note" class="note"><p data-v-c567d8a8="" class="label"><span class="enstr">Note</span><!--end_enstr-->
+<span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+<p data-v-c567d8a8=""><span class="enstr"><code data-v-7fb764c1="" data-v-c567d8a8="">NSDistributed<wbr data-v-7fb764c1="">Notification<wbr data-v-7fb764c1="">Center</wbr></wbr></code> objects should not be used to send notifications between threads within the same task. Use <a data-v-c567d8a8="" href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DistrObjects/DistrObjects.html#//apple_ref/doc/uid/10000102i">Distributed Objects Programming Topics</a> or the <a href="../../documentation/objectivec/nsobject_language-objc.html" class="" data-v-c567d8a8=""><code data-v-7fb764c1="">NSObject</code></a> method <a href="../../documentation/objectivec/nsobject/1414900-performselector_language-objc.html" class="" data-v-c567d8a8=""><code data-v-7fb764c1="">perform<wbr data-v-7fb764c1="">Selector(on<wbr data-v-7fb764c1="">Main<wbr data-v-7fb764c1="">Thread:<wbr data-v-7fb764c1="">with:<wbr data-v-7fb764c1="">wait<wbr data-v-7fb764c1="">Until<wbr data-v-7fb764c1="">Done:)</wbr></wbr></wbr></wbr></wbr></wbr></wbr></code></a>, instead. You can also setup an <a href="../../documentation/foundation/port_language-objc.html" class="" data-v-c567d8a8=""><code data-v-7fb764c1="">Port</code></a> object to receive and distribute messages from other threads.</span><!--end_enstr-->
+<span class="jpstr">
+<code data-v-7fb764c1="" data-v-c567d8a8="">NSDistributed<wbr data-v-7fb764c1="">Notification<wbr data-v-7fb764c1="">Center</wbr></wbr></code>オブジェクトは、同じタスク内部のスレッド間で通知を送るために使われるべきではありません。代わりに<a data-v-c567d8a8="" href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DistrObjects/DistrObjects.html#//apple_ref/doc/uid/10000102i">Distributed Objects Programming Topics</a>または<a href="../../documentation/objectivec/nsobject_language-objc.html" class="" data-v-c567d8a8=""><code data-v-7fb764c1="">NSObject</code></a>のメソッド<a href="../../documentation/objectivec/nsobject/1414900-performselector_language-objc.html" class="" data-v-c567d8a8=""><code data-v-7fb764c1="">perform<wbr data-v-7fb764c1="">Selector(on<wbr data-v-7fb764c1="">Main<wbr data-v-7fb764c1="">Thread:<wbr data-v-7fb764c1="">with:<wbr data-v-7fb764c1="">wait<wbr data-v-7fb764c1="">Until<wbr data-v-7fb764c1="">Done:)</wbr></wbr></wbr></wbr></wbr></wbr></wbr></code></a>を使ってください。あなたはまた、<a href="../../documentation/foundation/port_language-objc.html" class="" data-v-c567d8a8=""><code data-v-7fb764c1="">Port</code></a>オブジェクトを準備して、他のスレッドからメッセージを受け取りそして配達できます。
+</span><!--end_jpstr-->
+</p></aside>
+</div>
+</div>
+</div>
+<section data-v-8c663d90="" data-v-63527a60="" data-v-2deaa168="" id="topics" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">Topics</span><!--end_enstr-->
+<span class="jpstr">
+話題
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Getting Distributed Notification Centers</span><!--end_enstr-->
+<span class="jpstr">
+分散通知センターを取得する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/distributednotificationcenter/1412063-default_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class func </span><span data-v-dac213be="" class="identifier">`default`</span><span data-v-dac213be="" class="decorator">() -&gt; Distributed<wbr data-v-dac213be="">Notification<wbr data-v-dac213be="">Center</wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the default distributed notification center, representing the local notification center for the computer.</span><!--end_enstr-->
+<span class="jpstr">
+コンピュータに対するローカル通知センターを表している、省略時の分散通知センターを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/distributednotificationcenter/1415403-fortype_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">class func </span><span data-v-dac213be="" class="identifier">for<wbr data-v-dac213be="">Type</wbr></span><span data-v-dac213be="" class="decorator">(Distributed<wbr data-v-dac213be="">Notification<wbr data-v-dac213be="">Center<wbr data-v-dac213be="">.Center<wbr data-v-dac213be="">Type) -&gt; Distributed<wbr data-v-dac213be="">Notification<wbr data-v-dac213be="">Center</wbr></wbr></wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Returns the distributed notification center for a particular notification center type.</span><!--end_enstr-->
+<span class="jpstr">
+特定の通知センター型のための分散通知センターを返します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Managing Observers</span><!--end_enstr-->
+<span class="jpstr">
+オブザーバを管理する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/distributednotificationcenter/1414151-addobserver_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">add<wbr data-v-dac213be="">Observer</wbr></span><span data-v-dac213be="" class="decorator">(Any, </span><span data-v-dac213be="" class="identifier">selector</span><span data-v-dac213be="" class="decorator">: Selector, </span><span data-v-dac213be="" class="identifier">name</span><span data-v-dac213be="" class="decorator">: NSNotification<wbr data-v-dac213be="">.Name?, </wbr></span><span data-v-dac213be="" class="identifier">object</span><span data-v-dac213be="" class="decorator">: String?)</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Adds an entry to the notification center's dispatch table with an observer, a selector, and an optional notification name and sender.</span><!--end_enstr-->
+<span class="jpstr">
+ある登録項目を通知センターのディスパッチテーブルに、オブザーバ、セレクタ、そして任意の通知名と送り手とともに加えます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/distributednotificationcenter/1414136-addobserver_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">add<wbr data-v-dac213be="">Observer</wbr></span><span data-v-dac213be="" class="decorator">(Any, </span><span data-v-dac213be="" class="identifier">selector</span><span data-v-dac213be="" class="decorator">: Selector, </span><span data-v-dac213be="" class="identifier">name</span><span data-v-dac213be="" class="decorator">: NSNotification<wbr data-v-dac213be="">.Name?, </wbr></span><span data-v-dac213be="" class="identifier">object</span><span data-v-dac213be="" class="decorator">: String?, </span><span data-v-dac213be="" class="identifier">suspension<wbr data-v-dac213be="">Behavior</wbr></span><span data-v-dac213be="" class="decorator">: Distributed<wbr data-v-dac213be="">Notification<wbr data-v-dac213be="">Center<wbr data-v-dac213be="">.Suspension<wbr data-v-dac213be="">Behavior)</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Adds an entry to the receiver’s dispatch table with a specific observer and suspended-notifications behavior, and optional notification name and sender.</span><!--end_enstr-->
+<span class="jpstr">
+ある登録項目をレシーバのディスパッチテーブルに、特定オブザーバと待機通知挙動、そして任意の通知名と送り手とともに加えます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/distributednotificationcenter/1416236-removeobserver_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">remove<wbr data-v-dac213be="">Observer</wbr></span><span data-v-dac213be="" class="decorator">(Any, </span><span data-v-dac213be="" class="identifier">name</span><span data-v-dac213be="" class="decorator">: NSNotification<wbr data-v-dac213be="">.Name?, </wbr></span><span data-v-dac213be="" class="identifier">object</span><span data-v-dac213be="" class="decorator">: String?)</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Removes matching entries from the receiver’s dispatch table.</span><!--end_enstr-->
+<span class="jpstr">
+合致する登録項目をレシーバのディスパッチテーブルから取り除きます。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Posting Notifications</span><!--end_enstr-->
+<span class="jpstr">
+通知を投函する
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/distributednotificationcenter/1410991-post_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">post</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">name</span><span data-v-dac213be="" class="decorator">: NSNotification<wbr data-v-dac213be="">.Name, </wbr></span><span data-v-dac213be="" class="identifier">object</span><span data-v-dac213be="" class="decorator">: String?)</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Creates a notification, and posts it to the receiver.</span><!--end_enstr-->
+<span class="jpstr">
+通知を作成して、それをレシーバに投函します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/distributednotificationcenter/1416995-post_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">post</span><span data-v-dac213be="" class="decorator">(</span><span data-v-dac213be="" class="identifier">name</span><span data-v-dac213be="" class="decorator">: NSNotification<wbr data-v-dac213be="">.Name, </wbr></span><span data-v-dac213be="" class="identifier">object</span><span data-v-dac213be="" class="decorator">: String?, </span><span data-v-dac213be="" class="identifier">user<wbr data-v-dac213be="">Info</wbr></span><span data-v-dac213be="" class="decorator">: [Any<wbr data-v-dac213be="">Hashable : Any]?)</wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Creates a notification with information, and posts it to the receiver.</span><!--end_enstr-->
+<span class="jpstr">
+通知を情報とともに作成します、そしてそれをレシーバに投函します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/distributednotificationcenter/1418360-postnotificationname_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">post<wbr data-v-dac213be="">Notification<wbr data-v-dac213be="">Name</wbr></wbr></span><span data-v-dac213be="" class="decorator">(NSNotification<wbr data-v-dac213be="">.Name, </wbr></span><span data-v-dac213be="" class="identifier">object</span><span data-v-dac213be="" class="decorator">: String?, </span><span data-v-dac213be="" class="identifier">user<wbr data-v-dac213be="">Info</wbr></span><span data-v-dac213be="" class="decorator">: [Any<wbr data-v-dac213be="">Hashable : Any]?, </wbr></span><span data-v-dac213be="" class="identifier">deliver<wbr data-v-dac213be="">Immediately</wbr></span><span data-v-dac213be="" class="decorator">: Bool)</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Creates a notification with information and an immediate-delivery specifier, and posts it to the receiver.</span><!--end_enstr-->
+<span class="jpstr">
+通知を情報および即時配達指定子とともに作成します、そしてそれをレシーバに投函します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/distributednotificationcenter/1417581-postnotificationname_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">func </span><span data-v-dac213be="" class="identifier">post<wbr data-v-dac213be="">Notification<wbr data-v-dac213be="">Name</wbr></wbr></span><span data-v-dac213be="" class="decorator">(NSNotification<wbr data-v-dac213be="">.Name, </wbr></span><span data-v-dac213be="" class="identifier">object</span><span data-v-dac213be="" class="decorator">: String?, </span><span data-v-dac213be="" class="identifier">user<wbr data-v-dac213be="">Info</wbr></span><span data-v-dac213be="" class="decorator">: [Any<wbr data-v-dac213be="">Hashable : Any]?, </wbr></span><span data-v-dac213be="" class="identifier">options</span><span data-v-dac213be="" class="decorator">: Distributed<wbr data-v-dac213be="">Notification<wbr data-v-dac213be="">Center<wbr data-v-dac213be="">.Options)</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Creates a notification with information, and posts it to the receiver.</span><!--end_enstr-->
+<span class="jpstr">
+通知を情報とともに作成します、そしてそれをレシーバに投函します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Suspending and Resuming Notification Delivery</span><!--end_enstr-->
+<span class="jpstr">
+通知配達の待機と再開
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/distributednotificationcenter/1407301-suspended_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">var </span><span data-v-dac213be="" class="identifier">suspended</span><span data-v-dac213be="" class="decorator">: Bool</span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">Suspends or resumes notification delivery.</span><!--end_enstr-->
+<span class="jpstr">
+通知配達を待機または再開します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" data-v-63527a60="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Constants</span><!--end_enstr-->
+<span class="jpstr">
+定数
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><!----><!----><!---->
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/distributednotificationcenter/options_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">struct </span><span data-v-dac213be="" class="identifier">Distributed<wbr data-v-dac213be="">Notification<wbr data-v-dac213be="">Center<wbr data-v-dac213be="">.Options</wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">These constants specify the behavior of notifications posted using the <a href="../../documentation/foundation/distributednotificationcenter/1417581-postnotificationname_language-objc.html" class=""><code data-v-7fb764c1="">post<wbr data-v-7fb764c1="">Notification<wbr data-v-7fb764c1="">Name(_:<wbr data-v-7fb764c1="">object:<wbr data-v-7fb764c1="">user<wbr data-v-7fb764c1="">Info:<wbr data-v-7fb764c1="">options:)</wbr></wbr></wbr></wbr></wbr></wbr></code></a> method.</span><!--end_enstr-->
+<span class="jpstr">
+これらの定数は、<a href="../../documentation/foundation/distributednotificationcenter/1417581-postnotificationname_language-objc.html" class=""><code data-v-7fb764c1="">post<wbr data-v-7fb764c1="">Notification<wbr data-v-7fb764c1="">Name(_:<wbr data-v-7fb764c1="">object:<wbr data-v-7fb764c1="">user<wbr data-v-7fb764c1="">Info:<wbr data-v-7fb764c1="">options:)</wbr></wbr></wbr></wbr></wbr></wbr></code></a>メソッドを使って投函される通知の挙動を指定します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/distributednotificationcenter/centertype_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">struct </span><span data-v-dac213be="" class="identifier">Distributed<wbr data-v-dac213be="">Notification<wbr data-v-dac213be="">Center<wbr data-v-dac213be="">.Center<wbr data-v-dac213be="">Type</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">This constant specifies the notification center type.</span><!--end_enstr-->
+<span class="jpstr">
+この定数は、通知センター型を指定します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+<div data-v-01f7f080="" data-v-63527a60="" class="link-block topic" data-v-9807b2e0=""><!---->
+<a data-v-01f7f080="" href="../../documentation/foundation/distributednotificationcenter/suspensionbehavior_language-objc.html" class="link has-adjacent-elements"><code data-v-dac213be="" data-v-01f7f080="" class="decorated-title"><span data-v-dac213be="" class="decorator">enum </span><span data-v-dac213be="" class="identifier">Distributed<wbr data-v-dac213be="">Notification<wbr data-v-dac213be="">Center<wbr data-v-dac213be="">.Suspension<wbr data-v-dac213be="">Behavior</wbr></wbr></wbr></wbr></span></code><!----></a><div data-v-01f7f080="" class="abstract">
+<div data-v-7ea0aa49="" data-v-01f7f080="" class="content"><span class="enstr">These constants specify the types of notification delivery suspension behaviors.</span><!--end_enstr-->
+<span class="jpstr">
+これらの定数は、通知配達待機挙動の型を指定します。
+</span><!--end_jpstr-->
+</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+</div><!----></section><section data-v-8c663d90="" data-v-2deaa168="" id="relationships" class="contenttable alt-light"><div data-v-8c663d90="" class="container">
+<h2 data-v-8c663d90="" class="title"><span class="enstr">Relationships</span><!--end_enstr-->
+<span class="jpstr">
+関係
+</span><!--end_jpstr-->
+</h2>
+<div data-v-0253ce0e="" data-v-3eae4961="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Inherits From</span><!--end_enstr-->
+<span class="jpstr">
+継承元
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><ul data-v-4af8f78e="" class="relationships-list inline" data-v-9807b2e0=""><li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/foundation/notificationcenter_language-objc.html" class="link"><code data-v-4af8f78e="">Notification<wbr data-v-4af8f78e="">Center</wbr></code></a><!---->
+</li></ul></div>
+</div>
+<div data-v-0253ce0e="" data-v-3eae4961="" class="row contenttable-section">
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-title large-3 medium-3 small-12" data-v-0253ce0e=""><h3 data-v-3eae4961="" data-v-9807b2e0="" class="title"><span class="enstr">Conforms To</span><!--end_enstr-->
+<span class="jpstr">
+次に準拠
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-9807b2e0="" data-v-3eae4961="" class="col section-content large-9 medium-9 small-12" data-v-0253ce0e=""><ul data-v-4af8f78e="" class="relationships-list inline" data-v-9807b2e0="">
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/cvararg_language-objc.html" class="link"><code data-v-4af8f78e="">CVar<wbr data-v-4af8f78e="">Arg</wbr></code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/equatable_language-objc.html" class="link"><code data-v-4af8f78e="">Equatable</code></a><!---->
+</li>
+<li data-v-4af8f78e="" class="relationships-item">
+<a data-v-4af8f78e="" href="../../documentation/swift/hashable_language-objc.html" class="link"><code data-v-4af8f78e="">Hashable</code></a><!---->
+</li>
+</ul></div>
+</div>
+</div><!----><!----></section></main>
+</div></div></div>
+<section id="globalfooter-wrapper"><footer id="globalfooter" role="contentinfo"><nav class="footer-breadory"><a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a><section class="breadcrumbs"><ol class="breadcrumbs-list"></ol></section><div id="directorynav" class="directorynav">
+<div id="dn-cola" class="column">
+<h3><a href="/discover/">Discover</a></h3>
+<ul>
+<li><a href="/ios/">iOS</a></li>
+<li><a href="/ipados/">iPadOS</a></li>
+<li><a href="/macos/">macOS</a></li>
+<li><a href="/tvos/">tvOS</a></li>
+<li><a href="/watchos/">watchOS</a></li>
+<li><a href="/safari/">Safari and Web</a></li>
+<li><a href="/games/">Games</a></li>
+<li><a href="/business/">Business</a></li>
+<li><a href="/education/">Education</a></li>
+<li><a href="/wwdc/">WWDC</a></li>
+</ul>
+</div>
+<div id="dn-colb" class="column">
+<h3><a href="/design/">Design</a></h3>
+<ul>
+<li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
+<li><a href="/design/resources/"><span class="enstr">Resources</span><!--end_enstr-->
+<span class="jpstr">
+リソース
+</span><!--end_jpstr-->
+</a></li>
+<li><a href="/videos/design/">Videos</a></li>
+<li><a href="/design/awards/">Apple Design Awards</a></li>
+<li><a href="/fonts/">Fonts</a></li>
+<li><a href="/accessibility/">Accessibility</a></li>
+<li><a href="/localization/"><span class="enstr">Localization</span><!--end_enstr-->
+<span class="jpstr">
+ローカライゼーション
+</span><!--end_jpstr-->
+</a></li>
+<li><a href="/accessories/">Accessories</a></li>
+</ul>
+</div>
+<div id="dn-colc" class="column">
+<h3><a href="/develop/">Develop</a></h3>
+<ul>
+<li><a href="/xcode/">Xcode</a></li>
+<li><a href="/swift/">Swift</a></li>
+<li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
+<li><a href="/testflight/">TestFlight</a></li>
+<li><a href="https://developer.apple.com/documentation/">Documentation</a></li>
+<li><a href="/videos/">Videos</a></li>
+<li><a href="/download/">Downloads</a></li>
+</ul>
+</div>
+<div id="dn-cold" class="column">
+<h3><a href="/distribute/">Distribute</a></h3>
+<ul>
+<li><a href="/programs/">Developer Program</a></li>
+<li><a href="/app-store/">App Store</a></li>
+<li><a href="/app-store/review/">App Review</a></li>
+<li><a href="/macos/distribution/">Mac Software</a></li>
+<li><a href="/business/distribute/">Apps for Business</a></li>
+<li><a href="/safari/extensions/">Safari Extensions</a></li>
+<li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
+<li><a href="/softwarelicensing/">Trademark Licensing</a></li>
+</ul>
+</div>
+<div id="dn-cole" class="column">
+<h3><a href="/support/">Support</a></h3>
+<ul>
+<li><a href="/support/articles/">Articles</a></li>
+<li><a href="/forums/">Developer Forums</a></li>
+<li><a href="/bug-reporting/">Feedback &amp; Bug Reporting</a></li>
+<li><a href="/system-status/">System Status</a></li>
+<li><a href="/contact/">Contact Us</a></li>
+</ul>
+<h3><a href="/account/">Account</a></h3>
+<ul>
+<li><a href="/account/ios/certificate/">Certificates, Identifiers &amp; Profiles</a></li>
+<li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
+</ul>
+</div>
+</div></nav><div class="ac-gf-footer-legal">
+<div class="ac-gf-footer-news">To view the latest developer news, visit <a href="/news/">News and Updates</a>.</div>
+<div class="ac-gf-footer-language-dropdown-wrapper">
+<select id="footer-language-selector" class="footer-language-select" aria-label="Language Dropdown" autocomplete="off"><option value="https://developer.apple.com/" selected>English</option>
+<option value="https://developer.apple.com/cn/">简体中文</option>
+<option value="https://developer.apple.com/jp/">日本語</option>
+<option value="https://developer.apple.com/kr/">한국어</option></select> <span class="footer-language-select-icon icon icon-chevrondown" aria-hidden="true"></span>
+</div>
+<div class="ac-gf-footer-legal-copyright">Copyright © <span class="footer-current-year">2020</span> <a href="https://www.apple.com">Apple Inc.</a> All rights reserved.</div>
+<div class="ac-gf-footer-legal-links">
+<a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a> <a href="https://www.apple.com/privacy/privacy-policy/">Privacy Policy</a> <a href="/terms/">License Agreements</a>
+</div>
+</div></footer></section><script src="../../tutorials/js/footer.js"></script>
+</body>
+</html>

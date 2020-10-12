@@ -10,7 +10,7 @@
     <meta name="author" content="Apple Inc." />
     <meta name="viewport" content="width=device-width initial-scale=1" />
     
-    <title>Collection Types — The Swift Programming Language (Swift 5.2)</title>
+    <title>Collection Types — The Swift Programming Language (Swift 5.3)</title>
     
     <link rel="license" href="/LICENSE.txt" />
     <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
@@ -41,7 +41,7 @@
 
     <div id="menu-toggle" class="menu-toggle open"></div>
 
-    <h2>The Swift Programming Language<div>Swift 5.2</div></h2>
+    <h2>The Swift Programming Language<div>Swift 5.3</div></h2>
 
     <ul>
     <ul class="current">
@@ -804,9 +804,9 @@ FoundationとCocoaとともに<code class="docutils literal notranslate"><span c
 Set型のためのハッシュ値<a class="headerlink" href="#ID493" title="Permalink to this headline">¶</a>
 </span><!--end_jpstr-->
 </h3>
-<p><span class="enstr">A type must be <em>hashable</em> in order to be stored in a set—that is, the type must provide a way to compute a <em>hash value</em> for itself. A hash value is an <code class="docutils literal notranslate"><span class="pre">Int</span></code> value that is the same for all objects that compare equally, such that if <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">==</span> <span class="pre">b</span></code>, it follows that <code class="docutils literal notranslate"><span class="pre">a.hashValue</span> <span class="pre">==</span> <span class="pre">b.hashValue</span></code>.</span><!--end_enstr-->
+<p><span class="enstr">A type must be <em>hashable</em> in order to be stored in a set—that is, the type must provide a way to compute a <em>hash value</em> for itself. A hash value is an <code class="docutils literal notranslate"><span class="pre">Int</span></code> value that is the same for all objects that compare equally, such that if <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">==</span> <span class="pre">b</span></code>, the hash value of <code class="docutils literal notranslate"><span class="pre">a</span></code> is equal to the hash value of <code class="docutils literal notranslate"><span class="pre">b</span></code>.</span><!--end_enstr-->
 <span class="jpstr">
-ある型は、集合のキー型として使われるために<em>ハッシュ化される</em>必要があります ― すなわち、その型はそれ自身で<em>ハッシュ値</em>を計算するためのある方法を提供しなければなりません。あるハッシュ値はあるひとつの<code class="docutils literal notranslate"><span class="pre">Int</span></code>値です、それは同等とみなされるすべてのオブジェクトに対して同じものです、たとえば<code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">==</span> <span class="pre">b</span></code>のように、それは<code class="docutils literal notranslate"><span class="pre">a.hashValue</span> <span class="pre">==</span> <span class="pre">b.hashValue</span></code>で導き出されます。
+ある型は、集合のキー型として使われるために<em>ハッシュ化される</em>必要があります ― すなわち、その型はそれ自身で<em>ハッシュ値</em>を計算するためのある方法を提供しなければなりません。あるハッシュ値はあるひとつの<code class="docutils literal notranslate"><span class="pre">Int</span></code>値です、それは同等とみなされる全てのオブジェクトに対して同じものです、たとえば<code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">==</span> <span class="pre">b</span></code>ならば、<code class="docutils literal notranslate"><span class="pre">a</span></code>のハッシュ値は<code class="docutils literal notranslate"><span class="pre">b</span></code>のハッシュ値に等しいです。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">All of Swift’s basic types (such as <code class="docutils literal notranslate"><span class="pre">String</span></code>, <code class="docutils literal notranslate"><span class="pre">Int</span></code>, <code class="docutils literal notranslate"><span class="pre">Double</span></code>, and <code class="docutils literal notranslate"><span class="pre">Bool</span></code>) are hashable by default, and can be used as set value types or dictionary key types. Enumeration case values without associated values (as described in <a class="reference internal" href="Enumerations.html"><span class="doc">Enumerations</span></a>) are also hashable by default.</span><!--end_enstr-->
@@ -820,32 +820,9 @@ Set型のためのハッシュ値<a class="headerlink" href="#ID493" title="Perm
 注意
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">You can use your own custom types as set value types or dictionary key types by making them conform to the <code class="docutils literal notranslate"><span class="pre">Hashable</span></code> protocol from Swift’s standard library. Types that conform to the <code class="docutils literal notranslate"><span class="pre">Hashable</span></code> protocol must provide a gettable <code class="docutils literal notranslate"><span class="pre">Int</span></code> property called <code class="docutils literal notranslate"><span class="pre">hashValue</span></code>. The value returned by a type’s <code class="docutils literal notranslate"><span class="pre">hashValue</span></code> property is not required to be the same across different executions of the same program, or in different programs.</span><!--end_enstr-->
+<p class="last"><span class="enstr">You can use your own custom types as set value types or dictionary key types by making them conform to the <code class="docutils literal notranslate"><span class="pre">Hashable</span></code> protocol from the Swift standard library. For information about implementing the required <code class="docutils literal notranslate"><span class="pre">hash(into:)</span></code> method, see <a class="reference external" href="../../../developer.apple.com/documentation/swift/hashable.html"><code class="docutils literal notranslate"><span class="pre">Hashable</span></code></a>. For information about conforming to protocols, see <a class="reference internal" href="Protocols.html"><span class="doc">Protocols</span></a>.</span><!--end_enstr-->
 <span class="jpstr">
-あなたは、あなた独自のあつらえの型を集合の値型または辞書のキー型として使用することが、それらをスウィフトの標準ライブラリからの<code class="docutils literal notranslate"><span class="pre">Hashable</span></code>プロトコルに適合させることで可能です。<code class="docutils literal notranslate"><span class="pre">Hashable</span></code>プロトコルに適合する型は、取得可能な<code class="docutils literal notranslate"><span class="pre">Int</span></code>プロパティ、<code class="docutils literal notranslate"><span class="pre">hashValue</span></code>と呼ばれるものを提供しなければなりません。ある型の<code class="docutils literal notranslate"><span class="pre">hashValue</span></code>プロパティによって返される値は、同じプログラムの、または異なるプログラムでの、異なる実行にまたがって同じであることを要求されません。
-</span><!--end_jpstr-->
-</p>
-<p><span class="enstr">Because the <code class="docutils literal notranslate"><span class="pre">Hashable</span></code> protocol conforms to <code class="docutils literal notranslate"><span class="pre">Equatable</span></code>, conforming types must also provide an implementation of the equals operator (<code class="docutils literal notranslate"><span class="pre">==</span></code>). The <code class="docutils literal notranslate"><span class="pre">Equatable</span></code> protocol requires any conforming implementation of <code class="docutils literal notranslate"><span class="pre">==</span></code> to be an equivalence relation. That is, an implementation of <code class="docutils literal notranslate"><span class="pre">==</span></code> must satisfy the following three conditions, for all values <code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span></code>, and <code class="docutils literal notranslate"><span class="pre">c</span></code>:</span><!--end_enstr-->
-<span class="jpstr">
-<code class="docutils literal notranslate"><span class="pre">Hashable</span></code>プロトコルが<code class="docutils literal notranslate"><span class="pre">Equatable</span></code>に準拠することから、準拠する型はまた同等演算子（<code class="docutils literal notranslate"><span class="pre">==</span></code>）のあるひとつの実装を提供しなければなりません。<code class="docutils literal notranslate"><span class="pre">Equatable</span></code>プロトコルは、<code class="docutils literal notranslate"><span class="pre">==</span></code>のどんな準拠実装もひとつの同等性関係であることを要求します。すなわち、<code class="docutils literal notranslate"><span class="pre">==</span></code>の実装は、以下の３つの条件を<code class="docutils literal notranslate"><span class="pre">a</span></code>、<code class="docutils literal notranslate"><span class="pre">b</span></code>、および<code class="docutils literal notranslate"><span class="pre">c</span></code>すべての値に対して満足させなければなりません。
-</span><!--end_jpstr-->
-</p>
-<ul class="simple">
-<li><span class="enstr"><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">==</span> <span class="pre">a</span></code> (Reflexivity)</span><!--end_enstr-->
-<span class="jpstr">
-<code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">==</span> <span class="pre">a</span></code>（反射性）
-</span><!--end_jpstr-->
-</li>
-<li><span class="enstr"><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">==</span> <span class="pre">b</span></code> implies <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">==</span> <span class="pre">a</span></code> (Symmetry)</span><!--end_enstr-->
-<span class="jpstr">
-<code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">==</span> <span class="pre">b</span></code>が<code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">==</span> <span class="pre">a</span></code>を意味する（対称性）
-</span><!--end_jpstr-->
-</li>
-<li><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">==</span> <span class="pre">b</span> <span class="pre">&amp;&amp;</span> <span class="pre">b</span> <span class="pre">==</span> <span class="pre">c</span></code> implies <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">==</span> <span class="pre">c</span></code> (Transitivity)</li>
-</ul>
-<p class="last"><span class="enstr">For more information about conforming to protocols, see <a class="reference internal" href="Protocols.html"><span class="doc">Protocols</span></a>.</span><!--end_enstr-->
-<span class="jpstr">
-プロトコルに準拠することについての更なる情報は、<a class="reference internal" href="Protocols.html"><span class="doc">プロトコル</span></a>を見てください。
+あなたは、あなた独自のあつらえの型を集合の値型または辞書のキー型として使用することが、それらをSwift標準ライブラリからの<code class="docutils literal notranslate"><span class="pre">Hashable</span></code>プロトコルに適合させることで可能です。必須<code class="docutils literal notranslate"><span class="pre">hash(into:)</span></code>メソッドを実装することについての情報として、<a class="reference external" href="../../../developer.apple.com/documentation/swift/hashable.html"><code class="docutils literal notranslate"><span class="pre">Hashable</span></code></a>を見てください。プロトコルに準拠することについての情報として、<a class="reference internal" href="Protocols.html"><span class="doc">Protocols</span></a>を見てください。
 </span><!--end_jpstr-->
 </p>
 </div>
