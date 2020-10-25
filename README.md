@@ -4,8 +4,8 @@
 
 * [Framework SwiftUI 2020.10.9 途中 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com/documentation/swiftui.html)
 
-* [Framework Foundation（Swift）2020.10.9 途中 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com/documentation/foundation.html)
-* [Framework Foundation（ObjC）2020.10.9 途中 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com2/documentation/foundation_language-objc.html)
+* [Framework Foundation（Swift）2020.10.9 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com/documentation/foundation.html)
+* [Framework Foundation（ObjC）2020.10.9 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com2/documentation/foundation_language-objc.html)
 
 * [Framework Objective-C Runtime (Swift) 2020.10.9 途中 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com/documentation/objectivec.html)
 * [Framework Objective-C Runtime (ObjC) 2020.10.9 途中 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com2/documentation/objectivec_language-objc.html)
