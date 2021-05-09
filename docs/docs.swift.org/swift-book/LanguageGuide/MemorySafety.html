@@ -13,8 +13,8 @@
     <title>Memory Safety — The Swift Programming Language (Swift 5.4)</title>
     
     <link rel="license" href="/LICENSE.txt" />
-    <link rel="stylesheet" media="all" href="../_static/stylesheets/application.css" />
-    <link rel="stylesheet" media="all" href="../_static/stylesheets/tspl.css" />
+    <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
+    <link rel="stylesheet" media="all" href="../static/stylesheets/tspl.css" />
     <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
@@ -308,7 +308,7 @@ in-outパラメータに対するアクセスの衝突
 あなたは、一片の紙に書かれる予算案を更新する方法について考えることによって、同種の問題を調べられます。予算案の更新は２段階の処理です：最初にあなたはその項目の名前と値段を加えます、それからあなたは総支出額を変更してそれら項目の現在をリスト上に反映します。更新の前後で、あなたはあらゆる情報を予算案から読み出して正しい答えを得ることができます、下の図で示すように。
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/memory_shopping_2x.png" class="align-center" src="../_images/memory_shopping_2x.png" style="width: 430px;" />
+<img alt="../_images/memory_shopping_2x.png" class="align-center" src="../images/memory_shopping_2x.png" style="width: 430px;" />
 <p><span class="enstr">While you’re adding items to the budget, it’s in a temporary, invalid state because the total amount hasn’t been updated to reflect the newly added items. Reading the total amount during the process of adding an item gives you incorrect information.</span><!--end_enstr-->
 <span class="jpstr">
 あなたが項目を予算案に加えている間、それは一時的な、無効な状態にあります、なぜなら総支出額は新しく追加された項目を反映するよう更新されていないからです。ある項目を追加する処理の間に総支出額を読み出すことは、あなたに正しくない情報を与えます。
@@ -430,7 +430,7 @@ in-outパラメータに対するアクセスの衝突<a class="headerlink" href
 上のコードにおいて、<code class="docutils literal notranslate"><span class="pre">stepSize</span></code>はグローバル変数です、そしてそれは通常は<code class="docutils literal notranslate"><span class="pre">increment(_:)</span></code>内部からアクセス可能です。しかしながら、<code class="docutils literal notranslate"><span class="pre">stepSize</span></code>に対する読み出しアクセスは<code class="docutils literal notranslate"><span class="pre">number</span></code>に対する書き込みアクセスとオーバーラップします（重なります）。下の図で示すように、<code class="docutils literal notranslate"><span class="pre">number</span></code>と<code class="docutils literal notranslate"><span class="pre">stepSize</span></code>の両方ともメモリ中の同じ位置を参照します。読み出しと書き込みアクセスは同じメモリを参照してそれらはオーバーラッブして、衝突を生み出しています。
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/memory_increment_2x.png" class="align-center" src="../_images/memory_increment_2x.png" style="width: 384px;" />
+<img alt="../_images/memory_increment_2x.png" class="align-center" src="../images/memory_increment_2x.png" style="width: 384px;" />
 <p><span class="enstr">One way to solve this conflict is to make an explicit copy of <code class="docutils literal notranslate"><span class="pre">stepSize</span></code>:</span><!--end_enstr-->
 <span class="jpstr">
 この衝突を解決する１つの方法は、明示的に<code class="docutils literal notranslate"><span class="pre">stepSize</span></code>のコピーを作ることです：
@@ -525,7 +525,7 @@ in-outパラメータに対する長期書き込みアクセスの別の帰着�
 上の例において、<code class="docutils literal notranslate"><span class="pre">shareHealth(with:)</span></code>メソッドをOscarのプレイヤーに対して呼びだしてMariaのプレイヤーと体力を共有することは、衝突を引き起こしません。<code class="docutils literal notranslate"><span class="pre">oscar</span></code>への書き込みアクセスがメソッド呼び出しの間にあります、なぜなら<code class="docutils literal notranslate"><span class="pre">oscar</span></code>は変更メソッドの中の<code class="docutils literal notranslate"><span class="pre">self</span></code>の値であるからです、そして<code class="docutils literal notranslate"><span class="pre">maria</span></code>への書き込みアクセスが同じ期間にあります、なぜなら<code class="docutils literal notranslate"><span class="pre">maria</span></code>がin-outパラメータとして渡されたからです。下の図で示すように、それらはメモリ中の異なる位置を参照します。たとえ２つの書き込みアクセスが時間内にオーバーラップしても、それらは衝突しません。
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/memory_share_health_maria_2x.png" class="align-center" src="../_images/memory_share_health_maria_2x.png" style="width: 506px;" />
+<img alt="../_images/memory_share_health_maria_2x.png" class="align-center" src="../images/memory_share_health_maria_2x.png" style="width: 506px;" />
 <p><span class="enstr">However, if you pass <code class="docutils literal notranslate"><span class="pre">oscar</span></code> as the argument to <code class="docutils literal notranslate"><span class="pre">shareHealth(with:)</span></code>, there’s a conflict:</span><!--end_enstr-->
 <span class="jpstr">
 しかしながら、あなたが<code class="docutils literal notranslate"><span class="pre">oscar</span></code>を引数として<code class="docutils literal notranslate"><span class="pre">shareHealth(with:)</span></code>に渡すならば、衝突が存在します。
@@ -539,7 +539,7 @@ in-outパラメータに対する長期書き込みアクセスの別の帰着�
 変更メソッドは、<code class="docutils literal notranslate"><span class="pre">self</span></code>に対する書き込みアクセスをメソッドの期間中に必要とします、そしてin-outパラメータは<code class="docutils literal notranslate"><span class="pre">teammate</span></code>に対する書き込みアクセスを同じ期間に必要とします。メソッド内部で、<code class="docutils literal notranslate"><span class="pre">self</span></code>および<code class="docutils literal notranslate"><span class="pre">teammate</span></code>の両方がメモリ中の同じ位置を参照します — 下の図で示すように。２つの書き込みアクセスは同じメモリを参照してそれらはオーバーラッブして、衝突を生み出しています。
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/memory_share_health_oscar_2x.png" class="align-center" src="../_images/memory_share_health_oscar_2x.png" style="width: 506px;" />
+<img alt="../_images/memory_share_health_oscar_2x.png" class="align-center" src="../images/memory_share_health_oscar_2x.png" style="width: 506px;" />
 </div>
 <div class="section" id="ID571">
 <h2><span class="enstr">Conflicting Access to Properties<a class="headerlink" href="#ID571" title="Permalink to this headline">¶</a></span><!--end_enstr-->
@@ -645,6 +645,6 @@ in-outパラメータに対する長期書き込みアクセスの別の帰着�
   </p>
 </footer>
 <div id="jump_to_overlay"></div>
-<script src="../_static/javascripts/application.js"></script>
+<script src="../static/javascripts/application.js"></script>
   </body>
 </html>
