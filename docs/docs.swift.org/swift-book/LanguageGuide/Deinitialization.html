@@ -10,11 +10,11 @@
     <meta name="author" content="Apple Inc." />
     <meta name="viewport" content="width=device-width initial-scale=1" />
     
-    <title>Deinitialization — The Swift Programming Language (Swift 5.3)</title>
+    <title>Deinitialization — The Swift Programming Language (Swift 5.4)</title>
     
     <link rel="license" href="/LICENSE.txt" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/tspl.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/application.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/tspl.css" />
     <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
@@ -41,7 +41,7 @@
 
     <div id="menu-toggle" class="menu-toggle open"></div>
 
-    <h2>The Swift Programming Language<div>Swift 5.3</div></h2>
+    <h2>The Swift Programming Language<div>Swift 5.4</div></h2>
 
     <ul>
     <ul class="current">
@@ -265,12 +265,12 @@
 デイニシャライズはどのように働くか<a class="headerlink" href="#ID143" title="Permalink to this headline">¶</a>
 </span><!--end_jpstr-->
 </h2>
-<p><span class="enstr">Swift automatically deallocates your instances when they are no longer needed, to free up resources. Swift handles the memory management of instances through <em>automatic reference counting</em> (<em>ARC</em>), as described in <a class="reference internal" href="AutomaticReferenceCounting.html"><span class="doc">Automatic Reference Counting</span></a>. Typically you don’t need to perform manual cleanup when your instances are deallocated. However, when you are working with your own resources, you might need to perform some additional cleanup yourself. For example, if you create a custom class to open a file and write some data to it, you might need to close the file before the class instance is deallocated.</span><!--end_enstr-->
+<p><span class="enstr">Swift automatically deallocates your instances when they’re no longer needed, to free up resources. Swift handles the memory management of instances through <em>automatic reference counting</em> (<em>ARC</em>), as described in <a class="reference internal" href="AutomaticReferenceCounting.html"><span class="doc">Automatic Reference Counting</span></a>. Typically you don’t need to perform manual cleanup when your instances are deallocated. However, when you are working with your own resources, you might need to perform some additional cleanup yourself. For example, if you create a custom class to open a file and write some data to it, you might need to close the file before the class instance is deallocated.</span><!--end_enstr-->
 <span class="jpstr">
 スウィフトは自動的に、それらがもはや必要とされない場合はあなたのインスタンスを割り当て解除して、資源を自由に使えるようにします。スウィフトは、<a class="reference internal" href="AutomaticReferenceCounting.html"><span class="doc">自動参照カウント</span></a>で記述されるように、インスタンスのメモリ管理を<em>自動参照カウント</em>（<em>ARC</em>）を通して取り扱います。概して、あなたのインスタンスが割り当て解除されるとき、あなたが手動で掃除をする必要がありません。しかし、あなたがあなた独自のリソース（計算資源）を扱うとき、あなたは追加のいくらかの掃除をあなた自身でする必要があるかもしれません。例えば、あなたがファイルを開いてそれに何かのデータを書くあつらえのクラスを作成するならば、クラスインスタンスが割り当て解除される前に、あなたはファイルを閉じる必要があるでしょう。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">Class definitions can have at most one deinitializer per class. The deinitializer does not take any parameters and is written without parentheses:</span><!--end_enstr-->
+<p><span class="enstr">Class definitions can have at most one deinitializer per class. The deinitializer doesn’t take any parameters and is written without parentheses:</span><!--end_enstr-->
 <span class="jpstr">
 クラス定義は、クラスごとに多くとも１つのデイニシャライザしか持つことができません。デイニシャライザは、まったくパラメータを取りません、したがって丸括弧なしで書かれます：
 </span><!--end_jpstr-->
@@ -279,12 +279,12 @@
 </li><li>    <span class="c"><span class="enstr">// perform the deinitialization</span><!--end_enstr--><span class="jpstr">（デイニシャライズを実行する）</span><!--end_jpstr--></span>
 </li><li>}
 </li></ol></div></div></div>
-<p><span class="enstr">Deinitializers are called automatically, just before instance deallocation takes place. You are not allowed to call a deinitializer yourself. Superclass deinitializers are inherited by their subclasses, and the superclass deinitializer is called automatically at the end of a subclass deinitializer implementation. Superclass deinitializers are always called, even if a subclass does not provide its own deinitializer.</span><!--end_enstr-->
+<p><span class="enstr">Deinitializers are called automatically, just before instance deallocation takes place. You aren’t allowed to call a deinitializer yourself. Superclass deinitializers are inherited by their subclasses, and the superclass deinitializer is called automatically at the end of a subclass deinitializer implementation. Superclass deinitializers are always called, even if a subclass doesn’t provide its own deinitializer.</span><!--end_enstr-->
 <span class="jpstr">
 デイニシャライザは、インスタンスの割り当て解除が起こる直前に、自動的に呼ばれます。あなたは、デイニシャライザをあなた自身で呼び出すことは許されません。スーパークラスのデイニシャライザは、それらのサブクラスたちによって継承されます、そして、スーパークラスのデイニシャライザはサブクラスのデイニシャライザ実施の終わりに自動的に呼ばれます。スーパークラスのデイニシャライザは、たとえサブクラスがそれ自身のデイニシャライザを提供しないとしても、常に呼ばれます。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">Because an instance is not deallocated until after its deinitializer is called, a deinitializer can access all properties of the instance it is called on and can modify its behavior based on those properties (such as looking up the name of a file that needs to be closed).</span><!--end_enstr-->
+<p><span class="enstr">Because an instance isn’t deallocated until after its deinitializer is called, a deinitializer can access all properties of the instance it’s called on and can modify its behavior based on those properties (such as looking up the name of a file that needs to be closed).</span><!--end_enstr-->
 <span class="jpstr">
 インスタンスはそれのデイニシャライザが呼ばれる後までは割り当て解除されないので、デイニシャライザはそれが呼ばれるところのインスタンスの全てのプロパティにアクセスすることができて、それらのプロパティに基づいてその挙動を修正することができます（たとえば閉じられる必要があるファイルの名前を調べることなど）。
 </span><!--end_jpstr-->
@@ -318,7 +318,7 @@
 <code class="docutils literal notranslate"><span class="pre">Bank</span></code>は、それがその<code class="docutils literal notranslate"><span class="pre">coinsInBank</span></code>プロパティで保持するコインの現在の数の情報を得続けます。それはまた、２つのメソッド ― <code class="docutils literal notranslate"><span class="pre">distribute(coins:)</span></code>と<code class="docutils literal notranslate"><span class="pre">receive(coins:)</span></code>— ― を提供して、コインの配布と回収を取り扱います。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">The <code class="docutils literal notranslate"><span class="pre">distribute(coins:)</span></code> method checks that there are enough coins in the bank before distributing them. If there are not enough coins, <code class="docutils literal notranslate"><span class="pre">Bank</span></code> returns a smaller number than the number that was requested (and returns zero if no coins are left in the bank). It returns an integer value to indicate the actual number of coins that were provided.</span><!--end_enstr-->
+<p><span class="enstr">The <code class="docutils literal notranslate"><span class="pre">distribute(coins:)</span></code> method checks that there are enough coins in the bank before distributing them. If there aren’t enough coins, <code class="docutils literal notranslate"><span class="pre">Bank</span></code> returns a smaller number than the number that was requested (and returns zero if no coins are left in the bank). It returns an integer value to indicate the actual number of coins that were provided.</span><!--end_enstr-->
 <span class="jpstr">
 <code class="docutils literal notranslate"><span class="pre">distribute(coins:)</span></code>メソッドは、十分なコインがそれらを配布する前に胴元にあることを確認します。十分なコインがないならば、<code class="docutils literal notranslate"><span class="pre">Bank</span></code>は要請された数より少ない数を返します（そしてコインが胴元に残っていないならばゼロを返します）。それは、提供されたコインの実際の数を示す整数値を返します。
 </span><!--end_jpstr-->
@@ -362,12 +362,12 @@
 </li><li><span class="nv">print</span>(<span class="s">"There are now </span>\<span class="p">(</span><span class="nv">Bank</span>.<span class="nv">coinsInBank</span><span class="p">)</span><span class="s"> coins left in the bank"</span>)
 </li><li><span class="c"><span class="enstr">// Prints "There are now 9900 coins left in the bank"</span><!--end_enstr--><span class="jpstr">（「現在9900個のコインが胴元に残されます」を出力します）</span><!--end_jpstr--></span>
 </li></ol></div></div></div>
-<p><span class="enstr">A new <code class="docutils literal notranslate"><span class="pre">Player</span></code> instance is created, with a request for 100 coins if they are available. This <code class="docutils literal notranslate"><span class="pre">Player</span></code> instance is stored in an optional <code class="docutils literal notranslate"><span class="pre">Player</span></code> variable called <code class="docutils literal notranslate"><span class="pre">playerOne</span></code>. An optional variable is used here, because players can leave the game at any point. The optional lets you track whether there’s currently a player in the game.</span><!--end_enstr-->
+<p><span class="enstr">A new <code class="docutils literal notranslate"><span class="pre">Player</span></code> instance is created, with a request for 100 coins if they’re available. This <code class="docutils literal notranslate"><span class="pre">Player</span></code> instance is stored in an optional <code class="docutils literal notranslate"><span class="pre">Player</span></code> variable called <code class="docutils literal notranslate"><span class="pre">playerOne</span></code>. An optional variable is used here, because players can leave the game at any point. The optional lets you track whether there’s currently a player in the game.</span><!--end_enstr-->
 <span class="jpstr">
 新しい<code class="docutils literal notranslate"><span class="pre">Player</span></code>インスタンスが、それが可能ならば100のコインを要請して作成されます。この<code class="docutils literal notranslate"><span class="pre">Player</span></code>インスタンスは、<code class="docutils literal notranslate"><span class="pre">playerOne</span></code>と呼ばれるオプショナルの<code class="docutils literal notranslate"><span class="pre">Player</span></code>変数に格納されます。オプショナルの変数がここで使われます、なぜなら、プレーヤーはどの時点でもゲームから離れることができるからです。オプショナルは、プレーヤーが現在ゲーム中かどうかあなたに追跡させます。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">Because <code class="docutils literal notranslate"><span class="pre">playerOne</span></code> is an optional, it is qualified with an exclamation point (<code class="docutils literal notranslate"><span class="pre">!</span></code>) when its <code class="docutils literal notranslate"><span class="pre">coinsInPurse</span></code> property is accessed to print its default number of coins, and whenever its <code class="docutils literal notranslate"><span class="pre">win(coins:)</span></code> method is called:</span><!--end_enstr-->
+<p><span class="enstr">Because <code class="docutils literal notranslate"><span class="pre">playerOne</span></code> is an optional, it’s qualified with an exclamation point (<code class="docutils literal notranslate"><span class="pre">!</span></code>) when its <code class="docutils literal notranslate"><span class="pre">coinsInPurse</span></code> property is accessed to print its default number of coins, and whenever its <code class="docutils literal notranslate"><span class="pre">win(coins:)</span></code> method is called:</span><!--end_enstr-->
 <span class="jpstr">
 <code class="docutils literal notranslate"><span class="pre">playerOne</span></code>がオプショナルであることから、それは感嘆符（<code class="docutils literal notranslate"><span class="pre">!</span></code>）で修飾されます、それのもつ<code class="docutils literal notranslate"><span class="pre">coinsInPurse</span></code>プロパティがその省略時のコイン数を出力するためにアクセスされる時に、そして何時でもそれの<code class="docutils literal notranslate"><span class="pre">win(coins:)</span></code>メソッドが呼ばれる時に：
 </span><!--end_jpstr-->
@@ -389,7 +389,7 @@
 </li><li><span class="nv">print</span>(<span class="s">"The bank now has </span>\<span class="p">(</span><span class="nv">Bank</span>.<span class="nv">coinsInBank</span><span class="p">)</span><span class="s"> coins"</span>)
 </li><li><span class="c"><span class="enstr">// Prints "The bank now has 10000 coins"</span><!--end_enstr--><span class="jpstr">（「胴元には現在10000コインがあります」を出力します）</span><!--end_jpstr--></span>
 </li></ol></div></div></div>
-<p><span class="enstr">The player has now left the game. This is indicated by setting the optional <code class="docutils literal notranslate"><span class="pre">playerOne</span></code> variable to <code class="docutils literal notranslate"><span class="pre">nil</span></code>, meaning “no <code class="docutils literal notranslate"><span class="pre">Player</span></code> instance.” At the point that this happens, the <code class="docutils literal notranslate"><span class="pre">playerOne</span></code> variable’s reference to the <code class="docutils literal notranslate"><span class="pre">Player</span></code> instance is broken. No other properties or variables are still referring to the <code class="docutils literal notranslate"><span class="pre">Player</span></code> instance, and so it is deallocated in order to free up its memory. Just before this happens, its deinitializer is called automatically, and its coins are returned to the bank.</span><!--end_enstr-->
+<p><span class="enstr">The player has now left the game. This is indicated by setting the optional <code class="docutils literal notranslate"><span class="pre">playerOne</span></code> variable to <code class="docutils literal notranslate"><span class="pre">nil</span></code>, meaning “no <code class="docutils literal notranslate"><span class="pre">Player</span></code> instance.” At the point that this happens, the <code class="docutils literal notranslate"><span class="pre">playerOne</span></code> variable’s reference to the <code class="docutils literal notranslate"><span class="pre">Player</span></code> instance is broken. No other properties or variables are still referring to the <code class="docutils literal notranslate"><span class="pre">Player</span></code> instance, and so it’s deallocated in order to free up its memory. Just before this happens, its deinitializer is called automatically, and its coins are returned to the bank.</span><!--end_enstr-->
 <span class="jpstr">
 プレーヤーは、現在ゲームから離れました。これはオプショナルの<code class="docutils literal notranslate"><span class="pre">playerOne</span></code>変数に、「<code class="docutils literal notranslate"><span class="pre">Player</span></code>インスタンスがない」ことを意味する、<code class="docutils literal notranslate"><span class="pre">nil</span></code>を設定することによって示されます。これが起こる時点で、<code class="docutils literal notranslate"><span class="pre">playerOne</span></code>変数のもつ<code class="docutils literal notranslate"><span class="pre">Player</span></code>インスタンスへの参照は壊れています。他のいかなるプロパティまたは変数も、もはや<code class="docutils literal notranslate"><span class="pre">Player</span></code>インスタンスに言及していません、なのでそれは、それのもつメモリを開放するために順次割り当て解除されます。これが起こる直前に、そのデイニシャライザは自動的に呼ばれます、そしてそのコインは胴元に返されます。
 </span><!--end_jpstr-->
@@ -420,7 +420,7 @@
     <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter">Twitter</i></a>
   </aside>
 
-  <p class="copyright">Copyright © 2020 Apple Inc. All rights reserved.</p>
+  <p class="copyright">Copyright © 2021 Apple Inc. All rights reserved.</p>
   <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
   <p class="privacy">
     <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
@@ -428,6 +428,6 @@
   </p>
 </footer>
 <div id="jump_to_overlay"></div>
-<script src="../static/javascripts/application.js"></script>
+<script src="../_static/javascripts/application.js"></script>
   </body>
 </html>

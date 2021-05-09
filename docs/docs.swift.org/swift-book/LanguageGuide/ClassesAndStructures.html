@@ -10,11 +10,11 @@
     <meta name="author" content="Apple Inc." />
     <meta name="viewport" content="width=device-width initial-scale=1" />
     
-    <title>Structures and Classes — The Swift Programming Language (Swift 5.3)</title>
+    <title>Structures and Classes — The Swift Programming Language (Swift 5.4)</title>
     
     <link rel="license" href="/LICENSE.txt" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/tspl.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/application.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/tspl.css" />
     <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
@@ -41,7 +41,7 @@
 
     <div id="menu-toggle" class="menu-toggle open"></div>
 
-    <h2>The Swift Programming Language<div>Swift 5.3</div></h2>
+    <h2>The Swift Programming Language<div>Swift 5.4</div></h2>
 
     <ul>
     <ul class="current">
@@ -555,7 +555,7 @@
 あなたは、実際に前の章を通して広く値型を使っていました。実際、スウィフトにおける基本の型の全て ― 整数、浮動小数点数、ブール、文字列、配列および辞書 ― は、値型であり、そして舞台裏では構造体として実装されます。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">All structures and enumerations are value types in Swift. This means that any structure and enumeration instances you create—and any value types they have as properties—are always copied when they are passed around in your code.</span><!--end_enstr-->
+<p><span class="enstr">All structures and enumerations are value types in Swift. This means that any structure and enumeration instances you create—and any value types they have as properties—are always copied when they’re passed around in your code.</span><!--end_enstr-->
 <span class="jpstr">
 全ての構造体と列挙は、スウィフトでは値型です。これは、あなたがつくるあらゆる構造体や列挙のインスタンス ― そして、それらがプロパティとして持つあらゆる値型 ― は、あなたのコードの中であちこち渡される時に常にコピーされることを意味します。
 </span><!--end_jpstr-->
@@ -585,7 +585,7 @@
 この例は、<code class="docutils literal notranslate"><span class="pre">hd</span></code>と呼ばれる定数を宣言して、それをフルHDビデオの幅と高さ（1920ピクセル幅の広さで1080ピクセルの高さ）で初期化される<code class="docutils literal notranslate"><span class="pre">Resolution</span></code>インスタンスに対して設定します。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">It then declares a variable called <code class="docutils literal notranslate"><span class="pre">cinema</span></code> and sets it to the current value of <code class="docutils literal notranslate"><span class="pre">hd</span></code>. Because <code class="docutils literal notranslate"><span class="pre">Resolution</span></code> is a structure, a <em>copy</em> of the existing instance is made, and this new copy is assigned to <code class="docutils literal notranslate"><span class="pre">cinema</span></code>. Even though <code class="docutils literal notranslate"><span class="pre">hd</span></code> and <code class="docutils literal notranslate"><span class="pre">cinema</span></code> now have the same width and height, they are two completely different instances behind the scenes.</span><!--end_enstr-->
+<p><span class="enstr">It then declares a variable called <code class="docutils literal notranslate"><span class="pre">cinema</span></code> and sets it to the current value of <code class="docutils literal notranslate"><span class="pre">hd</span></code>. Because <code class="docutils literal notranslate"><span class="pre">Resolution</span></code> is a structure, a <em>copy</em> of the existing instance is made, and this new copy is assigned to <code class="docutils literal notranslate"><span class="pre">cinema</span></code>. Even though <code class="docutils literal notranslate"><span class="pre">hd</span></code> and <code class="docutils literal notranslate"><span class="pre">cinema</span></code> now have the same width and height, they’re two completely different instances behind the scenes.</span><!--end_enstr-->
 <span class="jpstr">
 それは、それから<code class="docutils literal notranslate"><span class="pre">cinema</span></code>と呼ばれる変数を宣言して、それを<code class="docutils literal notranslate"><span class="pre">hd</span></code>の現在の値に設定します。<code class="docutils literal notranslate"><span class="pre">Resolution</span></code>が構造体であるので、既存のインスタンスの<em>コピー</em>が作成されます、そして、この新しいコピーは<code class="docutils literal notranslate"><span class="pre">cinema</span></code>に代入されます。たとえ<code class="docutils literal notranslate"><span class="pre">hd</span></code>と<code class="docutils literal notranslate"><span class="pre">cinema</span></code>が現在同じ幅と高さを持つとしても、それらは舞台裏では２つの完全に異なるインスタンスです。
 </span><!--end_jpstr-->
@@ -613,12 +613,12 @@
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="nv">print</span>(<span class="s">"hd is still </span>\<span class="p">(</span><span class="nv">hd</span>.<span class="nv">width</span><span class="p">)</span><span class="s"> pixels wide"</span>)
 </li><li><span class="c"><span class="enstr">// Prints "hd is still 1920 pixels wide"</span><!--end_enstr--><span class="jpstr">（「hdは、依然として1920のピクセルの幅です」を出力します）</span><!--end_jpstr--></span>
 </li></ol></div></div></div>
-<p><span class="enstr">When <code class="docutils literal notranslate"><span class="pre">cinema</span></code> was given the current value of <code class="docutils literal notranslate"><span class="pre">hd</span></code>, the <em>values</em> stored in <code class="docutils literal notranslate"><span class="pre">hd</span></code> were copied into the new <code class="docutils literal notranslate"><span class="pre">cinema</span></code> instance. The end result was two completely separate instances that contained the same numeric values. However, because they are separate instances, setting the width of <code class="docutils literal notranslate"><span class="pre">cinema</span></code> to <code class="docutils literal notranslate"><span class="pre">2048</span></code> doesn’t affect the width stored in <code class="docutils literal notranslate"><span class="pre">hd</span></code>, as shown in the figure below:</span><!--end_enstr-->
+<p><span class="enstr">When <code class="docutils literal notranslate"><span class="pre">cinema</span></code> was given the current value of <code class="docutils literal notranslate"><span class="pre">hd</span></code>, the <em>values</em> stored in <code class="docutils literal notranslate"><span class="pre">hd</span></code> were copied into the new <code class="docutils literal notranslate"><span class="pre">cinema</span></code> instance. The end result was two completely separate instances that contained the same numeric values. However, because they’re separate instances, setting the width of <code class="docutils literal notranslate"><span class="pre">cinema</span></code> to <code class="docutils literal notranslate"><span class="pre">2048</span></code> doesn’t affect the width stored in <code class="docutils literal notranslate"><span class="pre">hd</span></code>, as shown in the figure below:</span><!--end_enstr-->
 <span class="jpstr">
 <code class="docutils literal notranslate"><span class="pre">cinema</span></code>が<code class="docutils literal notranslate"><span class="pre">hd</span></code>の現在の値を与えられたとき、<code class="docutils literal notranslate"><span class="pre">hd</span></code>に格納される<em>値</em>は新しい<code class="docutils literal notranslate"><span class="pre">cinema</span></code>インスタンスにコピーされました。最終的な結果は２つの完全に別々のインスタンスです、そしてそれらは同じ数値を含みます。しかしながら、それらが別々のインスタンスであるので、<code class="docutils literal notranslate"><span class="pre">cinema</span></code>の幅を<code class="docutils literal notranslate"><span class="pre">2048</span></code>に設定することは<code class="docutils literal notranslate"><span class="pre">hd</span></code>に格納される幅に影響を及ぼしません、下の図で示されるように：
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/sharedStateStruct_2x.png" class="align-center" src="../images/sharedStateStruct_2x.png" style="width: 650px;" />
+<img alt="../_images/sharedStateStruct_2x.png" class="align-center" src="../_images/sharedStateStruct_2x.png" style="width: 650px;" />
 <p><span class="enstr">The same behavior applies to enumerations:</span><!--end_enstr-->
 <span class="jpstr">
 同じ挙動は、列挙にもあてはまります：
@@ -651,7 +651,7 @@
 クラスは、参照型です<a class="headerlink" href="#ID89" title="Permalink to this headline">¶</a>
 </span><!--end_jpstr-->
 </h2>
-<p><span class="enstr">Unlike value types, <em>reference types</em> are <em>not</em> copied when they are assigned to a variable or constant, or when they are passed to a function. Rather than a copy, a reference to the same existing instance is used.</span><!--end_enstr-->
+<p><span class="enstr">Unlike value types, <em>reference types</em> are <em>not</em> copied when they’re assigned to a variable or constant, or when they’re passed to a function. Rather than a copy, a reference to the same existing instance is used.</span><!--end_enstr-->
 <span class="jpstr">
 値型とは異なり、<em>参照型</em>は、それが変数や定数に代入される時に、あるいはそれが関数に渡される時に、コピーされ<em>ません</em>。コピーではなく、既存の同じインスタンスに対する参照が使われます。
 </span><!--end_jpstr-->
@@ -680,12 +680,12 @@
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">let</span> <span class="nv">alsoTenEighty</span> = <span class="nv">tenEighty</span>
 </li><li><span class="nv">alsoTenEighty</span>.<span class="nv">frameRate</span> = <span class="m">30.0</span>
 </li></ol></div></div></div>
-<p><span class="enstr">Because classes are reference types, <code class="docutils literal notranslate"><span class="pre">tenEighty</span></code> and <code class="docutils literal notranslate"><span class="pre">alsoTenEighty</span></code> actually both refer to the <em>same</em> <code class="docutils literal notranslate"><span class="pre">VideoMode</span></code> instance. Effectively, they are just two different names for the same single instance, as shown in the figure below:</span><!--end_enstr-->
+<p><span class="enstr">Because classes are reference types, <code class="docutils literal notranslate"><span class="pre">tenEighty</span></code> and <code class="docutils literal notranslate"><span class="pre">alsoTenEighty</span></code> actually both refer to the <em>same</em> <code class="docutils literal notranslate"><span class="pre">VideoMode</span></code> instance. Effectively, they’re just two different names for the same single instance, as shown in the figure below:</span><!--end_enstr-->
 <span class="jpstr">
 クラスが参照型であるので、<code class="docutils literal notranslate"><span class="pre">tenEighty</span></code>と<code class="docutils literal notranslate"><span class="pre">alsoTenEighty</span></code>は両方とも実際に<em>同じ</em> <code class="docutils literal notranslate"><span class="pre">VideoMode</span></code>インスタンスに言及します。事実上、それらは同じ１つのインスタンスに対する単なる２つの異なる名前です、以下の図で示されるように：
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/sharedStateClass_2x.png" class="align-center" src="../images/sharedStateClass_2x.png" style="width: 670px;" />
+<img alt="../_images/sharedStateClass_2x.png" class="align-center" src="../_images/sharedStateClass_2x.png" style="width: 670px;" />
 <p><span class="enstr">Checking the <code class="docutils literal notranslate"><span class="pre">frameRate</span></code> property of <code class="docutils literal notranslate"><span class="pre">tenEighty</span></code> shows that it correctly reports the new frame rate of <code class="docutils literal notranslate"><span class="pre">30.0</span></code> from the underlying <code class="docutils literal notranslate"><span class="pre">VideoMode</span></code> instance:</span><!--end_enstr-->
 <span class="jpstr">
 <code class="docutils literal notranslate"><span class="pre">tenEighty</span></code>の<code class="docutils literal notranslate"><span class="pre">frameRate</span></code>プロパティを調べてみると、それが根底にある<code class="docutils literal notranslate"><span class="pre">VideoMode</span></code>インスタンス由来の新しいフレームレートの<code class="docutils literal notranslate"><span class="pre">30.0</span></code>を正しく報告することがわかります：
@@ -699,7 +699,7 @@
 この例はまた、どれくらい参照型について思考するのが困難になりうるかを示します。<code class="docutils literal notranslate"><span class="pre">tenEighty</span></code>と<code class="docutils literal notranslate"><span class="pre">alsoTenEighty</span></code>があなたのプログラムのコードの中で離ればなれになってしまったら、ビデオモードが変更される全ての道筋を見つけるのは難しくなるかもしれません。あなたが<code class="docutils literal notranslate"><span class="pre">tenEighty</span></code>を使うどこであれ、あなたはまた<code class="docutils literal notranslate"><span class="pre">alsoTenEighty</span></code>を使うコードについて頭を働かせなければなりません、そして逆もまた同様に。対照的に、値型について思考するのはより簡単です、なぜなら同じ値に相互作用するコードの全ては、あなたのソースファイルの中で近接しているからです。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">Note that <code class="docutils literal notranslate"><span class="pre">tenEighty</span></code> and <code class="docutils literal notranslate"><span class="pre">alsoTenEighty</span></code> are declared as <em>constants</em>, rather than variables. However, you can still change <code class="docutils literal notranslate"><span class="pre">tenEighty.frameRate</span></code> and <code class="docutils literal notranslate"><span class="pre">alsoTenEighty.frameRate</span></code> because the values of the <code class="docutils literal notranslate"><span class="pre">tenEighty</span></code> and <code class="docutils literal notranslate"><span class="pre">alsoTenEighty</span></code> constants themselves don’t actually change. <code class="docutils literal notranslate"><span class="pre">tenEighty</span></code> and <code class="docutils literal notranslate"><span class="pre">alsoTenEighty</span></code> themselves don’t “store” the <code class="docutils literal notranslate"><span class="pre">VideoMode</span></code> instance—instead, they both <em>refer</em> to a <code class="docutils literal notranslate"><span class="pre">VideoMode</span></code> instance behind the scenes. It’s the <code class="docutils literal notranslate"><span class="pre">frameRate</span></code> property of the underlying <code class="docutils literal notranslate"><span class="pre">VideoMode</span></code> that is changed, not the values of the constant references to that <code class="docutils literal notranslate"><span class="pre">VideoMode</span></code>.</span><!--end_enstr-->
+<p><span class="enstr">Note that <code class="docutils literal notranslate"><span class="pre">tenEighty</span></code> and <code class="docutils literal notranslate"><span class="pre">alsoTenEighty</span></code> are declared as <em>constants</em>, rather than variables. However, you can still change <code class="docutils literal notranslate"><span class="pre">tenEighty.frameRate</span></code> and <code class="docutils literal notranslate"><span class="pre">alsoTenEighty.frameRate</span></code> because the values of the <code class="docutils literal notranslate"><span class="pre">tenEighty</span></code> and <code class="docutils literal notranslate"><span class="pre">alsoTenEighty</span></code> constants themselves don’t actually change. <code class="docutils literal notranslate"><span class="pre">tenEighty</span></code> and <code class="docutils literal notranslate"><span class="pre">alsoTenEighty</span></code> themselves don’t “store” the <code class="docutils literal notranslate"><span class="pre">VideoMode</span></code> instance—instead, they both <em>refer</em> to a <code class="docutils literal notranslate"><span class="pre">VideoMode</span></code> instance behind the scenes. It’s the <code class="docutils literal notranslate"><span class="pre">frameRate</span></code> property of the underlying <code class="docutils literal notranslate"><span class="pre">VideoMode</span></code> that’s changed, not the values of the constant references to that <code class="docutils literal notranslate"><span class="pre">VideoMode</span></code>.</span><!--end_enstr-->
 <span class="jpstr">
 <code class="docutils literal notranslate"><span class="pre">tenEighty</span></code>と<code class="docutils literal notranslate"><span class="pre">alsoTenEighty</span></code>が、変数ではなく、<em>定数</em>として宣言される点に注意してください。しかし、あなたはそれでもなお<code class="docutils literal notranslate"><span class="pre">tenEighty.frameRate</span></code>と<code class="docutils literal notranslate"><span class="pre">alsoTenEighty.frameRate</span></code>を変更することができます、なぜなら<code class="docutils literal notranslate"><span class="pre">tenEighty</span></code>および<code class="docutils literal notranslate"><span class="pre">alsoTenEighty</span></code>定数それら自身の値は実のところ変わらないからです。<code class="docutils literal notranslate"><span class="pre">tenEighty</span></code>および<code class="docutils literal notranslate"><span class="pre">alsoTenEighty</span></code>それら自身は<code class="docutils literal notranslate"><span class="pre">VideoMode</span></code>インスタンスを格納しません ― そうではなく、それらが両方とも<em>言及する</em>のは舞台裏で<code class="docutils literal notranslate"><span class="pre">VideoMode</span></code>インスタンスです。それは、根底にある<code class="docutils literal notranslate"><span class="pre">VideoMode</span></code>の<code class="docutils literal notranslate"><span class="pre">frameRate</span></code>プロパティです、それは変更可能です、その<code class="docutils literal notranslate"><span class="pre">VideoMode</span></code>に対する参照をもつこれら定数の値ではありません。
 </span><!--end_jpstr-->
@@ -710,7 +710,7 @@
 同一性演算子<a class="headerlink" href="#ID90" title="Permalink to this headline">¶</a>
 </span><!--end_jpstr-->
 </h3>
-<p><span class="enstr">Because classes are reference types, it’s possible for multiple constants and variables to refer to the same single instance of a class behind the scenes. (The same isn’t true for structures and enumerations, because they are always copied when they are assigned to a constant or variable, or passed to a function.)</span><!--end_enstr-->
+<p><span class="enstr">Because classes are reference types, it’s possible for multiple constants and variables to refer to the same single instance of a class behind the scenes. (The same isn’t true for structures and enumerations, because they’re always copied when they’re assigned to a constant or variable, or passed to a function.)</span><!--end_enstr-->
 <span class="jpstr">
 クラスが参照型であるので、複数の定数と変数があるクラスの同じ１つのインスタンスに言及することが舞台裏で可能です。（同じことは構造体と列挙にあてはまりません、なぜなら、それらが値型であって、それらが定数または変数に代入されるか関数に渡される時に、常にコピーされるからです）。
 </span><!--end_jpstr-->
@@ -791,7 +791,7 @@
     <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter">Twitter</i></a>
   </aside>
 
-  <p class="copyright">Copyright © 2020 Apple Inc. All rights reserved.</p>
+  <p class="copyright">Copyright © 2021 Apple Inc. All rights reserved.</p>
   <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
   <p class="privacy">
     <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
@@ -799,6 +799,6 @@
   </p>
 </footer>
 <div id="jump_to_overlay"></div>
-<script src="../static/javascripts/application.js"></script>
+<script src="../_static/javascripts/application.js"></script>
   </body>
 </html>

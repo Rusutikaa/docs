@@ -10,11 +10,11 @@
     <meta name="author" content="Apple Inc." />
     <meta name="viewport" content="width=device-width initial-scale=1" />
     
-    <title>Error Handling — The Swift Programming Language (Swift 5.3)</title>
+    <title>Error Handling — The Swift Programming Language (Swift 5.4)</title>
     
     <link rel="license" href="/LICENSE.txt" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/tspl.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/application.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/tspl.css" />
     <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
@@ -41,7 +41,7 @@
 
     <div id="menu-toggle" class="menu-toggle open"></div>
 
-    <h2>The Swift Programming Language<div>Swift 5.3</div></h2>
+    <h2>The Swift Programming Language<div>Swift 5.4</div></h2>
 
     <ul>
     <ul class="current">
@@ -321,7 +321,7 @@ do-catchを使ってエラーを処理する
 </p>
 <p><span class="enstr">Swift enumerations are particularly well suited to modeling a group of related error conditions, with associated values allowing for additional information about the nature of an error to be communicated. For example, here’s how you might represent the error conditions of operating a vending machine inside a game:</span><!--end_enstr-->
 <span class="jpstr">
-スウィフト列挙は、関連値がエラーの性質についての追加の情報と通信可能にすることを含め、関係のあるエラー状況のグループを作るのにとりわけ適します。例えば、ここにあなたが表すかもしれないあるゲーム内の自動販売機操作のエラー状況がどのようなものかがあります：
+スウィフト列挙は、あるエラーの性質についての追加情報が通信されるのを想定した関連値を含め、関係のあるエラー状況のグループを作るのにうってつけです。例えば、ここにあなたが表すかもしれないあるゲーム内の自動販売機操作のエラー状況がどのようなものかがあります：
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">enum</span> <span class="nv">VendingMachineError</span>: <span class="nc">Error</span> {
@@ -365,7 +365,7 @@ do-catchを使ってエラーを処理する
 注意
 </span><!--end_jpstr-->
 </p>
-<p class="last"><span class="enstr">Error handling in Swift resembles exception handling in other languages, with the use of the <code class="docutils literal notranslate"><span class="pre">try</span></code>, <code class="docutils literal notranslate"><span class="pre">catch</span></code> and <code class="docutils literal notranslate"><span class="pre">throw</span></code> keywords. Unlike exception handling in many languages—including Objective-C—error handling in Swift does not involve unwinding the call stack, a process that can be computationally expensive. As such, the performance characteristics of a <code class="docutils literal notranslate"><span class="pre">throw</span></code> statement are comparable to those of a <code class="docutils literal notranslate"><span class="pre">return</span></code> statement.</span><!--end_enstr-->
+<p class="last"><span class="enstr">Error handling in Swift resembles exception handling in other languages, with the use of the <code class="docutils literal notranslate"><span class="pre">try</span></code>, <code class="docutils literal notranslate"><span class="pre">catch</span></code> and <code class="docutils literal notranslate"><span class="pre">throw</span></code> keywords. Unlike exception handling in many languages—including Objective-C—error handling in Swift doesn’t involve unwinding the call stack, a process that can be computationally expensive. As such, the performance characteristics of a <code class="docutils literal notranslate"><span class="pre">throw</span></code> statement are comparable to those of a <code class="docutils literal notranslate"><span class="pre">return</span></code> statement.</span><!--end_enstr-->
 <span class="jpstr">
 スウィフトにおけるエラー処理は、<code class="docutils literal notranslate"><span class="pre">try</span></code>、<code class="docutils literal notranslate"><span class="pre">catch</span></code>、そして<code class="docutils literal notranslate"><span class="pre">throw</span></code>キーワードの使用とともに、他の言語での例外処理に似ています。多くの言語 ― Objective-Cを含めて ― での例外処理と違い、スウィフトにおけるエラー処理はコールスタック、計算的に高くつく可能性がある処理、の巻き戻し（アンワインド）を必要としません。<code class="docutils literal notranslate"><span class="pre">throw</span></code>文のいろいろな性能特徴は、それ自体としては、<code class="docutils literal notranslate"><span class="pre">return</span></code>文のそれと同程度です。
 </span><!--end_jpstr-->
@@ -403,7 +403,7 @@ do-catchを使ってエラーを処理する
 </span><!--end_jpstr-->
 </p>
 </div>
-<p><span class="enstr">In the example below, the <code class="docutils literal notranslate"><span class="pre">VendingMachine</span></code> class has a <code class="docutils literal notranslate"><span class="pre">vend(itemNamed:)</span></code> method that throws an appropriate <code class="docutils literal notranslate"><span class="pre">VendingMachineError</span></code> if the requested item is not available, is out of stock, or has a cost that exceeds the current deposited amount:</span><!--end_enstr-->
+<p><span class="enstr">In the example below, the <code class="docutils literal notranslate"><span class="pre">VendingMachine</span></code> class has a <code class="docutils literal notranslate"><span class="pre">vend(itemNamed:)</span></code> method that throws an appropriate <code class="docutils literal notranslate"><span class="pre">VendingMachineError</span></code> if the requested item isn’t available, is out of stock, or has a cost that exceeds the current deposited amount:</span><!--end_enstr-->
 <span class="jpstr">
 下の例において、<code class="docutils literal notranslate"><span class="pre">VendingMachine</span></code>クラスは<code class="docutils literal notranslate"><span class="pre">vend(itemNamed:)</span></code>メソッドを持ちます、それは、要求された項目が利用可能でない、在庫切れ、または現在預け入れされた総額を超える価格を持つならば対応する<code class="docutils literal notranslate"><span class="pre">VendingMachineError</span></code>をスローします：
 </span><!--end_jpstr-->
@@ -489,7 +489,7 @@ do-catchを使ってエラーを処理する
 do-catchを使ってエラーを処理する<a class="headerlink" href="#ID541" title="Permalink to this headline">¶</a>
 </span><!--end_jpstr-->
 </h3>
-<p><span class="enstr">You use a <code class="docutils literal notranslate"><span class="pre">do</span></code>-<code class="docutils literal notranslate"><span class="pre">catch</span></code> statement to handle errors by running a block of code. If an error is thrown by the code in the <code class="docutils literal notranslate"><span class="pre">do</span></code> clause, it is matched against the <code class="docutils literal notranslate"><span class="pre">catch</span></code> clauses to determine which one of them can handle the error.</span><!--end_enstr-->
+<p><span class="enstr">You use a <code class="docutils literal notranslate"><span class="pre">do</span></code>-<code class="docutils literal notranslate"><span class="pre">catch</span></code> statement to handle errors by running a block of code. If an error is thrown by the code in the <code class="docutils literal notranslate"><span class="pre">do</span></code> clause, it’s matched against the <code class="docutils literal notranslate"><span class="pre">catch</span></code> clauses to determine which one of them can handle the error.</span><!--end_enstr-->
 <span class="jpstr">
 あなたは、あるコードの塊を実行することによってエラーを処理するために、<code class="docutils literal notranslate"><span class="pre">do</span></code>-<code class="docutils literal notranslate"><span class="pre">catch</span></code>文を使います。あるエラーが<code class="docutils literal notranslate"><span class="pre">do</span></code>節の中にあるコードによってスローされるならば、それは<code class="docutils literal notranslate"><span class="pre">catch</span></code>節と照合されて、それらの１つがそのエラーを処理できると決定されます。
 </span><!--end_jpstr-->
@@ -644,7 +644,7 @@ do-catchを使ってエラーを処理する<a class="headerlink" href="#ID541" 
 時にはあなたはあるスロー関数またはメソッドが、実際のところ、実行時にエラーをスローすることがないのを知っています。これらの場合には、あなたは<code class="docutils literal notranslate"><span class="pre">try!</span></code>をその式の前に書くことによって、エラー伝達を抑制して、エラーはスローされないという実行時表明の中にその呼び出しを包み込みます。エラーが実際はスローされるならば、あなたは実行時エラーを受け取るでしょう。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">For example, the following code uses a <code class="docutils literal notranslate"><span class="pre">loadImage(atPath:)</span></code> function, which loads the image resource at a given path or throws an error if the image can’t be loaded. In this case, because the image is shipped with the application, no error will be thrown at runtime, so it is appropriate to disable error propagation.</span><!--end_enstr-->
+<p><span class="enstr">For example, the following code uses a <code class="docutils literal notranslate"><span class="pre">loadImage(atPath:)</span></code> function, which loads the image resource at a given path or throws an error if the image can’t be loaded. In this case, because the image is shipped with the application, no error will be thrown at runtime, so it’s appropriate to disable error propagation.</span><!--end_enstr-->
 <span class="jpstr">
 例えば、以下のコードは<code class="docutils literal notranslate"><span class="pre">loadImage(atPath:)</span></code>関数を使います、それは画像リソースを与えられたパスでロードします、または画像がロードできないならばエラーをスローします。この場合、画像はアプリケーションとともに出荷されるので、エラーが実行時にスローされることはありません、それでふさわしいのはエラー伝達を抑制することです。
 </span><!--end_jpstr-->
@@ -725,7 +725,7 @@ do-catchを使ってエラーを処理する<a class="headerlink" href="#ID541" 
     <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter">Twitter</i></a>
   </aside>
 
-  <p class="copyright">Copyright © 2020 Apple Inc. All rights reserved.</p>
+  <p class="copyright">Copyright © 2021 Apple Inc. All rights reserved.</p>
   <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
   <p class="privacy">
     <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
@@ -733,6 +733,6 @@ do-catchを使ってエラーを処理する<a class="headerlink" href="#ID541" 
   </p>
 </footer>
 <div id="jump_to_overlay"></div>
-<script src="../static/javascripts/application.js"></script>
+<script src="../_static/javascripts/application.js"></script>
   </body>
 </html>

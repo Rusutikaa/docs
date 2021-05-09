@@ -10,11 +10,11 @@
     <meta name="author" content="Apple Inc." />
     <meta name="viewport" content="width=device-width initial-scale=1" />
     
-    <title>Protocols — The Swift Programming Language (Swift 5.3)</title>
+    <title>Protocols — The Swift Programming Language (Swift 5.4)</title>
     
     <link rel="license" href="/LICENSE.txt" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/tspl.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/application.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/tspl.css" />
     <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
@@ -41,7 +41,7 @@
 
     <div id="menu-toggle" class="menu-toggle open"></div>
 
-    <h2>The Swift Programming Language<div>Swift 5.3</div></h2>
+    <h2>The Swift Programming Language<div>Swift 5.4</div></h2>
 
     <ul>
     <ul class="current">
@@ -469,7 +469,7 @@
 この例は、<code class="docutils literal notranslate"><span class="pre">Person</span></code>と呼ばれる構造体を定義します、それは、特定の名前の人物を表します。それは、その定義の最初の行の部分でそれが<code class="docutils literal notranslate"><span class="pre">FullyNamed</span></code>プロトコルを採用すると述べます。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">Each instance of <code class="docutils literal notranslate"><span class="pre">Person</span></code> has a single stored property called <code class="docutils literal notranslate"><span class="pre">fullName</span></code>, which is of type <code class="docutils literal notranslate"><span class="pre">String</span></code>. This matches the single requirement of the <code class="docutils literal notranslate"><span class="pre">FullyNamed</span></code> protocol, and means that <code class="docutils literal notranslate"><span class="pre">Person</span></code> has correctly conformed to the protocol. (Swift reports an error at compile-time if a protocol requirement is not fulfilled.)</span><!--end_enstr-->
+<p><span class="enstr">Each instance of <code class="docutils literal notranslate"><span class="pre">Person</span></code> has a single stored property called <code class="docutils literal notranslate"><span class="pre">fullName</span></code>, which is of type <code class="docutils literal notranslate"><span class="pre">String</span></code>. This matches the single requirement of the <code class="docutils literal notranslate"><span class="pre">FullyNamed</span></code> protocol, and means that <code class="docutils literal notranslate"><span class="pre">Person</span></code> has correctly conformed to the protocol. (Swift reports an error at compile time if a protocol requirement isn’t fulfilled.)</span><!--end_enstr-->
 <span class="jpstr">
 <code class="docutils literal notranslate"><span class="pre">Person</span></code>の各インスタンスは、<code class="docutils literal notranslate"><span class="pre">fullName</span></code>と呼ばれる１つの格納プロパティを持ちます、それは、型<code class="docutils literal notranslate"><span class="pre">String</span></code>です。これは、<code class="docutils literal notranslate"><span class="pre">FullyNamed</span></code>プロトコルの唯一の要件に適合します、したがってその<code class="docutils literal notranslate"><span class="pre">Person</span></code>が正しくそのプロトコルに従ったことを意味します。（プロトコル要件が満たされないならば、スウィフトは実行時にエラーを報告します）。
 </span><!--end_jpstr-->
@@ -556,7 +556,7 @@
 </li><li>}
 </li><li><span class="k">let</span> <span class="nv">generator</span> = <span class="nv">LinearCongruentialGenerator</span>()
 </li><li><span class="nv">print</span>(<span class="s">"Here's a random number: </span>\<span class="p">(</span><span class="nv">generator</span>.<span class="nv">random</span>()<span class="p">)</span><span class="s">"</span>)
-</li><li><span class="c">// Prints "Here's a random number: 0.3746499199817101"</span>
+</li><li><span class="c"><span class="enstr">// Prints "Here's a random number: 0.3746499199817101"</span><!--end_enstr--><span class="jpstr">（「ここに任意の数: 0.3746499199817101があります」を出力します）</span><!--end_jpstr--></span>
 </li><li><span class="nv">print</span>(<span class="s">"And another one: </span>\<span class="p">(</span><span class="nv">generator</span>.<span class="nv">random</span>()<span class="p">)</span><span class="s">"</span>)
 </li><li><span class="c"><span class="enstr">// Prints "And another one: 0.729023776863283"</span><!--end_enstr--><span class="jpstr">（「さらにもう１つ：0.729023776863283」を出力します）</span><!--end_jpstr--></span>
 </li></ol></div></div></div>
@@ -572,7 +572,7 @@
 メソッドがそれが属しているインスタンスを修正する（または<em>変化させる</em>）ことは、時々必要です。値型（すなわち、構造体と列挙）のインスタンスメソッドのために、あなたは<code class="docutils literal notranslate"><span class="pre">mutating</span></code>キーワードをメソッドの<code class="docutils literal notranslate"><span class="pre">func</span></code>キーワードの前に置いて、メソッドがそれが属しているインスタンスおよびそのインスタンスのあらゆるプロパティを修正するのを許可されることを示します。この過程は、<a class="reference internal" href="Methods.html#ID239"><span class="std std-ref">値型をインスタンスメソッド内から修正する</span></a>で記述されます。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">If you define a protocol instance method requirement that is intended to mutate instances of any type that adopts the protocol, mark the method with the <code class="docutils literal notranslate"><span class="pre">mutating</span></code> keyword as part of the protocol’s definition. This enables structures and enumerations to adopt the protocol and satisfy that method requirement.</span><!--end_enstr-->
+<p><span class="enstr">If you define a protocol instance method requirement that’s intended to mutate instances of any type that adopts the protocol, mark the method with the <code class="docutils literal notranslate"><span class="pre">mutating</span></code> keyword as part of the protocol’s definition. This enables structures and enumerations to adopt the protocol and satisfy that method requirement.</span><!--end_enstr-->
 <span class="jpstr">
 あなたがそのプロトコルを採用するあらゆる型のインスタンスを変化させることを意図したインスタンスメソッド要件プロトコルを定義するならば、プロトコルの定義の一部としてそのメソッドに<code class="docutils literal notranslate"><span class="pre">mutating</span></code>キーワードで印をつけてください。これは、構造体と列挙に、そのプロトコルを採用してメソッド要件を満たすのを可能にします。
 </span><!--end_jpstr-->
@@ -603,7 +603,7 @@
 </li><li>    <span class="k">mutating</span> <span class="k">func</span> <span class="nv">toggle</span>()
 </li><li>}
 </li></ol></div></div></div>
-<p><span class="enstr">If you implement the <code class="docutils literal notranslate"><span class="pre">Togglable</span></code> protocol for a structure or enumeration, that structure or enumeration can conform to the protocol by providing an implementation of the <code class="docutils literal notranslate"><span class="pre">toggle()</span></code> method that is also marked as <code class="docutils literal notranslate"><span class="pre">mutating</span></code>.</span><!--end_enstr-->
+<p><span class="enstr">If you implement the <code class="docutils literal notranslate"><span class="pre">Togglable</span></code> protocol for a structure or enumeration, that structure or enumeration can conform to the protocol by providing an implementation of the <code class="docutils literal notranslate"><span class="pre">toggle()</span></code> method that’s also marked as <code class="docutils literal notranslate"><span class="pre">mutating</span></code>.</span><!--end_enstr-->
 <span class="jpstr">
 あなたが<code class="docutils literal notranslate"><span class="pre">Togglable</span></code>プロトコルをある構造体または列挙のために実装するならば、その構造体または列挙は、同様に<code class="docutils literal notranslate"><span class="pre">mutating</span></code>として印される<code class="docutils literal notranslate"><span class="pre">toggle()</span></code>メソッドの実施を提供することによって、このプロトコルに準拠できます。
 </span><!--end_jpstr-->
@@ -952,7 +952,7 @@
 <code class="docutils literal notranslate"><span class="pre">DiceGameTracker</span></code>は、<code class="docutils literal notranslate"><span class="pre">DiceGameDelegate</span></code>によって要求される３つのメソッド全てを実装します。それは、あるゲームがとったターンの数の情報を得続けるためにこれらのメソッドを使用します。それは、ゲームが始まるとき<code class="docutils literal notranslate"><span class="pre">numberOfTurns</span></code>プロパティをゼロに再設定します、新しいターンが開始するときそれぞれそれを増加させます、そしてひとたびゲームが終わってしまったならばターンの総数を出力します。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">The implementation of <code class="docutils literal notranslate"><span class="pre">gameDidStart(_:)</span></code> shown above uses the <code class="docutils literal notranslate"><span class="pre">game</span></code> parameter to print some introductory information about the game that is about to be played. The <code class="docutils literal notranslate"><span class="pre">game</span></code> parameter has a type of <code class="docutils literal notranslate"><span class="pre">DiceGame</span></code>, not <code class="docutils literal notranslate"><span class="pre">SnakesAndLadders</span></code>, and so <code class="docutils literal notranslate"><span class="pre">gameDidStart(_:)</span></code> can access and use only methods and properties that are implemented as part of the <code class="docutils literal notranslate"><span class="pre">DiceGame</span></code> protocol. However, the method is still able to use type casting to query the type of the underlying instance. In this example, it checks whether <code class="docutils literal notranslate"><span class="pre">game</span></code> is actually an instance of <code class="docutils literal notranslate"><span class="pre">SnakesAndLadders</span></code> behind the scenes, and prints an appropriate message if so.</span><!--end_enstr-->
+<p><span class="enstr">The implementation of <code class="docutils literal notranslate"><span class="pre">gameDidStart(_:)</span></code> shown above uses the <code class="docutils literal notranslate"><span class="pre">game</span></code> parameter to print some introductory information about the game that’s about to be played. The <code class="docutils literal notranslate"><span class="pre">game</span></code> parameter has a type of <code class="docutils literal notranslate"><span class="pre">DiceGame</span></code>, not <code class="docutils literal notranslate"><span class="pre">SnakesAndLadders</span></code>, and so <code class="docutils literal notranslate"><span class="pre">gameDidStart(_:)</span></code> can access and use only methods and properties that are implemented as part of the <code class="docutils literal notranslate"><span class="pre">DiceGame</span></code> protocol. However, the method is still able to use type casting to query the type of the underlying instance. In this example, it checks whether <code class="docutils literal notranslate"><span class="pre">game</span></code> is actually an instance of <code class="docutils literal notranslate"><span class="pre">SnakesAndLadders</span></code> behind the scenes, and prints an appropriate message if so.</span><!--end_enstr-->
 <span class="jpstr">
 上で示される<code class="docutils literal notranslate"><span class="pre">gameDidStart(_:)</span></code>の実装は、<code class="docutils literal notranslate"><span class="pre">game</span></code>パラメータを使って、プレイされようとしているゲームに関する若干の紹介の情報を出力します。<code class="docutils literal notranslate"><span class="pre">game</span></code>パラメータは、型<code class="docutils literal notranslate"><span class="pre">DiceGame</span></code>を持ちます、<code class="docutils literal notranslate"><span class="pre">SnakesAndLadders</span></code>ではありません、なので、<code class="docutils literal notranslate"><span class="pre">gameDidStart(_:)</span></code>は<code class="docutils literal notranslate"><span class="pre">DiceGame</span></code>プロトコルの一部として実施されるメソッドとプロパティだけにアクセスして使用することができます。しかし、このメソッドは依然として基盤インスタンスの型についてたずねるために型キャストを使うことができます。この例では、<code class="docutils literal notranslate"><span class="pre">game</span></code>が実際に舞台裏で<code class="docutils literal notranslate"><span class="pre">SnakesAndLadders</span></code>のインスタンスであるかどうか調べて、もしそうならば適切なメッセージを出力します。
 </span><!--end_jpstr-->
@@ -1083,7 +1083,7 @@
 拡張を使ってプロトコル採用を宣言する<a class="headerlink" href="#ID278" title="Permalink to this headline">¶</a>
 </span><!--end_jpstr-->
 </h3>
-<p><span class="enstr">If a type already conforms to all of the requirements of a protocol, but has not yet stated that it adopts that protocol, you can make it adopt the protocol with an empty extension:</span><!--end_enstr-->
+<p><span class="enstr">If a type already conforms to all of the requirements of a protocol, but hasn’t yet stated that it adopts that protocol, you can make it adopt the protocol with an empty extension:</span><!--end_enstr-->
 <span class="jpstr">
 ある型があるプロトコルの要件の全てにすでに準拠するが、それがそのプロトコルを採用するとまだ示していなかったならば、あなたは空の拡張を使ってそれがそのプロトコルを採用するようにできます：
 </span><!--end_jpstr-->
@@ -1252,7 +1252,7 @@
 </li><li><span class="c"><span class="enstr">// A 12-sided dice</span><!--end_enstr--><span class="jpstr">（ひとつの12面のさいころ遊び）</span><!--end_jpstr--></span>
 </li><li><span class="c"><span class="enstr">// A hamster named Simon</span><!--end_enstr--><span class="jpstr">（サイモンという名前のハムスター）</span><!--end_jpstr--></span>
 </li></ol></div></div></div>
-<p><span class="enstr">Note that the <code class="docutils literal notranslate"><span class="pre">thing</span></code> constant is of type <code class="docutils literal notranslate"><span class="pre">TextRepresentable</span></code>. It’s not of type <code class="docutils literal notranslate"><span class="pre">Dice</span></code>, or <code class="docutils literal notranslate"><span class="pre">DiceGame</span></code>, or <code class="docutils literal notranslate"><span class="pre">Hamster</span></code>, even if the actual instance behind the scenes is of one of those types. Nonetheless, because it’s of type <code class="docutils literal notranslate"><span class="pre">TextRepresentable</span></code>, and anything that is <code class="docutils literal notranslate"><span class="pre">TextRepresentable</span></code> is known to have a <code class="docutils literal notranslate"><span class="pre">textualDescription</span></code> property, it’s safe to access <code class="docutils literal notranslate"><span class="pre">thing.textualDescription</span></code> each time through the loop.</span><!--end_enstr-->
+<p><span class="enstr">Note that the <code class="docutils literal notranslate"><span class="pre">thing</span></code> constant is of type <code class="docutils literal notranslate"><span class="pre">TextRepresentable</span></code>. It’s not of type <code class="docutils literal notranslate"><span class="pre">Dice</span></code>, or <code class="docutils literal notranslate"><span class="pre">DiceGame</span></code>, or <code class="docutils literal notranslate"><span class="pre">Hamster</span></code>, even if the actual instance behind the scenes is of one of those types. Nonetheless, because it’s of type <code class="docutils literal notranslate"><span class="pre">TextRepresentable</span></code>, and anything that’s <code class="docutils literal notranslate"><span class="pre">TextRepresentable</span></code> is known to have a <code class="docutils literal notranslate"><span class="pre">textualDescription</span></code> property, it’s safe to access <code class="docutils literal notranslate"><span class="pre">thing.textualDescription</span></code> each time through the loop.</span><!--end_enstr-->
 <span class="jpstr">
 <code class="docutils literal notranslate"><span class="pre">thing</span></code>定数が型<code class="docutils literal notranslate"><span class="pre">TextRepresentable</span></code>であることに注意してください。それは型<code class="docutils literal notranslate"><span class="pre">Dice</span></code>、または<code class="docutils literal notranslate"><span class="pre">DiceGame</span></code>、または<code class="docutils literal notranslate"><span class="pre">Hamster</span></code>ではありません、たとえ舞台裏の実際のインスタンスがそれらの型のうちの１つであるとしてもです。それでもなお、それが<code class="docutils literal notranslate"><span class="pre">TextRepresentable</span></code>型であり、そして、<code class="docutils literal notranslate"><span class="pre">TextRepresentable</span></code>であるもの全てが<code class="docutils literal notranslate"><span class="pre">textualDescription</span></code>プロパティを持つと知られているので、それがループの各回で<code class="docutils literal notranslate"><span class="pre">thing.textualDescription</span></code>にアクセスするのは安全です。
 </span><!--end_jpstr-->
@@ -1309,7 +1309,7 @@
 </li><li>    }
 </li><li>}
 </li></ol></div></div></div>
-<p><span class="enstr">This extension states that it adopts the <code class="docutils literal notranslate"><span class="pre">PrettyTextRepresentable</span></code> protocol and provides an implementation of the <code class="docutils literal notranslate"><span class="pre">prettyTextualDescription</span></code> property for the <code class="docutils literal notranslate"><span class="pre">SnakesAndLadders</span></code> type. Anything that is <code class="docutils literal notranslate"><span class="pre">PrettyTextRepresentable</span></code> must also be <code class="docutils literal notranslate"><span class="pre">TextRepresentable</span></code>, and so the implementation of <code class="docutils literal notranslate"><span class="pre">prettyTextualDescription</span></code> starts by accessing the <code class="docutils literal notranslate"><span class="pre">textualDescription</span></code> property from the <code class="docutils literal notranslate"><span class="pre">TextRepresentable</span></code> protocol to begin an output string. It appends a colon and a line break, and uses this as the start of its pretty text representation. It then iterates through the array of board squares, and appends a geometric shape to represent the contents of each square:</span><!--end_enstr-->
+<p><span class="enstr">This extension states that it adopts the <code class="docutils literal notranslate"><span class="pre">PrettyTextRepresentable</span></code> protocol and provides an implementation of the <code class="docutils literal notranslate"><span class="pre">prettyTextualDescription</span></code> property for the <code class="docutils literal notranslate"><span class="pre">SnakesAndLadders</span></code> type. Anything that’s <code class="docutils literal notranslate"><span class="pre">PrettyTextRepresentable</span></code> must also be <code class="docutils literal notranslate"><span class="pre">TextRepresentable</span></code>, and so the implementation of <code class="docutils literal notranslate"><span class="pre">prettyTextualDescription</span></code> starts by accessing the <code class="docutils literal notranslate"><span class="pre">textualDescription</span></code> property from the <code class="docutils literal notranslate"><span class="pre">TextRepresentable</span></code> protocol to begin an output string. It appends a colon and a line break, and uses this as the start of its pretty text representation. It then iterates through the array of board squares, and appends a geometric shape to represent the contents of each square:</span><!--end_enstr-->
 <span class="jpstr">
 この拡張が述べるのは、それが<code class="docutils literal notranslate"><span class="pre">PrettyTextRepresentable</span></code>プロトコルを採用して<code class="docutils literal notranslate"><span class="pre">prettyTextualDescription</span></code>プロパティの実装を<code class="docutils literal notranslate"><span class="pre">SnakesAndLadders</span></code>型に提供することです。<code class="docutils literal notranslate"><span class="pre">PrettyTextRepresentable</span></code>であるものは何でも、また<code class="docutils literal notranslate"><span class="pre">TextRepresentable</span></code>でなければなりません、なので<code class="docutils literal notranslate"><span class="pre">prettyTextualDescription</span></code>の実装は出力文字列を開始するために<code class="docutils literal notranslate"><span class="pre">TextRepresentable</span></code>プロトコルからの<code class="docutils literal notranslate"><span class="pre">textualDescription</span></code>プロパティにアクセスすることによって始まります。それはコロンと改行を追加します、そしてそれのきれいなテキスト表示のスタートとして、これを使います。それは、それからボードの正方形の配列の端から端まで繰り返して、ある幾何学形を各正方形の内容を表わすために追加します：
 </span><!--end_jpstr-->
@@ -1771,7 +1771,7 @@
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">let</span> <span class="nv">generator</span> = <span class="nv">LinearCongruentialGenerator</span>()
 </li><li><span class="nv">print</span>(<span class="s">"Here's a random number: </span>\<span class="p">(</span><span class="nv">generator</span>.<span class="nv">random</span>()<span class="p">)</span><span class="s">"</span>)
-</li><li><span class="c">// Prints "Here's a random number: 0.3746499199817101"</span>
+</li><li><span class="c"><span class="enstr">// Prints "Here's a random number: 0.3746499199817101"</span><!--end_enstr--><span class="jpstr">（「ここに任意の数: 0.3746499199817101があります」を出力します）</span><!--end_jpstr--></span>
 </li><li><span class="nv">print</span>(<span class="s">"And here's a random Boolean: </span>\<span class="p">(</span><span class="nv">generator</span>.<span class="nv">randomBool</span>()<span class="p">)</span><span class="s">"</span>)
 </li><li><span class="c"><span class="enstr">// Prints "And here's a random Boolean: true"</span><!--end_enstr--><span class="jpstr">（「そしてここに任意のブール: trueがあります」を出力します）</span><!--end_jpstr--></span>
 </li></ol></div></div></div>
@@ -1904,7 +1904,7 @@
     <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter">Twitter</i></a>
   </aside>
 
-  <p class="copyright">Copyright © 2020 Apple Inc. All rights reserved.</p>
+  <p class="copyright">Copyright © 2021 Apple Inc. All rights reserved.</p>
   <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
   <p class="privacy">
     <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
@@ -1912,6 +1912,6 @@
   </p>
 </footer>
 <div id="jump_to_overlay"></div>
-<script src="../static/javascripts/application.js"></script>
+<script src="../_static/javascripts/application.js"></script>
   </body>
 </html>

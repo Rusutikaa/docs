@@ -10,11 +10,11 @@
     <meta name="author" content="Apple Inc." />
     <meta name="viewport" content="width=device-width initial-scale=1" />
     
-    <title>Attributes — The Swift Programming Language (Swift 5.3)</title>
+    <title>Attributes — The Swift Programming Language (Swift 5.4)</title>
     
     <link rel="license" href="/LICENSE.txt" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/tspl.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/application.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/tspl.css" />
     <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
@@ -41,7 +41,7 @@
 
     <div id="menu-toggle" class="menu-toggle open"></div>
 
-    <h2>The Swift Programming Language<div>Swift 5.3</div></h2>
+    <h2>The Swift Programming Language<div>Swift 5.4</div></h2>
 
     <ul>
     <ul class="current">
@@ -163,6 +163,12 @@
 <li><a class="reference internal" href="#ID592">objc</a></li>
 <li><a class="reference internal" href="#ID593">objcMembers</a></li>
 <li><a class="reference internal" href="#ID621">propertyWrapper</a></li>
+<li><a class="reference internal" href="#ID633">resultBuilder</a><ul>
+<li><a class="reference internal" href="#ID634">Result-Building Methods</a></li>
+<li><a class="reference internal" href="#ID635">Result Transformations</a></li>
+<li><a class="reference internal" href="#ID636">Custom Result-Builder Attributes</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#ID594">requires_stored_property_inits</a></li>
 <li><a class="reference internal" href="#ID595">testable</a></li>
 <li><a class="reference internal" href="#ID596">UIApplicationMain</a></li>
@@ -276,7 +282,7 @@
 <ul>
 <li><p class="first"><span class="enstr">The <code class="docutils literal notranslate"><span class="pre">unavailable</span></code> argument indicates that the declaration isn’t available on the specified platform. This argument can’t be used when specifying Swift version availability.</span><!--end_enstr-->
 <span class="jpstr">
-<code class="docutils literal notranslate"><span class="pre">unavailable</span></code>引数は、その宣言が指定されたプラットホーム上で利用可能でないことを指し示します。この引数は、スウィフトバージョン利用可能性を指定する時に使われることはできません。
+<code class="docutils literal notranslate"><span class="pre">unavailable</span></code>引数は、その宣言が指定されたプラットホーム上で利用可能でないことを指し示します。この引数は、スウィフトバージョン有効性を指定する時に使われることはできません。
 </span><!--end_jpstr-->
 </p>
 </li>
@@ -366,7 +372,7 @@
 </ul>
 <p><span class="enstr">You can apply multiple <code class="docutils literal notranslate"><span class="pre">available</span></code> attributes on a single declaration to specify the declaration’s availability on different platforms and different versions of Swift. The declaration that the <code class="docutils literal notranslate"><span class="pre">available</span></code> attribute applies to is ignored if the attribute specifies a platform or language version that doesn’t match the current target. If you use multiple <code class="docutils literal notranslate"><span class="pre">available</span></code> attributes, the effective availability is the combination of the platform and Swift availabilities.</span><!--end_enstr-->
 <span class="jpstr">
-あなたは、複数の<code class="docutils literal notranslate"><span class="pre">available</span></code>属性を単一の宣言上に適用することで、その宣言の利用可能性を異なるプラットホームおよび異なるバージョンのスウィフトに関して指定することができます。<code class="docutils literal notranslate"><span class="pre">available</span></code>属性を適用される宣言は、その属性が現在の対象と合致しないプラットホームまたは言語バージョンを指定するならば無視されます。あなたが複数の<code class="docutils literal notranslate"><span class="pre">available</span></code>属性を使うならば、有効な利用可能性はプラットホームとスウィフト利用可能性の組み合わせとなります。
+あなたは、複数の<code class="docutils literal notranslate"><span class="pre">available</span></code>属性を単一の宣言上に適用することで、その宣言の有効性を異なるプラットホームおよび異なるバージョンのスウィフトに関して指定することができます。<code class="docutils literal notranslate"><span class="pre">available</span></code>属性を適用される宣言は、その属性が現在の対象と合致しないプラットホームまたは言語バージョンを指定するならば無視されます。あなたが複数の<code class="docutils literal notranslate"><span class="pre">available</span></code>属性を使うならば、有効な有効性はプラットホームとスウィフト有効性の組み合わせとなります。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">If an <code class="docutils literal notranslate"><span class="pre">available</span></code> attribute only specifies an <code class="docutils literal notranslate"><span class="pre">introduced</span></code> argument in addition to a platform or language name argument, you can use the following shorthand syntax instead:</span><!--end_enstr-->
@@ -389,7 +395,7 @@
 </li></ol></div></div></div>
 <p><span class="enstr">An <code class="docutils literal notranslate"><span class="pre">available</span></code> attribute that specifies availability using a Swift version number can’t additionally specify a declaration’s platform availability. Instead, use separate <code class="docutils literal notranslate"><span class="pre">available</span></code> attributes to specify a Swift version availability and one or more platform availabilities.</span><!--end_enstr-->
 <span class="jpstr">
-スウィフトバージョン数を使って利用可能性を指定している<code class="docutils literal notranslate"><span class="pre">available</span></code>属性は、ある宣言の持つプラットホーム有効性を追加的に指定することはできません。代わりに、<code class="docutils literal notranslate"><span class="pre">available</span></code>属性を使うことで、スウィフトバージョン利用可能性と１つ以上のプラットホーム利用可能性を指定してください。
+スウィフトバージョン数を使って有効性を指定している<code class="docutils literal notranslate"><span class="pre">available</span></code>属性は、ある宣言の持つプラットホーム有効性を追加的に指定することはできません。代わりに、<code class="docutils literal notranslate"><span class="pre">available</span></code>属性を使うことで、スウィフトバージョン有効性と１つ以上のプラットホーム有効性を指定してください。
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">@available</span>(<span class="nv">swift</span> <span class="m">3.0</span>.<span class="m">2</span>)
@@ -491,19 +497,19 @@
 </div>
 <div class="section" id="ID585">
 <h3>dynamicMemberLookup<a class="headerlink" href="#ID585" title="Permalink to this headline">¶</a></h3>
-<p><span class="enstr">Apply this attribute to a class, structure, enumeration, or protocol to enable members to be looked up by name at runtime. The type must implement a <code class="docutils literal notranslate"><span class="pre">subscript(dynamicMemberLookup:)</span></code> subscript.</span><!--end_enstr-->
+<p><span class="enstr">Apply this attribute to a class, structure, enumeration, or protocol to enable members to be looked up by name at runtime. The type must implement a <code class="docutils literal notranslate"><span class="pre">subscript(dynamicMember:)</span></code> subscript.</span><!--end_enstr-->
 <span class="jpstr">
-この属性をクラス、構造体、列挙、またはプロトコルに適用して、メンバが実行時に名前で検索されることを可能にしてください。この型は、<code class="docutils literal notranslate"><span class="pre">subscript(dynamicMemberLookup:)</span></code>添え字を実装しなければなりません。
+この属性をクラス、構造体、列挙、またはプロトコルに適用して、メンバが実行時に名前で検索されることを可能にしてください。この型は、<code class="docutils literal notranslate"><span class="pre">subscript(dynamicMember:)</span></code>添え字を実装しなければなりません。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">In an explicit member expression, if there isn’t a corresponding declaration for the named member, the expression is understood as a call to the type’s <code class="docutils literal notranslate"><span class="pre">subscript(dynamicMemberLookup:)</span></code> subscript, passing information about the member as the argument. The subscript can accept a parameter that’s either a key path or a member name; if you implement both subscripts, the subscript that takes key path argument is used.</span><!--end_enstr-->
+<p><span class="enstr">In an explicit member expression, if there isn’t a corresponding declaration for the named member, the expression is understood as a call to the type’s <code class="docutils literal notranslate"><span class="pre">subscript(dynamicMember:)</span></code> subscript, passing information about the member as the argument. The subscript can accept a parameter that’s either a key path or a member name; if you implement both subscripts, the subscript that takes key path argument is used.</span><!--end_enstr-->
 <span class="jpstr">
-明示的なメンバ式において、名前付きメンバに対して対応する宣言がないならば、式は型の持つ<code class="docutils literal notranslate"><span class="pre">subscript(dynamicMemberLookup:)</span></code>添え字に対する呼び出しとして理解されます、メンバについての情報を引数として渡します。添え字は、あるパラメータを受け入れます、それはキーパスまたはメンバ名のどちらかです；あなたが両方の添え字を実装するならば、キーパス引数をとる添え字が使われます。
+明示的なメンバ式において、名前付きメンバに対して対応する宣言がないならば、式は型の持つ<code class="docutils literal notranslate"><span class="pre">subscript(dynamicMember:)</span></code>添え字に対する呼び出しとして理解されます、メンバについての情報を引数として渡します。添え字は、あるパラメータを受け入れます、それはキーパスまたはメンバ名のどちらかです；あなたが両方の添え字を実装するならば、キーパス引数をとる添え字が使われます。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">An implementation of <code class="docutils literal notranslate"><span class="pre">subscript(dynamicMemberLookup:)</span></code> can accept key paths using an argument of type <a class="reference external" href="../../../developer.apple.com/documentation/swift/keypath.html"><code class="docutils literal notranslate"><span class="pre">KeyPath</span></code></a>, <a class="reference external" href="../../../developer.apple.com/documentation/swift/writablekeypath.html"><code class="docutils literal notranslate"><span class="pre">WritableKeyPath</span></code></a>, or <a class="reference external" href="../../../developer.apple.com/documentation/swift/referencewritablekeypath.html"><code class="docutils literal notranslate"><span class="pre">ReferenceWritableKeyPath</span></code></a>. It can accept member names using an argument of a type that conforms to the <a class="reference external" href="../../../developer.apple.com/documentation/swift/expressiblebystringliteral.html"><code class="docutils literal notranslate"><span class="pre">ExpressibleByStringLiteral</span></code></a> protocol—in most cases, <code class="docutils literal notranslate"><span class="pre">String</span></code>. The subscript’s return type can be any type.</span><!--end_enstr-->
+<p><span class="enstr">An implementation of <code class="docutils literal notranslate"><span class="pre">subscript(dynamicMember:)</span></code> can accept key paths using an argument of type <a class="reference external" href="../../../developer.apple.com/documentation/swift/keypath.html"><code class="docutils literal notranslate"><span class="pre">KeyPath</span></code></a>, <a class="reference external" href="../../../developer.apple.com/documentation/swift/writablekeypath.html"><code class="docutils literal notranslate"><span class="pre">WritableKeyPath</span></code></a>, or <a class="reference external" href="../../../developer.apple.com/documentation/swift/referencewritablekeypath.html"><code class="docutils literal notranslate"><span class="pre">ReferenceWritableKeyPath</span></code></a>. It can accept member names using an argument of a type that conforms to the <a class="reference external" href="../../../developer.apple.com/documentation/swift/expressiblebystringliteral.html"><code class="docutils literal notranslate"><span class="pre">ExpressibleByStringLiteral</span></code></a> protocol—in most cases, <code class="docutils literal notranslate"><span class="pre">String</span></code>. The subscript’s return type can be any type.</span><!--end_enstr-->
 <span class="jpstr">
-<code class="docutils literal notranslate"><span class="pre">subscript(dynamicMemberLookup:)</span></code>の実装はキーパスを、型<a class="reference external" href="../../../developer.apple.com/documentation/swift/keypath.html"><code class="docutils literal notranslate"><span class="pre">KeyPath</span></code></a>、<a class="reference external" href="../../../developer.apple.com/documentation/swift/writablekeypath.html"><code class="docutils literal notranslate"><span class="pre">WritableKeyPath</span></code></a>、または<a class="reference external" href="../../../developer.apple.com/documentation/swift/referencewritablekeypath.html"><code class="docutils literal notranslate"><span class="pre">ReferenceWritableKeyPath</span></code></a>の引数を使って受け入れ可能です。それはメンバー名を、<a class="reference external" href="../../../developer.apple.com/documentation/swift/expressiblebystringliteral.html"><code class="docutils literal notranslate"><span class="pre">ExpressibleByStringLiteral</span></code></a>プロトコルに準拠する型 — ほとんどの場合、<code class="docutils literal notranslate"><span class="pre">String</span></code> — の引数を使って受け入れ可能です。添え字のもつ戻り型は、どんな型でも可能です。
+<code class="docutils literal notranslate"><span class="pre">subscript(dynamicMember:)</span></code>の実装はキーパスを、型<a class="reference external" href="../../../developer.apple.com/documentation/swift/keypath.html"><code class="docutils literal notranslate"><span class="pre">KeyPath</span></code></a>、<a class="reference external" href="../../../developer.apple.com/documentation/swift/writablekeypath.html"><code class="docutils literal notranslate"><span class="pre">WritableKeyPath</span></code></a>、または<a class="reference external" href="../../../developer.apple.com/documentation/swift/referencewritablekeypath.html"><code class="docutils literal notranslate"><span class="pre">ReferenceWritableKeyPath</span></code></a>の引数を使って受け入れ可能です。それはメンバー名を、<a class="reference external" href="../../../developer.apple.com/documentation/swift/expressiblebystringliteral.html"><code class="docutils literal notranslate"><span class="pre">ExpressibleByStringLiteral</span></code></a>プロトコルに準拠する型 — ほとんどの場合、<code class="docutils literal notranslate"><span class="pre">String</span></code> — の引数を使って受け入れ可能です。添え字のもつ戻り型は、どんな型でも可能です。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">Dynamic member lookup by member name can be used to create a wrapper type around data that can’t be type checked at compile time, such as when bridging data from other languages into Swift. For example:</span><!--end_enstr-->
@@ -801,14 +807,14 @@
 </div>
 <div class="section" id="ID621">
 <h3>propertyWrapper<a class="headerlink" href="#ID621" title="Permalink to this headline">¶</a></h3>
-<p><span class="enstr">Apply this attribute to a class, structure, or enumeration declaration to use that type as a property wrapper. When you apply this attribute to a type, you create a custom attribute with the same name as the type. Apply that new attribute to a property of a class, structure, or enumeration to wrap access to the property through an instance of the wrapper type. Local and global variables can’t use property wrappers.</span><!--end_enstr-->
+<p><span class="enstr">Apply this attribute to a class, structure, or enumeration declaration to use that type as a property wrapper. When you apply this attribute to a type, you create a custom attribute with the same name as the type. Apply that new attribute to a property of a class, structure, or enumeration to wrap access to the property through an instance of the wrapper type; apply the attribute to a local stored variable declaration to wrap access to the variable the same way. Computed variables, global variables, and constants can’t use property wrappers.</span><!--end_enstr-->
 <span class="jpstr">
-この属性をクラス、構造体、または列挙の宣言に適用して、その型をプロパティラッパーとして使ってください。あなたがこの属性をある型に適用する場合、あなたはあるあつらえの属性をその型と同じ名前で作成します。その新しい属性をクラス、構造体、または列挙のあるプロパティに適用することで、ラッパー型のインスタンスによって、そのプロパティに対するアクセスをラップしてください。ローカルおよびグローバル変数は、プロパティラッパーを使用できません。
+この属性をクラス、構造体、または列挙の宣言に適用して、その型をプロパティラッパーとして使ってください。あなたがこの属性をある型に適用する場合、あなたはあるあつらえの属性をその型と同じ名前で作成します。その新しい属性をクラス、構造体、または列挙のプロパティに適用することで、そのプロパティに対するアクセスを、ラッパー型のインスタンスによってラップしてください；その属性をあるローカル格納変数宣言に適用することで、その変数に対するアクセスを同じ方法でラップしてください。計算変数、グローバル変数、そして定数は、プロパティラッパーを使用できません。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">The wrapper must define a <code class="docutils literal notranslate"><span class="pre">wrappedValue</span></code> instance property. The <em>wrapped value</em> of the property is the value that the getter and setter for this property expose. In most cases, <code class="docutils literal notranslate"><span class="pre">wrappedValue</span></code> is a computed value, but it can be a stored value instead. The wrapper is responsible for defining and managing any underlying storage needed by its wrapped value. The compiler synthesizes storage for the instance of the wrapper type by prefixing the name of the wrapped property with an underscore (<code class="docutils literal notranslate"><span class="pre">_</span></code>)—for example, the wrapper for <code class="docutils literal notranslate"><span class="pre">someProperty</span></code> is stored as <code class="docutils literal notranslate"><span class="pre">_someProperty</span></code>. The synthesized storage for the wrapper has an access control level of <code class="docutils literal notranslate"><span class="pre">private</span></code>.</span><!--end_enstr-->
+<p><span class="enstr">The wrapper must define a <code class="docutils literal notranslate"><span class="pre">wrappedValue</span></code> instance property. The <em>wrapped value</em> of the property is the value that the getter and setter for this property expose. In most cases, <code class="docutils literal notranslate"><span class="pre">wrappedValue</span></code> is a computed value, but it can be a stored value instead. The wrapper defines and manages any underlying storage needed by its wrapped value. The compiler synthesizes storage for the instance of the wrapper type by prefixing the name of the wrapped property with an underscore (<code class="docutils literal notranslate"><span class="pre">_</span></code>)—for example, the wrapper for <code class="docutils literal notranslate"><span class="pre">someProperty</span></code> is stored as <code class="docutils literal notranslate"><span class="pre">_someProperty</span></code>. The synthesized storage for the wrapper has an access control level of <code class="docutils literal notranslate"><span class="pre">private</span></code>.</span><!--end_enstr-->
 <span class="jpstr">
-ラッパーは、ある<code class="docutils literal notranslate"><span class="pre">wrappedValue</span></code>インスタンスプロパティを定義しなければなりません。そのプロパティの<em>ラップされた値</em>は、このプロパティに対するゲッターとセッターが露出する値です。ほとんどの場合には、<code class="docutils literal notranslate"><span class="pre">wrappedValue</span></code>は計算される値です、しかしそれは代わりに格納される値であることもできます。ラッパーは、それのラップされた値によって必要とされるあらゆる基礎をなすストレージの定義と管理に責任を持ちます。コンパイラは、ラッパー型のインスタンスのためにストレージを合成します、ラップされたプロパティの名前にアンダースコア（<code class="docutils literal notranslate"><span class="pre">_</span></code>）で接頭辞をつけることによって — 例えば、<code class="docutils literal notranslate"><span class="pre">someProperty</span></code>に対するラッパーは、<code class="docutils literal notranslate"><span class="pre">_someProperty</span></code>として格納されます。ラッパーのために合成されたストレージは、<code class="docutils literal notranslate"><span class="pre">private</span></code>のアクセス制御水準を持ちます。
+ラッパーは、ある<code class="docutils literal notranslate"><span class="pre">wrappedValue</span></code>インスタンスプロパティを定義しなければなりません。そのプロパティの<em>ラップされた値</em>は、このプロパティに対するゲッターとセッターが露出する値です。ほとんどの場合には、<code class="docutils literal notranslate"><span class="pre">wrappedValue</span></code>は計算される値です、しかしそれは代わりに格納される値であることもできます。ラッパーは、それのラップされた値によって必要とされるあらゆる基礎をなすストレージを定義および管理します。コンパイラは、ラッパー型のインスタンスのためにストレージを合成します、ラップされたプロパティの名前にアンダースコア（<code class="docutils literal notranslate"><span class="pre">_</span></code>）で接頭辞をつけることによって — 例えば、<code class="docutils literal notranslate"><span class="pre">someProperty</span></code>に対するラッパーは、<code class="docutils literal notranslate"><span class="pre">_someProperty</span></code>として格納されます。ラッパーのために合成されたストレージは、<code class="docutils literal notranslate"><span class="pre">private</span></code>のアクセス制御水準を持ちます。
 </span><!--end_jpstr-->
 </p>
 <p><span class="enstr">A property that has a property wrapper can include <code class="docutils literal notranslate"><span class="pre">willSet</span></code> and <code class="docutils literal notranslate"><span class="pre">didSet</span></code> blocks, but it can’t override the compiler-synthesized <code class="docutils literal notranslate"><span class="pre">get</span></code> or <code class="docutils literal notranslate"><span class="pre">set</span></code> blocks.</span><!--end_enstr-->
@@ -875,6 +881,383 @@
 </li><li><span class="nv">s</span>.<span class="nv">$x</span>          <span class="c">// SomeProjection value</span>
 </li><li><span class="nv">s</span>.<span class="nv">$x</span>.<span class="nv">wrapper</span>  <span class="c">// WrapperWithProjection value</span>
 </li></ol></div></div></div>
+</div>
+<div class="section" id="ID633">
+<h3>resultBuilder<a class="headerlink" href="#ID633" title="Permalink to this headline">¶</a></h3>
+<p><span class="enstr">Apply this attribute to a class, structure, enumeration to use that type as a result builder. A <em>result builder</em> is a type that builds a nested data structure step by step. You use result builders to implement a domain-specific language (DSL) for creating nested data structures in a natural, declarative way. For an example of how to use the <code class="docutils literal notranslate"><span class="pre">resultBuilder</span></code> attribute, see <a class="reference internal" href="../LanguageGuide/AdvancedOperators.html#ID630"><span class="std std-ref">Result Builders</span></a>.</span><!--end_enstr-->
+<span class="jpstr">
+この属性をクラス、構造体、列挙に適用することで、その型をリザルトビルダーとして使ってください。<em>リザルトビルダー</em>は、ある型です、それは入れ子にされたデータ構造を着実に組み立てます。あなたはリザルトビルダーを使用することで、入れ子にされたデータ構造の自然な、叙述的な方法での作成のためのあるドメイン固有言語 (DSL) を実装します。どのように<code class="docutils literal notranslate"><span class="pre">resultBuilder</span></code>属性を使うかの例として、<a class="reference internal" href="../LanguageGuide/AdvancedOperators.html#ID630"><span class="std std-ref">リザルトビルダー</span></a>を見てください。
+</span><!--end_jpstr-->
+</p>
+<div class="section" id="ID634">
+<h4><span class="enstr">Result-Building Methods<a class="headerlink" href="#ID634" title="Permalink to this headline">¶</a></span><!--end_enstr-->
+<span class="jpstr">
+リザルトビルドメソッド<a class="headerlink" href="#ID634" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h4>
+<p><span class="enstr">A result builder implements static methods described below. Because all of the result builder’s functionality is exposed through static methods, you don’t ever initialize an instance of that type. The <code class="docutils literal notranslate"><span class="pre">buildBlock(_:)</span></code> method is required; the other methods—which enable additional functionality in the DSL—are optional. The declaration of a result builder type doesn’t actually have to include any protocol conformance.</span><!--end_enstr-->
+<span class="jpstr">
+リザルトビルダーは、下で記述される静的メソッドを実装します。リザルトビルダーのもつ機能性の全ては静的メソッドを通して露出されることから、あなたは決してその型のインスタンスを初期化しないでください。<code class="docutils literal notranslate"><span class="pre">buildBlock(_:)</span></code>メソッドは必須とされます；他のメソッド — それは追加の機能性をDSLにおいて可能にします — は随意です。リザルトビルダー型の宣言は、実際はどんなプロトコル準拠も含む必要はありません。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">The description of the static methods uses three types as placeholders. The type <code class="docutils literal notranslate"><span class="pre">Expression</span></code> is a placeholder for the type of the result builder’s input, <code class="docutils literal notranslate"><span class="pre">Component</span></code> is a placeholder for the type of a partial result, and <code class="docutils literal notranslate"><span class="pre">FinalResult</span></code> is a placeholder for the type of the result that the result builder produces. You replace these types with the actual types that your result builder uses. If your result-building methods don’t specify a type for <code class="docutils literal notranslate"><span class="pre">Expression</span></code> or <code class="docutils literal notranslate"><span class="pre">FinalResult</span></code>, they default to being the same as <code class="docutils literal notranslate"><span class="pre">Component</span></code>.</span><!--end_enstr-->
+<span class="jpstr">
+静的メソッドの記述は、３つの型をプレースホルダとして使います。型<code class="docutils literal notranslate"><span class="pre">Expression</span></code>はリザルトビルダーのもつ入力の型に対するプレースホルダです、<code class="docutils literal notranslate"><span class="pre">Component</span></code>は部分結果の型に対するプレースホルダです、そして<code class="docutils literal notranslate"><span class="pre">FinalResult</span></code>はリザルトビルダーが産み出す結果の型に対するプレースホルダです。あなたは、これらの型をあなたのリザルトビルダーが使う実際の型で置き換えます。あなたのリザリトビルドメソッドが<code class="docutils literal notranslate"><span class="pre">Expression</span></code>または<code class="docutils literal notranslate"><span class="pre">FinalResult</span></code>に対して型を指定しないならば、それらは初期状態で<code class="docutils literal notranslate"><span class="pre">Component</span></code>と同じになります。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">The result-building methods are as follows:</span><!--end_enstr-->
+<span class="jpstr">
+結果ビルドメソッドは、以下があります：
+</span><!--end_jpstr-->
+</p>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">static</span> <span class="pre">func</span> <span class="pre">buildBlock(_</span> <span class="pre">components:</span> <span class="pre">Component...)</span> <span class="pre">-&gt;</span> <span class="pre">Component</span></code></dt>
+<dd><span class="enstr">Combines an array of partial results into a single partial result. A result builder must implement this method.</span><!--end_enstr-->
+<span class="jpstr">
+部分的結果それらからなるある配列を単一の部分的結果へと結合します。リザルトビルダーは、このメソッドを実装しなければなりません。
+</span><!--end_jpstr-->
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">static</span> <span class="pre">func</span> <span class="pre">buildOptional(_</span> <span class="pre">component:</span> <span class="pre">Component?)</span> <span class="pre">-&gt;</span> <span class="pre">Component</span></code></dt>
+<dd><span class="enstr">Builds a partial result from a partial result that can be <code class="docutils literal notranslate"><span class="pre">nil</span></code>. Implement this method to support <code class="docutils literal notranslate"><span class="pre">if</span></code> statements that don’t include an <code class="docutils literal notranslate"><span class="pre">else</span></code> clause.</span><!--end_enstr-->
+<span class="jpstr">
+ある部分的結果を、<code class="docutils literal notranslate"><span class="pre">nil</span></code>であることが可能なある部分的結果から組み立てます。このメソッドを実装することで、<code class="docutils literal notranslate"><span class="pre">if</span></code>文をサポートしてください、それは<code class="docutils literal notranslate"><span class="pre">else</span></code>節を含まないものです。
+</span><!--end_jpstr-->
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">static</span> <span class="pre">func</span> <span class="pre">buildEither(first:</span> <span class="pre">Component)</span> <span class="pre">-&gt;</span> <span class="pre">Component</span></code></dt>
+<dd><span class="enstr">Builds a partial result whose value varies depending on some condition. Implement both this method and <code class="docutils literal notranslate"><span class="pre">buildEither(second:)</span></code> to support <code class="docutils literal notranslate"><span class="pre">switch</span></code> statements and <code class="docutils literal notranslate"><span class="pre">if</span></code> statements that include an <code class="docutils literal notranslate"><span class="pre">else</span></code> clause.</span><!--end_enstr-->
+<span class="jpstr">
+ある部分的結果を組み立てます、それの値はなんらかの条件に依存して変化するものです。このメソッドと<code class="docutils literal notranslate"><span class="pre">buildEither(second:)</span></code>を両方とも実装することで、<code class="docutils literal notranslate"><span class="pre">switch</span></code>文と、<code class="docutils literal notranslate"><span class="pre">if</span></code>文で<code class="docutils literal notranslate"><span class="pre">else</span></code>節を含むものをサポートしてください。
+</span><!--end_jpstr-->
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">static</span> <span class="pre">func</span> <span class="pre">buildEither(second:</span> <span class="pre">Component)</span> <span class="pre">-&gt;</span> <span class="pre">Component</span></code></dt>
+<dd><span class="enstr">Builds a partial result whose value varies depending on some condition. Implement both this method and <code class="docutils literal notranslate"><span class="pre">buildEither(first:)</span></code> to support <code class="docutils literal notranslate"><span class="pre">switch</span></code> statements and <code class="docutils literal notranslate"><span class="pre">if</span></code> statements that include an <code class="docutils literal notranslate"><span class="pre">else</span></code> clause.</span><!--end_enstr-->
+<span class="jpstr">
+ある部分的結果を組み立てます、それの値はなんらかの条件に依存して変化するものです。このメソッドと<code class="docutils literal notranslate"><span class="pre">buildEither(first:)</span></code>を両方とも実装することで、<code class="docutils literal notranslate"><span class="pre">switch</span></code>文と、<code class="docutils literal notranslate"><span class="pre">if</span></code>文で<code class="docutils literal notranslate"><span class="pre">else</span></code>節を含むものをサポートしてください。
+</span><!--end_jpstr-->
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">static</span> <span class="pre">func</span> <span class="pre">buildArray(_</span> <span class="pre">components:</span> <span class="pre">[Component])</span> <span class="pre">-&gt;</span> <span class="pre">Component</span></code></dt>
+<dd><span class="enstr">Builds a partial result from an array of partial results. Implement this method to support <code class="docutils literal notranslate"><span class="pre">for</span></code> loops.</span><!--end_enstr-->
+<span class="jpstr">
+ある部分的結果を、部分的結果それらからなるある配列から組み立てます。このメソッドを実装することで、<code class="docutils literal notranslate"><span class="pre">for</span></code>ループをサポートしてください。
+</span><!--end_jpstr-->
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">static</span> <span class="pre">func</span> <span class="pre">buildExpression(_</span> <span class="pre">expression:</span> <span class="pre">Expression)</span> <span class="pre">-&gt;</span> <span class="pre">Component</span></code></dt>
+<dd><span class="enstr">Builds a partial result from an expression. You can implement this method to perform preprocessing—for example, converting expressions to an internal type—or to provide additional information for type inference at use sites.</span><!--end_enstr-->
+<span class="jpstr">
+ある部分的結果をある式から組み立てます。あなたはこのメソッドを実装することで、処理 — 例えば、いくつかの式のある内部型への変換 — を実行します、または追加の情報を型推論に対してさまざまな現場で提供します。
+</span><!--end_jpstr-->
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">static</span> <span class="pre">func</span> <span class="pre">buildFinalResult(_</span> <span class="pre">component:</span> <span class="pre">Component)</span> <span class="pre">-&gt;</span> <span class="pre">FinalResult</span></code></dt>
+<dd><span class="enstr">Builds a final result from a partial result. You can implement this method as part of a result builder that uses a different type for partial and final results, or to perform other postprocessing on a result before returning it.</span><!--end_enstr-->
+<span class="jpstr">
+ある最終的な結果をある部分的な結果から組み立てます。あなたはこのメソッドを、部分的および最終的結果に対して異なる型を使うあるリザルトビルダーの一部として、または他の処理をある結果上でそれが返る前に実行するために実装できます。
+</span><!--end_jpstr-->
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">static</span> <span class="pre">func</span> <span class="pre">buildLimitedAvailability(_</span> <span class="pre">component:</span> <span class="pre">Component)</span> <span class="pre">-&gt;</span> <span class="pre">Component</span></code></dt>
+<dd><span class="enstr">Builds a partial result that propagates or erases type information outside a compiler-control statement that performs an availability check. You can use this to erase type information that varies between the conditional branches.</span><!--end_enstr-->
+<span class="jpstr">
+ある部分的結果を組み立てます、それはある有効性検査を実行するコンパイラ制御文の外側に型情報を伝播または消去するものです。あなたはこれを使うことで、条件分岐の間でさまざまに変化する型情報を消去できます。
+</span><!--end_jpstr-->
+</dd>
+</dl>
+<p><span class="enstr">For example, the code below defines a simple result builder that builds an array of integers. This code defines <code class="docutils literal notranslate"><span class="pre">Compontent</span></code> and <code class="docutils literal notranslate"><span class="pre">Expression</span></code> as type aliases, to make it easier to match the examples below to the list of methods above.</span><!--end_enstr-->
+<span class="jpstr">
+例えば、下のコードはある単純なリザルトビルダーを定義します、それは整数それらからなるある配列を組み立てます。このコードは、<code class="docutils literal notranslate"><span class="pre">Compontent</span></code>と<code class="docutils literal notranslate"><span class="pre">Expression</span></code>を型エイリアスとして定義します、そうして下の例それらを上のメソッドそれらのリストにより合うようにしています。
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li>@<span class="nv">resultBuilder</span>
+</li><li><span class="k">struct</span> <span class="nv">ArrayBuilder</span> {
+</li><li>    <span class="k">typealias</span> <span class="nv">Component</span> = [<span class="nc">Int</span>]
+</li><li>    <span class="k">typealias</span> <span class="nv">Expression</span> = <span class="nc">Int</span>
+</li><li>    <span class="k">static</span> <span class="k">func</span> <span class="nv">buildExpression</span>(<span class="k">_</span> <span class="nv">element</span>: <span class="nc">Expression</span>) -&gt; <span class="nc">Component</span> {
+</li><li>        <span class="k">return</span> [<span class="nv">element</span>]
+</li><li>    }
+</li><li>    <span class="k">static</span> <span class="k">func</span> <span class="nv">buildOptional</span>(<span class="k">_</span> <span class="nv">component</span>: <span class="nc">Component</span>?) -&gt; <span class="nc">Component</span> {
+</li><li>        <span class="k">guard</span> <span class="k">let</span> <span class="nv">component</span> = <span class="nv">component</span> <span class="k">else</span> { <span class="k">return</span> [] }
+</li><li>        <span class="k">return</span> <span class="nv">component</span>
+</li><li>    }
+</li><li>    <span class="k">static</span> <span class="k">func</span> <span class="nv">buildEither</span>(<span class="nv">first</span> <span class="nv">component</span>: <span class="nc">Component</span>) -&gt; <span class="nc">Component</span> {
+</li><li>        <span class="k">return</span> <span class="nv">component</span>
+</li><li>    }
+</li><li>    <span class="k">static</span> <span class="k">func</span> <span class="nv">buildEither</span>(<span class="nv">second</span> <span class="nv">component</span>: <span class="nc">Component</span>) -&gt; <span class="nc">Component</span> {
+</li><li>        <span class="k">return</span> <span class="nv">component</span>
+</li><li>    }
+</li><li>    <span class="k">static</span> <span class="k">func</span> <span class="nv">buildArray</span>(<span class="k">_</span> <span class="nv">components</span>: [<span class="nc">Component</span>]) -&gt; <span class="nc">Component</span> {
+</li><li>        <span class="k">return</span> <span class="nv">Array</span>(<span class="nv">components</span>.<span class="nv">joined</span>())
+</li><li>    }
+</li><li>    <span class="k">static</span> <span class="k">func</span> <span class="nv">buildBlock</span>(<span class="k">_</span> <span class="nv">components</span>: <span class="nc">Component</span>...) -&gt; <span class="nc">Component</span> {
+</li><li>        <span class="k">return</span> <span class="nv">Array</span>(<span class="nv">components</span>.<span class="nv">joined</span>())
+</li><li>    }
+</li><li>}
+</li></ol></div></div></div>
+</div>
+<div class="section" id="ID635">
+<h4><span class="enstr">Result Transformations<a class="headerlink" href="#ID635" title="Permalink to this headline">¶</a></span><!--end_enstr-->
+<span class="jpstr">
+結果（リザルト）変換<a class="headerlink" href="#ID635" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h4>
+<p><span class="enstr">The following syntactic transformations are applied recursively to turn code that uses result-builder syntax into code that calls the static methods of the result builder type:</span><!--end_enstr-->
+<span class="jpstr">
+以下の構文的変換は、再帰的に適用されることで、リザルトビルダー構文を使うコードを、リザルトビルダー型の静的メソッドを呼び出すコードに転換します：
+</span><!--end_jpstr-->
+</p>
+<ul>
+<li><p class="first"><span class="enstr">If the result builder has a <code class="docutils literal notranslate"><span class="pre">buildExpression(_:)</span></code> method, each expression becomes a call to that method. This transformation is always first. For example, the following declarations are equivalent:</span><!--end_enstr-->
+<span class="jpstr">
+リザルトビルダーがある<code class="docutils literal notranslate"><span class="pre">buildExpression(_:)</span></code>メソッドを持つならば、それぞれの式はそのメソッドへの呼び出しになります。この変換は、常に１番目です。例えば、以下の宣言は同等です：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li>@<span class="nv">ArrayBuilder</span> <span class="k">var</span> <span class="nv">builderNumber</span>: [<span class="nc">Int</span>] { <span class="m">10</span> }
+</li><li><span class="k">var</span> <span class="nv">manualNumber</span> = <span class="nv">ArrayBuilder</span>.<span class="nv">buildExpression</span>(<span class="m">10</span>)
+</li></ol></div></div></div>
+</li>
+<li><p class="first"><span class="enstr">An assignment statement is transformed like an expression, but is understood to evaluate to <code class="docutils literal notranslate"><span class="pre">()</span></code>. You can define an overload of <code class="docutils literal notranslate"><span class="pre">buildExpression(_:)</span></code> that takes an argument of type <code class="docutils literal notranslate"><span class="pre">()</span></code> to handle assignments specifically.</span><!--end_enstr-->
+<span class="jpstr">
+代入文は、式のように変換されます、しかし<code class="docutils literal notranslate"><span class="pre">()</span></code>を評価すると理解されます。あなたは<code class="docutils literal notranslate"><span class="pre">buildExpression(_:)</span></code>のオーバーロードを定義できます、それは型<code class="docutils literal notranslate"><span class="pre">()</span></code>の１つの引数を取ることで代入を特に取り扱うものです。
+</span><!--end_jpstr-->
+</p>
+</li>
+<li><p class="first"><span class="enstr">A branch statement that checks an availability condition becomes a call to the <code class="docutils literal notranslate"><span class="pre">buildLimitedAvailability(_:)</span></code> method. This transformation happens before the transformation into a call to <code class="docutils literal notranslate"><span class="pre">buildEither(first:)</span></code>, <code class="docutils literal notranslate"><span class="pre">buildEither(second:)</span></code>, or <code class="docutils literal notranslate"><span class="pre">buildOptional(_:)</span></code>. You use the <code class="docutils literal notranslate"><span class="pre">buildLimitedAvailability(_:)</span></code> method to erase type information that changes depending on which branch is taken. For example, the <code class="docutils literal notranslate"><span class="pre">buildEither(first:)</span></code> and <code class="docutils literal notranslate"><span class="pre">buildEither(second:)</span></code> methods below use a generic type that captures type information about both branches.</span><!--end_enstr-->
+<span class="jpstr">
+ある有効性条件を検査する分岐文は、<code class="docutils literal notranslate"><span class="pre">buildLimitedAvailability(_:)</span></code>メソッドへの呼び出しになります。この変換は、<code class="docutils literal notranslate"><span class="pre">buildEither(first:)</span></code>、<code class="docutils literal notranslate"><span class="pre">buildEither(second:)</span></code>、または<code class="docutils literal notranslate"><span class="pre">buildOptional(_:)</span></code>への呼び出しへの変換の前に起こります。あなたは、<code class="docutils literal notranslate"><span class="pre">buildLimitedAvailability(_:)</span></code>メソッドを使用することで、どの分岐が取られるかに依存して変化する型情報を消去します。例えば、下の<code class="docutils literal notranslate"><span class="pre">buildEither(first:)</span></code>と<code class="docutils literal notranslate"><span class="pre">buildEither(second:)</span></code>メソッドは、ある総称体型を使います、それは両方の分岐について型情報をキャプチャします。
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">protocol</span> <span class="nv">Drawable</span> {
+</li><li>    <span class="k">func</span> <span class="nv">draw</span>() -&gt; <span class="nc">String</span>
+</li><li>}
+</li><li><span class="k">struct</span> <span class="nv">Text</span>: <span class="nc">Drawable</span> {
+</li><li>    <span class="k">var</span> <span class="nv">content</span>: <span class="nc">String</span>
+</li><li>    <span class="k">init</span>(<span class="k">_</span> <span class="nv">content</span>: <span class="nc">String</span>) { <span class="k">self</span>.<span class="nv">content</span> = <span class="nv">content</span> }
+</li><li>    <span class="k">func</span> <span class="nv">draw</span>() -&gt; <span class="nc">String</span> { <span class="k">return</span> <span class="nv">content</span> }
+</li><li>}
+</li><li><span class="k">struct</span> <span class="nv">Line</span>&lt;<span class="nv">D</span>: <span class="nc">Drawable</span>&gt;: <span class="nc">Drawable</span> {
+</li><li>    <span class="k">var</span> <span class="nv">elements</span>: [<span class="nc">D</span>]
+</li><li>    <span class="k">func</span> <span class="nv">draw</span>() -&gt; <span class="nc">String</span> {
+</li><li>        <span class="k">return</span> <span class="nv">elements</span>.<span class="nv">map</span> { <span class="nv">$0</span>.<span class="nv">draw</span>() }.<span class="nv">joined</span>(<span class="nv">separator</span>: <span class="s">""</span>)
+</li><li>    }
+</li><li>}
+</li><li><span class="k">struct</span> <span class="nv">DrawEither</span>&lt;<span class="nv">First</span>: <span class="nc">Drawable</span>, <span class="nv">Second</span>: <span class="nc">Drawable</span>&gt;: <span class="nc">Drawable</span> {
+</li><li>    <span class="k">var</span> <span class="nv">content</span>: <span class="nc">Drawable</span>
+</li><li>    <span class="k">func</span> <span class="nv">draw</span>() -&gt; <span class="nc">String</span> { <span class="k">return</span> <span class="nv">content</span>.<span class="nv">draw</span>() }
+</li><li>}
+</li><li>
+</li><li>@<span class="nv">resultBuilder</span>
+</li><li><span class="k">struct</span> <span class="nv">DrawingBuilder</span> {
+</li><li>    <span class="k">static</span> <span class="k">func</span> <span class="nv">buildBlock</span>&lt;<span class="nv">D</span>: <span class="nc">Drawable</span>&gt;(<span class="k">_</span> <span class="nv">components</span>: <span class="nc">D</span>...) -&gt; <span class="nc">Line</span>&lt;<span class="nc">D</span>&gt; {
+</li><li>        <span class="k">return</span> <span class="nv">Line</span>(<span class="nv">elements</span>: <span class="nv">components</span>)
+</li><li>    }
+</li><li>    <span class="k">static</span> <span class="k">func</span> <span class="nv">buildEither</span>&lt;<span class="nv">First</span>, <span class="nv">Second</span>&gt;(<span class="nv">first</span>: <span class="nc">First</span>)
+</li><li>        -&gt; <span class="nc">DrawEither</span>&lt;<span class="nc">First</span>, <span class="nc">Second</span>&gt; {
+</li><li>            <span class="k">return</span> <span class="nv">DrawEither</span>(<span class="nv">content</span>: <span class="nv">first</span>)
+</li><li>    }
+</li><li>    <span class="k">static</span> <span class="k">func</span> <span class="nv">buildEither</span>&lt;<span class="nv">First</span>, <span class="nv">Second</span>&gt;(<span class="nv">second</span>: <span class="nc">Second</span>)
+</li><li>        -&gt; <span class="nc">DrawEither</span>&lt;<span class="nc">First</span>, <span class="nc">Second</span>&gt; {
+</li><li>            <span class="k">return</span> <span class="nv">DrawEither</span>(<span class="nv">content</span>: <span class="nv">second</span>)
+</li><li>    }
+</li><li>}
+</li></ol></div></div></div>
+<p><span class="enstr">However, this approach causes a problem in code that has availability checks:</span><!--end_enstr-->
+<span class="jpstr">
+しかしながら、この取り組みは有効性検査を持つコードにおいて問題を引き起こします：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">@available</span>(<span class="k">macOS</span> <span class="m">99</span>, *)
+</li><li><span class="k">struct</span> <span class="nv">FutureText</span>: <span class="nc">Drawable</span> {
+</li><li>    <span class="k">var</span> <span class="nv">content</span>: <span class="nc">String</span>
+</li><li>    <span class="k">init</span>(<span class="k">_</span> <span class="nv">content</span>: <span class="nc">String</span>) { <span class="k">self</span>.<span class="nv">content</span> = <span class="nv">content</span> }
+</li><li>    <span class="k">func</span> <span class="nv">draw</span>() -&gt; <span class="nc">String</span> { <span class="k">return</span> <span class="nv">content</span> }
+</li><li>}
+</li><li>@<span class="nv">DrawingBuilder</span> <span class="k">var</span> <span class="nv">brokenDrawing</span>: <span class="nc">Drawable</span> {
+</li><li>    <span class="k">if</span> <span class="k">#available</span>(<span class="k">macOS</span> <span class="m">99</span>, *) {
+</li><li>        <span class="nv">FutureText</span>(<span class="s">"Inside.future"</span>)  <span class="c">// Problem</span>
+</li><li>    } <span class="k">else</span> {
+</li><li>        <span class="nv">Text</span>(<span class="s">"Inside.present"</span>)
+</li><li>    }
+</li><li>}
+</li><li><span class="c">// The type of brokenDrawing is Line&lt;DrawEither&lt;Line&lt;FutureText&gt;, Line&lt;Text&gt;&gt;&gt;</span>
+</li></ol></div></div></div>
+<p><span class="enstr">In the code above, <code class="docutils literal notranslate"><span class="pre">FutureText</span></code> appears as part of the type of <code class="docutils literal notranslate"><span class="pre">brokenDrawing</span></code> because it’s one of the types in the <code class="docutils literal notranslate"><span class="pre">DrawEither</span></code> generic type. This could cause your program to crash if <code class="docutils literal notranslate"><span class="pre">FutureText</span></code> isn’t available at runtime, even in the case where that type is explicitly not being used.</span><!--end_enstr-->
+<span class="jpstr">
+上のコードにおいて、<code class="docutils literal notranslate"><span class="pre">FutureText</span></code>は<code class="docutils literal notranslate"><span class="pre">brokenDrawing</span></code>の型の一部として現れます、なぜならそれは<code class="docutils literal notranslate"><span class="pre">DrawEither</span></code>総称体型の中の型のうちの１つだからです。これは、あなたのプログラムをクラッシュさせる可能性があります、もし<code class="docutils literal notranslate"><span class="pre">FutureText</span></code>が実行時に有効でないならば、たとえ明確にその型が使われない場合でも。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">To solve this problem, implement a <code class="docutils literal notranslate"><span class="pre">buildLimitedAvailability(_:)</span></code> method to erase type information. For example, the code below builds an <code class="docutils literal notranslate"><span class="pre">AnyDrawable</span></code> value from its availability check.</span><!--end_enstr-->
+<span class="jpstr">
+この問題を解決するには、<code class="docutils literal notranslate"><span class="pre">buildLimitedAvailability(_:)</span></code>メソッドを実装して型情報を消去してください。例えば、下のコードは<code class="docutils literal notranslate"><span class="pre">AnyDrawable</span></code>値をそれの有効性検査から作り上げます。
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">struct</span> <span class="nv">AnyDrawable</span>: <span class="nc">Drawable</span> {
+</li><li>    <span class="k">var</span> <span class="nv">content</span>: <span class="nc">Drawable</span>
+</li><li>    <span class="k">func</span> <span class="nv">draw</span>() -&gt; <span class="nc">String</span> { <span class="k">return</span> <span class="nv">content</span>.<span class="nv">draw</span>() }
+</li><li>}
+</li><li><span class="k">extension</span> <span class="nc">DrawingBuilder</span> {
+</li><li>    <span class="k">static</span> <span class="k">func</span> <span class="nv">buildLimitedAvailability</span>(<span class="k">_</span> <span class="nv">content</span>: <span class="nc">Drawable</span>) -&gt; <span class="nc">AnyDrawable</span> {
+</li><li>        <span class="k">return</span> <span class="nv">AnyDrawable</span>(<span class="nv">content</span>: <span class="nv">content</span>)
+</li><li>    }
+</li><li>}
+</li><li>
+</li><li>@<span class="nv">DrawingBuilder</span> <span class="k">var</span> <span class="nv">typeErasedDrawing</span>: <span class="nc">Drawable</span> {
+</li><li>    <span class="k">if</span> <span class="k">#available</span>(<span class="k">macOS</span> <span class="m">99</span>, *) {
+</li><li>        <span class="nv">FutureText</span>(<span class="s">"Inside.future"</span>)
+</li><li>    } <span class="k">else</span> {
+</li><li>        <span class="nv">Text</span>(<span class="s">"Inside.present"</span>)
+</li><li>    }
+</li><li>}
+</li><li><span class="c">// The type of typeErasedDrawing is Line&lt;DrawEither&lt;AnyDrawable, Line&lt;Text&gt;&gt;&gt;</span>
+</li></ol></div></div></div>
+</li>
+<li><p class="first"><span class="enstr">A branch statement becomes a series of nested calls to the <code class="docutils literal notranslate"><span class="pre">buildEither(first:)</span></code> and <code class="docutils literal notranslate"><span class="pre">buildEither(second:)</span></code> methods. The statements’ conditions and cases are mapped onto the leaf nodes of a binary tree, and the statement becomes a nested call to the <code class="docutils literal notranslate"><span class="pre">buildEither</span></code> methods following the path to that leaf node from the root node.</span><!--end_enstr-->
+<span class="jpstr">
+ある分岐文は、一連の入れ子にされた<code class="docutils literal notranslate"><span class="pre">buildEither(first:)</span></code>と<code class="docutils literal notranslate"><span class="pre">buildEither(second:)</span></code>メソッドそれらへの呼び出しになります。その文のもつ条件それらとそれぞれの事例は、ある二分木のリーフノードそれらへとマップされます、そして文は<code class="docutils literal notranslate"><span class="pre">buildEither</span></code>メソッドそれらへのある入れ子にされた呼び出しになり、ルートノードからそのリーフノードへの経路をなぞっています。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">For example, if you write a switch statement that has three cases, the compiler uses a binary tree with three leaf nodes. Likewise, because the path from the root node to the second case is “second child” and then “first child”, that case becomes a nested call like <code class="docutils literal notranslate"><span class="pre">buildEither(first:</span> <span class="pre">buildEither(second:</span> <span class="pre">...</span> <span class="pre">))</span></code>. The following declarations are equivalent:</span><!--end_enstr-->
+<span class="jpstr">
+例えば、あなたが３つの事例を持つある切替文を書くならば、コンパイラは３つのリーフノードを備えるあるバイナリツリーを使います。同様に、ルートノードから２番目の事例への経路は “２番目の子” そしてそれから “最初の子” であることから、その事例はある入れ子にされた呼び出しになります、<code class="docutils literal notranslate"><span class="pre">buildEither(first:</span> <span class="pre">buildEither(second:</span> <span class="pre">...</span> <span class="pre">))</span></code>のように。以下の宣言は同等です：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">let</span> <span class="nv">someNumber</span> = <span class="m">19</span>
+</li><li>@<span class="nv">ArrayBuilder</span> <span class="k">var</span> <span class="nv">builderConditional</span>: [<span class="nc">Int</span>] {
+</li><li>    <span class="k">if</span> <span class="nv">someNumber</span> &lt; <span class="m">12</span> {
+</li><li>        <span class="m">31</span>
+</li><li>    } <span class="k">else</span> <span class="k">if</span> <span class="nv">someNumber</span> == <span class="m">19</span> {
+</li><li>        <span class="m">32</span>
+</li><li>    } <span class="k">else</span> {
+</li><li>        <span class="m">33</span>
+</li><li>    }
+</li><li>}
+</li><li>
+</li><li><span class="k">var</span> <span class="nv">manualConditional</span>: [<span class="nc">Int</span>]
+</li><li><span class="k">if</span> <span class="nv">someNumber</span> &lt; <span class="m">12</span> {
+</li><li>    <span class="k">let</span> <span class="nv">partialResult</span> = <span class="nv">ArrayBuilder</span>.<span class="nv">buildExpression</span>(<span class="m">31</span>)
+</li><li>    <span class="k">let</span> <span class="nv">outerPartialResult</span> = <span class="nv">ArrayBuilder</span>.<span class="nv">buildEither</span>(<span class="nv">first</span>: <span class="nv">partialResult</span>)
+</li><li>    <span class="nv">manualConditional</span> = <span class="nv">ArrayBuilder</span>.<span class="nv">buildEither</span>(<span class="nv">first</span>: <span class="nv">outerPartialResult</span>)
+</li><li>} <span class="k">else</span> <span class="k">if</span> <span class="nv">someNumber</span> == <span class="m">19</span> {
+</li><li>    <span class="k">let</span> <span class="nv">partialResult</span> = <span class="nv">ArrayBuilder</span>.<span class="nv">buildExpression</span>(<span class="m">32</span>)
+</li><li>    <span class="k">let</span> <span class="nv">outerPartialResult</span> = <span class="nv">ArrayBuilder</span>.<span class="nv">buildEither</span>(<span class="nv">second</span>: <span class="nv">partialResult</span>)
+</li><li>    <span class="nv">manualConditional</span> = <span class="nv">ArrayBuilder</span>.<span class="nv">buildEither</span>(<span class="nv">first</span>: <span class="nv">outerPartialResult</span>)
+</li><li>} <span class="k">else</span> {
+</li><li>    <span class="k">let</span> <span class="nv">partialResult</span> = <span class="nv">ArrayBuilder</span>.<span class="nv">buildExpression</span>(<span class="m">33</span>)
+</li><li>    <span class="nv">manualConditional</span> = <span class="nv">ArrayBuilder</span>.<span class="nv">buildEither</span>(<span class="nv">second</span>: <span class="nv">partialResult</span>)
+</li><li>}
+</li></ol></div></div></div>
+</li>
+<li><p class="first"><span class="enstr">A branch statement that might not produce a value, like an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement without an <code class="docutils literal notranslate"><span class="pre">else</span></code> clause, becomes a call to <code class="docutils literal notranslate"><span class="pre">buildOptional(_:)</span></code>. If the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement’s condition is satisfied, its code block is transformed and passed as the argument; otherwise, <code class="docutils literal notranslate"><span class="pre">buildOptional(_:)</span></code> is called with <code class="docutils literal notranslate"><span class="pre">nil</span></code> as its argument. For example, the following declarations are equivalent:</span><!--end_enstr-->
+<span class="jpstr">
+値を生成しないかもしれない分岐文、たとえば<code class="docutils literal notranslate"><span class="pre">if</span></code>文で<code class="docutils literal notranslate"><span class="pre">else</span></code>節なしなどは、<code class="docutils literal notranslate"><span class="pre">buildOptional(_:)</span></code>への呼び出しになります。<code class="docutils literal notranslate"><span class="pre">if</span></code>文のもつ条件が満たされるならば、それのコードブロックは変換されてそして引数として渡されます；そうでなければ、<code class="docutils literal notranslate"><span class="pre">buildOptional(_:)</span></code>が呼び出されます、<code class="docutils literal notranslate"><span class="pre">nil</span></code>をそれの引数として。例えば、以下の宣言は同等です：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li>@<span class="nv">ArrayBuilder</span> <span class="k">var</span> <span class="nv">builderOptional</span>: [<span class="nc">Int</span>] {
+</li><li>    <span class="k">if</span> (<span class="nv">someNumber</span> % <span class="m">2</span>) == <span class="m">1</span> { <span class="m">20</span> }
+</li><li>}
+</li><li>
+</li><li><span class="k">var</span> <span class="nv">partialResult</span>: [<span class="nc">Int</span>]? = <span class="k">nil</span>
+</li><li><span class="k">if</span> (<span class="nv">someNumber</span> % <span class="m">2</span>) == <span class="m">1</span> {
+</li><li>    <span class="nv">partialResult</span> = <span class="nv">ArrayBuilder</span>.<span class="nv">buildExpression</span>(<span class="m">20</span>)
+</li><li>}
+</li><li><span class="k">var</span> <span class="nv">manualOptional</span> = <span class="nv">ArrayBuilder</span>.<span class="nv">buildOptional</span>(<span class="nv">partialResult</span>)
+</li></ol></div></div></div>
+</li>
+<li><p class="first"><span class="enstr">A code block or <code class="docutils literal notranslate"><span class="pre">do</span></code> statement becomes a call to the <code class="docutils literal notranslate"><span class="pre">buildBlock(_:)</span></code> method. Each of the statements inside of the block is transformed, one at a time, and they become the arguments to the <code class="docutils literal notranslate"><span class="pre">buildBlock(_:)</span></code> method. For example, the following declarations are equivalent:</span><!--end_enstr-->
+<span class="jpstr">
+コードブロックまたは<code class="docutils literal notranslate"><span class="pre">do</span></code>文は、<code class="docutils literal notranslate"><span class="pre">buildBlock(_:)</span></code>メソッドへの呼び出しになります。ブロックの内部の文のそれぞれは変換されます、一度に１つずつ、そしてそれらは<code class="docutils literal notranslate"><span class="pre">buildBlock(_:)</span></code>メソッドへの引数になります。例えば、以下の宣言は同等です：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li>@<span class="nv">ArrayBuilder</span> <span class="k">var</span> <span class="nv">builderBlock</span>: [<span class="nc">Int</span>] {
+</li><li>    <span class="m">100</span>
+</li><li>    <span class="m">200</span>
+</li><li>    <span class="m">300</span>
+</li><li>}
+</li><li>
+</li><li><span class="k">var</span> <span class="nv">manualBlock</span> = <span class="nv">ArrayBuilder</span>.<span class="nv">buildBlock</span>(
+</li><li>    <span class="nv">ArrayBuilder</span>.<span class="nv">buildExpression</span>(<span class="m">100</span>),
+</li><li>    <span class="nv">ArrayBuilder</span>.<span class="nv">buildExpression</span>(<span class="m">200</span>),
+</li><li>    <span class="nv">ArrayBuilder</span>.<span class="nv">buildExpression</span>(<span class="m">300</span>)
+</li><li>)
+</li></ol></div></div></div>
+</li>
+<li><p class="first"><span class="enstr">A <code class="docutils literal notranslate"><span class="pre">for</span></code> loop becomes a temporary variable, a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, and call to the <code class="docutils literal notranslate"><span class="pre">buildArray(_:)</span></code> method. The new <code class="docutils literal notranslate"><span class="pre">for</span></code> loop iterates over the sequence and appends each partial result to that array. The temporary array is passed as the argument in the <code class="docutils literal notranslate"><span class="pre">buildArray(_:)</span></code> call. For example, the following declarations are equivalent:</span><!--end_enstr-->
+<span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">for</span></code>ループは、ある一時的な変数、ある<code class="docutils literal notranslate"><span class="pre">for</span></code>ループ、そして<code class="docutils literal notranslate"><span class="pre">buildArray(_:)</span></code>メソッドへの呼び出しになります。新しい<code class="docutils literal notranslate"><span class="pre">for</span></code>ループは、そのシーケンスのすべてにわたって反復します、そして部分的結果それぞれをその配列に追加します。一時的配列は、引数として<code class="docutils literal notranslate"><span class="pre">buildArray(_:)</span></code>呼び出しにおいて渡されます。例えば、以下の宣言は同等です：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li>@<span class="nv">ArrayBuilder</span> <span class="k">var</span> <span class="nv">builderArray</span>: [<span class="nc">Int</span>] {
+</li><li>    <span class="k">for</span> <span class="nv">i</span> <span class="k">in</span> <span class="m">5</span>...<span class="m">7</span> {
+</li><li>        <span class="m">100</span> + <span class="nv">i</span>
+</li><li>    }
+</li><li>}
+</li><li>
+</li><li><span class="k">var</span> <span class="nv">temporary</span>: [[<span class="nc">Int</span>]] = []
+</li><li><span class="k">for</span> <span class="nv">i</span> <span class="k">in</span> <span class="m">5</span>...<span class="m">7</span> {
+</li><li>    <span class="k">let</span> <span class="nv">partialResult</span> = <span class="nv">ArrayBuilder</span>.<span class="nv">buildExpression</span>(<span class="m">100</span> + <span class="nv">i</span>)
+</li><li>    <span class="nv">temporary</span>.<span class="nv">append</span>(<span class="nv">partialResult</span>)
+</li><li>}
+</li><li><span class="k">let</span> <span class="nv">manualArray</span> = <span class="nv">ArrayBuilder</span>.<span class="nv">buildArray</span>(<span class="nv">temporary</span>)
+</li></ol></div></div></div>
+</li>
+<li><p class="first"><span class="enstr">If the result builder has a <code class="docutils literal notranslate"><span class="pre">buildFinalResult(_:)</span></code> method, the final result becomes a call to that method. This transformation is always last.</span><!--end_enstr-->
+<span class="jpstr">
+リザルトビルダーがある<code class="docutils literal notranslate"><span class="pre">buildFinalResult(_:)</span></code>メソッドを持つならば、最終的結果はそのメソッドへの呼び出しになります。この変換は、常に最後です。
+</span><!--end_jpstr-->
+</p>
+</li>
+</ul>
+<p><span class="enstr">Although the transformation behavior is described in terms of temporary variables, using a result builder doesn’t actually create any new declarations that are visible from the rest of your code.</span><!--end_enstr-->
+<span class="jpstr">
+変換挙動は一時的な変数それらに基づいて記述されるとはいえ、リザルトビルダーを使うことは、あなたのコードの残りから可視であるどんな新しい宣言も実際は作成しません。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">You can’t use <code class="docutils literal notranslate"><span class="pre">break</span></code>, <code class="docutils literal notranslate"><span class="pre">continue</span></code>, <code class="docutils literal notranslate"><span class="pre">defer</span></code>, <code class="docutils literal notranslate"><span class="pre">guard</span></code>, or <code class="docutils literal notranslate"><span class="pre">return</span></code> statements, <code class="docutils literal notranslate"><span class="pre">while</span></code> statements, or <code class="docutils literal notranslate"><span class="pre">do</span></code>-<code class="docutils literal notranslate"><span class="pre">catch</span></code> statements in the code that a result builder transforms.</span><!--end_enstr-->
+<span class="jpstr">
+あなたは、<code class="docutils literal notranslate"><span class="pre">break</span></code>、<code class="docutils literal notranslate"><span class="pre">continue</span></code>、<code class="docutils literal notranslate"><span class="pre">defer</span></code>、<code class="docutils literal notranslate"><span class="pre">guard</span></code>、または<code class="docutils literal notranslate"><span class="pre">return</span></code>文、<code class="docutils literal notranslate"><span class="pre">while</span></code>文、または<code class="docutils literal notranslate"><span class="pre">do</span></code>-<code class="docutils literal notranslate"><span class="pre">catch</span></code>文をリザルトビルダーが変換するコードにおいて使用できません。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">The transformation process doesn’t change declarations in the code, which lets you use temporary constants and variables to build up expressions piece by piece. It also doesn’t change <code class="docutils literal notranslate"><span class="pre">throw</span></code> statements, compile-time diagnostic statements, or closures that contain a <code class="docutils literal notranslate"><span class="pre">return</span></code> statement.</span><!--end_enstr-->
+<span class="jpstr">
+変換処理は、コードの中の宣言を変更しません、それはあなたに一時的な定数と変数を使用して式それらを一つ一つ組み立てさせます。それはまた、<code class="docutils literal notranslate"><span class="pre">throw</span></code>文、コンパイル時診断文、または<code class="docutils literal notranslate"><span class="pre">return</span></code>文を含むクロージャを変更しません。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">Whenever possible, transformations are coalesced. For example, the expression <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">+</span> <span class="pre">5</span> <span class="pre">*</span> <span class="pre">6</span></code> becomes <code class="docutils literal notranslate"><span class="pre">buildExpression(4</span> <span class="pre">+</span> <span class="pre">5</span> <span class="pre">*</span> <span class="pre">6)</span></code> rather multiple calls to that function. Likewise, nested branch statements become a single binary tree of calls to the <code class="docutils literal notranslate"><span class="pre">buildEither</span></code> methods.</span><!--end_enstr-->
+<span class="jpstr">
+可能な時はいつでも、変換それらは合体させられます。例えば、式<code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">+</span> <span class="pre">5</span> <span class="pre">*</span> <span class="pre">6</span></code>は<code class="docutils literal notranslate"><span class="pre">buildExpression(4</span> <span class="pre">+</span> <span class="pre">5</span> <span class="pre">*</span> <span class="pre">6)</span></code>になります、その関数に対する複数の呼び出しではなく。同様に、入れ子にされた分岐文それらは、<code class="docutils literal notranslate"><span class="pre">buildEither</span></code>メソッドへの呼び出しそれらからなるある単一の二分木になります。
+</span><!--end_jpstr-->
+</p>
+</div>
+<div class="section" id="ID636">
+<h4><span class="enstr">Custom Result-Builder Attributes<a class="headerlink" href="#ID636" title="Permalink to this headline">¶</a></span><!--end_enstr-->
+<span class="jpstr">
+あつらえのリザルトビルダー属性<a class="headerlink" href="#ID636" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h4>
+<p><span class="enstr">Creating a result builder type creates a custom attribute with the same name. You can apply that attribute in the following places:</span><!--end_enstr-->
+<span class="jpstr">
+あるリザルトビルダー型を作成することは、あるあつらえの属性を同じ名前で作成します。あなたは、その属性を以下の場所で適用できます：
+</span><!--end_jpstr-->
+</p>
+<ul class="simple">
+<li><span class="enstr">On a function declaration, the result builder builds the body of the function.</span><!--end_enstr-->
+<span class="jpstr">
+ある関数宣言上で、リザルトビルダーはその関数の本文を組み立てます。
+</span><!--end_jpstr-->
+</li>
+<li><span class="enstr">On a variable or subscript declaration that includes a getter, the result builder builds the body of the getter.</span><!--end_enstr-->
+<span class="jpstr">
+ゲッターを含む変数または添え字宣言上で、リザルトビルダーはゲッターの本文を組み立てます。
+</span><!--end_jpstr-->
+</li>
+<li><span class="enstr">On a parameter in a function declaration, the result builder builds the body of a closure that’s passed as the corresponding argument.</span><!--end_enstr-->
+<span class="jpstr">
+関数宣言のパラメータ上で、結果ビルダーは、対応する引数として渡されるクロージャの本文を組み立てます。
+</span><!--end_jpstr-->
+</li>
+</ul>
+<p><span class="enstr">Applying a result builder attribute doesn’t impact ABI compatibility. Applying a result builder attribute to a parameter makes that attribute part of the function’s interface, which can effect source compatibility.</span><!--end_enstr-->
+<span class="jpstr">
+リザルトビルダー属性を適用することは、ABI互換性に影響を与えません。リザルトビルダー属性をあるパラメータに適用することは、その属性を関数のもつインターフェイスの一部にします、それはソース互換性に影響を与える可能性があります。
+</span><!--end_jpstr-->
+</p>
+</div>
 </div>
 <div class="section" id="ID594">
 <h3>requires_stored_property_inits<a class="headerlink" href="#ID594" title="Permalink to this headline">¶</a></h3>
@@ -977,9 +1360,9 @@
 </p>
 <div class="section" id="ID599">
 <h3>autoclosure<a class="headerlink" href="#ID599" title="Permalink to this headline">¶</a></h3>
-<p><span class="enstr">Apply this attribute to delay the evaluation of an expression by automatically wrapping that expression in a closure with no arguments. You apply it to a parameter’s type in a method or function declaration, for a parameter whose type is a function type that takes no arguments and that returns a value of the type of the expression. For an example of how to use the <code class="docutils literal notranslate"><span class="pre">autoclosure</span></code> attribute, see <a class="reference internal" href="../LanguageGuide/Closures.html#ID543"><span class="std std-ref">Autoclosures</span></a> and <a class="reference internal" href="Types.html#ID449"><span class="std std-ref">Function Type</span></a>.</span><!--end_enstr-->
+<p><span class="enstr">Apply this attribute to delay the evaluation of an expression by automatically wrapping that expression in a closure with no arguments. You apply it to a parameter’s type in a function or method declaration, for a parameter whose type is a function type that takes no arguments and that returns a value of the type of the expression. For an example of how to use the <code class="docutils literal notranslate"><span class="pre">autoclosure</span></code> attribute, see <a class="reference internal" href="../LanguageGuide/Closures.html#ID543"><span class="std std-ref">Autoclosures</span></a> and <a class="reference internal" href="Types.html#ID449"><span class="std std-ref">Function Type</span></a>.</span><!--end_enstr-->
 <span class="jpstr">
-この属性を適用することで、ある式の評価の延期を、自動的にその式を引数なしクロージャの中にラップすることによって行ってください。あなたは、それをメソッドまたは関数宣言においてあるパラメータの持つ型に適用します、それの型もつが関数型であるパラメータに対して、それは引数を取らずそしてそれは式の型のひとつの値を返すものです。<code class="docutils literal notranslate"><span class="pre">autoclosure</span></code>属性を使用する方法の例として、<a class="reference internal" href="../LanguageGuide/Closures.html#ID543"><span class="std std-ref">自動クロージャ</span></a>と<a class="reference internal" href="Types.html#ID449"><span class="std std-ref">関数型</span></a>を見てください。
+この属性を適用することで、ある式の評価の延期を、自動的にその式を引数なしクロージャの中にラップすることによって行ってください。あなたはそれを、関数またはメソッドの宣言の中であるパラメータの持つ型へと適用します、あるパラメータでそれの型が関数型のものに対して、それは引数を取らずそしてそれは式の型のひとつの値を返すものです。<code class="docutils literal notranslate"><span class="pre">autoclosure</span></code>属性を使用する方法の例として、<a class="reference internal" href="../LanguageGuide/Closures.html#ID543"><span class="std std-ref">自動クロージャ</span></a>と<a class="reference internal" href="Types.html#ID449"><span class="std std-ref">関数型</span></a>を見てください。
 </span><!--end_jpstr-->
 </p>
 </div>
@@ -1012,17 +1395,17 @@
 </span><!--end_jpstr-->
 </li>
 </ul>
-<p><span class="enstr">With a few exceptions, a function of any calling convention can be used when a function any other calling convention is needed. A nongeneric global function, a local function that doesn’t capture any local variables or a closure that doesn’t capture any local variables can be converted to the C calling convention. Other Swift functions can’t be converted to the C calling convention. A function with the Objective-C block calling convention can’t be converted to the C calling convention.</span><!--end_enstr-->
+<p><span class="enstr">With a few exceptions, a function of any calling convention can be used when a function any other calling convention is needed. A nongeneric global function, a local function that doesn’t capture any local variables, or a closure that doesn’t capture any local variables can be converted to the C calling convention. Other Swift functions can’t be converted to the C calling convention. A function with the Objective-C block calling convention can’t be converted to the C calling convention.</span><!--end_enstr-->
 <span class="jpstr">
-2、3の例外がありますが、何らかの呼出規約の関数は、何らかの他の呼出規約の関数が必要とされる場合に使用可能です。非総称体グローバル関数、何らローカル変数をキャプチャしないローカル関数または何らローカル変数をキャプチャしないクロージャは、C呼出規約に変換されることが可能です。他のスウィフト関数は、C呼出規約に変換されることはできません。Objective-Cブロック呼出規約での関数は、C呼出規約に変換されることはできません。
+2、3の例外がありますが、何らかの呼出規約の関数は、何らかの他の呼出規約の関数が必要とされる場合に使用可能です。非総称体グローバル関数、何らローカル変数をキャプチャしないローカル関数、または何らローカル変数をキャプチャしないクロージャは、C呼出規約に変換されることが可能です。他のスウィフト関数は、C呼出規約に変換されることはできません。Objective-Cブロック呼出規約での関数は、C呼出規約に変換されることはできません。
 </span><!--end_jpstr-->
 </p>
 </div>
 <div class="section" id="ID601">
 <h3>escaping<a class="headerlink" href="#ID601" title="Permalink to this headline">¶</a></h3>
-<p><span class="enstr">Apply this attribute to a parameter’s type in a method or function declaration to indicate that the parameter’s value can be stored for later execution. This means that the value is allowed to outlive the lifetime of the call. Function type parameters with the <code class="docutils literal notranslate"><span class="pre">escaping</span></code> type attribute require explicit use of <code class="docutils literal notranslate"><span class="pre">self.</span></code> for properties or methods. For an example of how to use the <code class="docutils literal notranslate"><span class="pre">escaping</span></code> attribute, see <a class="reference internal" href="../LanguageGuide/Closures.html#ID546"><span class="std std-ref">Escaping Closures</span></a>.</span><!--end_enstr-->
+<p><span class="enstr">Apply this attribute to a parameter’s type in a function or method declaration to indicate that the parameter’s value can be stored for later execution. This means that the value is allowed to outlive the lifetime of the call. Function type parameters with the <code class="docutils literal notranslate"><span class="pre">escaping</span></code> type attribute require explicit use of <code class="docutils literal notranslate"><span class="pre">self.</span></code> for properties or methods. For an example of how to use the <code class="docutils literal notranslate"><span class="pre">escaping</span></code> attribute, see <a class="reference internal" href="../LanguageGuide/Closures.html#ID546"><span class="std std-ref">Escaping Closures</span></a>.</span><!--end_enstr-->
 <span class="jpstr">
-この属性をメソッドや関数宣言の中のパラメータの型に適用して、そのパラメータの値がその後の実行のために保管されることができるのを指し示してください。これは、その値が呼び出しのライフタイムより長生きするのを許されることを意味します。<code class="docutils literal notranslate"><span class="pre">escaping</span></code>型属性を持つ関数型パラメーターは、明示的な<code class="docutils literal notranslate"><span class="pre">self.</span></code>の使用をプロパティやメソッドに対して必要とします。<code class="docutils literal notranslate"><span class="pre">escaping</span></code>属性を使う方法の例として、<a class="reference internal" href="../LanguageGuide/Closures.html#ID546"><span class="std std-ref">脱出クロージャ</span></a>を見てください。
+この属性をパラメータのもつ型に対して関数やメソッドの宣言において適用して、そのパラメータのもつ値がその後の実行のために保管されることができるのを指し示してください。これは、その値が呼び出しのライフタイムより長生きするのを許されることを意味します。<code class="docutils literal notranslate"><span class="pre">escaping</span></code>型属性を持つ関数型パラメーターは、明示的な<code class="docutils literal notranslate"><span class="pre">self.</span></code>の使用をプロパティやメソッドに対して必要とします。<code class="docutils literal notranslate"><span class="pre">escaping</span></code>属性を使う方法の例として、<a class="reference internal" href="../LanguageGuide/Closures.html#ID546"><span class="std std-ref">脱出クロージャ</span></a>を見てください。
 </span><!--end_jpstr-->
 </p>
 </div>
@@ -1084,7 +1467,7 @@
     <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter">Twitter</i></a>
   </aside>
 
-  <p class="copyright">Copyright © 2020 Apple Inc. All rights reserved.</p>
+  <p class="copyright">Copyright © 2021 Apple Inc. All rights reserved.</p>
   <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
   <p class="privacy">
     <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
@@ -1092,6 +1475,6 @@
   </p>
 </footer>
 <div id="jump_to_overlay"></div>
-<script src="../static/javascripts/application.js"></script>
+<script src="../_static/javascripts/application.js"></script>
   </body>
 </html>

@@ -10,11 +10,11 @@
     <meta name="author" content="Apple Inc." />
     <meta name="viewport" content="width=device-width initial-scale=1" />
     
-    <title>Enumerations — The Swift Programming Language (Swift 5.3)</title>
+    <title>Enumerations — The Swift Programming Language (Swift 5.4)</title>
     
     <link rel="license" href="/LICENSE.txt" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/tspl.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/application.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/tspl.css" />
     <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
@@ -41,7 +41,7 @@
 
     <div id="menu-toggle" class="menu-toggle open"></div>
 
-    <h2>The Swift Programming Language<div>Swift 5.3</div></h2>
+    <h2>The Swift Programming Language<div>Swift 5.4</div></h2>
 
     <ul>
     <ul class="current">
@@ -500,13 +500,13 @@
 例えば、ある在庫追跡システムが、２つの異なる型のバーコードによって製品を追跡する必要があると思ってください。ある製品はUPC形式の一次元バーコードでラベルをつけられます、それは<code class="docutils literal notranslate"><span class="pre">0</span></code>から<code class="docutils literal notranslate"><span class="pre">9</span></code>までの数字を使います。各バーコードは、１つの「ナンバーシステム」桁、それに続く５桁の「製造者コード」そして５桁の「商品コード」を持ちます。これらの後にコードが正しくスキャンされたことを確認するための１つの「チェック」桁が続きます：
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/barcode_UPC_2x.png" class="align-center" src="../images/barcode_UPC_2x.png" style="width: 252px;" />
+<img alt="../_images/barcode_UPC_2x.png" class="align-center" src="../_images/barcode_UPC_2x.png" style="width: 252px;" />
 <p><span class="enstr">Other products are labeled with 2D barcodes in QR code format, which can use any ISO 8859-1 character and can encode a string up to 2,953 characters long:</span><!--end_enstr-->
 <span class="jpstr">
 別の製品はQRコード形式の二次元バーコードでラベルをつけられます、それはどんなISO 8859-1の文字でも使うことができて、2,953文字までの長さの文字列をコード化することができます：
 </span><!--end_jpstr-->
 </p>
-<img alt="../_images/barcode_QR_2x.png" class="align-center" src="../images/barcode_QR_2x.png" style="width: 169px;" />
+<img alt="../_images/barcode_QR_2x.png" class="align-center" src="../_images/barcode_QR_2x.png" style="width: 169px;" />
 <p><span class="enstr">It’s convenient for an inventory tracking system to store UPC barcodes as a tuple of four integers, and QR code barcodes as a string of any length.</span><!--end_enstr-->
 <span class="jpstr">
 UPCバーコードを４つの整数のタプルとして、そしてQRコード・バーコードを任意の長さの文字列として格納できるのは、在庫追跡システムにとって便利です。
@@ -532,7 +532,7 @@ UPCバーコードを４つの整数のタプルとして、そしてQRコード
 「<code class="docutils literal notranslate"><span class="pre">Barcode</span></code>と呼ばれる列挙型を定義します、それは<code class="docutils literal notranslate"><span class="pre">upc</span></code>の値で型（<code class="docutils literal notranslate"><span class="pre">Int</span></code>、<code class="docutils literal notranslate"><span class="pre">Int</span></code>、<code class="docutils literal notranslate"><span class="pre">Int</span></code>、<code class="docutils literal notranslate"><span class="pre">Int</span></code>）の関連値をもつ、または<code class="docutils literal notranslate"><span class="pre">qrCode</span></code>の値で型<code class="docutils literal notranslate"><span class="pre">String</span></code>の関連値をもつものをとることができます。」
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">This definition doesn’t provide any actual <code class="docutils literal notranslate"><span class="pre">Int</span></code> or <code class="docutils literal notranslate"><span class="pre">String</span></code> values—it just defines the <em>type</em> of associated values that <code class="docutils literal notranslate"><span class="pre">Barcode</span></code> constants and variables can store when they are equal to <code class="docutils literal notranslate"><span class="pre">Barcode.upc</span></code> or <code class="docutils literal notranslate"><span class="pre">Barcode.qrCode</span></code>.</span><!--end_enstr-->
+<p><span class="enstr">This definition doesn’t provide any actual <code class="docutils literal notranslate"><span class="pre">Int</span></code> or <code class="docutils literal notranslate"><span class="pre">String</span></code> values—it just defines the <em>type</em> of associated values that <code class="docutils literal notranslate"><span class="pre">Barcode</span></code> constants and variables can store when they’re equal to <code class="docutils literal notranslate"><span class="pre">Barcode.upc</span></code> or <code class="docutils literal notranslate"><span class="pre">Barcode.qrCode</span></code>.</span><!--end_enstr-->
 <span class="jpstr">
 この定義は、何ら実際の<code class="docutils literal notranslate"><span class="pre">Int</span></code>または<code class="docutils literal notranslate"><span class="pre">String</span></code>値を提供しません ― それは、ただ単に関連値の<em>型</em>を定義します、それは、<code class="docutils literal notranslate"><span class="pre">Barcode</span></code>定数と変数が<code class="docutils literal notranslate"><span class="pre">Barcode.upc</span></code>もしくは<code class="docutils literal notranslate"><span class="pre">Barcode.qrCode</span></code>に等しいときに格納できる型です。
 </span><!--end_jpstr-->
@@ -847,7 +847,7 @@ UPCバーコードを４つの整数のタプルとして、そしてQRコード
     <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter">Twitter</i></a>
   </aside>
 
-  <p class="copyright">Copyright © 2020 Apple Inc. All rights reserved.</p>
+  <p class="copyright">Copyright © 2021 Apple Inc. All rights reserved.</p>
   <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
   <p class="privacy">
     <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
@@ -855,6 +855,6 @@ UPCバーコードを４つの整数のタプルとして、そしてQRコード
   </p>
 </footer>
 <div id="jump_to_overlay"></div>
-<script src="../static/javascripts/application.js"></script>
+<script src="../_static/javascripts/application.js"></script>
   </body>
 </html>

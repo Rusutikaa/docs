@@ -10,11 +10,11 @@
     <meta name="author" content="Apple Inc." />
     <meta name="viewport" content="width=device-width initial-scale=1" />
     
-    <title>Optional Chaining — The Swift Programming Language (Swift 5.3)</title>
+    <title>Optional Chaining — The Swift Programming Language (Swift 5.4)</title>
     
     <link rel="license" href="/LICENSE.txt" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
-    <link rel="stylesheet" media="all" href="../static/stylesheets/tspl.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/application.css" />
+    <link rel="stylesheet" media="all" href="../_static/stylesheets/tspl.css" />
     <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
@@ -41,7 +41,7 @@
 
     <div id="menu-toggle" class="menu-toggle open"></div>
 
-    <h2>The Swift Programming Language<div>Swift 5.3</div></h2>
+    <h2>The Swift Programming Language<div>Swift 5.4</div></h2>
 
     <ul>
     <ul class="current">
@@ -314,7 +314,7 @@
 あなたはオプショナル連鎖を、そのオプショナルが<code class="docutils literal notranslate"><span class="pre">nil</span></code>で無いならばあなたがプロパティ、メソッド、または添え字を呼び出したいオプショナルの値の後に疑問符（<code class="docutils literal notranslate"><span class="pre">?</span></code>）を置くことによって指定します。これは、その値を強制アンラップするためにオプショナルの値の後に感嘆符（<code class="docutils literal notranslate"><span class="pre">!</span></code>）を置くことに非常に似ています。大きな違いは、オプショナル連鎖はそのオプショナルが<code class="docutils literal notranslate"><span class="pre">nil</span></code>であるとき潔く失敗します、だけれども強制アンラップはそのオプショナルが<code class="docutils literal notranslate"><span class="pre">nil</span></code>であるとき実行時エラーの引き金となります。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">To reflect the fact that optional chaining can be called on a <code class="docutils literal notranslate"><span class="pre">nil</span></code> value, the result of an optional chaining call is always an optional value, even if the property, method, or subscript you are querying returns a non-optional value. You can use this optional return value to check whether the optional chaining call was successful (the returned optional contains a value), or did not succeed due to a <code class="docutils literal notranslate"><span class="pre">nil</span></code> value in the chain (the returned optional value is <code class="docutils literal notranslate"><span class="pre">nil</span></code>).</span><!--end_enstr-->
+<p><span class="enstr">To reflect the fact that optional chaining can be called on a <code class="docutils literal notranslate"><span class="pre">nil</span></code> value, the result of an optional chaining call is always an optional value, even if the property, method, or subscript you are querying returns a non-optional value. You can use this optional return value to check whether the optional chaining call was successful (the returned optional contains a value), or didn’t succeed due to a <code class="docutils literal notranslate"><span class="pre">nil</span></code> value in the chain (the returned optional value is <code class="docutils literal notranslate"><span class="pre">nil</span></code>).</span><!--end_enstr-->
 <span class="jpstr">
 オプショナル連鎖は<code class="docutils literal notranslate"><span class="pre">nil</span></code>値上で呼ばれることができるという事実を反映するために、オプショナル連鎖呼び出しの結果は、たとえあなたが問い合わせているプロパティ、メソッド、または添え字が非オプショナルの値を返すとしても、常にオプショナルの値です。あなたは、このオプショナルの戻り値を使って、オプショナル連鎖呼び出しが成功した（返されたオプショナルが値を含む）か、あるいは連鎖の中の<code class="docutils literal notranslate"><span class="pre">nil</span></code>値のために成功しなかった（返されたオプショナルの値が<code class="docutils literal notranslate"><span class="pre">nil</span></code>である）かどうか確認することができます。
 </span><!--end_jpstr-->
@@ -354,7 +354,7 @@
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">let</span> <span class="nv">john</span> = <span class="nv">Person</span>()
 </li></ol></div></div></div>
-<p><span class="enstr">If you try to access the <code class="docutils literal notranslate"><span class="pre">numberOfRooms</span></code> property of this person’s <code class="docutils literal notranslate"><span class="pre">residence</span></code>, by placing an exclamation point after <code class="docutils literal notranslate"><span class="pre">residence</span></code> to force the unwrapping of its value, you trigger a runtime error, because there is no <code class="docutils literal notranslate"><span class="pre">residence</span></code> value to unwrap:</span><!--end_enstr-->
+<p><span class="enstr">If you try to access the <code class="docutils literal notranslate"><span class="pre">numberOfRooms</span></code> property of this person’s <code class="docutils literal notranslate"><span class="pre">residence</span></code>, by placing an exclamation point after <code class="docutils literal notranslate"><span class="pre">residence</span></code> to force the unwrapping of its value, you trigger a runtime error, because there’s no <code class="docutils literal notranslate"><span class="pre">residence</span></code> value to unwrap:</span><!--end_enstr-->
 <span class="jpstr">
 あなたがこの人の<code class="docutils literal notranslate"><span class="pre">residence</span></code>の<code class="docutils literal notranslate"><span class="pre">numberOfRooms</span></code>プロパティに、その値を強制アンラップするため<code class="docutils literal notranslate"><span class="pre">residence</span></code>の後に感嘆符を置くことによって、アクセスしようとするならば、あなたは実行時エラーを引き起こします、なぜなら、アンラップする<code class="docutils literal notranslate"><span class="pre">residence</span></code>値はないからです：
 </span><!--end_jpstr-->
@@ -389,7 +389,7 @@
 <code class="docutils literal notranslate"><span class="pre">numberOfRooms</span></code>にアクセスする試みは失敗する可能性があるので、オプショナル連鎖は型<code class="docutils literal notranslate"><span class="pre">Int?</span></code>の値、すなわち「オプショナルの<code class="docutils literal notranslate"><span class="pre">Int</span></code>」、を返すことを試みます。<code class="docutils literal notranslate"><span class="pre">residence</span></code>が<code class="docutils literal notranslate"><span class="pre">nil</span></code>のとき、上の例の場合のように、このオプショナルの<code class="docutils literal notranslate"><span class="pre">Int</span></code>はまた<code class="docutils literal notranslate"><span class="pre">nil</span></code>になり、<code class="docutils literal notranslate"><span class="pre">numberOfRooms</span></code>にアクセスすることは可能でなかったという事実を反映します。オプショナルの<code class="docutils literal notranslate"><span class="pre">Int</span></code>は、オプショナル束縛を通してアクセスされることで、整数をアンラップして取り出して、その非オプショナル値を<code class="docutils literal notranslate"><span class="pre">roomCount</span></code>定数へ割り当てます。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">Note that this is true even though <code class="docutils literal notranslate"><span class="pre">numberOfRooms</span></code> is a non-optional <code class="docutils literal notranslate"><span class="pre">Int</span></code>. The fact that it is queried through an optional chain means that the call to <code class="docutils literal notranslate"><span class="pre">numberOfRooms</span></code> will always return an <code class="docutils literal notranslate"><span class="pre">Int?</span></code> instead of an <code class="docutils literal notranslate"><span class="pre">Int</span></code>.</span><!--end_enstr-->
+<p><span class="enstr">Note that this is true even though <code class="docutils literal notranslate"><span class="pre">numberOfRooms</span></code> is a non-optional <code class="docutils literal notranslate"><span class="pre">Int</span></code>. The fact that it’s queried through an optional chain means that the call to <code class="docutils literal notranslate"><span class="pre">numberOfRooms</span></code> will always return an <code class="docutils literal notranslate"><span class="pre">Int?</span></code> instead of an <code class="docutils literal notranslate"><span class="pre">Int</span></code>.</span><!--end_enstr-->
 <span class="jpstr">
 たとえ<code class="docutils literal notranslate"><span class="pre">numberOfRooms</span></code>が非オプショナルの<code class="docutils literal notranslate"><span class="pre">Int</span></code>であるとしても、これが当てはまることに注意してください。それがオプショナル連鎖によって問い合わせられるという事実は、<code class="docutils literal notranslate"><span class="pre">numberOfRooms</span></code>への呼び出しが常に<code class="docutils literal notranslate"><span class="pre">Int?</span></code>を返すことを意味します、<code class="docutils literal notranslate"><span class="pre">Int</span></code>ではなく。
 </span><!--end_jpstr-->
@@ -420,7 +420,7 @@
 オプショナル連鎖のモデル・クラスを定義する<a class="headerlink" href="#ID247" title="Permalink to this headline">¶</a>
 </span><!--end_jpstr-->
 </h2>
-<p><span class="enstr">You can use optional chaining with calls to properties, methods, and subscripts that are more than one level deep. This enables you to drill down into subproperties within complex models of interrelated types, and to check whether it is possible to access properties, methods, and subscripts on those subproperties.</span><!--end_enstr-->
+<p><span class="enstr">You can use optional chaining with calls to properties, methods, and subscripts that are more than one level deep. This enables you to drill down into subproperties within complex models of interrelated types, and to check whether it’s possible to access properties, methods, and subscripts on those subproperties.</span><!--end_enstr-->
 <span class="jpstr">
 あなたは、深さ１階層以上であるプロパティ、メソッド、そして添え字への呼び出しでオプショナル連鎖を使うことができます。これはあなたに、相互に関係づけられた型である複雑なモデルの内部の下位情報に掘り下げていくこと、そしてそれらの下位情報上でプロパティ、メソッド、そして添え字にアクセスすることが可能であるかどうか確認することを可能にします。
 </span><!--end_jpstr-->
@@ -591,7 +591,7 @@
 オプショナル連鎖を通してメソッドを呼ぶ<a class="headerlink" href="#ID249" title="Permalink to this headline">¶</a>
 </span><!--end_jpstr-->
 </h2>
-<p><span class="enstr">You can use optional chaining to call a method on an optional value, and to check whether that method call is successful. You can do this even if that method does not define a return value.</span><!--end_enstr-->
+<p><span class="enstr">You can use optional chaining to call a method on an optional value, and to check whether that method call is successful. You can do this even if that method doesn’t define a return value.</span><!--end_enstr-->
 <span class="jpstr">
 あなたはオプショナル連鎖を使って、オプショナルの値の上でメソッドを呼んで、そしてそのメソッド呼び出しが成功しているかどうか調べることができます。たとえそのメソッドが戻り値を定義しないとしても、あなたはこれをすることができます。
 </span><!--end_jpstr-->
@@ -605,12 +605,12 @@
 </li><li>    <span class="nv">print</span>(<span class="s">"The number of rooms is </span>\<span class="p">(</span><span class="nv">numberOfRooms</span><span class="p">)</span><span class="s">"</span>)
 </li><li>}
 </li></ol></div></div></div>
-<p><span class="enstr">This method does not specify a return type. However, functions and methods with no return type have an implicit return type of <code class="docutils literal notranslate"><span class="pre">Void</span></code>, as described in <a class="reference internal" href="Functions.html#ID163"><span class="std std-ref">Functions Without Return Values</span></a>. This means that they return a value of <code class="docutils literal notranslate"><span class="pre">()</span></code>, or an empty tuple.</span><!--end_enstr-->
+<p><span class="enstr">This method doesn’t specify a return type. However, functions and methods with no return type have an implicit return type of <code class="docutils literal notranslate"><span class="pre">Void</span></code>, as described in <a class="reference internal" href="Functions.html#ID163"><span class="std std-ref">Functions Without Return Values</span></a>. This means that they return a value of <code class="docutils literal notranslate"><span class="pre">()</span></code>, or an empty tuple.</span><!--end_enstr-->
 <span class="jpstr">
 このメソッドは、戻り型を指定しません。しかし、<a class="reference internal" href="Functions.html#ID163"><span class="std std-ref">戻り値のない関数</span></a>で記述されるように、戻り型のない関数やメソッドは、<code class="docutils literal notranslate"><span class="pre">Void</span></code>の暗黙の戻り型を持ちます。これは、それらが値<code class="docutils literal notranslate"><span class="pre">()</span></code>、または空のタプルを返すことを意味します。
 </span><!--end_jpstr-->
 </p>
-<p><span class="enstr">If you call this method on an optional value with optional chaining, the method’s return type will be <code class="docutils literal notranslate"><span class="pre">Void?</span></code>, not <code class="docutils literal notranslate"><span class="pre">Void</span></code>, because return values are always of an optional type when called through optional chaining. This enables you to use an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement to check whether it was possible to call the <code class="docutils literal notranslate"><span class="pre">printNumberOfRooms()</span></code> method, even though the method does not itself define a return value. Compare the return value from the <code class="docutils literal notranslate"><span class="pre">printNumberOfRooms</span></code> call against <code class="docutils literal notranslate"><span class="pre">nil</span></code> to see if the method call was successful:</span><!--end_enstr-->
+<p><span class="enstr">If you call this method on an optional value with optional chaining, the method’s return type will be <code class="docutils literal notranslate"><span class="pre">Void?</span></code>, not <code class="docutils literal notranslate"><span class="pre">Void</span></code>, because return values are always of an optional type when called through optional chaining. This enables you to use an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement to check whether it was possible to call the <code class="docutils literal notranslate"><span class="pre">printNumberOfRooms()</span></code> method, even though the method doesn’t itself define a return value. Compare the return value from the <code class="docutils literal notranslate"><span class="pre">printNumberOfRooms</span></code> call against <code class="docutils literal notranslate"><span class="pre">nil</span></code> to see if the method call was successful:</span><!--end_enstr-->
 <span class="jpstr">
 あなたがこのメソッドをあるオプショナルの値の上でオプショナル連鎖を使って呼ぶならば、メソッドの戻り値は<code class="docutils literal notranslate"><span class="pre">Void?</span></code>になります、<code class="docutils literal notranslate"><span class="pre">Void</span></code>ではなく、なぜならば、オプショナル連鎖を通して呼び出されるとき戻り値は常にオプショナルだからです。これはあなたに<code class="docutils literal notranslate"><span class="pre">if</span></code>文を<code class="docutils literal notranslate"><span class="pre">printNumberOfRooms()</span></code>メソッドを呼び出すことが可能か調べるために使うことを可能にします、たとえそのメソッドがそれ自身では戻り値を定義しないとしてもです。<code class="docutils literal notranslate"><span class="pre">printNumberOfRooms</span></code>呼び出しからの戻り値を<code class="docutils literal notranslate"><span class="pre">nil</span></code>と比較して、そのメソッドがうまく呼び出されたか見てください：
 </span><!--end_jpstr-->
@@ -652,7 +652,7 @@
 注意
 </span><!--end_jpstr-->
 </p>
-<p class="last"><span class="enstr">When you access a subscript on an optional value through optional chaining, you place the question mark <em>before</em> the subscript’s brackets, not after. The optional chaining question mark always follows immediately after the part of the expression that is optional.</span><!--end_enstr-->
+<p class="last"><span class="enstr">When you access a subscript on an optional value through optional chaining, you place the question mark <em>before</em> the subscript’s brackets, not after. The optional chaining question mark always follows immediately after the part of the expression that’s optional.</span><!--end_enstr-->
 <span class="jpstr">
 あなたがオプショナル連鎖を通してオプショナルの値の上で添え字にアクセスするとき、あなたは添え字の角括弧の<em>前に</em>疑問符を置きます、後ろではなく。オプショナル連鎖の疑問符は、常にオプショナルである式部分の直後に続きます。
 </span><!--end_jpstr-->
@@ -721,7 +721,7 @@
 </li><li><span class="nv">testScores</span>[<span class="s">"Brian"</span>]?[<span class="m">0</span>] = <span class="m">72</span>
 </li><li><span class="c"><span class="enstr">// the "Dave" array is now [91, 82, 84] and the "Bev" array is now [80, 94, 81]</span><!--end_enstr--><span class="jpstr">（「Dave」配列は現在[91, 82, 84]です、そして「Bev」配列は現在[80, 94, 81]です）</span><!--end_jpstr--></span>
 </li></ol></div></div></div>
-<p><span class="enstr">The example above defines a dictionary called <code class="docutils literal notranslate"><span class="pre">testScores</span></code>, which contains two key-value pairs that map a <code class="docutils literal notranslate"><span class="pre">String</span></code> key to an array of <code class="docutils literal notranslate"><span class="pre">Int</span></code> values. The example uses optional chaining to set the first item in the <code class="docutils literal notranslate"><span class="pre">"Dave"</span></code> array to <code class="docutils literal notranslate"><span class="pre">91</span></code>; to increment the first item in the <code class="docutils literal notranslate"><span class="pre">"Bev"</span></code> array by <code class="docutils literal notranslate"><span class="pre">1</span></code>; and to try to set the first item in an array for a key of <code class="docutils literal notranslate"><span class="pre">"Brian"</span></code>. The first two calls succeed, because the <code class="docutils literal notranslate"><span class="pre">testScores</span></code> dictionary contains keys for <code class="docutils literal notranslate"><span class="pre">"Dave"</span></code> and <code class="docutils literal notranslate"><span class="pre">"Bev"</span></code>. The third call fails, because the <code class="docutils literal notranslate"><span class="pre">testScores</span></code> dictionary does not contain a key for <code class="docutils literal notranslate"><span class="pre">"Brian"</span></code>.</span><!--end_enstr-->
+<p><span class="enstr">The example above defines a dictionary called <code class="docutils literal notranslate"><span class="pre">testScores</span></code>, which contains two key-value pairs that map a <code class="docutils literal notranslate"><span class="pre">String</span></code> key to an array of <code class="docutils literal notranslate"><span class="pre">Int</span></code> values. The example uses optional chaining to set the first item in the <code class="docutils literal notranslate"><span class="pre">"Dave"</span></code> array to <code class="docutils literal notranslate"><span class="pre">91</span></code>; to increment the first item in the <code class="docutils literal notranslate"><span class="pre">"Bev"</span></code> array by <code class="docutils literal notranslate"><span class="pre">1</span></code>; and to try to set the first item in an array for a key of <code class="docutils literal notranslate"><span class="pre">"Brian"</span></code>. The first two calls succeed, because the <code class="docutils literal notranslate"><span class="pre">testScores</span></code> dictionary contains keys for <code class="docutils literal notranslate"><span class="pre">"Dave"</span></code> and <code class="docutils literal notranslate"><span class="pre">"Bev"</span></code>. The third call fails, because the <code class="docutils literal notranslate"><span class="pre">testScores</span></code> dictionary doesn’t contain a key for <code class="docutils literal notranslate"><span class="pre">"Brian"</span></code>.</span><!--end_enstr-->
 <span class="jpstr">
 上の例は<code class="docutils literal notranslate"><span class="pre">testScores</span></code>と呼ばれる辞書型を定義します、それは、２つの「キーと値」対を含んでいて、それは<code class="docutils literal notranslate"><span class="pre">String</span></code>キーを<code class="docutils literal notranslate"><span class="pre">Int</span></code>値を持つ配列と関連づけます。この例は、オプショナル連鎖を使って<code class="docutils literal notranslate"><span class="pre">"Dave"</span></code>配列の最初の項目を<code class="docutils literal notranslate"><span class="pre">91</span></code>に設定します；それから<code class="docutils literal notranslate"><span class="pre">"Bev"</span></code>配列の最初の項目を<code class="docutils literal notranslate"><span class="pre">1</span></code>だけ増加します；そしてそれから<code class="docutils literal notranslate"><span class="pre">"Brian"</span></code>のキーに対応する配列の最初の項目を設定することを試みます。最初の２つの呼び出しは成功します、なぜなら、<code class="docutils literal notranslate"><span class="pre">testScores</span></code>辞書は<code class="docutils literal notranslate"><span class="pre">"Dave"</span></code>と<code class="docutils literal notranslate"><span class="pre">"Bev"</span></code>のキーを含んでいるからです。３番目の呼び出しは失敗します、なぜなら、<code class="docutils literal notranslate"><span class="pre">testScores</span></code>辞書は<code class="docutils literal notranslate"><span class="pre">"Brian"</span></code>のキーを含んでいないからです。
 </span><!--end_jpstr-->
@@ -734,7 +734,7 @@
 連鎖の複数の階層を結ぶ<a class="headerlink" href="#ID252" title="Permalink to this headline">¶</a>
 </span><!--end_jpstr-->
 </h2>
-<p><span class="enstr">You can link together multiple levels of optional chaining to drill down to properties, methods, and subscripts deeper within a model. However, multiple levels of optional chaining do not add more levels of optionality to the returned value.</span><!--end_enstr-->
+<p><span class="enstr">You can link together multiple levels of optional chaining to drill down to properties, methods, and subscripts deeper within a model. However, multiple levels of optional chaining don’t add more levels of optionality to the returned value.</span><!--end_enstr-->
 <span class="jpstr">
 あなたは、オプショナル連鎖の複数の階層を結びつけて、あるモデル内のより深いプロパティ、メソッド、そして添え字に掘り下げていくことができます。しかし、オプショナル連鎖の複数の階層は、返された値にさらにオプショナルの階層を加えません。
 </span><!--end_jpstr-->
@@ -745,7 +745,7 @@
 </span><!--end_jpstr-->
 </p>
 <ul class="simple">
-<li><span class="enstr">If the type you are trying to retrieve is not optional, it will become optional because of the optional chaining.</span><!--end_enstr-->
+<li><span class="enstr">If the type you are trying to retrieve isn’t optional, it will become optional because of the optional chaining.</span><!--end_enstr-->
 <span class="jpstr">
 あなたが取り出そうとしている型がオプショナルでないならば、それはオプショナル連鎖であることからオプショナルになります。
 </span><!--end_jpstr-->
@@ -849,7 +849,7 @@
 </li><li>    <span class="k">if</span> <span class="nv">beginsWithThe</span> {
 </li><li>        <span class="nv">print</span>(<span class="s">"John's building identifier begins with \"The\"."</span>)
 </li><li>    } <span class="k">else</span> {
-</li><li>        <span class="nv">print</span>(<span class="s">"John's building identifier does not begin with \"The\"."</span>)
+</li><li>        <span class="nv">print</span>(<span class="s">"John's building identifier doesn't begin with \"The\"."</span>)
 </li><li>    }
 </li><li>}
 </li><li><span class="c"><span class="enstr">// Prints "John's building identifier begins with "The"."</span><!--end_enstr--><span class="jpstr">（「ジョンの建物名は「月」で始まります」を出力します）</span><!--end_jpstr--></span>
@@ -892,7 +892,7 @@
     <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter">Twitter</i></a>
   </aside>
 
-  <p class="copyright">Copyright © 2020 Apple Inc. All rights reserved.</p>
+  <p class="copyright">Copyright © 2021 Apple Inc. All rights reserved.</p>
   <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
   <p class="privacy">
     <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
@@ -900,6 +900,6 @@
   </p>
 </footer>
 <div id="jump_to_overlay"></div>
-<script src="../static/javascripts/application.js"></script>
+<script src="../_static/javascripts/application.js"></script>
   </body>
 </html>
