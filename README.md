@@ -1,6 +1,6 @@
 ﻿* [The Swift Programming Language 2021.4.26 日本語訳](https://rusutikaa.github.io/docs/docs.swift.org/swift-book/index.html)
 
-* [Framework Swift 2021.5.10 途中 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com/documentation/swift.html)
+* [Framework Swift 2021.5.10 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com/documentation/swift.html)
 
 * [Framework SwiftUI 2021.5.10 途中 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com/documentation/swiftui.html)
 
