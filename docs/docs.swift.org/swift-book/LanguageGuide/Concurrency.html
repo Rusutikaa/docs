@@ -1,0 +1,793 @@
+
+
+<!DOCTYPE html>
+
+
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8" />
+    <meta name="author" content="Apple Inc." />
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    
+    <title>Concurrency — The Swift Programming Language (Swift 5.5)</title>
+    
+    <link rel="license" href="/LICENSE.txt" />
+    <link rel="stylesheet" media="all" href="../static/stylesheets/application.css" />
+    <link rel="stylesheet" media="all" href="../static/stylesheets/tspl.css" />
+    <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
+    <link rel="mask-icon" href="/assets/images/icon-swift.svg" color="#F05339" /> 
+  </head>
+  <body>
+
+
+<nav role="navigation">
+    <header role="banner">
+      <h1 id="logo">
+        <a href="https://swift.org/" title="Swift.org" role="img" aria-label="Swift.org">
+          Swift.org
+        </a>
+      </h1>
+    </header>
+
+    <div id="menu-toggle" class="menu-toggle open"></div>
+
+    <h2>The Swift Programming Language<div>Swift 5.5</div></h2>
+
+    <ul>
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html"><span class="enstr">Welcome to Swift</span><!--end_enstr-->
+<span class="jpstr">
+スウィフトにようこそ
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="TheBasics.html"><span class="enstr">Language Guide</span><!--end_enstr-->
+<span class="jpstr">
+言語ガイド
+</span><!--end_jpstr-->
+</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="TheBasics.html"><span class="enstr">The Basics</span><!--end_enstr-->
+<span class="jpstr">
+基本
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BasicOperators.html"><span class="enstr">Basic Operators</span><!--end_enstr-->
+<span class="jpstr">
+基本の演算子
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="StringsAndCharacters.html"><span class="enstr">Strings and Characters</span><!--end_enstr-->
+<span class="jpstr">
+文字列と文字
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CollectionTypes.html"><span class="enstr">Collection Types</span><!--end_enstr-->
+<span class="jpstr">
+コレクション型
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ControlFlow.html"><span class="enstr">Control Flow</span><!--end_enstr-->
+<span class="jpstr">
+制御の流れ
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Functions.html"><span class="enstr">Functions</span><!--end_enstr-->
+<span class="jpstr">
+関数
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Closures.html"><span class="enstr">Closures</span><!--end_enstr-->
+<span class="jpstr">
+クロージャ
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Enumerations.html"><span class="enstr">Enumerations</span><!--end_enstr-->
+<span class="jpstr">
+列挙
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ClassesAndStructures.html"><span class="enstr">Structures and Classes</span><!--end_enstr-->
+<span class="jpstr">
+構造体とクラス
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Properties.html"><span class="enstr">Properties</span><!--end_enstr-->
+<span class="jpstr">
+プロパティ
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Methods.html"><span class="enstr">Methods</span><!--end_enstr-->
+<span class="jpstr">
+メソッド
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Subscripts.html"><span class="enstr">Subscripts</span><!--end_enstr-->
+<span class="jpstr">
+添え字
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Inheritance.html"><span class="enstr">Inheritance</span><!--end_enstr-->
+<span class="jpstr">
+継承
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Initialization.html"><span class="enstr">Initialization</span><!--end_enstr-->
+<span class="jpstr">
+初期化
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Deinitialization.html"><span class="enstr">Deinitialization</span><!--end_enstr-->
+<span class="jpstr">
+デイニシャライズ
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OptionalChaining.html"><span class="enstr">Optional Chaining</span><!--end_enstr-->
+<span class="jpstr">
+オプショナル連鎖
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ErrorHandling.html"><span class="enstr">Error Handling</span><!--end_enstr-->
+<span class="jpstr">
+エラーの処理
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"><span class="enstr">Concurrency</span><!--end_enstr-->
+<span class="jpstr">
+並行性
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TypeCasting.html"><span class="enstr">Type Casting</span><!--end_enstr-->
+<span class="jpstr">
+型キャスト
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NestedTypes.html"><span class="enstr">Nested Types</span><!--end_enstr-->
+<span class="jpstr">
+入れ子にされた型
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Extensions.html"><span class="enstr">Extensions</span><!--end_enstr-->
+<span class="jpstr">
+拡張
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Protocols.html"><span class="enstr">Protocols</span><!--end_enstr-->
+<span class="jpstr">
+プロトコル
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Generics.html"><span class="enstr">Generics</span><!--end_enstr-->
+<span class="jpstr">
+総称体
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OpaqueTypes.html"><span class="enstr">Opaque Types</span><!--end_enstr-->
+<span class="jpstr">
+不透明型
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AutomaticReferenceCounting.html"><span class="enstr">Automatic Reference Counting</span><!--end_enstr-->
+<span class="jpstr">
+自動参照カウント
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MemorySafety.html"><span class="enstr">Memory Safety</span><!--end_enstr-->
+<span class="jpstr">
+メモリ安全
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AccessControl.html"><span class="enstr">Access Control</span><!--end_enstr-->
+<span class="jpstr">
+アクセス制御
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AdvancedOperators.html"><span class="enstr">Advanced Operators</span><!--end_enstr-->
+<span class="jpstr">
+先進の演算子
+</span><!--end_jpstr-->
+</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ReferenceManual/AboutTheLanguageReference.html"><span class="enstr">Language Reference</span><!--end_enstr-->
+<span class="jpstr">
+言語リファレンス
+</span><!--end_jpstr-->
+</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RevisionHistory/RevisionHistory.html"><span class="enstr">Revision History</span><!--end_enstr-->
+<span class="jpstr">
+改訂履歴
+</span><!--end_jpstr-->
+</a></li>
+</ul>
+
+    <li class="toctree-l1 return"><a class="reference internal" href="../../../index.html">← Go to Index</a></li>
+    </ul>
+</nav>
+
+
+
+
+<main role="main">
+    <article class="page">
+        <menu id="bashful" type="toolbar">
+          <div class="inner">
+            <menuitem id="jump_to" class="menu-bar-item closed">
+            <span id="jump_to_toggle">On This Page</span>
+            <div class="chevron">
+                <div class="chevy chevron-left"></div>
+                <div class="chevy chevron-right"></div>
+            </div>
+            <menu type="list" class="details">
+                <ul>
+<li><a class="reference internal" href="#"><span class="enstr">Concurrency</span><!--end_enstr-->
+<span class="jpstr">
+並行性
+</span><!--end_jpstr-->
+</a><ul>
+<li><a class="reference internal" href="#ID639"><span class="enstr">Defining and Calling Asynchronous Functions</span><!--end_enstr-->
+<span class="jpstr">
+非同期関数の定義と呼び出し
+</span><!--end_jpstr-->
+</a></li>
+<li><a class="reference internal" href="#ID640"><span class="enstr">Asynchronous Sequences</span><!--end_enstr-->
+<span class="jpstr">
+非同期シーケンス
+</span><!--end_jpstr-->
+</a></li>
+<li><a class="reference internal" href="#ID641"><span class="enstr">Calling Asynchronous Functions in Parallel</span><!--end_enstr-->
+<span class="jpstr">
+非同期関数を並列に呼び出す
+</span><!--end_jpstr-->
+</a></li>
+<li><a class="reference internal" href="#ID642"><span class="enstr">Tasks and Task Groups</span><!--end_enstr-->
+<span class="jpstr">
+タスクとタスクグループ
+</span><!--end_jpstr-->
+</a><ul>
+<li><a class="reference internal" href="#ID643"><span class="enstr">Unstructured Concurrency</span><!--end_enstr-->
+<span class="jpstr">
+構造化されない並行性
+</span><!--end_jpstr-->
+</a></li>
+<li><a class="reference internal" href="#ID644"><span class="enstr">Task Cancellation</span><!--end_enstr-->
+<span class="jpstr">
+タスク取り消し
+</span><!--end_jpstr-->
+</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ID645"><span class="enstr">Actors</span><!--end_enstr-->
+<span class="jpstr">
+アクター
+</span><!--end_jpstr-->
+</a></li>
+</ul>
+</li>
+</ul>
+
+            </menu>
+            </menuitem>
+          </div>
+        </menu>
+
+        
+  <div class="section" id="concurrency">
+<h1><span class="enstr">Concurrency<a class="headerlink" href="#concurrency" title="Permalink to this headline">¶</a></span><!--end_enstr-->
+<span class="jpstr">
+並行性<a class="headerlink" href="#concurrency" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h1>
+<p><span class="enstr">Swift has built-in support for writing asynchronous and parallel code in a structured way. <em>Asynchronous code</em> can be suspended and resumed later, although only one piece of the program executes at a time. Suspending and resuming code in your program lets it continue to make progress on short-term operations like updating its UI while continuing to work on long-running operations like fetching data over the network or parsing files. <em>Parallel code</em> means multiple pieces of code run simultaneously—for example, a computer with a four-core processor can run four pieces of code at the same time, with each core carrying out one of the tasks. A program that uses parallel and asynchronous code carries out multiple operations at a time; it suspends operations that are waiting for an external system, and makes it easier to write this code in a memory-safe way.</span><!--end_enstr-->
+<span class="jpstr">
+スウィフトは、非同期のそして並列なコードをある構造化された方法で書くための組込みのサポートを持ちます。<em>非同期コード</em>は、中断されて後で再開されることが可能です、とはいえプログラムの１つの断片だけは一度に遂行します。コードをあなたのプログラムにおいて中断および再開することは、それに、データをネットワーク越しに取ってくるまたはファイルを構文解析するといった長く続く演算に取り組み続けている間に、それのUIを更新するといった短期間の演算の進捗を継続させます。<em>並列コード</em>は、複数のコード断片が同時に動作することを意味します — 例えば、4コアプロセッサをもつコンピュータは４つのコード断片を、各コアがそれらタスクの１つを実施することで一度に実行できます。並列および非同期のコードを使用するプログラムは、複数の演算を一度に実施します；それは、外部システムを待つ演算を中断します、そしてこのコードをメモリ安全な方法で書くのをより簡単にします。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">The additional scheduling flexibility from parallel or asynchronous code also comes with a cost of increased complexity. Swift lets you express your intent in a way that enables some compile-time checking—for example, you can use actors to safely access mutable state. However, adding concurrency to slow or buggy code isn’t a guarantee that it will become fast or correct. In fact, adding concurrency might even make your code harder to debug. However, using Swift’s language-level support for concurrency in code that needs to be concurrent means Swift can help you catch problems at compile time.</span><!--end_enstr-->
+<span class="jpstr">
+並列または非同期のコードによって加味されたスケジュール的柔軟性はまた、複雑さの増加という犠牲を伴います。スウィフトは、あなたにあなたの意図をある方法、何らかのコンバイル時での検査を可能にするもので表現させます — 例えば、あなたはアクターを使用して、可変な状態に安全にアクセスできます。しかしながら、並行性を低速またはバグのあるコードに加えることは、それが高速または正しくなることを保証しません。実際に、並行性を加えることは、あなたのコードをデバッグするのを難しくしさえするかもしれません。しかしながら、並行性に対するスウィフトのもつ言語水準サポートを使うことは、並行である（共同して働く、同時に起こる）ことを必要とするコードにおいて、あなたがコンパイル時に問題を捕まえるのをスウィフトが助け得るのを意味します。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">The rest of this chapter uses the term <em>concurrency</em> to refer to this common combination of asynchronous and parallel code.</span><!--end_enstr-->
+<span class="jpstr">
+この章の残りは、非同期および並列コードのこの普通の組み合わせに言及するのに用語、<em>並行性</em>を用います。
+</span><!--end_jpstr-->
+</p>
+<div class="admonition note">
+<p class="first admonition-title"><span class="enstr">Note</span><!--end_enstr-->
+<span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+<p class="last"><span class="enstr">If you’ve written concurrent code before, you might be used to working with threads. The concurrency model in Swift is built on top of threads, but you don’t interact with them directly. An asynchronous function in Swift can give up the thread that it’s running on, which lets another asynchronous function run on that thread while the first function is blocked.</span><!--end_enstr-->
+<span class="jpstr">
+あなたが並行性コードを前に書いたことがあるならば、あなたはスレッドを扱うことに慣れているかもしれません。スウィフトにおける並行性モデルはスレッドそれらの最上部に構築されます、しかしあなたはそれらと直接に相互作用しません。スウィフトにおける非同期関数は、それがその上で動作しているところのスレッドを諦めることができます、それは別の非同期関数にそのスレッド上で動作させます、一方で最初の関数はブロック（遮断）されます。
+</span><!--end_jpstr-->
+</p>
+</div>
+<p><span class="enstr">Although it’s possible to write concurrent code without using Swift’s language support, that code tends to be harder to read. For example, the following code downloads a list of photo names, downloads the first photo in that list, and shows that photo to the user:</span><!--end_enstr-->
+<span class="jpstr">
+並行性コードをスウィフトのもつ言語サポートを使うことなく書くことは可能であるとはいえ、そのコードは読むのがより困難になりがちです。例えば、以下のコードは写真名のリストをダウンロードして、そのリストの最初の写真をダウンロードして、そしてその写真をユーザに示します：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="nv">listPhotos</span>(<span class="nv">inGallery</span>: <span class="s">"Summer Vacation"</span>) { <span class="nv">photoNames</span> <span class="k">in</span>
+</li><li>    <span class="k">let</span> <span class="nv">sortedNames</span> = <span class="nv">photoNames</span>.<span class="nv">sorted</span>()
+</li><li>    <span class="k">let</span> <span class="nv">name</span> = <span class="nv">sortedNames</span>[<span class="m">0</span>]
+</li><li>    <span class="nv">downloadPhoto</span>(<span class="nv">named</span>: <span class="nv">name</span>) { <span class="nv">photo</span> <span class="k">in</span>
+</li><li>        <span class="nv">show</span>(<span class="nv">photo</span>)
+</li><li>    }
+</li><li>}
+</li></ol></div></div></div>
+<p><span class="enstr">Even in this simple case, because the code has to be written as a series of completion handlers, you end up writing nested closures. In this style, more complex code with deep nesting can quickly become unwieldy.</span><!--end_enstr-->
+<span class="jpstr">
+この単純な事例においてさえ、コードが一連の完了ハンドラとして書かれなければならないことから、あなたは最終的に複数のクロージャを入れ子にして書くことになります。このやり方では、深く入れ子になっているさらに複雑なコードは、すぐに手に負えなくなりえます。
+</span><!--end_jpstr-->
+</p>
+<div class="section" id="ID639">
+<h2><span class="enstr">Defining and Calling Asynchronous Functions<a class="headerlink" href="#ID639" title="Permalink to this headline">¶</a></span><!--end_enstr-->
+<span class="jpstr">
+非同期関数の定義と呼び出し<a class="headerlink" href="#ID639" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h2>
+<p><span class="enstr">An <em>asynchronous function</em> or <em>asynchronous method</em> is a special kind of function or method that can be suspended while it’s partway through execution. This is in contrast to ordinary, synchronous functions and methods, which either run to completion, throw an error, or never return. An asynchronous function or method still does one of those three things, but it can also pause in the middle when it’s waiting for something. Inside the body of an asynchronous function or method, you mark each of these places where execution can be suspended.</span><!--end_enstr-->
+<span class="jpstr">
+<em>非同期関数</em>または<em>非同期メソッド</em>は、関数またはメソッドのある特別な種類です、それはそれが遂行の途中である間に中断されることが可能です。これは、普通の同期関数およびメソッドとは対照的です、それは完了するまで実行する、エラーをスローする、または決して復帰しないのどれかです。非同期の関数やメソッドは依然としてそれら３つのことの１つを行います、しかしそれはまた、それが何かを待っている時に途中で一時停止できます。非同期の関数やメソッドの本体の内部で、あなたは遂行が中断されることが可能であるそれら場所のそれぞれに印をつけます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">To indicate that a function or method is asynchronous, you write the <code class="docutils literal notranslate"><span class="pre">async</span></code> keyword in its declaration after its parameters, similar to how you use <code class="docutils literal notranslate"><span class="pre">throws</span></code> to mark a throwing function. If the function or method returns a value, you write <code class="docutils literal notranslate"><span class="pre">async</span></code> before the return arrow (<code class="docutils literal notranslate"><span class="pre">-&gt;</span></code>). For example, here’s how you might fetch the names of photos in a gallery:</span><!--end_enstr-->
+<span class="jpstr">
+ある関数またはメソッドが非同期であることを指し示すために、あなたは<code class="docutils literal notranslate"><span class="pre">async</span></code>キーワードをそれの宣言の中でそれのパラメータの後に書きます、あなたが<code class="docutils literal notranslate"><span class="pre">throws</span></code>を使ってスロー関数を印する方法と同じように。関数またはメソッドが値を返すならば、あなたは<code class="docutils literal notranslate"><span class="pre">async</span></code>をその戻り矢印（<code class="docutils literal notranslate"><span class="pre">-&gt;</span></code>）の前に書きます。例えば、ここにあなたがあるギャラリーの写真の名前を取って来るかもしれない方法があります：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">func</span> <span class="nv">listPhotos</span>(<span class="nv">inGallery</span> <span class="nv">name</span>: <span class="nc">String</span>) <span class="nv">async</span> -&gt; [<span class="nv">String</span>] {
+</li><li>    <span class="k">let</span> <span class="nv">result</span> = <span class="c">// ... some asynchronous networking code ...</span>
+</li><li>    <span class="k">return</span> <span class="nv">result</span>
+</li><li>}
+</li></ol></div></div></div>
+<p><span class="enstr">For a function or method that’s both asynchronous and throwing, you write <code class="docutils literal notranslate"><span class="pre">async</span></code> before <code class="docutils literal notranslate"><span class="pre">throws</span></code>.</span><!--end_enstr-->
+<span class="jpstr">
+非同期とスローの両方である関数やメソッドに対して、あなたは<code class="docutils literal notranslate"><span class="pre">async</span></code>を<code class="docutils literal notranslate"><span class="pre">throws</span></code>の前に書きます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">When calling an asynchronous method, execution suspends until that method returns. You write <code class="docutils literal notranslate"><span class="pre">await</span></code> in front of the call to mark the possible suspension point. This is like writing <code class="docutils literal notranslate"><span class="pre">try</span></code> when calling a throwing function, to mark the possible change to the program’s flow if there’s an error. Inside an asynchronous method, the flow of execution is suspended <em>only</em> when you call another asynchronous method—suspension is never implicit or preemptive—which means every possible suspension point is marked with <code class="docutils literal notranslate"><span class="pre">await</span></code>.</span><!--end_enstr-->
+<span class="jpstr">
+非同期メソッドを呼び出す時、遂行はそのメソッドが戻るまで中断されます。あなたは、<code class="docutils literal notranslate"><span class="pre">await</span></code>をその呼び出しの前に書くことで可能な中断地点を印します。これは、エラーがある場合のプログラムの流れに対する可能な変更を印するために、<code class="docutils literal notranslate"><span class="pre">try</span></code>をスロー関数の呼び出しの時に書くことに似ています。非同期メソッドの内部では、遂行の流れは、あなたが別の非同期メソッドを呼び出す時に<em>のみ</em>中断されます — 中断は決して暗黙的または先制的ではありません — それが意味するのはあらゆる可能な中断地点は<code class="docutils literal notranslate"><span class="pre">await</span></code>で印されるということです。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">For example, the code below fetches the names of all the pictures in a gallery and then shows the first picture:</span><!--end_enstr-->
+<span class="jpstr">
+例えば、下のコードは、あるギャラリーの全ての画像の名前を取ってきて、それから最初の画像を示します：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">let</span> <span class="nv">photoNames</span> = <span class="nv">await</span> <span class="nv">listPhotos</span>(<span class="nv">inGallery</span>: <span class="s">"Summer Vacation"</span>)
+</li><li><span class="k">let</span> <span class="nv">sortedNames</span> = <span class="nv">photoNames</span>.<span class="nv">sorted</span>()
+</li><li><span class="k">let</span> <span class="nv">name</span> = <span class="nv">sortedNames</span>[<span class="m">0</span>]
+</li><li><span class="k">let</span> <span class="nv">photo</span> = <span class="nv">await</span> <span class="nv">downloadPhoto</span>(<span class="nv">named</span>: <span class="nv">name</span>)
+</li><li><span class="nv">show</span>(<span class="nv">photo</span>)
+</li></ol></div></div></div>
+<p><span class="enstr">Because the <code class="docutils literal notranslate"><span class="pre">listPhotos(inGallery:)</span></code> and <code class="docutils literal notranslate"><span class="pre">downloadPhoto(named:)</span></code> functions both need to make network requests, they could take a relatively long time to complete. Making them both asynchronous by writing <code class="docutils literal notranslate"><span class="pre">async</span></code> before the return arrow lets the rest of the app’s code keep running while this code waits for the picture to be ready.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">listPhotos(inGallery:)</span></code>および<code class="docutils literal notranslate"><span class="pre">downloadPhoto(named:)</span></code>関数の両方がネットワーク要請をする必要があることから、それらは完了するのに比較的に長い時間がかかる可能性があります。それらを両方とも<code class="docutils literal notranslate"><span class="pre">async</span></code>を戻り矢印の前に書くことによって非同期にすることは、アプリのもつコードの残りに動作を続けさせます、一方でこのコードは画像が利用可能になるのを待ちます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">To understand the concurrent nature of the example above, here’s one possible order of execution:</span><!--end_enstr-->
+<span class="jpstr">
+上の例の並行の本質を理解するために、ここに遂行の１つの起こりうる順番があります：
+</span><!--end_jpstr-->
+</p>
+<ol class="arabic simple">
+<li><span class="enstr">The code starts running from the first line and runs up to the first <code class="docutils literal notranslate"><span class="pre">await</span></code>. It calls the <code class="docutils literal notranslate"><span class="pre">listPhotos(inGallery:)</span></code> function and suspends execution while it waits for that function to return.</span><!--end_enstr-->
+<span class="jpstr">
+コードは、最初の行から動作を開始します、そして最初の<code class="docutils literal notranslate"><span class="pre">await</span></code>に至るまで動作します。それは<code class="docutils literal notranslate"><span class="pre">listPhotos(inGallery:)</span></code>関数を呼び出します、そしてその関数が戻るのをそれが待つあいだ遂行を中断します。
+</span><!--end_jpstr-->
+</li>
+<li><span class="enstr">While this code’s execution is suspended, some other concurrent code in the same program runs. For example, maybe a long-running background task continues updating a list of new photo galleries. That code also runs until the next suspension point, marked by <code class="docutils literal notranslate"><span class="pre">await</span></code>, or until it completes.</span><!--end_enstr-->
+<span class="jpstr">
+このコードの遂行が中断される間、何らかの他の並行性コードは同じプログラムの中で動作します。例えば、たぶん長期動作のバックグラウンドタスクは、新しい写真ギャラリーのリストの更新を続けます。そのコードはまた、<code class="docutils literal notranslate"><span class="pre">await</span></code>によって印される次の中断地点まで、またはそれが完了するまで動作します。
+</span><!--end_jpstr-->
+</li>
+<li><span class="enstr">After <code class="docutils literal notranslate"><span class="pre">listPhotos(inGallery:)</span></code> returns, this code continues execution starting at that point. It assigns the value that was returned to <code class="docutils literal notranslate"><span class="pre">photoNames</span></code>.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">listPhotos(inGallery:)</span></code>が返った後、このコードはその地点で開始して遂行を続けます。それは、返された値を<code class="docutils literal notranslate"><span class="pre">photoNames</span></code>に代入します。
+</span><!--end_jpstr-->
+</li>
+<li><span class="enstr">The lines that define <code class="docutils literal notranslate"><span class="pre">sortedNames</span></code> and <code class="docutils literal notranslate"><span class="pre">name</span></code> are regular, synchronous code. Because nothing is marked <code class="docutils literal notranslate"><span class="pre">await</span></code> on these lines, there aren’t any possible suspension points.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">sortedNames</span></code>と<code class="docutils literal notranslate"><span class="pre">name</span></code>を定義する行は、普通の、同期コードです。まったく<code class="docutils literal notranslate"><span class="pre">await</span></code>で印されるものがこれらの行にないので、可能な中断地点は何もありません。
+</span><!--end_jpstr-->
+</li>
+<li><span class="enstr">The next <code class="docutils literal notranslate"><span class="pre">await</span></code> marks the call to the <code class="docutils literal notranslate"><span class="pre">downloadPhoto(named:)</span></code> function. This code pauses execution again until that function returns, giving other concurrent code an opportunity to run.</span><!--end_enstr-->
+<span class="jpstr">
+次の<code class="docutils literal notranslate"><span class="pre">await</span></code>は、<code class="docutils literal notranslate"><span class="pre">downloadPhoto(named:)</span></code>関数への呼び出しを印します。このコードは、その関数が返るまで再び遂行を一時停止します、他の並行性コードに動作する機会を与えて。
+</span><!--end_jpstr-->
+</li>
+<li><span class="enstr">After <code class="docutils literal notranslate"><span class="pre">downloadPhoto(named:)</span></code> returns, its return value is assigned to <code class="docutils literal notranslate"><span class="pre">photo</span></code> and then passed as an argument when calling <code class="docutils literal notranslate"><span class="pre">show(_:)</span></code>.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">downloadPhoto(named:)</span></code>が返った後、それの戻り値は<code class="docutils literal notranslate"><span class="pre">photo</span></code>に割り当てられます、そしてそれから引数として<code class="docutils literal notranslate"><span class="pre">show(_:)</span></code>を呼び出す時に渡されます。
+</span><!--end_jpstr-->
+</li>
+</ol>
+<p><span class="enstr">The possible suspension points in your code marked with <code class="docutils literal notranslate"><span class="pre">await</span></code> indicate that the current piece of code might pause execution while waiting for the asynchronous function or method to return. This is also called <em>yielding the thread</em> because, behind the scenes, Swift suspends the execution of your code on the current thread and runs some other code on that thread instead. Because code with <code class="docutils literal notranslate"><span class="pre">await</span></code> needs to be able to suspend execution, only certain places in your program can call asynchronous functions or methods:</span><!--end_enstr-->
+<span class="jpstr">
+あなたのコードの中の<code class="docutils literal notranslate"><span class="pre">await</span></code>で印されるそれら可能な中断地点が指し示すのは、コードの現在の断片が遂行を非同期の関数やメソッドが返るのを待っている間に一時停止するかもしれない、ということです。これはまた、<em>スレッドの譲渡</em>とも呼ばれます、なぜなら、シーンそれらの背後で、スウィフトはあなたのコードの遂行を現在のスレッド上で中断して、何らかの他のコードをそのスレッド上で代わりに実行するからです。<code class="docutils literal notranslate"><span class="pre">await</span></code>をもつコードは遂行を中断できる必要があることから、あなたのプログラムの中の特定の部分だけが非同期の関数やメソッドを呼び出すことが可能です：
+</span><!--end_jpstr-->
+</p>
+<ul class="simple">
+<li><span class="enstr">Code in the body of an asynchronous function, method, or property.</span><!--end_enstr-->
+<span class="jpstr">
+非同期の関数、メソッド、またはプロパティの本体の中のコード。
+</span><!--end_jpstr-->
+</li>
+<li><span class="enstr">Code in the static <code class="docutils literal notranslate"><span class="pre">main()</span></code> method of a structure, class, or enumeration that’s marked with <code class="docutils literal notranslate"><span class="pre">@main</span></code>.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">@main</span></code>で印される構造体、クラス、または列挙の静的<code class="docutils literal notranslate"><span class="pre">main()</span></code>メソッドの中のコード。
+</span><!--end_jpstr-->
+</li>
+<li><span class="enstr">Code in a detached child task, as shown in <a class="reference internal" href="#ID643"><span class="std std-ref">Unstructured Concurrency</span></a> below.</span><!--end_enstr-->
+<span class="jpstr">
+下の<a class="reference internal" href="#ID643"><span class="std std-ref">構造化されない並行性</span></a>の中で示されるような、ある分離された子タスクの中のコード。
+</span><!--end_jpstr-->
+</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title"><span class="enstr">Note</span><!--end_enstr-->
+<span class="jpstr">
+注意
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">The <a class="reference external" href="../../../developer.apple.com/documentation/swift/task/3814836-sleep.html"><code class="docutils literal notranslate"><span class="pre">Task.sleep(_:)</span></code></a> method is useful when writing simple code to learn how concurrency works. This method does nothing, but waits at least the given number of nanoseconds before it returns. Here’s a version of the <code class="docutils literal notranslate"><span class="pre">listPhotos(inGallery:)</span></code> function that uses <code class="docutils literal notranslate"><span class="pre">sleep()</span></code> to simulate waiting for a network operation:</span><!--end_enstr-->
+<span class="jpstr">
+<a class="reference external" href="../../../developer.apple.com/documentation/swift/task/3814836-sleep.html"><code class="docutils literal notranslate"><span class="pre">Task.sleep(_:)</span></code></a>メソッドは、単純なコードを書くことでどのように並行性が働くかを学ぶのに役立ちます。このメソッドは何もしません、しかし少なくとも与えられたナノ秒数をそれが返る前に待ちます。ここに<code class="docutils literal notranslate"><span class="pre">listPhotos(inGallery:)</span></code>関数のあるバージョンがあります、それは<code class="docutils literal notranslate"><span class="pre">sleep()</span></code>を使ってネットワーク演算を待つことの模擬実験をします：
+</span><!--end_jpstr-->
+</p>
+<div class="last highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">func</span> <span class="nv">listPhotos</span>(<span class="nv">inGallery</span> <span class="nv">name</span>: <span class="nc">String</span>) <span class="nv">async</span> -&gt; [<span class="nv">String</span>] {
+</li><li>    <span class="nv">await</span> <span class="nv">Task</span>.<span class="nv">sleep</span>(<span class="m">2</span> * <span class="m">1_000_000_000</span>)  <span class="c">// Two seconds</span>
+</li><li>    <span class="k">return</span> [<span class="s">"IMG001"</span>, <span class="s">"IMG99"</span>, <span class="s">"IMG0404"</span>]
+</li><li>}
+</li></ol></div></div></div>
+</div>
+</div>
+<div class="section" id="ID640">
+<h2><span class="enstr">Asynchronous Sequences<a class="headerlink" href="#ID640" title="Permalink to this headline">¶</a></span><!--end_enstr-->
+<span class="jpstr">
+非同期シーケンス<a class="headerlink" href="#ID640" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h2>
+<p><span class="enstr">The <code class="docutils literal notranslate"><span class="pre">listPhotos(inGallery:)</span></code> function in the previous section asynchronously returns the whole array at once, after all of the array’s elements are ready. Another approach is to wait for one element of the collection at a time using an <em>asynchronous sequence</em>. Here’s what iterating over an asynchronous sequence looks like:</span><!--end_enstr-->
+<span class="jpstr">
+前の節での<code class="docutils literal notranslate"><span class="pre">listPhotos(inGallery:)</span></code>関数は、配列の持つ要素の全てが準備できた後に、配列全体を非同期に一度に返します。別の取り組み方は、<em>非同期シーケンス</em>を使用して一度にコレクションの１つの要素に対して待機することです。ここに、ある非同期シーケンスのすべてにわたって反復することがどのように見えるかがあります：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">import</span> <span class="nv">Foundation</span>
+</li><li>
+</li><li><span class="k">let</span> <span class="nv">handle</span> = <span class="nv">FileHandle</span>.<span class="nv">standardInput</span>
+</li><li><span class="k">for</span> <span class="k">try</span> <span class="nv">await</span> <span class="nv">line</span> <span class="k">in</span> <span class="nv">handle</span>.<span class="nv">bytes</span>.<span class="nv">lines</span> {
+</li><li>    <span class="nv">print</span>(<span class="nv">line</span>)
+</li><li>}
+</li></ol></div></div></div>
+<p><span class="enstr">Instead of using an ordinary <code class="docutils literal notranslate"><span class="pre">for</span></code>-<code class="docutils literal notranslate"><span class="pre">in</span></code> loop, the example above writes <code class="docutils literal notranslate"><span class="pre">for</span></code> with <code class="docutils literal notranslate"><span class="pre">await</span></code> after it. Like when you call an asynchronous function or method, writing <code class="docutils literal notranslate"><span class="pre">await</span></code> indicates a possible suspension point. A <code class="docutils literal notranslate"><span class="pre">for</span></code>-<code class="docutils literal notranslate"><span class="pre">await</span></code>-<code class="docutils literal notranslate"><span class="pre">in</span></code> loop potentially suspends execution at the beginning of each iteration, when it’s waiting for the next element to be available.</span><!--end_enstr-->
+<span class="jpstr">
+普通の<code class="docutils literal notranslate"><span class="pre">for</span></code>-<code class="docutils literal notranslate"><span class="pre">in</span></code>ループを使う代わりに、上の例は<code class="docutils literal notranslate"><span class="pre">for</span></code>をそれの後の<code class="docutils literal notranslate"><span class="pre">await</span></code>と共に書きます。あなたが非同期関数やメソッドを呼び出すときのように、<code class="docutils literal notranslate"><span class="pre">await</span></code>を書くことは可能な中断地点を指し示します。<code class="docutils literal notranslate"><span class="pre">for</span></code>-<code class="docutils literal notranslate"><span class="pre">await</span></code>-<code class="docutils literal notranslate"><span class="pre">in</span></code>ループは、潜在的に遂行を各反復の始まりで中断します、次の要素が利用可能になるのをそれが待っている場合は。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">In the same way that you can use your own types in a <code class="docutils literal notranslate"><span class="pre">for</span></code>-<code class="docutils literal notranslate"><span class="pre">in</span></code> loop by adding conformance to the <a class="reference external" href="../../../developer.apple.com/documentation/swift/sequence.html"><code class="docutils literal notranslate"><span class="pre">Sequence</span></code></a> protocol, you can use your own types in a <code class="docutils literal notranslate"><span class="pre">for</span></code>-<code class="docutils literal notranslate"><span class="pre">await</span></code>-<code class="docutils literal notranslate"><span class="pre">in</span></code> loop by adding conformance to the <a class="reference external" href="../../../developer.apple.com/documentation/swift/asyncsequence.html"><code class="docutils literal notranslate"><span class="pre">AsyncSequence</span></code></a> protocol.</span><!--end_enstr-->
+<span class="jpstr">
+あなたがあなた独自の型を<code class="docutils literal notranslate"><span class="pre">for</span></code>-<code class="docutils literal notranslate"><span class="pre">in</span></code>ループにおいて<a class="reference external" href="../../../developer.apple.com/documentation/swift/sequence.html"><code class="docutils literal notranslate"><span class="pre">Sequence</span></code></a>プロトコルへの準拠を加えることによって使うのと同じ方法で、あなたはあなた独自の型を<code class="docutils literal notranslate"><span class="pre">for</span></code>-<code class="docutils literal notranslate"><span class="pre">await</span></code>-<code class="docutils literal notranslate"><span class="pre">in</span></code>ループにおいて使うことが<a class="reference external" href="../../../developer.apple.com/documentation/swift/asyncsequence.html"><code class="docutils literal notranslate"><span class="pre">AsyncSequence</span></code></a>プロトコルへの準拠を加えることによって可能です。
+</span><!--end_jpstr-->
+</p>
+</div>
+<div class="section" id="ID641">
+<h2><span class="enstr">Calling Asynchronous Functions in Parallel<a class="headerlink" href="#ID641" title="Permalink to this headline">¶</a></span><!--end_enstr-->
+<span class="jpstr">
+非同期関数を並列に呼び出す<a class="headerlink" href="#ID641" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h2>
+<p><span class="enstr">Calling an asynchronous function with <code class="docutils literal notranslate"><span class="pre">await</span></code> runs only one piece of code at a time. While the asynchronous code is running, the caller waits for that code to finish before moving on to run the next line of code. For example, to fetch the first three photos from a gallery, you could await three calls to the <code class="docutils literal notranslate"><span class="pre">downloadPhoto(named:)</span></code> function as follows:</span><!--end_enstr-->
+<span class="jpstr">
+非同期関数を<code class="docutils literal notranslate"><span class="pre">await</span></code>とともに呼び出すことは、ただコードの１断片を一度実行するだけです。ある非同期コードが動作している間、呼び出し側は、コードの次の行を実行するために移動する前に、そのコードが終了するのを待ちます。例えば、最初の３枚の写真をあるギャラリーから取ってくるには、あなたは<code class="docutils literal notranslate"><span class="pre">downloadPhoto(named:)</span></code>関数への３つの呼び出しに対して待機します、次のように：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">let</span> <span class="nv">firstPhoto</span> = <span class="nv">await</span> <span class="nv">downloadPhoto</span>(<span class="nv">named</span>: <span class="nv">photoNames</span>[<span class="m">0</span>])
+</li><li><span class="k">let</span> <span class="nv">secondPhoto</span> = <span class="nv">await</span> <span class="nv">downloadPhoto</span>(<span class="nv">named</span>: <span class="nv">photoNames</span>[<span class="m">1</span>])
+</li><li><span class="k">let</span> <span class="nv">thirdPhoto</span> = <span class="nv">await</span> <span class="nv">downloadPhoto</span>(<span class="nv">named</span>: <span class="nv">photoNames</span>[<span class="m">2</span>])
+</li><li>
+</li><li><span class="k">let</span> <span class="nv">photos</span> = [<span class="nv">firstPhoto</span>, <span class="nv">secondPhoto</span>, <span class="nv">thirdPhoto</span>]
+</li><li><span class="nv">show</span>(<span class="nv">photos</span>)
+</li></ol></div></div></div>
+<p><span class="enstr">This approach has an important drawback: Although the download is asynchronous and lets other work happen while it progresses, only one call to <code class="docutils literal notranslate"><span class="pre">downloadPhoto(named:)</span></code> runs at a time. Each photo downloads completely before the next one starts downloading. However, there’s no need for these operations to wait—each photo can download independently, or even at the same time.</span><!--end_enstr-->
+<span class="jpstr">
+この取り組みはある重要な欠点があります：ダウンロードが非同期でありそれが進捗する間に他の仕事が起こるに任せるとはいえ、ただ１つの<code class="docutils literal notranslate"><span class="pre">downloadPhoto(named:)</span></code>への呼び出しだけが一度に動作します。各写真は、次のものがダウンロードを開始する前に、完全にダウンロードされます。しかしながら、それら演算が待機する必要はありません — 各写真は独立して、または同時にさえダウンロード可能です。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">To call an asynchronous function and let it run in parallel with code around it, write <code class="docutils literal notranslate"><span class="pre">async</span></code> in front of <code class="docutils literal notranslate"><span class="pre">let</span></code> when you define a constant, and then write <code class="docutils literal notranslate"><span class="pre">await</span></code> each time you use the constant.</span><!--end_enstr-->
+<span class="jpstr">
+非同期関数を呼び出してそしてそれをそのまわりのコードと並列に動作させるには、あなたが定数を定義する時に<code class="docutils literal notranslate"><span class="pre">async</span></code>を<code class="docutils literal notranslate"><span class="pre">let</span></code>の前に書いてください、それからあなたがその定数を使うたびごとに<code class="docutils literal notranslate"><span class="pre">await</span></code>を書いてください。
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="nv">async</span> <span class="k">let</span> <span class="nv">firstPhoto</span> = <span class="nv">downloadPhoto</span>(<span class="nv">named</span>: <span class="nv">photoNames</span>[<span class="m">0</span>])
+</li><li><span class="nv">async</span> <span class="k">let</span> <span class="nv">secondPhoto</span> = <span class="nv">downloadPhoto</span>(<span class="nv">named</span>: <span class="nv">photoNames</span>[<span class="m">1</span>])
+</li><li><span class="nv">async</span> <span class="k">let</span> <span class="nv">thirdPhoto</span> = <span class="nv">downloadPhoto</span>(<span class="nv">named</span>: <span class="nv">photoNames</span>[<span class="m">2</span>])
+</li><li>
+</li><li><span class="k">let</span> <span class="nv">photos</span> = <span class="nv">await</span> [<span class="nv">firstPhoto</span>, <span class="nv">secondPhoto</span>, <span class="nv">thirdPhoto</span>]
+</li><li><span class="nv">show</span>(<span class="nv">photos</span>)
+</li></ol></div></div></div>
+<p><span class="enstr">In this example, all three calls to <code class="docutils literal notranslate"><span class="pre">downloadPhoto(named:)</span></code> start without waiting for the previous one to complete. If there are enough system resources available, they can run at the same time. None of these function calls are marked with <code class="docutils literal notranslate"><span class="pre">await</span></code> because the code doesn’t suspend to wait for the function’s result. Instead, execution continues until the line where <code class="docutils literal notranslate"><span class="pre">photos</span></code> is defined—at that point, the program needs the results from these asynchronous calls, so you write <code class="docutils literal notranslate"><span class="pre">await</span></code> to pause execution until all three photos finish downloading.</span><!--end_enstr-->
+<span class="jpstr">
+この例において、<code class="docutils literal notranslate"><span class="pre">downloadPhoto(named:)</span></code>への３つの呼び出し全ては、前のものが完了するのを待つことなしに開始します。十分なシステムリソースが利用可能ならば、それらは同時に動作可能です。これらの関数呼び出しのどれひとつとして<code class="docutils literal notranslate"><span class="pre">await</span></code>で印されません、なぜならコードは関数の結果を待つために中断しないからです。代わりに、遂行は<code class="docutils literal notranslate"><span class="pre">photos</span></code>が定義されるところの行まで継続します — その時点で、プログラムはそれら非同期呼び出しからの結果を必要とします、なのであなたは<code class="docutils literal notranslate"><span class="pre">await</span></code>を書いて、３枚の写真全てがダウンロードを終了するまで遂行を中断します。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">Here’s how you can think about the differences between these two approaches:</span><!--end_enstr-->
+<span class="jpstr">
+ここに、あなたがこれら２つの取り組みの間の違いについてどのように考えることが可能かがあります：
+</span><!--end_jpstr-->
+</p>
+<ul class="simple">
+<li><span class="enstr">Call asynchronous functions with <code class="docutils literal notranslate"><span class="pre">await</span></code> when the code on the following lines depends on that function’s result. This creates work that is carried out sequentially.</span><!--end_enstr-->
+<span class="jpstr">
+非同期関数を<code class="docutils literal notranslate"><span class="pre">await</span></code>と共に呼び出してください、続く行でのコードがその関数の結果に依存する場合は。これは、逐次的に実施される仕事を作成します。
+</span><!--end_jpstr-->
+</li>
+<li><span class="enstr">Call asynchronous functions with <code class="docutils literal notranslate"><span class="pre">async</span></code>-<code class="docutils literal notranslate"><span class="pre">let</span></code> when you don’t need the result until later in your code. This creates work that can be carried out in parallel.</span><!--end_enstr-->
+<span class="jpstr">
+非同期関数を<code class="docutils literal notranslate"><span class="pre">async</span></code>-<code class="docutils literal notranslate"><span class="pre">let</span></code>と共に呼び出してください、あなたが結果をあなたのコードにおいてもっと後まで必要としない場合は。これは、並列に実施されることができる仕事を作成します。
+</span><!--end_jpstr-->
+</li>
+<li><span class="enstr">Both <code class="docutils literal notranslate"><span class="pre">await</span></code> and <code class="docutils literal notranslate"><span class="pre">async</span></code>-<code class="docutils literal notranslate"><span class="pre">let</span></code> allow other code to run while they’re suspended.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">await</span></code>と<code class="docutils literal notranslate"><span class="pre">async</span></code>-<code class="docutils literal notranslate"><span class="pre">let</span></code>の両方は、それらが中断される間に他のコードが動作するのを許可します。
+</span><!--end_jpstr-->
+</li>
+<li><span class="enstr">In both cases, you mark the possible suspension point with <code class="docutils literal notranslate"><span class="pre">await</span></code> to indicate that execution will pause, if needed, until an asynchronous function has returned.</span><!--end_enstr-->
+<span class="jpstr">
+両方の場合において、あなたは可能な中断地点を<code class="docutils literal notranslate"><span class="pre">await</span></code>で印することでその遂行が一時停止することを指し示します、必要ならば、非同期関数が返ってしまうまで。
+</span><!--end_jpstr-->
+</li>
+</ul>
+<p><span class="enstr">You can also mix both of these approaches in the same code.</span><!--end_enstr-->
+<span class="jpstr">
+あなたはまた、これら取り組みの両方を同じコードにおいて混ぜることができます。
+</span><!--end_jpstr-->
+</p>
+</div>
+<div class="section" id="ID642">
+<h2><span class="enstr">Tasks and Task Groups<a class="headerlink" href="#ID642" title="Permalink to this headline">¶</a></span><!--end_enstr-->
+<span class="jpstr">
+タスクとタスクグループ<a class="headerlink" href="#ID642" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h2>
+<p><span class="enstr">A <em>task</em> is a unit of work that can be run asynchronously as part of your program. All asynchronous code runs as part of some task. The <code class="docutils literal notranslate"><span class="pre">async</span></code>-<code class="docutils literal notranslate"><span class="pre">let</span></code> syntax described in the previous section creates a child task for you. You can also create a task group and add child tasks to that group, which gives you more control over priority and cancellation, and lets you create a dynamic number of tasks.</span><!--end_enstr-->
+<span class="jpstr">
+<em>タスク</em>は、ひとつの仕事の単位です、それは非同期にあなたのプログラムの一部として実行されることが可能なものです。全ての非同期コードは、あるタスクの一部として動作します。前の節で記述される<code class="docutils literal notranslate"><span class="pre">async</span></code>-<code class="docutils literal notranslate"><span class="pre">let</span></code>構文は、子タスクをあなたの代わりに作成します。あなたはまた、タスクグループを作成して、子タスクそれらをそのグループに加えることができます、それはあなたに優先と取消に対するさらなる制御を与えます、そしてあなたに動的な数のタスクを作成させます。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">Tasks are arranged in a hierarchy. Each task in a task group has the same parent task, and each task can have child tasks. Because of the explicit relationship between tasks and task groups, this approach is called <em>structured concurrency</em>. Although you take on some of the responsibility for correctness, the explicit parent-child relationships between tasks lets Swift handle some behaviors like propagating cancellation for you, and lets Swift detect some errors at compile time.</span><!--end_enstr-->
+<span class="jpstr">
+タスクは、ある階層の中にきちんと並べられます。タスクグループの中の各タスクは、同じ親タスクを持ちます、そして各タスクは子タスクいくつかを持つことができます。タスクとタスクグループの間のこの明確な関係のために、この取り組みは<em>構造化された並行性</em>と呼ばれます。あなたが正しさに対する責任の一部を負うとはいえ、タスク間の明確な親子関係は、取り消しをあなたに代わって伝播することのようないくつかの挙動をスウィフトに取り扱わせます。
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="nv">await</span> <span class="nv">withTaskGroup</span>(<span class="nv">of</span>: <span class="nv">Data</span>.<span class="k">self</span>) { <span class="nv">taskGroup</span> <span class="k">in</span>
+</li><li>    <span class="k">let</span> <span class="nv">photoNames</span> = <span class="nv">await</span> <span class="nv">listPhotos</span>(<span class="nv">inGallery</span>: <span class="s">"Summer Vacation"</span>)
+</li><li>    <span class="k">for</span> <span class="nv">name</span> <span class="k">in</span> <span class="nv">photoNames</span> {
+</li><li>        <span class="nv">taskGroup</span>.<span class="nv">async</span> { <span class="nv">await</span> <span class="nv">downloadPhoto</span>(<span class="nv">named</span>: <span class="nv">name</span>) }
+</li><li>    }
+</li><li>}
+</li></ol></div></div></div>
+<p><span class="enstr">For more information about task groups, see <a class="reference external" href="../../../developer.apple.com/documentation/swift/taskgroup.html"><code class="docutils literal notranslate"><span class="pre">TaskGroup</span></code></a>.</span><!--end_enstr-->
+<span class="jpstr">
+タスクグループについての更なる情報として、<a class="reference external" href="../../../developer.apple.com/documentation/swift/taskgroup.html"><code class="docutils literal notranslate"><span class="pre">TaskGroup</span></code></a>を見てください。
+</span><!--end_jpstr-->
+</p>
+<div class="section" id="ID643">
+<h3><span class="enstr">Unstructured Concurrency<a class="headerlink" href="#ID643" title="Permalink to this headline">¶</a></span><!--end_enstr-->
+<span class="jpstr">
+構造化されない並行性<a class="headerlink" href="#ID643" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">In addition to the structured approaches to concurrency described in the previous sections, Swift also supports unstructured concurrency. Unlike tasks that are part of a task group, an <em>unstructured task</em> doesn’t have a parent task. You have complete flexibility to manage unstructured tasks in whatever way your program needs, but you’re also completely responsible for their correctness. To create an unstructured task that runs on the current actor, call the <a class="reference external" href="../../../developer.apple.com/documentation/swift/task/3856790-init.html"><code class="docutils literal notranslate"><span class="pre">Task.init(priority:operation:)</span></code></a> initializer. To create an unstructured task that’s not part of the current actor, known more specifically as a <em>detached task</em>, call the <a class="reference external" href="../../../developer.apple.com/documentation/swift/task/3856786-detached.html"><code class="docutils literal notranslate"><span class="pre">Task.detached(priority:operation:)</span></code></a> class method. Both of these operations return a task handle that lets you interact with the task—for example, to wait for its result or to cancel it.</span><!--end_enstr-->
+<span class="jpstr">
+前の節で記述される並行性に対する構造化された取り組みに加えて、スウィフトはまた構造化されない並行性をサポートします。あるタスクグループの一部であるタスクそれらとは違って、<em>非構造化タスク</em>は親タスクを持ちません。あなたは、なんでもあなたのプログラムが必要とする方法において非構造化タスクを管理する完全な柔軟性を持ちます、しかしあなたはまたそれらの正しさに対して完全に責任を負います。現在のアクター上で動作するある非構造化タスクを作成するために、<a class="reference external" href="../../../developer.apple.com/documentation/swift/task/3856790-init.html"><code class="docutils literal notranslate"><span class="pre">Task.init(priority:operation:)</span></code></a>イニシャライザを呼び出してください。現在のアクターの一部でない非構造化タスク、より具体的に<em>分離されたタスク</em>として知られるもの、を作成するには、<a class="reference external" href="../../../developer.apple.com/documentation/swift/task/3856786-detached.html"><code class="docutils literal notranslate"><span class="pre">Task.detached(priority:operation:)</span></code></a>クラスメソッドを呼び出してください。これら演算の両方ともあるタスクハンドルを返します、それはあなたにタスクと相互作用させるものです — 例えば、それの結果を待つためまたはそれを取り消すために。
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">let</span> <span class="nv">newPhoto</span> = <span class="c">// ... some photo data ...</span>
+</li><li><span class="k">let</span> <span class="nv">handle</span> = <span class="nv">Task</span> {
+</li><li>    <span class="k">return</span> <span class="nv">await</span> <span class="nv">add</span>(<span class="nv">newPhoto</span>, <span class="nv">toGalleryNamed</span>: <span class="s">"Spring Adventures"</span>)
+</li><li>}
+</li><li><span class="k">let</span> <span class="nv">result</span> = <span class="nv">await</span> <span class="nv">handle</span>.<span class="nv">value</span>
+</li></ol></div></div></div>
+<p><span class="enstr">For more information about managing detached tasks, see <a class="reference external" href="../../../developer.apple.com/documentation/swift/task.html"><code class="docutils literal notranslate"><span class="pre">Task</span></code></a>.</span><!--end_enstr-->
+<span class="jpstr">
+分離されたタスクを管理することについての更なる情報として、<a class="reference external" href="../../../developer.apple.com/documentation/swift/task.html"><code class="docutils literal notranslate"><span class="pre">Task</span></code></a>を見てください。
+</span><!--end_jpstr-->
+</p>
+</div>
+<div class="section" id="ID644">
+<h3><span class="enstr">Task Cancellation<a class="headerlink" href="#ID644" title="Permalink to this headline">¶</a></span><!--end_enstr-->
+<span class="jpstr">
+タスク取り消し<a class="headerlink" href="#ID644" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h3>
+<p><span class="enstr">Swift concurrency uses a cooperative cancellation model. Each task checks whether it has been canceled at the appropriate points in its execution, and responds to cancellation in whatever way is appropriate. Depending on the work you’re doing, that usually means one of the following:</span><!--end_enstr-->
+<span class="jpstr">
+スウィフト並行性は、協調取り消しモデルを使います。各タスクは、それがそれの遂行において適切な地点で取り消されたかどうか確認します、そしてなんでも適切な方法で取り消しに応答します。あなたが行っている作業に依存して、それは通常は以下の１つを意味します：
+</span><!--end_jpstr-->
+</p>
+<ul class="simple">
+<li><span class="enstr">Throwing an error like <code class="docutils literal notranslate"><span class="pre">CancellationError</span></code></span><!--end_enstr-->
+<span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">CancellationError</span></code>に似たエラーをスローする
+</span><!--end_jpstr-->
+</li>
+<li><span class="enstr">Returning <code class="docutils literal notranslate"><span class="pre">nil</span></code> or an empty collection</span><!--end_enstr-->
+<span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">nil</span></code>または空のコレクションを返す
+</span><!--end_jpstr-->
+</li>
+<li><span class="enstr">Returning the partially completed work</span><!--end_enstr-->
+<span class="jpstr">
+部分的に完了した作業を返す
+</span><!--end_jpstr-->
+</li>
+</ul>
+<p><span class="enstr">To check for cancellation, either call <a class="reference external" href="../../../developer.apple.com/documentation/swift/task/3814826-checkcancellation.html"><code class="docutils literal notranslate"><span class="pre">Task.checkCancellation()</span></code></a>, which throws <code class="docutils literal notranslate"><span class="pre">CancellationError</span></code> if the task has been canceled, or check the value of <a class="reference external" href="../../../developer.apple.com/documentation/swift/task/3814832-iscancelled.html"><code class="docutils literal notranslate"><span class="pre">Task.isCancelled</span></code></a> and handle the cancellation in your own code. For example, a task that’s downloading photos from a gallery might need to delete partial downloads and close network connections.</span><!--end_enstr-->
+<span class="jpstr">
+取り消しを検査するには、<a class="reference external" href="../../../developer.apple.com/documentation/swift/task/3814826-checkcancellation.html"><code class="docutils literal notranslate"><span class="pre">Task.checkCancellation()</span></code></a>を呼び出すか、それは<code class="docutils literal notranslate"><span class="pre">CancellationError</span></code>をそのタスクが取り消されたならばスローします、または<a class="reference external" href="../../../developer.apple.com/documentation/swift/task/3814832-iscancelled.html"><code class="docutils literal notranslate"><span class="pre">Task.isCancelled</span></code></a>の値を調べて取り消しをあなた独自のコードにおいて取り扱うか、どちらかをしてください。例えば、写真をギャラリーからダウンロードするタスクは、中途半端なダウンロードを削除してネットワーク接続を閉じる必要があるかもしれません。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">To propagate cancellation manually, call <a class="reference external" href="../../../developer.apple.com/documentation/swift/task/3851218-cancel.html"><code class="docutils literal notranslate"><span class="pre">Task.cancel()</span></code></a>.</span><!--end_enstr-->
+<span class="jpstr">
+取り消しを手動で伝播するには、<a class="reference external" href="../../../developer.apple.com/documentation/swift/task/3851218-cancel.html"><code class="docutils literal notranslate"><span class="pre">Task.cancel()</span></code></a>を呼び出してください。
+</span><!--end_jpstr-->
+</p>
+</div>
+</div>
+<div class="section" id="ID645">
+<h2><span class="enstr">Actors<a class="headerlink" href="#ID645" title="Permalink to this headline">¶</a></span><!--end_enstr-->
+<span class="jpstr">
+アクター<a class="headerlink" href="#ID645" title="Permalink to this headline">¶</a>
+</span><!--end_jpstr-->
+</h2>
+<p><span class="enstr">Like classes, actors are reference types, so the comparison of value types and reference types in <a class="reference internal" href="ClassesAndStructures.html#ID89"><span class="std std-ref">Classes Are Reference Types</span></a> applies to actors as well as classes. Unlike classes, actors allow only one task to access their mutable state at a time, which makes it safe for code in multiple tasks to interact with the same instance of an actor. For example, here’s an actor that records temperatures:</span><!--end_enstr-->
+<span class="jpstr">
+クラスのように、アクターは参照型です、なので<a class="reference internal" href="ClassesAndStructures.html#ID89"><span class="std std-ref">クラスは参照型です</span></a>における値型と参照型の比較がクラスと同様にアクターに適用されます。クラスと異なり、アクターそれらは一度にただ１つのタスクにだけそれらの可変状態へのアクセスを許可します、それはコードにとって複数タスクにおいてあるアクターの同じインスタンスと相互作用することを安全なものにします。例えば、ここに温度を記録するあるアクターがあります：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="nv">actor</span> <span class="nv">TemperatureLogger</span> {
+</li><li>    <span class="k">let</span> <span class="nv">label</span>: <span class="nc">String</span>
+</li><li>    <span class="k">var</span> <span class="nv">measurements</span>: [<span class="nc">Int</span>]
+</li><li>    <span class="k">private(set)</span> <span class="k">var</span> <span class="nv">max</span>: <span class="nc">Int</span>
+</li><li>
+</li><li>    <span class="k">init</span>(<span class="nv">label</span>: <span class="nc">String</span>, <span class="nv">measurement</span>: <span class="nc">Int</span>) {
+</li><li>        <span class="k">self</span>.<span class="nv">label</span> = <span class="nv">label</span>
+</li><li>        <span class="k">self</span>.<span class="nv">measurements</span> = [<span class="nv">measurement</span>]
+</li><li>        <span class="k">self</span>.<span class="nv">max</span> = <span class="nv">measurement</span>
+</li><li>    }
+</li><li>}
+</li></ol></div></div></div>
+<p><span class="enstr">You introduce an actor with the <code class="docutils literal notranslate"><span class="pre">actor</span></code> keyword, followed by its definition in a pair of braces. The <code class="docutils literal notranslate"><span class="pre">TemperatureLogger</span></code> actor has properties that other code outside the actor can access, and restricts the <code class="docutils literal notranslate"><span class="pre">max</span></code> property so only code inside the actor can update the maximum value.</span><!--end_enstr-->
+<span class="jpstr">
+あなたはあるアクターを<code class="docutils literal notranslate"><span class="pre">actor</span></code>キーワード、それに続けて一対の波カッコの中のそれの定義で導入します。<code class="docutils literal notranslate"><span class="pre">TemperatureLogger</span></code>アクターはプロパティいくつかを持ちます、それらはそのアクターの外側の他のコードがアクセスできます、そして<code class="docutils literal notranslate"><span class="pre">max</span></code>プロパティを制限します、それでアクター内部のコードだけが最大値を更新することが可能です。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">You create an instance of an actor using the same initializer syntax as structures and classes. When you access a property or method of an actor, you use <code class="docutils literal notranslate"><span class="pre">await</span></code> to mark the potential suspension point—for example:</span><!--end_enstr-->
+<span class="jpstr">
+あなたは、アクターのインスタンスを構造体およびクラスと同じ初期化構文を使って作成します。あなたがアクターのプロパティまたはメソッドにアクセスする時、あなたは<code class="docutils literal notranslate"><span class="pre">await</span></code>を使うことで潜在的な中断地点を印します — 例えば：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">let</span> <span class="nv">logger</span> = <span class="nv">TemperatureLogger</span>(<span class="nv">label</span>: <span class="s">"Outdoors"</span>, <span class="nv">measurement</span>: <span class="m">25</span>)
+</li><li><span class="nv">print</span>(<span class="nv">await</span> <span class="nv">logger</span>.<span class="nv">max</span>)
+</li><li><span class="c">// Prints "25"</span>
+</li></ol></div></div></div>
+<p><span class="enstr">In this example, accessing <code class="docutils literal notranslate"><span class="pre">logger.max</span></code> is a possible suspension point. Because the actor allows only one task at a time to access its mutable state, if code from another task is already interacting with the logger, this code suspends while it waits to access the property.</span><!--end_enstr-->
+<span class="jpstr">
+この例において、<code class="docutils literal notranslate"><span class="pre">logger.max</span></code>へのアクセスは、ある可能な中断地点です。アクターが一度に１つのタスクだけにそれの可変状態へのアクセスを許可することから、別のタスクからのコードが既にloggerと相互作用しているならば、このコードはそれがプロパティにアクセスするために待つ間ずっと中断します。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">In contrast, code that’s part of the actor doesn’t write <code class="docutils literal notranslate"><span class="pre">await</span></code> when accessing the actor’s properties. For example, here’s a method that updates a <code class="docutils literal notranslate"><span class="pre">TemperatureLogger</span></code> with a new temperature:</span><!--end_enstr-->
+<span class="jpstr">
+対照的に、アクターの一部であるコードは、<code class="docutils literal notranslate"><span class="pre">await</span></code>をそのアクターのもつプロパティにアクセスする時に書きません。例えば、ここにあるメソッドがあります、それは<code class="docutils literal notranslate"><span class="pre">TemperatureLogger</span></code>を新しい温度で更新します：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">extension</span> <span class="nc">TemperatureLogger</span> {
+</li><li>    <span class="k">func</span> <span class="nv">update</span>(<span class="nv">with</span> <span class="nv">measurement</span>: <span class="nc">Int</span>) {
+</li><li>        <span class="nv">measurements</span>.<span class="nv">append</span>(<span class="nv">measurement</span>)
+</li><li>        <span class="k">if</span> <span class="nv">measurement</span> &gt; <span class="nv">max</span> {
+</li><li>            <span class="nv">max</span> = <span class="nv">measurement</span>
+</li><li>        }
+</li><li>    }
+</li><li>}
+</li></ol></div></div></div>
+<p><span class="enstr">The <code class="docutils literal notranslate"><span class="pre">update(with:)</span></code> method is already running on the actor, so it doesn’t mark its access to properties like <code class="docutils literal notranslate"><span class="pre">max</span></code> with <code class="docutils literal notranslate"><span class="pre">await</span></code>. This method also shows one of the reasons why actors allow only one task at a time to interact with their mutable state: Some updates to an actor’s state temporarily break invariants. The <code class="docutils literal notranslate"><span class="pre">TemperatureLogger</span></code> actor keeps track of a list of temperatures and a maximum temperature, and it updates the maximum temperature when you record a new measurement. In the middle of an update, after appending the new measurement but before updating <code class="docutils literal notranslate"><span class="pre">max</span></code>, the temperature logger is in a temporary inconsistent state. Preventing multiple tasks from interacting with the same instance simultaneously prevents problems like the following sequence of events:</span><!--end_enstr-->
+<span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">update(with:)</span></code>メソッドは既にアクター上で動作しています、なのでそれは<code class="docutils literal notranslate"><span class="pre">max</span></code>のようなプロパティへのそれのアクセスを<code class="docutils literal notranslate"><span class="pre">await</span></code>で印しません。このメソッドはまた、なぜアクターそれらは一度にただ１つのタスクだけにそれらの可変状態との相互作用を許可するのかの理由の１つを示します：いくつかの更新をアクターのもつ状態に対してすることは一時的に不変式を壊します。<code class="docutils literal notranslate"><span class="pre">TemperatureLogger</span></code>アクターは温度それらのリストと最大温度を追跡し続けます、そしてそれは最大温度をあなたが新しい測定を記録する時に更新します。更新の中途において、新しい測定を追加した後しかし<code class="docutils literal notranslate"><span class="pre">max</span></code>を更新する前に、TemperatureLoggerは一時的な矛盾状態に置かれます。複数のタスクが同じインスタンスと同時に相互作用するのを防ぐことは、以下の一連の出来事のような問題を防ぎます：
+</span><!--end_jpstr-->
+</p>
+<ol class="arabic simple">
+<li><span class="enstr">Your code calls the <code class="docutils literal notranslate"><span class="pre">update(with:)</span></code> method. It updates the <code class="docutils literal notranslate"><span class="pre">measurements</span></code> array first.</span><!--end_enstr-->
+<span class="jpstr">
+あなたのコードが<code class="docutils literal notranslate"><span class="pre">update(with:)</span></code>メソッドを呼び出します。それは<code class="docutils literal notranslate"><span class="pre">measurements</span></code>配列を最初に更新します。
+</span><!--end_jpstr-->
+</li>
+<li><span class="enstr">Before your code can update <code class="docutils literal notranslate"><span class="pre">max</span></code>, code elsewhere reads the maximum value and the array of temperatures.</span><!--end_enstr-->
+<span class="jpstr">
+あなたのコードが<code class="docutils literal notranslate"><span class="pre">max</span></code>を更新可能になる前に、コードがどこか他のところで最大値と温度配列とを読み出します。
+</span><!--end_jpstr-->
+</li>
+<li><span class="enstr">Your code finishes its update by changing <code class="docutils literal notranslate"><span class="pre">max</span></code>.</span><!--end_enstr-->
+<span class="jpstr">
+あなたのコードは、その更新を<code class="docutils literal notranslate"><span class="pre">max</span></code>を変更することによって終了します。
+</span><!--end_jpstr-->
+</li>
+</ol>
+<p><span class="enstr">In this case, the code running elsewhere would read incorrect information because its access to the actor was interleaved in the middle of the call to <code class="docutils literal notranslate"><span class="pre">update(with:)</span></code> while the data was temporarily invalid. You can prevent this problem when using Swift actors because they only allow one operation on their state at a time, and because that code can be interrupted only in places where <code class="docutils literal notranslate"><span class="pre">await</span></code> marks a suspension point. Because <code class="docutils literal notranslate"><span class="pre">update(with:)</span></code> doesn’t contain any suspension points, no other code can access the data in the middle of an update.</span><!--end_enstr-->
+<span class="jpstr">
+この場合には、どこか他で動作しているコードは正しくない情報を読み出します、なぜならアクターへのそれのアクセスは、<code class="docutils literal notranslate"><span class="pre">update(with:)</span></code>への呼び出しの中途に、そのデータが一時的に正しくなかった間に、挟み込まれたからです。あなたはこの問題を防ぐことがスウィフトのアクターを使っている場合は可能です、なぜならそれらの状態に関して一度に１つの演算が許可されるだけだからです、そしてなぜならそのコードが割り込まれるのが可能なのはただ<code class="docutils literal notranslate"><span class="pre">await</span></code>が中断地点を印するところにおいてのみだからです。<code class="docutils literal notranslate"><span class="pre">update(with:)</span></code>がまったく中断地点を含まないことから、１つとして他のコードは更新の中途でデータにアクセスできません。
+</span><!--end_jpstr-->
+</p>
+<p><span class="enstr">If you try to access those properties from outside the actor, like you would with an instance of a class, you’ll get a compile-time error; for example:</span><!--end_enstr-->
+<span class="jpstr">
+あなたがそれらプロパティにアクターの外側からアクセスを、あなたがクラスのインスタンスでするように、試みるならば、あなたはコンパイル時エラーを得るでしょう；例えば：
+</span><!--end_jpstr-->
+</p>
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="nv">print</span>(<span class="nv">logger</span>.<span class="nv">max</span>)  <span class="c">// Error</span>
+</li></ol></div></div></div>
+<p><span class="enstr">Accessing <code class="docutils literal notranslate"><span class="pre">logger.max</span></code> without writing <code class="docutils literal notranslate"><span class="pre">await</span></code> fails because the properties of an actor are part of that actor’s isolated local state. Swift guarantees that only code inside an actor can access the actor’s local state. This guarantee is known as <em>actor isolation</em>.</span><!--end_enstr-->
+<span class="jpstr">
+<code class="docutils literal notranslate"><span class="pre">logger.max</span></code>に<code class="docutils literal notranslate"><span class="pre">await</span></code>を書くことなくアクセスすることは失敗します、なぜならアクターのプロパティはそのアクターのもつ隔離されたローカルな状態の一部だからです。スウィフトは、あるアクター内部のコードだけが、そのアクターのもつローカル状態にアクセス可能であることを保証します。この保証は、<em>アクター隔離（アクターアイソレーション）</em>として知られます。
+</span><!--end_jpstr-->
+</p>
+</div>
+</div>
+
+
+    </article>
+    <div class="next_previous">
+        <p class="previous"><a href="ErrorHandling.html"><span class="enstr">Error Handling</span><!--end_enstr-->
+<span class="jpstr">
+エラーの処理
+</span><!--end_jpstr-->
+</a></p>
+        <p class="next"><a href="TypeCasting.html"><span class="enstr">Type Casting</span><!--end_enstr-->
+<span class="jpstr">
+型キャスト
+</span><!--end_jpstr-->
+</a></p>
+    </div>
+    <div class="admonition-beta admonition">
+        <p class="first admonition-title">Beta Software</p>
+        <p>
+          <span class="enstr">This documentation contains preliminary information about an API or technology in development. This information is subject to change, and software implemented according to this documentation should be tested with final operating system software.</span><!--end_enstr-->
+<span class="jpstr">
+この文書は、開発でのテクノロジーまたはAPIのための事前の情報を含んでいます。この情報は変更される場合があり、この文書に沿って実装されるソフトウェアは最終的なオペレーティングシステム・ソフトウェアでテストされなければなりません。
+</span><!--end_jpstr-->
+
+        </p>
+        <p class="last"><a class="reference external" href="https://developer.apple.com/support/beta-software/">Learn more about using Apple's beta software</a></p>
+    </div>
+</main>
+
+
+<footer role="contentinfo">
+  <aside>
+    <a href="//swift.org/atom.xml" title="Subscribe to Site Updates"><i class="feed">Subscribe</i></a>
+    <a href="https://twitter.com/swiftlang" rel="nofollow" title="Follow @SwiftLang on Twitter"><i class="twitter">Twitter</i></a>
+  </aside>
+
+  <p class="copyright">Copyright © 2021 Apple Inc. All rights reserved.</p>
+  <p class="trademark">Swift and the Swift logo are trademarks of Apple Inc.</p>
+  <p class="privacy">
+    <a href="//www.apple.com/privacy/privacy-policy/">Privacy Policy</a>
+    <a href="//www.apple.com/legal/privacy/en-ww/cookies/">Cookies</a>
+  </p>
+</footer>
+<div id="jump_to_overlay"></div>
+<script src="../static/javascripts/application.js"></script>
+  </body>
+</html>
