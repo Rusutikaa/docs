@@ -1,14 +1,14 @@
 ﻿* [The Swift Programming Language 2021.7.14 beta 日本語訳](https://rusutikaa.github.io/docs/docs.swift.org/swift-book/index.html)
 
-* [Framework Swift 2021.5.10 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com/documentation/swift.html)
+* [Framework Swift 2021.9.2 途中 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com/documentation/swift.html)
 
-* [Framework SwiftUI 2021.5.10 途中 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com/documentation/swiftui.html)
+* [Framework SwiftUI 2021.9.2 途中 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com/documentation/swiftui.html)
 
-* [Framework Foundation（Swift）2021.5.10 途中 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com/documentation/foundation.html)
-* [Framework Foundation（ObjC）2021.5.10 途中 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com2/documentation/foundation_language-objc.html)
+* [Framework Foundation（Swift）2021.9.2 途中 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com/documentation/foundation.html)
+* [Framework Foundation（ObjC）2021.9.2 途中 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com2/documentation/foundation_language-objc.html)
 
-* [Framework Objective-C Runtime (Swift) 2021.5.10 途中 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com/documentation/objectivec.html)
-* [Framework Objective-C Runtime (ObjC) 2021.5.10 途中 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com2/documentation/objectivec_language-objc.html)
+* [Framework Objective-C Runtime (Swift) 2021.9.2 途中 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com/documentation/objectivec.html)
+* [Framework Objective-C Runtime (ObjC) 2021.9.2 途中 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com2/documentation/objectivec_language-objc.html)
 
 以下は更新されない
 
