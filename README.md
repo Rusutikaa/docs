@@ -1,4 +1,4 @@
-﻿* [The Swift Programming Language 2021.7.14 beta 日本語訳](https://rusutikaa.github.io/docs/docs.swift.org/swift-book/index.html)
+﻿* [The Swift Programming Language 2021.9.20 日本語訳](https://rusutikaa.github.io/docs/docs.swift.org/swift-book/index.html)
 
 * [Framework Swift 2021.9.2 途中 日本語訳](https://rusutikaa.github.io/docs/developer.apple.com/documentation/swift.html)
 
