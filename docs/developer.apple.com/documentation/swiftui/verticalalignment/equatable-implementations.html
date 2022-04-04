@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><!-- link rel="icon" href="../../../tutorials/favicon.ico" -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+<link rel="mask-icon" href="../../../tutorials/apple-logo.svg" color="#333333">
+<title>Equatable Implementations | Apple Developer Documentation</title>
+<script>var baseUrl = "/tutorials/"</script><link href="../../../tutorials/css/documentation-topic.8eb22d1f.css" rel="prefetch">
+<link href="../../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.a062d316.css" rel="prefetch">
+<link href="../../../tutorials/css/documentation-topic~topic~welcome-experience-technologies.34ebe519.css" rel="prefetch">
+<link href="../../../tutorials/css/global-head-footer.db124fc1.css" rel="prefetch">
+<link href="../../../tutorials/css/topic.31b0bec5.css" rel="prefetch">
+<link href="../../../tutorials/css/topic~tutorials-overview.41a092e2.css" rel="prefetch">
+<link href="../../../tutorials/css/tutorials-overview.00db02fd.css" rel="prefetch">
+<link href="../../../tutorials/css/welcome-experience-featured.c86a9569.css" rel="prefetch">
+<link href="../../../tutorials/css/welcome-experience-technologies.28185ce7.css" rel="prefetch">
+<link href="../../../tutorials/js/chunk-2d0d3105.cd72cc8e.js" rel="prefetch">
+<link href="../../../tutorials/js/chunk-2d217dfc.6b0d6c31.js" rel="prefetch">
+<link href="../../../tutorials/js/documentation-topic.c7c1ed67.js" rel="prefetch">
+<link href="../../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.343caaa2.js" rel="prefetch">
+<link href="../../../tutorials/js/documentation-topic~topic~welcome-experience-technologies.5e8c4ca9.js" rel="prefetch">
+<link href="../../../tutorials/js/global-head-footer.103dd145.js" rel="prefetch">
+<link href="../../../tutorials/js/highlight-js-bash.1b52852f.js" rel="prefetch">
+<link href="../../../tutorials/js/highlight-js-c.d1db3f17.js" rel="prefetch">
+<link href="../../../tutorials/js/highlight-js-cpp.3e74d0a2.js" rel="prefetch">
+<link href="../../../tutorials/js/highlight-js-css.75eab1fe.js" rel="prefetch">
+<link href="../../../tutorials/js/highlight-js-custom-markdown.e7914a9c.js" rel="prefetch">
+<link href="../../../tutorials/js/highlight-js-custom-swift.4362ac8b.js" rel="prefetch">
+<link href="../../../tutorials/js/highlight-js-diff.62d66733.js" rel="prefetch">
+<link href="../../../tutorials/js/highlight-js-http.163e45b6.js" rel="prefetch">
+<link href="../../../tutorials/js/highlight-js-java.3db08e2e.js" rel="prefetch">
+<link href="../../../tutorials/js/highlight-js-javascript.725f2e9d.js" rel="prefetch">
+<link href="../../../tutorials/js/highlight-js-json.471128d2.js" rel="prefetch">
+<link href="../../../tutorials/js/highlight-js-llvm.6100b125.js" rel="prefetch">
+<link href="../../../tutorials/js/highlight-js-markdown.90077643.js" rel="prefetch">
+<link href="../../../tutorials/js/highlight-js-objectivec.7b30f247.js" rel="prefetch">
+<link href="../../../tutorials/js/highlight-js-perl.757d7b6f.js" rel="prefetch">
+<link href="../../../tutorials/js/highlight-js-php.b6816280.js" rel="prefetch">
+<link href="../../../tutorials/js/highlight-js-python.bf278e30.js" rel="prefetch">
+<link href="../../../tutorials/js/highlight-js-ruby.f889d392.js" rel="prefetch">
+<link href="../../../tutorials/js/highlight-js-scss.62ee18da.js" rel="prefetch">
+<link href="../../../tutorials/js/highlight-js-shell.dd7f411f.js" rel="prefetch">
+<link href="../../../tutorials/js/highlight-js-swift.40642860.js" rel="prefetch">
+<link href="../../../tutorials/js/highlight-js-xml.9c3688c7.js" rel="prefetch">
+<link href="../../../tutorials/js/topic.bc714cf2.js" rel="prefetch">
+<link href="../../../tutorials/js/topic~tutorials-overview.98c54aee.js" rel="prefetch">
+<link href="../../../tutorials/js/tutorials-overview.0065600a.js" rel="prefetch">
+<link href="../../../tutorials/js/welcome-experience-featured.bd14a0ea.js" rel="prefetch">
+<link href="../../../tutorials/js/welcome-experience-technologies.0e19f314.js" rel="prefetch">
+<link href="../../../tutorials/css/chunk-vendors.ec9e036c.css" rel="preload" as="style">
+<link href="../../../tutorials/css/index.86fa6d6d.css" rel="preload" as="style">
+<link href="../../../tutorials/js/chunk-vendors.011d2fc1.js" rel="preload" as="script">
+<link href="../../../tutorials/js/index.6e8bf906.js" rel="preload" as="script">
+<link href="../../../tutorials/css/chunk-vendors.ec9e036c.css" rel="stylesheet">
+<link href="../../../tutorials/css/index.86fa6d6d.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../../../tutorials/css/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.a062d316.css">
+<script charset="utf-8" src="../../../tutorials/js/documentation-topic~topic~tutorials-overview~welcome-experience-featured~welcome-experience-technologies.343caaa2.js"></script><link rel="stylesheet" type="text/css" href="../../../tutorials/css/documentation-topic~topic~welcome-experience-technologies.34ebe519.css">
+<script charset="utf-8" src="../../../tutorials/js/documentation-topic~topic~welcome-experience-technologies.5e8c4ca9.js"></script><link rel="stylesheet" type="text/css" href="../../../tutorials/css/documentation-topic.8eb22d1f.css">
+<script charset="utf-8" src="../../../tutorials/js/documentation-topic.c7c1ed67.js"></script><link rel="stylesheet" type="text/css" href="../../../tutorials/css/global-head-footer.db124fc1.css">
+<script charset="utf-8" src="../../../tutorials/js/global-head-footer.103dd145.js"></script>
+</head>
+<body data-color-scheme="auto">
+<div id="_omniture_top">
+<script>var s_account="awdappledeveloper"</script>
+</div>
+<noscript>
+<style>.noscript{font-family:"SF Pro Display","SF Pro Icons","Helvetica Neue",Helvetica,Arial,sans-serif;margin:92px auto 140px auto;text-align:center;width:980px}.noscript-title{color:#111;font-size:48px;font-weight:600;letter-spacing:-.003em;line-height:1.08365;margin:0 auto 54px auto;width:502px}@media only screen and (max-width:1068px){.noscript{margin:90px auto 120px auto;width:692px}.noscript-title{font-size:40px;letter-spacing:0;line-height:1.1;margin:0 auto 45px auto;width:420px}}@media only screen and (max-width:735px){.noscript{margin:45px auto 60px auto;width:87.5%}.noscript-title{font-size:32px;letter-spacing:.004em;line-height:1.125;margin:0 auto 35px auto;max-width:330px;width:auto}}#loading-placeholder{display:none}</style>
+<div class="noscript">
+<h1 class="noscript-title">This page requires JavaScript.</h1>
+<p>Please turn on JavaScript in your browser and refresh the page to view its content.</p>
+</div>
+</noscript>
+<div data-v-2f8d976c="" data-v-2fddaabf="" id="app" class="core-app">
+<a data-v-2f8d976c="" href="#main" id="skip-nav">Skip Navigation</a><!----><div data-v-2fddaabf="" class="global-header" data-v-2f8d976c="">
+<aside id="ac-gn-segmentbar" lang="en-US" dir="ltr" class="ac-gn-segmentbar"></aside><input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate"><nav id="ac-globalnav" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions" class="js no-touch"><div class="ac-gn-content">
+<ul class="ac-gn-header">
+<li class="ac-gn-item ac-gn-menuicon">
+<label for="ac-gn-menustate" aria-hidden="true" class="ac-gn-menu icon-label"><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span></span><span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom"><span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span></span></label><a href="#ac-gn-menustate" role="button" id="ac-gn-menuanchor-open" class="ac-gn-menuanchor ac-gn-menuanchor-open"><span class="ac-gn-menuanchor-label">Global Nav Open Menu</span></a><a href="#" role="button" id="ac-gn-menuanchor-close" class="ac-gn-menuanchor ac-gn-menuanchor-close"><span class="ac-gn-menuanchor-label">Global Nav Close Menu</span></a>
+</li>
+<li class="ac-gn-item ac-gn-apple"><a href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small" class="ac-gn-link ac-gn-link-apple-developer"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+</ul>
+<div role="search" class="ac-gn-search-placeholder-container"><div class="ac-gn-search ac-gn-search-small"><a id="ac-gn-link-search-small" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" class="ac-gn-link" role="button" aria-haspopup="true"></a><div class="ac-gn-search-placeholder-bar">
+<div class="ac-gn-search-placeholder-input"><div aria-hidden="true" class="ac-gn-search-placeholder-input-text">
+<div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
+<span class="ac-gn-search-placeholder">Search Developer</span>
+</div></div>
+<div class="ac-gn-searchview-close
+                  ac-gn-searchview-close-small
+                  ac-gn-search-placeholder-searchview-close"><span aria-hidden="true" class="ac-gn-searchview-close-cancel">Cancel</span></div>
+</div></a></div></div>
+<ul class="ac-gn-list">
+<li class="ac-gn-item ac-gn-apple"><a href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus" class="ac-gn-link ac-gn-link-apple-developer"><span class="ac-gn-link-text">Apple Developer</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-discover"><a href="/discover/" data-analytics-title="discover" class="ac-gn-link ac-gn-link-discover"><span class="ac-gn-link-text">Discover</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-design"><a href="/design/" data-analytics-title="design" class="ac-gn-link ac-gn-link-design"><span class="ac-gn-link-text">Design</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-develop"><a href="/develop/" data-analytics-title="develop" class="ac-gn-link ac-gn-link-develop"><span class="ac-gn-link-text">Develop</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-distribute"><a href="/distribute/" data-analytics-title="distribute" class="ac-gn-link ac-gn-link-distribute"><span class="ac-gn-link-text">Distribute</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport"><a href="/support/" data-analytics-title="dsupport" class="ac-gn-link ac-gn-link-dsupport"><span class="ac-gn-link-text">Support</span></a></li>
+<li class="ac-gn-item ac-gn-item-menu ac-gn-account"><a href="/account/" data-analytics-title="account" class="ac-gn-link ac-gn-link-account"><span class="ac-gn-link-text">Account</span></a></li>
+<li role="search" class="ac-gn-item ac-gn-item-menu ac-gn-search"><a id="ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link="" aria-label="Search Developer" class="ac-gn-link ac-gn-link-search" role="button" aria-haspopup="true"></a></li>
+</ul>
+<aside id="ac-gn-searchview" role="search" data-analytics-region="search" class="ac-gn-searchview"><div class="ac-gn-searchview-content">
+<div class="ac-gn-searchview-bar"><div class="ac-gn-searchview-bar-wrapper">
+<form id="ac-gn-searchform" action="/search/" method="get" class="ac-gn-searchform"><div class="ac-gn-searchform-wrapper">
+<input id="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions" class="ac-gn-searchform-input"><button id="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search" class="ac-gn-searchform-submit"></button><button id="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search" class="ac-gn-searchform-reset"><span class="ac-gn-searchform-reset-background"></span></button>
+</div></form>
+<button id="ac-gn-searchview-close-small" aria-label="Cancel Search" class="ac-gn-searchview-close ac-gn-searchview-close-small"><span aria-hidden="true" class="ac-gn-searchview-close-cancel">  Cancel  </span></button>
+</div></div>
+<aside id="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults="" class="ac-gn-searchresults"></aside>
+</div>
+<button id="ac-gn-searchview-close" aria-label="Cancel Search" class="ac-gn-searchview-close"><span class="ac-gn-searchview-close-wrapper"><span class="ac-gn-searchview-close-left"></span><span class="ac-gn-searchview-close-right"></span></span></button></aside>
+</div></nav><div class="ac-gn-blur"></div>
+<div id="ac-gn-curtain" class="ac-gn-curtain"></div>
+<div id="ac-gn-placeholder" class="ac-nav-placeholder"></div>
+</div>
+<div data-v-2f8d976c="" id="nav-sticky-anchor"></div>
+<div data-v-2fddaabf="" class="router-content" data-v-2f8d976c=""><div data-v-3042c2e3="" class="doc-topic">
+<nav data-v-449d79fe="" data-v-85149df0="" data-v-2d1219c2="" data-v-3042c2e3="" role="navigation" class="nav documentation-nav theme-dark apple-documentation-nav theme-dark nav--solid-background nav--fullwidth-border" aria-label="API Reference"><div data-v-449d79fe="" class="nav__wrapper">
+<div data-v-449d79fe="" class="nav__background"></div><!---->
+<div data-v-449d79fe="" class="nav-content">
+<div data-v-449d79fe="" class="nav-title"><a data-v-85149df0="" href="../../../index.html" class="nav-title-link" data-v-449d79fe="">  Documentation  </a></div>
+<div data-v-449d79fe="" class="nav-menu">
+<a data-v-449d79fe="" href="#" role="button" class="nav-ax-toggle"><span data-v-449d79fe="" class="visuallyhidden">Open Menu</span></a><div data-v-449d79fe="" class="nav-menu-tray">
+<ul data-v-4a778e88="" data-v-4264aa3f="" data-v-85149df0="" data-previous-menu-children-count="0" class="nav-menu-items hierarchy" aria-label="Breadcrumbs" data-v-449d79fe="">
+<li data-v-65b9129d="" data-v-4264aa3f="" class="nav-menu-item hierarchy-item nav-menu-item--animated collapsed" data-v-627bd0c5="" data-v-4a778e88="">
+<svg data-v-7f60a732="" data-v-4264aa3f="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="svg-icon inline-chevron-right-icon hierarchy-item-icon icon-inline" viewbox="0 0 14 14" data-v-627bd0c5="" data-v-65b9129d=""><path data-v-7f60a732="" d="m4.81347656 13.1269531c.22558594 0 .41015625-.0820312.56738282-.2324219l5.31835942-5.19531245c.1845703-.19140625.2802734-.38964844.2802734-.63574219 0-.23925781-.0888672-.45117187-.2802734-.62890625l-5.31835942-5.20214843c-.15722657-.15039063-.34179688-.23242188-.56738282-.23242188-.45800781 0-.81347656.35546875-.81347656.80664062 0 .21875.09570312.43066407.24609375.58789063l4.79199219 4.67578125-4.79199219 4.6621094c-.15722656.1640625-.24609375.3623047-.24609375.5878906 0 .4511719.35546875.8066406.81347656.8066406z"></path></svg><a data-v-4264aa3f="" href="../../../documentation/swiftui.html" class="parent item nav-menu-link router-link-active" data-v-627bd0c5="" data-v-65b9129d="">  SwiftUI  </a>
+</li>
+<li data-v-65b9129d="" data-v-4264aa3f="" class="nav-menu-item hierarchy-item nav-menu-item--animated collapsed" data-v-627bd0c5="" data-v-4a778e88="">
+<svg data-v-7f60a732="" data-v-4264aa3f="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="svg-icon inline-chevron-right-icon hierarchy-item-icon icon-inline" viewbox="0 0 14 14" data-v-627bd0c5="" data-v-65b9129d=""><path data-v-7f60a732="" d="m4.81347656 13.1269531c.22558594 0 .41015625-.0820312.56738282-.2324219l5.31835942-5.19531245c.1845703-.19140625.2802734-.38964844.2802734-.63574219 0-.23925781-.0888672-.45117187-.2802734-.62890625l-5.31835942-5.20214843c-.15722657-.15039063-.34179688-.23242188-.56738282-.23242188-.45800781 0-.81347656.35546875-.81347656.80664062 0 .21875.09570312.43066407.24609375.58789063l4.79199219 4.67578125-4.79199219 4.6621094c-.15722656.1640625-.24609375.3623047-.24609375.5878906 0 .4511719.35546875.8066406.81347656.8066406z"></path></svg><a data-v-4264aa3f="" href="../../../documentation/swiftui/layout-containers.html" class="parent item nav-menu-link" data-v-627bd0c5="" data-v-65b9129d="">  Layout Containers  </a>
+</li>
+<li data-v-087f436e="" data-v-4264aa3f="" class="hierarchy-collapsed-items" data-v-4a778e88="">
+<svg data-v-7f60a732="" data-v-087f436e="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="svg-icon inline-chevron-right-icon hierarchy-item-icon icon-inline" viewbox="0 0 14 14"><path data-v-7f60a732="" d="m4.81347656 13.1269531c.22558594 0 .41015625-.0820312.56738282-.2324219l5.31835942-5.19531245c.1845703-.19140625.2802734-.38964844.2802734-.63574219 0-.23925781-.0888672-.45117187-.2802734-.62890625l-5.31835942-5.20214843c-.15722657-.15039063-.34179688-.23242188-.56738282-.23242188-.45800781 0-.81347656.35546875-.81347656.80664062 0 .21875.09570312.43066407.24609375.58789063l4.79199219 4.67578125-4.79199219 4.6621094c-.15722656.1640625-.24609375.3623047-.24609375.5878906 0 .4511719.35546875.8066406.81347656.8066406z"></path></svg><button data-v-087f436e="" class="toggle"><span data-v-087f436e="" class="indicator"><svg data-v-7f60a732="" data-v-087f436e="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="svg-icon ellipsis-icon icon-inline toggle-icon" viewbox="0 0 14 14"><path data-v-7f60a732="" d="m2.64648438 8.171875c.66210937 0 1.18945312-.52148438 1.18945312-1.171875s-.52734375-1.171875-1.18945312-1.171875c-.64453126 0-1.171875.52148438-1.171875 1.171875s.52734374 1.171875 1.171875 1.171875zm4.35351562 0c.65039062 0 1.171875-.52148438 1.171875-1.171875s-.52148438-1.171875-1.171875-1.171875c-.64453125 0-1.16601562.52148438-1.16601562 1.171875s.52148437 1.171875 1.16601562 1.171875zm4.3535156 0c.6503906 0 1.171875-.52148438 1.171875-1.171875s-.5214844-1.171875-1.171875-1.171875c-.6621094 0-1.1835937.52148438-1.1835937 1.171875s.5214843 1.171875 1.1835937 1.171875z"></path></svg></span></button><ul data-v-087f436e="" class="dropdown collapsed">
+<li data-v-087f436e="" class="dropdown-item"><a data-v-087f436e="" href="../../../documentation/swiftui.html" class="nav-menu-link router-link-active">SwiftUI</a></li>
+<li data-v-087f436e="" class="dropdown-item"><a data-v-087f436e="" href="../../../documentation/swiftui/layout-containers.html" class="nav-menu-link">Layout Containers</a></li>
+</ul>
+</li>
+<li data-v-65b9129d="" data-v-4264aa3f="" class="nav-menu-item hierarchy-item nav-menu-item--animated" data-v-627bd0c5="" data-v-4a778e88="">
+<svg data-v-7f60a732="" data-v-4264aa3f="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="svg-icon inline-chevron-right-icon hierarchy-item-icon icon-inline" viewbox="0 0 14 14" data-v-627bd0c5="" data-v-65b9129d=""><path data-v-7f60a732="" d="m4.81347656 13.1269531c.22558594 0 .41015625-.0820312.56738282-.2324219l5.31835942-5.19531245c.1845703-.19140625.2802734-.38964844.2802734-.63574219 0-.23925781-.0888672-.45117187-.2802734-.62890625l-5.31835942-5.20214843c-.15722657-.15039063-.34179688-.23242188-.56738282-.23242188-.45800781 0-.81347656.35546875-.81347656.80664062 0 .21875.09570312.43066407.24609375.58789063l4.79199219 4.67578125-4.79199219 4.6621094c-.15722656.1640625-.24609375.3623047-.24609375.5878906 0 .4511719.35546875.8066406.81347656.8066406z"></path></svg><a data-v-4264aa3f="" href="../../../documentation/swiftui/verticalalignment.html" class="parent item nav-menu-link router-link-active" data-v-627bd0c5="" data-v-65b9129d="">  VerticalAlignment  </a>
+</li>
+<li data-v-65b9129d="" data-v-4264aa3f="" class="nav-menu-item hierarchy-item nav-menu-item--animated" data-v-627bd0c5="" data-v-4a778e88="">
+<svg data-v-7f60a732="" data-v-4264aa3f="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="svg-icon inline-chevron-right-icon hierarchy-item-icon icon-inline" viewbox="0 0 14 14" data-v-627bd0c5="" data-v-65b9129d=""><path data-v-7f60a732="" d="m4.81347656 13.1269531c.22558594 0 .41015625-.0820312.56738282-.2324219l5.31835942-5.19531245c.1845703-.19140625.2802734-.38964844.2802734-.63574219 0-.23925781-.0888672-.45117187-.2802734-.62890625l-5.31835942-5.20214843c-.15722657-.15039063-.34179688-.23242188-.56738282-.23242188-.45800781 0-.81347656.35546875-.81347656.80664062 0 .21875.09570312.43066407.24609375.58789063l4.79199219 4.67578125-4.79199219 4.6621094c-.15722656.1640625-.24609375.3623047-.24609375.5878906 0 .4511719.35546875.8066406.81347656.8066406z"></path></svg><span data-v-627bd0c5="" data-v-65b9129d="" class="current item">  Equatable Implementations  </span>
+</li>
+</ul>
+<ul data-v-4a778e88="" data-v-2d1219c2="" data-previous-menu-children-count="4" class="nav-menu-items nav-menu-settings" data-v-449d79fe="">
+<li data-v-65b9129d="" data-v-45c24d0c="" data-v-2d1219c2="" class="nav-menu-item nav-menu-setting language-container nav-menu-item--animated" data-v-4a778e88="">
+<div data-v-45c24d0c="" data-v-65b9129d="" class="">
+<select data-v-45c24d0c="" data-v-65b9129d="" aria-hidden="true" tabindex="-1" class="language-dropdown language-sizer"><option data-v-45c24d0c="" data-v-65b9129d="" selected>Swift</option></select><label data-v-45c24d0c="" data-v-65b9129d="" class="nav-menu-setting-label">Language:</label><span data-v-45c24d0c="" data-v-65b9129d="" aria-current="page" class="nav-menu-toggle-none current-language">Swift</span><!---->
+</div><!---->
+
+</li>
+<li data-v-65b9129d="" data-v-cf06df92="" data-v-2d1219c2="" class="nav-menu-item nav-menu-setting nav-menu-item--animated" data-v-4a778e88="">
+<label data-v-cf06df92="" data-v-65b9129d="" for="version-label" class="nav-menu-setting-label">  API Changes:  </label><span data-v-cf06df92="" data-v-65b9129d=""><span class="enstr">None</span><!--end_enstr-->
+<span class="jpstr">
+無し
+</span><!--end_jpstr-->
+</span>
+</li><!---->
+
+</ul>
+</div>
+</div>
+<div data-v-449d79fe="" class="nav-actions"><a data-v-449d79fe="" href="#" tabindex="-1" aria-hidden="true" class="nav-menucta"><span data-v-449d79fe="" class="nav-menucta-chevron"></span></a></div>
+</div>
+</div><!---->
+</nav><main data-v-3042c2e3="" id="main" role="main" tabindex="0" class="main"><div data-v-5898873b="" data-v-3042c2e3="" class="topictitle"><!---->
+<h1 data-v-5898873b="" class="title">Equatable Implementations</h1>
+</div>
+<div data-v-3042c2e3="" class="container content-grid">
+<div data-v-6bd6a791="" data-v-3042c2e3="" class="description"><!---->
+<div data-v-702ae484="" data-v-b3ef72b8="" data-v-3042c2e3="" class="abstract content" data-v-6bd6a791=""><span class="enstr">No overview available.</span><!--end_enstr-->
+<span class="jpstr">
+概要は利用可能でありません。
+</span><!--end_jpstr-->
+</div><!----><!----><!----><!---->
+
+</div>
+<div data-v-402f5da0="" data-v-3042c2e3="" class="summary"><!----><!---->
+<div data-v-4e4ddb7c="" data-v-72be2db6="" data-v-3042c2e3="" class="summary-section technologies" role="complementary" aria-label="Technology" data-v-402f5da0="">
+<p data-v-5281efbf="" data-v-72be2db6="" class="title" data-v-4e4ddb7c="">Technology</p>
+<ul data-v-60f25add="" data-v-72be2db6="" class="summary-list" data-v-4e4ddb7c=""><li data-v-946388d8="" data-v-72be2db6="" class="summary-list-item" data-v-60f25add=""><span data-v-72be2db6="" data-v-946388d8="" class="name">Swift<wbr data-v-72be2db6="" data-v-946388d8="">UI</wbr></span></li></ul>
+</div><!----><!---->
+
+</div><!---->
+
+</div>
+<section data-v-288f715c="" data-v-4fbfcbb8="" data-v-3042c2e3="" id="topics" class="contenttable alt-light"><div data-v-288f715c="" class="container">
+<h2 data-v-288f715c="" class="title"><span class="enstr">Topics</span><!--end_enstr-->
+<span class="jpstr">
+話題
+</span><!--end_jpstr-->
+</h2>
+<div data-v-3166b2f0="" data-v-6ed43f12="" data-v-4fbfcbb8="" class="row contenttable-section">
+<div data-v-10458e16="" data-v-6ed43f12="" class="col section-title large-3 medium-3 small-12" data-v-3166b2f0=""><h3 data-v-6ed43f12="" data-v-10458e16="" class="title"><span class="enstr">Operators</span><!--end_enstr-->
+<span class="jpstr">
+様々な演算子
+</span><!--end_jpstr-->
+</h3></div>
+<div data-v-10458e16="" data-v-6ed43f12="" class="col section-content large-9 medium-9 small-12" data-v-3166b2f0=""><!----><!----><!---->
+<div data-v-38ec35d1="" data-v-4fbfcbb8="" class="link-block topic" data-v-10458e16=""><!---->
+<a data-v-38ec35d1="" href="../../../documentation/swiftui/verticalalignment/!-(_:_:).html" class="link has-adjacent-elements"><code data-v-b8f09902="" data-v-38ec35d1="" class="decorated-title"><span data-v-b8f09902="" class="decorator">static</span><span data-v-b8f09902="" class="decorator empty-token"> </span><span data-v-b8f09902="" class="decorator">func</span><span data-v-b8f09902="" class="decorator empty-token"> </span><span data-v-b8f09902="" class="identifier">!=</span><span data-v-b8f09902="" class="decorator empty-token"> </span><span data-v-b8f09902="" class="decorator">(</span><span data-v-b8f09902="" class="decorator">Self</span><span data-v-b8f09902="" class="decorator">, </span><span data-v-b8f09902="" class="decorator">Self</span><span data-v-b8f09902="" class="decorator">) -&gt; </span><span data-v-b8f09902="" class="decorator">Bool</span></code><!----></a><div data-v-38ec35d1="" class="abstract">
+<div data-v-702ae484="" data-v-38ec35d1="" class="content">Indicates whether two vertical alignments are unequal.</div><!----><!----><!---->
+
+</div><!---->
+
+</div>
+</div>
+</div>
+</div><!----><!----><!----><!----></section></main>
+</div></div>
+<section data-v-a17d48ac="" data-v-2fddaabf="" id="globalfooter-wrapper" data-v-2f8d976c=""><footer data-v-a17d48ac="" id="globalfooter" role="contentinfo"><nav data-v-a17d48ac="" class="footer-breadory"><a data-v-a17d48ac="" href="https://apple.com/" class="home breadcrumbs-home"><span data-v-a17d48ac="" aria-hidden="true"></span><span data-v-a17d48ac="" class="breadcrumbs-home-label">Apple</span></a><section data-v-a17d48ac="" class="breadcrumbs"><ol data-v-a17d48ac="" class="breadcrumbs-list">
+<li><a href="/">Developer</a></li>
+<li><a href="../../../index.html" class="link">  Documentation  </a></li>
+</ol></section><div data-v-a17d48ac="" id="directorynav" class="directorynav">
+<div data-v-a17d48ac="" class="column">
+<h3 data-v-a17d48ac=""><a data-v-a17d48ac="" href="/discover/">  Discover  </a></h3>
+<ul data-v-a17d48ac="">
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/ios/">  iOS  </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/ipados/">  iPadOS  </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/macos/">  macOS  </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/tvos/">  tvOS  </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/watchos/">  watchOS  </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/safari/">  Safari and Web  </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/games/">  Games  </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/business/">  Business  </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/education/">  Education  </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/wwdc/">  WWDC  </a></li>
+</ul>
+</div>
+<div data-v-a17d48ac="" class="column">
+<h3 data-v-a17d48ac=""><a data-v-a17d48ac="" href="/design/">  Design  </a></h3>
+<ul data-v-a17d48ac="">
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/design/human-interface-guidelines/">  Human Interface Guidelines  </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/design/resources/"> <span class="enstr">Resources</span><!--end_enstr-->
+<span class="jpstr">
+リソース
+</span><!--end_jpstr-->
+ </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/videos/design/">  Videos  </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/design/awards/">  Apple Design Awards  </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/fonts/">  Fonts  </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/accessibility/"> <span class="enstr">Accessibility</span><!--end_enstr-->
+<span class="jpstr">
+アクセシビリティ
+</span><!--end_jpstr-->
+ </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/localization/">  Localization  </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/accessories/">  Accessories  </a></li>
+</ul>
+</div>
+<div data-v-a17d48ac="" class="column">
+<h3 data-v-a17d48ac=""><a data-v-a17d48ac="" href="/develop/">  Develop  </a></h3>
+<ul data-v-a17d48ac="">
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/xcode/">  Xcode  </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/swift/">  Swift  </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/swift-playgrounds/">  Swift Playgrounds  </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/testflight/">  TestFlight  </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="https://developer.apple.com/documentation/">  Documentation  </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/videos/">  Videos  </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/download/">  Downloads  </a></li>
+</ul>
+</div>
+<div data-v-a17d48ac="" class="column">
+<h3 data-v-a17d48ac=""><a data-v-a17d48ac="" href="/distribute/">  Distribute  </a></h3>
+<ul data-v-a17d48ac="">
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/programs/">  Developer Program  </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/app-store/">  App Store  </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/app-store/review/">  App Review  </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/macos/distribution/">  Mac Software  </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/business/distribute/">  Apps for Business  </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/safari/extensions/">  Safari Extensions  </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/app-store/marketing/guidelines/">  Marketing Resources  </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/softwarelicensing/">  Trademark Licensing  </a></li>
+</ul>
+</div>
+<div data-v-a17d48ac="" class="column">
+<h3 data-v-a17d48ac=""><a data-v-a17d48ac="" href="/support/">  Support  </a></h3>
+<ul data-v-a17d48ac="">
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/support/articles/">  Articles  </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/forums/">  Developer Forums  </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/bug-reporting/">  Feedback &amp; Bug Reporting  </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/system-status/">  System Status  </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/contact/">  Contact Us  </a></li>
+</ul>
+<h3 data-v-a17d48ac=""><a data-v-a17d48ac="" href="/account/">  Account  </a></h3>
+<ul data-v-a17d48ac="">
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="/account/ios/certificate/">  Certificates, Identifiers &amp; Profiles  </a></li>
+<li data-v-a17d48ac=""><a data-v-a17d48ac="" href="https://appstoreconnect.apple.com/">  App Store Connect  </a></li>
+</ul>
+</div>
+</div></nav><div data-v-a17d48ac="" class="ac-gf-footer-legal">
+<div data-v-a17d48ac="" class="ac-gf-footer-news">
+<div data-v-a17d48ac="" class="copy">  To view the latest developer news, visit <a data-v-a17d48ac="" href="/news/">News and Updates</a>.  </div>
+<div data-v-a17d48ac="" class="controls"><div data-v-3228f94a="" data-v-a17d48ac="" aria-label="Select a color scheme preference" role="radiogroup" tabindex="0" class="color-scheme-toggle">
+<label data-v-3228f94a=""><input data-v-3228f94a="" type="radio" value="light"><div data-v-3228f94a="" class="text">Light</div></label><label data-v-3228f94a=""><input data-v-3228f94a="" type="radio" value="dark"><div data-v-3228f94a="" class="text">Dark</div></label><label data-v-3228f94a=""><input data-v-3228f94a="" type="radio" value="auto"><div data-v-3228f94a="" class="text">Auto</div></label>
+</div></div>
+</div>
+<div data-v-a17d48ac="" class="ac-gf-footer-legal-copyright">  Copyright © 2022 <a data-v-a17d48ac="" href="https://www.apple.com">Apple Inc.</a> All rights reserved.  </div>
+<div data-v-a17d48ac="" class="ac-gf-footer-legal-links">
+<a data-v-a17d48ac="" href="https://www.apple.com/legal/internet-services/terms/site.html" class="ac-gf-footer-legal-link first"> Terms of Use </a><a data-v-a17d48ac="" href="https://www.apple.com/privacy/privacy-policy/" class="ac-gf-footer-legal-link"> Privacy Policy </a><a data-v-a17d48ac="" href="/support/terms/" class="ac-gf-footer-legal-link"> Agreements and Guidelines </a>
+</div>
+</div></footer></section>
+</div>
+<script src="../../../tutorials/js/chunk-vendors.011d2fc1.js"></script>
+</body>
+</html>
