@@ -283,8 +283,7 @@
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines">
-<li>
-<span class="k">protocol</span> <span class="nv">Shape</span> {
+<li><span class="k">protocol</span> <span class="nv">Shape</span> {
 </li>
 <li>    <span class="k">func</span> <span class="nv">draw</span>() -&gt; <span class="nc">String</span>
 </li>
@@ -292,8 +291,7 @@
 </li>
 <li>
 </li>
-<li>
-<span class="k">struct</span> <span class="nv">Triangle</span>: <span class="nc">Shape</span> {
+<li><span class="k">struct</span> <span class="nv">Triangle</span>: <span class="nc">Shape</span> {
 </li>
 <li>    <span class="k">var</span> <span class="nv">size</span>: <span class="nc">Int</span>
 </li>
@@ -313,20 +311,15 @@
 </li>
 <li>}
 </li>
-<li>
-<span class="k">let</span> <span class="nv">smallTriangle</span> = <span class="nv">Triangle</span>(<span class="nv">size</span>: <span class="m">3</span>)
+<li><span class="k">let</span> <span class="nv">smallTriangle</span> = <span class="nv">Triangle</span>(<span class="nv">size</span>: <span class="m">3</span>)
 </li>
-<li>
-<span class="nv">print</span>(<span class="nv">smallTriangle</span>.<span class="nv">draw</span>())
+<li><span class="nv">print</span>(<span class="nv">smallTriangle</span>.<span class="nv">draw</span>())
 </li>
-<li>
-<span class="c">// *</span>
+<li><span class="c">// *</span>
 </li>
-<li>
-<span class="c">// **</span>
+<li><span class="c">// **</span>
 </li>
-<li>
-<span class="c">// ***</span>
+<li><span class="c">// ***</span>
 </li>
 </ol></div></div></div>
 <p><span class="enstr">You could use generics to implement operations like flipping a shape vertically, as shown in the code below. However, there’s an important limitation to this approach: The flipped result exposes the exact generic types that were used to create it.</span><!--end_enstr-->
@@ -335,8 +328,7 @@
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines">
-<li>
-<span class="k">struct</span> <span class="nv">FlippedShape</span>&lt;<span class="nv">T</span>: <span class="nc">Shape</span>&gt;: <span class="nc">Shape</span> {
+<li><span class="k">struct</span> <span class="nv">FlippedShape</span>&lt;<span class="nv">T</span>: <span class="nc">Shape</span>&gt;: <span class="nc">Shape</span> {
 </li>
 <li>    <span class="k">var</span> <span class="nv">shape</span>: <span class="nc">T</span>
 </li>
@@ -350,20 +342,15 @@
 </li>
 <li>}
 </li>
-<li>
-<span class="k">let</span> <span class="nv">flippedTriangle</span> = <span class="nv">FlippedShape</span>(<span class="nv">shape</span>: <span class="nv">smallTriangle</span>)
+<li><span class="k">let</span> <span class="nv">flippedTriangle</span> = <span class="nv">FlippedShape</span>(<span class="nv">shape</span>: <span class="nv">smallTriangle</span>)
 </li>
-<li>
-<span class="nv">print</span>(<span class="nv">flippedTriangle</span>.<span class="nv">draw</span>())
+<li><span class="nv">print</span>(<span class="nv">flippedTriangle</span>.<span class="nv">draw</span>())
 </li>
-<li>
-<span class="c">// ***</span>
+<li><span class="c">// ***</span>
 </li>
-<li>
-<span class="c">// **</span>
+<li><span class="c">// **</span>
 </li>
-<li>
-<span class="c">// *</span>
+<li><span class="c">// *</span>
 </li>
 </ol></div></div></div>
 <p><span class="enstr">This approach to defining a <code class="docutils literal notranslate"><span class="pre">JoinedShape&lt;T:</span> <span class="pre">Shape,</span> <span class="pre">U:</span> <span class="pre">Shape&gt;</span></code> structure that joins two shapes together vertically, like the code below shows, results in types like <code class="docutils literal notranslate"><span class="pre">JoinedShape&lt;FlippedShape&lt;Triangle&gt;,</span> <span class="pre">Triangle&gt;</span></code> from joining a flipped triangle with another triangle.</span><!--end_enstr-->
@@ -372,8 +359,7 @@
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines">
-<li>
-<span class="k">struct</span> <span class="nv">JoinedShape</span>&lt;<span class="nv">T</span>: <span class="nc">Shape</span>, <span class="nv">U</span>: <span class="nc">Shape</span>&gt;: <span class="nc">Shape</span> {
+<li><span class="k">struct</span> <span class="nv">JoinedShape</span>&lt;<span class="nv">T</span>: <span class="nc">Shape</span>, <span class="nv">U</span>: <span class="nc">Shape</span>&gt;: <span class="nc">Shape</span> {
 </li>
 <li>    <span class="k">var</span> <span class="nv">top</span>: <span class="nc">T</span>
 </li>
@@ -387,29 +373,21 @@
 </li>
 <li>}
 </li>
-<li>
-<span class="k">let</span> <span class="nv">joinedTriangles</span> = <span class="nv">JoinedShape</span>(<span class="nv">top</span>: <span class="nv">smallTriangle</span>, <span class="nv">bottom</span>: <span class="nv">flippedTriangle</span>)
+<li><span class="k">let</span> <span class="nv">joinedTriangles</span> = <span class="nv">JoinedShape</span>(<span class="nv">top</span>: <span class="nv">smallTriangle</span>, <span class="nv">bottom</span>: <span class="nv">flippedTriangle</span>)
 </li>
-<li>
-<span class="nv">print</span>(<span class="nv">joinedTriangles</span>.<span class="nv">draw</span>())
+<li><span class="nv">print</span>(<span class="nv">joinedTriangles</span>.<span class="nv">draw</span>())
 </li>
-<li>
-<span class="c">// *</span>
+<li><span class="c">// *</span>
 </li>
-<li>
-<span class="c">// **</span>
+<li><span class="c">// **</span>
 </li>
-<li>
-<span class="c">// ***</span>
+<li><span class="c">// ***</span>
 </li>
-<li>
-<span class="c">// ***</span>
+<li><span class="c">// ***</span>
 </li>
-<li>
-<span class="c">// **</span>
+<li><span class="c">// **</span>
 </li>
-<li>
-<span class="c">// *</span>
+<li><span class="c">// *</span>
 </li>
 </ol></div></div></div>
 <p><span class="enstr">Exposing detailed information about the creation of a shape allows types that aren’t meant to be part of the ASCII art module’s public interface to leak out because of the need to state the full return type. The code inside the module could build up the same shape in a variety of ways, and other code outside the module that uses the shape shouldn’t have to account for the implementation details about the list of transformations. Wrapper types like <code class="docutils literal notranslate"><span class="pre">JoinedShape</span></code> and <code class="docutils literal notranslate"><span class="pre">FlippedShape</span></code> don’t matter to the module’s users, and they shouldn’t be visible. The module’s public interface consists of operations like joining and flipping a shape, and those operations return another <code class="docutils literal notranslate"><span class="pre">Shape</span></code> value.</span><!--end_enstr-->
@@ -430,8 +408,7 @@
 あなたは、不透明型を総称体の逆であるように考えることができます。総称体型は、ある関数を呼び出すコードに、その関数のもつパラメータと戻り値に対する型を、関数実装から離れて抽象化されるある方法で選択させます。例えば、以下のコードの関数は、それの呼び出し側に依存する、ある型を返します。
 </span><!--end_jpstr-->
 </p>
-<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li>
-<span class="k">func</span> <span class="nv">max</span>&lt;<span class="nv">T</span>&gt;(<span class="k">_</span> <span class="nv">x</span>: <span class="nc">T</span>, <span class="k">_</span> <span class="nv">y</span>: <span class="nc">T</span>) -&gt; <span class="nc">T</span> <span class="k">where</span> <span class="nc">T</span>: <span class="nc">Comparable</span> { ... }
+<div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines"><li><span class="k">func</span> <span class="nv">max</span>&lt;<span class="nv">T</span>&gt;(<span class="k">_</span> <span class="nv">x</span>: <span class="nc">T</span>, <span class="k">_</span> <span class="nv">y</span>: <span class="nc">T</span>) -&gt; <span class="nc">T</span> <span class="k">where</span> <span class="nc">T</span>: <span class="nc">Comparable</span> { ... }
 </li></ol></div></div></div>
 <p><span class="enstr">The code that calls <code class="docutils literal notranslate"><span class="pre">max(_:_:)</span></code> chooses the values for <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>, and the type of those values determines the concrete type of <code class="docutils literal notranslate"><span class="pre">T</span></code>. The calling code can use any type that conforms to the <code class="docutils literal notranslate"><span class="pre">Comparable</span></code> protocol. The code inside the function is written in a general way so it can handle whatever type the caller provides. The implementation of <code class="docutils literal notranslate"><span class="pre">max(_:_:)</span></code> uses only functionality that all <code class="docutils literal notranslate"><span class="pre">Comparable</span></code> types share.</span><!--end_enstr-->
 <span class="jpstr">
@@ -444,8 +421,7 @@
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines">
-<li>
-<span class="k">struct</span> <span class="nv">Square</span>: <span class="nc">Shape</span> {
+<li><span class="k">struct</span> <span class="nv">Square</span>: <span class="nc">Shape</span> {
 </li>
 <li>    <span class="k">var</span> <span class="nv">size</span>: <span class="nc">Int</span>
 </li>
@@ -463,8 +439,7 @@
 </li>
 <li>
 </li>
-<li>
-<span class="k">func</span> <span class="nv">makeTrapezoid</span>() -&gt; <span class="nc">some</span> <span class="nv">Shape</span> {
+<li><span class="k">func</span> <span class="nv">makeTrapezoid</span>() -&gt; <span class="nc">some</span> <span class="nv">Shape</span> {
 </li>
 <li>    <span class="k">let</span> <span class="nv">top</span> = <span class="nv">Triangle</span>(<span class="nv">size</span>: <span class="m">2</span>)
 </li>
@@ -484,29 +459,21 @@
 </li>
 <li>}
 </li>
-<li>
-<span class="k">let</span> <span class="nv">trapezoid</span> = <span class="nv">makeTrapezoid</span>()
+<li><span class="k">let</span> <span class="nv">trapezoid</span> = <span class="nv">makeTrapezoid</span>()
 </li>
-<li>
-<span class="nv">print</span>(<span class="nv">trapezoid</span>.<span class="nv">draw</span>())
+<li><span class="nv">print</span>(<span class="nv">trapezoid</span>.<span class="nv">draw</span>())
 </li>
-<li>
-<span class="c">// *</span>
+<li><span class="c">// *</span>
 </li>
-<li>
-<span class="c">// **</span>
+<li><span class="c">// **</span>
 </li>
-<li>
-<span class="c">// **</span>
+<li><span class="c">// **</span>
 </li>
-<li>
-<span class="c">// **</span>
+<li><span class="c">// **</span>
 </li>
-<li>
-<span class="c">// **</span>
+<li><span class="c">// **</span>
 </li>
-<li>
-<span class="c">// *</span>
+<li><span class="c">// *</span>
 </li>
 </ol></div></div></div>
 <p><span class="enstr">The <code class="docutils literal notranslate"><span class="pre">makeTrapezoid()</span></code> function in this example declares its return type as <code class="docutils literal notranslate"><span class="pre">some</span> <span class="pre">Shape</span></code>; as a result, the function returns a value of some given type that conforms to the <code class="docutils literal notranslate"><span class="pre">Shape</span></code> protocol, without specifying any particular concrete type. Writing <code class="docutils literal notranslate"><span class="pre">makeTrapezoid()</span></code> this way lets it express the fundamental aspect of its public interface—the value it returns is a shape—without making the specific types that the shape is made from a part of its public interface. This implementation uses two triangles and a square, but the function could be rewritten to draw a trapezoid in a variety of other ways without changing its return type.</span><!--end_enstr-->
@@ -525,15 +492,13 @@
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines">
-<li>
-<span class="k">func</span> <span class="nv">flip</span>&lt;<span class="nv">T</span>: <span class="nc">Shape</span>&gt;(<span class="k">_</span> <span class="nv">shape</span>: <span class="nc">T</span>) -&gt; <span class="nc">some</span> <span class="nv">Shape</span> {
+<li><span class="k">func</span> <span class="nv">flip</span>&lt;<span class="nv">T</span>: <span class="nc">Shape</span>&gt;(<span class="k">_</span> <span class="nv">shape</span>: <span class="nc">T</span>) -&gt; <span class="nc">some</span> <span class="nv">Shape</span> {
 </li>
 <li>    <span class="k">return</span> <span class="nv">FlippedShape</span>(<span class="nv">shape</span>: <span class="nv">shape</span>)
 </li>
 <li>}
 </li>
-<li>
-<span class="k">func</span> <span class="nv">join</span>&lt;<span class="nv">T</span>: <span class="nc">Shape</span>, <span class="nv">U</span>: <span class="nc">Shape</span>&gt;(<span class="k">_</span> <span class="nv">top</span>: <span class="nc">T</span>, <span class="k">_</span> <span class="nv">bottom</span>: <span class="nc">U</span>) -&gt; <span class="nc">some</span> <span class="nv">Shape</span> {
+<li><span class="k">func</span> <span class="nv">join</span>&lt;<span class="nv">T</span>: <span class="nc">Shape</span>, <span class="nv">U</span>: <span class="nc">Shape</span>&gt;(<span class="k">_</span> <span class="nv">top</span>: <span class="nc">T</span>, <span class="k">_</span> <span class="nv">bottom</span>: <span class="nc">U</span>) -&gt; <span class="nc">some</span> <span class="nv">Shape</span> {
 </li>
 <li>    <span class="nv">JoinedShape</span>(<span class="nv">top</span>: <span class="nv">top</span>, <span class="nv">bottom</span>: <span class="nv">bottom</span>)
 </li>
@@ -541,29 +506,21 @@
 </li>
 <li>
 </li>
-<li>
-<span class="k">let</span> <span class="nv">opaqueJoinedTriangles</span> = <span class="nv">join</span>(<span class="nv">smallTriangle</span>, <span class="nv">flip</span>(<span class="nv">smallTriangle</span>))
+<li><span class="k">let</span> <span class="nv">opaqueJoinedTriangles</span> = <span class="nv">join</span>(<span class="nv">smallTriangle</span>, <span class="nv">flip</span>(<span class="nv">smallTriangle</span>))
 </li>
-<li>
-<span class="nv">print</span>(<span class="nv">opaqueJoinedTriangles</span>.<span class="nv">draw</span>())
+<li><span class="nv">print</span>(<span class="nv">opaqueJoinedTriangles</span>.<span class="nv">draw</span>())
 </li>
-<li>
-<span class="c">// *</span>
+<li><span class="c">// *</span>
 </li>
-<li>
-<span class="c">// **</span>
+<li><span class="c">// **</span>
 </li>
-<li>
-<span class="c">// ***</span>
+<li><span class="c">// ***</span>
 </li>
-<li>
-<span class="c">// ***</span>
+<li><span class="c">// ***</span>
 </li>
-<li>
-<span class="c">// **</span>
+<li><span class="c">// **</span>
 </li>
-<li>
-<span class="c">// *</span>
+<li><span class="c">// *</span>
 </li>
 </ol></div></div></div>
 <p><span class="enstr">The value of <code class="docutils literal notranslate"><span class="pre">opaqueJoinedTriangles</span></code> in this example is the same as <code class="docutils literal notranslate"><span class="pre">joinedTriangles</span></code> in the generics example in the <a class="reference internal" href="#ID613"><span class="std std-ref">The Problem That Opaque Types Solve</span></a> section earlier in this chapter. However, unlike the value in that example, <code class="docutils literal notranslate"><span class="pre">flip(_:)</span></code> and <code class="docutils literal notranslate"><span class="pre">join(_:_:)</span></code> wrap the underlying types that the generic shape operations return in an opaque return type, which prevents those types from being visible. Both functions are generic because the types they rely on are generic, and the type parameters to the function pass along the type information needed by <code class="docutils literal notranslate"><span class="pre">FlippedShape</span></code> and <code class="docutils literal notranslate"><span class="pre">JoinedShape</span></code>.</span><!--end_enstr-->
@@ -577,8 +534,7 @@
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines">
-<li>
-<span class="k">func</span> <span class="nv">invalidFlip</span>&lt;<span class="nv">T</span>: <span class="nc">Shape</span>&gt;(<span class="k">_</span> <span class="nv">shape</span>: <span class="nc">T</span>) -&gt; <span class="nc">some</span> <span class="nv">Shape</span> {
+<li><span class="k">func</span> <span class="nv">invalidFlip</span>&lt;<span class="nv">T</span>: <span class="nc">Shape</span>&gt;(<span class="k">_</span> <span class="nv">shape</span>: <span class="nc">T</span>) -&gt; <span class="nc">some</span> <span class="nv">Shape</span> {
 </li>
 <li>    <span class="k">if</span> <span class="nv">shape</span> <span class="k">is</span> <span class="nc">Square</span> {
 </li>
@@ -595,8 +551,7 @@
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines">
-<li>
-<span class="k">struct</span> <span class="nv">FlippedShape</span>&lt;<span class="nv">T</span>: <span class="nc">Shape</span>&gt;: <span class="nc">Shape</span> {
+<li><span class="k">struct</span> <span class="nv">FlippedShape</span>&lt;<span class="nv">T</span>: <span class="nc">Shape</span>&gt;: <span class="nc">Shape</span> {
 </li>
 <li>    <span class="k">var</span> <span class="nv">shape</span>: <span class="nc">T</span>
 </li>
@@ -623,8 +578,7 @@
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines">
-<li>
-<span class="k">func</span> <span class="nv">`repeat`</span>&lt;<span class="nv">T</span>: <span class="nc">Shape</span>&gt;(<span class="nv">shape</span>: <span class="nc">T</span>, <span class="nv">count</span>: <span class="nc">Int</span>) -&gt; <span class="nc">some</span> <span class="nv">Collection</span> {
+<li><span class="k">func</span> <span class="nv">`repeat`</span>&lt;<span class="nv">T</span>: <span class="nc">Shape</span>&gt;(<span class="nv">shape</span>: <span class="nc">T</span>, <span class="nv">count</span>: <span class="nc">Int</span>) -&gt; <span class="nc">some</span> <span class="nv">Collection</span> {
 </li>
 <li>    <span class="k">return</span> <span class="nv">Array</span>&lt;<span class="nc">T</span>&gt;(<span class="nv">repeating</span>: <span class="nv">shape</span>, <span class="nv">count</span>: <span class="nv">count</span>)
 </li>
@@ -655,8 +609,7 @@
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines">
-<li>
-<span class="k">func</span> <span class="nv">protoFlip</span>&lt;<span class="nv">T</span>: <span class="nc">Shape</span>&gt;(<span class="k">_</span> <span class="nv">shape</span>: <span class="nc">T</span>) -&gt; <span class="nc">Shape</span> {
+<li><span class="k">func</span> <span class="nv">protoFlip</span>&lt;<span class="nv">T</span>: <span class="nc">Shape</span>&gt;(<span class="k">_</span> <span class="nv">shape</span>: <span class="nc">T</span>) -&gt; <span class="nc">Shape</span> {
 </li>
 <li>    <span class="k">return</span> <span class="nv">FlippedShape</span>(<span class="nv">shape</span>: <span class="nv">shape</span>)
 </li>
@@ -669,8 +622,7 @@
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines">
-<li>
-<span class="k">func</span> <span class="nv">protoFlip</span>&lt;<span class="nv">T</span>: <span class="nc">Shape</span>&gt;(<span class="k">_</span> <span class="nv">shape</span>: <span class="nc">T</span>) -&gt; <span class="nc">Shape</span> {
+<li><span class="k">func</span> <span class="nv">protoFlip</span>&lt;<span class="nv">T</span>: <span class="nc">Shape</span>&gt;(<span class="k">_</span> <span class="nv">shape</span>: <span class="nc">T</span>) -&gt; <span class="nc">Shape</span> {
 </li>
 <li>    <span class="k">if</span> <span class="nv">shape</span> <span class="k">is</span> <span class="nc">Square</span> {
 </li>
@@ -691,14 +643,11 @@
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines">
-<li>
-<span class="k">let</span> <span class="nv">protoFlippedTriangle</span> = <span class="nv">protoFlip</span>(<span class="nv">smallTriangle</span>)
+<li><span class="k">let</span> <span class="nv">protoFlippedTriangle</span> = <span class="nv">protoFlip</span>(<span class="nv">smallTriangle</span>)
 </li>
-<li>
-<span class="k">let</span> <span class="nv">sameThing</span> = <span class="nv">protoFlip</span>(<span class="nv">smallTriangle</span>)
+<li><span class="k">let</span> <span class="nv">sameThing</span> = <span class="nv">protoFlip</span>(<span class="nv">smallTriangle</span>)
 </li>
-<li>
-<span class="nv">protoFlippedTriangle</span> == <span class="nv">sameThing</span>  <span class="enstr"><span class="c">// Error</span></span><!--end_enstr--><span class="jpstr"><span class="c">（エラー）</span></span><!--end_jpstr--></li>
+<li><span class="nv">protoFlippedTriangle</span> == <span class="nv">sameThing</span>  <span class="enstr"><span class="c">// Error</span></span><!--end_enstr--><span class="jpstr"><span class="c">（エラー）</span></span><!--end_jpstr--></li>
 </ol></div></div></div>
 <p><span class="enstr">The error on the last line of the example occurs for several reasons. The immediate issue is that the <code class="docutils literal notranslate"><span class="pre">Shape</span></code> doesn’t include an <code class="docutils literal notranslate"><span class="pre">==</span></code> operator as part of its protocol requirements. If you try adding one, the next issue you’ll encounter is that the <code class="docutils literal notranslate"><span class="pre">==</span></code> operator needs to know the types of its left-hand and right-hand arguments. This sort of operator usually takes arguments of type <code class="docutils literal notranslate"><span class="pre">Self</span></code>, matching whatever concrete type adopts the protocol, but adding a <code class="docutils literal notranslate"><span class="pre">Self</span></code> requirement to the protocol doesn’t allow for the type erasure that happens when you use the protocol as a type.</span><!--end_enstr-->
 <span class="jpstr">
@@ -721,8 +670,7 @@
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines">
-<li>
-<span class="k">protocol</span> <span class="nv">Container</span> {
+<li><span class="k">protocol</span> <span class="nv">Container</span> {
 </li>
 <li>    <span class="k">associatedtype</span> <span class="nv">Item</span>
 </li>
@@ -732,8 +680,7 @@
 </li>
 <li>}
 </li>
-<li>
-<span class="k">extension</span> <span class="nc">Array</span>: <span class="nc">Container</span> { }
+<li><span class="k">extension</span> <span class="nc">Array</span>: <span class="nc">Container</span> { }
 </li>
 </ol></div></div></div>
 <p><span class="enstr">You can’t use <code class="docutils literal notranslate"><span class="pre">Container</span></code> as the return type of a function because that protocol has an associated type. You also can’t use it as constraint in a generic return type because there isn’t enough information outside the function body to infer what the generic type needs to be.</span><!--end_enstr-->
@@ -742,11 +689,9 @@
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines">
-<li>
-<span class="c"><span class="enstr">// Error: Protocol with associated types can't be used as a return type.</span><!--end_enstr--><span class="jpstr">（Error: 関連型を持つプロトコルは戻り型として使われることができません。）</span><!--end_jpstr--></span>
+<li><span class="c"><span class="enstr">// Error: Protocol with associated types can't be used as a return type.</span><!--end_enstr--><span class="jpstr">（Error: 関連型を持つプロトコルは戻り型として使われることができません。）</span><!--end_jpstr--></span>
 </li>
-<li>
-<span class="k">func</span> <span class="nv">makeProtocolContainer</span>&lt;<span class="nv">T</span>&gt;(<span class="nv">item</span>: <span class="nc">T</span>) -&gt; <span class="nc">Container</span> {
+<li><span class="k">func</span> <span class="nv">makeProtocolContainer</span>&lt;<span class="nv">T</span>&gt;(<span class="nv">item</span>: <span class="nc">T</span>) -&gt; <span class="nc">Container</span> {
 </li>
 <li>    <span class="k">return</span> [<span class="nv">item</span>]
 </li>
@@ -754,11 +699,9 @@
 </li>
 <li>
 </li>
-<li>
-<span class="c"><span class="enstr">// Error: Not enough information to infer C.</span><!--end_enstr--><span class="jpstr">（Error: Cを推論するための情報が十分でない。）</span><!--end_jpstr--></span>
+<li><span class="c"><span class="enstr">// Error: Not enough information to infer C.</span><!--end_enstr--><span class="jpstr">（Error: Cを推論するための情報が十分でない。）</span><!--end_jpstr--></span>
 </li>
-<li>
-<span class="k">func</span> <span class="nv">makeProtocolContainer</span>&lt;<span class="nv">T</span>, <span class="nv">C</span>: <span class="nc">Container</span>&gt;(<span class="nv">item</span>: <span class="nc">T</span>) -&gt; <span class="nc">C</span> {
+<li><span class="k">func</span> <span class="nv">makeProtocolContainer</span>&lt;<span class="nv">T</span>, <span class="nv">C</span>: <span class="nc">Container</span>&gt;(<span class="nv">item</span>: <span class="nc">T</span>) -&gt; <span class="nc">C</span> {
 </li>
 <li>    <span class="k">return</span> [<span class="nv">item</span>]
 </li>
@@ -771,24 +714,19 @@
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines">
-<li>
-<span class="k">func</span> <span class="nv">makeOpaqueContainer</span>&lt;<span class="nv">T</span>&gt;(<span class="nv">item</span>: <span class="nc">T</span>) -&gt; <span class="nc">some</span> <span class="nv">Container</span> {
+<li><span class="k">func</span> <span class="nv">makeOpaqueContainer</span>&lt;<span class="nv">T</span>&gt;(<span class="nv">item</span>: <span class="nc">T</span>) -&gt; <span class="nc">some</span> <span class="nv">Container</span> {
 </li>
 <li>    <span class="k">return</span> [<span class="nv">item</span>]
 </li>
 <li>}
 </li>
-<li>
-<span class="k">let</span> <span class="nv">opaqueContainer</span> = <span class="nv">makeOpaqueContainer</span>(<span class="nv">item</span>: <span class="m">12</span>)
+<li><span class="k">let</span> <span class="nv">opaqueContainer</span> = <span class="nv">makeOpaqueContainer</span>(<span class="nv">item</span>: <span class="m">12</span>)
 </li>
-<li>
-<span class="k">let</span> <span class="nv">twelve</span> = <span class="nv">opaqueContainer</span>[<span class="m">0</span>]
+<li><span class="k">let</span> <span class="nv">twelve</span> = <span class="nv">opaqueContainer</span>[<span class="m">0</span>]
 </li>
-<li>
-<span class="nv">print</span>(<span class="nv">type</span>(<span class="nv">of</span>: <span class="nv">twelve</span>))
+<li><span class="nv">print</span>(<span class="nv">type</span>(<span class="nv">of</span>: <span class="nv">twelve</span>))
 </li>
-<li>
-<span class="c"><span class="enstr">// Prints "Int"</span><!--end_enstr--><span class="jpstr">（「Int」を出力します）</span><!--end_jpstr--></span>
+<li><span class="c"><span class="enstr">// Prints "Int"</span><!--end_enstr--><span class="jpstr">（「Int」を出力します）</span><!--end_jpstr--></span>
 </li>
 </ol></div></div></div>
 <p><span class="enstr">The type of <code class="docutils literal notranslate"><span class="pre">twelve</span></code> is inferred to be <code class="docutils literal notranslate"><span class="pre">Int</span></code>, which illustrates the fact that type inference works with opaque types. In the implementation of <code class="docutils literal notranslate"><span class="pre">makeOpaqueContainer(item:)</span></code>, the underlying type of the opaque container is <code class="docutils literal notranslate"><span class="pre">[T]</span></code>. In this case, <code class="docutils literal notranslate"><span class="pre">T</span></code> is <code class="docutils literal notranslate"><span class="pre">Int</span></code>, so the return value is an array of integers and the <code class="docutils literal notranslate"><span class="pre">Item</span></code> associated type is inferred to be <code class="docutils literal notranslate"><span class="pre">Int</span></code>. The subscript on <code class="docutils literal notranslate"><span class="pre">Container</span></code> returns <code class="docutils literal notranslate"><span class="pre">Item</span></code>, which means that the type of <code class="docutils literal notranslate"><span class="pre">twelve</span></code> is also inferred to be <code class="docutils literal notranslate"><span class="pre">Int</span></code>.</span><!--end_enstr-->

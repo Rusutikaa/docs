@@ -301,19 +301,15 @@ in-outパラメータに対するアクセスの衝突
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines">
-<li>
-<span class="c"><span class="enstr">// A write access to the memory where one is stored.</span><!--end_enstr--><span class="jpstr">（oneが格納されるところのメモリに対する書き込みアクセス。）</span><!--end_jpstr--></span>
+<li><span class="c"><span class="enstr">// A write access to the memory where one is stored.</span><!--end_enstr--><span class="jpstr">（oneが格納されるところのメモリに対する書き込みアクセス。）</span><!--end_jpstr--></span>
 </li>
-<li>
-<span class="k">var</span> <span class="nv">one</span> = <span class="m">1</span>
+<li><span class="k">var</span> <span class="nv">one</span> = <span class="m">1</span>
 </li>
 <li>
 </li>
-<li>
-<span class="c"><span class="enstr">// A read access from the memory where one is stored.</span><!--end_enstr--><span class="jpstr">（oneが格納されるところのメモリから読み出しアクセス。）</span><!--end_jpstr--></span>
+<li><span class="c"><span class="enstr">// A read access from the memory where one is stored.</span><!--end_enstr--><span class="jpstr">（oneが格納されるところのメモリから読み出しアクセス。）</span><!--end_jpstr--></span>
 </li>
-<li>
-<span class="nv">print</span>(<span class="s">"We're number </span>\<span class="p">(</span><span class="nv">one</span><span class="p">)</span><span class="s">!"</span>)
+<li><span class="nv">print</span>(<span class="s">"We're number </span>\<span class="p">(</span><span class="nv">one</span><span class="p">)</span><span class="s">!"</span>)
 </li>
 </ol></div></div></div>
 <p><span class="enstr">A conflicting access to memory can occur when different parts of your code are trying to access the same location in memory at the same time. Multiple accesses to a location in memory at the same time can produce unpredictable or inconsistent behavior. In Swift, there are ways to modify a value that span several lines of code, making it possible to attempt to access a value in the middle of its own modification.</span><!--end_enstr-->
@@ -399,8 +395,7 @@ in-outパラメータに対するアクセスの衝突
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines">
-<li>
-<span class="k">func</span> <span class="nv">oneMore</span>(<span class="nv">than</span> <span class="nv">number</span>: <span class="nc">Int</span>) -&gt; <span class="nc">Int</span> {
+<li><span class="k">func</span> <span class="nv">oneMore</span>(<span class="nv">than</span> <span class="nv">number</span>: <span class="nc">Int</span>) -&gt; <span class="nc">Int</span> {
 </li>
 <li>    <span class="k">return</span> <span class="nv">number</span> + <span class="m">1</span>
 </li>
@@ -408,17 +403,13 @@ in-outパラメータに対するアクセスの衝突
 </li>
 <li>
 </li>
-<li>
-<span class="k">var</span> <span class="nv">myNumber</span> = <span class="m">1</span>
+<li><span class="k">var</span> <span class="nv">myNumber</span> = <span class="m">1</span>
 </li>
-<li>
-<span class="nv">myNumber</span> = <span class="nv">oneMore</span>(<span class="nv">than</span>: <span class="nv">myNumber</span>)
+<li><span class="nv">myNumber</span> = <span class="nv">oneMore</span>(<span class="nv">than</span>: <span class="nv">myNumber</span>)
 </li>
-<li>
-<span class="nv">print</span>(<span class="nv">myNumber</span>)
+<li><span class="nv">print</span>(<span class="nv">myNumber</span>)
 </li>
-<li>
-<span class="c"><span class="enstr">// Prints "2"</span><!--end_enstr--><span class="jpstr">（「2」を出力します）</span><!--end_jpstr--></span>
+<li><span class="c"><span class="enstr">// Prints "2"</span><!--end_enstr--><span class="jpstr">（「2」を出力します）</span><!--end_jpstr--></span>
 </li>
 </ol></div></div></div>
 <p><span class="enstr">However, there are several ways to access memory, called <em>long-term</em> accesses, that span the execution of other code. The difference between instantaneous access and long-term access is that it’s possible for other code to run after a long-term access starts but before it ends, which is called <em>overlap</em>. A long-term access can overlap with other long-term accesses and instantaneous accesses.</span><!--end_enstr-->
@@ -451,13 +442,11 @@ in-outパラメータに対するアクセスの衝突<a class="headerlink" href
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines">
-<li>
-<span class="k">var</span> <span class="nv">stepSize</span> = <span class="m">1</span>
+<li><span class="k">var</span> <span class="nv">stepSize</span> = <span class="m">1</span>
 </li>
 <li>
 </li>
-<li>
-<span class="k">func</span> <span class="nv">increment</span>(<span class="k">_</span> <span class="nv">number</span>: <span class="k">inout</span> <span class="nc">Int</span>) {
+<li><span class="k">func</span> <span class="nv">increment</span>(<span class="k">_</span> <span class="nv">number</span>: <span class="k">inout</span> <span class="nc">Int</span>) {
 </li>
 <li>    <span class="nv">number</span> += <span class="nv">stepSize</span>
 </li>
@@ -465,11 +454,9 @@ in-outパラメータに対するアクセスの衝突<a class="headerlink" href
 </li>
 <li>
 </li>
-<li>
-<span class="nv">increment</span>(&amp;<span class="nv">stepSize</span>)
+<li><span class="nv">increment</span>(&amp;<span class="nv">stepSize</span>)
 </li>
-<li>
-<span class="c"><span class="enstr">// Error: conflicting accesses to stepSize</span><!--end_enstr--><span class="jpstr">（エラー：stepSizeに対するアクセス衝突）</span><!--end_jpstr--></span>
+<li><span class="c"><span class="enstr">// Error: conflicting accesses to stepSize</span><!--end_enstr--><span class="jpstr">（エラー：stepSizeに対するアクセス衝突）</span><!--end_jpstr--></span>
 </li>
 </ol></div></div></div>
 <p><span class="enstr">In the code above, <code class="docutils literal notranslate"><span class="pre">stepSize</span></code> is a global variable, and it’s normally accessible from within <code class="docutils literal notranslate"><span class="pre">increment(_:)</span></code>. However, the read access to <code class="docutils literal notranslate"><span class="pre">stepSize</span></code> overlaps with the write access to <code class="docutils literal notranslate"><span class="pre">number</span></code>. As shown in the figure below, both <code class="docutils literal notranslate"><span class="pre">number</span></code> and <code class="docutils literal notranslate"><span class="pre">stepSize</span></code> refer to the same location in memory. The read and write accesses refer to the same memory and they overlap, producing a conflict.</span><!--end_enstr-->
@@ -484,25 +471,19 @@ in-outパラメータに対するアクセスの衝突<a class="headerlink" href
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines">
-<li>
-<span class="c"><span class="enstr">// Make an explicit copy.</span><!--end_enstr--><span class="jpstr">（明示的なコピーを作る。）</span><!--end_jpstr--></span>
+<li><span class="c"><span class="enstr">// Make an explicit copy.</span><!--end_enstr--><span class="jpstr">（明示的なコピーを作る。）</span><!--end_jpstr--></span>
 </li>
-<li>
-<span class="k">var</span> <span class="nv">copyOfStepSize</span> = <span class="nv">stepSize</span>
+<li><span class="k">var</span> <span class="nv">copyOfStepSize</span> = <span class="nv">stepSize</span>
 </li>
-<li>
-<span class="nv">increment</span>(&amp;<span class="nv">copyOfStepSize</span>)
+<li><span class="nv">increment</span>(&amp;<span class="nv">copyOfStepSize</span>)
 </li>
 <li>
 </li>
-<li>
-<span class="c"><span class="enstr">// Update the original.</span><!--end_enstr--><span class="jpstr">（元のものを更新する。）</span><!--end_jpstr--></span>
+<li><span class="c"><span class="enstr">// Update the original.</span><!--end_enstr--><span class="jpstr">（元のものを更新する。）</span><!--end_jpstr--></span>
 </li>
-<li>
-<span class="nv">stepSize</span> = <span class="nv">copyOfStepSize</span>
+<li><span class="nv">stepSize</span> = <span class="nv">copyOfStepSize</span>
 </li>
-<li>
-<span class="c"><span class="enstr">// stepSize is now 2</span><!--end_enstr--><span class="jpstr">（stepSize は現在 2 です）</span><!--end_jpstr--></span>
+<li><span class="c"><span class="enstr">// stepSize is now 2</span><!--end_enstr--><span class="jpstr">（stepSize は現在 2 です）</span><!--end_jpstr--></span>
 </li>
 </ol></div></div></div>
 <p><span class="enstr">When you make a copy of <code class="docutils literal notranslate"><span class="pre">stepSize</span></code> before calling <code class="docutils literal notranslate"><span class="pre">increment(_:)</span></code>, it’s clear that the value of <code class="docutils literal notranslate"><span class="pre">copyOfStepSize</span></code> is incremented by the current step size. The read access ends before the write access starts, so there isn’t a conflict.</span><!--end_enstr-->
@@ -516,8 +497,7 @@ in-outパラメータに対する長期書き込みアクセスの別の帰着�
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines">
-<li>
-<span class="k">func</span> <span class="nv">balance</span>(<span class="k">_</span> <span class="nv">x</span>: <span class="k">inout</span> <span class="nc">Int</span>, <span class="k">_</span> <span class="nv">y</span>: <span class="k">inout</span> <span class="nc">Int</span>) {
+<li><span class="k">func</span> <span class="nv">balance</span>(<span class="k">_</span> <span class="nv">x</span>: <span class="k">inout</span> <span class="nc">Int</span>, <span class="k">_</span> <span class="nv">y</span>: <span class="k">inout</span> <span class="nc">Int</span>) {
 </li>
 <li>    <span class="k">let</span> <span class="nv">sum</span> = <span class="nv">x</span> + <span class="nv">y</span>
 </li>
@@ -527,20 +507,15 @@ in-outパラメータに対する長期書き込みアクセスの別の帰着�
 </li>
 <li>}
 </li>
-<li>
-<span class="k">var</span> <span class="nv">playerOneScore</span> = <span class="m">42</span>
+<li><span class="k">var</span> <span class="nv">playerOneScore</span> = <span class="m">42</span>
 </li>
-<li>
-<span class="k">var</span> <span class="nv">playerTwoScore</span> = <span class="m">30</span>
+<li><span class="k">var</span> <span class="nv">playerTwoScore</span> = <span class="m">30</span>
 </li>
-<li>
-<span class="nv">balance</span>(&amp;<span class="nv">playerOneScore</span>, &amp;<span class="nv">playerTwoScore</span>)  <span class="c">// OK</span>
+<li><span class="nv">balance</span>(&amp;<span class="nv">playerOneScore</span>, &amp;<span class="nv">playerTwoScore</span>)  <span class="c">// OK</span>
 </li>
-<li>
-<span class="nv">balance</span>(&amp;<span class="nv">playerOneScore</span>, &amp;<span class="nv">playerOneScore</span>)
+<li><span class="nv">balance</span>(&amp;<span class="nv">playerOneScore</span>, &amp;<span class="nv">playerOneScore</span>)
 </li>
-<li>
-<span class="c"><span class="enstr">// Error: conflicting accesses to playerOneScore</span><!--end_enstr--><span class="jpstr">（エラー：playerOneScoreに対するアクセス衝突）</span><!--end_jpstr--></span>
+<li><span class="c"><span class="enstr">// Error: conflicting accesses to playerOneScore</span><!--end_enstr--><span class="jpstr">（エラー：playerOneScoreに対するアクセス衝突）</span><!--end_jpstr--></span>
 </li>
 </ol></div></div></div>
 <p><span class="enstr">The <code class="docutils literal notranslate"><span class="pre">balance(_:_:)</span></code> function above modifies its two parameters to divide the total value evenly between them. Calling it with <code class="docutils literal notranslate"><span class="pre">playerOneScore</span></code> and <code class="docutils literal notranslate"><span class="pre">playerTwoScore</span></code> as arguments doesn’t produce a conflict—there are two write accesses that overlap in time, but they access different locations in memory. In contrast, passing <code class="docutils literal notranslate"><span class="pre">playerOneScore</span></code> as the value for both parameters produces a conflict because it tries to perform two write accesses to the same location in memory at the same time.</span><!--end_enstr-->
@@ -574,8 +549,7 @@ in-outパラメータに対する長期書き込みアクセスの別の帰着�
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines">
-<li>
-<span class="k">struct</span> <span class="nv">Player</span> {
+<li><span class="k">struct</span> <span class="nv">Player</span> {
 </li>
 <li>    <span class="k">var</span> <span class="nv">name</span>: <span class="nc">String</span>
 </li>
@@ -602,8 +576,7 @@ in-outパラメータに対する長期書き込みアクセスの別の帰着�
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines">
-<li>
-<span class="k">extension</span> <span class="nc">Player</span> {
+<li><span class="k">extension</span> <span class="nc">Player</span> {
 </li>
 <li>    <span class="k">mutating</span> <span class="k">func</span> <span class="nv">shareHealth</span>(<span class="nv">with</span> <span class="nv">teammate</span>: <span class="k">inout</span> <span class="nc">Player</span>) {
 </li>
@@ -615,14 +588,11 @@ in-outパラメータに対する長期書き込みアクセスの別の帰着�
 </li>
 <li>
 </li>
-<li>
-<span class="k">var</span> <span class="nv">oscar</span> = <span class="nv">Player</span>(<span class="nv">name</span>: <span class="s">"Oscar"</span>, <span class="nv">health</span>: <span class="m">10</span>, <span class="nv">energy</span>: <span class="m">10</span>)
+<li><span class="k">var</span> <span class="nv">oscar</span> = <span class="nv">Player</span>(<span class="nv">name</span>: <span class="s">"Oscar"</span>, <span class="nv">health</span>: <span class="m">10</span>, <span class="nv">energy</span>: <span class="m">10</span>)
 </li>
-<li>
-<span class="k">var</span> <span class="nv">maria</span> = <span class="nv">Player</span>(<span class="nv">name</span>: <span class="s">"Maria"</span>, <span class="nv">health</span>: <span class="m">5</span>, <span class="nv">energy</span>: <span class="m">10</span>)
+<li><span class="k">var</span> <span class="nv">maria</span> = <span class="nv">Player</span>(<span class="nv">name</span>: <span class="s">"Maria"</span>, <span class="nv">health</span>: <span class="m">5</span>, <span class="nv">energy</span>: <span class="m">10</span>)
 </li>
-<li>
-<span class="nv">oscar</span>.<span class="nv">shareHealth</span>(<span class="nv">with</span>: &amp;<span class="nv">maria</span>)  <span class="c">// OK</span>
+<li><span class="nv">oscar</span>.<span class="nv">shareHealth</span>(<span class="nv">with</span>: &amp;<span class="nv">maria</span>)  <span class="c">// OK</span>
 </li>
 </ol></div></div></div>
 <p><span class="enstr">In the example above, calling the <code class="docutils literal notranslate"><span class="pre">shareHealth(with:)</span></code> method for Oscar’s player to share health with Maria’s player doesn’t cause a conflict. There’s a write access to <code class="docutils literal notranslate"><span class="pre">oscar</span></code> during the method call because <code class="docutils literal notranslate"><span class="pre">oscar</span></code> is the value of <code class="docutils literal notranslate"><span class="pre">self</span></code> in a mutating method, and there’s a write access to <code class="docutils literal notranslate"><span class="pre">maria</span></code> for the same duration because <code class="docutils literal notranslate"><span class="pre">maria</span></code> was passed as an in-out parameter. As shown in the figure below, they access different locations in memory. Even though the two write accesses overlap in time, they don’t conflict.</span><!--end_enstr-->
@@ -637,11 +607,9 @@ in-outパラメータに対する長期書き込みアクセスの別の帰着�
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines">
-<li>
-<span class="nv">oscar</span>.<span class="nv">shareHealth</span>(<span class="nv">with</span>: &amp;<span class="nv">oscar</span>)
+<li><span class="nv">oscar</span>.<span class="nv">shareHealth</span>(<span class="nv">with</span>: &amp;<span class="nv">oscar</span>)
 </li>
-<li>
-<span class="c"><span class="enstr">// Error: conflicting accesses to oscar</span><!--end_enstr--><span class="jpstr">（エラー：oscarに対するアクセス衝突）</span><!--end_jpstr--></span>
+<li><span class="c"><span class="enstr">// Error: conflicting accesses to oscar</span><!--end_enstr--><span class="jpstr">（エラー：oscarに対するアクセス衝突）</span><!--end_jpstr--></span>
 </li>
 </ol></div></div></div>
 <p><span class="enstr">The mutating method needs write access to <code class="docutils literal notranslate"><span class="pre">self</span></code> for the duration of the method, and the in-out parameter needs write access to <code class="docutils literal notranslate"><span class="pre">teammate</span></code> for the same duration. Within the method, both <code class="docutils literal notranslate"><span class="pre">self</span></code> and <code class="docutils literal notranslate"><span class="pre">teammate</span></code> refer to the same location in memory—as shown in the figure below. The two write accesses refer to the same memory and they overlap, producing a conflict.</span><!--end_enstr-->
@@ -664,14 +632,11 @@ in-outパラメータに対する長期書き込みアクセスの別の帰着�
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines">
-<li>
-<span class="k">var</span> <span class="nv">playerInformation</span> = (<span class="nv">health</span>: <span class="m">10</span>, <span class="nv">energy</span>: <span class="m">20</span>)
+<li><span class="k">var</span> <span class="nv">playerInformation</span> = (<span class="nv">health</span>: <span class="m">10</span>, <span class="nv">energy</span>: <span class="m">20</span>)
 </li>
-<li>
-<span class="nv">balance</span>(&amp;<span class="nv">playerInformation</span>.<span class="nv">health</span>, &amp;<span class="nv">playerInformation</span>.<span class="nv">energy</span>)
+<li><span class="nv">balance</span>(&amp;<span class="nv">playerInformation</span>.<span class="nv">health</span>, &amp;<span class="nv">playerInformation</span>.<span class="nv">energy</span>)
 </li>
-<li>
-<span class="c"><span class="enstr">// Error: conflicting access to properties of playerInformation</span><!--end_enstr--><span class="jpstr">（エラー：playerInformationのプロパティに対するアクセス衝突）</span><!--end_jpstr--></span>
+<li><span class="c"><span class="enstr">// Error: conflicting access to properties of playerInformation</span><!--end_enstr--><span class="jpstr">（エラー：playerInformationのプロパティに対するアクセス衝突）</span><!--end_jpstr--></span>
 </li>
 </ol></div></div></div>
 <p><span class="enstr">In the example above, calling <code class="docutils literal notranslate"><span class="pre">balance(_:_:)</span></code> on the elements of a tuple produces a conflict because there are overlapping write accesses to <code class="docutils literal notranslate"><span class="pre">playerInformation</span></code>. Both <code class="docutils literal notranslate"><span class="pre">playerInformation.health</span></code> and <code class="docutils literal notranslate"><span class="pre">playerInformation.energy</span></code> are passed as in-out parameters, which means <code class="docutils literal notranslate"><span class="pre">balance(_:_:)</span></code> needs write access to them for the duration of the function call. In both cases, a write access to the tuple element requires a write access to the entire tuple. This means there are two write accesses to <code class="docutils literal notranslate"><span class="pre">playerInformation</span></code> with durations that overlap, causing a conflict.</span><!--end_enstr-->
@@ -685,11 +650,9 @@ in-outパラメータに対する長期書き込みアクセスの別の帰着�
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines">
-<li>
-<span class="k">var</span> <span class="nv">holly</span> = <span class="nv">Player</span>(<span class="nv">name</span>: <span class="s">"Holly"</span>, <span class="nv">health</span>: <span class="m">10</span>, <span class="nv">energy</span>: <span class="m">10</span>)
+<li><span class="k">var</span> <span class="nv">holly</span> = <span class="nv">Player</span>(<span class="nv">name</span>: <span class="s">"Holly"</span>, <span class="nv">health</span>: <span class="m">10</span>, <span class="nv">energy</span>: <span class="m">10</span>)
 </li>
-<li>
-<span class="nv">balance</span>(&amp;<span class="nv">holly</span>.<span class="nv">health</span>, &amp;<span class="nv">holly</span>.<span class="nv">energy</span>)  <span class="c">// Error</span>
+<li><span class="nv">balance</span>(&amp;<span class="nv">holly</span>.<span class="nv">health</span>, &amp;<span class="nv">holly</span>.<span class="nv">energy</span>)  <span class="c">// Error</span>
 </li>
 </ol></div></div></div>
 <p><span class="enstr">In practice, most access to the properties of a structure can overlap safely. For example, if the variable <code class="docutils literal notranslate"><span class="pre">holly</span></code> in the example above is changed to a local variable instead of a global variable, the compiler can prove that overlapping access to stored properties of the structure is safe:</span><!--end_enstr-->
@@ -698,8 +661,7 @@ in-outパラメータに対する長期書き込みアクセスの別の帰着�
 </span><!--end_jpstr-->
 </p>
 <div class="highlight-swift notranslate"><div class="code-sample"><div class="Swift highlight"><ol class="code-lines">
-<li>
-<span class="k">func</span> <span class="nv">someFunction</span>() {
+<li><span class="k">func</span> <span class="nv">someFunction</span>() {
 </li>
 <li>    <span class="k">var</span> <span class="nv">oscar</span> = <span class="nv">Player</span>(<span class="nv">name</span>: <span class="s">"Oscar"</span>, <span class="nv">health</span>: <span class="m">10</span>, <span class="nv">energy</span>: <span class="m">10</span>)
 </li>
